@@ -32,22 +32,26 @@ fn rejects_what_the_schema_rejects() {
     let mut json: serde_json::Value = serde_json::from_str(&text).unwrap();
     assert!(parse_creature(&text).is_ok());
 
-    let cases: [(&str, serde_json::Value, &str); 5] = [
-        ("/ameaca", 7.into(), "ameaca"),
-        ("/centelha", (-1).into(), "centelha"),
+    // (ponteiro, valor, caminho do erro, se é erro de forma do JSON)
+    let cases: [(&str, serde_json::Value, &str, bool); 6] = [
+        ("/ameaca", 7.into(), "ameaca", false),
+        ("/centelha", (-1).into(), "centelha", false),
         (
             "/corpo/tamanhoEscolhido",
             "gigante".into(),
             "corpo.tamanhoEscolhido",
+            true,
         ),
-        ("/perfilCouraca", "pedra".into(), "perfilCouraca"),
+        ("/perfilCouraca", "pedra".into(), "perfilCouraca", true),
         (
             "/equipamento/arsenal",
             serde_json::json!([{"ref": "x:espada"}]),
             "equipamento.arsenal[0].ref",
+            false,
         ),
+        ("/ataques/0/arma", "Espada".into(), "ataques[0].arma", false),
     ];
-    for (pointer, value, path) in cases {
+    for (pointer, value, path, shape) in cases {
         let mut bad = json.clone();
         match bad.pointer_mut(pointer) {
             Some(slot) => *slot = value,
@@ -62,7 +66,11 @@ fn rejects_what_the_schema_rejects() {
             }
         }
         let err = parse_creature(&bad.to_string()).unwrap_err();
-        assert!(matches!(err, DataError::Invalid { .. }), "{pointer}: {err}");
+        if shape {
+            assert!(matches!(err, DataError::Json { .. }), "{pointer}: {err}");
+        } else {
+            assert!(matches!(err, DataError::Invalid { .. }), "{pointer}: {err}");
+        }
         assert_eq!(err.path(), path, "{pointer}");
     }
 
@@ -71,4 +79,36 @@ fn rejects_what_the_schema_rejects() {
     let err = parse_creature(&json.to_string()).unwrap_err();
     assert!(matches!(err, DataError::Json { .. }), "{err}");
     assert_eq!(err.path(), "atributos.forca");
+}
+
+#[test]
+fn reads_the_catalogs_the_engine_uses() {
+    let content = repo().join("content");
+    let rules = centelha_data::load_rules(&content).unwrap_or_else(|e| panic!("{e}"));
+    assert_eq!(rules.size_accuracy.order.len(), 8);
+    let weapons = centelha_data::load_weapons(&content).unwrap_or_else(|e| panic!("{e}"));
+    let armors = centelha_data::load_armors(&content).unwrap_or_else(|e| panic!("{e}"));
+    let shields = centelha_data::load_shields(&content).unwrap_or_else(|e| panic!("{e}"));
+    assert!(!weapons.is_empty() && !armors.is_empty() && !shields.is_empty());
+    // toda arma, armadura e escudo citado por uma criatura existe no catálogo
+    let creatures = load_bestiary(&content).unwrap();
+    let has = |list: &[String], id: &str| list.iter().any(|x| x == id);
+    let w: Vec<String> = weapons.iter().map(|x| x.id.clone()).collect();
+    let a: Vec<String> = armors.iter().map(|x| x.id.clone()).collect();
+    let s: Vec<String> = shields.iter().map(|x| x.id.clone()).collect();
+    for c in &creatures {
+        for atk in &c.attacks {
+            if let Some(id) = &atk.weapon {
+                assert!(has(&w, id), "{}: arma {id}", c.id);
+            }
+        }
+        for item in &c.equipment.arsenal {
+            let (kind, id) = item.reference.split_once(':').unwrap();
+            let list = if kind == "a" { &w } else { &s };
+            assert!(has(list, id), "{}: {}", c.id, item.reference);
+        }
+        for armor in &c.equipment.armors {
+            assert!(has(&a, &armor.base), "{}: armadura {}", c.id, armor.base);
+        }
+    }
 }

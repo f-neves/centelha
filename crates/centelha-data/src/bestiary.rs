@@ -15,32 +15,132 @@ use serde::Deserialize;
 
 use crate::DataError;
 
-/// Os ids de Tamanho, do menor para o maior.
-pub const SIZES: [&str; 8] = [
-    "minusculo",
-    "miudo",
-    "pequeno",
-    "medio",
-    "grande",
-    "enorme",
-    "imenso",
-    "colossal",
-];
+/// Os Tamanhos, do menor para o maior.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Deserialize)]
+pub enum Size {
+    #[serde(rename = "minusculo")]
+    Minuscule,
+    #[serde(rename = "miudo")]
+    Tiny,
+    #[serde(rename = "pequeno")]
+    Small,
+    #[serde(rename = "medio")]
+    Medium,
+    #[serde(rename = "grande")]
+    Large,
+    #[serde(rename = "enorme")]
+    Huge,
+    #[serde(rename = "imenso")]
+    Immense,
+    #[serde(rename = "colossal")]
+    Colossal,
+}
 
-/// Os perfis de Couraça.
-pub const CARAPACE_PROFILES: [&str; 3] = ["rigida", "couro", "mole"];
+impl Size {
+    /// Os oito, do menor para o maior.
+    pub const ALL: [Size; 8] = [
+        Size::Minuscule,
+        Size::Tiny,
+        Size::Small,
+        Size::Medium,
+        Size::Large,
+        Size::Huge,
+        Size::Immense,
+        Size::Colossal,
+    ];
 
-/// As classes do ataque natural.
-pub const ATTACK_CLASSES: [&str; 8] = [
-    "leve",
-    "media",
-    "pesada",
-    "haste",
-    "haste-media",
-    "haste-guerra",
-    "distancia",
-    "arremesso",
-];
+    /// O id nos dados (`medio`).
+    pub fn id(self) -> &'static str {
+        match self {
+            Size::Minuscule => "minusculo",
+            Size::Tiny => "miudo",
+            Size::Small => "pequeno",
+            Size::Medium => "medio",
+            Size::Large => "grande",
+            Size::Huge => "enorme",
+            Size::Immense => "imenso",
+            Size::Colossal => "colossal",
+        }
+    }
+}
+
+/// O perfil da cobertura da Couraça.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Deserialize)]
+pub enum CarapaceProfile {
+    #[serde(rename = "rigida")]
+    Rigid,
+    #[serde(rename = "couro")]
+    Leather,
+    #[serde(rename = "mole")]
+    Soft,
+}
+
+/// A linha de PV escolhida na zona de transição da tabela de massa.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Deserialize)]
+pub enum HpLine {
+    #[serde(rename = "acima")]
+    Above,
+    #[serde(rename = "abaixo")]
+    Below,
+}
+
+/// A classe do ataque (e da arma do catálogo).
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Deserialize)]
+pub enum AttackClass {
+    #[serde(rename = "leve")]
+    Light,
+    #[serde(rename = "media")]
+    Medium,
+    #[serde(rename = "pesada")]
+    Heavy,
+    #[serde(rename = "haste")]
+    Polearm,
+    #[serde(rename = "haste-media")]
+    MediumPolearm,
+    #[serde(rename = "haste-guerra")]
+    WarPolearm,
+    #[serde(rename = "distancia")]
+    Ranged,
+    #[serde(rename = "arremesso")]
+    Thrown,
+}
+
+/// A categoria da criatura.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Deserialize)]
+pub enum Category {
+    #[serde(rename = "aberracao")]
+    Aberration,
+    #[serde(rename = "animal")]
+    Animal,
+    #[serde(rename = "besta-magica")]
+    MagicalBeast,
+    #[serde(rename = "celestial")]
+    Celestial,
+    #[serde(rename = "construto")]
+    Construct,
+    #[serde(rename = "corruptor")]
+    Corruptor,
+    #[serde(rename = "dragao")]
+    Dragon,
+    #[serde(rename = "elemental")]
+    Elemental,
+    #[serde(rename = "fada")]
+    Fey,
+    #[serde(rename = "gigante")]
+    Giant,
+    #[serde(rename = "humanoide")]
+    Humanoid,
+    #[serde(rename = "humanoide-monstruoso")]
+    MonstrousHumanoid,
+    #[serde(rename = "limo")]
+    Ooze,
+    #[serde(rename = "morto-vivo")]
+    Undead,
+    #[serde(rename = "outsider")]
+    Outsider,
+    #[serde(rename = "planta")]
+    Plant,
+}
 
 /// As Habilidades que o ataque natural pode gravar (as de tiro e arremesso).
 pub const RANGED_SKILLS: [&str; 3] = ["disparo", "atirador", "arremesso"];
@@ -52,7 +152,7 @@ pub struct Creature {
     #[serde(rename = "nome")]
     pub name: String,
     #[serde(rename = "categoria")]
-    pub category: String,
+    pub category: Category,
     #[serde(rename = "ameaca")]
     pub threat: i32,
     #[serde(rename = "centelha")]
@@ -74,7 +174,7 @@ pub struct Creature {
     #[serde(rename = "couraca")]
     pub carapace: i32,
     #[serde(rename = "perfilCouraca", default)]
-    pub carapace_profile: Option<String>,
+    pub carapace_profile: Option<CarapaceProfile>,
     #[serde(rename = "artes")]
     pub arts: BTreeMap<String, i32>,
     #[serde(rename = "equipamento")]
@@ -110,6 +210,39 @@ pub struct Attributes {
     pub composure: i32,
 }
 
+impl Attributes {
+    /// O Atributo pela chave dos dados (`raciocinio`), para as regras que
+    /// listam chaves em `regras.json`.
+    pub fn get(&self, key: &str) -> Option<i32> {
+        Some(match key {
+            "forca" => self.strength,
+            "destreza" => self.dexterity,
+            "vigor" => self.stamina,
+            "percepcao" => self.perception,
+            "inteligencia" => self.intelligence,
+            "raciocinio" => self.wits,
+            "influencia" => self.influence,
+            "perspicacia" => self.insight,
+            "compostura" => self.composure,
+            _ => return None,
+        })
+    }
+
+    fn entries(&self) -> [(&'static str, i32); 9] {
+        [
+            ("forca", self.strength),
+            ("destreza", self.dexterity),
+            ("vigor", self.stamina),
+            ("percepcao", self.perception),
+            ("inteligencia", self.intelligence),
+            ("raciocinio", self.wits),
+            ("influencia", self.influence),
+            ("perspicacia", self.insight),
+            ("compostura", self.composure),
+        ]
+    }
+}
+
 /// Os Atributos que uma forma troca (os que ela não diz vêm da principal).
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Default, Deserialize)]
 pub struct AttributesPatch {
@@ -133,6 +266,22 @@ pub struct AttributesPatch {
     pub composure: Option<i32>,
 }
 
+impl AttributesPatch {
+    fn entries(&self) -> [(&'static str, Option<i32>); 9] {
+        [
+            ("forca", self.strength),
+            ("destreza", self.dexterity),
+            ("vigor", self.stamina),
+            ("percepcao", self.perception),
+            ("inteligencia", self.intelligence),
+            ("raciocinio", self.wits),
+            ("influencia", self.influence),
+            ("perspicacia", self.insight),
+            ("compostura", self.composure),
+        ]
+    }
+}
+
 /// O corpo: o que entra no Tamanho, na faixa, no PV e no peso erguido.
 #[derive(Debug, Clone, PartialEq, Deserialize)]
 pub struct Body {
@@ -143,16 +292,17 @@ pub struct Body {
     pub massless: bool,
     #[serde(default)]
     pub volume: Option<f64>,
-    /// A área da silhueta, em m².
-    pub area: f64,
+    /// A área da silhueta, em m². Obrigatória na criatura; numa criatura
+    /// montada a partir de uma forma ela sempre vem da principal ou da forma.
+    pub area: Option<f64>,
     /// A criatura que não ergue peso (`naoErgue`).
     #[serde(rename = "naoErgue", default)]
     pub cannot_lift: bool,
     #[serde(rename = "tamanhoEscolhido", default)]
-    pub chosen_size: Option<String>,
-    /// A linha de PV escolhida na zona de transição: `acima` ou `abaixo`.
+    pub chosen_size: Option<Size>,
     #[serde(rename = "linhaPV", default)]
-    pub hp_line: Option<String>,
+    pub hp_line: Option<HpLine>,
+    /// O porquê da linha de PV, nas palavras da ficha (`linhaPVMotivo`).
     #[serde(rename = "linhaPVMotivo", default)]
     pub hp_line_reason: Option<String>,
     #[serde(rename = "segundoTamanho", default)]
@@ -173,9 +323,9 @@ pub struct BodyPatch {
     #[serde(rename = "naoErgue", default)]
     pub cannot_lift: Option<bool>,
     #[serde(rename = "tamanhoEscolhido", default)]
-    pub chosen_size: Option<String>,
+    pub chosen_size: Option<Size>,
     #[serde(rename = "linhaPV", default)]
-    pub hp_line: Option<String>,
+    pub hp_line: Option<HpLine>,
     #[serde(rename = "linhaPVMotivo", default)]
     pub hp_line_reason: Option<String>,
     #[serde(rename = "segundoTamanho", default)]
@@ -187,17 +337,17 @@ pub struct BodyPatch {
 pub struct SecondSize {
     pub area: f64,
     #[serde(rename = "tamanhoEscolhido", default)]
-    pub chosen_size: Option<String>,
+    pub chosen_size: Option<Size>,
 }
 
 /// O enxame: quantos indivíduos cabem num quadrado e o Tamanho que o enxame
-/// vale.
+/// vale (só Pequeno ou Médio).
 #[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
 pub struct Swarm {
     #[serde(rename = "individuosPorQuadrado")]
     pub individuals_per_square: i64,
     #[serde(rename = "tamanhoEquivalente")]
-    pub equivalent_size: String,
+    pub equivalent_size: Size,
 }
 
 /// O equipamento que a criatura sempre usa.
@@ -237,6 +387,28 @@ pub struct WornArmor {
     pub worn: bool,
 }
 
+/// As três parcelas da Velocidade, em Ticks (P/G/R).
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Deserialize)]
+#[serde(from = "[i32; 3]")]
+pub struct Timing {
+    /// Preparo.
+    pub windup: i32,
+    /// Golpe.
+    pub blow: i32,
+    /// Recuperação.
+    pub recovery: i32,
+}
+
+impl From<[i32; 3]> for Timing {
+    fn from([windup, blow, recovery]: [i32; 3]) -> Self {
+        Timing {
+            windup,
+            blow,
+            recovery,
+        }
+    }
+}
+
 /// Um ataque: o natural (com a conta toda no JSON) ou o com a arma do livro
 /// (só o nome, o id da arma e, se for de outro Tamanho, o Tamanho dela).
 #[derive(Debug, Clone, PartialEq, Deserialize)]
@@ -247,12 +419,11 @@ pub struct Attack {
     pub weapon: Option<String>,
     /// O Tamanho da arma de outro Tamanho.
     #[serde(rename = "tamanho", default)]
-    pub size: Option<String>,
+    pub size: Option<Size>,
     #[serde(rename = "classe", default)]
-    pub class: Option<String>,
-    /// As três parcelas da Velocidade, em Ticks.
-    #[serde(default)]
-    pub pgr: Option<[i32; 3]>,
+    pub class: Option<AttackClass>,
+    #[serde(rename = "pgr", default)]
+    pub timing: Option<Timing>,
     /// O dado de dano (`2d6+1`); `null` no golpe sem dano.
     #[serde(rename = "dado", default)]
     pub dice: Option<String>,
@@ -289,7 +460,7 @@ pub struct Form {
     #[serde(rename = "couraca", default)]
     pub carapace: Option<i32>,
     #[serde(rename = "perfilCouraca", default)]
-    pub carapace_profile: Option<String>,
+    pub carapace_profile: Option<CarapaceProfile>,
     #[serde(rename = "atributos", default)]
     pub attributes: Option<AttributesPatch>,
     #[serde(rename = "equipamento", default)]
@@ -302,18 +473,7 @@ pub struct Form {
 
 /// Lê uma criatura a partir do texto do JSON e a valida.
 pub fn parse_creature(json: &str) -> Result<Creature, DataError> {
-    let mut de = serde_json::Deserializer::from_str(json);
-    let creature: Creature =
-        serde_path_to_error::deserialize(&mut de).map_err(|e| DataError::Json {
-            file: None,
-            path: e.path().to_string(),
-            reason: e.inner().to_string(),
-        })?;
-    de.end().map_err(|e| DataError::Json {
-        file: None,
-        path: String::new(),
-        reason: e.to_string(),
-    })?;
+    let creature: Creature = crate::json::parse(json)?;
     validate(&creature)?;
     Ok(creature)
 }
@@ -359,7 +519,7 @@ pub fn load_bestiary(content_dir: &std::path::Path) -> Result<Vec<Creature>, Dat
 // ----- validação -----
 
 /// O id dos dados: minúsculas e algarismos, separados por hífen.
-fn is_id(s: &str) -> bool {
+pub(crate) fn is_id(s: &str) -> bool {
     !s.is_empty()
         && s.split('-').all(|part| {
             !part.is_empty()
@@ -367,6 +527,18 @@ fn is_id(s: &str) -> bool {
                     .bytes()
                     .all(|b| b.is_ascii_lowercase() || b.is_ascii_digit())
         })
+}
+
+/// A referência do arsenal, como a fonte: `^[ae]:[a-z0-9-]+$` (o resto pode ter
+/// hífen em qualquer posição, sem a forma estrita do id).
+fn is_arsenal_ref(s: &str) -> bool {
+    s.split_once(':').is_some_and(|(kind, rest)| {
+        (kind == "a" || kind == "e")
+            && !rest.is_empty()
+            && rest
+                .bytes()
+                .all(|b| b.is_ascii_lowercase() || b.is_ascii_digit() || b == b'-')
+    })
 }
 
 /// O dado de dano: `NdM` com M = 6 e um bônus opcional (`2d6`, `1d6+2`, `3d6-1`).
@@ -409,44 +581,6 @@ fn check_in(value: &str, list: &[&str], path: &str) -> Result<(), DataError> {
     )
 }
 
-fn check_attributes(a: &Attributes, path: &str) -> Result<(), DataError> {
-    let all = [
-        ("forca", a.strength),
-        ("destreza", a.dexterity),
-        ("vigor", a.stamina),
-        ("percepcao", a.perception),
-        ("inteligencia", a.intelligence),
-        ("raciocinio", a.wits),
-        ("influencia", a.influence),
-        ("perspicacia", a.insight),
-        ("compostura", a.composure),
-    ];
-    for (key, value) in all {
-        check(value >= 0, format!("{path}.{key}"), "negativo")?;
-    }
-    Ok(())
-}
-
-fn check_attributes_patch(a: &AttributesPatch, path: &str) -> Result<(), DataError> {
-    let all = [
-        ("forca", a.strength),
-        ("destreza", a.dexterity),
-        ("vigor", a.stamina),
-        ("percepcao", a.perception),
-        ("inteligencia", a.intelligence),
-        ("raciocinio", a.wits),
-        ("influencia", a.influence),
-        ("perspicacia", a.insight),
-        ("compostura", a.composure),
-    ];
-    for (key, value) in all {
-        if let Some(v) = value {
-            check(v >= 0, format!("{path}.{key}"), "negativo")?;
-        }
-    }
-    Ok(())
-}
-
 fn check_arts(arts: &BTreeMap<String, i32>, path: &str) -> Result<(), DataError> {
     for (id, level) in arts {
         check(*level >= 0, format!("{path}.{id}"), "negativo")?;
@@ -460,12 +594,8 @@ fn check_equipment_parts(
     path: &str,
 ) -> Result<(), DataError> {
     for (i, item) in arsenal.unwrap_or_default().iter().enumerate() {
-        let ok = item
-            .reference
-            .split_once(':')
-            .is_some_and(|(kind, id)| (kind == "a" || kind == "e") && is_id(id));
         check(
-            ok,
+            is_arsenal_ref(&item.reference),
             format!("{path}.arsenal[{i}].ref"),
             "a referência é a:<id> ou e:<id>",
         )?;
@@ -480,34 +610,20 @@ fn check_equipment_parts(
     Ok(())
 }
 
-fn check_second_size(s: &SecondSize, path: &str) -> Result<(), DataError> {
-    if let Some(size) = &s.chosen_size {
-        check_in(size, &SIZES, &format!("{path}.tamanhoEscolhido"))?;
-    }
-    Ok(())
-}
-
 fn check_attacks(attacks: &[Attack], path: &str) -> Result<(), DataError> {
     for (i, a) in attacks.iter().enumerate() {
         let p = format!("{path}[{i}]");
         if let Some(weapon) = &a.weapon {
             // o ataque com a arma do livro: o resto vem do catálogo
             check(is_id(weapon), format!("{p}.arma"), "id inválido")?;
-            if let Some(size) = &a.size {
-                check_in(size, &SIZES, &format!("{p}.tamanho"))?;
-            }
             continue;
         }
-        let class = a
-            .class
-            .as_deref()
-            .ok_or_else(|| DataError::invalid(format!("{p}.classe"), "falta a classe"))?;
-        check_in(class, &ATTACK_CLASSES, &format!("{p}.classe"))?;
-        let pgr = a
-            .pgr
+        check(a.class.is_some(), format!("{p}.classe"), "falta a classe")?;
+        let t = a
+            .timing
             .ok_or_else(|| DataError::invalid(format!("{p}.pgr"), "falta a Velocidade"))?;
         check(
-            pgr[0] >= 0 && pgr[1] == 1 && pgr[2] >= 0,
+            t.windup >= 0 && t.blow == 1 && t.recovery >= 0,
             format!("{p}.pgr"),
             "a Velocidade é [n ≥ 0, 1, n ≥ 0]",
         )?;
@@ -535,18 +651,17 @@ fn check_attacks(attacks: &[Attack], path: &str) -> Result<(), DataError> {
 
 fn validate(c: &Creature) -> Result<(), DataError> {
     check(is_id(&c.id), "id", "id inválido")?;
-    check(is_id(&c.category), "categoria", "id inválido")?;
     check_range(c.threat, 1, 6, "ameaca")?;
     check_range(c.spark, 0, 12, "centelha")?;
     check_range(c.carapace, 0, 12, "couraca")?;
     check(c.willpower >= 0, "vontade", "negativo")?;
-    check_attributes(&c.attributes, "atributos")?;
-    check_arts(&c.arts, "artes")?;
-    if let Some(profile) = &c.carapace_profile {
-        check_in(profile, &CARAPACE_PROFILES, "perfilCouraca")?;
+    for (key, value) in c.attributes.entries() {
+        check(value >= 0, format!("atributos.{key}"), "negativo")?;
     }
+    check_arts(&c.arts, "artes")?;
 
     let b = &c.body;
+    check(b.area.is_some(), "corpo.area", "falta a área")?;
     check(
         b.mass.is_some() || b.massless,
         "corpo.massa",
@@ -557,20 +672,11 @@ fn validate(c: &Creature) -> Result<(), DataError> {
         "corpo.volume",
         "semMassa e volume devem ser declarados juntos",
     )?;
-    if let Some(size) = &b.chosen_size {
-        check_in(size, &SIZES, "corpo.tamanhoEscolhido")?;
-    }
-    if let Some(line) = &b.hp_line {
-        check_in(line, &["acima", "abaixo"], "corpo.linhaPV")?;
-    }
     check(
         b.hp_line_reason.is_none() || b.hp_line.is_some(),
         "corpo.linhaPVMotivo",
         "linhaPVMotivo exige linhaPV",
     )?;
-    if let Some(s) = &b.second_size {
-        check_second_size(s, "corpo.segundoTamanho")?;
-    }
 
     if let Some(s) = &c.swarm {
         check(
@@ -578,10 +684,10 @@ fn validate(c: &Creature) -> Result<(), DataError> {
             "enxame.individuosPorQuadrado",
             "precisa ser positivo",
         )?;
-        check_in(
-            &s.equivalent_size,
-            &["pequeno", "medio"],
+        check(
+            matches!(s.equivalent_size, Size::Small | Size::Medium),
             "enxame.tamanhoEquivalente",
+            "só pequeno ou medio",
         )?;
     }
 
@@ -613,11 +719,12 @@ fn validate(c: &Creature) -> Result<(), DataError> {
             if let Some(n) = f.carapace {
                 check_range(n, 0, 12, &format!("{p}.couraca"))?;
             }
-            if let Some(profile) = &f.carapace_profile {
-                check_in(profile, &CARAPACE_PROFILES, &format!("{p}.perfilCouraca"))?;
-            }
             if let Some(a) = &f.attributes {
-                check_attributes_patch(a, &format!("{p}.atributos"))?;
+                for (key, value) in a.entries() {
+                    if let Some(v) = value {
+                        check(v >= 0, format!("{p}.atributos.{key}"), "negativo")?;
+                    }
+                }
             }
             if let Some(arts) = &f.arts {
                 check_arts(arts, &format!("{p}.artes"))?;
@@ -633,25 +740,14 @@ fn validate(c: &Creature) -> Result<(), DataError> {
                 check_attacks(attacks, &format!("{p}.ataques"))?;
             }
             if let Some(fb) = &f.body {
-                if let Some(size) = &fb.chosen_size {
-                    check_in(size, &SIZES, &format!("{p}.corpo.tamanhoEscolhido"))?;
-                    check(
-                        fb.area.is_some(),
-                        format!("{p}.corpo.tamanhoEscolhido"),
-                        "Tamanho próprio da forma exige área própria",
-                    )?;
-                }
-                if let Some(line) = &fb.hp_line {
-                    check_in(line, &["acima", "abaixo"], &format!("{p}.corpo.linhaPV"))?;
-                }
+                // O Tamanho próprio da forma sem a área própria é o formato
+                // legado que a leitura da fonte ainda tolera (o esquema de
+                // entrada recusa, a leitura aceita): aceito igual, sem conferir.
                 check(
                     fb.hp_line_reason.is_none() || fb.hp_line.is_some(),
                     format!("{p}.corpo.linhaPVMotivo"),
                     "linhaPVMotivo exige linhaPV",
                 )?;
-                if let Some(s) = &fb.second_size {
-                    check_second_size(s, &format!("{p}.corpo.segundoTamanho"))?;
-                }
             }
         }
     }
@@ -673,6 +769,16 @@ mod tests {
     }
 
     #[test]
+    fn arsenal_refs_like_the_source() {
+        for ok in ["a:espada-longa", "e:broquel", "a:-x", "a:x--y", "a:x-"] {
+            assert!(is_arsenal_ref(ok), "{ok}");
+        }
+        for bad in ["x:espada", "a:", "a:Espada", "espada", "a:esp ada"] {
+            assert!(!is_arsenal_ref(bad), "{bad}");
+        }
+    }
+
+    #[test]
     fn dice() {
         for ok in ["1d6", "12d6", "2d6+1", "3d6-2"] {
             assert!(is_dice(ok), "{ok}");
@@ -687,5 +793,24 @@ mod tests {
         let err = parse_creature(r#"{"id": "x", "nome": 3}"#).unwrap_err();
         assert_eq!(err.path(), "nome");
         assert!(matches!(err, DataError::Json { .. }));
+    }
+
+    #[test]
+    fn size_ids_follow_the_order() {
+        let ids: Vec<&str> = Size::ALL.iter().map(|s| s.id()).collect();
+        assert_eq!(
+            ids,
+            [
+                "minusculo",
+                "miudo",
+                "pequeno",
+                "medio",
+                "grande",
+                "enorme",
+                "imenso",
+                "colossal"
+            ]
+        );
+        assert!(Size::ALL.windows(2).all(|w| w[0] < w[1]));
     }
 }
