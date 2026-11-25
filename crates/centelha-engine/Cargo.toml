@@ -8,5 +8,10 @@ publish.workspace = true
 
 [dependencies]
 
+[dev-dependencies]
+# Só para ler as referências de paridade nos testes; o motor não lê JSON.
+serde = { version = "1.0.229", features = ["derive"] }
+serde_json = { version = "1.0.154", features = ["float_roundtrip"] }
+
 [lints]
 workspace = true
