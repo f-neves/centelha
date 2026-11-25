@@ -1,0 +1,15 @@
+[package]
+name = "centelha-leptos"
+version = "0.1.0"
+description = "Bestiario (spike Leptos + Tauri)"
+edition = "2024"
+
+[lib]
+name = "centelha_leptos_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2.7.6", features = [] }
+
+[dependencies]
+tauri = { version = "=2.12.7", features = [] }

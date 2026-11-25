@@ -1,0 +1,10 @@
+[workspace]
+resolver = "2"
+members = ["card", "ssg", "src-tauri"]
+exclude = ["oficial"]
+
+[profile.release]
+opt-level = "z"
+lto = true
+codegen-units = 1
+panic = "abort"

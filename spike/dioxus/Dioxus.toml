@@ -1,0 +1,9 @@
+[application]
+name = "centelha-dx"
+
+[web.app]
+title = "Bestiário · Centelha"
+
+[bundle]
+identifier = "br.centelha.spike"
+publisher = "Centelha"

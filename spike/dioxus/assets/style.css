@@ -1,0 +1,11 @@
+body { font-family: Georgia, serif; background: #f6f1e7; color: #222; margin: 0; }
+.pagina { max-width: 640px; margin: 0 auto; padding: 16px; }
+.cartao { background: #fff; border: 1px solid #cbb; border-radius: 8px; padding: 16px; }
+.retrato { width: 100%; height: auto; aspect-ratio: 3 / 2; display: block; }
+.numeros { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; }
+.numeros dt { font-weight: bold; }
+.numeros dd { margin: 0; }
+.atributos { display: grid; grid-template-columns: repeat(3, 1fr); list-style: none; padding: 0; gap: 4px; }
+.atributos li { display: flex; justify-content: space-between; padding: 2px 8px; background: #f3ece0; }
+.rolagem { margin-top: 12px; display: flex; gap: 12px; align-items: center; }
+canvas { border: 1px solid #ccc; margin-top: 16px; }
