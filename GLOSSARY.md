@@ -117,7 +117,7 @@ Nomes de Caminhos, Técnicas, Artes, criaturas e lugares são texto do jogo: fic
 
 | Português | Inglês | Português | Inglês |
 |---|---|---|---|
-| corpo | `body` | classe (do ataque) | `class` (`attack_class`) |
+| corpo | `body` | classe (do ataque) | campo `class`, tipo `AttackClass` |
 | enxame | `swarm` | dado | `dice` |
 | forma (de criatura) | `form` | multiplicador de Força | `strength_multiplier` |
 | forma principal | `main_form` | tipo de dano | `damage_type` |
@@ -140,3 +140,13 @@ Nomes de Caminhos, Técnicas, Artes, criaturas e lugares são texto do jogo: fic
 **Classes do ataque:** `leve` `Light`, `media` `Medium`, `pesada` `Heavy`, `haste` `Polearm`, `haste-media` `MediumPolearm`, `haste-guerra` `WarPolearm`, `distancia` `Ranged`, `arremesso` `Thrown`.
 
 **Categorias de criatura:** `aberracao` `Aberration`, `animal` `Animal`, `besta-magica` `MagicalBeast`, `celestial` `Celestial`, `construto` `Construct`, `corruptor` `Corruptor`, `dragao` `Dragon`, `elemental` `Elemental`, `fada` `Fey`, `gigante` `Giant`, `humanoide` `Humanoid`, `humanoide-monstruoso` `MonstrousHumanoid`, `limo` `Ooze`, `morto-vivo` `Undead`, `outsider` `Outsider`, `planta` `Plant`.
+
+## Derivados, regras e catálogos (acréscimo de 25/11, tarefa 002 do Backend)
+
+Oficializados como o Backend usou: `hp_line_reason` (`linhaPVMotivo`); sufixo `Patch` para a versão parcial que a forma aplica (`BodyPatch`, `AttributesPatch`, `EquipmentPatch`); `Timing`; `MainForm`; `ArsenalItem.reference` (`ref`); `WornArmor`; `lifted_weight` (peso erguido); `mass_band` (faixa de massa); `dodge` e `block` (Esquiva e Bloqueio como Defesa); `roll` (jogada); `penalty` (Penalidade); `against_shots` (`contraTiro`); `with_equipment` (`comEquipamento`); `Defense::Immune` (imune); `SwarmState` (`full_hp`, `individuals`, `minimum`, `still_swarm`); Absorção por tipo de dano `impact`, `cut`, `pierce` (Impacto, Corte, Perfuração); `pierce_level` também para o `resistPerf` da armadura.
+
+Regras (`regras.json`): `size_accuracy` (`porteAcerto`), `derived` (`derivados`), `by_size` (`porte`), `tolerance` (`folga`), `floor` (`piso`), `strength_damage` (`danoForca`) com `one_hand`/`two_hands`, `scale_by_size` (`escalaPorTamanho`), `plus_wits`, `plus_willpower`, `traits` (`tracos`), `spark_mult`; os demais nomes técnicos das curvas seguem a tradução literal da chave.
+
+Catálogos: `stats` (o bloco `arma`/`armadura`/`escudo`), `skill` (`pericia`), `damage_bonus`, `hands` (`maos`), `strength_cap`, `strength_min`, `melee_block` (`bloqCaC`), `vs_fast_projectile` (`vsProjetilRapido`), `blocks`.
+
+Habilidades Secundárias de criatura (`musculatura`, `corrida`, `voo`, `halterofilismo`, `natacao`, `escalada`, `equilibrio` e outras) e as Habilidades de tiro do ataque natural (`disparo`, `atirador`, `arremesso`, ver `RANGED_SKILLS`) continuam texto: são chaves do mapa de Habilidades, não viram identificador. Quando uma delas aparecer como parâmetro de função, o nome em inglês é a tradução literal (`musculature`, `weightlifting`).
