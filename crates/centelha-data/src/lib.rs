@@ -7,10 +7,27 @@
 //! A leitura a partir de texto (`parse_*`) funciona em WebAssembly. A leitura a
 //! partir de pasta (`load_*`) existe só no nativo.
 
+pub mod armor;
 pub mod bestiary;
 mod error;
+mod json;
+pub mod rules;
+pub mod shields;
+pub mod weapons;
 
+#[cfg(not(target_arch = "wasm32"))]
+pub use armor::load_armors;
+pub use armor::{Armor, parse_armors};
 #[cfg(not(target_arch = "wasm32"))]
 pub use bestiary::load_bestiary;
 pub use bestiary::{Creature, parse_creature};
 pub use error::DataError;
+#[cfg(not(target_arch = "wasm32"))]
+pub use rules::load_rules;
+pub use rules::{Rules, parse_rules};
+#[cfg(not(target_arch = "wasm32"))]
+pub use shields::load_shields;
+pub use shields::{Shield, parse_shields};
+#[cfg(not(target_arch = "wasm32"))]
+pub use weapons::load_weapons;
+pub use weapons::{Weapon, parse_weapons};

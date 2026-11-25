@@ -49,8 +49,10 @@ impl DataError {
         }
     }
 
-    /// O mesmo erro, dizendo de qual arquivo veio.
-    pub fn in_file(self, name: impl Into<String>) -> Self {
+    /// O mesmo erro, dizendo de qual arquivo veio (usado pela leitura de
+    /// pasta, que só existe no nativo).
+    #[cfg(not(target_arch = "wasm32"))]
+    pub(crate) fn in_file(self, name: impl Into<String>) -> Self {
         let name = Some(name.into());
         match self {
             DataError::Json { path, reason, .. } => DataError::Json {

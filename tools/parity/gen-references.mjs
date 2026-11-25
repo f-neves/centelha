@@ -90,6 +90,21 @@ function write(name, data) {
   console.log(`${path.relative(REPO, file)}: ${(fs.statSync(file).size / 1024).toFixed(1)} KB`);
 }
 
+// O JSON.stringify escreve NaN e infinito como null e -0 como 0: a referência
+// esconderia os três. Antes de gravar, procura em cada saída do motor.
+const badNumbers = [];
+const negativeZeros = [];
+function scanNumbers(value, where) {
+  if (typeof value === 'number') {
+    if (!Number.isFinite(value)) badNumbers.push(`${where}: ${value}`);
+    else if (Object.is(value, -0)) negativeZeros.push(where);
+  } else if (Array.isArray(value)) {
+    value.forEach((v, i) => scanNumbers(v, `${where}[${i}]`));
+  } else if (value && typeof value === 'object') {
+    for (const [k, v] of Object.entries(value)) scanNumbers(v, `${where}.${k}`);
+  }
+}
+
 // ----- criaturas -----
 const dir = path.join(CONTENT, 'data', 'bestiario');
 const files = fs.readdirSync(dir).filter((f) => f.endsWith('.json')).sort();
@@ -102,12 +117,14 @@ for (const f of files) {
   if (c.id !== f.slice(0, -5)) throw new Error(`${f}: o id ${c.id} não bate com o nome do arquivo`);
   ids.push(c.id);
   const derived = motor.criatura(c);
+  scanNumbers(derived, c.id);
   attackCount += derived.ataques.length;
   const entry = { derived };
   if (c.formas?.length) {
     entry.forms = {};
     for (const forma of c.formas) {
       entry.forms[forma.id] = motor.criatura(motor.comForma(c, forma));
+      scanNumbers(entry.forms[forma.id], `${c.id}/${forma.id}`);
       formCount++;
     }
   }
@@ -126,6 +143,13 @@ for (const [id, x] of Object.entries(expectedFixture.criaturas)) {
   if (a !== b) differs.push(`${id}: o motor dá outro resultado para a entrada da fixture`);
 }
 for (const id of ids) if (!expectedFixture.criaturas[id]) differs.push(`${id}: não está na fixture`);
+
+for (const w of negativeZeros) console.warn(`aviso: -0 em ${w} (o JSON grava 0)`);
+if (badNumbers.length) {
+  for (const b of badNumbers) console.error(`erro: número não finito em ${b}`);
+  console.error('nada gravado: o motor deu NaN ou infinito.');
+  process.exit(1);
+}
 
 write('source.json', source);
 write('bestiary-ids.json', { source, count: ids.length, ids });

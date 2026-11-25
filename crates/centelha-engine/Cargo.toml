@@ -7,6 +7,9 @@ rust-version.workspace = true
 publish.workspace = true
 
 [dependencies]
+centelha-data = { path = "../centelha-data" }
+# log10 e pow com a mesma conta no nativo e no WebAssembly
+libm = "0.2.16"
 
 [dev-dependencies]
 # Só para ler as referências de paridade nos testes; o motor não lê JSON.
