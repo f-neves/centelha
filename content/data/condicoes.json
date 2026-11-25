@@ -1,0 +1,319 @@
+{
+  "nota": "Catálogo de condições do rastreador de combate e do Escudo do Mestre. Os números seguem o vocabulário do sistema: `acao` é penalidade/bônus FLAT nas jogadas (mesma moeda dos Limiares de Ferimento), `dados` é em d6 (moeda do Desgaste, cap. Resistir), `defesa` é FLAT no valor passivo da Defesa, `ataque` é FLAT na jogada de acerto de quem está com a condição. `defesaCaC` e `defesaDist` substituem `defesa` quando o golpe vem de perto ou de longe. Origem dos valores: regras.json → combateTatico, ferimentos, sangramento; o resto é convenção de mesa, editável pelo mestre na hora. O painel é lembrete: quando ele e o livro discordam, vale o livro (R20, D-294), e os estados marcados \"Lembrete de mesa\" não têm regra no livro.",
+  "grupos": [
+    { "id": "posicao", "nome": "Posição & Postura" },
+    { "id": "sentidos", "nome": "Sentidos & Ocultação" },
+    { "id": "corpo", "nome": "Corpo & Saúde" },
+    { "id": "mente", "nome": "Mente & Social" },
+    { "id": "arcano", "nome": "Arcano & Ambiente" },
+    { "id": "bom", "nome": "Vantagens" }
+  ],
+  "lista": [
+    {
+      "id": "caido", "nome": "Caído", "icone": "⤓", "grupo": "posicao", "cor": "alerta",
+      "defesaCaC": -2, "defesaDist": 2,
+      "nota": "De perto é alvo fácil (−2 na Defesa); de longe vira alvo menor (+2). As próprias jogadas não mudam (livro, Combate Físico). Levantar-se é uma ação de Velocidade 3.",
+      "fonte": "combateTatico · alvo caído"
+    },
+    {
+      "id": "imobilizado", "nome": "Imobilizado", "icone": "⛓", "grupo": "posicao", "cor": "perigo",
+      "defesa": -4, "zeraDefesa": true,
+      "nota": "Imobilizar, amarrado, preso em gelo: não age, nem com Firula; Esquiva e Bloqueio 0 (livro, Combate Físico; não a Defesa de agarrão). O Grid e a aba Combate ainda aplicam −4, até lerem a marca de Defesa zerada.",
+      "fonte": "combateTatico · surpreso, cego ou imobilizado"
+    },
+    {
+      "id": "agarrado", "nome": "Agarrado", "icone": "🤝", "grupo": "posicao", "cor": "alerta",
+      "nota": "Em luta corpo a corpo travada: não age; contra quem ataca de fora, Esquiva −8 e Bloqueio −4 (livro, Combate Físico)."
+    },
+    {
+      "id": "flanqueado", "nome": "Flanqueado", "icone": "↹", "grupo": "posicao", "cor": "alerta",
+      "defesa": -2,
+      "nota": "Não é condição: lembrete do modificador de flanco do livro (Vantagem tática). Atacado pelo lado ou pelas costas, não pode usar a melhor defesa contra você.",
+      "fonte": "combateTatico · flanco ou pelas costas"
+    },
+    {
+      "id": "cobertura-parcial", "nome": "Cobertura parcial", "icone": "▤", "grupo": "posicao", "cor": "bom",
+      "defesa": 2,
+      "nota": "Parapeito, batente, aliado à frente.",
+      "fonte": "combateTatico"
+    },
+    {
+      "id": "cobertura-pesada", "nome": "Cobertura pesada", "icone": "▩", "grupo": "posicao", "cor": "bom",
+      "defesa": 4,
+      "nota": "Só cabeça ou braço expostos, seteira. Cobertura total não pode ser alvejada.",
+      "fonte": "combateTatico"
+    },
+    {
+      "id": "defesa-total", "nome": "Defesa total", "icone": "🛡", "grupo": "posicao", "cor": "bom",
+      "defesa": 4,
+      "nota": "Abre mão do ataque para se proteger.",
+      "fonte": "combateTatico"
+    },
+    {
+      "id": "correndo", "nome": "Correndo", "icone": "»", "grupo": "posicao", "cor": "perigo",
+      "defesa": -4,
+      "nota": "Esprintando: apara e esquiva mal. Vale enquanto corre e até a sua próxima ação começar. O acerto não sofre: quem parou, parou.",
+      "fonte": "combate · movimento"
+    },
+    {
+      "id": "investindo", "nome": "Investindo", "icone": "⇨", "grupo": "posicao", "cor": "alerta",
+      "defesa": -2,
+      "nota": "Atravessou o Preparo correndo em vez de andando: −2 de Defesa além do que o Preparo já cobra, e no dano do golpe a Força mais uma vez, sem dado a mais (uma mão ou o corpo, de × 1 para × 2; duas mãos, de × 2 para × 3). No Grid, a folha do golpe a soma; na aba Combate, o mestre soma à mão.",
+      "fonte": "combate · movimento"
+    },
+    {
+      "id": "postura-agressiva", "nome": "Postura agressiva", "icone": "⚔", "grupo": "posicao", "cor": "alerta",
+      "defesa": -2, "ataque": 2,
+      "nota": "+2 no seu ataque, −2 na sua Defesa, até a próxima ação.",
+      "fonte": "combateTatico"
+    },
+    {
+      "id": "terreno-alto", "nome": "Terreno alto", "icone": "⛰", "grupo": "posicao", "cor": "bom",
+      "ataque": 2,
+      "nota": "Posição superior: +2 ao acerto contra quem está abaixo.",
+      "fonte": "combateTatico"
+    },
+    {
+      "id": "mirando", "nome": "Mirando", "icone": "◎", "grupo": "posicao", "cor": "bom",
+      "ataque": 2,
+      "nota": "Gastou uma ação preparando o golpe. Some no primeiro ataque.",
+      "fonte": "combateTatico"
+    },
+    {
+      "id": "erratico", "nome": "Errático", "icone": "〰", "grupo": "posicao", "cor": "bom",
+      "defesaDist": 2,
+      "nota": "Movimento imprevisível: +2 na Defesa contra ataques à distância.",
+      "fonte": "combateTatico"
+    },
+    {
+      "id": "guarda-quebrada", "nome": "Guarda quebrada", "icone": "✖", "grupo": "posicao", "cor": "perigo",
+      "defesa": -4,
+      "nota": "Fez dois ataques no mesmo lance (empunhadura dupla) ou perdeu a guarda: −4 até a sua próxima ação (Guarda sob pressão, livro).",
+      "fonte": "combate · empunhadura dupla"
+    },
+
+    {
+      "id": "escondido", "nome": "Escondido", "icone": "◐", "grupo": "sentidos", "cor": "bom",
+      "nota": "Não pode ser alvejado enquanto não for encontrado (a Furtividade de quem se esconde contra a Percepção Passiva de quem vigia; quem procura de propósito rola Procurar, livro, Sentidos e Engano). O primeiro golpe pega o alvo Surpreso.",
+      "marcaOculto": true
+    },
+    {
+      "id": "invisivel", "nome": "Invisível", "icone": "👁", "grupo": "sentidos", "cor": "arcano",
+      "defesa": 4,
+      "nota": "Lembrete de mesa, sem regra no livro. Quem ataca precisa adivinhar a posição. Ataques contra o invisível também sofrem como se o atacante estivesse Cego."
+    },
+    {
+      "id": "surpreso", "nome": "Surpreso", "icone": "!", "grupo": "sentidos", "cor": "perigo",
+      "defesa": -4, "zeraDefesa": true,
+      "nota": "Não sabe do ataque: Defesas 0 (livro, Combate Físico). O Grid e a aba Combate ainda aplicam −4, até lerem a marca de Defesa zerada.",
+      "fonte": "combateTatico"
+    },
+    {
+      "id": "cego", "nome": "Cego", "icone": "◍", "grupo": "sentidos", "cor": "perigo",
+      "defesa": -4, "dados": -1, "bloqueio": -8,
+      "nota": "Esquiva −4 e Bloqueio −8 sabendo do ataque (o Grid e a aba Combate ainda aplicam −4 nos dois, até lerem a marca `bloqueio`); sem saber, Surpreso. −1d6 no ataque e em toda ação que dependa da visão. Para atirar, precisa saber onde o alvo está (o Mestre julga). Cego e Ofuscado não somam: vale o Cego.",
+      "fonte": "combateTatico"
+    },
+    {
+      "id": "ofuscado", "nome": "Ofuscado", "icone": "☀", "grupo": "sentidos", "cor": "alerta",
+      "acao": -2,
+      "nota": "Clarão, fumaça, poeira ou contraluz: −2 nas ações que dependem da visão, o ataque incluído; as Defesas não mudam. Dura enquanto o estímulo existir; um clarão dura 6 Ticks. Sensível à luz: Ofuscado sob sol forte."
+    },
+    {
+      "id": "surdo", "nome": "Surdo", "icone": "🔇", "grupo": "sentidos", "cor": "alerta",
+      "nota": "Lembrete de mesa, sem regra no livro. Perde ordens faladas, encantamentos verbais e a aproximação pelas costas."
+    },
+    {
+      "id": "escuridao", "nome": "Na escuridão", "icone": "🌑", "grupo": "sentidos", "cor": "alerta",
+      "nota": "Lembrete da penumbra: vulto e silhueta apenas. Fica sem regra, a critério do Mestre (livro, Combate Físico); o escuro total é Cego. Quem tem visão adaptada ignora."
+    },
+
+    {
+      "id": "sangrando", "nome": "Sangrando", "icone": "🩸", "grupo": "corpo", "cor": "perigo",
+      "porSeisTicks": 1,
+      "nota": "Sangramento N: a cada 6 Ticks desde o ferimento perde N de Vida, até 5 (ignora Absorção); o painel marca 1, e o Mestre soma o resto. Estabilizar: Raciocínio + Cura contra Dif 10, ou Vigor + Resistência em si mesmo.",
+      "fonte": "regras.json · sangramento"
+    },
+    {
+      "id": "envenenado", "nome": "Envenenado", "icone": "☠", "grupo": "corpo", "cor": "perigo",
+      "dados": -1,
+      "nota": "Marcador visual: o relógio de verdade mora no veneno (pool por intervalo, penalidade mínima que não reduz por rolagem), ver src/data/venenos.json e cap. Resistir."
+    },
+    {
+      "id": "doente", "nome": "Doente", "icone": "🤒", "grupo": "corpo", "cor": "alerta",
+      "dados": -1,
+      "nota": "Doença instalada: Desgaste do estágio (Instalada 1, Grave 2, Terminal 3), até o estágio descer."
+    },
+    {
+      "id": "desgaste-1", "nome": "Desgaste 1", "icone": "①", "grupo": "corpo", "cor": "alerta",
+      "dados": -1, "nota": "Um degrau: −1d6 em todas as jogadas.", "fonte": "acoes-resistir"
+    },
+    {
+      "id": "desgaste-2", "nome": "Desgaste 2", "icone": "②", "grupo": "corpo", "cor": "alerta",
+      "dados": -2, "nota": "Dois degraus: −2d6 em todas as jogadas.", "fonte": "acoes-resistir"
+    },
+    {
+      "id": "desgaste-3", "nome": "Desgaste 3", "icone": "③", "grupo": "corpo", "cor": "perigo",
+      "dados": -3, "nota": "Três degraus: −3d6 em todas as jogadas.", "fonte": "acoes-resistir"
+    },
+    {
+      "id": "desgaste-4", "nome": "Desgaste 4", "icone": "④", "grupo": "corpo", "cor": "perigo",
+      "dados": -4, "nota": "Teto do Desgaste: −4d6 em todas as jogadas.", "fonte": "acoes-resistir"
+    },
+    {
+      "id": "sufocando", "nome": "Sufocando", "icone": "🫁", "grupo": "corpo", "cor": "perigo",
+      "nota": "Afogamento, fumaça, garganta presa. Segue o relógio de ar de Resistir (Sufocamento): Ticks de ar = (Vigor + Resistência) × 10, +1 Desgaste no último quarto, apaga quando acabam; depois, a janela de socorro de Vigor × 20 Ticks."
+    },
+    {
+      "id": "em-chamas", "nome": "Em chamas", "icone": "🔥", "grupo": "corpo", "cor": "perigo",
+      "porSeisTicks": 3,
+      "nota": "Lembrete de mesa, sem regra no livro. Queima a cada 6 Ticks até apagar (ação inteira, rolar no chão ou água)."
+    },
+    {
+      "id": "paralisado", "nome": "Paralisado", "icone": "⏹", "grupo": "corpo", "cor": "perigo",
+      "defesa": -4, "zeraDefesa": true,
+      "nota": "O corpo travou, a mente segue livre: não se move nem faz ação física; Defesas Físicas 0 (o Grid e a aba Combate ainda aplicam −4, até lerem a marca). Percebe, gasta Força de Vontade e faz ações só mentais. Dura o que o poder ou o veneno disser; nova aplicação renova, sem somar."
+    },
+    {
+      "id": "atordoado", "nome": "Atordoado", "icone": "✶", "grupo": "corpo", "cor": "perigo",
+      "defesa": -4,
+      "nota": "A próxima ação começa 3 a 18 Ticks mais tarde (pelo quanto o Vigor + Resistência ficou abaixo da Dificuldade); até ela começar, −4 nas Defesas Físicas, e 1 de Força de Vontade ignora o −4 pelo atordoamento inteiro. Move-se e não larga o que segura. O atraso o Mestre conta à mão."
+    },
+    {
+      "id": "petrificando", "nome": "Petrificando", "icone": "🗿", "grupo": "corpo", "cor": "perigo",
+      "nota": "Testa Vigor + Resistência a cada 6 Ticks contra a Dificuldade do poder. Cada falha: um membro vira pedra e −1 de Vigor temporário. 3 sucessos somados param. Vigor 0: estátua."
+    },
+    {
+      "id": "enjoado", "nome": "Enjoado", "icone": "🤢", "grupo": "corpo", "cor": "alerta",
+      "acao": -2,
+      "nota": "−2 em todas as jogadas enquanto exposto, e por mais 6 Ticks depois de sair. Constructos e mortos-vivos não enjoam."
+    },
+    {
+      "id": "inconsciente", "nome": "Inconsciente", "icone": "💤", "grupo": "corpo", "cor": "morte",
+      "defesa": -8, "foraDeCombate": true, "zeraDefesa": true,
+      "nota": "Não age: Defesas Físicas 0 (livro, Combate Físico); a Defesa Mental continua. Golpe deliberado em quem está inconsciente acerta automaticamente. O Grid e a aba Combate ainda aplicam −8, até lerem a marca de Defesa zerada."
+    },
+    {
+      "id": "dormindo", "nome": "Dormindo", "icone": "☾", "grupo": "corpo", "cor": "perigo",
+      "defesa": -8, "foraDeCombate": true, "zeraDefesa": true,
+      "nota": "Dorme: Defesas Físicas 0 (livro, Combate Físico); a Defesa Mental continua. Um poder ou um veneno pode fazer dormir na hora (Sono sobrenatural, Condições), pelo tempo que ele disser; acorda ao sofrer qualquer dano, mesmo o que a Absorção engole, ou quando um aliado gasta uma ação de Velocidade 5 para sacudi-lo. O Grid e a aba Combate ainda aplicam −8, até lerem a marca de Defesa zerada."
+    },
+    {
+      "id": "morrendo", "nome": "Morrendo", "icone": "✝", "grupo": "corpo", "cor": "morte",
+      "foraDeCombate": true,
+      "nota": "0 PV ou menos, entre a vida e a morte; ver Tratar. No livro é a faixa Incapacitado (Vida, Ferimentos & Cura)."
+    },
+    {
+      "id": "estabilizado", "nome": "Estabilizado", "icone": "✚", "grupo": "corpo", "cor": "bom",
+      "foraDeCombate": true,
+      "nota": "Fora de perigo imediato: para de perder Vida, mas continua fora da luta."
+    },
+    {
+      "id": "morto", "nome": "Morto", "icone": "☠", "grupo": "corpo", "cor": "morte",
+      "foraDeCombate": true, "nota": "Fim."
+    },
+
+    {
+      "id": "amedrontado", "nome": "Amedrontado", "icone": "😨", "grupo": "mente", "cor": "alerta",
+      "acao": -2,
+      "nota": "−2 em todas as jogadas (não nas Defesas), e não avança em direção à fonte do medo. Enquanto ela estiver à vista, Recompor não encerra o estado."
+    },
+    {
+      "id": "em-panico", "nome": "Em pânico", "icone": "😱", "grupo": "mente", "cor": "perigo",
+      "acao": -4,
+      "nota": "Lembrete de mesa, sem regra no livro. Foge pelo caminho mais curto. Só age para se afastar."
+    },
+    {
+      "id": "dominado", "nome": "Dominado", "icone": "🕸", "grupo": "mente", "cor": "arcano",
+      "nota": "Outra vontade comanda a sua. O que o controlador pode mandar, como e por quanto tempo está no poder. A vítima recusa uma ordem pagando Força de Vontade, como no Resistir (1 + Margem, até 4), a cada ordem."
+    },
+    {
+      "id": "confuso", "nome": "Confuso", "icone": "🌀", "grupo": "mente", "cor": "alerta",
+      "nota": "A cada ação, declara o que vai fazer e rola 1d6: de 1 a 3, faz o que declarou; com 4 ou 5, o Mestre escolhe a ação e o alvo (pode ser um aliado); com 6, a ação se perde e o tempo dela passa. Dura o que o poder disser."
+    },
+    {
+      "id": "enfurecido", "nome": "Enfurecido", "icone": "💢", "grupo": "mente", "cor": "alerta",
+      "ataque": 2, "ataqueDist": 0, "defesa": -2,
+      "nota": "A fúria do Frenesi: +2 nas ações físicas, menos o tiro (o Grid e a aba Combate ainda somam o +2 também no tiro, até lerem a marca `ataqueDist`); −2 em Esquiva e em Bloqueio; só ações físicas; não pode ser convencido a nada. A ficha diz o que faz entrar, quando sai e se ignora as penalidades de ferimento. O Frenesi do orc e do meio-orc e a Técnica Fúria do Caminho Sangue Fervente seguem a regra própria de cada um."
+    },
+    {
+      "id": "abalado", "nome": "Abalado", "icone": "💔", "grupo": "mente", "cor": "alerta",
+      "acao": -2,
+      "nota": "Um golpe social ou mental abriu brecha: −2 em todas as jogadas (não nas Defesas) até o fim da cena, ou até Recompor (ação de Velocidade 5, sem teste). Ser abalado de novo não soma."
+    },
+    {
+      "id": "concentrando", "nome": "Concentrando", "icone": "◈", "grupo": "arcano", "cor": "arcano",
+      "dados": -1,
+      "nota": "Feitiço guardado: Raciocínio conta um nível abaixo e −1d6 em rolagens que o usem. Efeito sustentado: gasta a ação de cada janela de 6 Ticks, não sai do lugar, e ao sofrer dano testa Compostura + Concentração contra 10.",
+      "fonte": "artes · guardar um feitiço"
+    },
+
+    {
+      "id": "protegido", "nome": "Protegido", "icone": "✧", "grupo": "arcano", "cor": "arcano",
+      "soak": 3,
+      "nota": "Lembrete de mesa, sem regra no livro. Barreira arcana: soma Absorção em todos os modos enquanto durar."
+    },
+    {
+      "id": "congelado", "nome": "Congelado", "icone": "❄", "grupo": "arcano", "cor": "arcano",
+      "acao": -2, "defesa": -2,
+      "nota": "Lembrete de mesa, sem regra no livro. Membros rígidos, movimento pela metade."
+    },
+    {
+      "id": "eletrizado", "nome": "Eletrizado", "icone": "⚡", "grupo": "arcano", "cor": "arcano",
+      "acao": -2,
+      "nota": "Lembrete de mesa, sem regra no livro. Espasmo muscular: falha em ações de precisão e solta o que segura."
+    },
+    {
+      "id": "voando", "nome": "Voando", "icone": "🕊", "grupo": "arcano", "cor": "bom",
+      "nota": "Lembrete de mesa, sem regra no livro. Fora do alcance de quem luta no chão. Corpo a corpo só de quem também voa ou tem alcance."
+    },
+    {
+      "id": "fora-do-tempo",
+      "nome": "Fora do tempo",
+      "icone": "⏸",
+      "grupo": "arcano",
+      "cor": "bom",
+      "naoAge": true,
+      "nota": "As suas ações não custam Ticks: o relógio da mesa não anda enquanto você age. É o Parar, da Arte do Tempo, resolvido do seu lado do relógio em vez do dos outros."
+    },
+    {
+      "id": "acelerado", "nome": "Acelerado", "icone": "»", "grupo": "arcano", "cor": "bom",
+      "velocidade": -1,
+      "nota": "1 Tick a menos de Recuperação em cada ação, até 0. Anula o Retardado; duas aplicações não somam. Só no sistema P/G/R, por ora."
+    },
+    {
+      "id": "retardado", "nome": "Retardado", "icone": "«", "grupo": "arcano", "cor": "perigo",
+      "velocidade": 1,
+      "nota": "1 Tick a mais de Recuperação em cada ação. Anula o Acelerado; duas aplicações não somam. Só no sistema P/G/R, por ora."
+    },
+    {
+      "id": "terreno-dificil", "nome": "Terreno difícil", "icone": "⌇", "grupo": "arcano", "cor": "alerta",
+      "velocidade": 1,
+      "nota": "Lembrete de mesa, sem regra no livro. Lama, escombros, gelo, corrente. Movimento pela metade e ações custam 1 Tick a mais."
+    },
+
+    {
+      "id": "inspirado", "nome": "Inspirado", "icone": "★", "grupo": "bom", "cor": "bom",
+      "dados": 1,
+      "nota": "Lembrete de mesa, sem regra no livro. Canção, discurso ou bênção: +1d6 na próxima jogada relevante."
+    },
+    {
+      "id": "abencoado", "nome": "Abençoado", "icone": "✦", "grupo": "bom", "cor": "arcano",
+      "acao": 2,
+      "nota": "Lembrete de mesa, sem regra no livro. Favor declarado: +2 enquanto a bênção durar."
+    },
+    {
+      "id": "amaldicoado", "nome": "Amaldiçoado", "icone": "☾", "grupo": "arcano", "cor": "perigo",
+      "acao": -2,
+      "nota": "Lembrete de mesa, sem regra no livro. Azar dirigido: −2 em tudo até a maldição ser quebrada."
+    },
+    {
+      "id": "preparado", "nome": "Ação preparada", "icone": "⏱", "grupo": "bom", "cor": "bom",
+      "nota": "Lembrete de mesa, sem regra no livro. Declarou um gatilho e espera. Quando o gatilho acontecer, age fora da ordem de Ticks."
+    },
+    {
+      "id": "marcado", "nome": "Marcado", "icone": "⊗", "grupo": "bom", "cor": "alerta",
+      "nota": "Lembrete de mesa, sem regra no livro. Alvo escolhido por alguém. Quem marcou tem vantagem declarada contra ele."
+    }
+  ]
+}

@@ -1,0 +1,201 @@
+{
+  "id": "cavaleiro-de-elite",
+  "nome": "Cavaleiro de Elite",
+  "nomeIngles": "Elite Knight",
+  "categoria": "humanoide",
+  "papel": "elite",
+  "ameaca": 5,
+  "centelha": 1,
+  "corpo": {
+    "postura": "bípede, de pé",
+    "apoio": "bipede",
+    "altura": 1.85,
+    "largura": 0.48,
+    "profundidade": 0.25,
+    "comprimento": null,
+    "massa": 95,
+    "area": 0.8,
+    "posturaDoTamanho": "de frente"
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 4,
+    "destreza": 3,
+    "vigor": 5,
+    "percepcao": 2,
+    "inteligencia": 2,
+    "raciocinio": 2,
+    "influencia": 2,
+    "perspicacia": 2,
+    "compostura": 2
+  },
+  "habilidades": {
+    "armas": 4,
+    "esquiva": 3,
+    "bloqueio": 3,
+    "resistencia": 4,
+    "prontidao": 3,
+    "integridade": 6,
+    "briga": 2,
+    "atletismo": 2
+  },
+  "habilidadesSec": {
+    "cavalgar": 2,
+    "musculatura": 0
+  },
+  "especialidades": {
+    "armas": [
+      {
+        "foco": "montante",
+        "valor": 1,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 4,
+    "compaixao": 2,
+    "conviccao": 3,
+    "temperanca": 3
+  },
+  "vontade": 7,
+  "aparencia": 4,
+  "deslocamento": {
+    "terra": {
+      "batalha": 3,
+      "arranque": 5,
+      "corrida": 7
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": [
+      {
+        "base": "placa-completa",
+        "vestida": true
+      }
+    ]
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Montante",
+      "arma": "montante",
+      "justificativa": "A arma do livro (`armas.json`, `montante`): Pesada, duas mãos, Velocidade 7, Acerto +0, Defesa −2, ★C · P(N1) · I. Duas mãos somam a Força dobrada (`armas-e-armaduras.md`). O site dava 3 dados. Jogada: Força 4 + Armas 4 + 2 × o menor entre Centelha 1 e Armas 4 (2)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Pele Curtida",
+      "formas": "todas",
+      "classe": "livro",
+      "tecnica": {
+        "id": "pele-curtida",
+        "nivel": 1
+      },
+      "categoria": "inato"
+    },
+    {
+      "nome": "Aguentar o Tranco",
+      "formas": "todas",
+      "classe": "livro",
+      "tecnica": {
+        "id": "aguentar-o-tranco",
+        "nivel": 1
+      },
+      "categoria": "inato"
+    },
+    {
+      "nome": "Tensionar",
+      "formas": "todas",
+      "classe": "livro",
+      "tecnica": {
+        "id": "tensionar",
+        "nivel": 1
+      },
+      "categoria": "inato"
+    },
+    {
+      "nome": "Sem inimizades naturais",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "texto": "Relação inicial do Humano: +1 com Elfo e Meio-Elfo, −1 com Orc e Meio-Orc, Neutro com os demais. A relação vale do Humano para o outro povo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "muralha de aço",
+      "formas": "todas",
+      "texto": "avança devagar à frente da linha, absorve os golpes e segura a posição; não recua."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão, audição, olfato",
+      "descricao": "humanos",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "prendeRespiracao": "pela regra do personagem",
+    "mente": "humana; disciplinada",
+    "tracos": "armadura de placas completa, montante nas costas, pele curtida de cicatrizes"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "à frente da linha, com um comandante",
+    "atividade": "diurno",
+    "dieta": "onívoro",
+    "caca": "não se aplica",
+    "dianteDeGente": "segura a posição; obedece ao comandante"
+  },
+  "ecologia": {
+    "terreno": [
+      "urbano",
+      "planície"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Cavaleiro de placa completa e montante, tocado pela Centelha a ponto de a pele resistir como pedra. Avança como muralha, aguenta golpes que derrubariam outro soldado e segura a posição.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Avança como muralha, absorve golpes que derrubariam outro soldado e segura posições que ninguém mais aguentaria segurar."
+    },
+    {
+      "titulo": "Personalidade",
+      "texto": "Disciplinado e confiável, o tipo de guerreiro em quem um comandante apoia toda a linha de batalha."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "Foi tocado pela Centelha o bastante para que sua pele resista como pedra, um dom raro entre humanos que o eleva acima da tropa comum e desperta tanto respeito quanto desconfiança."
+    }
+  ],
+  "imagens": [
+    "bestiario/cavaleiro-de-elite_pdm.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "ataques.Montante",
+      "motivo": "2d6 + Força × 2, o do livro; o site dava 3 dados"
+    },
+    {
+      "campo": "virtudes.temperanca",
+      "motivo": "3; o site tinha 2"
+    }
+  ]
+}

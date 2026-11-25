@@ -1,0 +1,259 @@
+{
+  "id": "rinoceronte",
+  "idAntigo": "mon-rinoceronte",
+  "nome": "Rinoceronte-branco",
+  "nomeIngles": "White rhinoceros",
+  "categoria": "animal",
+  "papel": "fera",
+  "ameaca": 3,
+  "centelha": 0,
+  "corpo": {
+    "postura": "quatro patas",
+    "apoio": "quadrupede",
+    "altura": 1.78,
+    "largura": 0.99,
+    "profundidade": null,
+    "comprimento": 4.66,
+    "comprimentoSemCauda": 3.78,
+    "caudaGrossa": false,
+    "massa": 2250,
+    "area": 3.52,
+    "posturaDoTamanho": "vista de lado"
+  },
+  "couraca": 4,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 8,
+    "destreza": 2,
+    "vigor": 8,
+    "percepcao": 2,
+    "inteligencia": 1,
+    "raciocinio": 2,
+    "influencia": 1,
+    "perspicacia": 1,
+    "compostura": 1
+  },
+  "habilidades": {
+    "briga": 3,
+    "bloqueio": 2,
+    "esquiva": 1,
+    "atletismo": 1,
+    "furtividade": 0,
+    "integridade": 3,
+    "prontidao": 1,
+    "resistencia": 4,
+    "empatia": 0,
+    "sobrevivencia": 2
+  },
+  "habilidadesSec": {
+    "equilibrio": 0,
+    "escalada": 0,
+    "natacao": 0,
+    "voo": 0,
+    "corrida": 2,
+    "musculatura": 3
+  },
+  "especialidades": {
+    "prontidao": [
+      {
+        "foco": "faro",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 1,
+    "conviccao": 1,
+    "temperanca": 1
+  },
+  "vontade": 4,
+  "aparencia": 6,
+  "deslocamento": {
+    "terra": {
+      "batalha": 3,
+      "arranque": 6,
+      "corrida": 8
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Chifrada",
+      "parte": "chifre",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 1,
+      "acerto": 0,
+      "bloqueiaComoArma": 1,
+      "justificativa": "Era 1d6 + 12, média 15,5. Golpe de cabeça com o corpo atrás. Chifre de 60 cm em média, grosso no macho (Wikipédia): N1 pelo tamanho"
+    },
+    {
+      "nome": "Investida",
+      "parte": "chifre-e-corpo",
+      "classe": "pesada",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": "2d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 1,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Golpe Pesado, com Força × 1 no golpe comum (D-266); na ação de Investida, soma mais uma Força, sem +1d6 (P20-b)."
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Investida",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Investida",
+      "categoria": "inato",
+      "regra": "investida"
+    },
+    {
+      "nome": "derrubar",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "regra": "derrubar"
+    },
+    {
+      "nome": "empurrar",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "regra": "empurrar"
+    },
+    {
+      "nome": "arremessar com o chifre",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Chifrada",
+      "categoria": "inato",
+      "regra": "empurrar"
+    },
+    {
+      "nome": "investida que derruba",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Investida",
+      "categoria": "inato",
+      "texto": "Se o golpe causar ao menos 1 PV depois da Absorção, pode resolver Derrubar contra a defesa normal, com as travas de massa e sem ação separada"
+    },
+    {
+      "nome": "Atropelar",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "texto": "Atropelar"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "fúria cega",
+      "formas": "todas",
+      "texto": "abalado, carrega contra o alvo mais próximo sem hesitar."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "faro",
+      "descricao": "Prontidão (faro) +2, natural; \"apurado\"",
+      "formas": "todas"
+    },
+    {
+      "nome": "audição",
+      "descricao": "\"apurada\". Texto",
+      "formas": "todas"
+    },
+    {
+      "nome": "visão",
+      "descricao": "míope. Texto: o Mestre pode dificultar notar o que está parado a distância",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "mente": "animal",
+    "tracos": "dois chifres de queratina; pele de até 45 mm, mais grossa na corcova da nuca (até 49 mm); boca larga e chata de pastador"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "machos solitários e territoriais (0,7 a 3 km²); fêmeas com cria",
+    "dieta": "herbívoro (capim baixo)",
+    "caca": "pastagem",
+    "dianteDeGente": "raramente ataca; a fêmea com filhote pequeno, sim"
+  },
+  "ecologia": {
+    "terreno": [
+      "planície",
+      "selva"
+    ],
+    "clima": [
+      "tropical"
+    ]
+  },
+  "descricao": "Os machos guardam o território: a maioria dos encontros é ritual, de cabeça erguida e chifres tocados, mas alguns acabam em feridas fundas ou morte. Míope, fareja e ouve bem. Vive até 50 anos.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Solitário e de vista curta, geralmente pacato se não provocado, mas carrega com violência total quando se sente ameaçado."
+    },
+    {
+      "titulo": "Hábitat",
+      "texto": "Ocupa savanas abertas e áreas de vegetação rasteira, longe de florestas fechadas."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "Habita as planícies mais amplas de Mére, respeitado pelos povos locais como símbolo de resistência bruta e teimosia."
+    }
+  ],
+  "imagens": [
+    "bestiario/rinoceronte_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "corpo.altura",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 1,73 × 1,0315 = 1,785 . Antes: Era 1,8 m, do macho: 1,70 a 1,85 m (Zoológico de San Diego); machos de 1,70 a 1,86 m (Wikipédia). Escalado pelo cubo da massa: 1,8 × (2.050 ÷ 2.300)^(1/3) = 1,8 × 0,962 = 1,73 m; a fêmea tem de 1,60 a 1,77 m (Wikipédia). A cabeça de pastador fica baixa"
+    },
+    {
+      "campo": "corpo.comprimento",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 4,52 × 1,0315 = 4,662 . Antes: Era 4,7 m: cabeça e corpo mais a cauda de 0,8 a 1,0 m (Zoológico de San Diego); a ADW dá a cauda de 0,57 a 0,77 m. Escalado pelo cubo da massa: 4,7 × (2.050 ÷ 2.300)^(1/3) = 4,52 m"
+    },
+    {
+      "campo": "corpo.comprimentoSemCauda",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 3,66 × 1,0315 = 3,775 . Antes: Era 3,8 m: cabeça e corpo de 3,6 a 4,2 m (Zoológico de San Diego); machos de 3,7 a 4 m (Wikipédia). Escalado pelo cubo da massa: 3,8 × (2.050 ÷ 2.300)^(1/3) = 3,66 m; a fêmea tem de 3,4 a 3,65 m (Wikipédia)"
+    },
+    {
+      "campo": "corpo.largura",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 0,96 × 1,0315 = 0,990 . Antes: Era 1,0 m, estimada para o macho; escalado pelo cubo da massa: 1,0 × (2.050 ÷ 2.300)^(1/3) = 0,96 m. Sem medida; a \"circunferência de 2,01 a 2,20 m\" da ADW parece baixa para o animal e não foi usada"
+    }
+  ]
+}

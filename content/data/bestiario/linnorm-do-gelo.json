@@ -1,0 +1,394 @@
+{
+  "id": "linnorm-do-gelo",
+  "idAntigo": "mon-ice-linnorm",
+  "nome": "Linnorm do Gelo",
+  "nomeIngles": "Ice Linnorm",
+  "categoria": "dragao",
+  "papel": "chefe",
+  "ameaca": 6,
+  "centelha": 6,
+  "corpo": {
+    "postura": "serpente com duas patas dianteiras; sem asas; voa",
+    "apoio": "outro",
+    "altura": 1.11,
+    "largura": 1.11,
+    "profundidade": null,
+    "comprimento": 24,
+    "massa": 14000,
+    "area": 19.9,
+    "posturaDoTamanho": "de lado, esticado ou com a frente erguida",
+    "linhaPV": "acima",
+    "linhaPVMotivo": "serpente maciça que fecha as feridas"
+  },
+  "couraca": 10,
+  "perfilCouraca": "rigida",
+  "atributos": {
+    "forca": 13,
+    "destreza": 7,
+    "vigor": 13,
+    "percepcao": 6,
+    "inteligencia": 1,
+    "raciocinio": 3,
+    "influencia": 7,
+    "perspicacia": 4,
+    "compostura": 7
+  },
+  "habilidades": {
+    "briga": 5,
+    "bloqueio": 0,
+    "esquiva": 2,
+    "atletismo": 2,
+    "integridade": 7,
+    "prontidao": 3,
+    "atirador": 4
+  },
+  "habilidadesSec": {
+    "escalada": 3,
+    "natacao": 3,
+    "musculatura": 4
+  },
+  "especialidades": {},
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 6,
+    "compaixao": 2,
+    "conviccao": 5,
+    "temperanca": 3
+  },
+  "vontade": 11,
+  "aparencia": 9,
+  "deslocamento": {
+    "terra": {
+      "batalha": 4,
+      "arranque": 6,
+      "corrida": 9
+    },
+    "voo": {
+      "batalha": 10
+    },
+    "nado": {
+      "batalha": 4
+    },
+    "escalada": {
+      "batalha": 4
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Mordida",
+      "parte": "boca",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 3,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Mordida de predador grande (`regra-construcao.md` §7), N3 como a dos dragões adultos. Golpe de boca: Força × 1. Inocula o veneno (Veneno e doença) . Jogada: Força 13 + Briga 5 + 2 × o menor entre Centelha 6 e Briga 5 (10)"
+    },
+    {
+      "nome": "Garras",
+      "parte": "pata-dianteira",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "corte",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Patada de predador grande, Média (§7), como nos dragões. Bloqueia como a mão nua (D-100). Jogada: Força 13 + Briga 5 + 2 × o menor entre Centelha 6 e Briga 5 (10)"
+    },
+    {
+      "nome": "Sopro gélido",
+      "parte": "boca",
+      "classe": "distancia",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": "9d6",
+      "multiplicadorForca": 0,
+      "tipoDano": "gelo",
+      "nivelPerfuracao": null,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Ataque natural a distância, Classe Distância (manual, Passo 10), como nos dragões. O site não dá dados; 9d6 é o degrau da Centelha 6 na escada do lote 23 (D-197), descrito na linha do sopro nas Manobras. Sem jogada de ataque."
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Peçonha de linnorm do gelo",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "ataque": "Mordida",
+      "categoria": "substancia",
+      "ativacao": "Mordida ao causar ao menos 1 PV depois da Absorção",
+      "duracao": "até o fim do efeito do veneno",
+      "alcance": "toque",
+      "area": "um alvo",
+      "efeito": "A peçonha drena apenas o pool de Vigor. A imunidade ao elemento não protege contra a peçonha. Se o Vigor chegar a 0, a vítima morre",
+      "dano": "pool de Vigor do veneno",
+      "resistencia": "Vigor + Resistência pelo relógio do veneno",
+      "limiteDeUso": "O corpo guarda 2 doses e produz 1 dose em 12 horas. Cada uso gasta 1 dose"
+    },
+    {
+      "nome": "Sopro gélido",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "gelo",
+        "nivel": 4,
+        "efeito": "sopro-do-norte"
+      },
+      "ataque": "Sopro gélido",
+      "categoria": "substancia",
+      "ativacao": "uma ação, Velocidade 6",
+      "duracao": "o dano, instantâneo; o gelo, até o alvo se soltar",
+      "alcance": "12 m à frente",
+      "area": "cone de 12 m",
+      "efeito": "uma geleia congelante gruda e endurece em gelo: quem falha fica Imobilizado e leva 1d6 de gelo a cada 6 Ticks enquanto estiver preso; para se soltar, Força + Atletismo contra Dificuldade 16, uma tentativa por ação. Após a área, só há dano residual quando um efeito da ficha o declara",
+      "dano": "9d6 + Centelha, gelo",
+      "resistencia": "sem jogada de ataque. Cada alvo resolve a saída de área pelo livro",
+      "limiteDeUso": "O corpo guarda 2 doses e produz 1 dose a cada 12 horas. Cada uso gasta 1 dose. Nada acelera a produção"
+    },
+    {
+      "nome": "garras em sequência",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Garras",
+      "categoria": "inato",
+      "regra": "rajada"
+    },
+    {
+      "nome": "Resistência à magia",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "sempre ativa",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a própria criatura",
+      "efeito": "Resistência à magia de grau 3. Soma +6 às Defesas e à jogada de resistir contra Artes e efeitos similares à magia, até o teto comum de +6",
+      "dano": "nenhum adicional",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo. Sem custo"
+    },
+    {
+      "nome": "Liberdade de movimento",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Nada de fora o deixa Agarrado, Preso ou Imobilizado. Paredes barram a passagem. Paralisado e Atordoado continuam valendo",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "Contínuo, sem custo"
+    },
+    {
+      "nome": "Regeneração 10",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "fraqueza": {
+        "forma": "naoRegenera",
+        "tipos": [
+          "ferro frio"
+        ]
+      },
+      "texto": "Origem sobrenatural. O dano de ferro frio só fecha com outras curas, como Arte, Cura ou descanso. As demais feridas se regeneram normalmente. Recupera 10 PV por minuto, até o máximo de PV. Em combate, recupera 1 PV a cada 6 Ticks, contados a partir do Tick do primeiro dano"
+    },
+    {
+      "nome": "Maldição da morte",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "ao morrer",
+      "duracao": "até Proteção 5 ou cura apropriada",
+      "alcance": "quem deu o golpe final",
+      "area": "o responsável pelo golpe final",
+      "efeito": "quem o mata fica vulnerável ao frio para sempre. Se falhar, a maldição só sai com Proteção 5 ou a cura apropriada",
+      "dano": "nenhum",
+      "resistencia": "Vigor + Resistência contra Dificuldade 20",
+      "limiteDeUso": "uma vez, na morte, sem custo"
+    },
+    {
+      "nome": "Imune a veneno, sono, paralisia e maldições comuns",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Ignora veneno, sono, paralisia e efeitos que instalam maldição comum. Recebe dano comum e morre pela perda de Vida como de costume. O ferimento do golpe continua",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "Contínuo, sem custo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "senhor das geleiras",
+      "formas": "todas",
+      "texto": "prende o grupo no gelo com o sopro, morde quem ficou preso e deixa o frio acabar o resto."
+    },
+    {
+      "nome": "Projétil natural",
+      "formas": "todas",
+      "texto": "Contra um alvo, use o maior entre Vigor, Destreza e Percepção + Atirador. Ao cobrir uma área, só os alvos fazem a jogada de saída."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão verdadeira",
+      "descricao": "Até 18 m, distingue disfarce, ilusão e invisibilidade. Paredes e Furtividade comum limitam a percepção. Sem custo",
+      "formas": "todas"
+    },
+    {
+      "nome": "visão no escuro",
+      "descricao": "vê sem luz",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "prendeRespiracao": "a de um bicho grande; quanto tempo, o Mestre decide",
+    "camuflagem": "branco de geada contra o gelo",
+    "mente": "Inteligência 1; fera antiga",
+    "tracos": "escamas brancas e azuladas, cobertas de geada; o ar em volta congela"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitário",
+    "atividade": "qualquer hora",
+    "dieta": "carnívoro",
+    "caca": "nas fendas glaciais e nos picos; guarda as vítimas presas no gelo",
+    "dianteDeGente": "ataca; os povos do norte o culpam pelas avalanches e pelas frotas perdidas"
+  },
+  "ecologia": {
+    "terreno": [
+      "montanha"
+    ],
+    "clima": [
+      "frio"
+    ]
+  },
+  "descricao": "Serpente-dragão sem asas de 24 m, senhor das geleiras e dos picos varridos pelo vento. Cospe uma geleia que endurece em gelo e prende quem atinge; as vítimas aparecem anos depois, inteiras dentro de blocos de gelo.",
+  "lore": [
+    {
+      "titulo": "Senhor das Geleiras",
+      "texto": "Habita fendas glaciais e picos varridos pelo vento, onde nada mais sobrevive ao frio absoluto."
+    },
+    {
+      "titulo": "Mais Temido que seu Primo",
+      "texto": "Maior e mais antigo que o linorme das crostas, é lenda entre povos do norte, contada para explicar avalanches e frotas desaparecidas."
+    },
+    {
+      "titulo": "Prisão de Gelo",
+      "texto": "Suas vítimas às vezes são encontradas anos depois, perfeitamente preservadas dentro de blocos de gelo que nunca derretem no lugar certo."
+    },
+    {
+      "titulo": "Veneno e doença",
+      "texto": "Veneno no jogo: Peçonha de linnorm do gelo · Potência 16 · 1 Tick (sangue) · a cada 1 minuto · pool 4 (Vigor) · Desgaste 1 · pela Mordida. Os números do \"Ferrão de gigante\" dos moldes, com o Vigor do site."
+    }
+  ],
+  "imagens": [
+    "bestiario/linnorm-do-gelo_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [
+      {
+        "tipo": "fogo",
+        "formas": "todas"
+      }
+    ],
+    "resistencias": [],
+    "imunidades": [
+      {
+        "tipo": "gelo",
+        "formas": "todas"
+      }
+    ]
+  },
+  "revisao": [
+    {
+      "campo": "atributos.forca",
+      "motivo": "O site tinha 15. Desce para 13 pelo teste de ordem (manual, Passo 7), o mesmo método que o autor mandou aplicar ao neothelid (pedido do autor de 24/10/2026 (ponto de coerência 2, sem número no registro)): com 15, a serpente de 14 t passava o megalodonte de 36 t do molde (13), o braquiossauro de 31 t (14) e o dragão vermelho ancião de 59 t (14), todos muito mais pesados. Não fica abaixo do linnorm dos lagos (11 t, 13), mais leve. É a Força de referência da massa arredondada (13,01, manual 3.9); 13, pelo teste de ordem; o site tinha 15 (o mesmo método do neothelid, pedido do autor de 24/10/2026 (ponto de coerência 2, sem número no registro))"
+    },
+    {
+      "campo": "corpo.altura",
+      "motivo": "O diâmetro que dá a massa do site (linha Massa). Erguida, levanta um quinto do corpo"
+    },
+    {
+      "campo": "couraca",
+      "motivo": "Cobertura do corpo pela R49; metades arredondadas para cima. Absorção natural do livro (`combate.md`). Escama de linnorm, um degrau acima do linnorm dos penhascos (9): \"maior e mais antigo que o primo\" (site) .; nível 10"
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": ""
+    },
+    {
+      "campo": "ataques.Mordida",
+      "motivo": "Mordida de predador grande (`regra-construcao.md` §7), N3 como a dos dragões adultos. Golpe de boca: Força × 1. Inocula o veneno (Veneno e doença) . Jogada: Força 13 + Briga 5 + 2 × o menor entre Centelha 6 e Briga 5 (10)"
+    },
+    {
+      "campo": "ataques.Sopro gélido",
+      "motivo": "Antes: jogada de ataque na tabela. R36: Sem jogada de ataque, pois o efeito ocupa a área descrita nas Manobras. Cada alvo resolve a defesa de área.; R1/R4, D-197. Dois sopros prontos permitem alternar sopro e golpes. Sugestão de 2 doses e 12 h por dose para repor fora da luta. valor de molde, para a bancada (2 doses e produz 1 dose a cada 12 horas)."
+    },
+    {
+      "campo": "habilidadesEspeciais",
+      "motivo": "Antes: pelo padrão do \"Ferrão de gigante\"  O pool atinge Vigor. Aplica-se o desfecho letal do veneno."
+    },
+    {
+      "campo": "habilidadesEspeciais.Resistência à magia",
+      "motivo": "R7. SR 28 da fonte passa a grau 3 (+6)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Maldição da morte",
+      "motivo": "R1 e D-197. 1 uso grátis por cena. Cada uso extra custa 1 de Energia. Um uso de abertura até a definição do efeito. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "corpo.area",
+      "motivo": "Enorme pela área do corpo de serpente; o site dizia Colossal"
+    },
+    {
+      "campo": "corpo",
+      "motivo": "na zona de transição, robusto, sobe para a faixa de 14 a 110 t; nenhuma, como o linnorm dos penhascos"
+    },
+    {
+      "campo": "atributos.vigor",
+      "motivo": "na zona de transição, robusto, sobe para a faixa de 14 a 110 t"
+    },
+    {
+      "campo": "ataques",
+      "motivo": "9d6 + Centelha, cone de 12 m, Imobilizado no gelo, pela escada de Centelha do lote 23 (D-197)"
+    },
+    {
+      "campo": "habilidadesEspeciais.Regeneração 10",
+      "motivo": "Antes: sem regra e sem nível. N 10 pela referência Ice Linnorm (Archives of Nethys)."
+    }
+  ]
+}

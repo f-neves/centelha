@@ -1,0 +1,307 @@
+{
+  "id": "assombracao",
+  "idAntigo": "mon-assombracao-wraith",
+  "nome": "Assombração",
+  "nomeIngles": "Wraith",
+  "categoria": "morto-vivo",
+  "papel": "elite",
+  "ameaca": 4,
+  "centelha": 3,
+  "corpo": {
+    "postura": "de pé no ar, flutuando, sem pernas que pisem",
+    "apoio": "bipede",
+    "altura": 1.8,
+    "largura": 0.45,
+    "profundidade": 0.23,
+    "comprimento": null,
+    "semMassa": true,
+    "volume": 0.079,
+    "area": 0.72,
+    "posturaDoTamanho": "de frente",
+    "naoErgue": true
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 0,
+    "destreza": 5,
+    "vigor": 6,
+    "percepcao": 4,
+    "inteligencia": 4,
+    "raciocinio": 4,
+    "influencia": 6,
+    "perspicacia": 5,
+    "compostura": 5
+  },
+  "habilidades": {
+    "briga": 5,
+    "bloqueio": 0,
+    "esquiva": 1,
+    "furtividade": 4,
+    "integridade": 5,
+    "persuasao": 3,
+    "prontidao": 3,
+    "resistencia": 0
+  },
+  "habilidadesSec": {
+    "intimidacao": 3,
+    "voo": 3,
+    "musculatura": 0
+  },
+  "especialidades": {
+    "furtividade": [
+      {
+        "foco": "voando em silêncio",
+        "valor": 2,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 1,
+    "conviccao": 4,
+    "temperanca": 2
+  },
+  "vontade": 8,
+  "aparencia": 2,
+  "deslocamento": {
+    "voo": {
+      "batalha": 6,
+      "arranque": 10,
+      "corrida": 14
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Toque dilacerante",
+      "parte": "mao",
+      "classe": "leve",
+      "pgr": [
+        1,
+        1,
+        3
+      ],
+      "dado": "1d6-2",
+      "multiplicadorForca": 1,
+      "tipoDano": "fenomeno",
+      "nivelPerfuracao": null,
+      "acerto": 1,
+      "bloqueiaComoArma": null,
+      "justificativa": "O toque gelado atravessa a matéria. Só a Centelha absorve o dano. Jogada: Destreza 5 + Briga 5 + 2 × o menor entre Centelha 3 e Briga 5 (6)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Voo e incorpóreo",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "espirito",
+        "nivel": 3
+      },
+      "categoria": "inato",
+      "ativacao": "nenhuma, sempre ativo",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "não se aplica",
+      "efeito": "voa sem ruído e atravessa paredes, portas e objetos; não agarra nem empurra e não pode ser empurrado. Na forma incorpórea atravessa matéria sem levar corpos materiais. Não pode agarrar nem empurrar",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "nenhum. Sem custo"
+    },
+    {
+      "nome": "Dreno de vida",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "morte",
+        "nivel": 2,
+        "efeito": "dreno"
+      },
+      "categoria": "sobrenatural",
+      "ativacao": "o Toque dilacerante que fere",
+      "duracao": "até um descanso completo",
+      "alcance": "toque",
+      "area": "um alvo",
+      "efeito": "rouba a vida do alvo; o PV máximo dele cai, o efeito se acumula a cada toque que pega, e a assombração se fecha com o que roubou",
+      "dano": "nenhum além do toque; o PV máximo do alvo cai 1d6, e ela recupera o mesmo tanto de PV",
+      "resistencia": "corpo, contra a jogada do toque; quem passa não perde PV máximo por aquele toque",
+      "limiteDeUso": "Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "Cria súditos",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "a vítima morre com o PV máximo reduzido pelo Dreno de vida",
+      "duracao": "permanente",
+      "alcance": "o corpo da vítima",
+      "area": "um corpo",
+      "efeito": "a alma se ergue como assombração no fim da cena, sob o comando dela, até ela ser destruída; então fica livre",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "um por vítima. Sem custo"
+    },
+    {
+      "nome": "Presença sepulcral",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "nenhuma, sempre ativa",
+      "duracao": "para Abalado, até o fim da cena ou até Recompor",
+      "alcance": "9 m",
+      "area": "esfera de 9 m em volta dela",
+      "efeito": "quem entra na área pela primeira vez na cena testa contra o medo; na falha, fica Abalado. Abalado dá −2 nas jogadas até o fim da cena ou até Recompor, ação de Velocidade 5 sem teste",
+      "dano": "nenhum",
+      "resistencia": "Influência + Intimidação da criatura contra a Defesa Mental do alvo, com o Resistir do livro. quem passa fica imune até o fim da cena",
+      "limiteDeUso": "Contínuo, sem custo. A imunidade individual segue a resistência deste poder"
+    },
+    {
+      "nome": "Frio da morte",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "nenhuma, sempre ativo",
+      "duracao": "enquanto ela estiver perto",
+      "alcance": "9 m",
+      "area": "esfera de 9 m em volta dela",
+      "efeito": "o ar esfria de repente e denuncia a presença dela a quem for sensível",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "nenhum. Sem custo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "senhora da tumba",
+      "formas": "todas",
+      "texto": "paira sobre a vítima como uma capa negra, toca e recua para dentro da parede; manda as sombras que comanda na frente."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "percepção dos vivos",
+      "descricao": "sente os vivos a até 30 m, através de paredes, pelo ódio que tem deles",
+      "formas": "todas"
+    },
+    {
+      "nome": "visão no escuro",
+      "descricao": "enxerga no escuro",
+      "formas": "todas"
+    },
+    {
+      "nome": "visão e audição",
+      "descricao": "as de um humano",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "camuflagem": "nenhuma; no escuro é uma capa negra quase invisível",
+    "mente": "inteira, cruel e voltada contra a vida. As famílias listadas abrangem os efeitos mentais de Artes e poderes. Medo cobre o imposto por essas fontes. Golpe social ou corporal ainda pode deixar Abalado. Dano físico de Arte e conversa comum seguem as regras normais",
+    "tracos": "sem peso e sem matéria; uma capa negra com a sombra de um rosto e dois olhos de brasa fria. Não se cansa",
+    "tipoCorpo": "incorporeo",
+    "recuperacao": "Recupera-se da energia vital que rouba pelo Dreno de vida",
+    "familiasMentaisIgnoradas": [
+      "medo"
+    ]
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "senhora de sombras e mortos menores",
+    "atividade": "noturno",
+    "caca": "rouba a vida dos vivos",
+    "dianteDeGente": "ataca"
+  },
+  "ecologia": {
+    "terreno": [
+      "ruínas",
+      "subterrâneo"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Alma de quem morreu de morte cruel, que se voltou contra a vida: paira sobre a vítima como uma capa negra e rouba a vida com um toque gelado. Comanda sombras e mortos menores nas ruínas onde muitos morreram.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Mais inteligente e implacável que a sombra comum, paira sobre suas vítimas como uma capa negra e rouba a vida com um toque gelado."
+    },
+    {
+      "titulo": "Sociedade",
+      "texto": "Muitas vezes comanda sombras e outros mortos-vivos incorpóreos menores, impondo-se como senhor de uma tumba ou ruína."
+    },
+    {
+      "titulo": "Ecologia",
+      "texto": "Costuma surgir de uma morte particularmente cruel, sobretudo às mãos de outro morto-vivo, ou de massacres esquecidos pela história."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "Uma assombração é uma Centelha que não apenas se recusou a partir, mas se voltou contra a própria vida. Ruínas de batalhas da Grande Guerra, onde milhares morreram de uma só vez, são os lugares onde mais se relatam essas presenças."
+    }
+  ],
+  "imagens": [],
+  "elementos": {
+    "fraquezas": [
+      {
+        "tipo": "luz",
+        "formas": "todas"
+      },
+      {
+        "tipo": "sagrado",
+        "formas": "todas"
+      }
+    ],
+    "resistencias": [
+      {
+        "tipo": "corte",
+        "formas": "todas"
+      },
+      {
+        "tipo": "perfuracao",
+        "formas": "todas"
+      },
+      {
+        "tipo": "impacto",
+        "formas": "todas"
+      }
+    ],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "atributos.vigor",
+      "motivo": "Para a alma sem corpo, o Vigor mede o quanto ela aguenta antes de se desfazer, como no espectro. O site o tirou do Carisma 21 (nota da fonte). Fica como no site; 6, o do site; para a alma sem corpo o Vigor mede o quanto ela aguenta antes de se desfazer"
+    },
+    {
+      "campo": "comportamento.social",
+      "motivo": "site (Sociedade)"
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": "site (fraqueza a luz)"
+    },
+    {
+      "campo": "habilidadesEspeciais.Dreno de vida",
+      "motivo": "R1 e D-197. Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. O limite preserva o primeiro uso e reserva repetição para esforço adicional. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "habilidadesEspeciais",
+      "motivo": "tira PV máximo e cura, como a habilidade do site; o espectro tira jogadas"
+    },
+    {
+      "campo": "habilidadesSec.intimidacao",
+      "motivo": "3, como no espectro, pela senhora da tumba"
+    }
+  ]
+}

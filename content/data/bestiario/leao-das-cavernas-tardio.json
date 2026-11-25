@@ -1,0 +1,254 @@
+{
+  "id": "leao-das-cavernas-tardio",
+  "nome": "Leão-das-cavernas",
+  "nomeIngles": "Dire Lion",
+  "categoria": "animal",
+  "papel": "fera",
+  "ameaca": 4,
+  "centelha": 0,
+  "corpo": {
+    "postura": "quatro patas",
+    "apoio": "quadrupede",
+    "altura": 0.75,
+    "largura": 0.31,
+    "profundidade": null,
+    "comprimento": 1.82,
+    "comprimentoSemCauda": 1.29,
+    "caudaGrossa": false,
+    "massa": 88,
+    "area": 0.43,
+    "posturaDoTamanho": "de lado"
+  },
+  "couraca": 1,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 5,
+    "destreza": 4,
+    "vigor": 5,
+    "percepcao": 2,
+    "inteligencia": 1,
+    "raciocinio": 3,
+    "influencia": 3,
+    "perspicacia": 1,
+    "compostura": 2
+  },
+  "habilidades": {
+    "briga": 4,
+    "bloqueio": 2,
+    "esquiva": 3,
+    "atletismo": 3,
+    "furtividade": 3,
+    "integridade": 3,
+    "prontidao": 3,
+    "resistencia": 4,
+    "empatia": 1,
+    "sobrevivencia": 3
+  },
+  "habilidadesSec": {
+    "equilibrio": 0,
+    "escalada": 0,
+    "natacao": 0,
+    "voo": 0,
+    "corrida": 0,
+    "musculatura": 3
+  },
+  "especialidades": {
+    "resistencia": [
+      {
+        "foco": "frio",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 1,
+    "conviccao": 1,
+    "temperanca": 1
+  },
+  "vontade": 3,
+  "aparencia": 6,
+  "deslocamento": {
+    "terra": {
+      "batalha": 7,
+      "arranque": 12,
+      "corrida": 16
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Mordida",
+      "parte": "mordida",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Como o leão: morde a garganta e segura, Média. N0: a mordida do leão-das-cavernas não foi achada; a leoa mede 1.593,8 N (`leao.md`) e o leão-americano de 347 kg teria 2.830 N (Wikipédia, autor do cálculo não identificado), os dois abaixo de 4.000 N. Era 1d6 + 9, média 12,5."
+    },
+    {
+      "nome": "Patada",
+      "parte": "garra",
+      "classe": "leve",
+      "pgr": [
+        1,
+        1,
+        3
+      ],
+      "dado": "1d6-2",
+      "multiplicadorForca": 1,
+      "tipoDano": "corte",
+      "nivelPerfuracao": null,
+      "acerto": 1,
+      "bloqueiaComoArma": null,
+      "justificativa": "Como o leão: agarra e derruba com a pata dianteira. Era 1d6 − 2 + 8, média 9,5 (oitava rodada). Opção (D-097)."
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "agarrar",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "regra": "agarrar",
+      "texto": "na garganta"
+    },
+    {
+      "nome": "derrubar",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "regra": "derrubar"
+    },
+    {
+      "nome": "investida avassaladora",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Mordida",
+      "categoria": "inato",
+      "regra": "investida"
+    }
+  ],
+  "comoLuta": [],
+  "sentidos": [],
+  "fisiologia": {
+    "respiracao": "ar",
+    "camuflagem": "pelagem clara, cinzenta a amarelada, talvez adaptada à neve (Boeskorov et al. 2021) dos autores",
+    "mente": "animal",
+    "tracos": "sem juba, ou com juba pequena (arte de caverna); subpelo muito denso (Wikipédia), na Especialidade natural Resistência (frio) +2. Os filhotes Sparta e Boris, congelados no permafrost da Iacútia, têm cerca de 28 mil e 43 mil anos (Boeskorov et al. 2021)"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitário ou em pequeno grupo pelos isótopos; bando pelo painel de Chauvet",
+    "atividade": "talvez diurno",
+    "dieta": "carnívoro: rena sobretudo, cavalo selvagem, filhote de urso-das-cavernas",
+    "caca": "emboscada e perseguição curta pelo leão",
+    "dianteDeGente": "conviveu com o humano do Paleolítico, que o pintou e esculpiu; ataque a gente não achado"
+  },
+  "ecologia": {
+    "terreno": [
+      "planície",
+      "montanha"
+    ],
+    "clima": [
+      "tropical"
+    ]
+  },
+  "descricao": "O último leão da estepe gelada, sem juba e já do tamanho de um leão pequeno de hoje, no fim da última glaciação, antes de sumir. Apesar do nome, quase não usava caverna.",
+  "lore": [
+    {
+      "titulo": "Leão das Cavernas",
+      "texto": "Também chamado de leão-manchado; a forma tardia, das últimas eras do gelo, é bem menor que a antiga, do porte de uma leoa grande."
+    }
+  ],
+  "imagens": [],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "atributos.forca",
+      "motivo": "Revista na oitava rodada pelo corpo e pela massa (D-158), e não pelo Alvo: era 8, a da principal de 205 kg copiada. Um felino de 80 kg fica entre o leopardo (47,75 kg, Força 5) e o leão (157,5 kg, 7), na Força de referência dos 80 kg (6, `calc6.mjs`); acima do cão de guarda (77 kg, 4) e do lobo-terrível (60 kg, 4), porque o felino derruba e segura a presa com as patas da frente. Abaixo da principal (8), como a variante menor. Texto da principal: Era 9.  Topo das âncoras do autor (7 a 8 nos grandes felinos; \"tigre com Força 5 ou mais\", decisão 9): um acima do leão (7), de quem é 5 a 10% maior (Wikipédia alemã e russa) e de presa maior, igual ao tigre e ao tigre-dentes-de-sabre (8). Caçava rena, cavalo selvagem e filhote de urso-das-cavernas (Bocherens et al. 2011, de segunda mão), e talvez o bisão \"Blue Babe\", com um fragmento de dente de leão encravado no couro (Wikipédia). Nenhum feito medido.; 5 (em vigor na Etapa 2, 20/10/2026); antes: 8, igual à principal (topo das âncoras, um acima do leão, sem feito medido ); a variante de 80 kg pode descer, a critério do autor (D-158, D-174)"
+    },
+    {
+      "campo": "atributos.destreza",
+      "motivo": "pelo leão."
+    },
+    {
+      "campo": "atributos.percepcao",
+      "motivo": "Teste de ordem: 2 para os extintos  (`regra-construcao.md` §13). Sentidos não achados."
+    },
+    {
+      "campo": "atributos.compostura",
+      "motivo": "Espécie social (diretriz 1): fica como hoje. Como o leão: caçador de campo aberto, a estepe glacial ."
+    },
+    {
+      "campo": "habilidades.esquiva",
+      "motivo": "Felino pesado, como o leão ."
+    },
+    {
+      "campo": "habilidades.atletismo",
+      "motivo": "pelo leão."
+    },
+    {
+      "campo": "habilidades.prontidao",
+      "motivo": "Predador que caça , como o leão."
+    },
+    {
+      "campo": "habilidades.empatia",
+      "motivo": "Era sem linha. Lê os do próprio grupo  pelo leão: os dois leões de Chauvet andando lado a lado e o pequeno grupo familiar dos isótopos (Bocherens et al. 2011). Sem dado de leitura do humano.; 1, nova,  do leão; sem fonte de leitura do outro (D-174)"
+    },
+    {
+      "campo": "habilidadesSec.musculatura",
+      "motivo": "Igual à principal; a variante menor pode descer, a critério do autor. Texto da principal: Era 0 (D-117 antiga: só onde há dado). Robusto na escala da decisão 12, como o leão: mata presa grande e enfrenta o urso-das-cavernas pelo filhote ."
+    },
+    {
+      "campo": "corpo.altura",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 0,72 × 1,0323 = 0,748 . Antes: Meio do ombro de 70 a 75 cm das últimas populações (Marciszak e Gornig 2024, via Wikipédia). Principal: 1,12 m. O alto da cabeça não foi achado"
+    },
+    {
+      "campo": "corpo.comprimento",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 1,76 × 1,0323 = 1,817 . Antes: O corpo (1,25 m) mais a cauda da principal reduzida na proporção do corpo: 0,85 × (1,25 ÷ 2,10) = 0,51 m. A cauda do leão-das-cavernas não foi achada; os 0,85 m da principal são estimados pela do leão. Principal: 2,76 m"
+    },
+    {
+      "campo": "corpo.comprimentoSemCauda",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 1,25 × 1,0323 = 1,290 . Antes: Meio do corpo de 1,2 a 1,3 m das últimas populações (Marciszak e Gornig 2024, via Wikipédia). Principal: 1,97 m. A cauda conta como fina, como a do leão (D-155)"
+    },
+    {
+      "campo": "corpo.largura",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 0,30 × 1,0323 = 0,310 . Antes: A largura de 0,50 m da silhueta da principal (a do leão, `leao.md`) reduzida na proporção da altura e do corpo: 0,50 × (0,725 ÷ 1,20) = 0,30 e 0,50 × (1,25 ÷ 2,10) = 0,30. Principal: 0,47 m"
+    },
+    {
+      "campo": "aparencia",
+      "motivo": "D-107. Sem a juba que dá o 7 ao leão: as pinturas de caverna sempre o mostram sem juba ou com juba pequena (Wikipédia; Wikipédia alemã). Pelagem clara e densa ."
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": "Wikipédia, \"Panthera spelaea\""
+    },
+    {
+      "campo": "comportamento.caca",
+      "motivo": ""
+    }
+  ]
+}

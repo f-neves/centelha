@@ -1,0 +1,186 @@
+{
+  "id": "campones-assustado",
+  "idAntigo": "camponis-assustado",
+  "nome": "Camponês Assustado",
+  "nomeIngles": "Frightened Peasant",
+  "categoria": "humanoide",
+  "papel": "capanga",
+  "ameaca": 1,
+  "centelha": 0,
+  "corpo": {
+    "postura": "bípede, de pé",
+    "apoio": "bipede",
+    "altura": 1.65,
+    "largura": 0.41,
+    "profundidade": 0.21,
+    "comprimento": null,
+    "massa": 65,
+    "area": 0.61,
+    "posturaDoTamanho": "de frente"
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 2,
+    "destreza": 2,
+    "vigor": 2,
+    "percepcao": 2,
+    "inteligencia": 2,
+    "raciocinio": 2,
+    "influencia": 2,
+    "perspicacia": 2,
+    "compostura": 2
+  },
+  "habilidades": {
+    "armas": 1,
+    "briga": 1,
+    "bloqueio": 0,
+    "esquiva": 0,
+    "atletismo": 1,
+    "prontidao": 1,
+    "integridade": 4,
+    "resistencia": 1,
+    "oficios-gerais": 2,
+    "sobrevivencia": 1,
+    "sociabilidade": 1
+  },
+  "habilidadesSec": {
+    "musculatura": 0
+  },
+  "especialidades": {
+    "integridade": [
+      {
+        "foco": "contra magia",
+        "valor": 2,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 1,
+    "compaixao": 2,
+    "conviccao": 3,
+    "temperanca": 2
+  },
+  "vontade": 4,
+  "aparencia": 4,
+  "deslocamento": {
+    "terra": {
+      "batalha": 3,
+      "arranque": 5,
+      "corrida": 7
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Forcado",
+      "arma": "forcado",
+      "justificativa": "Empurra as pontas do forcado com as duas mãos. Jogada: Destreza 2 (igual à Força 2) + Armas 1"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Horda",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "regra": "horda",
+      "texto": "o camponês é capanga Comum"
+    },
+    {
+      "nome": "Sem inimizades naturais",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "texto": "Relação inicial do Humano: +1 com Elfo e Meio-Elfo, −1 com Orc e Meio-Orc, Neutro com os demais. A relação vale do Humano para o outro povo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "Pavor de sangue",
+      "formas": "todas",
+      "texto": "foge do combate assim que sofre o primeiro ferimento, ou quando vê sangue, seu ou alheio. Na horda, o Mestre pode tirar os que fogem junto com as baixas."
+    },
+    {
+      "nome": "grita mais do que golpeia",
+      "formas": "todas",
+      "texto": "segura o forcado tremendo, fica atrás dos outros, golpeia quando alguém cai perto e corre ao primeiro sangue."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão, audição, olfato",
+      "descricao": "humanos",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "prendeRespiracao": "pela regra do personagem",
+    "mente": "humana; teme tudo que vem de fora da aldeia",
+    "tracos": "roupa de roça remendada, mãos calejadas, forcado ou foice na mão, olhos arregalados"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "em grupo, com outros da aldeia",
+    "atividade": "diurno",
+    "dieta": "onívoro",
+    "caca": "não se aplica",
+    "dianteDeGente": "teme soldados, bandidos, feiticeiros e monstros; luta só se arrastado"
+  },
+  "ecologia": {
+    "terreno": [
+      "planície",
+      "urbano"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Lavrador sem treino que não escolheu lutar: foi arrastado por um senhor, um bando ou a fome. Segura o forcado tremendo, grita mais do que golpeia e corre ao primeiro sangue.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Não escolheu lutar: foi arrastado por um senhor, um bando ou o desespero da fome. Segura a foice ou o cajado tremendo, grita mais do que golpeia, e corre ao primeiro sangue, seu ou alheio."
+    },
+    {
+      "titulo": "Hábitos",
+      "texto": "Vive de plantio, de criação de porcos e do medo de tudo que vem de fora da aldeia: soldados, bandidos, feiticeiros, monstros."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "É a face mais comum do povo de Uldun: Centelha zero, sem treino, criado sob o tabu da Supressão a temer qualquer coisa que cheire a magia. Quando pega em armas, é sinal de que algo já deu muito errado na região."
+    }
+  ],
+  "imagens": [
+    "bestiario/campones-assustado_pdm.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "habilidades.armas",
+      "motivo": "O forcado, sem treino (\"Sem treino\", site). O site gravava o ataque com Briga 1; a arma pede Armas (manual 3.5); 1; o site gravava o ataque com Briga"
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": ""
+    },
+    {
+      "campo": "virtudes.bravura",
+      "motivo": "1; o site tinha 3"
+    }
+  ]
+}

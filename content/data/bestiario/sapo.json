@@ -1,0 +1,174 @@
+{
+  "id": "sapo",
+  "idAntigo": "mon-toad",
+  "nome": "Sapo-cururu",
+  "nomeIngles": "Cane toad",
+  "categoria": "animal",
+  "papel": "fera",
+  "ameaca": 1,
+  "centelha": 0,
+  "corpo": {
+    "postura": "quatro patas (sentado)",
+    "apoio": "quadrupede",
+    "altura": 0.05,
+    "largura": 0.07,
+    "profundidade": null,
+    "comprimento": 0.125,
+    "massa": 0.115,
+    "area": 0.01,
+    "posturaDoTamanho": "vista de cima, agachado"
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 0,
+    "destreza": 2,
+    "vigor": 3,
+    "percepcao": 2,
+    "inteligencia": 1,
+    "raciocinio": 2,
+    "influencia": 1,
+    "perspicacia": 1,
+    "compostura": 1
+  },
+  "habilidades": {
+    "briga": 1,
+    "bloqueio": 0,
+    "esquiva": 1,
+    "atletismo": 0,
+    "furtividade": 2,
+    "integridade": 1,
+    "prontidao": 2,
+    "resistencia": 2,
+    "empatia": 0,
+    "sobrevivencia": 4
+  },
+  "habilidadesSec": {
+    "equilibrio": 0,
+    "escalada": 0,
+    "natacao": 0,
+    "voo": 0,
+    "musculatura": 2
+  },
+  "especialidades": {
+    "resistencia": [
+      {
+        "foco": "seca",
+        "valor": 3,
+        "origem": "natural"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 1,
+    "compaixao": 1,
+    "conviccao": 1,
+    "temperanca": 1
+  },
+  "vontade": 3,
+  "aparencia": 5,
+  "deslocamento": {
+    "terra": {
+      "batalha": 1,
+      "arranque": 1,
+      "corrida": 2
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Toxina de anfíbio",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "substancia",
+      "ativacao": "quem morde, lambe ou põe o sapo na boca",
+      "duracao": "até o fim do efeito do veneno",
+      "alcance": "toque",
+      "area": "um alvo",
+      "efeito": "Toxina de anfíbio. Aplicar os parâmetros de Veneno e doença",
+      "dano": "apenas o pool do veneno",
+      "resistencia": "Vigor + Resistência pelo relógio do veneno",
+      "limiteDeUso": "O corpo guarda 3 doses e produz 1 dose em 4 horas. Cada uso gasta 1 dose"
+    }
+  ],
+  "comoLuta": [],
+  "sentidos": [
+    {
+      "nome": "sentidos",
+      "descricao": "nada achado",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar e pele (anfíbio)",
+    "camuflagem": "terra e folhiço",
+    "mente": "animal",
+    "tracos": "glândulas de veneno atrás dos olhos; aguenta seca e calor (perde até 52,6% da água; de 10 a 42 °C)"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitário",
+    "atividade": "noturno",
+    "dieta": "onívoro (formigas, besouros, tesourinhas, libélulas, gafanhotos, crustáceos, caracóis, plantas)",
+    "caca": "forrageio",
+    "dianteDeGente": "indiferente; solta o veneno se agarrado"
+  },
+  "ecologia": {
+    "terreno": [
+      "pântano",
+      "floresta"
+    ],
+    "clima": [
+      "temperado",
+      "tropical"
+    ]
+  },
+  "descricao": "Pula em saltos curtos pelo quintal, pela roça e pela beira da mata, comendo o inseto que achar. Quem o morde, o cão sobretudo, se envenena.",
+  "lore": [
+    {
+      "titulo": "Perigo só para quem o come",
+      "texto": "Anfíbio de pele rugosa e hábitos discretos, presa fácil para muitos predadores; só é perigoso para quem o morde ou põe na boca: o leite das glândulas mata cão, e já matou gente que comeu sapo."
+    },
+    {
+      "titulo": "Coro noturno",
+      "texto": "Aparece aos montes perto de brejos e poças, enchendo as noites úmidas com seu coaxar."
+    },
+    {
+      "titulo": "Veneno e doença",
+      "texto": "Veneno no jogo: Toxina de anfíbio · Potência 12 · 10 minutos (ingerido) · a cada 1 hora · pool 3 (Vigor) · Desgaste 1 · passivo: só quem o morde, lambe ou põe na boca (ingerido ou mucosa)"
+    }
+  ],
+  "imagens": [],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "habilidades.furtividade",
+      "motivo": "O levantamento mantém o 2 de hoje: cor de terra e folhiço e hábito noturno, os dois sem fonte conferida . Régua: 2, usa a noite e a cobertura."
+    },
+    {
+      "campo": "corpo.comprimento",
+      "motivo": "0,125 m na ficha atual. Base da revisão anterior: 12,5 cm (Wikipédia, 10 a 15 cm); a ADW dá 15 a 23,8 cm. Com 15 cm, a área continua abaixo do começo da escala e o Alvo não muda (D-174)"
+    },
+    {
+      "campo": "corpo.altura",
+      "motivo": "0,05 m na ficha atual. Base da revisão anterior: estimadas sem fonte (D-147, D-174)"
+    },
+    {
+      "campo": "corpo.largura",
+      "motivo": "0,07 m na ficha atual. Base da revisão anterior: estimadas sem fonte (D-147, D-174)"
+    }
+  ]
+}

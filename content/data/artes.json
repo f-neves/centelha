@@ -1,0 +1,2106 @@
+[
+  {
+    "id": "fogo",
+    "nome": "Fogo",
+    "categoria": "elemental",
+    "atributo_conjuracao": "inteligencia",
+    "niveis": [
+      {
+        "nivel": 1,
+        "nome": "Faísca",
+        "efeito": "acende ou apaga fogo; dardo flamejante (1d6)",
+        "custo": {
+          "mana": 1
+        },
+        "exemplos": [
+          "acender ou apagar uma tocha com a mão",
+          "dardo flamejante de 1d6 num alvo a 1 m",
+          "fogo na lâmina por um golpe só",
+          "esquentar o corpo numa noite fria"
+        ]
+      },
+      {
+        "nivel": 2,
+        "nome": "Chama Aderente",
+        "efeito": "dardo de fogo mais forte (1d6) que gruda e queima por alguns instantes; acende à distância",
+        "custo": {
+          "mana": 2
+        },
+        "exemplos": [
+          "acender ou apagar uma fogueira pequena",
+          "dardo que gruda e queima por mais de 6 Ticks",
+          "fogo na arma pela cena inteira",
+          "aguentar frio intenso sem tremer"
+        ]
+      },
+      {
+        "nivel": 3,
+        "nome": "Labareda",
+        "efeito": "jato de fogo em leque (2d6)",
+        "custo": {
+          "mana": 3
+        },
+        "exemplos": [
+          "jato de fogo em leque, 2d6",
+          "incendiar uma porta ou um monte de palha a 4 m",
+          "sustentar uma parede baixa de chamas por 12 ou 24 Ticks"
+        ]
+      },
+      {
+        "nivel": 4,
+        "nome": "Bola de Fogo",
+        "efeito": "Efeito em recalibração: explosão em área (3d6); parede de chamas",
+        "custo": {
+          "mana": 4
+        },
+        "exemplos": [
+          "explosão que pega quatro inimigos juntos",
+          "parede de chamas fechando um corredor",
+          "deixar uma grade de metal em brasa"
+        ]
+      },
+      {
+        "nivel": 5,
+        "nome": "Tempestade Ígnea",
+        "efeito": "área grande, dano contínuo; imune a fogo",
+        "custo": {
+          "mana": 5
+        },
+        "exemplos": [
+          "área grande queimando pela cena inteira",
+          "não sentir o próprio fogo nem o alheio por um tempo",
+          "incendiar um telhado de longe"
+        ]
+      },
+      {
+        "nivel": 6,
+        "nome": "Cataclismo",
+        "efeito": "mar de fogo; coluna ou elemental de chamas",
+        "custo": {
+          "mana": 6
+        },
+        "exemplos": [
+          "mar de fogo cobrindo um campo",
+          "coluna de chamas com forma de gente",
+          "pôr fogo num casario inteiro de uma vez"
+        ]
+      }
+    ],
+    "aliases": [],
+    "pendente": false,
+    "grid": {
+      "elemento": "fogo",
+      "cor": "#d1542a",
+      "dadoPorNivel": 1,
+      "danoBruto": true
+    }
+  },
+  {
+    "id": "gelo",
+    "nome": "Gelo",
+    "categoria": "elemental",
+    "atributo_conjuracao": "inteligencia",
+    "niveis": [
+      {
+        "nivel": 1,
+        "nome": "Lasca de Gelo",
+        "efeito": "resfria, congela água rasa; dardo (1d6)",
+        "custo": {
+          "mana": 1
+        },
+        "exemplos": [
+          "resfriar uma jarra, congelar uma poça rasa",
+          "lasca de gelo de 1d6 a 1 m",
+          "gelar a lâmina para o próximo golpe"
+        ]
+      },
+      {
+        "nivel": 2,
+        "nome": "Mordida do Frio",
+        "efeito": "dardo gélido (1d6) que enregela o membro atingido e reduz a ação do alvo; congela poças",
+        "custo": {
+          "mana": 2
+        },
+        "exemplos": [
+          "dardo gélido que enregela o braço e atrapalha o alvo",
+          "congelar um balde ou uma poça funda",
+          "aguentar calor forte sem se abater"
+        ]
+      },
+      {
+        "nivel": 3,
+        "nome": "Rajada Gélida",
+        "efeito": "cone de frio (2d6), desacelera",
+        "custo": {
+          "mana": 3
+        },
+        "exemplos": [
+          "cone de frio de 2d6 que ainda desacelera",
+          "cobrir o chão de gelo escorregadio",
+          "congelar uma fechadura até ficar quebradiça"
+        ]
+      },
+      {
+        "nivel": 4,
+        "nome": "Prisão de Gelo",
+        "efeito": "aprisiona um alvo; muralha de gelo",
+        "custo": {
+          "mana": 4
+        },
+        "exemplos": [
+          "prender um alvo num bloco até ele se soltar",
+          "muralha de gelo fechando a passagem",
+          "endurecer um rio raso para atravessar a pé"
+        ]
+      },
+      {
+        "nivel": 5,
+        "nome": "Nevasca",
+        "efeito": "tempestade gélida em área",
+        "custo": {
+          "mana": 5
+        },
+        "exemplos": [
+          "nevasca sobre uma praça, cegando e mordendo",
+          "manter um salão em frio de matar pela cena"
+        ]
+      },
+      {
+        "nivel": 6,
+        "nome": "Inverno Eterno",
+        "efeito": "congela uma grande área; imobiliza um campo",
+        "custo": {
+          "mana": 6
+        },
+        "exemplos": [
+          "congelar um vale inteiro",
+          "imobilizar uma tropa no lugar",
+          "fazer o inverno durar dias na região"
+        ]
+      }
+    ],
+    "aliases": [],
+    "pendente": false,
+    "grid": {
+      "elemento": "gelo",
+      "cor": "#5aa9c9",
+      "dadoPorNivel": 1,
+      "danoBruto": true
+    }
+  },
+  {
+    "id": "raio",
+    "nome": "Raio",
+    "categoria": "elemental",
+    "atributo_conjuracao": "inteligencia",
+    "niveis": [
+      {
+        "nivel": 1,
+        "nome": "Estalo",
+        "efeito": "choque que atordoa; dardo (1d6)",
+        "custo": {
+          "mana": 1
+        },
+        "exemplos": [
+          "choque que atordoa quem você toca",
+          "faísca de 1d6 a 1 m",
+          "acender uma fagulha à distância"
+        ]
+      },
+      {
+        "nivel": 2,
+        "nome": "Descarga",
+        "efeito": "choque (1d6) que salta para um segundo alvo próximo; atordoa quem veste metal",
+        "custo": {
+          "mana": 2
+        },
+        "exemplos": [
+          "descarga que salta para um segundo alvo perto",
+          "derrubar quem veste metal",
+          "estourar um fecho de metal"
+        ]
+      },
+      {
+        "nivel": 3,
+        "nome": "Relâmpago",
+        "efeito": "raio da mão ao alvo (2d6)",
+        "custo": {
+          "mana": 3
+        },
+        "exemplos": [
+          "relâmpago de 2d6 num alvo",
+          "queimar um mecanismo à distância",
+          "atordoar dois inimigos de uma vez"
+        ]
+      },
+      {
+        "nivel": 4,
+        "nome": "Corrente",
+        "efeito": "o Efeito Corrente, que salta de corpo em corpo (1d6 por nível)",
+        "custo": {
+          "mana": 4
+        },
+        "exemplos": [
+          "corrente que salta entre quatro alvos",
+          "sobrecarregar tudo que é de metal numa sala"
+        ]
+      },
+      {
+        "nivel": 5,
+        "nome": "Tempestade",
+        "efeito": "relâmpagos do céu numa área",
+        "custo": {
+          "mana": 5
+        },
+        "exemplos": [
+          "relâmpagos caindo do céu numa área pela cena",
+          "derrubar um mastro ou uma torre de longe"
+        ]
+      },
+      {
+        "nivel": 6,
+        "nome": "Fúria de Zeus",
+        "efeito": "descarga cataclísmica",
+        "custo": {
+          "mana": 6
+        },
+        "exemplos": [
+          "descarga que parte a pedra e cega quem vê",
+          "tempestade elétrica sobre a região"
+        ]
+      }
+    ],
+    "aliases": [],
+    "pendente": false,
+    "grid": {
+      "elemento": "raio",
+      "cor": "#d8b13a",
+      "dadoPorNivel": 1,
+      "danoBruto": true
+    }
+  },
+  {
+    "id": "agua",
+    "nome": "Água",
+    "categoria": "elemental",
+    "atributo_conjuracao": "inteligencia",
+    "niveis": [
+      {
+        "nivel": 1,
+        "nome": "Manipular Água",
+        "efeito": "move e molda água; jato sob pressão",
+        "custo": {
+          "mana": 1
+        },
+        "exemplos": [
+          "mover e moldar a água que já está por perto",
+          "jato sob pressão de 1d6 de Impacto",
+          "molhar e apagar uma tocha"
+        ]
+      },
+      {
+        "nivel": 2,
+        "nome": "Jato Forte",
+        "efeito": "jato forte que empurra e apaga; molda a água em formas úteis (corda, ponte rasa)",
+        "custo": {
+          "mana": 2
+        },
+        "exemplos": [
+          "jato forte que empurra o alvo para trás",
+          "moldar a água em corda, ponte rasa ou vasilha",
+          "apagar uma fogueira inteira"
+        ]
+      },
+      {
+        "nivel": 3,
+        "nome": "Onda",
+        "efeito": "empurra ou derruba; cria névoa",
+        "custo": {
+          "mana": 3
+        },
+        "exemplos": [
+          "onda que derruba e arrasta",
+          "levantar névoa de uma superfície molhada",
+          "empurrar um bote contra a corrente"
+        ]
+      },
+      {
+        "nivel": 4,
+        "nome": "Respirar Água",
+        "efeito": "respira submerso; controla correntes",
+        "custo": {
+          "mana": 4
+        },
+        "exemplos": [
+          "respirar submerso pela cena",
+          "comandar a correnteza de um rio pequeno",
+          "manter dez pessoas secas debaixo de chuva"
+        ]
+      },
+      {
+        "nivel": 5,
+        "nome": "Maremoto",
+        "efeito": "grande onda; afoga uma área",
+        "custo": {
+          "mana": 5
+        },
+        "exemplos": [
+          "maremoto que engole uma rua",
+          "afogar uma área baixa",
+          "sustentar um barco contra a tempestade"
+        ]
+      },
+      {
+        "nivel": 6,
+        "nome": "Senhor dos Mares",
+        "efeito": "comanda rios e mares",
+        "custo": {
+          "mana": 6
+        },
+        "exemplos": [
+          "comandar o curso de um rio",
+          "abrir caminho no mar por um tempo"
+        ]
+      }
+    ],
+    "aliases": [],
+    "pendente": false,
+    "grid": {
+      "elemento": "agua",
+      "cor": "#3d7ea6",
+      "dadoPorNivel": 1,
+      "danoBruto": true
+    }
+  },
+  {
+    "id": "vento",
+    "nome": "Vento",
+    "categoria": "elemental",
+    "atributo_conjuracao": "inteligencia",
+    "niveis": [
+      {
+        "nivel": 1,
+        "nome": "Brisa",
+        "efeito": "rajadas que empurram, apagam, carregam som",
+        "custo": {
+          "mana": 1
+        },
+        "exemplos": [
+          "rajada que empurra e apaga chamas pequenas",
+          "carregar um som ou um cheiro para longe",
+          "manter a poeira longe do rosto"
+        ]
+      },
+      {
+        "nivel": 2,
+        "nome": "Lufada Cortante",
+        "efeito": "rajada que derruba um alvo leve e desvia um projétil contra você",
+        "custo": {
+          "mana": 2
+        },
+        "exemplos": [
+          "lufada que derruba quem é leve",
+          "desviar um projétil que vinha em você",
+          "abrir uma porta de longe"
+        ]
+      },
+      {
+        "nivel": 3,
+        "nome": "Vendaval",
+        "efeito": "desvia projéteis; rajada cortante (o Efeito Muro, 2d6)",
+        "custo": {
+          "mana": 3
+        },
+        "exemplos": [
+          "vendaval que atrapalha todo tiro na área",
+          "empurrar um grupo para trás",
+          "levantar poeira e cegar"
+        ]
+      },
+      {
+        "nivel": 4,
+        "nome": "Sustentar",
+        "efeito": "plana e levita por curtos períodos",
+        "custo": {
+          "mana": 4
+        },
+        "exemplos": [
+          "planar e amortecer quedas pela cena",
+          "sustentar uma pessoa no ar",
+          "arrancar um telhado"
+        ]
+      },
+      {
+        "nivel": 5,
+        "nome": "Ciclone",
+        "efeito": "tornado que ergue e arremessa",
+        "custo": {
+          "mana": 5
+        },
+        "exemplos": [
+          "tornado que ergue e arremessa",
+          "fechar um vale ao vento por horas"
+        ]
+      },
+      {
+        "nivel": 6,
+        "nome": "Senhor dos Céus",
+        "efeito": "voa; comanda tempestades de vento",
+        "custo": {
+          "mana": 6
+        },
+        "exemplos": [
+          "voar por conta própria",
+          "comandar a tempestade sobre a região"
+        ]
+      }
+    ],
+    "aliases": [],
+    "pendente": false,
+    "grid": {
+      "elemento": "vento",
+      "cor": "#9fb3a8",
+      "dadoPorNivel": 1,
+      "danoBruto": false
+    }
+  },
+  {
+    "id": "terra",
+    "nome": "Terra",
+    "categoria": "elemental",
+    "atributo_conjuracao": "inteligencia",
+    "niveis": [
+      {
+        "nivel": 1,
+        "nome": "Moldar Terra",
+        "efeito": "molda terra ou pedra; arremessa pedras (2d6)",
+        "custo": {
+          "mana": 1
+        },
+        "exemplos": [
+          "moldar terra e pedra com as mãos",
+          "arremessar uma pedra, 2d6 de Impacto",
+          "endurecer o chão sob os pés"
+        ]
+      },
+      {
+        "nivel": 2,
+        "nome": "Punho de Pedra",
+        "efeito": "arremessa uma pedra maior (2d6) ou ergue um pequeno anteparo de terra",
+        "custo": {
+          "mana": 2
+        },
+        "exemplos": [
+          "pedra maior que ainda empurra o alvo",
+          "anteparo de terra para se abrigar",
+          "abrir um buraco raso"
+        ]
+      },
+      {
+        "nivel": 3,
+        "nome": "Muralha de Pedra",
+        "efeito": "ergue barreiras; abre o chão",
+        "custo": {
+          "mana": 3
+        },
+        "exemplos": [
+          "muralha de pedra fechando a passagem",
+          "tremor que derruba quem está de pé",
+          "abrir uma fenda estreita no chão"
+        ]
+      },
+      {
+        "nivel": 4,
+        "nome": "Terremoto Local",
+        "efeito": "sacode e fende o solo",
+        "custo": {
+          "mana": 4
+        },
+        "exemplos": [
+          "terremoto pequeno que abre a terra sob um grupo",
+          "coluna que sustenta um teto prestes a cair",
+          "endurecer a pedra até ficar dura como aço"
+        ]
+      },
+      {
+        "nivel": 5,
+        "nome": "Moldar Metal",
+        "efeito": "dobra e molda metal",
+        "custo": {
+          "mana": 5
+        },
+        "exemplos": [
+          "derrubar a parede de uma fortaleza",
+          "abrir um fosso em volta de si"
+        ]
+      },
+      {
+        "nivel": 6,
+        "nome": "Senhor da Terra",
+        "efeito": "remodela o terreno",
+        "custo": {
+          "mana": 6
+        },
+        "exemplos": [
+          "rasgar o chão de um vale",
+          "fazer a montanha responder"
+        ]
+      }
+    ],
+    "aliases": [],
+    "pendente": false,
+    "grid": {
+      "elemento": "terra",
+      "cor": "#8a6a43",
+      "dadoPorNivel": 2,
+      "danoBruto": true
+    }
+  },
+  {
+    "id": "luz",
+    "nome": "Luz",
+    "categoria": "elemental",
+    "atributo_conjuracao": "inteligencia",
+    "niveis": [
+      {
+        "nivel": 1,
+        "nome": "Clarão",
+        "efeito": "acende luz firme onde quiser; um lampejo que ofusca por um instante",
+        "custo": {
+          "mana": 1
+        },
+        "exemplos": [
+          "luz de tocha na ponta do dedo pela cena",
+          "lampejo na cara de quem está ao seu lado",
+          "iluminar uma fechadura no escuro"
+        ]
+      },
+      {
+        "nivel": 2,
+        "nome": "Ofuscar",
+        "efeito": "o feixe cega um alvo por 6 ou 12 Ticks; a luz denuncia quem se esconde por perto",
+        "custo": {
+          "mana": 2
+        },
+        "exemplos": [
+          "cegar o arqueiro que mira em você",
+          "mostrar a sala inteira por um instante",
+          "facho que segue um alvo pela cena"
+        ]
+      },
+      {
+        "nivel": 3,
+        "nome": "Feixe Ardente",
+        "efeito": "raio que queima, inteiro em quem teme a luz e pela metade nos outros; revela o oculto e o disfarçado ao redor",
+        "custo": {
+          "mana": 3
+        },
+        "exemplos": [
+          "queimar o morto-vivo que agarra o aliado",
+          "varrer um corredor e achar o que está invisível",
+          "lâmina de luz para cortar treva"
+        ]
+      },
+      {
+        "nivel": 4,
+        "nome": "Aurora",
+        "efeito": "clarão que cega um grupo inteiro e desfaz camuflagem e invisibilidade na área",
+        "custo": {
+          "mana": 4
+        },
+        "exemplos": [
+          "cegar a linha de frente inimiga",
+          "revelar todos os disfarçados de uma praça",
+          "apagar a Sombra de outro feiticeiro"
+        ]
+      },
+      {
+        "nivel": 5,
+        "nome": "Luz Inclemente",
+        "efeito": "nenhuma ocultação funciona na cena, e a luz queima enquanto durar, inteira em quem a teme e pela metade nos outros",
+        "custo": {
+          "mana": 5
+        },
+        "exemplos": [
+          "nenhum assassino consegue se esconder na sala",
+          "queimadura contínua no demônio enquanto ele ficar perto"
+        ]
+      },
+      {
+        "nivel": 6,
+        "nome": "Dia Artificial",
+        "efeito": "um segundo sol sobre a região: não há sombra onde se esconder, e nada das trevas resiste",
+        "custo": {
+          "mana": 6
+        },
+        "exemplos": [
+          "transformar a noite em dia sobre o acampamento",
+          "negar a treva a um exército de mortos"
+        ]
+      }
+    ],
+    "aliases": [],
+    "pendente": false,
+    "grid": {
+      "elemento": "luz",
+      "cor": "#e0c86a",
+      "dadoPorNivel": 1,
+      "danoBruto": true
+    }
+  },
+  {
+    "id": "sombra",
+    "nome": "Sombra",
+    "categoria": "elemental",
+    "atributo_conjuracao": "inteligencia",
+    "niveis": [
+      {
+        "nivel": 1,
+        "nome": "Penumbra",
+        "efeito": "apaga luz fraca e adensa a sombra ao redor; esconder-se nela fica fácil",
+        "custo": {
+          "mana": 1
+        },
+        "exemplos": [
+          "apagar a vela do quarto ao lado",
+          "esconder a mão que pega a chave",
+          "cobrir uma marca no chão"
+        ]
+      },
+      {
+        "nivel": 2,
+        "nome": "Manto de Treva",
+        "efeito": "a escuridão se cola a você e a quem está junto, e vai junto quando anda",
+        "custo": {
+          "mana": 2
+        },
+        "exemplos": [
+          "atravessar um pátio iluminado sob o manto",
+          "cobrir dois companheiros na mesma treva",
+          "esconder um corpo até de manhã"
+        ]
+      },
+      {
+        "nivel": 3,
+        "nome": "Mão de Sombra",
+        "efeito": "a treva ganha peso: empurra, segura, apaga som e assusta quem está dentro",
+        "custo": {
+          "mana": 3
+        },
+        "exemplos": [
+          "segurar o braço de quem ia gritar",
+          "abafar o barulho de uma porta arrombada",
+          "empurrar alguém escada abaixo sem tocar"
+        ]
+      },
+      {
+        "nivel": 4,
+        "nome": "Escuridão Viva",
+        "efeito": "engole uma área inteira; lá dentro ninguém vê, ninguém é visto e o ar pesa",
+        "custo": {
+          "mana": 4
+        },
+        "exemplos": [
+          "apagar uma sala inteira no meio da luta",
+          "roubar a visão do arqueiro na torre",
+          "engolir o som de uma briga na rua"
+        ]
+      },
+      {
+        "nivel": 5,
+        "nome": "Forma de Treva",
+        "efeito": "você mesmo vira sombra: passa por frestas, escorre, arma comum não o fere",
+        "custo": {
+          "mana": 5
+        },
+        "exemplos": [
+          "passar por baixo de uma porta trancada",
+          "levar uma flechada sem sentir"
+        ]
+      },
+      {
+        "nivel": 6,
+        "nome": "Abismo",
+        "efeito": "a treva traga o que toca; a região vira uma boca escura da qual se sai perdido",
+        "custo": {
+          "mana": 6
+        },
+        "exemplos": [
+          "tragar uma carroça inteira",
+          "fazer um beco deixar de ter saída"
+        ]
+      }
+    ],
+    "aliases": [],
+    "pendente": false,
+    "grid": {
+      "elemento": "sombra",
+      "cor": "#5b4a72",
+      "dadoPorNivel": 1,
+      "danoBruto": false
+    }
+  },
+  {
+    "id": "cura",
+    "nome": "Cura",
+    "categoria": "universal",
+    "atributo_conjuracao": "inteligencia",
+    "niveis": [
+      {
+        "nivel": 1,
+        "nome": "Sarar",
+        "efeito": "estanca sangramento, cura dano leve",
+        "custo": {
+          "mana": 1
+        },
+        "exemplos": [
+          "fechar cortes e arranhões pelo toque",
+          "estancar um sangramento",
+          "tirar a dor de alguém por uma cena"
+        ]
+      },
+      {
+        "nivel": 2,
+        "nome": "Restaurar",
+        "efeito": "cura dano leve a moderado e neutraliza um veneno fraco no corpo",
+        "custo": {
+          "mana": 2
+        },
+        "exemplos": [
+          "emendar um ferimento sério",
+          "baixar uma febre",
+          "parar um sangramento grave"
+        ]
+      },
+      {
+        "nivel": 3,
+        "nome": "Fechar Feridas",
+        "efeito": "cura moderado; suspende a dor",
+        "custo": {
+          "mana": 3
+        },
+        "exemplos": [
+          "fechar ferida grave e pôr o ferido de pé",
+          "cuidar de dois feridos numa passada",
+          "neutralizar um veneno comum"
+        ]
+      },
+      {
+        "nivel": 4,
+        "nome": "Restauração",
+        "efeito": "ferimentos graves, doenças, venenos",
+        "custo": {
+          "mana": 4
+        },
+        "exemplos": [
+          "religar um membro quase perdido",
+          "acordar quem está caído e inconsciente, se a cura o levar a 1 PV ou mais",
+          "limpar uma doença séria"
+        ]
+      },
+      {
+        "nivel": 5,
+        "nome": "Regenerar",
+        "efeito": "recompõe membros; doenças mortais",
+        "custo": {
+          "mana": 5
+        },
+        "exemplos": [
+          "refazer um membro perdido",
+          "curar dano agravado, que não fecha sozinho",
+          "pôr um grupo inteiro de pé"
+        ]
+      },
+      {
+        "nivel": 6,
+        "nome": "Sopro de Vida",
+        "efeito": "traz o recém-morto (morto há até 10 minutos, o grau 1 da Duração longa), que volta com 1 PV, acordado e em Crítico; expurga quase tudo",
+        "custo": {
+          "mana": 6
+        },
+        "exemplos": [
+          "chamar de volta quem morreu há até 10 minutos",
+          "desfazer uma mutilação antiga"
+        ]
+      }
+    ],
+    "aliases": [],
+    "pendente": false,
+    "grid": {
+      "elemento": null,
+      "cor": "#6f9f6a",
+      "dadoPorNivel": 1,
+      "danoBruto": true
+    }
+  },
+  {
+    "id": "vida",
+    "nome": "Vida",
+    "categoria": "universal",
+    "atributo_conjuracao": "inteligencia",
+    "niveis": [
+      {
+        "nivel": 1,
+        "nome": "Acelerar Vida",
+        "efeito": "faz plantas crescerem; cura leve",
+        "custo": {
+          "mana": 1
+        },
+        "exemplos": [
+          "firmar um pulso fraco",
+          "acelerar um broto",
+          "aliviar o cansaço: tira uma penalidade de Desgaste"
+        ]
+      },
+      {
+        "nivel": 2,
+        "nome": "Brotar",
+        "efeito": "faz plantas crescerem depressa (cobertura, trepadeira que prende) e cura um pouco mais",
+        "custo": {
+          "mana": 2
+        },
+        "exemplos": [
+          "fazer a semente virar planta na hora",
+          "sustentar alguém um dia sem comer nem beber"
+        ]
+      },
+      {
+        "nivel": 3,
+        "nome": "Despertar",
+        "efeito": "anima plantas para enredar",
+        "custo": {
+          "mana": 3
+        },
+        "exemplos": [
+          "vigor emprestado que dura a cena",
+          "fazer um pomar florescer fora de época"
+        ]
+      },
+      {
+        "nivel": 4,
+        "nome": "Moldar Carne",
+        "efeito": "altera corpos vivos",
+        "custo": {
+          "mana": 4
+        },
+        "exemplos": [
+          "acelerar a cura natural de um grupo por dias",
+          "devolver juventude a um animal velho"
+        ]
+      },
+      {
+        "nivel": 5,
+        "nome": "Florescer",
+        "efeito": "transforma um ermo em floresta",
+        "custo": {
+          "mana": 5
+        },
+        "exemplos": [
+          "fazer mata crescer onde havia pedra",
+          "dar vida a um corpo simples"
+        ]
+      },
+      {
+        "nivel": 6,
+        "nome": "Dádiva da Vida",
+        "efeito": "cura em massa; vida exuberante",
+        "custo": {
+          "mana": 6
+        },
+        "exemplos": [
+          "semear vida num deserto",
+          "animar o que nunca viveu"
+        ]
+      }
+    ],
+    "aliases": [],
+    "pendente": false,
+    "grid": {
+      "elemento": null,
+      "cor": "#7aa05a",
+      "dadoPorNivel": 1,
+      "danoBruto": true
+    }
+  },
+  {
+    "id": "morte",
+    "nome": "Morte",
+    "categoria": "universal",
+    "atributo_conjuracao": "inteligencia",
+    "niveis": [
+      {
+        "nivel": 1,
+        "nome": "Toque Mórbido",
+        "efeito": "decomposição; dreno (1d6 + cura você)",
+        "custo": {
+          "mana": 1
+        },
+        "exemplos": [
+          "apodrecer fruta e pano pelo toque",
+          "tirar o vigor de quem você toca"
+        ]
+      },
+      {
+        "nivel": 2,
+        "nome": "Definhar",
+        "efeito": "toque que enfraquece o alvo por uma cena (−1) e dreno maior (1d6 + cura você)",
+        "custo": {
+          "mana": 2
+        },
+        "exemplos": [
+          "definhar um membro e enfraquecer o golpe",
+          "matar as plantas em volta"
+        ]
+      },
+      {
+        "nivel": 3,
+        "nome": "Enfraquecer",
+        "efeito": "adoece o alvo; fala com mortos recentes",
+        "custo": {
+          "mana": 3
+        },
+        "exemplos": [
+          "necrose que abre no corpo, 3d6",
+          "roubar a força de um alvo pela cena"
+        ]
+      },
+      {
+        "nivel": 4,
+        "nome": "Erguer Morto",
+        "efeito": "anima um cadáver; aura de medo",
+        "custo": {
+          "mana": 4
+        },
+        "exemplos": [
+          "apagar a vida de vários seres pequenos",
+          "praga que consome uma plantação"
+        ]
+      },
+      {
+        "nivel": 5,
+        "nome": "Praga",
+        "efeito": "doença e murchez numa área",
+        "custo": {
+          "mana": 5
+        },
+        "exemplos": [
+          "apodrecer um homem forte em minutos",
+          "matar tudo que é vivo numa área pequena"
+        ]
+      },
+      {
+        "nivel": 6,
+        "nome": "Ceifador",
+        "efeito": "ceifa a vida; ergue uma legião",
+        "custo": {
+          "mana": 6
+        },
+        "exemplos": [
+          "o toque que apaga a vida de uma vez",
+          "lavrar uma terra morta que fica assim"
+        ]
+      }
+    ],
+    "aliases": [],
+    "pendente": false,
+    "grid": {
+      "elemento": null,
+      "cor": "#6b5f6e",
+      "dadoPorNivel": 1,
+      "danoBruto": true
+    }
+  },
+  {
+    "id": "fascinacao",
+    "nome": "Fascinação",
+    "categoria": "universal",
+    "atributo_conjuracao": "influencia",
+    "niveis": [
+      {
+        "nivel": 1,
+        "nome": "Sugestão",
+        "efeito": "impulso sutil; distrai",
+        "custo": {
+          "mana": 1
+        },
+        "exemplos": [
+          "um impulso sutil",
+          "distrair o guarda por um instante"
+        ]
+      },
+      {
+        "nivel": 2,
+        "nome": "Simpatia",
+        "efeito": "o alvo baixa a guarda e o trata com boa vontade por um tempo (contra a Defesa Social)",
+        "custo": {
+          "mana": 2
+        },
+        "exemplos": [
+          "baixar a guarda do alvo e ganhar boa vontade pela cena",
+          "acalmar quem está prestes a gritar"
+        ]
+      },
+      {
+        "nivel": 3,
+        "nome": "Encanto",
+        "efeito": "o alvo o vê como amigo",
+        "custo": {
+          "mana": 3
+        },
+        "exemplos": [
+          "o alvo o vê como amigo antigo",
+          "acalmar uma sala inteira"
+        ]
+      },
+      {
+        "nivel": 4,
+        "nome": "Comando",
+        "efeito": "ordem contra a Defesa Mental",
+        "custo": {
+          "mana": 4
+        },
+        "exemplos": [
+          "uma ordem que só a Defesa Mental e a Força de Vontade seguram",
+          "calar uma multidão"
+        ]
+      },
+      {
+        "nivel": 5,
+        "nome": "Ilusão Plena",
+        "efeito": "ilusões convincentes ou domínio",
+        "custo": {
+          "mana": 5
+        },
+        "exemplos": [
+          "ilusão convincente para muita gente",
+          "dominar alguém pela cena"
+        ]
+      },
+      {
+        "nivel": 6,
+        "nome": "Reescrever a Mente",
+        "efeito": "altera memórias e lealdades",
+        "custo": {
+          "mana": 6
+        },
+        "exemplos": [
+          "reescrever memória e lealdade",
+          "virar uma cidade a seu favor"
+        ]
+      }
+    ],
+    "aliases": [],
+    "pendente": false,
+    "grid": {
+      "elemento": null,
+      "cor": "#a6688f",
+      "dadoPorNivel": 1,
+      "danoBruto": true
+    }
+  },
+  {
+    "id": "adivinhacao",
+    "nome": "Adivinhação",
+    "categoria": "universal",
+    "atributo_conjuracao": "inteligencia",
+    "niveis": [
+      {
+        "nivel": 1,
+        "nome": "Pressentir",
+        "efeito": "sente perigo e mentiras",
+        "custo": {
+          "mana": 1
+        },
+        "exemplos": [
+          "pressentir perigo próximo",
+          "saber se alguém está mentindo"
+        ]
+      },
+      {
+        "nivel": 2,
+        "nome": "Vislumbre",
+        "efeito": "sente intenção e mentira com clareza; um flash do passado recente de um objeto",
+        "custo": {
+          "mana": 2
+        },
+        "exemplos": [
+          "ver o que está atrás da porta",
+          "ler a última hora de um objeto"
+        ]
+      },
+      {
+        "nivel": 3,
+        "nome": "Vidência",
+        "efeito": "vê eventos distantes",
+        "custo": {
+          "mana": 3
+        },
+        "exemplos": [
+          "ver um lugar distante pelos olhos da mente",
+          "achar quem se esconde"
+        ]
+      },
+      {
+        "nivel": 4,
+        "nome": "Ler o Destino",
+        "efeito": "vislumbra futuros prováveis",
+        "custo": {
+          "mana": 4
+        },
+        "exemplos": [
+          "ver dias à frente, em imagens soltas",
+          "saber o nome verdadeiro de algo"
+        ]
+      },
+      {
+        "nivel": 5,
+        "nome": "Olho Distante",
+        "efeito": "observa lugar conhecido em tempo real",
+        "custo": {
+          "mana": 5
+        },
+        "exemplos": [
+          "fazer uma pergunta ao mundo e receber resposta",
+          "rever um acontecimento antigo inteiro"
+        ]
+      },
+      {
+        "nivel": 6,
+        "nome": "Oráculo",
+        "efeito": "responde sobre passado e futuro",
+        "custo": {
+          "mana": 6
+        },
+        "exemplos": [
+          "enxergar o que ainda não foi decidido",
+          "ler o destino de uma pessoa"
+        ]
+      }
+    ],
+    "aliases": [],
+    "pendente": false,
+    "grid": {
+      "elemento": null,
+      "cor": "#7b8fb5",
+      "dadoPorNivel": 1,
+      "danoBruto": true
+    }
+  },
+  {
+    "id": "fortuna",
+    "nome": "Fortuna",
+    "categoria": "universal",
+    "atributo_conjuracao": "inteligencia",
+    "niveis": [
+      {
+        "nivel": 1,
+        "nome": "Empurrãozinho",
+        "efeito": "role de novo um dado ou imponha −1",
+        "custo": {
+          "mana": 1
+        },
+        "exemplos": [
+          "um empurrãozinho de sorte na própria rolagem"
+        ]
+      },
+      {
+        "nivel": 2,
+        "nome": "Mão do Destino",
+        "efeito": "role de novo um dado seu, ou force o inimigo a rolar de novo um bom resultado",
+        "custo": {
+          "mana": 2
+        },
+        "exemplos": [
+          "azar pequeno no inimigo: a corda arrebenta, o pé escorrega"
+        ]
+      },
+      {
+        "nivel": 3,
+        "nome": "Sorte & Azar",
+        "efeito": "+1d6 a um aliado ou −1d6 a um inimigo",
+        "custo": {
+          "mana": 3
+        },
+        "exemplos": [
+          "virar uma disputa importante",
+          "achar o que estava perdido"
+        ]
+      },
+      {
+        "nivel": 4,
+        "nome": "Destino Torto",
+        "efeito": "força repetir uma rolagem",
+        "custo": {
+          "mana": 4
+        },
+        "exemplos": [
+          "sorte que dura a cena inteira",
+          "o acaso arranja a saída"
+        ]
+      },
+      {
+        "nivel": 5,
+        "nome": "Maré da Sorte",
+        "efeito": "coincidências favoráveis por uma cena",
+        "custo": {
+          "mana": 5
+        },
+        "exemplos": [
+          "maldição de azar que segue a pessoa por dias"
+        ]
+      },
+      {
+        "nivel": 6,
+        "nome": "Senhor do Acaso",
+        "efeito": "torna o quase-impossível certo",
+        "custo": {
+          "mana": 6
+        },
+        "exemplos": [
+          "torcer o acaso de uma batalha inteira"
+        ]
+      }
+    ],
+    "aliases": [],
+    "pendente": false,
+    "grid": {
+      "elemento": null,
+      "cor": "#c19a5b",
+      "dadoPorNivel": 1,
+      "danoBruto": true
+    }
+  },
+  {
+    "id": "conjuracao",
+    "nome": "Conjuração",
+    "categoria": "universal",
+    "atributo_conjuracao": "inteligencia",
+    "niveis": [
+      {
+        "nivel": 1,
+        "nome": "Telecinese Leve",
+        "efeito": "move objetos pequenos",
+        "custo": {
+          "mana": 1
+        },
+        "exemplos": [
+          "chamar um objeto simples e pequeno",
+          "fazer surgir uma corda ou uma tocha"
+        ]
+      },
+      {
+        "nivel": 2,
+        "nome": "Chamado Breve",
+        "efeito": "traz um objeto à vista para a mão; move objetos médios com a mente",
+        "custo": {
+          "mana": 2
+        },
+        "exemplos": [
+          "conjurar ferramenta ou arma simples pela cena"
+        ]
+      },
+      {
+        "nivel": 3,
+        "nome": "Passo Brusco",
+        "efeito": "teletransporte curto visível",
+        "custo": {
+          "mana": 3
+        },
+        "exemplos": [
+          "invocar um servo menor que obedece por um tempo"
+        ]
+      },
+      {
+        "nivel": 4,
+        "nome": "Convocar",
+        "efeito": "traz objeto distante; fenda curta",
+        "custo": {
+          "mana": 4
+        },
+        "exemplos": [
+          "erguer o que não existia: ponte, muro, escada",
+          "conjurar arma de guerra que dura a luta"
+        ]
+      },
+      {
+        "nivel": 5,
+        "nome": "Portal",
+        "efeito": "entre dois lugares próximos",
+        "custo": {
+          "mana": 5
+        },
+        "exemplos": [
+          "invocar aliado poderoso por uma cena"
+        ]
+      },
+      {
+        "nivel": 6,
+        "nome": "Dobrar o Espaço",
+        "efeito": "teletransporte longo de grupo",
+        "custo": {
+          "mana": 6
+        },
+        "exemplos": [
+          "fazer surgir o que só existia na ideia"
+        ]
+      }
+    ],
+    "aliases": [],
+    "pendente": false,
+    "grid": {
+      "elemento": null,
+      "cor": "#8a7fb0",
+      "dadoPorNivel": 1,
+      "danoBruto": true
+    }
+  },
+  {
+    "id": "forcas",
+    "nome": "Forças",
+    "categoria": "universal",
+    "atributo_conjuracao": "inteligencia",
+    "niveis": [
+      {
+        "nivel": 1,
+        "nome": "Empurrão de Força",
+        "efeito": "empurra ou segura; escudo breve",
+        "custo": {
+          "mana": 1
+        },
+        "exemplos": [
+          "mover um objeto leve à distância",
+          "segurar uma porta que se fecha"
+        ]
+      },
+      {
+        "nivel": 2,
+        "nome": "Repelir",
+        "efeito": "empurrão forte que derruba e afasta; sustenta um escudo de força por mais tempo",
+        "custo": {
+          "mana": 2
+        },
+        "exemplos": [
+          "empurrar ou puxar uma pessoa",
+          "desarmar alguém de longe"
+        ]
+      },
+      {
+        "nivel": 3,
+        "nome": "Telecinese",
+        "efeito": "move e arremessa objetos pesados",
+        "custo": {
+          "mana": 3
+        },
+        "exemplos": [
+          "prender um alvo no lugar com a mão invisível",
+          "erguer o próprio peso do chão"
+        ]
+      },
+      {
+        "nivel": 4,
+        "nome": "Escudo de Força",
+        "efeito": "barreira; impacto cinético (3d6)",
+        "custo": {
+          "mana": 4
+        },
+        "exemplos": [
+          "erguer uma carroça",
+          "pesar sobre um grupo e derrubá-lo"
+        ]
+      },
+      {
+        "nivel": 5,
+        "nome": "Esmagar",
+        "efeito": "comprime alvo ou objeto",
+        "custo": {
+          "mana": 5
+        },
+        "exemplos": [
+          "dobrar a gravidade de uma área",
+          "voar por telecinesia"
+        ]
+      },
+      {
+        "nivel": 6,
+        "nome": "Dominar Forças",
+        "efeito": "manipula gravidade e cinética",
+        "custo": {
+          "mana": 6
+        },
+        "exemplos": [
+          "mover o que uma vila inteira não moveria"
+        ]
+      }
+    ],
+    "aliases": [],
+    "pendente": false,
+    "grid": {
+      "elemento": null,
+      "cor": "#7d7f8c",
+      "dadoPorNivel": 1,
+      "danoBruto": true
+    }
+  },
+  {
+    "id": "materia",
+    "nome": "Matéria",
+    "categoria": "universal",
+    "atributo_conjuracao": "inteligencia",
+    "niveis": [
+      {
+        "nivel": 1,
+        "nome": "Alterar Matéria",
+        "efeito": "cor, textura, temperatura",
+        "custo": {
+          "mana": 1
+        },
+        "exemplos": [
+          "mudar cor, textura e temperatura de um objeto"
+        ]
+      },
+      {
+        "nivel": 2,
+        "nome": "Remendar",
+        "efeito": "conserta ou danifica um objeto pequeno; endurece ou amolece uma superfície",
+        "custo": {
+          "mana": 2
+        },
+        "exemplos": [
+          "amolecer metal, endurecer pano",
+          "abrir um cadeado por dentro"
+        ]
+      },
+      {
+        "nivel": 3,
+        "nome": "Transmutar",
+        "efeito": "converte material em semelhante",
+        "custo": {
+          "mana": 3
+        },
+        "exemplos": [
+          "transmutar um material em outro parecido",
+          "fazer a corda virar corrente"
+        ]
+      },
+      {
+        "nivel": 4,
+        "nome": "Moldar",
+        "efeito": "reformula objetos; cria itens simples",
+        "custo": {
+          "mana": 4
+        },
+        "exemplos": [
+          "transformar pedra em água, madeira em vidro"
+        ]
+      },
+      {
+        "nivel": 5,
+        "nome": "Criar Substância",
+        "efeito": "conjura matéria",
+        "custo": {
+          "mana": 5
+        },
+        "exemplos": [
+          "refazer um objeto inteiro em outra coisa"
+        ]
+      },
+      {
+        "nivel": 6,
+        "nome": "Alquimia Suprema",
+        "efeito": "transmuta qualquer matéria",
+        "custo": {
+          "mana": 6
+        },
+        "exemplos": [
+          "mudar a substância de tudo numa área"
+        ]
+      }
+    ],
+    "aliases": [],
+    "pendente": false,
+    "grid": {
+      "elemento": null,
+      "cor": "#94795d",
+      "dadoPorNivel": 1,
+      "danoBruto": true
+    }
+  },
+  {
+    "id": "tempo",
+    "nome": "Tempo",
+    "categoria": "universal",
+    "atributo_conjuracao": "inteligencia",
+    "niveis": [
+      {
+        "nivel": 1,
+        "nome": "Apressar/Retardar",
+        "efeito": "acelera ou atrasa um alvo",
+        "custo": {
+          "mana": 1
+        },
+        "exemplos": [
+          "apressar ou atrasar o próprio gesto por um instante"
+        ]
+      },
+      {
+        "nivel": 2,
+        "nome": "Lapso",
+        "efeito": "apressa você ou um aliado por um instante, ou retarda um alvo",
+        "custo": {
+          "mana": 2
+        },
+        "exemplos": [
+          "dar a si mesmo meio segundo a mais",
+          "atrasar a ação de um alvo"
+        ]
+      },
+      {
+        "nivel": 3,
+        "nome": "Instante",
+        "efeito": "ação extra; congela objeto por segundos",
+        "custo": {
+          "mana": 3
+        },
+        "exemplos": [
+          "acelerar um aliado pela cena",
+          "retardar um inimigo"
+        ]
+      },
+      {
+        "nivel": 4,
+        "nome": "Bolha Temporal",
+        "efeito": "acelera ou retarda área pequena",
+        "custo": {
+          "mana": 4
+        },
+        "exemplos": [
+          "parar um objeto no ar",
+          "esticar um minuto de trabalho em dez"
+        ]
+      },
+      {
+        "nivel": 5,
+        "nome": "Reverter",
+        "efeito": "desfaz alguns segundos",
+        "custo": {
+          "mana": 5
+        },
+        "exemplos": [
+          "voltar um instante que já passou"
+        ]
+      },
+      {
+        "nivel": 6,
+        "nome": "Senhor do Tempo",
+        "efeito": "para o tempo brevemente",
+        "custo": {
+          "mana": 6
+        },
+        "exemplos": [
+          "parar a cena por alguns segundos"
+        ]
+      }
+    ],
+    "aliases": [],
+    "pendente": false,
+    "grid": {
+      "elemento": null,
+      "cor": "#6d8f9c",
+      "dadoPorNivel": 1,
+      "danoBruto": true
+    }
+  },
+  {
+    "id": "espirito",
+    "nome": "Espírito",
+    "categoria": "universal",
+    "atributo_conjuracao": "inteligencia",
+    "niveis": [
+      {
+        "nivel": 1,
+        "nome": "Sentir Espíritos",
+        "efeito": "percebe e fala com espíritos",
+        "custo": {
+          "mana": 1
+        },
+        "exemplos": [
+          "perceber e falar com os espíritos por perto"
+        ]
+      },
+      {
+        "nivel": 2,
+        "nome": "Aplacar",
+        "efeito": "acalma ou afugenta um espírito fraco; pede-lhe um pequeno favor",
+        "custo": {
+          "mana": 2
+        },
+        "exemplos": [
+          "acalmar ou afugentar um espírito fraco",
+          "pedir a ele um favor pequeno"
+        ]
+      },
+      {
+        "nivel": 3,
+        "nome": "Pacto Menor",
+        "efeito": "invoca espírito ou elemental menor",
+        "custo": {
+          "mana": 3
+        },
+        "exemplos": [
+          "invocar um espírito ou elemental menor"
+        ]
+      },
+      {
+        "nivel": 4,
+        "nome": "Vincular",
+        "efeito": "liga espírito a objeto; bane fracos",
+        "custo": {
+          "mana": 4
+        },
+        "exemplos": [
+          "ligar um espírito a um objeto",
+          "banir os fracos de um lugar"
+        ]
+      },
+      {
+        "nivel": 5,
+        "nome": "Invocar",
+        "efeito": "chama espírito poderoso como aliado",
+        "custo": {
+          "mana": 5
+        },
+        "exemplos": [
+          "chamar um espírito poderoso como aliado"
+        ]
+      },
+      {
+        "nivel": 6,
+        "nome": "Senhor dos Espíritos",
+        "efeito": "comanda hostes; abre portas",
+        "custo": {
+          "mana": 6
+        },
+        "exemplos": [
+          "comandar hostes",
+          "abrir a porta entre os mundos"
+        ]
+      }
+    ],
+    "aliases": [],
+    "pendente": false,
+    "grid": {
+      "elemento": null,
+      "cor": "#8fa3b8",
+      "dadoPorNivel": 1,
+      "danoBruto": true
+    }
+  },
+  {
+    "id": "protecao",
+    "nome": "Proteção",
+    "categoria": "universal",
+    "atributo_conjuracao": "inteligencia",
+    "niveis": [
+      {
+        "nivel": 1,
+        "nome": "Salvaguarda",
+        "efeito": "resguardo pessoal; dissipa magia fraca",
+        "custo": {
+          "mana": 1
+        },
+        "exemplos": [
+          "aparar um golpe pequeno",
+          "escudo que segura uma flecha"
+        ]
+      },
+      {
+        "nivel": 2,
+        "nome": "Anteparo",
+        "efeito": "escudo pessoal que absorve um golpe e dissipa magia de baixo nível ao redor",
+        "custo": {
+          "mana": 2
+        },
+        "exemplos": [
+          "escudo que dura a cena contra o que é comum"
+        ]
+      },
+      {
+        "nivel": 3,
+        "nome": "Barreira",
+        "efeito": "campo protetor contra ataques",
+        "custo": {
+          "mana": 3
+        },
+        "exemplos": [
+          "barreira que fecha uma porta a quem não foi convidado"
+        ]
+      },
+      {
+        "nivel": 4,
+        "nome": "Refúgio",
+        "efeito": "área segura que repele ameaças",
+        "custo": {
+          "mana": 4
+        },
+        "exemplos": [
+          "proteger um grupo de um elemento pela cena"
+        ]
+      },
+      {
+        "nivel": 5,
+        "nome": "Dissipar",
+        "efeito": "anula ou enfraquece magias",
+        "custo": {
+          "mana": 5
+        },
+        "exemplos": [
+          "dissipar ou enfraquecer magia alheia"
+        ]
+      },
+      {
+        "nivel": 6,
+        "nome": "Santuário",
+        "efeito": "protege um local; barreira quase impenetrável",
+        "custo": {
+          "mana": 6
+        },
+        "exemplos": [
+          "santuário sobre um lugar, quase impenetrável"
+        ]
+      }
+    ],
+    "aliases": [],
+    "pendente": false,
+    "grid": {
+      "elemento": null,
+      "cor": "#7e9ab0",
+      "dadoPorNivel": 1,
+      "danoBruto": true
+    }
+  },
+  {
+    "id": "ofuscacao",
+    "nome": "Ofuscação",
+    "categoria": "universal",
+    "atributo_conjuracao": "perspicacia",
+    "niveis": [
+      {
+        "nivel": 1,
+        "nome": "Olhar Escorregadio",
+        "efeito": "o olhar dos outros passa por você; some no meio de qualquer gente enquanto não fizer nada notável",
+        "custo": {
+          "mana": 1
+        },
+        "exemplos": [
+          "o olhar dos outros escorrega de você",
+          "passar por um portão sem ser notado"
+        ]
+      },
+      {
+        "nivel": 2,
+        "nome": "Máscara",
+        "efeito": "rosto, voz e roupas viram outros aos olhos de quem vê; o toque denuncia (contra a Defesa Mental)",
+        "custo": {
+          "mana": 2
+        },
+        "exemplos": [
+          "mudar rosto, voz e roupa aos olhos de quem vê"
+        ]
+      },
+      {
+        "nivel": 3,
+        "nome": "Manto",
+        "efeito": "some da vista mesmo andando e agindo devagar; atacar quebra o manto",
+        "custo": {
+          "mana": 3
+        },
+        "exemplos": [
+          "sumir da vista mesmo andando devagar"
+        ]
+      },
+      {
+        "nivel": 4,
+        "nome": "Manto Alheio",
+        "efeito": "esconde também companheiros, montarias e carga ao seu lado",
+        "custo": {
+          "mana": 4
+        },
+        "exemplos": [
+          "esconder o grupo inteiro, montaria e carga"
+        ]
+      },
+      {
+        "nivel": 5,
+        "nome": "Ausência",
+        "efeito": "some para todos os sentidos: som, cheiro, rastro e calor; nem magia de busca o acha",
+        "custo": {
+          "mana": 5
+        },
+        "exemplos": [
+          "sumir para todos os sentidos, não só a vista"
+        ]
+      },
+      {
+        "nivel": 6,
+        "nome": "Nunca Estive Aqui",
+        "efeito": "a cena inteira o ignora, mesmo enquanto age; quem o viu duvida da própria memória",
+        "custo": {
+          "mana": 6
+        },
+        "exemplos": [
+          "a cena inteira o ignora, mesmo enquanto age"
+        ]
+      }
+    ],
+    "aliases": [],
+    "pendente": false,
+    "grid": {
+      "elemento": null,
+      "cor": "#7a7a86",
+      "dadoPorNivel": 1,
+      "danoBruto": true
+    }
+  },
+  {
+    "id": "natureza",
+    "nome": "Natureza",
+    "categoria": "universal",
+    "atributo_conjuracao": "percepcao",
+    "niveis": [
+      {
+        "nivel": 1,
+        "nome": "Passo Leve",
+        "efeito": "não deixa rastro; mato, brejo e neve não o atrasam nem o denunciam",
+        "custo": {
+          "mana": 1
+        },
+        "exemplos": [
+          "não deixar rastro",
+          "atravessar o mato sem denunciar"
+        ]
+      },
+      {
+        "nivel": 2,
+        "nome": "Faro Mudo",
+        "efeito": "os bichos não o sentem: cheiro, som e presença passam batidos, e nada foge da sua chegada",
+        "custo": {
+          "mana": 2
+        },
+        "exemplos": [
+          "os bichos não o sentem chegar"
+        ]
+      },
+      {
+        "nivel": 3,
+        "nome": "Manto de Folhas",
+        "efeito": "mescla-se ao terreno, parado ou em marcha lenta; a paisagem se fecha em volta de você",
+        "custo": {
+          "mana": 3
+        },
+        "exemplos": [
+          "mesclar-se ao terreno, parado ou em marcha lenta"
+        ]
+      },
+      {
+        "nivel": 4,
+        "nome": "Chamado",
+        "efeito": "chama os animais da região e pede um favor simples: guiar, vigiar, atrasar quem vem atrás",
+        "custo": {
+          "mana": 4
+        },
+        "exemplos": [
+          "chamar os animais da região e pedir um favor simples"
+        ]
+      },
+      {
+        "nivel": 5,
+        "nome": "Voz da Mata",
+        "efeito": "fala com feras e árvores antigas; a mata abre caminho ao grupo e fecha atrás dele",
+        "custo": {
+          "mana": 5
+        },
+        "exemplos": [
+          "falar com feras e árvores antigas",
+          "a mata abre caminho ao grupo"
+        ]
+      },
+      {
+        "nivel": 6,
+        "nome": "Senhor do Ermo",
+        "efeito": "a região inteira o esconde, o avisa e obedece: nada que ande por ela passa sem você saber",
+        "custo": {
+          "mana": 6
+        },
+        "exemplos": [
+          "a região inteira esconde, avisa e obedece"
+        ]
+      }
+    ],
+    "aliases": [],
+    "pendente": false,
+    "grid": {
+      "elemento": null,
+      "cor": "#6f9256",
+      "dadoPorNivel": 1,
+      "danoBruto": true
+    }
+  },
+  {
+    "id": "metamorfose",
+    "nome": "Metamorfose",
+    "categoria": "universal",
+    "atributo_conjuracao": "vigor",
+    "niveis": [
+      {
+        "nivel": 1,
+        "nome": "Garra e Presa",
+        "efeito": "muda uma parte do corpo: garras (arma natural), presas, olhos de bicho, faro apurado; as garras contam como arma natural enquanto durarem e defendem como armas",
+        "custo": {
+          "mana": 1
+        },
+        "exemplos": [
+          "garras e presas",
+          "olhos de bicho e faro apurado"
+        ]
+      },
+      {
+        "nivel": 2,
+        "nome": "Couro e Guelra",
+        "efeito": "adapta o corpo ao meio: couro grosso (Absorção), guelras, patas de escalar, calor ou frio não o abatem",
+        "custo": {
+          "mana": 2
+        },
+        "exemplos": [
+          "couro grosso que absorve",
+          "guelras ou patas de escalar"
+        ]
+      },
+      {
+        "nivel": 3,
+        "nome": "Forma Bestial",
+        "efeito": "vira por inteiro um animal do seu tamanho ou menor, com os sentidos e o deslocamento dele",
+        "custo": {
+          "mana": 3
+        },
+        "exemplos": [
+          "virar por inteiro um animal do seu tamanho ou menor"
+        ]
+      },
+      {
+        "nivel": 4,
+        "nome": "Carne de Elemento",
+        "efeito": "parte do corpo vira elemento (névoa, água, brasa, pedra): golpes atravessam ou queimam quem o segura",
+        "custo": {
+          "mana": 4
+        },
+        "exemplos": [
+          "parte do corpo vira névoa, água, brasa ou pedra"
+        ]
+      },
+      {
+        "nivel": 5,
+        "nome": "Forma Elemental",
+        "efeito": "o corpo todo vira elemento: passa por frestas, escorre, arma comum não o fere",
+        "custo": {
+          "mana": 5
+        },
+        "exemplos": [
+          "o corpo todo vira elemento: passa por frestas"
+        ]
+      },
+      {
+        "nivel": 6,
+        "nome": "Mil Formas",
+        "efeito": "troca de forma à vontade e sustenta a mudança por horas, inclusive fera de guerra muito maior ou enxame",
+        "custo": {
+          "mana": 6
+        },
+        "exemplos": [
+          "trocar de forma à vontade por horas",
+          "virar fera de guerra ou enxame"
+        ]
+      }
+    ],
+    "aliases": [],
+    "pendente": false,
+    "grid": {
+      "elemento": null,
+      "cor": "#9a7f6b",
+      "dadoPorNivel": 1,
+      "danoBruto": true
+    }
+  },
+  {
+    "id": "manipulacao-mana",
+    "nome": "Mana",
+    "categoria": "universal",
+    "atributo_conjuracao": "inteligencia",
+    "niveis": [
+      {
+        "nivel": 1,
+        "nome": "Reserva I",
+        "efeito": "passiva: +1 de Mana na reserva, e +1 de Mana a cada 2 horas de recuperação (o dobro em descanso completo ou sono profundo)",
+        "exemplos": [
+          "reserva 1 ponto maior do que a de quem não tem a Arte",
+          "1 de Mana extra a cada 2 h, 2 se estiver descansando de verdade"
+        ]
+      },
+      {
+        "nivel": 2,
+        "nome": "Reserva II",
+        "efeito": "passiva: +2 de Mana na reserva, e +2 de Mana a cada 2 horas de recuperação (o dobro em descanso completo ou sono profundo)",
+        "exemplos": [
+          "reserva 2 pontos maior do que a de quem não tem a Arte",
+          "2 de Mana extra a cada 2 h, 4 se estiver descansando de verdade"
+        ]
+      },
+      {
+        "nivel": 3,
+        "nome": "Reserva III",
+        "efeito": "passiva: +3 de Mana na reserva, e +3 de Mana a cada 2 horas de recuperação (o dobro em descanso completo ou sono profundo)",
+        "exemplos": [
+          "reserva 3 pontos maior do que a de quem não tem a Arte",
+          "3 de Mana extra a cada 2 h, 6 se estiver descansando de verdade"
+        ]
+      },
+      {
+        "nivel": 4,
+        "nome": "Reserva IV",
+        "efeito": "passiva: +5 de Mana na reserva, e +4 de Mana a cada 2 horas de recuperação (o dobro em descanso completo ou sono profundo)",
+        "exemplos": [
+          "reserva 5 pontos maior do que a de quem não tem a Arte",
+          "4 de Mana extra a cada 2 h, 8 se estiver descansando de verdade"
+        ]
+      },
+      {
+        "nivel": 5,
+        "nome": "Reserva V",
+        "efeito": "passiva: +8 de Mana na reserva, e +5 de Mana a cada 2 horas de recuperação (o dobro em descanso completo ou sono profundo)",
+        "exemplos": [
+          "reserva 8 pontos maior do que a de quem não tem a Arte",
+          "5 de Mana extra a cada 2 h, 10 se estiver descansando de verdade"
+        ]
+      },
+      {
+        "nivel": 6,
+        "nome": "Reserva VI",
+        "efeito": "passiva: +12 de Mana na reserva, e +6 de Mana a cada 2 horas de recuperação (o dobro em descanso completo ou sono profundo)",
+        "exemplos": [
+          "reserva 12 pontos maior do que a de quem não tem a Arte",
+          "6 de Mana extra a cada 2 h, 12 se estiver descansando de verdade"
+        ]
+      }
+    ],
+    "aliases": [
+      "Mana Manipulation",
+      "Manipulação de Mana"
+    ],
+    "pendente": false,
+    "grid": {
+      "elemento": null,
+      "cor": "#8b7fa8",
+      "dadoPorNivel": 1,
+      "danoBruto": true
+    }
+  }
+]

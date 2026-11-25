@@ -1,0 +1,361 @@
+{
+  "id": "vampiro",
+  "idAntigo": "mon-vampiro",
+  "nome": "Vampiro",
+  "nomeIngles": "Vampire",
+  "categoria": "morto-vivo",
+  "papel": "chefe",
+  "ameaca": 5,
+  "centelha": 5,
+  "corpo": {
+    "postura": "bípede, de pé, ereto",
+    "apoio": "bipede",
+    "altura": 1.75,
+    "largura": 0.44,
+    "profundidade": 0.22,
+    "comprimento": null,
+    "massa": 75,
+    "area": 0.68,
+    "posturaDoTamanho": "de pé"
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 5,
+    "destreza": 5,
+    "vigor": 8,
+    "percepcao": 5,
+    "inteligencia": 4,
+    "raciocinio": 4,
+    "influencia": 8,
+    "perspicacia": 6,
+    "compostura": 6
+  },
+  "habilidades": {
+    "briga": 5,
+    "bloqueio": 0,
+    "esquiva": 1,
+    "atletismo": 3,
+    "furtividade": 3,
+    "integridade": 6,
+    "prontidao": 2,
+    "manha": 5,
+    "persuasao": 4,
+    "sociabilidade": 3
+  },
+  "habilidadesSec": {
+    "escalada": 2,
+    "musculatura": 2
+  },
+  "especialidades": {
+    "persuasao": [
+      {
+        "foco": "seduzir",
+        "valor": 2,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 4,
+    "compaixao": 1,
+    "conviccao": 4,
+    "temperanca": 2
+  },
+  "vontade": 10,
+  "aparencia": 9,
+  "deslocamento": {
+    "terra": {
+      "batalha": 3,
+      "arranque": 5,
+      "corrida": 7
+    },
+    "escalada": {
+      "batalha": 2
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Pancada",
+      "parte": "punho",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "impacto",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Golpeia com o peso do corpo atrás do punho. Jogada: Força 5 + Briga 5 + 2 × o menor entre Centelha 5 e Briga 5 (10)"
+    },
+    {
+      "nome": "Mordida",
+      "parte": "presas",
+      "classe": "leve",
+      "pgr": [
+        1,
+        1,
+        3
+      ],
+      "dado": "1d6-2",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 1,
+      "bloqueiaComoArma": null,
+      "justificativa": "As presas abrem a ferida por onde o vampiro drena sangue. Jogada igual à da Pancada"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Regeneração 5",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "fraqueza": {
+        "forma": "naoRegenera",
+        "tipos": [
+          "prata",
+          "fogo",
+          "luz do sol"
+        ]
+      },
+      "texto": "Origem sobrenatural. O dano de prata, fogo ou luz do sol só fecha com outras curas, como Arte, Cura ou descanso. As demais feridas se regeneram normalmente. Recupera 5 PV por minuto, até o máximo de PV. Em combate, recupera 0,5 PV a cada 6 Ticks, contados a partir do Tick do primeiro dano"
+    },
+    {
+      "nome": "Dreno de sangue",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "morte",
+        "nivel": 1,
+        "efeito": "dreno"
+      },
+      "categoria": "inato",
+      "ativacao": "a Mordida que fere",
+      "duracao": "instantânea",
+      "alcance": "toque",
+      "area": "um alvo",
+      "efeito": "bebe o sangue de quem morde e se fecha com ele",
+      "dano": "nenhum além da mordida; ele recupera PV igual ao dano que a mordida fez depois da Absorção",
+      "resistencia": "corpo, contra a jogada da mordida; quem passa leva o dano, mas ele não se cura",
+      "limiteDeUso": "um por golpe. Sem custo"
+    },
+    {
+      "nome": "Olhar dominador",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "fascinacao",
+        "nivel": 3,
+        "efeito": "sugestao-plantada"
+      },
+      "categoria": "sobrenatural",
+      "ativacao": "uma ação, Velocidade 5, olho no olho a até 9 m",
+      "duracao": "uma cena",
+      "alcance": "9 m, à vista",
+      "area": "um alvo",
+      "efeito": "o alvo fica Dominado e obedece a ordens simples. O controlador dá ordens simples em voz alta à vítima de seu olhar durante a duração indicada. A vítima pode recusar cada ordem pagando 1 + Margem de Força de Vontade, até 4",
+      "dano": "nenhum",
+      "resistencia": "Influência + Persuasão da criatura contra a Defesa Mental do alvo, com o Resistir do livro. quem passa fica imune ao olhar até o fim da cena",
+      "limiteDeUso": "Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. um alvo Dominado por vez"
+    },
+    {
+      "nome": "Forma gasosa",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "vento",
+        "nivel": 3
+      },
+      "categoria": "inato",
+      "ativacao": "uma ação, Velocidade 5",
+      "duracao": "até ele voltar, no máximo uma cena",
+      "alcance": "o próprio corpo",
+      "area": "não se aplica",
+      "efeito": "o corpo vira névoa: Impacto, Corte e Perfuração não o ferem, passa por frestas e flutua devagar; não ataca nem usa outro poder enquanto dura. Use o perfil da forma. O restante é herdado. O equipamento só acompanha quando indicado. Em forma gasosa não ataca nem conjura",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "nenhum. Usar repetidamente causa esforço e pode levar ao cansaço. Sem custo"
+    },
+    {
+      "nome": "Filhos da noite",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "espirito",
+        "nivel": 2
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 5. O efeito sai no Tick do Golpe",
+      "duracao": "até o fim da cena",
+      "alcance": "os bichos que estão por perto",
+      "area": "não se aplica",
+      "efeito": "chama um enxame de morcegos, um enxame de ratos ou um bando de lobos (as fichas do bestiário), que chega em 6 Ticks e luta por ele",
+      "dano": "o dos bichos",
+      "resistencia": "nenhum",
+      "limiteDeUso": "Usos grátis: 1 por dia. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "água corrente e estaca",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "enquanto a condição se aplica",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Enquanto estiver em água corrente ou tocado pela estaca, sofre Desgaste 1 a cada 6 Ticks. Aplicar por contato exige uma ação",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "sem reflexo nem sombra",
+      "formas": "todas",
+      "texto": "O vampiro não projeta sombra nem aparece no espelho. O Mestre usa a ausência como pista."
+    },
+    {
+      "nome": "sedutor paciente",
+      "formas": "todas",
+      "texto": "seduz e domina antes de atacar; luta com os bichos da noite à frente e vira névoa quando a luta vira contra ele."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão no escuro",
+      "descricao": "enxerga no escuro como de dia",
+      "formas": "todas"
+    },
+    {
+      "nome": "visão e audição",
+      "descricao": "as de um humano, mais finas",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "mente": "inteira, fria e calculista; séculos de fome e solidão. As famílias listadas abrangem os efeitos mentais de Artes e poderes. Dano físico de Arte e conversa comum seguem as regras normais",
+    "tracos": "nobre pálido e belo, de pele fria, olhos que brilham no escuro e duas presas que só aparecem quando morde; não tem reflexo nem sombra. Não envelhece. Recolhe-se de dia e vive do sangue. O dano de sol, prata ou fogo ignora toda a Absorção do vampiro e é agravado",
+    "tipoCorpo": "morto-vivo",
+    "recuperacao": "Recupera-se bebendo sangue",
+    "familiasMentaisIgnoradas": [
+      "dominio",
+      "leitura-de-mente"
+    ]
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "sozinho, entre os vivos da nobreza",
+    "atividade": "noturno",
+    "dieta": "sangue",
+    "caca": "seduz e bebe da vítima",
+    "dianteDeGente": "seduz, domina ou mata"
+  },
+  "ecologia": {
+    "terreno": [
+      "urbano",
+      "ruínas"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Nobre que recusou devolver a própria Centelha e a guarda à força, roubando um pouco da dos outros a cada mordida. Belo, paciente e calculista, domina com o olhar, vira névoa e chama os bichos da noite. Teme o sol, o fogo e a prata.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Sedutor, calculista e paciente, prefere manipular e seduzir a atacar abertamente, alimentando-se do sangue dos vivos para manter sua existência roubada."
+    },
+    {
+      "titulo": "Sociedade",
+      "texto": "Costuma se infiltrar entre a nobreza e a alta sociedade, tecendo teias de influência que duram gerações inteiras enquanto finge envelhecer como qualquer mortal."
+    },
+    {
+      "titulo": "Personalidade",
+      "texto": "Conserva fragmentos de quem foi em vida, mas distorcidos por uma fome que nunca se sacia e por séculos de solidão."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "Um vampiro é alguém que recusou devolver sua Centelha à Primeira Luz e a manteve à força, roubando um pouco da Centelha alheia a cada mordida. Nos salões dourados de Calin, onde a Supressão prega o medo da magia, nenhuma figura é mais temida ou mais fascinante que um nobre que nunca envelhece."
+    }
+  ],
+  "imagens": [
+    "bestiario/vampiro_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [
+      {
+        "tipo": "fogo",
+        "formas": "todas"
+      },
+      {
+        "tipo": "luz",
+        "formas": "todas"
+      },
+      {
+        "tipo": "sagrado",
+        "formas": "todas"
+      },
+      {
+        "tipo": "prata",
+        "formas": "todas"
+      },
+      {
+        "tipo": "sol",
+        "formas": "todas"
+      }
+    ],
+    "resistencias": [
+      {
+        "tipo": "perfuracao",
+        "formas": "todas"
+      }
+    ],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "habilidades.atletismo",
+      "motivo": "\"Força sobre-humana: bônus em Atletismo e Acrobacia\" (site); pela \"força sobre-humana\" e pela vida na nobreza do site"
+    },
+    {
+      "campo": "habilidades.sociabilidade",
+      "motivo": "Vive entre a nobreza e finge envelhecer como qualquer mortal (site); pela \"força sobre-humana\" e pela vida na nobreza do site"
+    },
+    {
+      "campo": "aparencia",
+      "motivo": "Degrau 9, \"Beleza\": o nobre que seduz antes de atacar e é a figura \"mais temida ou mais fascinante\" dos salões (site). A Aparência mede a beleza, e não o medo (D-205). O site tinha 2, o número de todos os mortos-vivos dele, que não cabe em quem passa por vivo na alta sociedade; 9, a beleza do nobre que seduz; o site tinha 2 (D-205)"
+    },
+    {
+      "campo": "habilidadesEspeciais.Olhar dominador",
+      "motivo": "R1 e D-197. Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. um alvo Dominado por vez. O limite preserva o primeiro uso e reserva repetição para esforço adicional. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Forma gasosa",
+      "motivo": "R3. Ativação uma ação, Velocidade 6 -> uma ação, Velocidade 8 Pela referência corporal ou de deslocamento do poder."
+    },
+    {
+      "campo": "habilidadesEspeciais.Filhos da noite",
+      "motivo": "R1 e D-197. Usos grátis: 1 por dia. Cada uso extra custa 1 de Energia. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação uma ação, Velocidade 6 -> uma ação, Velocidade 5. O efeito sai no Tick do Golpe. Pela régua da Arte de base. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "ataques",
+      "motivo": "o \"Golpe\" do site ficou Pancada Média, e a \"Mordida drenante\" entrou como Mordida Leve"
+    }
+  ]
+}

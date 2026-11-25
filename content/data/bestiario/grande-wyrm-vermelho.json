@@ -1,0 +1,463 @@
+{
+  "id": "grande-wyrm-vermelho",
+  "idAntigo": "mon-grande-wyrm-vermelho",
+  "nome": "Grande Wyrm Vermelho",
+  "nomeIngles": "Dragon, Great Wyrm Red",
+  "categoria": "dragao",
+  "papel": "chefe",
+  "ameaca": 6,
+  "centelha": 9,
+  "corpo": {
+    "postura": "serpentino, duas patas dianteiras; voa por magia, sem asas",
+    "apoio": "outro",
+    "altura": 3.04,
+    "largura": 3.04,
+    "profundidade": null,
+    "comprimento": 20,
+    "massa": 88000,
+    "area": 45.6,
+    "posturaDoTamanho": "de lado, esticado ou com a frente erguida",
+    "segundoTamanho": {
+      "area": 16.4,
+      "posturaDoTamanho": "enrolado"
+    }
+  },
+  "couraca": 12,
+  "perfilCouraca": "rigida",
+  "atributos": {
+    "forca": 16,
+    "destreza": 2,
+    "vigor": 14,
+    "percepcao": 8,
+    "inteligencia": 7,
+    "raciocinio": 7,
+    "influencia": 7,
+    "perspicacia": 7,
+    "compostura": 7
+  },
+  "habilidades": {
+    "briga": 5,
+    "bloqueio": 0,
+    "esquiva": 0,
+    "atletismo": 2,
+    "furtividade": 1,
+    "integridade": 7,
+    "prontidao": 5,
+    "sociabilidade": 3,
+    "ocultismo": 5,
+    "persuasao": 5,
+    "conhecimentos": 5,
+    "atirador": 5
+  },
+  "habilidadesSec": {
+    "intimidacao": 5,
+    "voo": 4,
+    "acerto-arcano": 5,
+    "musculatura": 4
+  },
+  "especialidades": {
+    "prontidao": [
+      {
+        "foco": "surpresa",
+        "valor": 3,
+        "origem": "natural"
+      }
+    ],
+    "ocultismo": [
+      {
+        "foco": "magia antiga",
+        "valor": 2,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 6,
+    "compaixao": 2,
+    "conviccao": 5,
+    "temperanca": 3
+  },
+  "vontade": 12,
+  "aparencia": 9,
+  "deslocamento": {
+    "terra": {
+      "batalha": 4,
+      "arranque": 6,
+      "corrida": 9
+    },
+    "voo": {
+      "batalha": 20
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {
+    "tempo": 6,
+    "protecao": 6,
+    "fogo": 5,
+    "fascinacao": 5,
+    "adivinhacao": 5
+  },
+  "ataques": [
+    {
+      "nome": "Mordida",
+      "parte": "boca",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 3,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Mordida de predador grande (`regra-construcao.md` §7), como no branco jovem. Golpe de boca: Força × 1. N3, um acima do branco jovem (N2), para a mordida dos adultos e anciões . Jogada: Força 16 + Briga 5 + 2 × o menor entre Centelha 9 e Briga 5 (10)"
+    },
+    {
+      "nome": "Garras",
+      "parte": "pata-dianteira",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "corte",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Patada de predador grande, Média (§7), como no branco jovem; garra Cortante. Bloqueia como a mão nua (D-100). Jogada: Força 16 + Briga 5 + 2 × o menor entre Centelha 9 e Briga 5 (10)"
+    },
+    {
+      "nome": "Cauda",
+      "parte": "cauda",
+      "classe": "pesada",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": "2d6",
+      "multiplicadorForca": 2,
+      "tipoDano": "impacto",
+      "nivelPerfuracao": null,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "O golpe de cauda do multiataque do site: o corpo de serpente fustiga com a cauda, com o peso do corpo inteiro, Pesada (§7). Força × 2: a massa do corpo inteiro empurra a cauda (manual, seção 3: \"× 2 quando a massa do corpo inteiro empurra (investida, pisão, cauda)\"), como nas caudas do estegossauro e do anquilossauro. Jogada: Força 16 + Briga 5 + 2 × o menor entre Centelha 9 e Briga 5 (10)"
+    },
+    {
+      "nome": "Sopro cataclísmico",
+      "parte": "boca",
+      "classe": "distancia",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": "15d6",
+      "multiplicadorForca": 0,
+      "tipoDano": "fogo",
+      "nivelPerfuracao": null,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Ataque natural a distância, Classe Distância (manual, Passo 10), como no branco jovem. \"Cone de 18 m; 15d6 de dano\" (site). Os números são sugestão da ficha (D-197), descritos na linha do sopro nas Manobras. Sem jogada de ataque."
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Posturas de combate",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Imenso: de lado, esticado ou com a frente erguida. Enorme: enrolado. Vale o Tamanho da postura atual. Enrolar-se ou esticar-se faz parte do movimento, sem custo adicional",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "Sopro cataclísmico",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "fogo",
+        "nivel": 5
+      },
+      "ataque": "Sopro cataclísmico",
+      "categoria": "substancia",
+      "ativacao": "uma ação, Velocidade 7",
+      "duracao": "instantânea",
+      "alcance": "18 m à frente",
+      "area": "cone de 18 m",
+      "efeito": "o fogo queima tudo no cone e deixa Abalado até quem escapa. Abalado dá −2 nas jogadas até o fim da cena ou até Recompor, ação de Velocidade 5 sem teste. Após a área, só há dano residual quando um efeito da ficha o declara",
+      "dano": "15d6 + Centelha, fogo",
+      "resistencia": "sem jogada de ataque. Cada alvo resolve a saída de área pelo livro",
+      "limiteDeUso": "O corpo guarda 2 doses e produz 1 dose a cada 12 horas. Cada uso gasta 1 dose. Nada acelera a produção"
+    },
+    {
+      "nome": "garras em sequência",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Garras",
+      "categoria": "inato",
+      "regra": "rajada"
+    },
+    {
+      "nome": "cauda em sequência",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Cauda",
+      "categoria": "inato",
+      "regra": "rajada"
+    },
+    {
+      "nome": "Multiataque",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "uma ação de Rajada",
+      "duracao": "uma ação",
+      "alcance": "o de cada parte",
+      "area": "os alvos da Rajada",
+      "efeito": "Golpeia nesta ordem: garra esquerda, garra direita, mordida. Cada golpe extra acumula −1d6 e conta para Guarda sob pressão. Não acumula com a Rajada comum",
+      "dano": "o de cada ataque que acertar",
+      "resistencia": "a Defesa de cada golpe",
+      "limiteDeUso": "até 3 golpes por ação, sem Energia. O uso repetido causa esforço e pode levar ao cansaço"
+    },
+    {
+      "nome": "Presença",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "morte",
+        "nivel": 5
+      },
+      "categoria": "inato",
+      "ativacao": "a primeira vez na cena em que ele ruge, ataca ou desce do céu",
+      "duracao": "para Abalado, até o fim da cena ou até Recompor",
+      "alcance": "36 m",
+      "area": "esfera de 36 m em volta dele",
+      "efeito": "quem falha fica Abalado. Abalado dá −2 nas jogadas até o fim da cena ou até Recompor, ação de Velocidade 5 sem teste",
+      "dano": "nenhum",
+      "resistencia": "Influência 7 + Intimidação 5 + 2 × o menor entre Centelha 9 e Intimidação 5 (10) = 22 mais a rolagem da criatura contra a Defesa Mental do alvo, com o Resistir do livro. quem passa fica imune até o fim da cena",
+      "limiteDeUso": "Contínuo, sem custo. A imunidade individual segue a resistência deste poder"
+    },
+    {
+      "nome": "Dobrar o tempo",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "tempo",
+        "nivel": 6
+      },
+      "categoria": "inato",
+      "ativacao": "nenhuma ação, no começo de uma ação dele",
+      "duracao": "12 Ticks",
+      "alcance": "o próprio corpo",
+      "area": "não se aplica",
+      "efeito": "Fica Acelerado. A Recuperação diminui 1 Tick, até 0. Os opostos se anulam e aplicações iguais não somam",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "uma vez por cena. Sem custo"
+    },
+    {
+      "nome": "Resistência à magia",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "sempre ativa",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a própria criatura",
+      "efeito": "Resistência à magia de grau 3. Soma +6 às Defesas e à jogada de resistir contra Artes e efeitos similares à magia, até o teto comum de +6",
+      "dano": "nenhum adicional",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo. Sem custo"
+    },
+    {
+      "nome": "Vontade de wyrm",
+      "formas": "todas",
+      "classe": "sem regra ainda",
+      "categoria": "inato",
+      "efeito": "efeito de medo comum não o deixa Abalado; só uma presença divina o afeta"
+    },
+    {
+      "nome": "paralisia da presença",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "sobrenatural",
+      "ativacao": "uma ação, Velocidade 6",
+      "duracao": "6 Ticks",
+      "alcance": "36 m",
+      "area": "a vítima descrita pelo poder",
+      "efeito": "o medo da presença trava o corpo da vítima. A vítima fica Paralisada. Defesas Físicas 0, mente livre",
+      "dano": "nenhum adicional",
+      "resistencia": "Influência + Intimidação contra a Defesa Mental do alvo, com o Resistir do livro",
+      "limiteDeUso": "Usos grátis: 1 por cena. Cada uso extra custa 1 de Mana"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "Voo perfeito",
+      "formas": "todas",
+      "texto": "manobra no ar sem nenhum obstáculo."
+    },
+    {
+      "nome": "lenda no céu",
+      "formas": "todas",
+      "texto": "abre com o sopro sobre o grupo inteiro, dobra o tempo quando aperta, protege-se com a Arte e só desce para morder quem ainda está de pé."
+    },
+    {
+      "nome": "Projétil natural",
+      "formas": "todas",
+      "texto": "Contra um alvo, use o maior entre Vigor, Destreza e Percepção + Atirador. Ao cobrir uma área, só os alvos fazem a jogada de saída."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão no escuro",
+      "descricao": "vê sem luz",
+      "formas": "todas"
+    },
+    {
+      "nome": "faro",
+      "descricao": "apurado",
+      "formas": "todas"
+    },
+    {
+      "nome": "sentidos supremos",
+      "descricao": "ignora Furtividade e ilusões comuns; nada passa despercebido (sem regra ainda além da Prontidão (surpresa) +3)",
+      "formas": "todas",
+      "classe": "sem regra ainda"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "prendeRespiracao": "a de um bicho grande; quanto tempo, o Mestre decide",
+    "mente": "inteligente, antiga, orgulhosa e gananciosa",
+    "tracos": "escamas vermelhas como brasa, chifres longos, corpo de serpente longo e duas patas dianteiras, sem asas; o ar em volta tremula de calor"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitário",
+    "atividade": "qualquer hora",
+    "dieta": "carnívoro",
+    "caca": "do alto, com o sopro, e guarda o tesouro de séculos",
+    "dianteDeGente": "exige tributo ou destrói"
+  },
+  "ecologia": {
+    "terreno": [
+      "montanha",
+      "subterrâneo"
+    ],
+    "clima": [
+      "temperado",
+      "tropical"
+    ]
+  },
+  "descricao": "O mais velho dos dragões vermelhos, uma lenda encarnada de 20 m. Sopra fogo que queima um exército, dobra o tempo quando precisa e conjura feitiços que poucos mortais já viram. Nada passa despercebido diante dele.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Tão antigo que já não distingue mais súditos de brinquedos, o grande wyrm vermelho raramente se move: prefere que o mundo venha até ele, e pune com fogo e desdém qualquer intrusão em seu domínio milenar."
+    },
+    {
+      "titulo": "Ecologia",
+      "texto": "Seu covil se tornou, ao longo dos séculos, um ecossistema próprio, com criaturas menores vivendo à sombra do tesouro e do medo que ele projeta sobre a região inteira."
+    },
+    {
+      "titulo": "Personalidade",
+      "texto": "Sua arrogância beira a certeza divina: viu impérios nascerem e caírem, e trata mortais, mesmo reis, como curiosidades passageiras diante da própria permanência."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "Sábios sussurram que um grande wyrm vermelho guarda em sua Centelha ecos de eras anteriores à Grande Guerra, quase alcançando o patamar de semideus; para as igrejas supressoras, ele é o argumento final contra quem sonha reacender os poderes antigos."
+    }
+  ],
+  "imagens": [
+    "bestiario/grande-wyrm-vermelho_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": [
+      {
+        "tipo": "fogo",
+        "formas": "todas"
+      }
+    ]
+  },
+  "revisao": [
+    {
+      "campo": "sentidos.sentidos supremos",
+      "motivo": "sem regra ainda no livro"
+    },
+    {
+      "campo": "habilidades.prontidao",
+      "motivo": "A nota do site dava \"Prontidão 6\"; a ficha fica no 5, o teto das Habilidades das outras fichas (o lich tem Ocultismo 5); 5; o site dava 6 nas notas"
+    },
+    {
+      "campo": "habilidades.ocultismo",
+      "motivo": "A nota do site dava \"Ocultismo 6\"; fica no 5, como a Prontidão; 5; o site dava 6 nas notas"
+    },
+    {
+      "campo": "corpo.altura",
+      "motivo": "O diâmetro que dá a massa da ficha: cilindro de 20 m que afina para a cauda (0,6), com 3,0405 m, dá 88,0 t. Erguendo a frente, a cabeça chega a 4,0 m (um quinto do corpo, como no linnorm do gelo). Antes: 6,51 m na cernelha, pelo corpo de quatro patas (decisão do autor, 24/11/2026)."
+    },
+    {
+      "campo": "corpo.largura",
+      "motivo": "Igual ao diâmetro; as patas dianteiras são curtas. Antes: 4,51 m, o corpo sem as asas (decisão do autor, 24/11/2026)."
+    },
+    {
+      "campo": "corpo",
+      "motivo": "Decisão do autor, 24/11/2026: corpo de wyrm, sem asas, duas patas dianteiras, voa por magia. Área 45,6 m² (20 m × 3,0405 m × 0,75, como na naga e no linnorm), Imenso como antes; Segundo Tamanho Enorme, 16,4 m², enrolado (0,36 da jiboia), no lugar do Colossal de asas abertas (425,3 m²). Não mudaram a massa de 88 t, a Faixa, os PV, a Força nem o voo (Batalha 20)."
+    },
+    {
+      "campo": "couraca",
+      "motivo": "Cobertura do corpo pela R49; metades arredondadas para cima. Absorção natural do livro (`combate.md`). Escama de dragão: os níveis 9 a 12 ficam para os adultos e anciões (o texto do branco jovem); o mais velho dos vermelhos fica no 12, o topo .; nível 12"
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": ""
+    },
+    {
+      "campo": "ataques.Mordida.nivelPerfuracao",
+      "motivo": "Mordida de predador grande (`regra-construcao.md` §7), como no branco jovem. Golpe de boca: Força × 1. N3, um acima do branco jovem (N2), para a mordida dos adultos e anciões . Jogada: Força 16 + Briga 5 + 2 × o menor entre Centelha 9 e Briga 5 (10)"
+    },
+    {
+      "campo": "ataques.Cauda",
+      "motivo": "W1, decidida pelo autor em 24/11/2026 (\"Recomendada\"): sai a linha Asas dos Ataques; o multiataque fica garra, garra, mordida e cauda; a Cauda fala do corpo de serpente que fustiga, sem mudar número (2d6 + Força × 2 + Centelha, 48,0)."
+    },
+    {
+      "campo": "ataques.Sopro cataclísmico",
+      "motivo": "Antes: jogada de ataque na tabela. R36: Sem jogada de ataque, pois o efeito ocupa a área descrita nas Manobras. Cada alvo resolve a defesa de área.; R1/R4, D-197. Dois sopros prontos permitem alternar sopro e golpes. Sugestão de 2 doses e 12 h por dose para repor fora da luta. valor de molde, para a bancada (2 doses e produz 1 dose a cada 12 horas)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Resistência à magia",
+      "motivo": "R7. SR 32 da fonte passa a grau 3 (+6)."
+    },
+    {
+      "campo": "habilidadesEspeciais.paralisia da presença",
+      "motivo": "R10 e D-197. Duração sugerida de 6 Ticks para abrir uma janela de combate com o corpo paralisado. R1 e D-197. Usos grátis: 1 por cena. Cada uso extra custa 1 de Mana. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação sem Velocidade escrita -> uma ação, Velocidade 6 Pela referência corporal ou de deslocamento do poder. valor de molde, para a bancada (uso extra de 1 de Mana). Uso extra: sem Efeito na base (poder da ficha sem base; a conta da T7 não parte de nada)."
+    },
+    {
+      "campo": "ataques",
+      "motivo": "15d6 + Centelha, cone de 18 m, uma vez a cada 24 Ticks, pela sugestão da ficha (D-197)"
+    }
+  ]
+}

@@ -1,0 +1,381 @@
+{
+  "id": "solar",
+  "idAntigo": "mon-solar",
+  "nome": "Solar",
+  "nomeIngles": "Angel, Solar",
+  "categoria": "celestial",
+  "papel": "chefe",
+  "ameaca": 6,
+  "centelha": 9,
+  "corpo": {
+    "postura": "de pé, asas recolhidas",
+    "apoio": "bipede",
+    "altura": 3,
+    "largura": 0.75,
+    "profundidade": 0.383,
+    "comprimento": null,
+    "massa": 320,
+    "area": 2.45,
+    "posturaDoTamanho": "de pé, asas recolhidas",
+    "segundoTamanho": {
+      "area": 9.25,
+      "posturaDoTamanho": "asas abertas"
+    }
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 10,
+    "destreza": 6,
+    "vigor": 10,
+    "percepcao": 8,
+    "inteligencia": 7,
+    "raciocinio": 8,
+    "influencia": 8,
+    "perspicacia": 7,
+    "compostura": 8
+  },
+  "habilidades": {
+    "briga": 3,
+    "bloqueio": 3,
+    "esquiva": 2,
+    "prontidao": 5,
+    "integridade": 8,
+    "sobrevivencia": 5,
+    "sociabilidade": 4,
+    "armas": 5,
+    "ocultismo": 5,
+    "empatia": 4,
+    "atirador": 5
+  },
+  "habilidadesSec": {
+    "musculatura": 1
+  },
+  "especialidades": {},
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 5,
+    "compaixao": 5,
+    "conviccao": 5,
+    "temperanca": 4
+  },
+  "vontade": 12,
+  "aparencia": 12,
+  "deslocamento": {
+    "terra": {
+      "batalha": 5,
+      "arranque": 8,
+      "corrida": 12
+    },
+    "voo": {
+      "batalha": 15
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {
+    "cura": 6,
+    "fortuna": 6,
+    "morte": 6,
+    "luz": 5,
+    "protecao": 5
+  },
+  "ataques": [
+    {
+      "nome": "Montante",
+      "arma": "montante",
+      "justificativa": "Montante do catálogo com duas mãos; jogada 25 com Armas"
+    },
+    {
+      "nome": "Arco longo",
+      "arma": "arco-longo",
+      "justificativa": "Arco longo do catálogo; jogada 23 com Percepção + Atirador"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Posturas de combate",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Grande: de pé, asas recolhidas. Enorme: asas abertas. Vale o Tamanho da postura atual. Abrir as asas ao voar e fechá-las ao pousar faz parte do movimento, sem custo adicional",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "Aura protetora",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "protecao",
+        "nivel": 4,
+        "efeito": "barreira"
+      },
+      "categoria": "inato",
+      "ativacao": "nenhuma; sempre ativa",
+      "duracao": "permanente",
+      "alcance": "12 m",
+      "area": "a criatura e seus aliados no raio",
+      "efeito": "a criatura e seus aliados somam +4 em Esquiva, Bloqueio e Defesa Mental contra ataques e efeitos malignos",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "nenhum. Sem custo"
+    },
+    {
+      "nome": "Regeneração 15",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "fraqueza": {
+        "forma": "interrompe",
+        "tipos": [
+          "maligno"
+        ],
+        "duracao": "6 Ticks"
+      },
+      "texto": "Origem sobrenatural. O dano de um artefato maligno, de um efeito maligno ou de uma magia maligna interrompe toda a regeneração por 6 Ticks. Recupera 15 PV por minuto, até o máximo de PV. Em combate, recupera 1,5 PV a cada 6 Ticks, contados a partir do Tick do primeiro dano"
+    },
+    {
+      "nome": "Resistência à magia",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "sempre ativa",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a própria criatura",
+      "efeito": "Resistência à magia de grau 3. Soma +6 às Defesas e à jogada de resistir contra Artes e efeitos similares à magia, até o teto comum de +6",
+      "dano": "nenhum adicional",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo. Sem custo"
+    },
+    {
+      "nome": "Verbo verdadeiro",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "enquanto a condição se aplica",
+      "alcance": "até onde ouve e pode ser ouvido",
+      "area": "a criatura",
+      "efeito": "Compreende e fala qualquer idioma falado. Escrita, códigos e pensamentos exigem outros meios. Entender o pedido não obriga a obedecer",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "Imunidades celestes",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "não adoece, não é envenenado e resiste à transformação em pedra",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "Contínuo, sem custo"
+    },
+    {
+      "nome": "Ressurreição",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "cura",
+        "nivel": 6
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 7",
+      "duracao": "instantânea",
+      "alcance": "toque",
+      "area": "um alvo",
+      "efeito": "Devolve o aliado morto à vida pela Cura 6 do livro, com seus requisitos e limites",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "1 uso grátis por cena. O uso extra não custa Mana"
+    },
+    {
+      "nome": "Convocar anjos",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "conjuracao",
+        "nivel": 4
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 6",
+      "duracao": "até o fim da cena",
+      "alcance": "9 m",
+      "area": "um aliado",
+      "efeito": "Convoca um aliado com o perfil Arconte Lanterna para lutar até o fim da cena. A origem planar aguarda o lore dos planos",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "1 uso grátis por cena. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "Telepatia",
+      "formas": "todas",
+      "classe": "sem regra ainda",
+      "categoria": "inato",
+      "efeito": "lê pensamentos e se comunica sem voz"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "Feitiços sagrados",
+      "formas": "todas",
+      "texto": "usa as Artes para curar, proteger e enfrentar ameaças sobrenaturais."
+    },
+    {
+      "nome": "Guerreiro alado",
+      "formas": "todas",
+      "texto": "abre o combate voando e pousa para pressionar com a espada; volta ao ar para proteger aliados distantes."
+    },
+    {
+      "nome": "Espada afiada",
+      "formas": "todas",
+      "texto": "O gume pode amputar. O Mestre decide a consequência do golpe."
+    },
+    {
+      "nome": "Flecha exterminadora",
+      "formas": "todas",
+      "texto": "As flechas do solar podem extinguir uma vida. O Mestre decide o efeito na cena."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão",
+      "descricao": "enxerga no escuro e sob luz fraca",
+      "formas": "todas"
+    },
+    {
+      "nome": "visão verdadeira · sem regra ainda",
+      "descricao": "Até 18 m, distingue disfarce, ilusão e invisibilidade. Paredes e Furtividade comum limitam a percepção. Sem custo",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "mente": "inteligente",
+    "tracos": "Guerreiro celeste de pele metálica e três pares de asas brancas"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitário",
+    "atividade": "qualquer hora",
+    "dieta": "não precisa comer",
+    "caca": "não se aplica",
+    "dianteDeGente": "enfrenta ameaças ao mundo e protege os mortais"
+  },
+  "ecologia": {
+    "terreno": [
+      "qualquer"
+    ],
+    "clima": [
+      "extraplanar"
+    ]
+  },
+  "descricao": "Guerreiro celeste de pele metálica e três pares de asas brancas",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "A mais alta expressão da vontade divina em forma de guerreiro, quase nunca visto, reservado para as maiores crises cósmicas."
+    },
+    {
+      "titulo": "Sociedade",
+      "texto": "Não tem par entre celestiais menores; quando aparece, archons e devas o tratam como general supremo."
+    },
+    {
+      "titulo": "Personalidade",
+      "texto": "Sereno além da compreensão mortal, fala pouco, age com precisão absoluta e sem dúvida."
+    },
+    {
+      "titulo": "Hábitat",
+      "texto": "Habita o coração do plano Divino/Celeste, ao lado das potências que serve."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "A Lei que barra os deuses de tocar mortais diretamente talvez nem alcance um solar, o que torna sua aparição um evento de era: as escrituras das igrejas supressoras falam de arautos de espada de luz vistos nos dias da Grande Guerra, e temem, ou rezam, para que um retorne."
+    }
+  ],
+  "imagens": [
+    "bestiario/solar_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [
+      {
+        "tipo": "profano",
+        "formas": "todas"
+      }
+    ],
+    "resistencias": [
+      {
+        "tipo": "fogo",
+        "formas": "todas"
+      },
+      {
+        "tipo": "raio",
+        "formas": "todas"
+      }
+    ],
+    "imunidades": [
+      {
+        "tipo": "acido",
+        "formas": "todas"
+      },
+      {
+        "tipo": "gelo",
+        "formas": "todas"
+      }
+    ]
+  },
+  "revisao": [
+    {
+      "campo": "habilidadesSec.musculatura",
+      "motivo": "Corpo de guerreiro, força sobrenatural além do músculo"
+    },
+    {
+      "campo": "corpo.area",
+      "motivo": "Corpo: 0,72 × (3,0 ÷ 1,8)²; asas recolhidas completam 2,45 m². Asas abertas estimadas em 9,25 m²"
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": "Comportamento"
+    },
+    {
+      "campo": "ataques.Arco longo",
+      "motivo": "Tiro com arma equipada usa Percepção + Atirador pela D-208.; dano médio 22,5 -> 20,5; a D-075 limita a Força aplicada ao arco a 8. A Força da criatura continua 10. a conferir."
+    },
+    {
+      "campo": "habilidadesEspeciais.Regeneração 15",
+      "motivo": "Fraqueza da fonte: \"regeneration 15 (evil artifacts, effects, and spells)\" (Pathfinder RPG Bestiary, p. 12). Antes: 1 hora. Proponho 6 Ticks: a interrupção custa um pulso de 1,5 PV e permite que a regeneração volte durante a luta. Valor de molde, para a bancada.  [Archives of Nethys](https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Solar)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Resistência à magia",
+      "motivo": "R7. SR 34 da fonte passa a grau 3 (+6)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Verbo verdadeiro",
+      "motivo": "R1 e D-197. 1 uso grátis por cena. Cada uso extra custa 1 de Mana. Um uso de abertura até a definição do efeito. valor de molde, para a bancada (uso extra de 1 de Mana)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Ressurreição",
+      "motivo": "R1 e D-197. 1 uso grátis por cena. Cada uso extra custa 1 de Mana. Um uso de abertura até a definição do efeito. uso extra calculado pela regra de custo (T7, RT-134.6): improviso, Alcance 0 + Alvos 1 + Dano 0 + Duração 0 = 1, menos Centelha 9, no piso 0; o uso extra não custa Mana."
+    },
+    {
+      "campo": "habilidadesEspeciais.Convocar anjos",
+      "motivo": "R1 e D-197. 1 uso grátis por cena. Cada uso extra custa 1 de Mana. Um uso de abertura até a definição do efeito. valor de molde, para a bancada (uso extra de 1 de Mana)."
+    }
+  ]
+}

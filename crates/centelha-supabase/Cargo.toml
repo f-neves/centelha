@@ -1,0 +1,12 @@
+[package]
+name = "centelha-supabase"
+description = "Cliente tipado do Supabase: tabelas, funções, arquivos e tempo real."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+
+[dependencies]
+
+[lints]
+workspace = true

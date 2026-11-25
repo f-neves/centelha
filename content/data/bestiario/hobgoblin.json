@@ -1,0 +1,205 @@
+{
+  "id": "hobgoblin",
+  "idAntigo": "mon-hobgoblin",
+  "nome": "Hobgoblin",
+  "nomeIngles": "Hobgoblin",
+  "categoria": "humanoide",
+  "papel": "capanga",
+  "ameaca": 1,
+  "centelha": 0,
+  "corpo": {
+    "postura": "bípede, de pé",
+    "apoio": "bipede",
+    "altura": 1.7,
+    "largura": 0.44,
+    "profundidade": 0.23,
+    "comprimento": null,
+    "massa": 73,
+    "area": 0.67,
+    "posturaDoTamanho": "de frente"
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 4,
+    "destreza": 4,
+    "vigor": 5,
+    "percepcao": 3,
+    "inteligencia": 2,
+    "raciocinio": 2,
+    "influencia": 2,
+    "perspicacia": 2,
+    "compostura": 2
+  },
+  "habilidades": {
+    "armas": 3,
+    "briga": 1,
+    "bloqueio": 2,
+    "esquiva": 1,
+    "atletismo": 2,
+    "furtividade": 2,
+    "prontidao": 1,
+    "integridade": 2,
+    "resistencia": 2,
+    "sobrevivencia": 1
+  },
+  "habilidadesSec": {
+    "estrategia": 1,
+    "musculatura": 0
+  },
+  "especialidades": {
+    "armas": [
+      {
+        "foco": "em formação",
+        "valor": 1,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 2,
+    "conviccao": 3,
+    "temperanca": 3
+  },
+  "vontade": 5,
+  "aparencia": 4,
+  "deslocamento": {
+    "terra": {
+      "batalha": 3,
+      "arranque": 5,
+      "corrida": 7
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Espada longa",
+      "arma": "espada-longa",
+      "justificativa": "A arma do livro (`armas.json`, `espada-longa`): Média, Versátil, Velocidade 6, Acerto +1, Defesa +1, ★C · P(N1). Jogada: Destreza 4 + Armas 3"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Disciplina militar",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "nenhuma; vale enquanto luta ombro a ombro com um aliado que também tem Disciplina militar",
+      "duracao": "enquanto a formação se mantiver",
+      "alcance": "1 m, o aliado ao lado",
+      "area": "ele e o aliado",
+      "efeito": "Soma +1 na Defesa e ignora o −2 de Flanqueado apenas pelo lado coberto pelo aliado. Surpresa e Tamanho continuam valendo",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "nenhum. Sem custo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "linha de escudos",
+      "formas": "todas",
+      "texto": "avança em formação, cobre o companheiro, recua em ordem; obedece ao comandante e não foge sozinho."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão no escuro",
+      "descricao": "enxerga sem luz",
+      "formas": "todas"
+    },
+    {
+      "nome": "audição e olfato",
+      "descricao": "os de um humano",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "prendeRespiracao": "pela regra do personagem",
+    "mente": "humanoide; disciplinada",
+    "tracos": "pele avermelhada ou parda, rosto achatado, presas curtas, olhos que brilham no escuro"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "em tropa, típico 4 a 12",
+    "atividade": "noturno",
+    "dieta": "onívoro",
+    "caca": "saque e conquista",
+    "dianteDeGente": "combate em formação ou emboscada coordenada"
+  },
+  "ecologia": {
+    "terreno": [
+      "floresta",
+      "subterrâneo"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Goblinoide do tamanho de um homem, soldado nato que luta em formação, de espada longa. Coordena emboscadas em silêncio e enxerga no escuro.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Disciplinados e metódicos, lutam em formação fechada e valorizam hierarquia militar acima de tudo, ao contrário dos goblins soltos."
+    },
+    {
+      "titulo": "Sociedade",
+      "texto": "Organizam-se em legiões com postos e patentes claras, obediência estrita e ambição constante de conquista territorial."
+    },
+    {
+      "titulo": "Hábitos",
+      "texto": "Erguem fortificações duráveis, treinam diariamente e tratam goblins e outros povos ásperos como recrutas ou escravos de guerra."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "Entre os filhos que os anões moldaram da rocha, os hobgoblins foram os que melhor herdaram o senso de ordem da forja; erguem acampamentos fortificados nas terras selvagens de Mére, disciplinados o bastante para preocupar até exércitos humanos."
+    }
+  ],
+  "imagens": [
+    "bestiario/hobgoblin_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "habilidades.armas",
+      "motivo": "O site gravava `briga` 1 para a \"Arma\"; no livro a arma branca é Armas (manual 3.5). Soldado de linha; 3 e 2; o site tinha só Briga 1"
+    },
+    {
+      "campo": "habilidades.bloqueio",
+      "motivo": "Apara com a espada, como soldado treinado em formação; 3 e 2; o site tinha só Briga 1"
+    },
+    {
+      "campo": "comportamento.social",
+      "motivo": "site (Disciplina militar)"
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": "site (visão no escuro)"
+    },
+    {
+      "campo": "comportamento.caca",
+      "motivo": ""
+    },
+    {
+      "campo": "equipamento",
+      "motivo": "espada longa do livro, sem armadura"
+    },
+    {
+      "campo": "virtudes.temperanca",
+      "motivo": "3; o site tinha 2"
+    }
+  ]
+}

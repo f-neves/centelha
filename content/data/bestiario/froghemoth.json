@@ -1,0 +1,359 @@
+{
+  "id": "froghemoth",
+  "idAntigo": "mon-froghemoth",
+  "nome": "Froghemoth",
+  "nomeIngles": "Froghemoth",
+  "categoria": "aberracao",
+  "papel": "chefe",
+  "ameaca": 5,
+  "centelha": 0,
+  "corpo": {
+    "postura": "quatro patas (sentada), corpo na horizontal",
+    "apoio": "quadrupede",
+    "altura": 2.3,
+    "largura": 1.61,
+    "profundidade": null,
+    "comprimento": 7.4,
+    "massa": 3000,
+    "area": 8.6,
+    "posturaDoTamanho": "de cima"
+  },
+  "couraca": 2,
+  "perfilCouraca": "mole",
+  "atributos": {
+    "forca": 11,
+    "destreza": 3,
+    "vigor": 9,
+    "percepcao": 3,
+    "inteligencia": 1,
+    "raciocinio": 2,
+    "influencia": 2,
+    "perspicacia": 1,
+    "compostura": 3
+  },
+  "habilidades": {
+    "briga": 5,
+    "bloqueio": 0,
+    "esquiva": 1,
+    "atletismo": 2,
+    "furtividade": 2,
+    "prontidao": 1,
+    "resistencia": 2,
+    "integridade": 3,
+    "sobrevivencia": 2
+  },
+  "habilidadesSec": {
+    "natacao": 3,
+    "musculatura": 2
+  },
+  "especialidades": {
+    "prontidao": [
+      {
+        "foco": "surpresa",
+        "valor": 3,
+        "origem": "natural"
+      }
+    ],
+    "furtividade": [
+      {
+        "foco": "submersa na lama",
+        "valor": 3,
+        "origem": "natural"
+      }
+    ],
+    "briga": [
+      {
+        "foco": "Agarrão",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 4,
+    "compaixao": 1,
+    "conviccao": 3,
+    "temperanca": 2
+  },
+  "vontade": 10,
+  "aparencia": 1,
+  "deslocamento": {
+    "terra": {
+      "batalha": 2,
+      "arranque": 3,
+      "corrida": 5
+    },
+    "nado": {
+      "batalha": 3
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Tentáculo",
+      "parte": "tentaculo-dos-ombros",
+      "classe": "pesada",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": "2d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "impacto",
+      "nivelPerfuracao": null,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "O ataque do site (\"Tentáculos e língua\", 3 dados, 7 Ticks, impacto, \"agarra com os tentáculos\"): o tentáculo grosso de 3 m desce com o peso, Pesado, com os 7 Ticks do site. Golpe de membro: Força × 1. Centelha 0: nada a somar. Agarra (Manobras). Jogada: Força 11 + Briga 5"
+    },
+    {
+      "nome": "Língua",
+      "parte": "lingua",
+      "classe": "leve",
+      "pgr": [
+        1,
+        1,
+        3
+      ],
+      "dado": null,
+      "multiplicadorForca": 0,
+      "tipoDano": "nao-se-aplica",
+      "nivelPerfuracao": null,
+      "acerto": 1,
+      "bloqueiaComoArma": null,
+      "justificativa": "A língua da rã-gigante do molde (resposta do autor de 20/10/2026): não é Disparo, porque a língua não sai do corpo; estende o alcance a três vezes o corpo a corpo normal, não fere e agarra o que acertar, mesmo se o golpe for bloqueado. \"A língua puxa a presa para perto\" (site). Jogada: Força 11 + Briga 5"
+    },
+    {
+      "nome": "Bocada",
+      "parte": "boca",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "impacto",
+      "nivelPerfuracao": null,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Boca de rã, sem dentes (a rã-gigante do molde morde de Impacto), com o corpo de 3 t atrás: Média (`regra-construcao.md` §7). É por onde engole (Manobras). Jogada: Força 11 + Briga 5"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Tentáculos",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Tentáculo",
+      "categoria": "inato",
+      "regra": "rajada"
+    },
+    {
+      "nome": "agarrar",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Tentáculo",
+      "categoria": "inato",
+      "regra": "agarrar"
+    },
+    {
+      "nome": "Tentáculos constritores",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Tentáculo",
+      "categoria": "inato",
+      "regra": "agarrar",
+      "texto": "aperta a presa com o corpo"
+    },
+    {
+      "nome": "língua",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "ataque": "Língua",
+      "categoria": "inato",
+      "ativacao": "uma ação, o ataque de Língua com Briga",
+      "duracao": "até a presa se soltar",
+      "alcance": "três vezes o alcance normal do corpo a corpo",
+      "area": "um alvo",
+      "efeito": "Se o golpe causar ao menos 1 PV depois da Absorção, resolve Agarrar normalmente, com as travas de massa e sem uma ação separada. Manutenção e saída seguem o agarrão do livro",
+      "dano": "nenhum",
+      "resistencia": "pela manobra Agarrar",
+      "limiteDeUso": "um alvo por vez. Usar repetidamente causa esforço e pode levar ao cansaço. Sem custo"
+    },
+    {
+      "nome": "puxão",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "ataque": "Língua",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "enquanto a condição se aplica",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Se a presa couber no peso que arrasta, recolhe-a até metade da Batalha enquanto mantém a captura, sem novo teste de escape",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "Engole inteiro",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "ataque": "Bocada",
+      "categoria": "inato",
+      "ativacao": "ação de Velocidade 7 contra vítima menor já Agarrada que cabe na boca",
+      "duracao": "até sair",
+      "alcance": "toque",
+      "area": "a vítima engolida",
+      "efeito": "Dentro, fica Imobilizada para o corpo, pode atacar com arma curta e sofre sufocamento pelo livro. Uma ferida interna de 10 PV abre a saída, por dentro ou com ajuda de fora. Também pode escapar pela garganta como no agarrão. Se a criatura morre, a vítima sai com uma ação",
+      "dano": "2d6 de Impacto uma vez a cada 6 Ticks",
+      "resistencia": "escape do agarrão pela garganta",
+      "limiteDeUso": "sem custo. Usar repetidamente causa esforço e pode levar ao cansaço"
+    },
+    {
+      "nome": "Visão total",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "nenhuma; sempre ativa",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "não se aplica",
+      "efeito": "Os três olhos vigiam todas as direções. Ignora o −2 de Flanqueado. Surpresa e Tamanho continuam valendo",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "nenhum. Sem custo"
+    },
+    {
+      "nome": "Absorção contra choques",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "levar dano de raio que passe da resistência (Elementos)",
+      "duracao": "até o fim da próxima ação dela",
+      "alcance": "o próprio corpo",
+      "area": "não se aplica",
+      "efeito": "fica Retardada (`condicoes.json`: as ações custam 2 Ticks a mais): o choque a deixa lenta e desajeitada",
+      "dano": "nenhum além do raio",
+      "resistencia": "nenhum",
+      "limiteDeUso": "uma vez por choque. Sem custo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "terror do brejo",
+      "formas": "todas",
+      "texto": "espera submersa com os olhos à mostra, agarra com a língua ou com os tentáculos quem passa na margem, puxa até a boca e engole; com várias presas, divide os tentáculos entre elas."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "sentidos",
+      "descricao": "visão em todas as direções, pelos três olhos no pedúnculo",
+      "formas": "todas"
+    },
+    {
+      "nome": "sentidos",
+      "descricao": "sente pela água o movimento em volta",
+      "formas": "todas"
+    },
+    {
+      "nome": "sentidos",
+      "descricao": "visão no escuro absoluto",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar e água ; anfíbio",
+    "prendeRespiracao": "não precisa",
+    "camuflagem": "submersa na lama; Furtividade (submersa na lama) +3",
+    "mente": "animal, inquieta, \"como se o pântano não fosse seu verdadeiro lar\" (site)",
+    "tracos": "rã verde-acinzentada de 3 t, pele lisa e grossa, quatro tentáculos nos ombros, língua longa, três olhos num pedúnculo no alto da cabeça"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "sozinha",
+    "atividade": "qualquer hora",
+    "dieta": "carnívora: tudo o que cabe na boca, até dragões jovens",
+    "caca": "emboscada submersa",
+    "dianteDeGente": "gente é presa"
+  },
+  "ecologia": {
+    "terreno": [
+      "pântano",
+      "aquático"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Rã monstruosa de três toneladas, de tentáculos nos ombros e três olhos num talo, que passa a vida submersa nos brejos com só os olhos à mostra. Agarra com a língua e os tentáculos, esmaga e engole inteiro. Vive inquieta, e às vezes vaga para longe de qualquer charco conhecido.",
+  "lore": [
+    {
+      "titulo": "Terror do brejo profundo",
+      "texto": "Capaz de devorar até dragões jovens, essa criatura passa a maior parte da vida submersa, apenas os olhos à mostra na superfície da lama."
+    },
+    {
+      "titulo": "Nunca em paz",
+      "texto": "Estudiosos notam que ela parece sempre inquieta, como se o pântano não fosse seu verdadeiro lar, vagando por vezes para muito longe de qualquer charco conhecido."
+    }
+  ],
+  "imagens": [
+    "bestiario/froghemoth_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [
+      {
+        "tipo": "raio",
+        "formas": "todas"
+      }
+    ],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "corpo.altura",
+      "motivo": "A rã-gigante do molde (0,31 m sentada) × 4,13 = 1,28 m; o pedúnculo levanta os olhos mais 1,0 m"
+    },
+    {
+      "campo": "corpo.largura",
+      "motivo": "0,39 m da rã-gigante × 4,13. O comprimento dos tentáculos , o mesmo do aboleth: o site não dá"
+    },
+    {
+      "campo": "corpo.area",
+      "motivo": "O corpo, 0,2936 m² da rã-gigante × 4,13² = 5,00 m² (manual 4.2, escalar a área pela massa); quatro tentáculos de 3 × 0,3 m, abertos dos ombros = 3,60 m²  no número e nas medidas dos tentáculos (o site não dá nenhum dos dois). Sem os tentáculos, 5,00 m², Grande: o Enorme depende deles; 8,60 m² com os tentáculos estimados; sem eles, 5,00 m², Grande"
+    },
+    {
+      "campo": "couraca",
+      "motivo": "Cobertura do corpo pela R49; metades arredondadas para cima. Absorção natural do livro (`combate.md`). Couro grosso e borrachudo ;; nível 2"
+    },
+    {
+      "campo": "comportamento.social",
+      "motivo": ""
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": ""
+    },
+    {
+      "campo": "comportamento.dianteDeGente",
+      "motivo": ""
+    },
+    {
+      "campo": "ataques",
+      "motivo": "Tentáculo Pesado, Língua Leve e Bocada Média no lugar dos \"Tentáculos e língua\""
+    }
+  ]
+}

@@ -1,0 +1,233 @@
+{
+  "id": "crocodilo-do-nilo-femea",
+  "nome": "Crocodilo-do-nilo",
+  "nomeIngles": "Nile crocodile",
+  "categoria": "animal",
+  "papel": "fera",
+  "ameaca": 2,
+  "centelha": 0,
+  "corpo": {
+    "postura": "corpo baixo",
+    "apoio": "quadrupede",
+    "altura": 0.42,
+    "largura": 0.53,
+    "profundidade": null,
+    "comprimento": 3.22,
+    "comprimentoSemCauda": 1.69,
+    "caudaGrossa": true,
+    "massa": 126,
+    "area": 1.11,
+    "posturaDoTamanho": "vista de cima"
+  },
+  "couraca": 5,
+  "perfilCouraca": "rigida",
+  "atributos": {
+    "forca": 6,
+    "destreza": 2,
+    "vigor": 3,
+    "percepcao": 3,
+    "inteligencia": 1,
+    "raciocinio": 2,
+    "influencia": 1,
+    "perspicacia": 1,
+    "compostura": 1
+  },
+  "habilidades": {
+    "briga": 4,
+    "bloqueio": 2,
+    "esquiva": 2,
+    "atletismo": 2,
+    "furtividade": 3,
+    "integridade": 1,
+    "prontidao": 2,
+    "resistencia": 3,
+    "empatia": 0,
+    "sobrevivencia": 2
+  },
+  "habilidadesSec": {
+    "equilibrio": 0,
+    "escalada": 0,
+    "natacao": 2,
+    "voo": 0,
+    "corrida": 0,
+    "musculatura": 3
+  },
+  "especialidades": {
+    "prontidao": [
+      {
+        "foco": "vibração na água",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ],
+    "resistencia": [
+      {
+        "foco": "apneia",
+        "valor": 3,
+        "origem": "natural"
+      }
+    ],
+    "furtividade": [
+      {
+        "foco": "submerso",
+        "valor": 1,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 1,
+    "conviccao": 1,
+    "temperanca": 1
+  },
+  "vontade": 3,
+  "aparencia": 6,
+  "deslocamento": {
+    "terra": {
+      "batalha": 2,
+      "arranque": 4,
+      "corrida": 5
+    },
+    "nado": {
+      "batalha": 4
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Mordida",
+      "parte": "mordida",
+      "classe": "pesada",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": "2d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 1,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Era 2d6 + 9, média 16. 7 + 8. Pesada é \"a mordida que agarra e torce\". Força × 1 (golpe de boca). Nível N1 : os 3.043 N medidos (N0) são de animais de 86 kg; a fêmea de 116 kg morde um pouco mais, e os 22 kN de Brady Barr num adulto (Wikipédia, documentário de TV, não artigo) dariam N2. Fica no N1 (4.000 a 15.000 N), entre a medida pequena e a cifra de TV. Os 64 a 68 dentes (SDZG)."
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "agarrar",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "regra": "agarrar"
+    },
+    {
+      "nome": "rolamento (giro da morte)",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Mordida",
+      "categoria": "inato",
+      "regra": "agarrar",
+      "texto": "é a manutenção do agarrão, rolando na água"
+    },
+    {
+      "nome": "arrastar para a água",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "ataque": "Mordida",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "enquanto a condição se aplica",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Ao manter o agarrão, desloca-se com a presa a metade da Batalha, até o peso que arrasta. O movimento integra a manutenção",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "emboscada aquática",
+      "formas": "todas",
+      "texto": "espera submerso e ataca de surpresa (Furtividade); o alvo surpreso tem a Defesa zerada (Combate, Quando a Defesa zera)."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "vibração",
+      "descricao": "Prontidão (vibração na água) +2, Especialidade natural (notar presa pela pressão e vibração na água); alcance . Órgãos tegumentares (Wikipédia)",
+      "formas": "todas"
+    },
+    {
+      "nome": "visão",
+      "descricao": "campo de 270° e sobreposição binocular de 25° (SDZG, conferido): texto, sem Especialidade",
+      "formas": "todas"
+    },
+    {
+      "nome": "audição",
+      "descricao": "de 100 a 4.000 Hz (SDZG, conferido): texto, nada que passe do humano",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar; vive entre a água e a margem",
+    "prendeRespiracao": "até 2 horas submerso em repouso total; mergulhos comuns de poucos minutos; até 30 minutos nadando submerso se ameaçado (Wikipédia). A Resistência (apneia) +3 não troca este campo",
+    "camuflagem": "água (fica com o corpo quase todo submerso até a presa chegar perto, Wikipédia)",
+    "mente": "animal",
+    "tracos": "dependência de água (não se afasta muito dela para caçar em terra: até cerca de 50 m da margem, Wikipédia); fôlego curto em terra (\"fica exausto fácil em terra\", SDZG); os músculos que abrem a boca são muito fracos (Wikipédia), o que fica para o Mestre"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitário na caça; agrega-se no sol e na carcaça grande, com hierarquia rígida por tamanho, e anda centenas de metros até ela",
+    "dieta": "carnívoro (até 70% de peixe no adulto)",
+    "caca": "emboscada",
+    "dianteDeGente": "ataca"
+  },
+  "ecologia": {
+    "terreno": [
+      "aquático",
+      "pântano"
+    ],
+    "clima": [
+      "tropical"
+    ]
+  },
+  "descricao": "Espera na margem o mamífero que vem beber, agarra, arrasta para a água e gira. Come até 20% da própria massa numa refeição (SDZG); a fêmea guarda o ninho e leva os filhotes na boca até a água: abre a boca, abaixa a língua para dar espaço, junta os filhotes, leva-os do ninho até a água e lá os solta balançando a cabeça. Quantos leva de uma vez: confiável.",
+  "lore": [],
+  "imagens": [
+    "bestiario/crocodilo-do-nilo-femea_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "corpo.altura",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 0,41 × 1,0279 = 0,421 . Antes: Principal: 0,49 m. A pesquisa não dá altura nem comprimento típico da fêmea (só a faixa de 2,2 a 3,8 m), por isso escalado pelo cubo da massa a partir da principal: 0,49 × (116 ÷ 198)^(1/3) = 0,49 × 0,837 = 0,41"
+    },
+    {
+      "campo": "corpo.comprimento",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 3,13 × 1,0279 = 3,217 . Antes: Principal: 3,74 m. Escalado pelo cubo da massa: 3,74 × 0,837 = 3,13 (do macho de 4,20 m e 280 kg dá o mesmo: 4,20 × (116 ÷ 280)^(1/3) = 3,13). Para conferência: cai dentro da faixa da fêmea adulta, 2,2 a 3,8 m (Wikipédia), perto do meio dela (3,0 m; meio de faixa, e não média)"
+    },
+    {
+      "campo": "corpo.comprimentoSemCauda",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 1,64 × 1,0279 = 1,686 . Antes: Principal: 1,96 m. Escalado pelo cubo da massa: 1,96 × 0,837 = 1,64"
+    },
+    {
+      "campo": "corpo.largura",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 0,52 × 1,0279 = 0,535 . Antes: Principal: 0,62 m (estimativa do Arquiteto para o macho, 0,70 m, escalada). Escalada pelo cubo da massa: 0,62 × 0,837 = 0,52"
+    }
+  ]
+}

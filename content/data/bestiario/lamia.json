@@ -1,0 +1,255 @@
+{
+  "id": "lamia",
+  "idAntigo": "mon-lamia",
+  "nome": "Lâmia",
+  "nomeIngles": "Lamia",
+  "categoria": "humanoide-monstruoso",
+  "papel": "elite",
+  "ameaca": 4,
+  "centelha": 4,
+  "corpo": {
+    "postura": "quatro patas de leão, torso ereto",
+    "apoio": "quadrupede",
+    "altura": 1.9,
+    "largura": 0.45,
+    "profundidade": null,
+    "comprimento": 3,
+    "massa": 160,
+    "area": 1.22,
+    "posturaDoTamanho": "de lado"
+  },
+  "couraca": 1,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 6,
+    "destreza": 6,
+    "vigor": 6,
+    "percepcao": 6,
+    "inteligencia": 3,
+    "raciocinio": 5,
+    "influencia": 5,
+    "perspicacia": 4,
+    "compostura": 5
+  },
+  "habilidades": {
+    "briga": 5,
+    "bloqueio": 0,
+    "esquiva": 2,
+    "atletismo": 3,
+    "furtividade": 3,
+    "prontidao": 3,
+    "integridade": 5,
+    "manha": 4,
+    "ocultismo": 2,
+    "sociabilidade": 1
+  },
+  "habilidadesSec": {
+    "musculatura": 3
+  },
+  "especialidades": {
+    "atletismo": [
+      {
+        "foco": "correr e saltar",
+        "valor": 3,
+        "origem": "natural"
+      }
+    ],
+    "furtividade": [
+      {
+        "foco": "deserto e rocha",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ],
+    "manha": [
+      {
+        "foco": "seduzir",
+        "valor": 2,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 1,
+    "conviccao": 3,
+    "temperanca": 2
+  },
+  "vontade": 9,
+  "aparencia": 4,
+  "deslocamento": {
+    "terra": {
+      "batalha": 6,
+      "arranque": 10,
+      "corrida": 14
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Garras",
+      "parte": "patas-de-leao",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "corte",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "O \"Arma\" do site (2 dados, corte, 6 Ticks): a patada de garra de um corpo de leão, que pede o corpo atrás, Média (`regra-construcao.md` §7). A Centelha soma inteira. Jogada: Destreza 6 + Briga 5 + 2 × o menor entre Centelha 4 e Briga 5 (8)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Toque drenante",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "morte",
+        "nivel": 2
+      },
+      "categoria": "sobrenatural",
+      "ativacao": "uma ação, Velocidade 5, a jogada de Briga para tocar, ou as Garras que ferem",
+      "duracao": "volta 1 ponto de Percepção por dia de descanso",
+      "alcance": "toque",
+      "area": "um alvo",
+      "efeito": "Cada toque que pega tira 1 ponto temporário de Percepção e deixa o alvo Abalado (−2 nas jogadas, até Recompor ou até o fim da cena). A perda de Percepção não recalcula PV nem Absorção. Se a Percepção chegar a 0, a vítima fica Dominada enquanto estiver com Percepção 0. A lâmia pode ordenar em voz alta que ela a siga, proteja ou ataque um alvo indicado. A vítima precisa ouvir e compreender a ordem e pode recusá-la pagando 1 + Margem de Força de Vontade, até 4 por ordem",
+      "dano": "nenhum além do golpe",
+      "resistencia": "a jogada do toque da criatura contra a Defesa Mental do alvo, com o Resistir do livro",
+      "limiteDeUso": "Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "Ilusões",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "fascinacao",
+        "nivel": 3,
+        "efeito": "imagem-viva"
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 5. O efeito sai no Tick do Golpe",
+      "duracao": "até o fim da cena, ou enquanto ela mantiver",
+      "alcance": "36 m",
+      "area": "uma imagem de até 6 m de lado, ou a aparência dela",
+      "efeito": "uma imagem falsa (um oásis, uma mulher bela, um caminho seguro) para atrair ou emboscar; quem desconfia e testa vê através",
+      "dano": "nenhum",
+      "resistencia": "Influência + Manha da criatura contra a Defesa Mental do alvo, com o Resistir do livro",
+      "limiteDeUso": "Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. uma ilusão por vez"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "oásis enganoso",
+      "formas": "todas",
+      "texto": "atrai a presa com a ilusão de um oásis ou de uma mulher bela, drena com o toque até deixá-la servo e ataca com as garras quem resiste."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão",
+      "descricao": "enxerga no escuro",
+      "formas": "todas"
+    },
+    {
+      "nome": "audição e olfato",
+      "descricao": "os de um leão",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "prendeRespiracao": "a de um leão",
+    "camuflagem": "pelagem fulva no deserto; Especialidade natural",
+    "mente": "humanoide; vaidosa e predatória",
+    "tracos": "torso de mulher sobre corpo de leão fulvo, garras, cauda, cabelo longo, olhos de gato"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "sozinha, com servos enfeitiçados",
+    "atividade": "qualquer hora",
+    "dieta": "carnívora",
+    "caca": "atrai e drena viajantes",
+    "dianteDeGente": "seduz com ilusão; drena; mata quem resiste"
+  },
+  "ecologia": {
+    "terreno": [
+      "deserto",
+      "ruínas"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Torso de mulher sobre corpo de leão, que vive em ruínas e oásis enganosos no limite do deserto. Seduz viajantes com ilusões de beleza e drena pelo toque a sabedoria e a vontade de quem cai no encanto.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Seduz viajantes com ilusão de beleza e promessas doces, drenando a sabedoria e a vontade de quem cai em seu encanto até deixá-lo uma casca vazia."
+    },
+    {
+      "titulo": "Hábitat",
+      "texto": "Ocupa ruínas isoladas, oásis enganosos e cavernas no limite do deserto ou da selva."
+    },
+    {
+      "titulo": "Personalidade",
+      "texto": "Vaidosa e predatória, saboreia o engano quase tanto quanto a presa em si."
+    },
+    {
+      "titulo": "Sociedade",
+      "texto": "Solitária e territorial, tolera no máximo servos enfeitiçados que a sirvam sem questionar."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "Dita descendente de um antigo pacto ou maldição de antes da Supressão; em Mére, onde cidades escondidas guardam magias esquecidas, corre a lenda de que lâmias já foram sacerdotisas caídas em desgraça."
+    }
+  ],
+  "imagens": [
+    "bestiario/lamia_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "corpo.altura",
+      "motivo": ": o leão do molde tem 1,13 m de altura; o torso de mulher sobe cerca de 0,8 m acima da cernelha"
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": ""
+    },
+    {
+      "campo": "comportamento.dieta",
+      "motivo": ""
+    },
+    {
+      "campo": "habilidadesEspeciais.Toque drenante",
+      "motivo": "R1 e D-197. Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R18. A Sabedoria drenada equivale à Percepção nesta ficha. Perda proposta de 1 de Percepção por toque. R3. Ativação uma ação, Velocidade 5, a jogada de Briga para tocar, ou as Garras que ferem -> uma ação, Velocidade 6, a jogada de Briga para tocar, ou as Garras que ferem Pela referência corporal ou de deslocamento do poder. R16. A servidão termina quando a Percepção volta acima de 0. Ordens audíveis de escolta, proteção ou ataque dão limites ao controle. valor de molde, para a bancada (uso extra de 1 de Energia).; a Sabedoria do site vira Percepção e Integridade"
+    },
+    {
+      "campo": "habilidadesEspeciais.Ilusões",
+      "motivo": "R1 e D-197. Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. uma ilusão por vez. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação uma ação, Velocidade 7 -> uma ação, Velocidade 5. O efeito sai no Tick do Golpe. Pela régua da Arte de base. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "virtudes.compaixao",
+      "motivo": "1; o site tinha 2"
+    }
+  ]
+}

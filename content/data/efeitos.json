@@ -1,0 +1,7264 @@
+[
+  {
+    "id": "neblina",
+    "nome": "Neblina",
+    "nivel": 1,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "agua",
+        "sabor": "nuvem densa que encharca e abafa o som"
+      },
+      {
+        "id": "gelo",
+        "sabor": "nevoeiro gélido que morde de frio"
+      },
+      {
+        "id": "terra",
+        "sabor": "poeira em suspensão que engasga"
+      },
+      {
+        "id": "vida",
+        "sabor": "um sopro de esporos e pólen fecha o ar"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Volume",
+        "tipo": "substitui",
+        "substitui": "area",
+        "unidade": "m³",
+        "escala": [
+          "0,5x0,5x0,5",
+          "1x1x1",
+          "1,5x1,5x1,5",
+          "2x2x2",
+          "3x3x3",
+          "4x4x4",
+          "5x5x5"
+        ],
+        "nota": "começa um nível acima da Área; molda em esfera, cúpula, bloco ou coluna"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      }
+    ],
+    "efeito": "Enche o volume de névoa: quem está dentro não enxerga, e quem olha de fora não vê o que acontece lá.",
+    "grid": {
+      "forma": "zona",
+      "ancora": "ponto",
+      "gatilho": "ao-entrar",
+      "alvo": "ponto",
+      "persiste": true,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "arma-elemental",
+    "nome": "Arma Elemental",
+    "nivel": 2,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "fogo",
+        "sabor": "a lâmina pega fogo"
+      },
+      {
+        "id": "gelo",
+        "sabor": "a lâmina ganha gume de gelo e enregela"
+      },
+      {
+        "id": "raio",
+        "sabor": "a arma emite o elemento ao seu redor"
+      },
+      {
+        "id": "terra",
+        "sabor": "a arma ganha peso de pedra"
+      },
+      {
+        "id": "luz",
+        "sabor": "a lâmina brilha e fere a todos, e quem teme a luz leva o dano inteiro"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "toque no objeto"
+      },
+      {
+        "nome": "Dano",
+        "tipo": "substitui",
+        "substitui": "dano",
+        "unidade": "pontos somados ao dano da arma",
+        "escala": [
+          "0",
+          "+2",
+          "+4",
+          "+6",
+          "+8",
+          "+10",
+          "+12"
+        ],
+        "nota": "+2 por nível somado ao dano da arma"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      }
+    ],
+    "efeito": "Reveste uma arma empunhada com o elemento. Soma +2 de dano por nível ao dano da arma. De Fogo, Raio e Luz, esse dano é do elemento: a armadura não o segura, só a Centelha de quem recebe e a resistência ao elemento. De Gelo e de Terra ele é matéria e entra no golpe da arma, que a armadura absorve normalmente.",
+    "grid": {
+      "forma": "alvo",
+      "ancora": "objeto",
+      "gatilho": "ao-tocar",
+      "alvo": "objeto",
+      "persiste": true,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": true,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": true,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "muro",
+    "nome": "Muro",
+    "nivel": 3,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "fogo",
+        "sabor": "parede de chamas que queima quem atravessa"
+      },
+      {
+        "id": "gelo",
+        "sabor": "parede de gelo que também tapa a visão"
+      },
+      {
+        "id": "terra",
+        "sabor": "muralha de pedra, sólida e opaca"
+      },
+      {
+        "id": "luz",
+        "sabor": "parede de luz que cega quem encara"
+      },
+      {
+        "id": "sombra",
+        "sabor": "cortina de treva que apaga o que está atrás"
+      },
+      {
+        "id": "agua",
+        "sabor": "a parede de água empurra quem tenta passar"
+      },
+      {
+        "id": "vento",
+        "sabor": "a rajada em pé atrapalha e corta"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Comprimento",
+        "tipo": "substitui",
+        "substitui": "area",
+        "unidade": "m de parede",
+        "escala": [
+          "1 m",
+          "2 m",
+          "3 m",
+          "5 m",
+          "8 m",
+          "12 m",
+          "20 m"
+        ]
+      },
+      {
+        "nome": "Altura",
+        "tipo": "fixo",
+        "valor": "2 m de padrão; o topo nunca passa do nível da Arte, em metros"
+      },
+      {
+        "nome": "Dano",
+        "tipo": "padrao",
+        "nota": "só fere em Fogo, Água e Vento; em Terra e Gelo a barreira bloqueia, e em Luz e Sombra só tapa a visão"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      }
+    ],
+    "efeito": "Ergue uma barreira numa superfície firme, ou no elemento correspondente. Terra e gelo bloqueiam a passagem; fogo, água e ar atrapalham e ferem quem insiste em passar; luz e sombra apenas tapam a visão. Dá para moldar a área da barreira em vários formatos, inclusive esticar de comprimento ou levantar mais alto, desde que o topo nunca passe do nível da Arte, em metros. As barreiras de terra e de gelo aceitam inclinação de até 45°, e a curvatura máxima de qualquer barreira é um semicírculo.",
+    "grid": {
+      "forma": "muro",
+      "ancora": "ponto",
+      "gatilho": "imediato",
+      "alvo": "ponto",
+      "persiste": true,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": true,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "aura",
+    "nome": "Aura",
+    "nivel": 2,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "fogo",
+        "sabor": "calor que chamusca quem se aproxima"
+      },
+      {
+        "id": "gelo",
+        "sabor": "frio que enrijece quem encosta"
+      },
+      {
+        "id": "raio",
+        "sabor": "estática que morde quem toca"
+      },
+      {
+        "id": "luz",
+        "sabor": "brilho que fere a todos, e quem teme a luz leva o dano inteiro"
+      },
+      {
+        "id": "sombra",
+        "sabor": "treva que rouba o calor de quem chega perto"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "centralizado no conjurador"
+      },
+      {
+        "nome": "Volume",
+        "tipo": "substitui",
+        "substitui": "area",
+        "unidade": "m de raio",
+        "escala": [
+          "0,25 m",
+          "0,5 m",
+          "1 m",
+          "1,5 m",
+          "2 m",
+          "2,5 m",
+          "3 m"
+        ],
+        "nota": "esfera com você no centro; o raio segue a escada do Volume da Aura, que é menor que a dos outros moldes"
+      },
+      {
+        "nome": "Dano",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      }
+    ],
+    "efeito": "O elemento envolve você numa esfera. Quem entra nela, encosta, agarra ou ataca no corpo a corpo sofre o dano ou o efeito do elemento (se houver).",
+    "grid": {
+      "forma": "aura",
+      "ancora": "conjurador",
+      "gatilho": "ao-entrar",
+      "alvo": "ponto",
+      "persiste": true,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": true,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "prisao",
+    "nome": "Prisão",
+    "nivel": 3,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "gelo",
+        "sabor": "o bloco fecha em volta"
+      },
+      {
+        "id": "terra",
+        "sabor": "a pedra sobe e prende as pernas"
+      },
+      {
+        "id": "agua",
+        "sabor": "a água endurece em algema"
+      },
+      {
+        "id": "sombra",
+        "sabor": "a treva ganha peso e segura"
+      },
+      {
+        "id": "vida",
+        "sabor": "a trepadeira sobe e amarra as pernas"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      },
+      {
+        "nome": "Ataque",
+        "tipo": "fixo",
+        "valor": "Percepção + Acerto Arcano"
+      },
+      {
+        "nome": "Dificuldade",
+        "tipo": "fixo",
+        "valor": "(maior grau investido) × 5"
+      }
+    ],
+    "efeito": "O ataque com o elemento prende o alvo no lugar. Exige jogada do conjurador; o ataque é imbloqueável, mas pode ser esquivado. Escapar exige Força + Atletismo contra a Dificuldade, e cada tentativa gasta a ação. Quando a duração acaba, a matéria deixa de ser mágica e solta o alvo, mesmo que tenha sido erguida com terra de verdade.",
+    "grid": {
+      "forma": "alvo",
+      "ancora": "alvo",
+      "gatilho": "passivo",
+      "alvo": "varios",
+      "persiste": true,
+      "materia": null,
+      "condicao": "imobilizado",
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": true
+    }
+  },
+  {
+    "id": "empurrao-elemental",
+    "nome": "Empurrão",
+    "nivel": 3,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "vento",
+        "sabor": "a rajada joga para longe"
+      },
+      {
+        "id": "gelo",
+        "sabor": "a placa de gelo desliza e leva junto"
+      },
+      {
+        "id": "agua",
+        "sabor": "a corrente arrasta"
+      },
+      {
+        "id": "terra",
+        "sabor": "o chão se levanta e cospe"
+      },
+      {
+        "id": "forcas",
+        "sabor": "a força invisível arremessa"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Área",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Peso Erguido",
+        "tipo": "fixo",
+        "valor": "o peso que a Arte move: Arte 3 = 360 kg, 4 = 550, 5 = 775, 6 = 1 tonelada",
+        "nota": "entra no lugar do peso erguido do chão (P) de quem empurra, na página Corpo e Movimento (capítulo VIII, Ações & Sistema)"
+      },
+      {
+        "nome": "Distância de Arremesso",
+        "tipo": "fixo",
+        "valor": "(nível da Arte) × 4",
+        "nota": "entra no lugar do FAA na tabela de arremesso (página Corpo e Movimento, capítulo VIII, Ações & Sistema) e diz a distância"
+      }
+    ],
+    "efeito": "Empurra ou arremessa o alvo, e o que decide é o PESO dele. A Arte entra no lugar dos músculos nas tabelas de Força: o que ela consegue erguer diz se o alvo sai do lugar, e o que ela consegue arremessar diz a que distância ele vai. Bater em obstáculo duro machuca como uma queda daquela distância.",
+    "grid": {
+      "forma": "movimento",
+      "ancora": "alvo",
+      "gatilho": "passivo",
+      "alvo": "varios",
+      "persiste": false,
+      "materia": "impacto",
+      "condicao": "caido",
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "chao-traicoeiro",
+    "nome": "Chão Traiçoeiro",
+    "nivel": 1,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "gelo",
+        "sabor": "placa de gelo lisa"
+      },
+      {
+        "id": "agua",
+        "sabor": "lâmina de água escorregadia"
+      },
+      {
+        "id": "terra",
+        "sabor": "areia movediça que engole devagar"
+      },
+      {
+        "id": "vida",
+        "sabor": "o mato baixo enrola os pés"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "toque"
+      },
+      {
+        "nome": "Área",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "longa"
+      },
+      {
+        "nome": "Jogada",
+        "tipo": "fixo",
+        "valor": "Destreza + Atletismo ou Equilíbrio",
+        "nota": "de quem pisa o chão (anda, corre, cavalga ou luta)"
+      },
+      {
+        "nome": "Dificuldade",
+        "tipo": "fixo",
+        "valor": "(maior grau investido) × 5",
+        "nota": "para quem corre, cavalga ou luta; a metade disso, arredondada para cima, para quem só anda"
+      }
+    ],
+    "efeito": "O piso deixa de cooperar. Andar exige teste, e quem falha cai; correr, cavalgar ou lutar em cima pede a Dificuldade inteira, e quem só anda enfrenta a metade dela. Na areia movediça, quem cai afunda a cada 6 Ticks.",
+    "grid": {
+      "forma": "zona",
+      "ancora": "ponto",
+      "gatilho": "ao-entrar",
+      "alvo": "ponto",
+      "persiste": true,
+      "materia": null,
+      "condicao": "terreno-dificil",
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": true
+    }
+  },
+  {
+    "id": "arma-conjurada",
+    "nome": "Arma Conjurada",
+    "nivel": 2,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "gelo",
+        "sabor": "lança, machado ou lâmina de gelo maciço"
+      },
+      {
+        "id": "terra",
+        "sabor": "marreta ou lasca de pedra"
+      },
+      {
+        "id": "metamorfose",
+        "sabor": "a mão vira garra, a boca ganha presa. Na Metamorfose a arma é o seu corpo: não se entrega a outro e some quando a duração acaba"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "toque: a arma nasce na sua mão"
+      },
+      {
+        "nome": "Dano",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      }
+    ],
+    "efeito": "Cria uma arma de verdade, que se pega, se entrega a outro e continua existindo depois do golpe. Por ser matéria, a armadura absorve normalmente, no modo do formato, e ela abre efeitos secundários como sangramento.",
+    "notas": "Ataca-se com ela como com qualquer arma do mesmo formato: a jogada é a mundana, não a do Acerto Arcano.",
+    "grid": {
+      "forma": "alvo",
+      "ancora": "objeto",
+      "gatilho": "ao-tocar",
+      "alvo": "objeto",
+      "persiste": true,
+      "materia": "corte",
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": true,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "projetil-conjurado",
+    "nome": "Projétil Conjurado",
+    "nivel": 1,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "fogo",
+        "sabor": "flecha de chama, que segue queimando depois de cravar"
+      },
+      {
+        "id": "gelo",
+        "sabor": "virote de gelo maciço, de ponta polida"
+      },
+      {
+        "id": "raio",
+        "sabor": "adaga de faísca, que estala ao deixar a mão"
+      },
+      {
+        "id": "agua",
+        "sabor": "dardo de água comprimida, duro como osso"
+      },
+      {
+        "id": "terra",
+        "sabor": "lasca de pedra afiada, do peso de uma faca"
+      },
+      {
+        "id": "luz",
+        "sabor": "agulha de luz, que fere e deixa o alvo aceso"
+      },
+      {
+        "id": "sombra",
+        "sabor": "estilhaço de treva, que não fere e apaga o que toca"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "toque: o projétil nasce na sua mão"
+      },
+      {
+        "nome": "Dano",
+        "tipo": "padrao",
+        "nota": "em Sombra o projétil sai sem corpo e não fere: voa, marca e apaga, mas não abre ferimento; o de Luz fere como toda Luz, e com o Dano no grau 0 (nenhum dano) só marca e acende, sem ferir"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      }
+    ],
+    "efeito": "Cria na mão um único projétil do elemento, do tamanho de uma flecha, de um virote, de um dardo ou de uma adaga de arremesso. Ele se arremessa como qualquer arma de arremesso, ou se encaixa num arco ou numa besta já empunhada, e se gasta no golpe. O dano é do ELEMENTO, e não da ponta: a flecha de chama não é uma flecha em chamas, é chama com formato de flecha. De Fogo e de Raio, a armadura não o segura: só a Centelha de quem recebe e a resistência ao elemento o aparam. De Gelo, Água e Terra ele é matéria de verdade, e a armadura absorve normalmente, no modo do formato. Em Sombra o projétil não tem corpo: acerta e apaga, e não fere. O de Luz fere como toda Luz: contra quem tem fraqueza a luz o dano é inteiro e agravado, ignorando a Absorção, e contra o resto vale a metade; com o Dano no grau 0 (nenhum dano), só marca e acende, sem ferir.",
+    "notas": "Conjurar não pede ação própria: é o mesmo gesto de puxar uma arma da cintura ou tirar uma flecha da aljava, e sai junto com o ataque que usa o projétil. Também não paga Alcance, pela nota do livro sobre quem cria algo para ser arremessado: o objeto voa até acertar, e a jogada é a mundana (Força ou Destreza + Arremesso para arremessar, Percepção + Atirador para atirar), não a do Acerto Arcano. A Duração é só quanto tempo ele existe na mão antes de ser usado.",
+    "acaoLivre": true,
+    "grid": {
+      "forma": "alvo",
+      "ancora": "objeto",
+      "gatilho": "ao-tocar",
+      "alvo": "objeto",
+      "persiste": true,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": true,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "metal-incandescente",
+    "nome": "Metal Incandescente",
+    "nivel": 2,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "fogo",
+        "sabor": "o metal fica em brasa"
+      },
+      {
+        "id": "raio",
+        "sabor": "o metal esquenta e arde"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Dano",
+        "tipo": "fixo",
+        "valor": "1d6",
+        "nota": "Fixo: não sobe com o grau."
+      },
+      {
+        "nome": "Duração",
+        "tipo": "substitui",
+        "substitui": "duracao",
+        "unidade": "Ticks",
+        "escala": [
+          "1 tick",
+          "6 Ticks",
+          "12 Ticks",
+          "18 Ticks",
+          "24 Ticks",
+          "30 Ticks",
+          "36 Ticks"
+        ],
+        "nota": "6 Ticks por grau de Duração"
+      },
+      {
+        "nome": "Penalidade",
+        "tipo": "fixo",
+        "valor": "1d6",
+        "nota": "Para ações físicas, enquanto o alvo estiver tocando o metal incandescente (vestindo a armadura ou empunhando a arma)."
+      },
+      {
+        "nome": "Ataque",
+        "tipo": "fixo",
+        "valor": "Percepção + Acerto Arcano"
+      }
+    ],
+    "efeito": "Envia um ataque elemental que aquece o metal que acerta, mesmo se o ataque for bloqueado. Quem veste armadura, ou empunha uma arma, de metal se queima e sofre a Penalidade em ações físicas enquanto o efeito durar e estiver vestindo ou segurando o objeto.",
+    "grid": {
+      "forma": "alvo",
+      "ancora": "alvo",
+      "gatilho": "ao-tocar",
+      "alvo": "um",
+      "persiste": true,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": true,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": true,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "brasa-retardada",
+    "nome": "Brasa Retardada",
+    "nivel": 3,
+    "escalonavel": false,
+    "artes": [
+      {
+        "id": "fogo",
+        "sabor": "a chama fica dormindo até o gatilho"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Área",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Dano",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "longa"
+      }
+    ],
+    "efeito": "Deixa o efeito preso num ponto, disparando quando alguém passa, toca, ou ao fim de um tempo combinado. É a armadilha do feiticeiro.",
+    "grid": {
+      "forma": "zona",
+      "ancora": "ponto",
+      "gatilho": "armadilha",
+      "alvo": "ponto",
+      "persiste": true,
+      "materia": null,
+      "condicao": "em-chamas",
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": true,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "corrente",
+    "nome": "Corrente",
+    "nivel": 3,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "raio",
+        "sabor": "o relâmpago salta de corpo em corpo"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Dano",
+        "tipo": "padrao"
+      }
+    ],
+    "efeito": "O raio salta de um alvo ao seguinte, desde que estejam a poucos passos um do outro. Cada salto vale um alvo no parâmetro.",
+    "grid": {
+      "forma": "cadeia",
+      "ancora": "alvo",
+      "gatilho": "imediato",
+      "alvo": "varios",
+      "persiste": false,
+      "materia": null,
+      "condicao": "eletrizado",
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": true,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "passo-relampago",
+    "nome": "Passo do Relâmpago",
+    "nivel": 4,
+    "escalonavel": false,
+    "artes": [
+      {
+        "id": "raio",
+        "sabor": "você vira a descarga e reaparece no fim dela"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      }
+    ],
+    "efeito": "Você percorre a distância como raio e reaparece no destino, atravessando o que estiver no caminho. Precisa de linha de visão.",
+    "grid": {
+      "forma": "linha",
+      "ancora": "conjurador",
+      "gatilho": "passivo",
+      "alvo": "ponto",
+      "persiste": false,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "onda",
+    "nome": "Onda",
+    "nivel": 4,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "agua",
+        "sabor": "a massa de água se levanta e varre"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Área",
+        "tipo": "padrao"
+      }
+    ],
+    "efeito": "Arrasta para longe todos que estiverem na área. Exige um corpo de água por perto: rio, lago, chuva forte, cisterna.",
+    "grid": {
+      "forma": "movimento",
+      "ancora": "alvo",
+      "gatilho": "passivo",
+      "alvo": "varios",
+      "persiste": false,
+      "materia": "impacto",
+      "condicao": "caido",
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "bolha-de-ar",
+    "nome": "Bolha de Ar",
+    "nivel": 2,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "agua",
+        "sabor": "a água se afasta e abre um bolsão"
+      },
+      {
+        "id": "vento",
+        "sabor": "o ar limpo fica preso em volta do rosto"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "longa"
+      }
+    ],
+    "efeito": "Respirar embaixo de água, na fumaça ou no gás. Não protege do dano, só do sufocamento.",
+    "grid": {
+      "forma": "alvo",
+      "ancora": "alvo",
+      "gatilho": "passivo",
+      "alvo": "varios",
+      "persiste": true,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "escudo-de-vento",
+    "nome": "Escudo de Vento",
+    "nivel": 2,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "vento",
+        "sabor": "a rajada sustentada desvia o que voa"
+      },
+      {
+        "id": "raio",
+        "sabor": "uma coroa de faíscas que aterra o que vem voando"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "o próprio corpo e quem estiver colado"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      }
+    ],
+    "efeito": "Flechas, virotes e dardos erram enquanto o efeito durar. Não segura o que é pesado nem o corpo a corpo.",
+    "grid": {
+      "forma": "alvo",
+      "ancora": "alvo",
+      "gatilho": "passivo",
+      "alvo": "varios",
+      "persiste": true,
+      "materia": null,
+      "condicao": "protegido",
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "salto-do-vento",
+    "nome": "Salto do Vento",
+    "nivel": 2,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "vento",
+        "sabor": "o ar empurra para cima e segura na descida"
+      },
+      {
+        "id": "raio",
+        "sabor": "o lance curto percorrido como fagulha, antes de virar o Passo do Relâmpago"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      }
+    ],
+    "efeito": "Sobe alto, plana um trecho e cai sem se machucar. Com Duração alta vira voo curto e desajeitado.",
+    "grid": {
+      "forma": "alvo",
+      "ancora": "alvo",
+      "gatilho": "passivo",
+      "alvo": "varios",
+      "persiste": true,
+      "materia": null,
+      "condicao": "voando",
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "sussurro-distante",
+    "nome": "Sussurro Distante",
+    "nivel": 1,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "vento",
+        "sabor": "o ar carrega a voz até um ouvido só"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      }
+    ],
+    "efeito": "Sua voz chega ao ouvido de quem você escolher, sem que ninguém no caminho escute. Não traz resposta de volta.",
+    "grid": {
+      "forma": "nenhuma",
+      "ancora": "nenhuma",
+      "gatilho": "passivo",
+      "alvo": "nenhum",
+      "persiste": false,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "terremoto",
+    "nome": "Terremoto",
+    "nivel": 2,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "terra",
+        "sabor": "o chão sacode e derruba"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "toque: exige uma batida no chão"
+      },
+      {
+        "nome": "Área",
+        "tipo": "substitui",
+        "substitui": "area",
+        "unidade": "m",
+        "escala": [
+          "0,5x0,5",
+          "1x1",
+          "1,5x1,5",
+          "2x2",
+          "3x3",
+          "4x4",
+          "5x5"
+        ],
+        "nota": "começa um nível acima da Área; molda em círculo em volta de você ou em linha de pelo menos 1 m de largura"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      }
+    ],
+    "efeito": "O chão sacode e derruba quem estiver dentro da área. Não abre o solo: para isso existe a Fenda.",
+    "grid": {
+      "forma": "zona",
+      "ancora": "ponto",
+      "gatilho": "ao-entrar",
+      "alvo": "ponto",
+      "persiste": true,
+      "materia": "impacto",
+      "condicao": "caido",
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "pele-de-pedra",
+    "nome": "Pele de Pedra",
+    "nivel": 3,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "terra",
+        "sabor": "a pele endurece em casca de rocha"
+      },
+      {
+        "id": "gelo",
+        "sabor": "uma casca de gelo cobre o corpo"
+      },
+      {
+        "id": "metamorfose",
+        "sabor": "o couro engrossa e vira armadura"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "toque"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      }
+    ],
+    "efeito": "Soma Absorção contra dano físico enquanto durar. Pesa: quem está coberto perde um pouco de velocidade.",
+    "grid": {
+      "forma": "alvo",
+      "ancora": "alvo",
+      "gatilho": "passivo",
+      "alvo": "varios",
+      "persiste": true,
+      "materia": null,
+      "condicao": "protegido",
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "lascas",
+    "nome": "Lascas",
+    "nivel": 1,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "terra",
+        "sabor": "estilhaços de pedra em leque"
+      },
+      {
+        "id": "gelo",
+        "sabor": "agulhas de gelo"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Área",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Dano",
+        "tipo": "padrao"
+      }
+    ],
+    "efeito": "Espalha estilhaços num leque à sua frente. É matéria de verdade, então a armadura absorve normalmente, como perfuração.",
+    "grid": {
+      "forma": "cone",
+      "ancora": "ponto",
+      "gatilho": "imediato",
+      "alvo": "ponto",
+      "persiste": false,
+      "materia": "perfuracao",
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": true,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "clarao",
+    "nome": "Clarão Cegante",
+    "nivel": 2,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "luz",
+        "sabor": "a luz estoura de uma vez"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "centralizado no conjurador"
+      },
+      {
+        "nome": "Área",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      },
+      {
+        "nome": "Penalidade",
+        "tipo": "fixo",
+        "valor": "−(nível da Arte), em pontos"
+      }
+    ],
+    "efeito": "Emite uma luz forte numa área. Quem estiver dentro dela e olhando na direção sofre a Penalidade enquanto durar.",
+    "grid": {
+      "forma": "aura",
+      "ancora": "conjurador",
+      "gatilho": "ao-entrar",
+      "alvo": "ponto",
+      "persiste": true,
+      "materia": null,
+      "condicao": "ofuscado",
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "facho-revelador",
+    "nome": "Facho Revelador",
+    "nivel": 2,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "luz",
+        "sabor": "a luz não deixa nada se esconder"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "centralizado no conjurador"
+      },
+      {
+        "nome": "Área",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "fixo",
+        "valor": "instantânea"
+      }
+    ],
+    "efeito": "Desfaz camuflagem, disfarce e invisibilidade dentro da área, inclusive os que vêm de outra Arte. Contra Ofuscação e Sombra é disputa direta de nível: revela o que for de Arte de nível igual ou inferior ao seu.",
+    "grid": {
+      "forma": "aura",
+      "ancora": "conjurador",
+      "gatilho": "ao-entrar",
+      "alvo": "ponto",
+      "persiste": true,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "aurora",
+    "nome": "Aurora",
+    "nivel": 4,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "luz",
+        "sabor": "um amanhecer inteiro de uma vez"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Área",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Dano",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      }
+    ],
+    "efeito": "Luz que não deixa sombra na área: cega, revela e queima sem parar, enquanto durar. Fere a todos; quem teme a luz leva o dano inteiro, e os outros, a metade.",
+    "grid": {
+      "forma": "zona",
+      "ancora": "ponto",
+      "gatilho": "por-seis-ticks",
+      "alvo": "ponto",
+      "persiste": true,
+      "materia": null,
+      "condicao": "cego",
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": true,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "bracos-do-abismo",
+    "nome": "Braços do Abismo",
+    "nivel": 2,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "sombra",
+        "sabor": "tentáculos de treva sobem do chão"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Dano",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      },
+      {
+        "nome": "Dificuldade",
+        "tipo": "fixo",
+        "valor": "(maior grau investido) × 5"
+      }
+    ],
+    "efeito": "A sombra ganha corpo e prende. O dano é de Impacto e ignora armadura, porque a treva entra pelas frestas. Quem é pego fica Preso: não se desloca, mas age, e se solta com Força + Atletismo contra a Dificuldade.",
+    "grid": {
+      "forma": "alvo",
+      "ancora": "alvo",
+      "gatilho": "imediato",
+      "alvo": "varios",
+      "persiste": true,
+      "materia": null,
+      "condicao": "agarrado",
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": true,
+      "cura": false,
+      "teste": true
+    }
+  },
+  {
+    "id": "manto-de-treva",
+    "nome": "Manto de Treva",
+    "nivel": 1,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "sombra",
+        "sabor": "a escuridão se cola em você"
+      },
+      {
+        "id": "ofuscacao",
+        "sabor": "a atenção escorrega de quem está coberto"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "toque"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "longa"
+      }
+    ],
+    "efeito": "Esconde quem o veste e vai junto com ele. Na Sombra é treva: não funciona sob luz forte, e um Facho Revelador a desfaz.",
+    "grid": {
+      "forma": "alvo",
+      "ancora": "alvo",
+      "gatilho": "passivo",
+      "alvo": "si",
+      "persiste": true,
+      "materia": null,
+      "condicao": "escondido",
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "mordaca",
+    "nome": "Mordaça de Treva",
+    "nivel": 2,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "sombra",
+        "sabor": "a treva engole o som"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Área",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      }
+    ],
+    "efeito": "Nenhum som sai da área: nem grito, nem porta arrombada, nem conjuração falada. Quem está dentro ouve normalmente.",
+    "grid": {
+      "forma": "zona",
+      "ancora": "ponto",
+      "gatilho": "ao-entrar",
+      "alvo": "ponto",
+      "persiste": true,
+      "materia": null,
+      "condicao": "escuridao",
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "passo-entre-sombras",
+    "nome": "Passo entre Sombras",
+    "nivel": 4,
+    "escalonavel": false,
+    "artes": [
+      {
+        "id": "sombra",
+        "sabor": "entra numa sombra e sai de outra"
+      },
+      {
+        "id": "conjuracao",
+        "sabor": "o espaço se dobra e você já está do outro lado"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      }
+    ],
+    "efeito": "Some de um ponto e aparece em outro dentro do alcance, e chega sem saber o que o espera. Na Sombra, entra numa sombra e sai por outra, e precisa haver sombra dos dois lados.",
+    "grid": {
+      "forma": "movimento",
+      "ancora": "alvo",
+      "gatilho": "passivo",
+      "alvo": "varios",
+      "persiste": false,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "fenda",
+    "nome": "Fenda",
+    "nivel": 4,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "terra",
+        "sabor": "o solo racha e engole os inimigos"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "toque (requer uma batida no chão)"
+      },
+      {
+        "nome": "Área",
+        "tipo": "padrao",
+        "nota": "ou segue em linha, de pelo menos 1 metro de largura, até o alvo"
+      },
+      {
+        "nome": "Profundidade",
+        "tipo": "substitui",
+        "substitui": "profundidade",
+        "unidade": "m de profundidade",
+        "escala": [
+          "0",
+          "1 m",
+          "2 m",
+          "3 m",
+          "4 m",
+          "5 m",
+          "6 m"
+        ],
+        "nota": "1 metro por grau de Profundidade"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "fixo",
+        "valor": "permanente"
+      },
+      {
+        "nome": "Jogada",
+        "tipo": "fixo",
+        "valor": "Destreza ou Raciocínio + Atletismo ou Equilíbrio",
+        "nota": "quem está na área rola para não cair"
+      },
+      {
+        "nome": "Dificuldade",
+        "tipo": "fixo",
+        "valor": "(maior grau investido) × 5"
+      }
+    ],
+    "efeito": "O chão se abre. Quem está na área cai dentro da fenda e precisa escalar para sair, e o que estava construído em cima racha junto. Só funciona em terreno feito predominantemente de terra ou de pedra.",
+    "notas": "A cada 5 pontos abaixo da Dificuldade, o alvo cai 1 metro, até o limite da Profundidade.",
+    "grid": {
+      "forma": "zona",
+      "ancora": "ponto",
+      "gatilho": "ao-entrar",
+      "alvo": "ponto",
+      "persiste": true,
+      "materia": null,
+      "condicao": "caido",
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": true
+    }
+  },
+  {
+    "id": "paralisia",
+    "nome": "Paralisia",
+    "nivel": 3,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "raio",
+        "sabor": "o choque enrijece os músculos"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "substitui",
+        "substitui": "duracao",
+        "unidade": "Ticks",
+        "escala": [
+          "0 Ticks",
+          "0 Ticks",
+          "6 Ticks",
+          "6 Ticks",
+          "12 Ticks",
+          "12 Ticks",
+          "18 Ticks"
+        ],
+        "nota": "6 Ticks a cada 2 graus de Duração; nos graus 0 e 1, nada: a penalidade só dura a partir do grau 2"
+      },
+      {
+        "nome": "Ataque",
+        "tipo": "fixo",
+        "valor": "Percepção + Acerto Arcano"
+      }
+    ],
+    "efeito": "Envia um ataque de choque que atravessa o alvo e tranca os músculos. O ataque é imbloqueável, mas pode ser esquivado. Enquanto o efeito durar, o alvo sofre −2 × (nível da Arte), em pontos, de penalidade. Não causa dano, e não é o Paralisado das Condições: o alvo se move e age, com a penalidade.",
+    "grid": {
+      "forma": "alvo",
+      "ancora": "alvo",
+      "gatilho": "passivo",
+      "alvo": "um",
+      "persiste": true,
+      "materia": null,
+      "condicao": "imobilizado",
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "mao-firme",
+    "nome": "Mão Firme",
+    "nivel": 1,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "cura",
+        "sabor": "a mão fecha o corte e segura a vida"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "toque"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "substitui",
+        "substitui": "alvos",
+        "unidade": "alvos",
+        "escala": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "nota": "1 alvo por grau de Alvos (a régua de Alvos da Cura, de 1 a 6)"
+      },
+      {
+        "nome": "Cura",
+        "tipo": "fixo",
+        "valor": "1 PV a cada 6 Ticks",
+        "pontos": 1
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      }
+    ],
+    "efeito": "Em vez de fechar tudo de uma vez, a cura fica trabalhando: o alvo recupera 1 PV a cada 6 Ticks enquanto durar, e não morre de sangramento enquanto a sua mão estiver nele. Em quem está em 0 PV ou menos, cada PV recuperado soma ao PV negativo, e o alvo acorda ao chegar a 1 PV; enquanto a mão estiver nele, o teste de Tratar fica suspenso. Não é uma cura muito eficiente, mas impede que o alvo piore.",
+    "notas": "Serve no meio da luta, quando não há tempo de parar para curar direito.",
+    "grid": {
+      "forma": "alvo",
+      "ancora": "alvo",
+      "gatilho": "por-seis-ticks",
+      "alvo": "varios",
+      "persiste": true,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": true,
+      "teste": false
+    }
+  },
+  {
+    "id": "transferir-dor",
+    "nome": "Transferir Dor",
+    "nivel": 2,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "cura",
+        "sabor": "o ferimento troca de dono"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "toque"
+      },
+      {
+        "nome": "Cura",
+        "tipo": "padrao"
+      }
+    ],
+    "efeito": "O ferimento sai do alvo e entra em você, do jeito que estava. Passa de dono o tanto de dano que a régua da Cura dá ao grau comprado. Não é cura: é mudança de dono. Você não pode transferir para um terceiro, e o que chegou em você cura pelas vias normais.",
+    "grid": {
+      "forma": "alvo",
+      "ancora": "alvo",
+      "gatilho": "passivo",
+      "alvo": "um",
+      "persiste": false,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": true,
+      "teste": false
+    }
+  },
+  {
+    "id": "campo-de-alivio",
+    "nome": "Campo de Alívio",
+    "nivel": 3,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "cura",
+        "sabor": "a dor cede e ninguém piora"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "centralizado no conjurador"
+      },
+      {
+        "nome": "Área",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "longa",
+        "nota": "exige concentração o tempo todo"
+      }
+    ],
+    "efeito": "Dentro da área a dor cessa e nada piora: sangramentos param, venenos e doenças ficam suspensos, e o PV de quem está em 0 ou menos não desce nem cruza o limite de morte enquanto durar; nesse tempo o teste de Tratar fica suspenso. Nada disso cura; só congela o quadro até alguém tratar de verdade.",
+    "grid": {
+      "forma": "aura",
+      "ancora": "conjurador",
+      "gatilho": "ao-entrar",
+      "alvo": "ponto",
+      "persiste": true,
+      "materia": null,
+      "condicao": "protegido",
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "cura-guardada",
+    "nome": "Cura Guardada",
+    "nivel": 4,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "cura",
+        "sabor": "a cura fica esperando dentro do corpo"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "toque"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "fixo",
+        "valor": "1"
+      },
+      {
+        "nome": "Cura",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "longa"
+      }
+    ],
+    "efeito": "Deixa presa no alvo, dormindo, a cura que o parâmetro Cura comprou (a régua da Cura, 2 de Mana por grau), sem gastar a sua ação depois e sem exigir que você esteja perto. Ela tem dois disparos: o alvo pode soltá-la quando quiser, e ela sai sozinha se ele chegar a 0 PV ou menos, e, se o levar a 1 PV ou mais, ele acorda na hora. Um alvo carrega uma cura guardada por vez.",
+    "grid": {
+      "forma": "alvo",
+      "ancora": "alvo",
+      "gatilho": "armadilha",
+      "alvo": "varios",
+      "persiste": true,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": true,
+      "teste": false
+    }
+  },
+  {
+    "id": "sarcal",
+    "nome": "Sarçal",
+    "nivel": 2,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "vida",
+        "sabor": "o espinheiro sobe onde não havia nada"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Área",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Dano",
+        "tipo": "padrao",
+        "nota": "só em quem atravessa, uma vez a cada 6 Ticks"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "longa"
+      }
+    ],
+    "efeito": "Levanta uma moita fechada de espinhos. Quem se agacha atrás dela ganha cobertura; quem atravessa anda na metade da velocidade e se fere no caminho. Abrir uma passagem limpa é possível, mas custa uma ação e uma lâmina.",
+    "grid": {
+      "forma": "zona",
+      "ancora": "ponto",
+      "gatilho": "ao-entrar",
+      "alvo": "ponto",
+      "persiste": true,
+      "materia": "perfuracao",
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": true,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "semente-adormecida",
+    "nome": "Semente Adormecida",
+    "nivel": 3,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "vida",
+        "sabor": "a semente espera no chão o passo errado"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Área",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Dano",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "longa",
+        "nota": "o tempo que a semente espera, não o do efeito"
+      },
+      {
+        "nome": "Jogada",
+        "tipo": "fixo",
+        "valor": "Percepção + Prontidão",
+        "nota": "para notar a armadilha antes de pisar nela"
+      },
+      {
+        "nome": "Dificuldade",
+        "tipo": "fixo",
+        "valor": "(maior grau investido) × 5"
+      }
+    ],
+    "efeito": "Planta o efeito num ponto e ele dorme até alguém pisar, tocar, ou até a hora combinada. Cresce de uma vez, prende quem estiver em cima e fere: quem é pego fica Preso e se solta com Força + Atletismo contra a Dificuldade. É a armadilha do jardineiro: enquanto espera, é só uma semente no chão.",
+    "grid": {
+      "forma": "zona",
+      "ancora": "ponto",
+      "gatilho": "armadilha",
+      "alvo": "ponto",
+      "persiste": true,
+      "materia": "perfuracao",
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": true,
+      "cura": false,
+      "teste": true
+    }
+  },
+  {
+    "id": "enxerto",
+    "nome": "Enxerto",
+    "nivel": 4,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "vida",
+        "sabor": "a carne aceita o que não era dela"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "toque"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "fixo",
+        "valor": "1"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "longa"
+      },
+      {
+        "nome": "Jogada",
+        "tipo": "fixo",
+        "valor": "Vigor + Resistência",
+        "nota": "só quando o alvo não quer o enxerto"
+      },
+      {
+        "nome": "Dificuldade",
+        "tipo": "fixo",
+        "valor": "(maior grau investido) × 5"
+      }
+    ],
+    "efeito": "Empresta ao corpo do alvo um traço vivo que ele não tinha: guelras, olhos de coruja, couro mais grosso, um dedo a mais. Um traço por conjuração, e o corpo o rejeita quando a duração acaba. Em quem não quer, é ataque, e o corpo luta contra.",
+    "notas": "O traço vale +1 por nível no que ele faz: Absorção do couro, distância que o olho enxerga, tempo que a guelra aguenta.",
+    "grid": {
+      "forma": "alvo",
+      "ancora": "alvo",
+      "gatilho": "passivo",
+      "alvo": "varios",
+      "persiste": true,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": true
+    }
+  },
+  {
+    "id": "podridao",
+    "nome": "Podridão",
+    "nivel": 1,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "morte",
+        "sabor": "o que já foi vivo desiste de durar"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Dano",
+        "tipo": "padrao",
+        "nota": "só contra objeto de matéria morta"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      }
+    ],
+    "efeito": "Apodrece o que um dia foi vivo e agora não é: comida, corda, couro, madeira, pano, a haste de uma lança, a armadura de couro no corpo de alguém. Não toca metal nem pedra, e não fere criatura viva.",
+    "grid": {
+      "forma": "alvo",
+      "ancora": "objeto",
+      "gatilho": "imediato",
+      "alvo": "objeto",
+      "persiste": true,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": true,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": true,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "marca-do-fim",
+    "nome": "Marca do Fim",
+    "nivel": 3,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "morte",
+        "sabor": "a morte aprende o nome do alvo"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      },
+      {
+        "nome": "Jogada",
+        "tipo": "fixo",
+        "valor": "Vigor + Resistência",
+        "nota": "o alvo rola para aguentar"
+      },
+      {
+        "nome": "Dificuldade",
+        "tipo": "fixo",
+        "valor": "(maior grau investido) × 5"
+      }
+    ],
+    "efeito": "Marca o alvo. Enquanto durar, o que o fere não fecha sozinho: todo dano que ele sofrer vira agravado e precisa de tratamento ou da Arte de Cura. Não causa dano por si.",
+    "grid": {
+      "forma": "alvo",
+      "ancora": "alvo",
+      "gatilho": "passivo",
+      "alvo": "varios",
+      "persiste": true,
+      "materia": null,
+      "condicao": "marcado",
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": true
+    }
+  },
+  {
+    "id": "mortalha",
+    "nome": "Mortalha",
+    "nivel": 4,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "morte",
+        "sabor": "o cheiro do fim se espalha"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Área",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      },
+      {
+        "nome": "Conjurar",
+        "tipo": "fixo",
+        "valor": "Influência + Intimidação"
+      },
+      {
+        "nome": "Dificuldade",
+        "tipo": "fixo",
+        "valor": "Defesa Mental do alvo"
+      }
+    ],
+    "efeito": "Uma aura de terror cobre a área. Quem não aguenta foge, e quem aguenta luta pior enquanto estiver dentro. Bicho e gente comum saem correndo sem pensar.",
+    "grid": {
+      "forma": "zona",
+      "ancora": "ponto",
+      "gatilho": "ao-entrar",
+      "alvo": "ponto",
+      "persiste": true,
+      "materia": null,
+      "condicao": "amedrontado",
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": true
+    }
+  },
+  {
+    "id": "servo-de-ossos",
+    "nome": "Servo de Ossos",
+    "nivel": 4,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "morte",
+        "sabor": "o cadáver lembra como se levanta"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "toque"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "substitui",
+        "substitui": "alvos",
+        "unidade": "cadáveres",
+        "escala": [
+          "nenhum",
+          "1 cadáver",
+          "2 cadáveres",
+          "3 cadáveres",
+          "4 cadáveres",
+          "5 cadáveres",
+          "6 cadáveres"
+        ],
+        "nota": "1 cadáver por grau de Alvos"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "longa"
+      },
+      {
+        "nome": "Jogada",
+        "tipo": "fixo",
+        "valor": "Inteligência + Ocultismo",
+        "nota": "para o servo obedecer ordem complicada"
+      }
+    ],
+    "efeito": "Ergue um cadáver como servo. Ele obedece ordens simples e diretas, não pensa e não improvisa, e cai de novo quando a duração acaba. Fazer isso em praça pública é assunto da Lei.",
+    "notas": "O servo age com metade dos Atributos físicos que o corpo tinha em vida e nenhum dos mentais.",
+    "grid": {
+      "forma": "token",
+      "ancora": "ponto",
+      "gatilho": "passivo",
+      "alvo": "ponto",
+      "persiste": true,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": true
+    }
+  },
+  {
+    "id": "boa-impressao",
+    "nome": "Boa Impressão",
+    "nivel": 1,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "fascinacao",
+        "sabor": "você chega bem antes de falar"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      },
+      {
+        "nome": "Bônus",
+        "tipo": "substitui",
+        "substitui": "bonus",
+        "unidade": "d6 somados nas rolagens sociais com o alvo",
+        "escala": [
+          "0",
+          "+1d6",
+          "+2d6",
+          "+3d6",
+          "+4d6",
+          "+5d6",
+          "+6d6"
+        ],
+        "nota": "+1d6 por grau de Bônus nas rolagens sociais com o alvo"
+      },
+      {
+        "nome": "Conjurar",
+        "tipo": "fixo",
+        "valor": "Influência + Sociabilidade"
+      },
+      {
+        "nome": "Dificuldade",
+        "tipo": "fixo",
+        "valor": "Defesa Social do alvo"
+      }
+    ],
+    "efeito": "O alvo simplesmente gosta de você um pouco mais do que devia: some a desconfiança de estranho e a conversa começa em outro lugar. Não obriga a nada, e ordem ou pedido fora do razoável quebra o encanto.",
+    "grid": {
+      "forma": "nenhuma",
+      "ancora": "nenhuma",
+      "gatilho": "passivo",
+      "alvo": "nenhum",
+      "persiste": false,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": true
+    }
+  },
+  {
+    "id": "sugestao-plantada",
+    "nome": "Sugestão Plantada",
+    "nivel": 2,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "fascinacao",
+        "sabor": "a ideia fica esperando a hora"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "longa"
+      },
+      {
+        "nome": "Conjurar",
+        "tipo": "fixo",
+        "valor": "Influência + Persuasão"
+      },
+      {
+        "nome": "Dificuldade",
+        "tipo": "fixo",
+        "valor": "Defesa Mental do alvo"
+      }
+    ],
+    "efeito": "Deixa uma ordem curta dormindo na cabeça do alvo, com um gatilho combinado: quando o sino tocar, abra o portão. Ele cumpre achando que foi ideia dele, e só percebe se aquilo for absurdo demais.",
+    "grid": {
+      "forma": "nenhuma",
+      "ancora": "nenhuma",
+      "gatilho": "passivo",
+      "alvo": "nenhum",
+      "persiste": false,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": "dominado",
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": true
+    }
+  },
+  {
+    "id": "pavor",
+    "nome": "Pavor",
+    "nivel": 3,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "fascinacao",
+        "sabor": "o medo vem sem ter de onde"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Área",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      },
+      {
+        "nome": "Conjurar",
+        "tipo": "fixo",
+        "valor": "Influência + Intimidação"
+      },
+      {
+        "nome": "Dificuldade",
+        "tipo": "fixo",
+        "valor": "Defesa Mental do alvo"
+      },
+      {
+        "nome": "Penalidade",
+        "tipo": "fixo",
+        "valor": "−(nível da Arte), em pontos, para quem aguentar e ficar"
+      }
+    ],
+    "efeito": "Planta terror puro. Quem falha foge do jeito que der, e quem resiste ainda luta abalado. O medo é do lugar, não de você: quem correu não sabe dizer de que fugiu.",
+    "grid": {
+      "forma": "zona",
+      "ancora": "ponto",
+      "gatilho": "ao-entrar",
+      "alvo": "ponto",
+      "persiste": true,
+      "materia": null,
+      "condicao": "amedrontado",
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": true
+    }
+  },
+  {
+    "id": "esquecer",
+    "nome": "Esquecer",
+    "nivel": 4,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "fascinacao",
+        "sabor": "os últimos minutos escorrem"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Conjurar",
+        "tipo": "fixo",
+        "valor": "Influência + Lábia"
+      },
+      {
+        "nome": "Dificuldade",
+        "tipo": "fixo",
+        "valor": "Defesa Mental do alvo"
+      }
+    ],
+    "efeito": "Apaga do alvo o que acabou de acontecer, alguns minutos por nível investido. Fica um branco desconfortável, e uma prova física ou um segundo testemunho fura o buraco na hora.",
+    "grid": {
+      "forma": "nenhuma",
+      "ancora": "nenhuma",
+      "gatilho": "passivo",
+      "alvo": "nenhum",
+      "persiste": false,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": "confuso",
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": true
+    }
+  },
+  {
+    "id": "ver-o-fio",
+    "nome": "Ver o Fio",
+    "nivel": 1,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "adivinhacao",
+        "sabor": "o que é magia brilha para você"
+      },
+      {
+        "id": "protecao",
+        "sabor": "você lê a trama antes de tocá-la"
+      },
+      {
+        "id": "espirito",
+        "sabor": "o que não é deste lado aparece"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Área",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      }
+    ],
+    "efeito": "Enxerga o que é arcano: feitiço ativo, objeto encantado, rastro de conjuração recente, o fio de uma barreira. Diz que existe e o quanto é forte; dizer exatamente o que faz exige mais tempo e conversa com o Mestre.",
+    "grid": {
+      "forma": "zona",
+      "ancora": "ponto",
+      "gatilho": "passivo",
+      "alvo": "ponto",
+      "persiste": true,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "aviso",
+    "nome": "Aviso",
+    "nivel": 2,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "adivinhacao",
+        "sabor": "o perigo chega antes de aparecer"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "em você e em quem estiver ao seu lado"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "longa"
+      }
+    ],
+    "efeito": "Enquanto durar, você e quem estiver marcado não são pegos de surpresa: a emboscada avisa, a lâmina nas costas dá o arrepio a tempo. Não diz de onde vem, só que vem.",
+    "grid": {
+      "forma": "nenhuma",
+      "ancora": "nenhuma",
+      "gatilho": "passivo",
+      "alvo": "nenhum",
+      "persiste": false,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": "abencoado",
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "eco-do-lugar",
+    "nome": "Eco do Lugar",
+    "nivel": 3,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "adivinhacao",
+        "sabor": "o lugar repete o que viu"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "toque"
+      },
+      {
+        "nome": "Área",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      }
+    ],
+    "efeito": "Vê o que se passou ali, em cenas soltas e sem som: quanto mais fundo o nível, mais para trás chega, de horas a anos. Você assiste, não participa, e não escolhe o que aparece.",
+    "grid": {
+      "forma": "nenhuma",
+      "ancora": "nenhuma",
+      "gatilho": "passivo",
+      "alvo": "nenhum",
+      "persiste": false,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "rastro",
+    "nome": "Rastro",
+    "nivel": 3,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "adivinhacao",
+        "sabor": "quem passou deixou a linha"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "toque"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "longa"
+      }
+    ],
+    "efeito": "Pega o rastro de quem passou por ali ou de quem é dono do objeto tocado, e o mostra como uma linha que só você vê. A linha se apaga com o tempo, e água corrente e barreiras a cortam.",
+    "grid": {
+      "forma": "nenhuma",
+      "ancora": "nenhuma",
+      "gatilho": "passivo",
+      "alvo": "nenhum",
+      "persiste": false,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "momento-certo",
+    "nome": "Momento Certo",
+    "nivel": 1,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "fortuna",
+        "sabor": "o dado cai do outro jeito"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      }
+    ],
+    "efeito": "Guarda o direito de rolar de novo para usar depois, seu ou de um aliado à vista, mesmo fora do seu lance. Vale o segundo resultado, bom ou ruim.",
+    "grid": {
+      "forma": "nenhuma",
+      "ancora": "nenhuma",
+      "gatilho": "passivo",
+      "alvo": "nenhum",
+      "persiste": false,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": "abencoado",
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "porta-aberta",
+    "nome": "Porta Aberta",
+    "nivel": 2,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "fortuna",
+        "sabor": "o mundo estava mesmo do seu lado"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      }
+    ],
+    "efeito": "Uma coincidência pequena e plausível cai a seu favor: a porta não estava trancada, sobrou uma corda, o guarda tinha acabado de sair. Nada impossível, nada que já tenha sido dito em mesa, e o Mestre escolhe a forma exata.",
+    "grid": {
+      "forma": "nenhuma",
+      "ancora": "nenhuma",
+      "gatilho": "passivo",
+      "alvo": "nenhum",
+      "persiste": false,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "azar-marcado",
+    "nome": "Azar Marcado",
+    "nivel": 2,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "fortuna",
+        "sabor": "o azar cola no alvo"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      },
+      {
+        "nome": "Conjurar",
+        "tipo": "fixo",
+        "valor": "Influência + Manha"
+      },
+      {
+        "nome": "Dificuldade",
+        "tipo": "fixo",
+        "valor": "Defesa Mental do alvo"
+      }
+    ],
+    "efeito": "Enquanto durar, o alvo tropeça na hora errada: a corda arrebenta, a arma prende na bainha, o pé escorrega. Não é dano nem penalidade fixa; é o Mestre podendo cobrar o azar uma vez a cada 6 Ticks.",
+    "grid": {
+      "forma": "alvo",
+      "ancora": "alvo",
+      "gatilho": "passivo",
+      "alvo": "varios",
+      "persiste": true,
+      "materia": null,
+      "condicao": "amaldicoado",
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": true
+    }
+  },
+  {
+    "id": "ricochete-do-destino",
+    "nome": "Ricochete do Destino",
+    "nivel": 3,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "fortuna",
+        "sabor": "o golpe encontra outro dono"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      }
+    ],
+    "efeito": "O ataque que ia acertar erra por um triz, e o que erraria acha alguém: o golpe passa para outro alvo válido a poucos passos. Uma vez por conjuração, e o novo alvo não escolhe você.",
+    "grid": {
+      "forma": "nenhuma",
+      "ancora": "nenhuma",
+      "gatilho": "passivo",
+      "alvo": "nenhum",
+      "persiste": false,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "mao-invisivel",
+    "nome": "Mão Invisível",
+    "nivel": 1,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "conjuracao",
+        "sabor": "uma mão que não está lá"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Força",
+        "tipo": "fixo",
+        "valor": "conta como Força 1 por nível da Arte, só para empurrar, puxar e segurar"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      }
+    ],
+    "efeito": "Uma mão de força fina, à distância: abre trinco, puxa alavanca, vira página, tira a bolsa do cinto alheio. Não tem força para brigar nem para carregar gente, e trabalho de dedo exige a sua atenção inteira.",
+    "grid": {
+      "forma": "nenhuma",
+      "ancora": "nenhuma",
+      "gatilho": "passivo",
+      "alvo": "nenhum",
+      "persiste": false,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "chamar-a-mao",
+    "nome": "Chamar à Mão",
+    "nivel": 2,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "conjuracao",
+        "sabor": "o que é seu volta"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      }
+    ],
+    "efeito": "Um objeto à vista salta para a sua mão, ou volta para ela depois de arremessado. Se estiver preso ou na mão de alguém, é disputa: quem o segura rola Força + Atletismo contra (maior grau investido) × 5, e o objeto só fica se a superar.",
+    "grid": {
+      "forma": "movimento",
+      "ancora": "objeto",
+      "gatilho": "passivo",
+      "alvo": "objeto",
+      "persiste": false,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "bolso-torto",
+    "nome": "Bolso Torto",
+    "nivel": 3,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "conjuracao",
+        "sabor": "o espaço faz um bolso"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "toque"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "longa"
+      }
+    ],
+    "efeito": "Guarda um objeto numa dobra do espaço e o chama de volta quando quiser. Cabe o que caberia nos seus braços, nada vivo, e o bolso se desfaz no fim da duração devolvendo o que tem para o chão.",
+    "grid": {
+      "forma": "nenhuma",
+      "ancora": "nenhuma",
+      "gatilho": "passivo",
+      "alvo": "nenhum",
+      "persiste": false,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "fresta",
+    "nome": "Fresta",
+    "nivel": 4,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "conjuracao",
+        "sabor": "dois lugares encostam por um instante"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      }
+    ],
+    "efeito": "Abre uma passagem curta entre dois pontos à vista. Dá para atravessar, empurrar alguém através ou enfiar o braço e pegar o que está do outro lado. Fecha no fim da duração, com o que estiver no meio do caminho ficando do lado em que a maior parte dele está.",
+    "grid": {
+      "forma": "movimento",
+      "ancora": "alvo",
+      "gatilho": "passivo",
+      "alvo": "varios",
+      "persiste": true,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "anteparo",
+    "nome": "Anteparo",
+    "nivel": 2,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "forcas",
+        "sabor": "a força se fecha em placa"
+      },
+      {
+        "id": "protecao",
+        "sabor": "a guarda se levanta sozinha"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Absorção",
+        "tipo": "substitui",
+        "substitui": "absorcao",
+        "unidade": "pontos de Absorção",
+        "escala": [
+          "0",
+          "+1",
+          "+2",
+          "+3",
+          "+4",
+          "+5",
+          "+6"
+        ],
+        "nota": "+1 por grau de Absorção, contra tudo o que vem de fora"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      }
+    ],
+    "efeito": "Um escudo invisível que soma Absorção contra tudo o que vem de fora, físico ou elemental, enquanto durar. Não atrapalha o movimento e some ao acabar.",
+    "grid": {
+      "forma": "alvo",
+      "ancora": "alvo",
+      "gatilho": "passivo",
+      "alvo": "varios",
+      "persiste": true,
+      "materia": null,
+      "condicao": "protegido",
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "peso",
+    "nome": "Peso",
+    "nivel": 3,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "forcas",
+        "sabor": "o corpo pesa o dobro do que devia"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      },
+      {
+        "nome": "Jogada",
+        "tipo": "fixo",
+        "valor": "Força + Atletismo",
+        "nota": "o alvo rola para continuar de pé"
+      },
+      {
+        "nome": "Dificuldade",
+        "tipo": "fixo",
+        "valor": "(maior grau investido) × 5"
+      }
+    ],
+    "efeito": "Dobra o que puxa o alvo para baixo: quem falha vai ao chão e quem aguenta anda devagar, não salta e não corre enquanto durar. Contra objeto solto, ele desaba.",
+    "grid": {
+      "forma": "alvo",
+      "ancora": "alvo",
+      "gatilho": "passivo",
+      "alvo": "varios",
+      "persiste": true,
+      "materia": null,
+      "condicao": "retardado",
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": true
+    }
+  },
+  {
+    "id": "arremesso",
+    "nome": "Arremesso",
+    "nivel": 3,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "forcas",
+        "sabor": "o que estava no chão vira projétil"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Dano",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Ataque",
+        "tipo": "fixo",
+        "valor": "Percepção + Acerto Arcano"
+      },
+      {
+        "nome": "Dificuldade",
+        "tipo": "fixo",
+        "valor": "(maior grau investido) × 5"
+      }
+    ],
+    "efeito": "Pega algo pesado que esteja por perto (uma pedra, um barril, uma mesa, um corpo) e o joga. O dano é físico e a armadura conta, porque o que acerta é matéria de verdade.",
+    "grid": {
+      "forma": "movimento",
+      "ancora": "alvo",
+      "gatilho": "imediato",
+      "alvo": "varios",
+      "persiste": false,
+      "materia": "impacto",
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": true,
+      "cura": false,
+      "teste": true
+    }
+  },
+  {
+    "id": "esmagar",
+    "nome": "Esmagar",
+    "nivel": 5,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "forcas",
+        "sabor": "a força fecha por todos os lados"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Dano",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      },
+      {
+        "nome": "Jogada",
+        "tipo": "fixo",
+        "valor": "Vigor + Resistência",
+        "nota": "o alvo rola para aguentar"
+      },
+      {
+        "nome": "Dificuldade",
+        "tipo": "fixo",
+        "valor": "(maior grau investido) × 5"
+      }
+    ],
+    "efeito": "Comprime o alvo de todos os lados de uma vez. O dano volta a cada 6 Ticks enquanto durar, e quem está sendo esmagado não fala, não conjura e mal se mexe. Contra objeto, amassa e arrebenta.",
+    "notas": "Contra objeto não há jogada: amassa, entorta e arrebenta o que couber na mão fechada da magia.",
+    "grid": {
+      "forma": "alvo",
+      "ancora": "alvo",
+      "gatilho": "por-seis-ticks",
+      "alvo": "varios",
+      "persiste": true,
+      "materia": "impacto",
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": true,
+      "cura": false,
+      "teste": true
+    }
+  },
+  {
+    "id": "remendo",
+    "nome": "Remendo",
+    "nivel": 1,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "materia",
+        "sabor": "o objeto lembra a forma que tinha"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "toque"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      }
+    ],
+    "efeito": "Conserta um objeto quebrado, ou estraga um inteiro. Vale para o que é simples: lâmina lascada, roda rachada, pote em cacos, corrente. Não conserta o que era mágico e não recupera o que virou pó.",
+    "grid": {
+      "forma": "nenhuma",
+      "ancora": "nenhuma",
+      "gatilho": "passivo",
+      "alvo": "nenhum",
+      "persiste": false,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": true,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "chave-mestra",
+    "nome": "Chave Mestra",
+    "nivel": 2,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "materia",
+        "sabor": "o metal amolece o quanto for preciso"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "toque"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      }
+    ],
+    "efeito": "Amolece um trecho pequeno de metal, madeira ou pedra o bastante para ceder: fechadura, grade, algema, dobradiça. O material endurece de novo depois, com a marca do que você fez.",
+    "grid": {
+      "forma": "nenhuma",
+      "ancora": "nenhuma",
+      "gatilho": "passivo",
+      "alvo": "nenhum",
+      "persiste": false,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": true,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "enferrujar",
+    "nome": "Enferrujar",
+    "nivel": 2,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "materia",
+        "sabor": "o ferro envelhece anos num instante"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Penalidade",
+        "tipo": "fixo",
+        "valor": "−1 de Absorção ou de dano por nível da Arte"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      }
+    ],
+    "efeito": "Come o metal do equipamento alheio: a armadura perde Absorção e a arma perde dano enquanto durar. Em objeto sem dono a peça simplesmente se desfaz.",
+    "grid": {
+      "forma": "alvo",
+      "ancora": "objeto",
+      "gatilho": "passivo",
+      "alvo": "objeto",
+      "persiste": true,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": true,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "criar-utensilio",
+    "nome": "Criar Utensílio",
+    "nivel": 4,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "materia",
+        "sabor": "a matéria aparece já com forma"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "longa"
+      }
+    ],
+    "efeito": "Conjura um objeto simples e sem partes móveis complicadas: corda, escada, chave, tocha, pote de água, tábua, cunha. Nada de arma boa, mecanismo fino ou comida que sustente. Some no fim da duração.",
+    "grid": {
+      "forma": "alvo",
+      "ancora": "objeto",
+      "gatilho": "passivo",
+      "alvo": "objeto",
+      "persiste": true,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "passo-lento",
+    "nome": "Passo Lento",
+    "nivel": 1,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "tempo",
+        "sabor": "o alvo chega sempre um pouco tarde"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Penalidade",
+        "tipo": "substitui",
+        "substitui": "penalidade",
+        "unidade": "Ticks a mais por ação",
+        "escala": [
+          "0 Ticks",
+          "+2 Ticks",
+          "+4 Ticks",
+          "+6 Ticks",
+          "+8 Ticks",
+          "+10 Ticks",
+          "+12 Ticks"
+        ],
+        "nota": "+2 Ticks por grau de Penalidade em cada ação do alvo"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      },
+      {
+        "nome": "Jogada",
+        "tipo": "fixo",
+        "valor": "Vigor + Resistência",
+        "nota": "o alvo rola para aguentar"
+      },
+      {
+        "nome": "Dificuldade",
+        "tipo": "fixo",
+        "valor": "(maior grau investido) × 5"
+      }
+    ],
+    "efeito": "As ações do alvo passam a custar mais Ticks enquanto durar. Não impede nada; só o coloca sempre atrás de todo mundo na ordem das coisas.",
+    "grid": {
+      "forma": "alvo",
+      "ancora": "alvo",
+      "gatilho": "passivo",
+      "alvo": "varios",
+      "persiste": true,
+      "materia": null,
+      "condicao": "retardado",
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": true
+    }
+  },
+  {
+    "id": "instante",
+    "nome": "Instante",
+    "nivel": 3,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "tempo",
+        "sabor": "cabe mais um gesto no mesmo segundo"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "em você e em quem estiver ao seu lado"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      }
+    ],
+    "efeito": "Uma ação a mais, agora, para você ou para quem estiver ao seu lado. Repetir na mesma cena cobra o dobro de Mana a cada vez, contado sobre o total, antes do desconto da Centelha, e o corpo cobra depois: quem abusa termina a cena exausto.",
+    "grid": {
+      "forma": "nenhuma",
+      "ancora": "nenhuma",
+      "gatilho": "passivo",
+      "alvo": "nenhum",
+      "persiste": false,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": "acelerado",
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "bolha-temporal",
+    "nome": "Bolha Temporal",
+    "nivel": 4,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "tempo",
+        "sabor": "lá dentro o tempo anda em outro passo"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Área",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Efeito",
+        "tipo": "fixo",
+        "valor": "o tempo lá dentro corre ao dobro ou à metade, e você escolhe qual ao conjurar"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      }
+    ],
+    "efeito": "Dentro da área o tempo corre mais rápido ou mais devagar, e você escolhe qual ao conjurar. Quem está dentro age no ritmo de dentro; atravessar a borda custa uma ação de reajuste.",
+    "grid": {
+      "forma": "zona",
+      "ancora": "ponto",
+      "gatilho": "ao-entrar",
+      "alvo": "ponto",
+      "persiste": true,
+      "materia": null,
+      "condicao": "acelerado",
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "reverter-o-golpe",
+    "nome": "Reverter o Golpe",
+    "nivel": 5,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "tempo",
+        "sabor": "os últimos segundos são desfeitos"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      }
+    ],
+    "efeito": "Desfaz o que acabou de acontecer com um alvo: o ferimento não existiu, o copo não caiu, o passo não foi dado. Só alcança os últimos segundos e só uma coisa por vez, e quem viu guarda a lembrança de duas versões.",
+    "grid": {
+      "forma": "nenhuma",
+      "ancora": "nenhuma",
+      "gatilho": "passivo",
+      "alvo": "nenhum",
+      "persiste": false,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "aplacar",
+    "nome": "Aplacar",
+    "nivel": 2,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "espirito",
+        "sabor": "a coisa se acalma e escuta"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      },
+      {
+        "nome": "Conjurar",
+        "tipo": "fixo",
+        "valor": "Influência + Empatia"
+      },
+      {
+        "nome": "Dificuldade",
+        "tipo": "fixo",
+        "valor": "Defesa Mental do alvo"
+      }
+    ],
+    "efeito": "Acalma um espírito agitado ou o afugenta, e abre espaço para pedir um favor pequeno: passar, apontar, deixar em paz. Espírito forte apenas escuta, e escutar já é muito.",
+    "grid": {
+      "forma": "nenhuma",
+      "ancora": "nenhuma",
+      "gatilho": "passivo",
+      "alvo": "nenhum",
+      "persiste": false,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": true
+    }
+  },
+  {
+    "id": "servo-menor",
+    "nome": "Servo Menor",
+    "nivel": 3,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "espirito",
+        "sabor": "algo pequeno atende ao chamado"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "substitui",
+        "substitui": "alvos",
+        "unidade": "espíritos",
+        "escala": [
+          "nenhum",
+          "nenhum",
+          "1 espírito",
+          "1 espírito",
+          "2 espíritos",
+          "2 espíritos",
+          "3 espíritos"
+        ],
+        "nota": "1 espírito a cada 2 graus de Alvos; no grau 1, nada: o primeiro espírito vem no grau 2"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "longa"
+      }
+    ],
+    "efeito": "Chama um espírito ou elemental menor para servir pelo tempo combinado. Ele faz uma coisa por vez e cobra do seu jeito se for mal tratado. Vai embora no fim da duração, e lembra de você.",
+    "grid": {
+      "forma": "token",
+      "ancora": "ponto",
+      "gatilho": "passivo",
+      "alvo": "ponto",
+      "persiste": true,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "vincular-ao-objeto",
+    "nome": "Vincular ao Objeto",
+    "nivel": 4,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "espirito",
+        "sabor": "o espírito ganha casa"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "toque"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "longa"
+      }
+    ],
+    "efeito": "Prende um espírito num objeto, que passa a fazer o que aquele espírito sabe fazer enquanto durar. É assim que se faz item encantado sem forja: por acordo, ou por captura. A captura força o espírito a ceder: como no Banir, Influência + Intimidação contra a Defesa Mental dele. O acordo não rola.",
+    "grid": {
+      "forma": "nenhuma",
+      "ancora": "nenhuma",
+      "gatilho": "passivo",
+      "alvo": "nenhum",
+      "persiste": false,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": true,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "banir",
+    "nome": "Banir",
+    "nivel": 4,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "espirito",
+        "sabor": "a porta se abre e ele passa por ela"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Conjurar",
+        "tipo": "fixo",
+        "valor": "Influência + Intimidação"
+      },
+      {
+        "nome": "Dificuldade",
+        "tipo": "fixo",
+        "valor": "Defesa Mental do alvo"
+      }
+    ],
+    "efeito": "Manda o espírito de volta para o lado de lá. Quem foi banido não volta tão cedo e não esquece quem o mandou embora.",
+    "grid": {
+      "forma": "nenhuma",
+      "ancora": "nenhuma",
+      "gatilho": "passivo",
+      "alvo": "nenhum",
+      "persiste": false,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": true
+    }
+  },
+  {
+    "id": "salvaguarda",
+    "nome": "Salvaguarda",
+    "nivel": 1,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "protecao",
+        "sabor": "a marca segura o primeiro golpe"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "toque"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Absorve",
+        "tipo": "fixo",
+        "valor": "um efeito arcano de maior grau igual ou menor ao maior grau investido"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "longa"
+      }
+    ],
+    "efeito": "Deixa uma marca de guarda no alvo que engole um efeito arcano cujo maior grau investido seja igual ou menor que o maior grau que você investiu e se gasta ao fazê-lo. Fica esperando até ser usada ou até a duração acabar.",
+    "grid": {
+      "forma": "alvo",
+      "ancora": "alvo",
+      "gatilho": "armadilha",
+      "alvo": "varios",
+      "persiste": true,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "circulo",
+    "nome": "Círculo",
+    "nivel": 4,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "protecao",
+        "sabor": "a linha no chão vale como muralha"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "toque"
+      },
+      {
+        "nome": "Área",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "longa"
+      },
+      {
+        "nome": "Conjurar",
+        "tipo": "fixo",
+        "valor": "Influência + Intimidação"
+      },
+      {
+        "nome": "Dificuldade",
+        "tipo": "fixo",
+        "valor": "Defesa Mental do alvo"
+      }
+    ],
+    "efeito": "Um círculo desenhado que uma categoria de criatura não atravessa: mortos-vivos, espíritos, feras, corruptores. Você escolhe a categoria ao traçar. Quebrar a linha desfaz tudo, e quem está dentro pode quebrá-la por descuido.",
+    "grid": {
+      "forma": "zona",
+      "ancora": "ponto",
+      "gatilho": "ao-entrar",
+      "alvo": "ponto",
+      "persiste": true,
+      "materia": null,
+      "condicao": "imobilizado",
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": true
+    }
+  },
+  {
+    "id": "dissipar",
+    "nome": "Dissipar",
+    "nivel": 5,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "protecao",
+        "sabor": "a trama se desmancha"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Área",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Dificuldade",
+        "tipo": "fixo",
+        "valor": "(maior grau investido) × 5"
+      }
+    ],
+    "efeito": "Desfaz magia alheia. Apaga de uma vez o que for de nível igual ou menor ao que você investiu, e enfraquece o que for maior. Contra magia de outro feiticeiro, decide o maior grau investido de cada lado.",
+    "grid": {
+      "forma": "nenhuma",
+      "ancora": "nenhuma",
+      "gatilho": "passivo",
+      "alvo": "nenhum",
+      "persiste": false,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": true,
+      "fere": false,
+      "cura": false,
+      "teste": true
+    }
+  },
+  {
+    "id": "rosto-esquecivel",
+    "nome": "Rosto Esquecível",
+    "nivel": 1,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "ofuscacao",
+        "sabor": "ninguém guarda a sua cara"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "em você"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      },
+      {
+        "nome": "Conjurar",
+        "tipo": "fixo",
+        "valor": "Influência + Manha"
+      },
+      {
+        "nome": "Dificuldade",
+        "tipo": "fixo",
+        "valor": "Defesa Mental do alvo"
+      }
+    ],
+    "efeito": "Quem olha para você vê, registra e esquece. Descrever o seu rosto depois fica impossível, e o retrato falado nunca fecha. Não esconde nada: só apaga a lembrança de ter visto.",
+    "grid": {
+      "forma": "nenhuma",
+      "ancora": "nenhuma",
+      "gatilho": "passivo",
+      "alvo": "nenhum",
+      "persiste": false,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": "invisivel",
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": true
+    }
+  },
+  {
+    "id": "rosto-emprestado",
+    "nome": "Rosto Emprestado",
+    "nivel": 2,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "ofuscacao",
+        "sabor": "você veste a cara de outro"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "em você"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      },
+      {
+        "nome": "Conjurar",
+        "tipo": "fixo",
+        "valor": "Influência + Manha"
+      },
+      {
+        "nome": "Dificuldade",
+        "tipo": "fixo",
+        "valor": "Defesa Mental do alvo"
+      }
+    ],
+    "efeito": "Em vez de um rosto qualquer, você usa o de alguém específico que já viu de perto. A voz vem junto; o jeito de andar e o que a pessoa sabe, não. O toque denuncia, como sempre.",
+    "grid": {
+      "forma": "nenhuma",
+      "ancora": "nenhuma",
+      "gatilho": "passivo",
+      "alvo": "nenhum",
+      "persiste": false,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": true
+    }
+  },
+  {
+    "id": "esconder-a-carga",
+    "nome": "Esconder a Carga",
+    "nivel": 3,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "ofuscacao",
+        "sabor": "o que você carrega não está ali"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "toque"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      },
+      {
+        "nome": "Conjurar",
+        "tipo": "fixo",
+        "valor": "Influência + Manha"
+      },
+      {
+        "nome": "Dificuldade",
+        "tipo": "fixo",
+        "valor": "Defesa Mental do alvo"
+      }
+    ],
+    "efeito": "Some com um objeto aos olhos dos outros, na sua mão ou na de quem você tocar: a arma no cinto, o livro debaixo do braço, o corpo no carrinho. Quem esbarrar sente, e quem procurar com a mão acha.",
+    "grid": {
+      "forma": "nenhuma",
+      "ancora": "nenhuma",
+      "gatilho": "passivo",
+      "alvo": "nenhum",
+      "persiste": false,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": "escondido",
+      "pegaItem": true,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": true
+    }
+  },
+  {
+    "id": "sentir-o-ermo",
+    "nome": "Sentir o Ermo",
+    "nivel": 1,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "natureza",
+        "sabor": "a mata conta o que andou por ela"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "em você"
+      },
+      {
+        "nome": "Área",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      }
+    ],
+    "efeito": "A região responde: por onde há água, o que é seguro comer, o que passou por ali e há quanto tempo, de que lado vem o perigo. Não vê nada; sabe.",
+    "grid": {
+      "forma": "nenhuma",
+      "ancora": "nenhuma",
+      "gatilho": "passivo",
+      "alvo": "nenhum",
+      "persiste": false,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "trilha-fechada",
+    "nome": "Trilha Fechada",
+    "nivel": 2,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "natureza",
+        "sabor": "o mato fecha atrás de você"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "em você"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "longa"
+      },
+      {
+        "nome": "Jogada",
+        "tipo": "fixo",
+        "valor": "Percepção + Sobrevivência",
+        "nota": "de quem persegue"
+      },
+      {
+        "nome": "Dificuldade",
+        "tipo": "fixo",
+        "valor": "(maior grau investido) × 5"
+      }
+    ],
+    "efeito": "A vegetação abre para o seu grupo e fecha logo atrás: pegada some, galho volta ao lugar, quem persegue perde o rastro e o tempo. Não funciona onde não há mato.",
+    "grid": {
+      "forma": "alvo",
+      "ancora": "conjurador",
+      "gatilho": "passivo",
+      "alvo": "si",
+      "persiste": true,
+      "materia": null,
+      "condicao": "terreno-dificil",
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": true
+    }
+  },
+  {
+    "id": "olhos-da-mata",
+    "nome": "Olhos da Mata",
+    "nivel": 3,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "natureza",
+        "sabor": "você vê pelos olhos dos bichos"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "fixo",
+        "valor": "1 bicho por vez, trocável durante a duração"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      }
+    ],
+    "efeito": "Toma emprestados os sentidos de um bicho da região e vê, ouve e cheira o que ele vê, ouve e cheira. Enquanto está lá, o seu corpo fica parado onde está.",
+    "grid": {
+      "forma": "nenhuma",
+      "ancora": "nenhuma",
+      "gatilho": "passivo",
+      "alvo": "nenhum",
+      "persiste": false,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "sentidos-de-fera",
+    "nome": "Sentidos de Fera",
+    "nivel": 1,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "metamorfose",
+        "sabor": "os olhos e o nariz mudam de dono"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "em você"
+      },
+      {
+        "nome": "Bônus",
+        "tipo": "substitui",
+        "substitui": "bonus",
+        "unidade": "d6 somados nas rolagens daquele sentido",
+        "escala": [
+          "0",
+          "+1d6",
+          "+2d6",
+          "+3d6",
+          "+4d6",
+          "+5d6",
+          "+6d6"
+        ],
+        "nota": "+1d6 por grau de Bônus nas rolagens daquele sentido"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      }
+    ],
+    "efeito": "Troca os seus sentidos pelos de um bicho: enxergar no escuro, farejar quem passou, ouvir do outro lado da parede. Um sentido por conjuração, e o que ganha em um você perde de vista nos outros enquanto durar.",
+    "grid": {
+      "forma": "alvo",
+      "ancora": "conjurador",
+      "gatilho": "passivo",
+      "alvo": "si",
+      "persiste": true,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "meio-corpo",
+    "nome": "Meio Corpo",
+    "nivel": 4,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "metamorfose",
+        "sabor": "metade de você deixa de ser carne"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "em você"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      }
+    ],
+    "efeito": "Uma parte do corpo vira elemento: névoa, água, brasa, pedra. Golpes atravessam aquela parte, quem o segura por ela se queima ou fica com as mãos vazias, e a parte perde o que sabia fazer como carne.",
+    "grid": {
+      "forma": "alvo",
+      "ancora": "conjurador",
+      "gatilho": "passivo",
+      "alvo": "si",
+      "persiste": true,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "asas",
+    "nome": "Asas",
+    "nivel": 4,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "metamorfose",
+        "sabor": "as costas abrem e ele voa"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "em você"
+      },
+      {
+        "nome": "Voo",
+        "tipo": "fixo",
+        "valor": "o seu deslocamento normal no ar, e mais alto a cada nível"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      }
+    ],
+    "efeito": "Ganha asas que sustentam o seu peso. Voa no lugar de correr, com a mesma distância do seu deslocamento, e mais alto quanto maior o nível. Carga pesada corta o voo, e cair enquanto elas somem é problema seu.",
+    "grid": {
+      "forma": "alvo",
+      "ancora": "conjurador",
+      "gatilho": "passivo",
+      "alvo": "si",
+      "persiste": true,
+      "materia": null,
+      "condicao": "voando",
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "chuva-de-fogo",
+    "nome": "Chuva de Fogo",
+    "nivel": 6,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "fogo",
+        "sabor": "o céu despeja fogo"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Área",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Dano",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      }
+    ],
+    "efeito": "O fogo cai sobre a área e continua caindo: o dano volta a cada 6 Ticks enquanto durar, e o que é combustível pega e segue queimando depois que a magia acaba. Não separa amigo de inimigo.",
+    "grid": {
+      "forma": "zona",
+      "ancora": "ponto",
+      "gatilho": "por-seis-ticks",
+      "alvo": "ponto",
+      "persiste": true,
+      "materia": null,
+      "condicao": "em-chamas",
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": true,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "inverno",
+    "nome": "Inverno",
+    "nivel": 6,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "gelo",
+        "sabor": "a estação muda de lado"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Área",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "longa"
+      }
+    ],
+    "efeito": "Traz o inverno para a região. A água vira chão, o barro endurece, a plantação morre e quem fica exposto sofre −1d6 nas ações físicas enquanto exposto. A região demora a esquecer que você passou por ali.",
+    "grid": {
+      "forma": "zona",
+      "ancora": "ponto",
+      "gatilho": "ao-entrar",
+      "alvo": "ponto",
+      "persiste": true,
+      "materia": null,
+      "condicao": "terreno-dificil",
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": true,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "tempestade",
+    "nome": "Tempestade",
+    "nivel": 6,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "raio",
+        "sabor": "o céu fecha e escolhe alvos"
+      },
+      {
+        "id": "vento",
+        "sabor": "a rajada desce em vez do raio, e arranca do chão quem ela pega"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Área",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Dano",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      },
+      {
+        "nome": "Ataque",
+        "tipo": "fixo",
+        "valor": "Percepção + Acerto Arcano"
+      },
+      {
+        "nome": "Dificuldade",
+        "tipo": "fixo",
+        "valor": "(maior grau investido) × 5"
+      }
+    ],
+    "efeito": "Chama a tempestade. A cada 6 Ticks um raio (no Vento, uma rajada) cai onde você apontar dentro da área, sem gastar a sua ação. No Raio, quem veste metal atrai o próximo.",
+    "grid": {
+      "forma": "zona",
+      "ancora": "ponto",
+      "gatilho": "por-seis-ticks",
+      "alvo": "ponto",
+      "persiste": true,
+      "materia": null,
+      "condicao": "eletrizado",
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": true,
+      "cura": false,
+      "teste": true
+    }
+  },
+  {
+    "id": "maremoto",
+    "nome": "Maremoto",
+    "nivel": 6,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "agua",
+        "sabor": "a parede de água atravessa tudo"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Área",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Dano",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Jogada",
+        "tipo": "fixo",
+        "valor": "Força + Atletismo",
+        "nota": "quem está na área rola para não ser levado"
+      },
+      {
+        "nome": "Dificuldade",
+        "tipo": "fixo",
+        "valor": "(maior grau investido) × 5"
+      }
+    ],
+    "efeito": "Uma parede de água varre a área e leva embora o que não estiver preso ao chão. Quem falha é arrastado até a borda, e o que estava solto no caminho vira projétil.",
+    "grid": {
+      "forma": "movimento",
+      "ancora": "alvo",
+      "gatilho": "imediato",
+      "alvo": "um",
+      "persiste": false,
+      "materia": "impacto",
+      "condicao": "caido",
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": true,
+      "cura": false,
+      "teste": true
+    }
+  },
+  {
+    "id": "vendaval",
+    "nome": "Vendaval",
+    "nivel": 6,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "vento",
+        "sabor": "ninguém fica de pé"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "centralizado no conjurador"
+      },
+      {
+        "nome": "Área",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      },
+      {
+        "nome": "Jogada",
+        "tipo": "fixo",
+        "valor": "Força + Atletismo",
+        "nota": "o alvo rola a cada 6 Ticks para se manter de pé"
+      },
+      {
+        "nome": "Dificuldade",
+        "tipo": "fixo",
+        "valor": "(maior grau investido) × 5"
+      }
+    ],
+    "efeito": "O vento fecha em volta de você. Ninguém anda contra ele, nada voa em linha reta e nenhum projétil atravessa a área enquanto durar. Quem falha vai ao chão e rola.",
+    "grid": {
+      "forma": "aura",
+      "ancora": "conjurador",
+      "gatilho": "ao-entrar",
+      "alvo": "ponto",
+      "persiste": true,
+      "materia": null,
+      "condicao": "terreno-dificil",
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": true
+    }
+  },
+  {
+    "id": "erguer-a-montanha",
+    "nome": "Erguer a Montanha",
+    "nivel": 6,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "terra",
+        "sabor": "a pedra sobe do fundo"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Área",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "fixo",
+        "valor": "permanente"
+      }
+    ],
+    "efeito": "Levanta do chão uma formação de pedra do tamanho de uma colina pequena, ou derruba uma que já estava lá. O terreno muda de verdade e continua mudado: quem passar por ali daqui a um ano vai ver a sua obra.",
+    "grid": {
+      "forma": "zona",
+      "ancora": "ponto",
+      "gatilho": "ao-entrar",
+      "alvo": "ponto",
+      "persiste": true,
+      "materia": "impacto",
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "dia",
+    "nome": "Dia",
+    "nivel": 6,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "luz",
+        "sabor": "o sol nasce fora de hora"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "centralizado no conjurador"
+      },
+      {
+        "nome": "Área",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      }
+    ],
+    "efeito": "Faz o meio-dia dentro da área, seja qual for a hora. Não existe sombra ali, nada se esconde e nenhuma treva conjurada resiste. Quem tem fraqueza a luz ou ao sagrado queima como se estivesse a céu aberto.",
+    "grid": {
+      "forma": "aura",
+      "ancora": "conjurador",
+      "gatilho": "ao-entrar",
+      "alvo": "ponto",
+      "persiste": true,
+      "materia": null,
+      "condicao": "cego",
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "noite",
+    "nome": "Noite",
+    "nivel": 6,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "sombra",
+        "sabor": "a luz simplesmente deixa de existir"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "centralizado no conjurador"
+      },
+      {
+        "nome": "Área",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      }
+    ],
+    "efeito": "Apaga toda a luz da área, mágica ou não: tocha, sol, feitiço. Ninguém enxerga nada lá dentro, exceto você e quem você escolher ao conjurar. Quem está dentro e não enxerga fica Cego.",
+    "grid": {
+      "forma": "aura",
+      "ancora": "conjurador",
+      "gatilho": "ao-entrar",
+      "alvo": "ponto",
+      "persiste": true,
+      "materia": null,
+      "condicao": "escuridao",
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "maos-sobre-a-multidao",
+    "nome": "Mãos sobre a Multidão",
+    "nivel": 6,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "cura",
+        "sabor": "a cura não escolhe quem merece"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Área",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Cura",
+        "tipo": "fixo",
+        "valor": "1 PV por grau investido",
+        "nota": "2 de Mana por nível, como toda cura",
+        "porNivel": true,
+        "custaMana": 2
+      }
+    ],
+    "efeito": "Cura de uma vez todo mundo que estiver na área, aliado ou não, amigo ou inimigo. Não dá para separar: quem está dentro sara.",
+    "notas": "É a exceção à cura comum, que não tem Área: este Efeito cura em Área. O valor NÃO é dividido: cada um que estiver dentro recebe a cura inteira, e o nível é o maior grau investido por quem conjurou: 1 PV por grau. Em troca, paga-se a cura de cada um: o custo de curar uma pessoa, uma vez por alvo dentro da área.",
+    "grid": {
+      "forma": "zona",
+      "ancora": "ponto",
+      "gatilho": "imediato",
+      "alvo": "ponto",
+      "persiste": false,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": true,
+      "teste": false
+    }
+  },
+  {
+    "id": "coracao-verde",
+    "nome": "Coração Verde",
+    "nivel": 6,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "vida",
+        "sabor": "a mata acorda e escolhe um lado"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Área",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Dano",
+        "tipo": "padrao",
+        "nota": "em quem a mata prender no lance"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "longa"
+      },
+      {
+        "nome": "Jogada",
+        "tipo": "fixo",
+        "valor": "Força + Atletismo",
+        "nota": "para se soltar do que prendeu"
+      },
+      {
+        "nome": "Dificuldade",
+        "tipo": "fixo",
+        "valor": "(maior grau investido) × 5"
+      }
+    ],
+    "efeito": "O lugar vira mata viva e do seu lado: raiz que prende o pé, galho que bate, tronco que fecha o caminho. Enquanto durar, o terreno luta com você e contra quem você apontar.",
+    "grid": {
+      "forma": "zona",
+      "ancora": "ponto",
+      "gatilho": "por-seis-ticks",
+      "alvo": "ponto",
+      "persiste": true,
+      "materia": null,
+      "condicao": "agarrado",
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": true,
+      "cura": false,
+      "teste": true
+    }
+  },
+  {
+    "id": "legiao",
+    "nome": "Legião",
+    "nivel": 6,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "morte",
+        "sabor": "todos os mortos daqui se levantam"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Área",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "substitui",
+        "substitui": "alvos",
+        "unidade": "cadáveres",
+        "escala": [
+          "nenhum",
+          "até 3 cadáveres",
+          "até 6 cadáveres",
+          "até 9 cadáveres",
+          "até 12 cadáveres",
+          "até 15 cadáveres",
+          "até 18 cadáveres"
+        ],
+        "nota": "todos os cadáveres da área, até 3 por grau de Alvos"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "longa"
+      }
+    ],
+    "efeito": "Ergue de uma vez todos os cadáveres da área. Obedecem ordens simples, não pensam e caem de novo no fim da duração. Fazer isso em público é declarar ao mundo o que você é.",
+    "notas": "Cada um deles é um Servo de Ossos: metade dos Atributos físicos que tinha em vida, ordens simples e nada de improviso.",
+    "grid": {
+      "forma": "token",
+      "ancora": "ponto",
+      "gatilho": "passivo",
+      "alvo": "ponto",
+      "persiste": true,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "reescrever",
+    "nome": "Reescrever",
+    "nivel": 6,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "fascinacao",
+        "sabor": "a lembrança passa a ser outra"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Conjurar",
+        "tipo": "fixo",
+        "valor": "Influência + Persuasão"
+      },
+      {
+        "nome": "Dificuldade",
+        "tipo": "fixo",
+        "valor": "Defesa Mental do alvo"
+      }
+    ],
+    "efeito": "Troca uma memória ou uma lealdade do alvo, e a troca fica. Ele monta sozinho a explicação para o que mudou e defende a versão nova como se fosse dele. Desfazer exige esta mesma Arte no mesmo nível.",
+    "grid": {
+      "forma": "nenhuma",
+      "ancora": "nenhuma",
+      "gatilho": "passivo",
+      "alvo": "nenhum",
+      "persiste": false,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": "dominado",
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": true
+    }
+  },
+  {
+    "id": "oraculo",
+    "nome": "Oráculo",
+    "nivel": 6,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "adivinhacao",
+        "sabor": "a pergunta encontra resposta"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "em você"
+      },
+      {
+        "nome": "Distância no tempo",
+        "tipo": "padrao",
+        "regua": "longa",
+        "nota": "até onde, no passado ou no futuro, a pergunta alcança"
+      }
+    ],
+    "efeito": "Uma pergunta sobre o passado ou o futuro, respondida com o que existe de mais próximo da verdade. A pergunta alcança até a Distância no tempo comprada, para trás ou para a frente, pela régua da Duração longa (de 10 minutos no grau 1 a 1 mês no grau 6). O futuro vem como tendência, não como certeza, e a resposta é curta, literal e às vezes cruel.",
+    "grid": {
+      "forma": "nenhuma",
+      "ancora": "nenhuma",
+      "gatilho": "passivo",
+      "alvo": "nenhum",
+      "persiste": false,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "isso-vai-dar-certo",
+    "nome": "Isso Vai Dar Certo",
+    "nivel": 6,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "fortuna",
+        "sabor": "o improvável acontece"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      }
+    ],
+    "efeito": "Uma vez, o que era quase impossível simplesmente acontece: o salto alcança, a flecha encontra a fresta, a corda aguenta. Só vale para o que tinha alguma chance, por menor que fosse, e o Mestre é quem diz se tinha.",
+    "grid": {
+      "forma": "nenhuma",
+      "ancora": "nenhuma",
+      "gatilho": "passivo",
+      "alvo": "nenhum",
+      "persiste": false,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "portal",
+    "nome": "Portal",
+    "nivel": 6,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "conjuracao",
+        "sabor": "dois lugares conhecidos se encostam"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      }
+    ],
+    "efeito": "Abre uma porta entre onde você está e um lugar que você conhece de verdade. O grupo atravessa a pé, com carga e montaria, enquanto ela durar. Quem estiver no meio quando fechar fica do lado em que estava a maior parte do corpo.",
+    "grid": {
+      "forma": "movimento",
+      "ancora": "alvo",
+      "gatilho": "passivo",
+      "alvo": "varios",
+      "persiste": true,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "onde-e-embaixo",
+    "nome": "Onde é Embaixo",
+    "nivel": 6,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "forcas",
+        "sabor": "o chão troca de lugar"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Área",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      },
+      {
+        "nome": "Jogada",
+        "tipo": "fixo",
+        "valor": "Força + Atletismo",
+        "nota": "o alvo rola para não despencar"
+      },
+      {
+        "nome": "Dificuldade",
+        "tipo": "fixo",
+        "valor": "(maior grau investido) × 5"
+      }
+    ],
+    "efeito": "Você escolhe para que lado a área cai. Quem está dentro despenca na direção nova, e o que não estava preso vai junto. Voltar ao normal derruba tudo de volta.",
+    "grid": {
+      "forma": "movimento",
+      "ancora": "alvo",
+      "gatilho": "passivo",
+      "alvo": "um",
+      "persiste": true,
+      "materia": null,
+      "condicao": "caido",
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": true
+    }
+  },
+  {
+    "id": "transmutar",
+    "nome": "Transmutar",
+    "nivel": 6,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "materia",
+        "sabor": "a matéria aceita ser outra coisa"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "toque"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "fixo",
+        "valor": "permanente"
+      }
+    ],
+    "efeito": "Converte qualquer material em qualquer outro: pedra em ouro, ferro em vidro, água em óleo. A mudança fica. O que era vivo não entra nisso, e o que era mágico resiste pelo nível de quem o fez.",
+    "grid": {
+      "forma": "nenhuma",
+      "ancora": "nenhuma",
+      "gatilho": "passivo",
+      "alvo": "nenhum",
+      "persiste": false,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "parar",
+    "nome": "Parar",
+    "nivel": 6,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "tempo",
+        "sabor": "tudo fica onde está"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "em você"
+      },
+      {
+        "nome": "Área",
+        "tipo": "substitui",
+        "substitui": "area",
+        "unidade": "m de diâmetro",
+        "escala": [
+          "0,5 m",
+          "1 m",
+          "2 m",
+          "3,5 m",
+          "5 m",
+          "6,5 m",
+          "8 m"
+        ],
+        "nota": "molde Explosão, nascida onde você está ao conjurar e parada ali"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      }
+    ],
+    "efeito": "O tempo para para todo mundo dentro da área, menos você, enquanto durar: a Duração vai até o grau 3 (24 Ticks). A área nasce onde você está ao conjurar e fica parada ali. Você anda, tira, coloca e sai; o que você tocar volta a andar junto com o resto. O corpo cobra depois, e cobra caro.",
+    "grid": {
+      "forma": "alvo",
+      "ancora": "conjurador",
+      "gatilho": "passivo",
+      "alvo": "si",
+      "persiste": true,
+      "materia": null,
+      "condicao": "fora-do-tempo",
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "hoste",
+    "nome": "Hoste",
+    "nivel": 6,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "espirito",
+        "sabor": "a porta abre e eles vêm em muitos"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Área",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      }
+    ],
+    "efeito": "Chama de uma vez todos os espíritos que aquele lugar guarda, e eles vêm com o que sentem: raiva, luto, fome. Você aponta a direção, não escolhe cada um, e depois é preciso mandá-los de volta.",
+    "grid": {
+      "forma": "token",
+      "ancora": "ponto",
+      "gatilho": "passivo",
+      "alvo": "ponto",
+      "persiste": true,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "santuario",
+    "nome": "Santuário",
+    "nivel": 6,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "protecao",
+        "sabor": "o lugar passa a ser inviolável"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "toque"
+      },
+      {
+        "nome": "Área",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "longa"
+      }
+    ],
+    "efeito": "Consagra um lugar. Nada entra sem permissão, magia alheia se desfaz na borda e quem for expulso não acha o caminho de volta. Dura o que a Duração comprou, e cai antes se você mesmo quebrar a regra que estabeleceu.",
+    "grid": {
+      "forma": "zona",
+      "ancora": "ponto",
+      "gatilho": "ao-entrar",
+      "alvo": "ponto",
+      "persiste": true,
+      "materia": null,
+      "condicao": "protegido",
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "ninguem-passou-por-aqui",
+    "nome": "Ninguém Passou por Aqui",
+    "nivel": 6,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "ofuscacao",
+        "sabor": "a passagem inteira é apagada"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "centralizado no conjurador"
+      },
+      {
+        "nome": "Área",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      }
+    ],
+    "efeito": "Apaga a passagem do seu grupo: pegada, cheiro, porta aberta, corpo caído e a lembrança de quem viu. Quem esteve presente jura que a sala estava vazia e briga com quem disser o contrário.",
+    "grid": {
+      "forma": "aura",
+      "ancora": "conjurador",
+      "gatilho": "ao-entrar",
+      "alvo": "ponto",
+      "persiste": false,
+      "materia": null,
+      "condicao": "escondido",
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "a-mata-levanta",
+    "nome": "A Mata Levanta",
+    "nivel": 6,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "natureza",
+        "sabor": "a região inteira vira inimiga"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "centralizado no conjurador"
+      },
+      {
+        "nome": "Área",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      }
+    ],
+    "efeito": "A região se volta contra quem você apontar: bicho ataca, cipó prende, o caminho se fecha, o rio muda de humor. Não é comando, é a mata concordando com você.",
+    "grid": {
+      "forma": "aura",
+      "ancora": "conjurador",
+      "gatilho": "ao-entrar",
+      "alvo": "ponto",
+      "persiste": true,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "fera-de-guerra",
+    "nome": "Fera de Guerra",
+    "nivel": 6,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "metamorfose",
+        "sabor": "o corpo cresce muito além do que era"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "em você"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "longa"
+      }
+    ],
+    "efeito": "Vira uma criatura muito maior do que você: urso de guerra, serpente de rio, ave de rapina do tamanho de um cavalo. Ganha o tamanho, a força e o alcance dela, e perde as mãos, a fala e o que elas fazem.",
+    "grid": {
+      "forma": "alvo",
+      "ancora": "conjurador",
+      "gatilho": "passivo",
+      "alvo": "si",
+      "persiste": true,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "fogo-que-nao-apaga",
+    "nome": "Fogo que Não Apaga",
+    "nivel": 5,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "fogo",
+        "sabor": "a chama recusa morrer"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Dano",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      },
+      {
+        "nome": "Ataque",
+        "tipo": "fixo",
+        "valor": "Percepção + Acerto Arcano"
+      },
+      {
+        "nome": "Dificuldade",
+        "tipo": "fixo",
+        "valor": "(maior grau investido) × 5"
+      }
+    ],
+    "efeito": "O fogo gruda e continua queimando: o dano volta a cada 6 Ticks e não sai com água, areia nem rolando no chão. Só acaba quando a duração acaba, ou quando alguém desfaz a magia.",
+    "grid": {
+      "forma": "alvo",
+      "ancora": "alvo",
+      "gatilho": "por-seis-ticks",
+      "alvo": "varios",
+      "persiste": true,
+      "materia": null,
+      "condicao": "em-chamas",
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": true,
+      "cura": false,
+      "teste": true
+    }
+  },
+  {
+    "id": "sopro-do-norte",
+    "nome": "Sopro do Norte",
+    "nivel": 5,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "gelo",
+        "sabor": "o frio vem em muralha"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "centralizado no conjurador"
+      },
+      {
+        "nome": "Área",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Dano",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      },
+      {
+        "nome": "Jogada",
+        "tipo": "fixo",
+        "valor": "Vigor + Resistência",
+        "nota": "o alvo rola para aguentar"
+      },
+      {
+        "nome": "Dificuldade",
+        "tipo": "fixo",
+        "valor": "(maior grau investido) × 5"
+      }
+    ],
+    "efeito": "Um cone de frio que arranca o calor de tudo o que pega. Quem falha fica enregelado e age devagar enquanto durar, e o chão atrás vira gelo escorregadio.",
+    "grid": {
+      "forma": "cone",
+      "ancora": "ponto",
+      "gatilho": "imediato",
+      "alvo": "ponto",
+      "persiste": true,
+      "materia": null,
+      "condicao": "congelado",
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": true,
+      "cura": false,
+      "teste": true
+    }
+  },
+  {
+    "id": "ceu-aberto",
+    "nome": "Céu Aberto",
+    "nivel": 5,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "raio",
+        "sabor": "um raio só, do alto"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Dano",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Ataque",
+        "tipo": "fixo",
+        "valor": "Percepção + Acerto Arcano"
+      },
+      {
+        "nome": "Dificuldade",
+        "tipo": "fixo",
+        "valor": "(maior grau investido) × 5"
+      }
+    ],
+    "efeito": "Chama do céu um raio sobre cada alvo. É o maior dano concentrado que a Arte alcança, precisa de céu por cima e avisa a todo mundo, pelo som e pela luz, exatamente onde você está.",
+    "grid": {
+      "forma": "alvo",
+      "ancora": "alvo",
+      "gatilho": "imediato",
+      "alvo": "varios",
+      "persiste": false,
+      "materia": null,
+      "condicao": "eletrizado",
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": true,
+      "cura": false,
+      "teste": true
+    }
+  },
+  {
+    "id": "afogar",
+    "nome": "Afogar",
+    "nivel": 5,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "agua",
+        "sabor": "a água acha o caminho para dentro"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      },
+      {
+        "nome": "Jogada",
+        "tipo": "fixo",
+        "valor": "Vigor + Resistência",
+        "nota": "o alvo rola para aguentar"
+      },
+      {
+        "nome": "Dificuldade",
+        "tipo": "fixo",
+        "valor": "(maior grau investido) × 5"
+      }
+    ],
+    "efeito": "A água entra pela boca e pelo nariz do alvo e fica lá. Ele não fala, não conjura e sufoca enquanto durar, mesmo em terra seca, pela regra de Sufocamento da página Resistir (capítulo VIII, Ações & Sistema; Janela de socorro = Vigor × 20 Ticks). Quem estiver ao lado pode gastar uma ação para virá-lo e drenar.",
+    "grid": {
+      "forma": "alvo",
+      "ancora": "alvo",
+      "gatilho": "por-seis-ticks",
+      "alvo": "varios",
+      "persiste": true,
+      "materia": null,
+      "condicao": "sufocando",
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": true
+    }
+  },
+  {
+    "id": "tromba",
+    "nome": "Tromba",
+    "nivel": 5,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "vento",
+        "sabor": "a coluna de vento levanta e joga"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Área",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      },
+      {
+        "nome": "Jogada",
+        "tipo": "fixo",
+        "valor": "Força + Atletismo",
+        "nota": "o alvo rola para não ser sugado"
+      },
+      {
+        "nome": "Dificuldade",
+        "tipo": "fixo",
+        "valor": "(maior grau investido) × 5"
+      }
+    ],
+    "efeito": "Uma coluna de vento anda pela área e leva junto quem falhar: sobe, gira e cai onde a tromba quiser. O que não estiver preso ao chão vai junto, e o que era leve vira projétil.",
+    "grid": {
+      "forma": "movimento",
+      "ancora": "alvo",
+      "gatilho": "passivo",
+      "alvo": "um",
+      "persiste": true,
+      "materia": "impacto",
+      "condicao": "caido",
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": true
+    }
+  },
+  {
+    "id": "engolir",
+    "nome": "Engolir",
+    "nivel": 5,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "terra",
+        "sabor": "o chão abre a boca"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Jogada",
+        "tipo": "fixo",
+        "valor": "Destreza + Atletismo",
+        "nota": "o alvo rola para sair a tempo"
+      },
+      {
+        "nome": "Dificuldade",
+        "tipo": "fixo",
+        "valor": "(maior grau investido) × 5"
+      }
+    ],
+    "efeito": "O chão amolece sob os pés do alvo e endurece por cima dele. Quem falha fica soterrado até o peito, ou inteiro se falhar feio, e sair de lá exige Força + Atletismo contra a Dificuldade a cada ação.",
+    "grid": {
+      "forma": "movimento",
+      "ancora": "alvo",
+      "gatilho": "passivo",
+      "alvo": "varios",
+      "persiste": false,
+      "materia": "impacto",
+      "condicao": "imobilizado",
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": true
+    }
+  },
+  {
+    "id": "julgamento",
+    "nome": "Julgamento",
+    "nivel": 5,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "luz",
+        "sabor": "a luz cobra o que o alvo é"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Dano",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Ataque",
+        "tipo": "fixo",
+        "valor": "Percepção + Acerto Arcano"
+      },
+      {
+        "nome": "Dificuldade",
+        "tipo": "fixo",
+        "valor": "(maior grau investido) × 5"
+      }
+    ],
+    "efeito": "Uma coluna de luz cai sobre o alvo. Contra quem tem fraqueza a luz ou ao sagrado o dano é agravado e ignora toda a Absorção; contra o resto, cega e derruba, e o dano de Luz vale a metade.",
+    "grid": {
+      "forma": "alvo",
+      "ancora": "alvo",
+      "gatilho": "imediato",
+      "alvo": "varios",
+      "persiste": false,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": true,
+      "cura": false,
+      "teste": true
+    }
+  },
+  {
+    "id": "devorar-a-luz",
+    "nome": "Devorar a Luz",
+    "nivel": 5,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "sombra",
+        "sabor": "a treva come o que ilumina"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "centralizado no conjurador"
+      },
+      {
+        "nome": "Área",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      }
+    ],
+    "efeito": "A sombra engole toda a luz que entrar na área: tocha apaga, feitiço de luz se desfaz, e o dia lá dentro vira crepúsculo. Só se enxerga o que estiver encostado. No escuro total, quem está dentro fica Cego; onde sobra penumbra, Ofuscado, a critério do Mestre.",
+    "grid": {
+      "forma": "aura",
+      "ancora": "conjurador",
+      "gatilho": "ao-entrar",
+      "alvo": "ponto",
+      "persiste": true,
+      "materia": null,
+      "condicao": "escuridao",
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "refazer-o-corpo",
+    "nome": "Refazer o Corpo",
+    "nivel": 5,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "cura",
+        "sabor": "o corpo volta ao que era"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "toque"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Cura",
+        "tipo": "padrao"
+      }
+    ],
+    "efeito": "Recompõe o que estava perdido: membro decepado, olho furado, doença que já tinha vencido. Leva minutos, não um instante, e o alvo precisa estar vivo quando você começa (quem está em 0 PV ou menos e ainda não cruzou o limite de morte está vivo). Cura PV pela régua da Cura, até o PV máximo do alvo.",
+    "grid": {
+      "forma": "nenhuma",
+      "ancora": "nenhuma",
+      "gatilho": "passivo",
+      "alvo": "nenhum",
+      "persiste": false,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": true,
+      "teste": false
+    }
+  },
+  {
+    "id": "dobrar-o-corpo",
+    "nome": "Dobrar o Corpo",
+    "nivel": 5,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "metamorfose",
+        "sabor": "a carne aceita qualquer forma"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "em você"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      }
+    ],
+    "efeito": "Passa por qualquer fresta por onde caiba a sua cabeça, escorrega de agarrões e amarras, e cai de qualquer altura sem quebrar nada. O corpo continua seu; só deixa de ter forma fixa.",
+    "grid": {
+      "forma": "alvo",
+      "ancora": "conjurador",
+      "gatilho": "passivo",
+      "alvo": "si",
+      "persiste": true,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "emprestar-o-tempo",
+    "nome": "Emprestar o Tempo",
+    "nivel": 5,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "tempo",
+        "sabor": "o tempo de um vale pelo do outro"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Ganho",
+        "tipo": "substitui",
+        "substitui": "ganho",
+        "unidade": "Ticks tirados de um e dados a outro",
+        "escala": [
+          "0 Ticks",
+          "−2 Ticks para um, +2 para o outro",
+          "−4 Ticks para um, +4 para o outro",
+          "−6 Ticks para um, +6 para o outro",
+          "−8 Ticks para um, +8 para o outro",
+          "−10 Ticks para um, +10 para o outro",
+          "−12 Ticks para um, +12 para o outro"
+        ],
+        "nota": "−2 Ticks por grau de Ganho para um, +2 por grau para o outro"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      }
+    ],
+    "efeito": "Tira Ticks de um alvo e dá a outro: um age mais devagar exatamente na medida em que o outro acelera. Os dois precisam estar à vista, e o que perdeu tempo sabe quem tirou.",
+    "grid": {
+      "forma": "nenhuma",
+      "ancora": "nenhuma",
+      "gatilho": "passivo",
+      "alvo": "nenhum",
+      "persiste": false,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "imagem-viva",
+    "nome": "Imagem Viva",
+    "nivel": 5,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "fascinacao",
+        "sabor": "o que não existe se comporta como se existisse"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Área",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      },
+      {
+        "nome": "Conjurar",
+        "tipo": "fixo",
+        "valor": "Influência + Atuação"
+      },
+      {
+        "nome": "Jogada",
+        "tipo": "fixo",
+        "valor": "Percepção + Prontidão",
+        "nota": "para desconfiar sem tocar"
+      },
+      {
+        "nome": "Dificuldade",
+        "tipo": "fixo",
+        "valor": "Defesa Mental do alvo"
+      }
+    ],
+    "efeito": "Uma ilusão completa e com som, cheiro e movimento, que reage ao que acontece em volta. Quem duvida e testa fura a mentira, mas atravessar com a mão é preciso querer.",
+    "grid": {
+      "forma": "zona",
+      "ancora": "ponto",
+      "gatilho": "ao-entrar",
+      "alvo": "ponto",
+      "persiste": true,
+      "materia": null,
+      "condicao": "confuso",
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": true
+    }
+  },
+  {
+    "id": "acelerar-a-cura",
+    "nome": "Acelerar a Cura",
+    "nivel": 1,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "vida",
+        "sabor": "o corpo sara no seu próprio ritmo, só que mais depressa"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "toque"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Cura",
+        "tipo": "fixo",
+        "valor": "encurta o intervalo em 10% por nível da Arte",
+        "nota": "2 de Mana por nível, como toda cura",
+        "porNivel": true,
+        "custaMana": 2
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "longa"
+      }
+    ],
+    "efeito": "A Vida não fecha o ferimento: ela apressa o corpo a fechá-lo sozinho, até o dobro da velocidade natural. Enquanto durar, cada nível da Arte encurta em 10% o intervalo da tabela de Recuperação, até no máximo 50% (o dobro da velocidade), que o nível 5 alcança. Ela acelera em qualquer nível e em qualquer profundidade, inclusive abaixo do zero: em quem está em 0 PV ou menos, a tabela de Recuperação não vale, e a Arte soma ao teste de Tratar de cada dia em que durar o que a Vida soma no Tratar, +1 por nível da Arte (Vida, Ferimentos & Cura). O que muda com o nível é o quanto, e não o que ela alcança.",
+    "notas": "Cura é sempre mais cara: 2 de Mana por nível, como na Arte de Cura. E aqui rende menos: em vez da régua dela, encurta o intervalo em 10% por nível da Arte, até 50% (o nível da Arte de quem conjura, de Vida 1 a Vida 5). O encurtamento da Arte e o da Cura de quem cuida não se somam: vale o maior. Como o do Cap. IV, ele não vale na linha \"por dia\" da tabela de Recuperação (a do Saudável, que já é o menor intervalo).",
+    "grid": {
+      "forma": "alvo",
+      "ancora": "alvo",
+      "gatilho": "por-seis-ticks",
+      "alvo": "varios",
+      "persiste": true,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": true,
+      "teste": false
+    }
+  },
+  {
+    "id": "dreno",
+    "nome": "Dreno",
+    "nivel": 1,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "morte",
+        "sabor": "o que sai de um entra no outro"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "toque"
+      },
+      {
+        "nome": "Dano",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Cura",
+        "tipo": "fixo",
+        "valor": "1 PV a cada 2 de dano que passar",
+        "nota": "2 de Mana por nível, como toda cura",
+        "custaMana": 2
+      },
+      {
+        "nome": "Jogada",
+        "tipo": "fixo",
+        "valor": "Vigor + Resistência",
+        "nota": "o alvo rola para aguentar"
+      },
+      {
+        "nome": "Dificuldade",
+        "tipo": "fixo",
+        "valor": "(maior grau investido) × 5"
+      }
+    ],
+    "efeito": "Puxa a vida do alvo para dentro de você. O dano é do tipo que a armadura não para, porque não é golpe: é a vida indo embora. O que você recupera é metade do que passou, arredondado para baixo, e nunca passa do seu máximo.",
+    "notas": "Cura mais barata que a da Arte de Cura só na aparência: você precisa acertar, precisa tocar, e o alvo pode aguentar.",
+    "grid": {
+      "forma": "alvo",
+      "ancora": "alvo",
+      "gatilho": "imediato",
+      "alvo": "um",
+      "persiste": false,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": true,
+      "cura": true,
+      "teste": true
+    }
+  },
+  {
+    "id": "definhar",
+    "nome": "Definhar",
+    "nivel": 2,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "morte",
+        "sabor": "o corpo desiste antes da hora"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      },
+      {
+        "nome": "Jogada",
+        "tipo": "fixo",
+        "valor": "Vigor + Resistência",
+        "nota": "o alvo rola para aguentar"
+      },
+      {
+        "nome": "Dificuldade",
+        "tipo": "fixo",
+        "valor": "(maior grau investido) × 5"
+      }
+    ],
+    "efeito": "O alvo enfraquece: Força e Vigor contam um nível abaixo por nível investido, com tudo o que isso arrasta atrás (dano, carga e as jogadas), menos os PV e a Absorção. Não fere; só tira o que sustenta. É o Atributo enfraquecido das Condições, pela duração da Arte.",
+    "grid": {
+      "forma": "alvo",
+      "ancora": "alvo",
+      "gatilho": "passivo",
+      "alvo": "varios",
+      "persiste": true,
+      "materia": null,
+      "condicao": "retardado",
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": true
+    }
+  },
+  {
+    "id": "praga",
+    "nome": "Praga",
+    "nivel": 5,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "morte",
+        "sabor": "a doença chega antes do exército"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Área",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Dano",
+        "tipo": "padrao",
+        "nota": "uma vez por dia"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "longa"
+      },
+      {
+        "nome": "Jogada",
+        "tipo": "fixo",
+        "valor": "Vigor + Resistência",
+        "nota": "o alvo rola para aguentar"
+      },
+      {
+        "nome": "Dificuldade",
+        "tipo": "fixo",
+        "valor": "(maior grau investido) × 5"
+      }
+    ],
+    "efeito": "Uma doença cai sobre a área e fica. Quem falha adoece e piora dia após dia, a plantação murcha e o gado morre. Não é conjuração de combate: é o que se faz a uma cidade que fechou os portões para você.",
+    "notas": "Cura, tratamento e tempo vencem a praga em quem sobreviver. O lugar leva mais tempo.",
+    "grid": {
+      "forma": "zona",
+      "ancora": "ponto",
+      "gatilho": "imediato",
+      "alvo": "ponto",
+      "persiste": true,
+      "materia": null,
+      "condicao": "doente",
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": true,
+      "cura": false,
+      "teste": true
+    }
+  },
+  {
+    "id": "encruzilhada",
+    "nome": "Encruzilhada",
+    "nivel": 4,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "adivinhacao",
+        "sabor": "os caminhos se abrem antes do passo"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "fixo",
+        "valor": "1 escolha, sua ou de quem você tocar"
+      },
+      {
+        "nome": "Visão",
+        "tipo": "substitui",
+        "substitui": "visao",
+        "unidade": "futuros prováveis",
+        "escala": [
+          "nenhum",
+          "1 futuro provável",
+          "2 futuros prováveis",
+          "3 futuros prováveis",
+          "4 futuros prováveis",
+          "5 futuros prováveis",
+          "6 futuros prováveis"
+        ],
+        "nota": "1 futuro provável por grau de Visão"
+      }
+    ],
+    "efeito": "Você põe uma decisão na mesa e vê para onde cada caminho tende. Não são cenas fechadas: são inclinações, e mudam se alguém agir sabendo delas. Ver o próprio futuro cansa, e repetir na mesma cena não mostra nada de novo.",
+    "grid": {
+      "forma": "nenhuma",
+      "ancora": "nenhuma",
+      "gatilho": "passivo",
+      "alvo": "nenhum",
+      "persiste": false,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "olho-distante",
+    "nome": "Olho Distante",
+    "nivel": 5,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "adivinhacao",
+        "sabor": "você olha de onde não está"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "qualquer lugar que você conheça de verdade"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "fixo",
+        "valor": "1 lugar"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      }
+    ],
+    "efeito": "Abre um olho num lugar que você conhece e assiste ao que acontece lá agora, em tempo real. Não ouve, não toca e não é visto, mas quem estiver com Ver o Fio aceso ali percebe que está sendo observado.",
+    "grid": {
+      "forma": "nenhuma",
+      "ancora": "nenhuma",
+      "gatilho": "passivo",
+      "alvo": "nenhum",
+      "persiste": false,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "destino-torto",
+    "nome": "Destino Torto",
+    "nivel": 4,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "fortuna",
+        "sabor": "o bom resultado não fica de pé"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Conjurar",
+        "tipo": "fixo",
+        "valor": "Influência + Manha"
+      },
+      {
+        "nome": "Dificuldade",
+        "tipo": "fixo",
+        "valor": "Defesa Mental do alvo"
+      }
+    ],
+    "efeito": "Força um alvo a repetir uma rolagem que já tinha dado certo, e vale o segundo resultado. Uma vez por alvo por cena: o destino aceita ser torcido, não amassado.",
+    "grid": {
+      "forma": "nenhuma",
+      "ancora": "nenhuma",
+      "gatilho": "passivo",
+      "alvo": "nenhum",
+      "persiste": false,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": true
+    }
+  },
+  {
+    "id": "mare-da-sorte",
+    "nome": "Maré da Sorte",
+    "nivel": 5,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "fortuna",
+        "sabor": "tudo conspira a favor por um tempo"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      },
+      {
+        "nome": "Bônus",
+        "tipo": "substitui",
+        "substitui": "bonus",
+        "unidade": "d6 somados na rolagem que o alvo escolher",
+        "escala": [
+          "0",
+          "+1d6",
+          "+2d6",
+          "+3d6",
+          "+4d6",
+          "+5d6",
+          "+6d6"
+        ],
+        "nota": "+1d6 por grau de Bônus, uma vez a cada 6 Ticks, na rolagem que o alvo escolher"
+      }
+    ],
+    "efeito": "A sorte fica do lado de quem você marcou enquanto durar: a corda aparece, o guarda olha para o outro lado, o dado vira. Não é bônus constante, é uma coincidência a cada 6 Ticks.",
+    "grid": {
+      "forma": "alvo",
+      "ancora": "alvo",
+      "gatilho": "passivo",
+      "alvo": "varios",
+      "persiste": true,
+      "materia": null,
+      "condicao": "abencoado",
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "convocar",
+    "nome": "Convocar",
+    "nivel": 5,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "conjuracao",
+        "sabor": "o que está longe chega"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "qualquer distância, desde que você conheça o objeto"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Volume",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Jogada",
+        "tipo": "fixo",
+        "valor": "Compostura + Ocultismo",
+        "nota": "de quem estiver segurando o objeto"
+      },
+      {
+        "nome": "Dificuldade",
+        "tipo": "fixo",
+        "valor": "(maior grau investido) × 5"
+      }
+    ],
+    "efeito": "Traz para a sua mão objetos que são seus, ou que você já teve nas mãos e conhece bem, esteja onde estiver: tantos quantos os Alvos comprados, cada um até o Volume comprado. Se alguém estiver segurando um deles, é disputa. Não funciona com criatura viva.",
+    "grid": {
+      "forma": "movimento",
+      "ancora": "objeto",
+      "gatilho": "passivo",
+      "alvo": "objeto",
+      "persiste": false,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": true
+    }
+  },
+  {
+    "id": "escudo-de-forca",
+    "nome": "Escudo de Força",
+    "nivel": 4,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "forcas",
+        "sabor": "a parede invisível não deixa passar"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Área",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Resistência",
+        "tipo": "fixo",
+        "valor": "(nível da Arte) × 5 de dano até ceder"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      }
+    ],
+    "efeito": "Uma parede de força pura, do tamanho da Área, que não deixa passar nada físico nos dois sentidos. Aguenta o dano marcado e depois estoura. Ar passa; flecha, lâmina e corpo, não.",
+    "grid": {
+      "forma": "muro",
+      "ancora": "ponto",
+      "gatilho": "passivo",
+      "alvo": "ponto",
+      "persiste": true,
+      "materia": null,
+      "condicao": "protegido",
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "transmutar-semelhante",
+    "nome": "Transmutar Semelhante",
+    "nivel": 3,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "materia",
+        "sabor": "a matéria vira sua prima"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "toque"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "longa"
+      }
+    ],
+    "efeito": "Converte um material em outro parecido: pedra em barro, ferro em bronze, madeira em osso, pano em couro. Nada de saltar de reino (mineral não vira vivo), e o que era mágico resiste.",
+    "grid": {
+      "forma": "nenhuma",
+      "ancora": "nenhuma",
+      "gatilho": "passivo",
+      "alvo": "nenhum",
+      "persiste": false,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "criar-substancia",
+    "nome": "Criar Substância",
+    "nivel": 5,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "materia",
+        "sabor": "a matéria aparece do nada"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Quantidade",
+        "tipo": "substitui",
+        "substitui": "quantidade",
+        "unidade": "barris de matéria",
+        "escala": [
+          "nenhum",
+          "1 barril",
+          "2 barris",
+          "3 barris",
+          "4 barris",
+          "5 barris",
+          "6 barris"
+        ],
+        "nota": "o que caberia num barril, por grau de Quantidade"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "longa"
+      }
+    ],
+    "efeito": "Conjura matéria bruta de verdade: pedra, água, ferro, óleo, sal. Sai onde você mandar, inclusive em cima de alguém. Comida feita assim enche a barriga mas não sustenta por muitos dias.",
+    "grid": {
+      "forma": "zona",
+      "ancora": "ponto",
+      "gatilho": "ao-entrar",
+      "alvo": "ponto",
+      "persiste": true,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "lapso",
+    "nome": "Lapso",
+    "nivel": 2,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "tempo",
+        "sabor": "um instante a mais para quem precisa"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Ganho",
+        "tipo": "substitui",
+        "substitui": "ganho",
+        "unidade": "Ticks a menos",
+        "escala": [
+          "0 Ticks",
+          "−2 Ticks",
+          "−4 Ticks",
+          "−6 Ticks",
+          "−8 Ticks",
+          "−10 Ticks",
+          "−12 Ticks"
+        ],
+        "nota": "−2 Ticks por grau de Ganho na próxima ação do alvo"
+      }
+    ],
+    "efeito": "Apressa um aliado por um instante: a próxima ação dele sai mais cedo. Não dá ação extra, só adianta a que já vinha.",
+    "grid": {
+      "forma": "nenhuma",
+      "ancora": "nenhuma",
+      "gatilho": "passivo",
+      "alvo": "nenhum",
+      "persiste": false,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": "acelerado",
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "invocar",
+    "nome": "Invocar",
+    "nivel": 5,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "espirito",
+        "sabor": "algo grande atende, e cobra"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "fixo",
+        "valor": "1 espírito poderoso"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "longa"
+      },
+      {
+        "nome": "Jogada",
+        "tipo": "fixo",
+        "valor": "Influência + Ocultismo",
+        "nota": "para o espírito aceitar o acordo"
+      },
+      {
+        "nome": "Dificuldade",
+        "tipo": "fixo",
+        "valor": "(maior grau investido) × 5"
+      }
+    ],
+    "efeito": "Chama um espírito poderoso como aliado, não como servo. Ele vem, escuta e negocia: quer nome, oferenda ou promessa. Quebrar o combinado com um desses é o começo de uma história ruim. A Dificuldade sobe com o maior grau investido: chamar de mais longe ou pedir que ele fique mais tempo deixa o acordo mais difícil.",
+    "grid": {
+      "forma": "token",
+      "ancora": "ponto",
+      "gatilho": "passivo",
+      "alvo": "ponto",
+      "persiste": true,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": true
+    }
+  },
+  {
+    "id": "barreira",
+    "nome": "Barreira",
+    "nivel": 3,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "protecao",
+        "sabor": "o campo se fecha em volta"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Área",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Absorção",
+        "tipo": "substitui",
+        "substitui": "absorcao",
+        "unidade": "pontos de Absorção",
+        "escala": [
+          "0",
+          "+2",
+          "+4",
+          "+6",
+          "+8",
+          "+10",
+          "+12"
+        ],
+        "nota": "+2 por grau de Absorção, contra tudo o que vier de fora"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      }
+    ],
+    "efeito": "Um campo protetor cobrindo a área. Quem está dentro soma a Absorção contra qualquer ataque vindo de fora, físico ou arcano. Quem está dentro e ataca alguém de dentro não ganha nada.",
+    "grid": {
+      "forma": "zona",
+      "ancora": "ponto",
+      "gatilho": "ao-entrar",
+      "alvo": "ponto",
+      "persiste": true,
+      "materia": null,
+      "condicao": "protegido",
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "manto-alheio",
+    "nome": "Manto Alheio",
+    "nivel": 4,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "ofuscacao",
+        "sabor": "o que some leva junto o que é seu"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "em você e em quem estiver ao seu lado"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      },
+      {
+        "nome": "Conjurar",
+        "tipo": "fixo",
+        "valor": "Influência + Manha"
+      },
+      {
+        "nome": "Dificuldade",
+        "tipo": "fixo",
+        "valor": "Defesa Mental do alvo"
+      }
+    ],
+    "efeito": "O que esconde você esconde também companheiros, montaria e carga, desde que fiquem ao seu lado e andem no seu passo. Quem se afasta reaparece, e reaparecer no meio da guarda é problema dele.",
+    "grid": {
+      "forma": "alvo",
+      "ancora": "alvo",
+      "gatilho": "passivo",
+      "alvo": "varios",
+      "persiste": true,
+      "materia": null,
+      "condicao": "escondido",
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": true
+    }
+  },
+  {
+    "id": "ausencia",
+    "nome": "Ausência",
+    "nivel": 5,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "ofuscacao",
+        "sabor": "não há o que perceber"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "em você"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "breve"
+      },
+      {
+        "nome": "Conjurar",
+        "tipo": "fixo",
+        "valor": "Influência + Manha"
+      },
+      {
+        "nome": "Dificuldade",
+        "tipo": "fixo",
+        "valor": "Defesa Mental do alvo"
+      }
+    ],
+    "efeito": "Some para todos os sentidos, não só para a vista: som, cheiro, calor, rastro, o ar que você desloca. Nem cão nem magia de busca o encontra. Tocar em alguém ainda denuncia.",
+    "grid": {
+      "forma": "alvo",
+      "ancora": "conjurador",
+      "gatilho": "passivo",
+      "alvo": "si",
+      "persiste": true,
+      "materia": null,
+      "condicao": "invisivel",
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": true
+    }
+  },
+  {
+    "id": "chamado",
+    "nome": "Chamado",
+    "nivel": 4,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "natureza",
+        "sabor": "os bichos vêm porque querem"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Alvos",
+        "tipo": "substitui",
+        "substitui": "alvos",
+        "unidade": "bandos ou bichos grandes",
+        "escala": [
+          "nenhum",
+          "1 bando ou 1 bicho grande",
+          "2 bandos ou 2 bichos grandes",
+          "3 bandos ou 3 bichos grandes",
+          "4 bandos ou 4 bichos grandes",
+          "5 bandos ou 5 bichos grandes",
+          "6 bandos ou 6 bichos grandes"
+        ],
+        "nota": "1 bando ou 1 bicho grande por grau de Alvos"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "longa"
+      }
+    ],
+    "efeito": "Chama os animais da região e pede um favor simples: guiar, vigiar, atrasar quem vem atrás, carregar. Eles não lutam por você, e o que for pedido além do que um bicho faria por conta própria é recusado.",
+    "grid": {
+      "forma": "token",
+      "ancora": "ponto",
+      "gatilho": "passivo",
+      "alvo": "ponto",
+      "persiste": true,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "voz-da-mata",
+    "nome": "Voz da Mata",
+    "nivel": 5,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "natureza",
+        "sabor": "a mata escuta e responde"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "fixo",
+        "valor": "a região em volta"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "padrao",
+        "regua": "longa"
+      }
+    ],
+    "efeito": "Fala com feras e com árvores antigas, e elas falam de volta, no tempo delas. A mata abre caminho para o seu grupo e fecha atrás dele, e o que ela viu nos últimos dias ela conta.",
+    "grid": {
+      "forma": "nenhuma",
+      "ancora": "nenhuma",
+      "gatilho": "passivo",
+      "alvo": "nenhum",
+      "persiste": false,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": false,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  },
+  {
+    "id": "semear-o-ermo",
+    "nome": "Semear o Ermo",
+    "nivel": 5,
+    "escalonavel": true,
+    "artes": [
+      {
+        "id": "vida",
+        "sabor": "onde não crescia nada, cresce tudo"
+      }
+    ],
+    "parametros": [
+      {
+        "nome": "Alcance",
+        "tipo": "padrao"
+      },
+      {
+        "nome": "Área",
+        "tipo": "padrao",
+        "nota": "um nível acima da Área, porque é terreno e não alvo"
+      },
+      {
+        "nome": "Duração",
+        "tipo": "fixo",
+        "valor": "permanente"
+      }
+    ],
+    "efeito": "Transforma um ermo em mata: capim onde havia areia, árvore onde havia pedra, água onde o chão estava seco. Leva dias para fechar, não um instante, e fica. O que nasce dali em diante é vida comum, e morre se ninguém cuidar.",
+    "notas": "É o Efeito que muda um lugar no mapa, não uma cena. O Mestre decide quanto tempo a mata leva para valer como mata.",
+    "grid": {
+      "forma": "zona",
+      "ancora": "ponto",
+      "gatilho": "ao-entrar",
+      "alvo": "ponto",
+      "persiste": true,
+      "materia": null,
+      "condicao": null,
+      "condicaoAparente": null,
+      "pegaItem": false,
+      "arenaInteira": true,
+      "dissipa": false,
+      "fere": false,
+      "cura": false,
+      "teste": false
+    }
+  }
+]

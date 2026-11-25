@@ -1,0 +1,280 @@
+{
+  "id": "lesma-gigante",
+  "idAntigo": "mon-giant-slug",
+  "nome": "Lesma-gigante",
+  "nomeIngles": "Giant slug",
+  "categoria": "animal",
+  "papel": "fera",
+  "ameaca": 5,
+  "centelha": 0,
+  "corpo": {
+    "postura": "serpente (corpo rastejante)",
+    "apoio": "outro",
+    "altura": 0.75,
+    "largura": 1.08,
+    "profundidade": null,
+    "comprimento": 9,
+    "massa": 3518,
+    "area": 7.63,
+    "posturaDoTamanho": "de cima"
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 7,
+    "destreza": 1,
+    "vigor": 6,
+    "percepcao": 2,
+    "inteligencia": 1,
+    "raciocinio": 1,
+    "influencia": 1,
+    "perspicacia": 1,
+    "compostura": 1
+  },
+  "habilidades": {
+    "briga": 2,
+    "bloqueio": 0,
+    "esquiva": 0,
+    "atletismo": 0,
+    "furtividade": 2,
+    "integridade": 0,
+    "prontidao": 0,
+    "resistencia": 4,
+    "empatia": 0,
+    "sobrevivencia": 2,
+    "atirador": 2
+  },
+  "habilidadesSec": {
+    "equilibrio": 0,
+    "escalada": 0,
+    "natacao": 0,
+    "voo": 0,
+    "corrida": 0,
+    "musculatura": 1
+  },
+  "especialidades": {
+    "prontidao": [
+      {
+        "foco": "faro",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 1,
+    "compaixao": 1,
+    "conviccao": 1,
+    "temperanca": 1
+  },
+  "vontade": 3,
+  "aparencia": 6,
+  "deslocamento": {
+    "terra": {
+      "batalha": 0,
+      "arranque": 1,
+      "corrida": 1
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Rádula",
+      "parte": "boca",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "corte",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Com a Força 8: era 1d6 + 12, média 15,5. A rádula raspa com milhares de dentes minúsculos (cerca de 8.600 a 11.500 na Limax maximus, Wikipédia): Média, porque é o corpo que empurra a boca contra o alvo. Corte: raspa, não fura. N0. Força × 1 (boca). Um ataque por ação (D-097)."
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "muco",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "substancia",
+      "ativacao": "contínua",
+      "duracao": "enquanto a condição se aplica",
+      "alcance": "9 m",
+      "area": "a criatura",
+      "efeito": "Quem é atingido fica Preso pela Rede do livro. Pode romper o fio ou muco por 5 PV de Corte",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "O corpo guarda 3 doses e produz 1 dose a cada 4 horas. Cada aplicação gasta 1 dose"
+    },
+    {
+      "nome": "cuspir ácido",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "substancia",
+      "ativacao": "uma ação, Velocidade 7, com o maior entre Vigor, Destreza e Percepção + Atirador",
+      "duracao": "instantânea",
+      "alcance": "6 m, um metro por ponto de Vigor",
+      "area": "um alvo",
+      "efeito": "o líquido ácido queima onde atinge",
+      "dano": "2d6 + Vigor (6), ácido; sem Absorção natural contra ácido",
+      "resistencia": "esquiva, contra o disparo; quem evita não é atingido",
+      "limiteDeUso": "O corpo guarda 3 doses e produz 1 dose a cada 4 horas. Cada uso gasta 1 dose. Nada acelera a produção"
+    },
+    {
+      "nome": "língua ácida",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "ataque": "Rádula",
+      "categoria": "substancia",
+      "ativacao": "a mordida que fere",
+      "duracao": "instantânea",
+      "alcance": "o da Rádula",
+      "area": "um alvo",
+      "efeito": "a mordida deposita ácido na ferida",
+      "dano": "+1d6 de ácido; sem Absorção natural contra ácido",
+      "resistencia": "nenhum teste adicional",
+      "limiteDeUso": "O corpo guarda 3 doses e produz 1 dose a cada 4 horas. Cada uso gasta 1 dose. Nada acelera a produção"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "encolher",
+      "formas": "todas",
+      "texto": "tocada, encolhe o corpo."
+    },
+    {
+      "nome": "Projétil natural",
+      "formas": "todas",
+      "texto": "Contra um alvo, use o maior entre Vigor, Destreza e Percepção + Atirador. Ao cobrir uma área, só os alvos fazem a jogada de saída."
+    },
+    {
+      "nome": "Atropelar",
+      "formas": "todas",
+      "texto": "Corre sobre os alvos do trajeto. Resolva a ação e o dano pelo Atropelar do livro."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "faro",
+      "descricao": "Especialidade natural Prontidão (faro) +2; tentáculos de baixo para tato e olfato (National Park Service)",
+      "formas": "todas"
+    },
+    {
+      "nome": "visão",
+      "descricao": "olhos na ponta dos tentáculos de cima (National Park Service); sem Especialidade",
+      "formas": "todas"
+    },
+    {
+      "nome": "sentido sísmico",
+      "descricao": "\"Percebe vibrações ao redor mesmo sem enxergar\" (ficha publicada). Texto do Mestre; alcance",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "mente": "animal",
+    "tracos": "corpo mole sem concha; espreme-se por passagens muito mais estreitas do que o tamanho sugere (Corpo maleável, da ficha publicada, de volta pela decisão de 20/10/2026); morre no sal por perda de água (Wikipédia \"Slug\"); o muco absorve até 100 vezes o próprio volume em água (Wikipédia \"Banana slug\"); estiva no calor e hiberna no frio (ADW); fica mais lenta no frio (Crozier e Pilz 1924)"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitário",
+    "atividade": "noturno",
+    "dieta": "herbívoro e detritívoro",
+    "caca": "pasta",
+    "dianteDeGente": "ignora"
+  },
+  "ecologia": {
+    "terreno": [
+      "pântano",
+      "subterrâneo"
+    ],
+    "clima": [
+      "temperado",
+      "tropical"
+    ]
+  },
+  "descricao": "Sai à noite da mata úmida e raspa o que encontra no caminho; de dia, se esconde do sol e do seco.",
+  "lore": [
+    {
+      "titulo": "Devoradora de pântanos",
+      "texto": "Vilarejos próximos a pântanos aprendem a temer as lesmas gigantes, que devoram lavouras inteiras e tudo o que apodrece pelo caminho, e esmagam quem cai diante delas."
+    },
+    {
+      "titulo": "Ritual de reprodução monstruoso",
+      "texto": "Uma vez por ano, fêmeas depositam centenas de ovos, defendendo o ninho com uma fúria que surpreende quem só conhece a lentidão natural da espécie."
+    },
+    {
+      "titulo": "Montaria das profundezas",
+      "texto": "Certas raças subterrâneas domesticam lesmas gigantes como bestas de guerra e carga, embora mantê-las dóceis exija cuidado e fartura constante de alimento."
+    },
+    {
+      "titulo": "Veneno e doença",
+      "texto": "Doença no jogo (ao comer): Meningite do verme-do-pulmão · Virulência 10 · dia · quem come a carne crua, ou a verdura por onde ela passou, rola uma vez"
+    }
+  ],
+  "imagens": [
+    "bestiario/lesma-gigante_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [
+      {
+        "tipo": "impacto",
+        "formas": "todas"
+      },
+      {
+        "tipo": "corte",
+        "formas": "todas"
+      },
+      {
+        "tipo": "perfuracao",
+        "formas": "todas"
+      }
+    ],
+    "imunidades": [
+      {
+        "tipo": "acido",
+        "formas": "todas"
+      }
+    ]
+  },
+  "revisao": [
+    {
+      "campo": "corpo.altura",
+      "motivo": "cerca de 2 cm na lesma-banana de 25 cm, estimados (não achados), × 36 = 0,72 m, arredondado"
+    },
+    {
+      "campo": "corpo.largura",
+      "motivo": "cerca de 3 cm na lesma-banana (12% do comprimento), estimados (não achados), × 36"
+    },
+    {
+      "campo": "corpo.massa",
+      "motivo": "Gigante pelo cubo: base real de 75,4 g × 36³ (k = 36, de 25 cm a 9 m) = 3.518 kg . A base: a lesma-banana (Ariolimax columbianus) mais pesada das 150 pesadas em dois anos (Pearson, Pearson e Ralph 2006, The Veliger 48:143) ; adultos de 21 a 50 g, \"adultos grandes\" acima de 50 g, e no outono a lesma perde até 50% do peso máximo (mesma fonte). Os 115 g da Wikipédia não têm fonte primária. Faixa do gigante pela mesma conta: 980 a 3.518 kg (21 e 75,4 g × 46.656). A referência fica no topo da faixa porque os 9 m são o topo da ficha atual (6 a 9 m). Sexos: hermafrodita, sem diferença. O corte de 35 kg (decisão 22) não muda a faixa"
+    },
+    {
+      "campo": "habilidadesEspeciais.muco",
+      "motivo": "R1 e D-197. Estoque sugerido de 2 doses e 6 horas por dose para permitir duas exposições próximas e recuperação fora da luta. O efeito pendente continua para o autor. valor de molde, para a bancada (2 doses e produz 1 dose em 6 horas)."
+    },
+    {
+      "campo": "habilidadesEspeciais.cuspir ácido",
+      "motivo": "R1/R4, D-197. Três doses preservam a reserva para mais de uma presa. Sugestão de 3 doses e 4 h por dose para repor fora da luta. R3. Ativação uma ação, Velocidade 6, com o maior entre Vigor, Destreza e Percepção + Atirador -> uma ação, Velocidade 7, com o maior entre Vigor, Destreza e Percepção + Atirador Pela referência corporal ou de deslocamento do poder. valor de molde, para a bancada (3 doses e produz 1 dose a cada 4 horas)."
+    },
+    {
+      "campo": "habilidadesEspeciais.língua ácida",
+      "motivo": "R1/R4, D-197. Três doses preservam a reserva para mais de uma presa. Sugestão de 3 doses e 4 h por dose para repor fora da luta. valor de molde, para a bancada (3 doses e produz 1 dose a cada 4 horas)."
+    }
+  ]
+}

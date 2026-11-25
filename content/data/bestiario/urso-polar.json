@@ -1,0 +1,241 @@
+{
+  "id": "urso-polar",
+  "nome": "Urso-polar",
+  "nomeIngles": "Polar Bear",
+  "categoria": "animal",
+  "papel": "fera",
+  "ameaca": 4,
+  "centelha": 0,
+  "corpo": {
+    "postura": "quatro patas",
+    "apoio": "quadrupede",
+    "altura": 1.52,
+    "largura": 0.85,
+    "profundidade": null,
+    "comprimento": 2.36,
+    "comprimentoSemCauda": 2.27,
+    "caudaGrossa": false,
+    "massa": 380,
+    "area": 1.71,
+    "posturaDoTamanho": "de lado"
+  },
+  "couraca": 2,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 8,
+    "destreza": 3,
+    "vigor": 5,
+    "percepcao": 3,
+    "inteligencia": 1,
+    "raciocinio": 2,
+    "influencia": 1,
+    "perspicacia": 1,
+    "compostura": 1
+  },
+  "habilidades": {
+    "briga": 4,
+    "bloqueio": 2,
+    "esquiva": 1,
+    "atletismo": 0,
+    "furtividade": 2,
+    "integridade": 3,
+    "prontidao": 2,
+    "resistencia": 4,
+    "empatia": 0,
+    "sobrevivencia": 2
+  },
+  "habilidadesSec": {
+    "equilibrio": 0,
+    "escalada": 0,
+    "natacao": 3,
+    "voo": 0,
+    "corrida": 0,
+    "musculatura": 3
+  },
+  "especialidades": {
+    "prontidao": [
+      {
+        "foco": "faro",
+        "valor": 3,
+        "origem": "natural"
+      }
+    ],
+    "resistencia": [
+      {
+        "foco": "frio",
+        "valor": 3,
+        "origem": "natural"
+      }
+    ],
+    "furtividade": [
+      {
+        "foco": "no gelo, junto ao respiradouro",
+        "valor": 1,
+        "origem": "natural"
+      }
+    ]
+  },
+  "especialidadesSec": {
+    "equilibrio": [
+      {
+        "foco": "gelo e neve",
+        "valor": 1,
+        "origem": "natural"
+      }
+    ]
+  },
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 1,
+    "conviccao": 1,
+    "temperanca": 1
+  },
+  "vontade": 4,
+  "aparencia": 6,
+  "deslocamento": {
+    "terra": {
+      "batalha": 7,
+      "arranque": 12,
+      "corrida": 15
+    },
+    "nado": {
+      "batalha": 2
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Patada",
+      "parte": "garra",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "corte",
+      "nivelPerfuracao": null,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Garras curtas, grossas e em gancho (NABC; Wikipédia). Era 1d6 + 10, média 13,5."
+    },
+    {
+      "nome": "Mordida",
+      "parte": "mordida",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Mata a foca e o filhote de beluga mordendo a cabeça e o pescoço (Smith e Sjare 1990). Caninos mais longos e afiados que os do urso-pardo (Wikipédia). Força de mordida não achada. Opção, não segundo golpe. Era 1d6 + 10, média 13,5."
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "agarrar",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "regra": "agarrar",
+      "texto": "segura a presa com a pata"
+    },
+    {
+      "nome": "arrastar para o gelo",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "ataque": "Mordida",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "enquanto a condição se aplica",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Ao manter o agarrão, desloca-se com a presa a metade da Batalha, até o peso que arrasta. O movimento integra a manutenção",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    }
+  ],
+  "comoLuta": [],
+  "sentidos": [
+    {
+      "nome": "faro",
+      "descricao": "Prontidão (faro) +3 (era +4; a decisão 3 põe o teto em +3); alcance: 32 km para foca no gelo, 1,6 km para respiradouro (San Diego Zoo), 64 km (NABC, Brown 1993), todos sem método",
+      "formas": "todas"
+    },
+    {
+      "nome": "visão",
+      "descricao": "enxerga bem debaixo d'água, a 4,6 m (San Diego Zoo): texto. Fora d'água, nada que passe do humano (ADW)",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "prendeRespiracao": ". Mergulha para sair pelo próprio respiradouro (ADW)",
+    "camuflagem": "como efeito; os pelos são transparentes e parecem brancos pela luz refratada, sobre pele preta (ADW)",
+    "mente": "animal",
+    "tracos": "gordura de 5 a 10 cm (San Diego Zoo), o fato da Resistência (frio) +3; solas peludas para isolamento e tração no gelo (ADW) e patas largas que funcionam como raquetes de neve (NABC), o fato do Equilíbrio (gelo e neve) +1; nados de dias (Pagano 2012); lábios e bigodes sensíveis para explorar objetos (ADW)"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitário (exceto a mãe com filhotes e os casais no acasalamento)",
+    "atividade": "66,6% do tempo inativo e 29,1% em deslocamento; descansa até 20 horas por dia fora da caça",
+    "dieta": "carnívoro (foca-anelada sobretudo; também outras focas, morsa, aves marinhas, carniça de baleia)",
+    "caca": "emboscada (espera no respiradouro, a mais comum) e espreita (rastejando ou nadando pelas fendas)",
+    "dianteDeGente": "ataca (o macho adulto faminto) · defende a cria (a fêmea)"
+  },
+  "ecologia": {
+    "terreno": [
+      "gélido",
+      "litoral",
+      "aquático"
+    ],
+    "clima": [
+      "frio"
+    ]
+  },
+  "descricao": "O maior urso, caçador de focas na banquisa. Espera no respiradouro ou chega rastejando e nadando pelas fendas; o macho faminto caça gente, e a fêmea ataca para defender os filhotes.",
+  "lore": [],
+  "imagens": [
+    "bestiario/urso-polar_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "corpo.altura",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 1,47 × 1,0315 = 1,516 . Antes: Era 1,60 m (ADW, 1,6 m; NABC, até 5,3 pés), tomado para o macho de 450 kg da massa de trabalho. Escalado pelo cubo da massa: 1,60 × (346,25 ÷ 450)^(1/3) = 1,466. Em pé, de 3 a 3,7 m ou mais (PBI, San Diego Zoo). O alto da cabeça não foi achado; no urso a cabeça anda na altura do ombro."
+    },
+    {
+      "campo": "corpo.comprimento",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 2,29 × 1,0315 = 2,362 . Antes: Era 2,50 m (ADW, macho \"do focinho à ponta da cauda\"; cauda curta). Escalado pelo cubo da massa: 2,50 × (346,25 ÷ 450)^(1/3) = 2,291. A fêmea tem de 1,8 a 2 m (ADW)."
+    },
+    {
+      "campo": "corpo.comprimentoSemCauda",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 2,20 × 1,0315 = 2,269 . Antes: Era 2,40 m, o início dos 8 a 8,4 pés (2,4 a 2,6 m) do NABC (Brown 1993); San Diego Zoo dá corpo de 1,8 a 2,7 m (`dimensoes.md`). Escalado pelo cubo da massa: 2,40 × (346,25 ÷ 450)^(1/3) = 2,199."
+    },
+    {
+      "campo": "corpo.largura",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 0,82 × 1,0315 = 0,846 . Antes: Era 0,90 m, estimada pelo Arquiteto (`porte-area-forca.md` §1.2); a pesquisa não mediu largura. Escalada pelo cubo da massa: 0,90 × (346,25 ÷ 450)^(1/3) = 0,825."
+    }
+  ]
+}

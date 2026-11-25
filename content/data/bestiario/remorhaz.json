@@ -1,0 +1,249 @@
+{
+  "id": "remorhaz",
+  "idAntigo": "mon-remorhaz",
+  "nome": "Remorhaz",
+  "nomeIngles": "Remorhaz",
+  "categoria": "besta-magica",
+  "papel": "fera",
+  "ameaca": 4,
+  "centelha": 4,
+  "corpo": {
+    "postura": "muitas patas; ergue a frente para morder",
+    "apoio": "outro",
+    "altura": 0.6,
+    "largura": 0.98,
+    "profundidade": null,
+    "comprimento": 7.5,
+    "massa": 1650,
+    "area": 9,
+    "posturaDoTamanho": "vista de cima",
+    "linhaPV": "acima",
+    "linhaPVMotivo": "placas grossas, corpo robusto"
+  },
+  "couraca": 5,
+  "perfilCouraca": "rigida",
+  "atributos": {
+    "forca": 9,
+    "destreza": 3,
+    "vigor": 8,
+    "percepcao": 3,
+    "inteligencia": 1,
+    "raciocinio": 2,
+    "influencia": 2,
+    "perspicacia": 2,
+    "compostura": 2
+  },
+  "habilidades": {
+    "briga": 5,
+    "bloqueio": 0,
+    "esquiva": 1,
+    "atletismo": 3,
+    "furtividade": 1,
+    "integridade": 2,
+    "prontidao": 1,
+    "resistencia": 4,
+    "sociabilidade": 0,
+    "sobrevivencia": 3
+  },
+  "habilidadesSec": {
+    "musculatura": 3
+  },
+  "especialidades": {},
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 1,
+    "conviccao": 3,
+    "temperanca": 2
+  },
+  "vontade": 9,
+  "aparencia": 3,
+  "deslocamento": {
+    "terra": {
+      "batalha": 3,
+      "arranque": 5,
+      "corrida": 7
+    },
+    "escavacao": {
+      "batalha": 2
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Mordida",
+      "parte": "mandibulas",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "A mordida de mandíbulas com a frente do corpo erguida atrás, Média. O calor vai nas Manobras. Jogada: Força 9 + Briga 5 + 2 × o menor entre Centelha 4 e Briga 5 (8)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Calor abrasador",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "fogo",
+        "nivel": 3
+      },
+      "categoria": "inato",
+      "ativacao": "nenhuma; sempre ativo enquanto ela está desperta",
+      "duracao": "contínua",
+      "alcance": "o próprio corpo",
+      "area": "quem a toca, a golpeia sem arma ou é mordido por ela",
+      "efeito": "o corpo arde por dentro e queima o que encosta",
+      "dano": "2d6 de fogo em quem a toca ou é mordido, somado ao do golpe",
+      "resistencia": "nenhum",
+      "limiteDeUso": "uma vez por toque. Sem custo"
+    },
+    {
+      "nome": "arma que derrete",
+      "formas": "todas",
+      "classe": "sem regra ainda",
+      "categoria": "inato",
+      "efeito": "a arma que fica muito tempo em contato com ela começa a derreter"
+    },
+    {
+      "nome": "agarrar",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Mordida",
+      "categoria": "inato",
+      "regra": "agarrar"
+    },
+    {
+      "nome": "engolir inteiro",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "ação de Velocidade 7 contra vítima menor já Agarrada que cabe na boca",
+      "duracao": "até sair",
+      "alcance": "toque",
+      "area": "a vítima engolida",
+      "efeito": "Dentro, fica Imobilizada para o corpo, pode atacar com arma curta e sofre sufocamento pelo livro. Uma ferida interna de 10 PV abre a saída, por dentro ou com ajuda de fora. Também pode escapar pela garganta como no agarrão. Se a criatura morre, a vítima sai com uma ação",
+      "dano": "2d6 de fogo uma vez a cada 6 Ticks",
+      "resistencia": "escape do agarrão pela garganta",
+      "limiteDeUso": "sem custo. Usar repetidamente causa esforço e pode levar ao cansaço"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "caçadora do gelo",
+      "formas": "todas",
+      "texto": "escava o gelo com o próprio calor, sai sob a presa, morde e engole o que for menor; caça sozinha."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão no escuro",
+      "descricao": "enxerga no escuro absoluto",
+      "formas": "todas"
+    },
+    {
+      "nome": "visão na penumbra",
+      "descricao": "enxerga com pouca luz",
+      "formas": "todas"
+    },
+    {
+      "nome": "sentido de tremor",
+      "descricao": "sente pelo chão quem se move perto, sem ver. Através da neve e do gelo",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "camuflagem": "sob o gelo",
+    "mente": "animal (fera de Inteligência 1)",
+    "tracos": "centopeia gigante de 7,5 m, placas azuladas e dorso que brilha em brasa; escava túneis de gelo que ficam vermelhos quando ela passa"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitária; às vezes ao lado de gigantes do gelo",
+    "atividade": "qualquer hora",
+    "dieta": "carnívora",
+    "caca": "caça pelos labirintos de gelo",
+    "dianteDeGente": "ataca"
+  },
+  "ecologia": {
+    "terreno": [
+      "gélido",
+      "subterrâneo"
+    ],
+    "clima": [
+      "frio"
+    ]
+  },
+  "descricao": "Centopeia gigante das terras congeladas cujo corpo arde por dentro. Escava túneis no gelo com o próprio calor, caça sozinha pelos labirintos que esculpe, e quem a toca se queima.",
+  "lore": [
+    {
+      "titulo": "Fogo sob o gelo",
+      "texto": "Nas terras congeladas correm lendas de uma serpente gigante cujo corpo arde por dentro, escavando túneis de gelo que brilham em vermelho quando ela desperta."
+    },
+    {
+      "titulo": "Aliada relutante dos gigantes",
+      "texto": "Tribos de gigantes de gelo buscam a companhia dessas criaturas, oferecendo-lhes carne em troca de um poder que só o fogo vivo de um remorhaz pode conceder contra seus inimigos."
+    },
+    {
+      "titulo": "Predador solitário",
+      "texto": "Apesar de sua fereza, raramente se junta a outros de sua espécie, preferindo caçar sozinho pelos labirintos gelados que ela mesma esculpe."
+    }
+  ],
+  "imagens": [
+    "bestiario/remorhaz_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": [
+      {
+        "tipo": "fogo",
+        "formas": "todas"
+      },
+      {
+        "tipo": "gelo",
+        "formas": "todas"
+      }
+    ]
+  },
+  "revisao": [
+    {
+      "campo": "couraca",
+      "motivo": "Cobertura do corpo pela R49; metades arredondadas para cima. Absorção natural do livro (`combate.md`). Couraça 5: placas grossas de artrópode gigante, como o crocodilo (5) ."
+    },
+    {
+      "campo": "corpo",
+      "motivo": "na zona de transição, subiu (robusto). Descendo seria 62"
+    },
+    {
+      "campo": "atributos.vigor",
+      "motivo": "na zona de transição, subiu (robusto). Descendo seria 62"
+    },
+    {
+      "campo": "ataques",
+      "motivo": "o site gravava um ataque só, \"Garras e presas\" (`inimigos.json`: \"3d6 +13 perfurante\", 7 Ticks, dano médio 23,5). A ficha fica com a mordida, Média, e o calor vai no Calor abrasador. Dano médio: 23,5 antes; depois, mordida 16,5, mais 2d6 de fogo (média 7): 23,5 com o calor, sem mudança"
+    },
+    {
+      "campo": "habilidadesEspeciais.Calor abrasador",
+      "motivo": "poder natural com números da ficha (D-197), base Fogo 3 (2d6)"
+    }
+  ]
+}

@@ -1,0 +1,249 @@
+{
+  "id": "sahuagin",
+  "idAntigo": "mon-sahuagin",
+  "nome": "Sahuagin",
+  "nomeIngles": "Sahuagin",
+  "categoria": "humanoide-monstruoso",
+  "papel": "soldado",
+  "ameaca": 2,
+  "centelha": 2,
+  "corpo": {
+    "postura": "bípede, de pé",
+    "apoio": "bipede",
+    "altura": 2.1,
+    "largura": 0.49,
+    "profundidade": 0.25,
+    "comprimento": null,
+    "massa": 113,
+    "area": 0.92,
+    "posturaDoTamanho": "de frente"
+  },
+  "couraca": 1,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 4,
+    "destreza": 3,
+    "vigor": 4,
+    "percepcao": 3,
+    "inteligencia": 4,
+    "raciocinio": 4,
+    "influencia": 2,
+    "perspicacia": 3,
+    "compostura": 2
+  },
+  "habilidades": {
+    "armas": 3,
+    "briga": 2,
+    "bloqueio": 1,
+    "esquiva": 1,
+    "atletismo": 2,
+    "furtividade": 2,
+    "prontidao": 1,
+    "integridade": 2,
+    "sobrevivencia": 2
+  },
+  "habilidadesSec": {
+    "natacao": 3,
+    "musculatura": 0
+  },
+  "especialidades": {
+    "prontidao": [
+      {
+        "foco": "vibração na água",
+        "valor": 3,
+        "origem": "natural"
+      }
+    ],
+    "armas": [
+      {
+        "foco": "tridente, debaixo d'água",
+        "valor": 1,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 1,
+    "conviccao": 3,
+    "temperanca": 1
+  },
+  "vontade": 7,
+  "aparencia": 4,
+  "deslocamento": {
+    "terra": {
+      "batalha": 3,
+      "arranque": 5,
+      "corrida": 7
+    },
+    "nado": {
+      "batalha": 6
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Tridente",
+      "arma": "tridente",
+      "justificativa": "Estoca com as três pontas do tridente. Jogada: Força 4 + Armas 3 + 2 × o menor entre Centelha 2 e Armas 3 (4)"
+    },
+    {
+      "nome": "Garras",
+      "parte": "maos-de-garra",
+      "classe": "leve",
+      "pgr": [
+        1,
+        1,
+        3
+      ],
+      "dado": "1d6-2",
+      "multiplicadorForca": 1,
+      "tipoDano": "corte",
+      "nivelPerfuracao": 0,
+      "acerto": 1,
+      "bloqueiaComoArma": null,
+      "justificativa": "Garra rápida de membro, Leve (`regra-construcao.md` §7), sem o tridente. Jogada: Força 4 + Armas 3 + 2 × o menor entre Centelha 2 e Armas 3 (4)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Fúria sanguinária",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "ao ser ferido em combate (1 de dano ou mais depois da Absorção), se quiser",
+      "duracao": "até o fim da luta",
+      "alcance": "o próprio corpo",
+      "area": "não se aplica",
+      "efeito": "Fica Enfurecido pelo Frenesi. +2 nas ações físicas exceto tiro, −2 em Esquiva e Bloqueio, só ações físicas. Não pode ser convencido. Mantém +1 na Força, inclusive no dano. Sofre as penalidades de ferimento",
+      "dano": "+1 por golpe, da Força",
+      "resistencia": "nenhum",
+      "limiteDeUso": "uma vez por cena. Sem custo"
+    },
+    {
+      "nome": "Fala com tubarões",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "uma ação, Velocidade 6",
+      "duracao": "até o fim da cena",
+      "alcance": "50 m, debaixo d'água",
+      "area": "os tubarões ao alcance",
+      "efeito": "fala com eles em ideias simples, pela mente, e eles o tratam como parente e seguem ordens simples",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "até 6 tubarões por vez. Usar repetidamente causa esforço e pode levar ao cansaço. Sem custo"
+    },
+    {
+      "nome": "Cegueira pela luz",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "luz forte (sol fora d'água, Arte de Luz, lanterna de perto)",
+      "duracao": "enquanto durar a exposição",
+      "alcance": "o próprio corpo",
+      "area": "não se aplica",
+      "efeito": "Fica Ofuscado sob sol forte. Sofre −2 nas ações que dependem da visão, inclusive ataques",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "nenhum. Sem custo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "incursão das ondas",
+      "formas": "todas",
+      "texto": "chega com os tubarões, ataca o barco ou a vila da costa com o tridente, entra em fúria quando ferido e volta para o fundo com os presos."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão no escuro",
+      "descricao": "enxerga na escuridão submersa",
+      "formas": "todas"
+    },
+    {
+      "nome": "vibração na água",
+      "descricao": "percebe o movimento debaixo d'água; Prontidão (vibração na água) +3",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "água; fora d'água por pouco tempo (o Mestre decide)",
+    "prendeRespiracao": "no ar, a de um humano",
+    "mente": "humanoide; cruel e organizada",
+    "tracos": "escamas verdes e escuras, cabeça de peixe, boca de dentes de tubarão, garras e nadadeiras"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "em bando de guerra, típico 4 a 12, com tubarões",
+    "atividade": "noturna, na costa",
+    "dieta": "carnívoro",
+    "caca": "incursões contra quem vive perto do mar",
+    "dianteDeGente": "ataca, saqueia e leva presos"
+  },
+  "ecologia": {
+    "terreno": [
+      "aquático",
+      "litoral"
+    ],
+    "clima": [
+      "temperado",
+      "tropical"
+    ]
+  },
+  "descricao": "Homem-peixe dos impérios das trincheiras oceânicas, que ataca a costa com tridentes e tubarões. Ferido, entra num frenesi de sangue, mais forte e descuidado com a própria defesa.",
+  "lore": [
+    {
+      "titulo": "Impérios sob as ondas",
+      "texto": "Cidades inteiras erguidas nas trincheiras oceânicas atestam a prosperidade cruel dos sahuagin, que lançam incursões constantes contra quem vive perto da costa."
+    },
+    {
+      "titulo": "Irmandade com os tubarões",
+      "texto": "Vendo nos tubarões um reflexo de sua própria natureza implacável, os sahuagin os tratam como parentes, comandando-os em batalha através de uma ligação silenciosa da mente."
+    },
+    {
+      "titulo": "Sangue que desperta fúria",
+      "texto": "Ferido em combate, um sahuagin pode entrar num frenesi sanguinário, ficando momentaneamente mais forte e resistente, ainda que descuidado com a própria guarda."
+    }
+  ],
+  "imagens": [
+    "bestiario/sahuagin_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "couraca",
+      "motivo": "Cobertura do corpo pela R49; metades arredondadas para cima. Absorção natural do livro (`combate.md`). Escamas de peixe, finas e duras: nível 1; nível 1 pelas escamas"
+    },
+    {
+      "campo": "comportamento.social",
+      "motivo": "site"
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": ""
+    },
+    {
+      "campo": "comportamento.dieta",
+      "motivo": ""
+    },
+    {
+      "campo": "virtudes",
+      "motivo": "Compaixão 1 e Temperança 1; o site tinha 2 e 2"
+    }
+  ]
+}

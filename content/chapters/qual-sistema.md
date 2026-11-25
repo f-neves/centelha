@@ -1,0 +1,120 @@
+---
+ordem: 28
+numeral: "XIX"
+titulo: "Qual Sistema Eu Uso?"
+resumo: "Um mapa de bolso para escolher a regra certa: o grande roteador e os fluxos de Social x Mental, medo, Régua x Combate Social, defesa física e Percepção x Perspicácia."
+---
+
+O Centelha tem muitos subsistemas, e o novato quase nunca trava na **regra**: trava em saber **qual regra** aplicar. Este capítulo é um mapa de bolso. Comece pelo fluxo grande e, na dúvida de uma bifurcação específica, veja o fluxo dela embaixo.
+
+Regra zero, antes de tudo: **rola-se dado só quando há oposição ou risco real.** Se a coisa é trivial e ninguém resiste, descreva e siga. Se um pedido cabe no nível da relação, é de graça (ver [Régua](/regras/relacoes-sociais)). O dado entra quando o resultado é incerto e importa.
+
+---
+
+## O grande roteador
+
+```mermaid
+flowchart TD
+  Start(["Quero fazer algo e não sei a regra"]) --> Q0{"Há oposição ou risco real?"}
+  Q0 -->|"Não, é trivial"| Livre["Descreva e resolva. Sem rolagem."]
+  Q0 -->|"Sim"| Q1{"Sobre o quê você age?"}
+  Q1 -->|"O mundo físico ou uma tarefa"| Tarefa["Ação comum: Atributo + Habilidade vs Dificuldade"]
+  Q1 -->|"Ferir o corpo de alguém numa luta"| Fisico["Combate Físico (ver 'Qual defesa física')"]
+  Q1 -->|"A vontade, a mente ou o vínculo de alguém"| SM["Social ou Mental? (ver fluxo)"]
+  Q1 -->|"Notar ou perceber algo"| PP["Percepção ou Perspicácia? (ver fluxo)"]
+  Q1 -->|"Uma tarefa longa (forjar, pesquisar)"| Est["Acumulada ou Longa: Dificuldade + Intervalo + Acúmulo"]
+  Q1 -->|"Conquistar alguém sem pressa"| Cor["Cortejo com calma, em Relações Sociais"]
+```
+
+---
+
+## Social ou Mental? (o teste do "como")
+
+A pergunta não é se a coisa é mágica. É **por onde ela age**.
+
+```mermaid
+flowchart TD
+  A(["Quero mexer com outra pessoa"]) --> B{"O efeito passa pelo juízo dela?"}
+  B -->|"SIM: ela ouve, pondera e decide (argumento, charme, sedução, ameaça, engano, ler o rosto)"| S["SOCIAL: rola vs Defesa Social"]
+  B -->|"NÃO: entra direto na mente, contorna o juízo (ordem obedecida sozinha, emoção ou visão plantada, ler pensamento, controle)"| M["MENTAL: rola vs Defesa Mental"]
+  S --> S2{"É o dia a dia ou uma cena decisiva?"}
+  S2 -->|"Dia a dia: um pedido, um favor, construir um vínculo"| Regua["Régua de Relação (ver fluxo)"]
+  S2 -->|"Cena tensa: dobrar alguém agora, custe o que custar"| CS["Combate Social (gastar Vontade para não ceder)"]
+  M --> M2["Alvo pode gastar Vontade: 1 + Margem (teto 4) recusa; pagar 1 encurta um grau na régua de Duração do efeito, e no menor grau anula"]
+  M --> M3["Ao sair de um controle percebido, nasce ressentimento (ato de −2 passos na Régua, Cap. X)"]
+```
+
+Atalho: **Social = você não quer ceder. Mental = tentam tirar de você a escolha de ceder.**
+
+---
+
+## Os três medos
+
+Medo é o caso que mais confunde, então tem régua própria.
+
+```mermaid
+flowchart TD
+  F(["Algo assusta o personagem"]) --> F1{"De onde vem o medo?"}
+  F1 -->|"Alguém tentando te assustar: grito, presença, demonstração de força"| FS["Defesa Social (intimidação)"]
+  F1 -->|"Pavor mágico imposto: aura de lich, medo plantado sem motivo"| FM["Defesa Mental"]
+  F1 -->|"A própria cena: um abismo, uma criatura enorme, o escuro da mata"| FB["Teste de Bravura"]
+```
+
+---
+
+## Régua de Relação ou Combate Social?
+
+A Régua é o **padrão** do social. O Combate Social é a exceção, reservado às cenas grandes. Na dúvida, é Régua.
+
+```mermaid
+flowchart TD
+  R(["Cena social com um alvo"]) --> R1{"O pedido cabe no nível atual da relação?"}
+  R1 -->|"Sim (está dentro do que a disposição já dá)"| RFree["Concedido, sem rolar"]
+  R1 -->|"Não, quero mais do que a relação dá"| R2{"Tem aposta alta E resistência declarada?"}
+  R2 -->|"Não: um pedido, um favor, um papo, uma sedução comum"| RJ["Jogada única: Ataque Social vs Defesa Social compra alcance do pedido (+1 nível a cada 6 de folga), só naquela cena; a Régua não anda"]
+  R2 -->|"Sim: um julgamento, uma sedução decisiva, quebrar um inimigo"| RC["Combate Social: o alvo gasta 1 + Margem de Vontade por lance (teto 4) para não ceder; se não segura, Cede e o pedido chega Margem níveis acima, só naquela cena; a Régua não anda"]
+```
+
+**Nenhum dos dois move a régua.** A cena com dados compra **alcance** do pedido e vai embora; quem move a régua são os **atos** e o **cortejo com calma** (ver [Relações Sociais](/regras/relacoes-sociais)).
+
+---
+
+## Qual defesa física? (Esquiva ou Bloqueio)
+
+```mermaid
+flowchart TD
+  D(["Vão te acertar no corpo"]) --> D1{"Como você se protege deste golpe?"}
+  D1 -->|"Desviando com corpo e reflexo"| DE["Esquiva = (Destreza + Esquiva) x2 + 2 x mín(Centelha, Esquiva) + Esp."]
+  D1 -->|"Aparando com arma ou escudo"| DB["Bloqueio = (Destreza + Bloqueio) x2 + 2 x mín(Centelha, Bloqueio) + Esp. + defesa da arma/escudo"]
+  DE --> N["Você usa a maior das duas; a ficha mostra ambas"]
+  DB --> N
+```
+
+**Esp.** é a [Especialidade](/regras/defesas#especialidade-o-foco-que-só-vale-às-vezes), que só soma quando o golpe cai na situação dela. Vale a maior das duas que cabem contra aquele golpe: contra um [projétil rápido](/regras/combate#projéteis-rápidos-só-esquiva-ou-escudo), ninguém apara com a arma, e só a Esquiva ou o escudo hábil defendem.
+
+---
+
+## Percepção ou Perspicácia?
+
+Nomes parecidos, fronteira simples: **o mundo x as pessoas.**
+
+```mermaid
+flowchart TD
+  P(["Quero notar algo"]) --> P1{"O que você tenta notar?"}
+  P1 -->|"O mundo físico: um som, um cheiro, uma pegada, uma emboscada, um detalhe do cenário"| PPe["Percepção"]
+  P1 -->|"Uma pessoa: o humor dela, a intenção, a mentira, o clima da sala"| PSa["Perspicácia"]
+```
+
+---
+
+## Folha de bolso (sem diagrama)
+
+- **Rola dado?** Só com oposição ou risco. Trivial, não. Pedido dentro do nível da relação, não.
+- **Ação comum:** o pool de Atributo + Habilidade (metade da soma em dados, +2 se a soma for ímpar; ver [Montando o Pool](/regras/coracao-do-sistema#montando-o-pool)) vs Dificuldade (5 fácil / 10 média / 15 difícil / 20 limite humano). O alvo é o **total dos dados somado**, não uma face que caiu; supera o alvo = sucesso; **cada 6 pontos** de folga acima dele = +1 Margem.
+- **Social x Mental:** passa pelo juízo = Social; contorna o juízo = Mental. (Ver [As Três Defesas](/regras/defesas).)
+- **Régua x Combate Social:** dia a dia = Régua, sem rolar dado; pedido acima do nível = jogada única, que compra **alcance** só naquela cena; cena grande e tensa = Combate Social (gastar Força de Vontade para não ceder). Nenhuma das duas move a régua: isso é dos atos e do cortejo. (Ver [Relações Sociais](/regras/relacoes-sociais).)
+- **Três medos:** intimidação = Social; medo mágico = Mental; medo da cena = Bravura (o teste da Virtude).
+- **Defesa física:** desviou = Esquiva; aparou = Bloqueio; vale a maior das que cabem (contra projétil rápido, só Esquiva ou escudo hábil).
+- **Percepção x Perspicácia:** o mundo = Percepção; as pessoas = Perspicácia.
+- **Gastar Força de Vontade:** antes do teste, 1 ponto dá +4 na Defesa (também contra leitura), no máximo 1 por ação.
+- **Resistir com Força de Vontade:** depois que o ataque passou, resistir custa 1 + Margem (teto 4), fora do limite de 1 por ação ([Cap. X](/regras/relacoes-sociais)). No efeito mental, com Margem 1 ou mais, dá para pagar só 1 e o efeito dura um grau a menos ([Cap. XI](/regras/defesas)). Contra leitura não dá para se recusar depois do teste: só o número da Defesa protege, e o +4 de antes entra nele.

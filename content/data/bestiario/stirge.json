@@ -1,0 +1,239 @@
+{
+  "id": "stirge",
+  "idAntigo": "mon-stirge",
+  "nome": "Stirge",
+  "nomeIngles": "Stirge",
+  "categoria": "besta-magica",
+  "papel": "fera",
+  "ameaca": 1,
+  "centelha": 1,
+  "corpo": {
+    "postura": "voador",
+    "apoio": "outro",
+    "altura": 0.06,
+    "largura": 0.05,
+    "profundidade": null,
+    "comprimento": 0.3,
+    "envergadura": 0.45,
+    "massa": 0.1,
+    "area": 0.03,
+    "posturaDoTamanho": "de baixo, asas abertas",
+    "tamanhoEscolhido": "miudo",
+    "segundoTamanho": {
+      "area": 0.005,
+      "posturaDoTamanho": "asas fechadas, preso ao alvo"
+    },
+    "linhaPV": "acima",
+    "linhaPVMotivo": "inseto de casca"
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 1,
+    "destreza": 5,
+    "vigor": 2,
+    "percepcao": 3,
+    "inteligencia": 1,
+    "raciocinio": 1,
+    "influencia": 1,
+    "perspicacia": 1,
+    "compostura": 2
+  },
+  "habilidades": {
+    "briga": 2,
+    "bloqueio": 0,
+    "esquiva": 1,
+    "atletismo": 1,
+    "furtividade": 2,
+    "integridade": 2,
+    "prontidao": 1,
+    "resistencia": 1,
+    "sociabilidade": 0,
+    "sobrevivencia": 2
+  },
+  "habilidadesSec": {
+    "voo": 3,
+    "musculatura": 1
+  },
+  "especialidades": {
+    "prontidao": [
+      {
+        "foco": "faro de sangue",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 1,
+    "conviccao": 3,
+    "temperanca": 2
+  },
+  "vontade": 6,
+  "aparencia": 2,
+  "deslocamento": {
+    "terra": {
+      "batalha": 1,
+      "arranque": 2,
+      "corrida": 2
+    },
+    "voo": {
+      "batalha": 4
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Probóscide",
+      "parte": "proboscide",
+      "classe": "leve",
+      "pgr": [
+        1,
+        1,
+        3
+      ],
+      "dado": "1d6-2",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 1,
+      "bloqueiaComoArma": null,
+      "justificativa": "A probóscide que fura, Leve. A jogada vai pela Destreza, maior que a Força (D-208); o dano, pela Força (D-209). Jogada: Destreza 5 + Briga 2 + 2 × o menor entre Centelha 1 e Briga 2 (2)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Posturas de combate",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Miúdo: de baixo, asas abertas. Minúsculo: asas fechadas, preso ao alvo. Vale o Tamanho da postura atual. Abrir as asas ao voar e fechá-las ao pousar faz parte do movimento, sem custo adicional",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "fixação",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Probóscide",
+      "categoria": "inato",
+      "regra": "agarrar"
+    },
+    {
+      "nome": "Sugar sangue",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "ataque": "Probóscide",
+      "categoria": "inato",
+      "ativacao": "a Probóscide que acerta e se fixa",
+      "duracao": "enquanto estiver preso ao alvo",
+      "alcance": "o da probóscide",
+      "area": "um alvo",
+      "efeito": "Só suga enquanto mantém o agarrão, retirando 1 PV a cada 6 Ticks. Ignora a Absorção da armadura. Soltar a presa encerra a sucção",
+      "dano": "o do Sangrando",
+      "resistencia": "nenhum; tirá-lo pelo Agarrar acaba o efeito",
+      "limiteDeUso": "até se saciar, depois de tirar 6 PV do alvo. Sem custo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "enxame",
+      "formas": "todas",
+      "texto": "chegam em bando com um zumbido leve, cada um se fixa num ponto e solta só quando está cheio."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão no escuro",
+      "descricao": "enxerga no escuro absoluto",
+      "formas": "todas"
+    },
+    {
+      "nome": "faro de sangue",
+      "descricao": "Prontidão (faro de sangue) +2; acha a presa escondida pelo cheiro",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "prendeRespiracao": "não",
+    "mente": "animal (fera de Inteligência 1)",
+    "tracos": "voador de 30 cm, corpo de inseto, asas de morcego e probóscide longa"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "bando",
+    "atividade": "noturno",
+    "dieta": "sangue",
+    "caca": "persegue presas quentes por cima de pântanos e ruínas",
+    "dianteDeGente": "ataca em bando"
+  },
+  "ecologia": {
+    "terreno": [
+      "pântano"
+    ],
+    "clima": [
+      "temperado",
+      "tropical"
+    ]
+  },
+  "descricao": "Voador pequeno de asas de morcego que persegue presas quentes por cima de pântanos e ruínas, se fixa com a probóscide e suga sangue até se saciar. Viajantes de brejo temem o zumbido leve que vem antes do bando.",
+  "lore": [
+    {
+      "titulo": "Praga dos pântanos",
+      "texto": "Viajantes que atravessam brejos aprendem a temer o zumbido leve que precede o ataque de um enxame de stirges."
+    },
+    {
+      "titulo": "Carcaças ressecadas",
+      "texto": "Quando encontram um corpo esvaído, os habitantes locais sabem: os stirges já vieram e já se foram."
+    }
+  ],
+  "imagens": [
+    "bestiario/stirge_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "couraca",
+      "motivo": "Absorção natural do livro (`combate.md`). Couraça 0: casca fina de inseto . O nível fica fora da Absorção (decisoes-autor §16)"
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": ""
+    },
+    {
+      "campo": "corpo",
+      "motivo": "17 para 2. Com 100 g, na zona de transição, a tabela dá o Vigor; descendo seria 1"
+    },
+    {
+      "campo": "atributos.vigor",
+      "motivo": "17 para 2. Com 100 g, na zona de transição, a tabela dá o Vigor; descendo seria 1"
+    },
+    {
+      "campo": "ataques",
+      "motivo": "o site gravava um ataque só, \"Garras e presas\", a probóscide (`inimigos.json`: \"1d6 +2 perfurante\", 5 Ticks, dano médio 5,5). A ficha fica com a probóscide, Leve. Dano médio: 5,5 antes; depois, probóscide 3,5, mais o Sangrando enquanto preso"
+    },
+    {
+      "campo": "habilidadesEspeciais.Sugar sangue",
+      "motivo": "o Sangrando é a condição do livro que o site nomeia (\"Sangramento\"); o limite de 6 PV para se saciar é da ficha (D-197)"
+    }
+  ]
+}

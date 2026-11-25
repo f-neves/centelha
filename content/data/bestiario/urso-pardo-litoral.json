@@ -1,0 +1,238 @@
+{
+  "id": "urso-pardo-litoral",
+  "nome": "Urso-pardo",
+  "nomeIngles": "Brown Bear",
+  "categoria": "animal",
+  "papel": "fera",
+  "ameaca": 3,
+  "centelha": 0,
+  "corpo": {
+    "postura": "quatro patas",
+    "apoio": "quadrupede",
+    "altura": 1.34,
+    "largura": 0.89,
+    "profundidade": null,
+    "comprimento": 2.35,
+    "comprimentoSemCauda": 2.23,
+    "caudaGrossa": false,
+    "massa": 320,
+    "area": 1.48,
+    "posturaDoTamanho": "de lado"
+  },
+  "couraca": 2,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 7,
+    "destreza": 3,
+    "vigor": 6,
+    "percepcao": 3,
+    "inteligencia": 1,
+    "raciocinio": 2,
+    "influencia": 1,
+    "perspicacia": 1,
+    "compostura": 1
+  },
+  "habilidades": {
+    "briga": 4,
+    "bloqueio": 2,
+    "esquiva": 1,
+    "atletismo": 2,
+    "furtividade": 2,
+    "integridade": 3,
+    "prontidao": 2,
+    "resistencia": 4,
+    "empatia": 0,
+    "sobrevivencia": 3
+  },
+  "habilidadesSec": {
+    "equilibrio": 0,
+    "escalada": 0,
+    "natacao": 0,
+    "voo": 0,
+    "corrida": 0,
+    "musculatura": 4
+  },
+  "especialidades": {
+    "prontidao": [
+      {
+        "foco": "faro",
+        "valor": 3,
+        "origem": "natural"
+      }
+    ],
+    "resistencia": [
+      {
+        "foco": "fome",
+        "valor": 3,
+        "origem": "natural"
+      }
+    ],
+    "sobrevivencia": [
+      {
+        "foco": "pescar salmão",
+        "valor": 1,
+        "origem": "natural"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 1,
+    "conviccao": 1,
+    "temperanca": 1
+  },
+  "vontade": 4,
+  "aparencia": 6,
+  "deslocamento": {
+    "terra": {
+      "batalha": 7,
+      "arranque": 12,
+      "corrida": 16
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Patada",
+      "parte": "garra",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "corte",
+      "nivelPerfuracao": null,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "O golpe com o ombro atrás: Média. Garra é Cortante (`regra-construcao.md` §7). Garras de média 45 mm, até 150 mm (NPS). Era 1d6 + 8, média 11,5."
+    },
+    {
+      "nome": "Mordida",
+      "parte": "mordida",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "751 a 1.627 N no canino (Wroe 2005; Różycka 2024, crânio seco), abaixo de 4.000 N: N0. Opção, não segundo golpe (D-097). Era 1d6 + 8, média 11,5."
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "agarrar (o \"abraço\")",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "regra": "agarrar"
+    },
+    {
+      "nome": "fúria ferida",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "quando sofre ferimento grave",
+      "duracao": "até um dos lados cair ou o combate acabar",
+      "alcance": "o próprio corpo",
+      "area": "a própria criatura",
+      "efeito": "Fica Enfurecido. +2 nas ações físicas exceto tiro, −2 em Esquiva e Bloqueio, só ações físicas. Não pode ser convencido. Sofre as penalidades de ferimento",
+      "dano": "nenhum adicional",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "A cada exposição ao gatilho, sem custo"
+    }
+  ],
+  "comoLuta": [],
+  "sentidos": [
+    {
+      "nome": "faro",
+      "descricao": "Prontidão (faro) +3 (era +4; a decisão 3 põe o teto em +3); carcaça a mais de 3,2 km (ADW)",
+      "formas": "todas"
+    },
+    {
+      "nome": "audição",
+      "descricao": "nada que passe do humano (ADF&G; ADW)",
+      "formas": "todas"
+    },
+    {
+      "nome": "visão",
+      "descricao": "nada que passe do humano; as fontes divergem (comparável à humana, ADF&G; \"relativamente fraca\", ADW)",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "mente": "animal",
+    "tracos": "hiberna (de outubro a dezembro até março a maio; até 8 meses no norte; ADW; ADF&G); a massa varia com a estação, ganhando antes da hibernação e perdendo durante (Swenson 2007: machos do norte de 201 kg na primavera a 273 kg no outono). É o fato da Resistência (fome) +3"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitário (áreas de vida que se sobrepõem muito)",
+    "atividade": "crepuscular (forrageia de manhã e ao entardecer, descansa no mato de dia)",
+    "dieta": "onívoro (capim, raízes, frutas, insetos, peixe, carniça e caça)",
+    "caca": "forrageio; caça filhotes de alce, caribu e wapiti (um urso pegou 5 filhotes de wapiti em 15 minutos)",
+    "dianteDeGente": "foge (80% saíram do lugar quando perceberam gente, nenhum agrediu); defende a cria (a fêmea com filhotes)"
+  },
+  "ecologia": {
+    "terreno": [
+      "floresta",
+      "montanha"
+    ],
+    "clima": [
+      "temperado",
+      "frio"
+    ]
+  },
+  "descricao": "Solitário e onívoro, que foge de gente na maior parte das vezes. Ataca sobretudo a fêmea defendendo filhotes (47%), no encontro de surpresa (20%) ou quando é atacado (10%); 14,3% dos 664 ataques de 2000 a 2015 foram fatais.",
+  "lore": [
+    {
+      "titulo": "Veneno e doença",
+      "texto": "Doença no jogo (ao comer): Triquinose · Virulência 7 · dia · quem come a carne mal cozida rola uma vez"
+    }
+  ],
+  "imagens": [],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "corpo.altura",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 1,31 × 1,0240 = 1,341 . Antes: Principal: 1,11 m. A ADW não dá dimensão do urso do litoral (só a da espécie inteira: cernelha 0,90 a 1,50 m, corpo 1,0 a 2,8 m); a pesquisa (`urso-pardo.md`) também não. Escalada pelo cubo da massa a partir da principal: 1,110 × (298 ÷ 182)^(1/3) = 1,110 × 1,1786 = 1,308. Fica dentro da faixa da espécie. Em pé, até 2,4 m (espécie)."
+    },
+    {
+      "campo": "corpo.comprimento",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 2,29 × 1,0240 = 2,345 . Antes: Principal: 1,94 m. Escalado pelo cubo da massa: 1,942 × 1,1786 = 2,289."
+    },
+    {
+      "campo": "corpo.comprimentoSemCauda",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 2,18 × 1,0240 = 2,232 . Antes: Principal: 1,85 m (a estimativa do Arquiteto para o macho do interior, escalada). Escalado pelo cubo da massa: 1,850 × 1,1786 = 2,180, dentro da faixa da espécie (1,0 a 2,8 m, ADW)."
+    },
+    {
+      "campo": "corpo.largura",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 0,87 × 1,0240 = 0,891 . Antes: Principal: 0,74 m (estimada pelo Arquiteto, sem fonte). Escalada pelo cubo da massa: 0,740 × 1,1786 = 0,872."
+    },
+    {
+      "campo": "habilidadesEspeciais.fúria ferida",
+      "motivo": "R9. O ferimento dispara o Frenesi da criatura. O término segue o combate entre os dois lados. A ficha não concedia imunidade a penalidade de ferimento."
+    }
+  ]
+}

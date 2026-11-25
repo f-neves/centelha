@@ -1,0 +1,197 @@
+{
+  "id": "enxame-de-caranguejos",
+  "idAntigo": "mon-crab-swarm",
+  "nome": "Enxame de caranguejos",
+  "nomeIngles": "Crab Swarm",
+  "categoria": "animal",
+  "papel": "fera",
+  "ameaca": 3,
+  "centelha": 0,
+  "enxame": {
+    "individuosPorQuadrado": 20,
+    "tamanhoEquivalente": "pequeno"
+  },
+  "corpo": {
+    "postura": "oito patas e duas pinças",
+    "apoio": "outro",
+    "altura": 0.04,
+    "largura": 0.079,
+    "profundidade": null,
+    "comprimento": 0.067,
+    "massa": 0.148,
+    "area": 0.008,
+    "posturaDoTamanho": "indivíduo, anatomia"
+  },
+  "couraca": 1,
+  "perfilCouraca": "rigida",
+  "atributos": {
+    "forca": 0,
+    "destreza": 2,
+    "vigor": 3,
+    "percepcao": 2,
+    "inteligencia": 1,
+    "raciocinio": 2,
+    "influencia": 1,
+    "perspicacia": 1,
+    "compostura": 1
+  },
+  "habilidades": {
+    "briga": 2,
+    "bloqueio": 0,
+    "esquiva": 0,
+    "atletismo": 1,
+    "furtividade": 0,
+    "integridade": 1,
+    "prontidao": 2,
+    "resistencia": 2,
+    "empatia": 0,
+    "sobrevivencia": 2
+  },
+  "habilidadesSec": {
+    "equilibrio": 0,
+    "escalada": 0,
+    "natacao": 0,
+    "voo": 0,
+    "musculatura": 3
+  },
+  "especialidades": {},
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 2,
+    "compaixao": 1,
+    "conviccao": 1,
+    "temperanca": 1
+  },
+  "vontade": 3,
+  "aparencia": 6,
+  "deslocamento": {
+    "terra": {
+      "batalha": 1,
+      "arranque": 1,
+      "corrida": 2
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Pinça do enxame",
+      "parte": "pinca",
+      "classe": "leve",
+      "pgr": [
+        1,
+        1,
+        3
+      ],
+      "dado": "1d6-2",
+      "multiplicadorForca": 0,
+      "tipoDano": "corte",
+      "nivelPerfuracao": 0,
+      "acerto": 1,
+      "bloqueiaComoArma": null,
+      "justificativa": "Igual à ficha de hoje: a Força segue 0, e o dano é só o dado (D-115). Membro pequeno: Leve. Força da pinça da espécie não achada; um caranguejo de 148 g fica no pé da faixa do caranguejo-dos-coqueiros (Oka 2016): N0. Corte, pela borda com tubérculos que belisca e rasga (leitura da Bestiarista)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Pulso do enxame",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "quando um alvo começa uma ação dentro de um quadrado ocupado pelo enxame",
+      "duracao": "instantânea",
+      "alcance": "o quadrado ocupado",
+      "area": "cada alvo dentro do quadrado",
+      "efeito": "O dano é automático, sem jogada de ataque; a Absorção conta. Sair do quadrado ocupado evita os próximos pulsos",
+      "dano": "1d6 + 3 de Corte",
+      "resistencia": "sem jogada de ataque; a Absorção conta",
+      "limiteDeUso": "no máximo um pulso por alvo a cada 6 Ticks, sem custo"
+    },
+    {
+      "nome": "Corpo de enxame",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Arma comum fere; cada golpe atinge um quadrado. Ataque de área causa seu dano inteiro em cada quadrado coberto, sem dividir. O quadrado cheio é Médio para atacar e ser alvo. O Tamanho de cada indivíduo só descreve onde cabe e por onde passa. PV e dispersão seguem a quantidade de indivíduos de cada quadrado",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    }
+  ],
+  "comoLuta": [],
+  "sentidos": [
+    {
+      "nome": "orientação",
+      "descricao": "anda em linha reta e parece saber a distância do litoral; desviado mais de 200 m, se perde. Texto",
+      "formas": "todas"
+    },
+    {
+      "nome": "os outros",
+      "descricao": "",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar (pulmões e brânquias; precisa de umidade)",
+    "prendeRespiracao": "não se aplica (terrestre)",
+    "mente": "animal, de mente simples: imune à influência social (não entende a influência) e vulnerável a medo e a magia mental (decisão 7 de 19/10/2026 e resposta do autor ao lote 1, 20/10/2026). A imunidade a efeitos mentais do livro publicado sai (Imunidade Mental: \"Não possui mente unificada, sendo imune a efeitos que dependem de compreensão ou emoção\")",
+    "tracos": "carapaça que fura pneu de carro"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "agregação: 43,7 milhões de adultos na ilha, de 0,09 a 1,3 por m² (estimativas concorrentes)",
+    "atividade": "ativo na estação chuvosa, recolhido na seca",
+    "dieta": "onívoro e detritívoro: folha caída, fruto, flor, animal morto, lixo",
+    "caca": "forrageio no chão da floresta; migração anual até o litoral, até 1.460 m por dia",
+    "dianteDeGente": "não foge em massa nem ataca; morre esmagado por carro"
+  },
+  "ecologia": {
+    "terreno": [
+      "aquático",
+      "litoral"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Uma maré de caranguejos que atravessa a praia num rumo só e belisca o que não sai do caminho; mais obstáculo do que caçador.",
+  "lore": [
+    {
+      "titulo": "Maré de Pinças",
+      "texto": "Mais de mil caranguejos comuns se lançam sobre suas vítimas ao mesmo tempo, arrancando pedaços de carne com incontáveis pinças famintas."
+    },
+    {
+      "titulo": "Sinal das Marés",
+      "texto": "Pescadores locais atribuem o fenômeno às fases da lua, jurando que certas marés trazem à superfície esse mar vivo de cascos e garras."
+    },
+    {
+      "titulo": "Enxame",
+      "texto": "20 caranguejos por quadrado · cobre o chão, numa maré que anda num rumo só · quem fere: só ataque em área (o caranguejo é menor que um rato) · armadura: vale, só pega o pé e a canela expostos · dentro: só foge ou tira os bichos de cima; qualquer outra ação pede Compostura + Integridade contra 10"
+    }
+  ],
+  "imagens": [
+    "bestiario/enxame-de-caranguejos_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "corpo.massa",
+      "motivo": "Era 0,3 kg (o adulto de 100 mm). O adulto típico medido não foi achado, de nenhum sexo, e a conta vai passo a passo: (1) a carapaça adulta vai de cerca de 40 mm, na maturidade (Wikipédia), a mais de 120 mm nos maiores (Green 1997, resumo); (2) o meio da faixa, e não média, é 80 mm; (3) a massa pelo cubo do maior de Green 1997 (500 g a 120 mm): 500 × (80 ÷ 120)³ = 148,1 g, 0,148 kg na mesa. Conferência: fica acima da média da população inteira com os jovens, 95 a 112 g (biomassa ÷ densidade de Green 1997), como o adulto deve ficar. Faixa do adulto: do menor, de cerca de 40 mm, de massa  (cerca de 19 g pela mesma conta), até os maiores, de mais de 500 g e 120 mm; machos grandes rastreados por rádio, 400 a 570 g  (Adamczewska e Morris 2001, Biol. Bull. 200: 305, Métodos). Sexos:  (só os machos grandes foram pesados; os machos são maiores, e a fêmea tem pinças menores, Wikipédia). Buscados sem achar a média: os dois PDFs de Adamczewska e Morris 2001, os resumos de Adamczewska e Morris 1994, Green 1997 (só o resumo) e buscas gerais. A Faixa 1 vem de `calc6.mjs` (o corte de 35 kg substitui o de 25 kg, decisão 22); 0,148 kg  pelo cubo do maior de Green 1997 (500 g a 120 mm) para a carapaça de 80 mm, o meio da faixa adulta (40 a 120 mm), e não média; acima da média da população com jovens (95 a 112 g) e abaixo dos machos grandes de 400 a 570 g de Adamczewska e Morris 2001. Era 0,3 kg, a carapaça de 100 mm (D-174; sexta rodada)"
+    }
+  ]
+}

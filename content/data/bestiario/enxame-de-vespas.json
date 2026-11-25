@@ -1,0 +1,225 @@
+{
+  "id": "enxame-de-vespas",
+  "idAntigo": "mon-wasp-swarm",
+  "nome": "Enxame de vespas",
+  "nomeIngles": "Wasp Swarm",
+  "categoria": "animal",
+  "papel": "fera",
+  "ameaca": 3,
+  "centelha": 0,
+  "enxame": {
+    "individuosPorQuadrado": 300,
+    "tamanhoEquivalente": "pequeno"
+  },
+  "corpo": {
+    "postura": "voador",
+    "apoio": "outro",
+    "altura": 0.005,
+    "largura": 0.004,
+    "profundidade": null,
+    "comprimento": 0.015,
+    "envergadura": 0.02,
+    "massa": 0.000084,
+    "area": 0,
+    "posturaDoTamanho": "indivíduo, anatomia"
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 0,
+    "destreza": 3,
+    "vigor": 2,
+    "percepcao": 3,
+    "inteligencia": 1,
+    "raciocinio": 2,
+    "influencia": 1,
+    "perspicacia": 1,
+    "compostura": 1
+  },
+  "habilidades": {
+    "briga": 3,
+    "bloqueio": 0,
+    "esquiva": 0,
+    "atletismo": 2,
+    "furtividade": 0,
+    "integridade": 0,
+    "prontidao": 3,
+    "resistencia": 2,
+    "empatia": 0,
+    "sobrevivencia": 2
+  },
+  "habilidadesSec": {
+    "equilibrio": 0,
+    "escalada": 0,
+    "natacao": 0,
+    "voo": 0,
+    "musculatura": 2
+  },
+  "especialidades": {
+    "prontidao": [
+      {
+        "foco": "à entrada do ninho",
+        "valor": 1,
+        "origem": "natural"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 1,
+    "conviccao": 1,
+    "temperanca": 1
+  },
+  "vontade": 4,
+  "aparencia": 6,
+  "deslocamento": {
+    "terra": {
+      "batalha": 1,
+      "arranque": 2,
+      "corrida": 3
+    },
+    "voo": {
+      "batalha": 5
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Ferroada do enxame",
+      "parte": "ferrao",
+      "classe": "leve",
+      "pgr": [
+        1,
+        1,
+        3
+      ],
+      "dado": "1d6-2",
+      "multiplicadorForca": 0,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 1,
+      "bloqueiaComoArma": null,
+      "justificativa": "Igual à ficha de hoje: a Força segue 0, e o dano é só o dado (D-115). Pica várias vezes, sem perder o ferrão (Wikipédia, Yellowjacket): isso é o ataque de cada ação, e não golpes somados (D-097)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Pulso do enxame",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "quando um alvo começa uma ação dentro de um quadrado ocupado pelo enxame",
+      "duracao": "instantânea",
+      "alcance": "o quadrado ocupado",
+      "area": "cada alvo dentro do quadrado",
+      "efeito": "O dano é automático, sem jogada de ataque; a Absorção conta. Sair do quadrado ocupado evita os próximos pulsos. O veneno só entra se o pulso causar ao menos 1 PV depois da Absorção, gastando uma dose da reserva declarada",
+      "dano": "1d6 + 3 de Perfuração",
+      "resistencia": "sem jogada de ataque; a Absorção conta",
+      "limiteDeUso": "no máximo um pulso por alvo a cada 6 Ticks, sem custo"
+    },
+    {
+      "nome": "Corpo de enxame",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Arma comum não fere este enxame. Ataque de área causa seu dano inteiro em cada quadrado coberto, sem dividir. O quadrado cheio é Médio para atacar e ser alvo. O Tamanho de cada indivíduo só descreve onde cabe e por onde passa. PV e dispersão seguem a quantidade de indivíduos de cada quadrado",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "Posturas de combate",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Anatomia do indivíduo: Minúsculo: de cima, asas abertas, o indivíduo. Minúsculo: pousado, asas fechadas. Vale o Tamanho da postura atual. Abrir as asas ao voar e fechá-las ao pousar faz parte do movimento, sem custo adicional. O quadrado cheio é Médio para atacar e ser alvo",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "Peçonha do enxame de vespas",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "ataque": "Ferroada do enxame",
+      "categoria": "substancia",
+      "ativacao": "quando o pulso causa ao menos 1 PV depois da Absorção",
+      "duracao": "até o fim do efeito do veneno",
+      "alcance": "toque",
+      "area": "um alvo",
+      "efeito": "Peçonha do enxame de vespas. Aplicar os parâmetros de Veneno e doença",
+      "dano": "apenas o pool do veneno",
+      "resistencia": "Vigor + Resistência pelo relógio do veneno",
+      "limiteDeUso": "O corpo guarda 3 doses e produz 1 dose em 4 horas. Cada uso gasta 1 dose"
+    }
+  ],
+  "comoLuta": [],
+  "sentidos": [
+    {
+      "nome": "nada com número achado. Marca o agressor (Wikipédia, Yellowjacket)",
+      "descricao": "texto. O alarme à entrada do ninho é a Especialidade Prontidão (à entrada do ninho) 1",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "mente": "animal",
+    "tracos": "ativa só acima de 2 °C (Wikipédia)"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "colônia de 3 mil a 8 mil larvas por ninho; pico de 1 mil a 3 mil operárias nas vespas-comuns de clima temperado",
+    "atividade": "diurna, mais de manhã cedo",
+    "dieta": "carnívora para as larvas (insetos), açúcar para os adultos",
+    "caca": "caça sozinha; defende o ninho em massa",
+    "dianteDeGente": "pica quando o ninho é perturbado; picada em massa é rara"
+  },
+  "ecologia": {
+    "terreno": [
+      "floresta"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "A parte da colônia que sai na defesa do ninho e persegue quem mexeu nele; cada picada é pequena, mas são centenas.",
+  "lore": [
+    {
+      "titulo": "Fúria sem fim",
+      "texto": "Uma vez provocado, um enxame de vespas pode perder de vista a origem de sua raiva e seguir atacando qualquer novo alvo que encontrar, sem parar até ser disperso."
+    },
+    {
+      "titulo": "Zumbido da morte",
+      "texto": "Um zumbido grave e constante anuncia a aproximação de milhares de vespas furiosas antes que alguém as veja."
+    },
+    {
+      "titulo": "Enxame",
+      "texto": "300 vespas por quadrado · voa · quem fere: só ataque em área · armadura: ignora, menos a vedação fechada (véu e luva de apicultor) · dentro: só foge ou tira os bichos de cima; qualquer outra ação pede Compostura + Integridade contra 10"
+    }
+  ],
+  "imagens": [
+    "bestiario/enxame-de-vespas_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": []
+}

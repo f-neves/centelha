@@ -1,0 +1,209 @@
+{
+  "id": "tiefling",
+  "idAntigo": "mon-tiefling",
+  "nome": "Tiefling",
+  "nomeIngles": "Tiefling",
+  "categoria": "humanoide",
+  "papel": "capanga",
+  "ameaca": 1,
+  "centelha": 1,
+  "corpo": {
+    "postura": "bípede, de pé",
+    "apoio": "bipede",
+    "altura": 1.75,
+    "largura": 0.42,
+    "profundidade": 0.22,
+    "comprimento": null,
+    "massa": 68,
+    "area": 0.66,
+    "posturaDoTamanho": "de frente"
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 3,
+    "destreza": 5,
+    "vigor": 4,
+    "percepcao": 3,
+    "inteligencia": 3,
+    "raciocinio": 3,
+    "influencia": 1,
+    "perspicacia": 2,
+    "compostura": 2
+  },
+  "habilidades": {
+    "armas": 2,
+    "briga": 1,
+    "bloqueio": 1,
+    "esquiva": 1,
+    "atletismo": 2,
+    "furtividade": 2,
+    "prontidao": 1,
+    "integridade": 2,
+    "manha": 2
+  },
+  "habilidadesSec": {
+    "disfarce": 1,
+    "musculatura": 0
+  },
+  "especialidades": {
+    "armas": [
+      {
+        "foco": "alvo desprevenido",
+        "valor": 1,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 2,
+    "conviccao": 3,
+    "temperanca": 2
+  },
+  "vontade": 6,
+  "aparencia": 4,
+  "deslocamento": {
+    "terra": {
+      "batalha": 3,
+      "arranque": 5,
+      "corrida": 7
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Sabre",
+      "arma": "sabre",
+      "justificativa": "A arma do livro (`armas.json`, `sabre`): Leve, Velocidade 5, Acerto +2, Defesa +1, ★C. A Centelha soma inteira. Jogada: Destreza 5 + Armas 2 + 2 × o menor entre Centelha 1 e Armas 2 (2)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Manto de trevas",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "sombra",
+        "nivel": 1,
+        "efeito": "manto-de-treva"
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 5. O efeito sai no Tick do Golpe",
+      "duracao": "até o fim da cena, ou até ele desfazer",
+      "alcance": "18 m",
+      "area": "esfera de 6 m num ponto que ele vê",
+      "efeito": "escuridão sobrenatural que a luz comum não atravessa; ele enxerga nela",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "Usos grátis: 1 por dia. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "Golpe na brecha",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "o primeiro golpe da ação que fere um alvo Surpreso ou Flanqueado",
+      "duracao": "instantânea",
+      "alcance": "o do golpe",
+      "area": "o alvo atingido",
+      "efeito": "Explora o ponto vital. Quem ignora dano extra de ponto vital ignora esse acréscimo",
+      "dano": "+1d6 no dano do golpe",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "uma vez por ação, sem custo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "à margem",
+      "formas": "todas",
+      "texto": "evita a luta aberta; cria trevas para fugir ou emboscar e golpeia quem se distrai."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão no escuro",
+      "descricao": "enxerga no breu quase tão bem quanto na penumbra",
+      "formas": "todas"
+    },
+    {
+      "nome": "audição e olfato",
+      "descricao": "os de um humano",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "prendeRespiracao": "pela regra do personagem",
+    "mente": "humana; desconfiada",
+    "tracos": "chifres pequenos, cauda fina farpada, pupilas rasgadas, pele de tom avermelhado ou acinzentado"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "sozinho, à margem",
+    "atividade": "qualquer hora",
+    "dieta": "onívoro",
+    "caca": "não se aplica",
+    "dianteDeGente": "esconde a natureza; desconfia"
+  },
+  "ecologia": {
+    "terreno": [
+      "urbano",
+      "planície",
+      "floresta"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Mortal marcado por sangue infernal, de chifres pequenos e cauda farpada, perseguido pela aparência e pela fama. Resiste a fogo, frio e raio, cria trevas uma vez por dia e golpeia quem se distrai.",
+  "lore": [
+    {
+      "titulo": "Marca do sangue estranho",
+      "texto": "Chifres pequenos, uma cauda farpada ou pupilas rasgadas denunciam a ascendência amaldiçoada que carregam desde o nascimento."
+    },
+    {
+      "titulo": "Vida à margem",
+      "texto": "Perseguidos pela aparência e fama que não escolheram, muitos escondem sua natureza ou vivem nas franjas da sociedade."
+    }
+  ],
+  "imagens": [
+    "bestiario/tiefling_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [
+      {
+        "tipo": "fogo",
+        "formas": "todas"
+      },
+      {
+        "tipo": "gelo",
+        "formas": "todas"
+      },
+      {
+        "tipo": "raio",
+        "formas": "todas"
+      }
+    ],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "habilidadesEspeciais.Manto de trevas",
+      "motivo": "R1 e D-197. Usos grátis: 1 por dia. Cada uso extra custa 1 de Energia. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação uma ação, Velocidade 6 -> uma ação, Velocidade 5. O efeito sai no Tick do Golpe. Pela régua da Arte de base. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "equipamento",
+      "motivo": "sabre do livro"
+    }
+  ]
+}

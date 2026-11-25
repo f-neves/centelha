@@ -1,0 +1,259 @@
+{
+  "id": "bisao",
+  "idAntigo": "mon-bison",
+  "nome": "Bisão-americano",
+  "nomeIngles": "Bison",
+  "categoria": "animal",
+  "papel": "fera",
+  "ameaca": 3,
+  "centelha": 0,
+  "corpo": {
+    "postura": "quatro patas",
+    "apoio": "quadrupede",
+    "altura": 1.69,
+    "largura": 0.86,
+    "profundidade": null,
+    "comprimento": 3.24,
+    "comprimentoSemCauda": 2.67,
+    "caudaGrossa": false,
+    "massa": 610,
+    "area": 2.22,
+    "posturaDoTamanho": "vista de lado"
+  },
+  "couraca": 2,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 7,
+    "destreza": 2,
+    "vigor": 6,
+    "percepcao": 2,
+    "inteligencia": 1,
+    "raciocinio": 2,
+    "influencia": 2,
+    "perspicacia": 2,
+    "compostura": 1
+  },
+  "habilidades": {
+    "briga": 2,
+    "bloqueio": 2,
+    "esquiva": 1,
+    "atletismo": 2,
+    "furtividade": 0,
+    "integridade": 2,
+    "prontidao": 2,
+    "resistencia": 5,
+    "empatia": 1,
+    "sobrevivencia": 3
+  },
+  "habilidadesSec": {
+    "equilibrio": 0,
+    "escalada": 0,
+    "natacao": 1,
+    "voo": 0,
+    "corrida": 1,
+    "musculatura": 3
+  },
+  "especialidades": {
+    "resistencia": [
+      {
+        "foco": "frio",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ],
+    "prontidao": [
+      {
+        "foco": "faro",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 2,
+    "compaixao": 1,
+    "conviccao": 1,
+    "temperanca": 1
+  },
+  "vontade": 3,
+  "aparencia": 6,
+  "deslocamento": {
+    "terra": {
+      "batalha": 7,
+      "arranque": 13,
+      "corrida": 17
+    },
+    "nado": {
+      "batalha": 2
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Chifrada",
+      "parte": "chifre",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": 1,
+      "justificativa": "Era 1d6 + 10, média 13,5. Chifres curtos, curvos para cima (NPS): N0, como o boi"
+    },
+    {
+      "nome": "Investida (marrada)",
+      "parte": "corpo",
+      "classe": "pesada",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": "2d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "impacto",
+      "nivelPerfuracao": null,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Golpe Pesado, com Força × 1 no golpe comum (D-266); na ação de Investida, soma mais uma Força, sem +1d6 (P20-b)."
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Investida",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Investida (marrada)",
+      "categoria": "inato",
+      "regra": "investida"
+    },
+    {
+      "nome": "derrubar",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "regra": "derrubar"
+    },
+    {
+      "nome": "empurrar",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "regra": "empurrar"
+    },
+    {
+      "nome": "arremessar com os chifres",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Chifrada",
+      "categoria": "inato",
+      "regra": "empurrar"
+    },
+    {
+      "nome": "Atropelar",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "texto": "Atropelar"
+    }
+  ],
+  "comoLuta": [],
+  "sentidos": [
+    {
+      "nome": "faro",
+      "descricao": "Prontidão (faro) +2, natural; \"essencial para notar o perigo\"",
+      "formas": "todas"
+    },
+    {
+      "nome": "visão",
+      "descricao": "distingue objetos grandes a 1 km e em movimento a 2 km. Texto",
+      "formas": "todas"
+    },
+    {
+      "nome": "audição",
+      "descricao": "\"ouve muito bem\". Texto",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "mente": "animal",
+    "tracos": "corcova de músculo e vértebras longas sobre o ombro; pele grossa, subpelo e pelos longos com gordura; chifres curtos nos dois sexos"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "manada; machos em grupos de até 30",
+    "dieta": "herbívoro",
+    "caca": "pastagem; no inverno varre a neve com a cabeça",
+    "dianteDeGente": "ameaça e investe quando o humano chega perto"
+  },
+  "ecologia": {
+    "terreno": [
+      "planície"
+    ],
+    "clima": [
+      "frio",
+      "temperado"
+    ]
+  },
+  "descricao": "Em Yellowstone fere mais gente que os ursos. Cruza rios largos a nado e salta cercas de 1,5 m. Vive de 12 a 20 anos.",
+  "lore": [
+    {
+      "titulo": "Gigante das pradarias",
+      "texto": "Pesando mais de meia tonelada, o bisão pasta livre nas planícies frias e temperadas, formando manadas imensas."
+    },
+    {
+      "titulo": "Fúria de cio",
+      "texto": "Na época de acasalamento, touros adultos se enfrentam com violência, por vezes até a morte, disputando fêmeas."
+    }
+  ],
+  "imagens": [
+    "bestiario/bisao_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "habilidades.empatia",
+      "motivo": "Não tinha linha. Manada, com grupos de machos de até 30 (ADW), que se enfrentam no cio por berro e chafurdo antes da luta (NPS): lê o rival e o grupo. Degrau 1, sem número ."
+    },
+    {
+      "campo": "habilidadesSec.natacao",
+      "motivo": "Etapa 2 (20/10/2026): Decisão de 20/10/2026: a Habilidade secundária de Natação vale nas jogadas (manobrar na água), e a velocidade continua congelada. O bisão é \"nadador forte\" e cruza rios (NPS), sem medida: 1, e não mais . Antes: \"Nadadores fortes\" (NPS), sem velocidade medida; nada pede mais que o 0."
+    },
+    {
+      "campo": "corpo.altura",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 1,65 × 1,0229 = 1,688 . Antes: Era 1,77 m, o meio de 1,67 a 1,86 m no macho (Meagher 1986; ADW); escalado pelo cubo da massa: 1,77 × (570 ÷ 700)^(1/3) = 1,77 × 0,934 = 1,65 m. A vaca tem de 1,52 a 1,57 m (Variantes). A corcova sobre o ombro é o ponto mais alto; a cabeça fica abaixo"
+    },
+    {
+      "campo": "corpo.comprimento",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 3,17 × 1,0229 = 3,242 . Antes: Era 3,4 m, o meio de 3,04 a 3,80 m no macho, com a cauda (Meagher 1986); escalado pelo cubo da massa: 3,4 × (570 ÷ 700)^(1/3) = 3,17 m"
+    },
+    {
+      "campo": "corpo.comprimentoSemCauda",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 2,61 × 1,0229 = 2,670 . Antes: Era 2,8 m, o total médio do macho (3,4 m) menos a cauda média do macho (0,62 m; 0,33 a 0,91 m), conta pelos números de Meagher 1986; escalado pelo cubo da massa: 2,8 × (570 ÷ 700)^(1/3) = 2,61 m"
+    },
+    {
+      "campo": "corpo.largura",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 0,84 × 1,0229 = 0,859 . Antes: Era 0,9 m, um pouco acima do boi, pela corcova e pelo peito, sem fonte; escalado pelo cubo da massa: 0,9 × (570 ÷ 700)^(1/3) = 0,84 m"
+    }
+  ]
+}

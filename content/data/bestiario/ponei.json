@@ -1,0 +1,226 @@
+{
+  "id": "ponei",
+  "idAntigo": "mon-pony",
+  "nome": "Pônei",
+  "nomeIngles": "Pony",
+  "categoria": "animal",
+  "papel": "fera",
+  "ameaca": 1,
+  "centelha": 0,
+  "corpo": {
+    "postura": "quatro patas",
+    "apoio": "quadrupede",
+    "altura": 1.48,
+    "largura": 0.46,
+    "profundidade": null,
+    "comprimento": 2.34,
+    "comprimentoSemCauda": 1.93,
+    "caudaGrossa": false,
+    "massa": 220,
+    "area": 1.17,
+    "posturaDoTamanho": "vista de lado",
+    "linhaPV": "acima",
+    "linhaPVMotivo": "corpo rústico e robusto"
+  },
+  "couraca": 1,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 6,
+    "destreza": 2,
+    "vigor": 4,
+    "percepcao": 3,
+    "inteligencia": 1,
+    "raciocinio": 2,
+    "influencia": 1,
+    "perspicacia": 2,
+    "compostura": 1
+  },
+  "habilidades": {
+    "briga": 1,
+    "bloqueio": 0,
+    "esquiva": 2,
+    "atletismo": 2,
+    "furtividade": 0,
+    "integridade": 1,
+    "prontidao": 3,
+    "resistencia": 4,
+    "empatia": 2,
+    "sobrevivencia": 2
+  },
+  "habilidadesSec": {
+    "equilibrio": 0,
+    "escalada": 0,
+    "natacao": 0,
+    "voo": 0,
+    "corrida": 0,
+    "musculatura": 3
+  },
+  "especialidades": {
+    "prontidao": [
+      {
+        "foco": "visão periférica",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 1,
+    "compaixao": 1,
+    "conviccao": 1,
+    "temperanca": 1
+  },
+  "vontade": 3,
+  "aparencia": 7,
+  "deslocamento": {
+    "terra": {
+      "batalha": 7,
+      "arranque": 11,
+      "corrida": 14
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Coice",
+      "parte": "casco",
+      "classe": "pesada",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": "2d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "impacto",
+      "nivelPerfuracao": null,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Fica: a Força não mudou (era 2d6 + 6, média 13). Como o cavalo: vira o corpo e escoiceia, preparado e lento (Pesada); golpe de membro (× 1)"
+    },
+    {
+      "nome": "Mordida",
+      "parte": "mordida",
+      "classe": "leve",
+      "pgr": [
+        1,
+        1,
+        3
+      ],
+      "dado": "1d6-2",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 1,
+      "bloqueiaComoArma": null,
+      "justificativa": "Fica (era 1d6 − 2 + 6, média 7,5). Como o cavalo. Opção, não segundo golpe (D-097)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Atropelar",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "texto": "Atropelar"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "passo resistente",
+      "formas": "todas",
+      "texto": "anda longas distâncias com carga moderada sem cansar."
+    },
+    {
+      "nome": "dócil",
+      "formas": "todas",
+      "texto": "raramente entra em combate, a menos que treinado para isso."
+    },
+    {
+      "nome": "Pisar num alvo",
+      "formas": "todas",
+      "texto": "O Pisoteio é um ataque físico normal contra um alvo, com o golpe Coice."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "os do cavalo, mesma espécie",
+      "descricao": "Prontidão (visão periférica) +2, natural; penumbra, audição e faro em texto",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "mente": "animal",
+    "tracos": "cernelha de 1,02 a 1,22 m na raça de Yonaguni"
+  },
+  "aptidoes": {
+    "montaria": true,
+    "carga": true,
+    "tracao": true
+  },
+  "comportamento": {
+    "social": "bando",
+    "dieta": "herbívoro",
+    "caca": "pastagem",
+    "dianteDeGente": "doméstico; foge do que assusta"
+  },
+  "ecologia": {
+    "terreno": [
+      "planície"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Raça pequena de uma ilha do sul do Japão, que serviu na lavoura, na carga e na guerra; hoje rara (85 animais em 2008). Leva até cerca de um terço do próprio peso a trote.",
+  "lore": [
+    {
+      "titulo": "Montaria dos pequenos povos",
+      "texto": "Menor que o cavalo comum, o pônei serve de bom grado a halflings, gnomos e anões, além de crianças humanas."
+    },
+    {
+      "titulo": "Carga e afeto",
+      "texto": "Apesar do porte modesto, arrasta cargas surpreendentemente pesadas e cria laços afetuosos com quem o cria."
+    },
+    {
+      "titulo": "Veneno e doença",
+      "texto": "Doença no jogo (ao tratar): Mormo · Virulência 10 · dia · pelo contato com o animal doente: quem cuida dele rola uma vez por dia contra a metade da Virulência (o Contágio do livro)"
+    },
+    {
+      "titulo": "Aptidões",
+      "texto": "montaria sim (para gente pequena ou leve: a carga Leve é 60 kg) · carga sim · tração sim (lavoura)"
+    }
+  ],
+  "imagens": [
+    "bestiario/ponei_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "corpo.altura",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 1,46 × 1,0156 = 1,483 . Antes: a cernelha de 1,22 m (Matsuura) × 1,2, a mesma proporção da ficha do cavalo, cujo texto de 1843 não foi conferido"
+    },
+    {
+      "campo": "corpo.comprimento",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 2,30 × 1,0156 = 2,336 . Antes: o cavalo (2,4 m) reduzido; sem medida de pônei"
+    },
+    {
+      "campo": "corpo.comprimentoSemCauda",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 1,90 × 1,0156 = 1,930 . Antes: o cavalo (2,5 m) × 0,8, a razão das cernelhas (122 ÷ 153); sem medida"
+    },
+    {
+      "campo": "corpo.largura",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 0,45 × 1,0156 = 0,457 . Antes: os 0,6 m do cavalo × 0,8"
+    }
+  ]
+}

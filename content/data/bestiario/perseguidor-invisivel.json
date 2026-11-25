@@ -1,0 +1,233 @@
+{
+  "id": "perseguidor-invisivel",
+  "idAntigo": "mon-invisible-stalker",
+  "nome": "Perseguidor Invisível",
+  "nomeIngles": "Invisible Stalker",
+  "categoria": "elemental",
+  "papel": "elite",
+  "ameaca": 4,
+  "centelha": 4,
+  "corpo": {
+    "postura": "de pé, humanoide; voa",
+    "apoio": "bipede",
+    "altura": 1.8,
+    "largura": 0.45,
+    "profundidade": 0.23,
+    "comprimento": null,
+    "massa": 70,
+    "area": 0.72,
+    "posturaDoTamanho": "de frente"
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 5,
+    "destreza": 5,
+    "vigor": 7,
+    "percepcao": 4,
+    "inteligencia": 4,
+    "raciocinio": 4,
+    "influencia": 2,
+    "perspicacia": 3,
+    "compostura": 3
+  },
+  "habilidades": {
+    "briga": 5,
+    "bloqueio": 0,
+    "esquiva": 1,
+    "atletismo": 2,
+    "furtividade": 3,
+    "integridade": 3,
+    "prontidao": 2,
+    "sobrevivencia": 4,
+    "ocultismo": 1,
+    "resistencia": 0
+  },
+  "habilidadesSec": {
+    "voo": 3,
+    "musculatura": 2
+  },
+  "especialidades": {
+    "sobrevivencia": [
+      {
+        "foco": "rastrear",
+        "valor": 2,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 1,
+    "conviccao": 3,
+    "temperanca": 2
+  },
+  "vontade": 9,
+  "aparencia": 5,
+  "deslocamento": {
+    "terra": {
+      "batalha": 3,
+      "arranque": 5,
+      "corrida": 7
+    },
+    "voo": {
+      "batalha": 3
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Soco",
+      "parte": "punho-de-ar",
+      "classe": "leve",
+      "pgr": [
+        1,
+        1,
+        3
+      ],
+      "dado": "1d6-2",
+      "multiplicadorForca": 1,
+      "tipoDano": "impacto",
+      "nivelPerfuracao": 0,
+      "acerto": 1,
+      "bloqueiaComoArma": null,
+      "justificativa": "O soco etéreo (site: \"Dois socos\", 1 dado, 5 Ticks, impacto). Leve, gesto rápido de membro (`regra-construcao.md` §7). Os dois socos vão pela Rajada, nas Manobras. Jogada: Força 5 (igual à Destreza 5) + Briga 5 + 2 × o menor entre Centelha 4 e Briga 5 (8)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Invisibilidade natural",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "ofuscacao",
+        "nivel": 3,
+        "efeito": "ausencia"
+      },
+      "categoria": "inato",
+      "ativacao": "nenhuma; sempre ativa",
+      "duracao": "até atacar ou desfazer",
+      "alcance": "o próprio corpo",
+      "area": "não se aplica",
+      "efeito": "Fica Invisível. Som, cheiro e rastro continuam perceptíveis. Ao atacar, Furtividade contra Percepção Passiva determina se o alvo percebe o ataque",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "nenhum. Sem custo"
+    },
+    {
+      "nome": "Dois socos",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Soco",
+      "categoria": "inato",
+      "regra": "rajada",
+      "texto": "Até dois golpes por ação"
+    },
+    {
+      "nome": "Rastreador implacável",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "nenhuma; vale quando segue a presa que lhe foi apontada",
+      "duracao": "até achar a presa ou a ordem acabar",
+      "alcance": "o rastro",
+      "area": "uma presa",
+      "efeito": "não perde o rastro, não importa a velocidade da presa nem o terreno; a jogada de Sobrevivência só diz quanto tempo ele leva",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "uma presa por vez. Sem custo"
+    },
+    {
+      "nome": "feito de ar",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Não se cansa. Ignora veneno e doença. Demais efeitos que peçam teste de corpo usam o teste normal",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "Contínuo, sem custo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "letra da lei",
+      "formas": "todas",
+      "texto": "cumpre a ordem ao pé da letra, e a vira contra quem a deu se ela tiver brecha; segue a presa sem descanso, bate sem nunca aparecer e foge para o alto quando a luta vira."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão no escuro",
+      "descricao": "enxerga no escuro sem qualquer dificuldade",
+      "formas": "todas"
+    },
+    {
+      "nome": "audição",
+      "descricao": "a de um humano",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "camuflagem": "sempre invisível (nas Manobras)",
+    "mente": "inteligente; ressentida com a servidão, procura brechas nas ordens",
+    "tracos": "invisível; quando o ar em volta tem poeira, fumaça ou chuva, aparece o contorno turvo de um homem de 1,8 m",
+    "tipoCorpo": "elemental"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "sozinho, a serviço de quem o conjurou",
+    "atividade": "qualquer hora",
+    "caca": "segue a presa que lhe apontam",
+    "dianteDeGente": "cumpre a tarefa: guarda, rastreia ou mata"
+  },
+  "ecologia": {
+    "terreno": [
+      "céu",
+      "qualquer"
+    ],
+    "clima": [
+      "extraplanar"
+    ]
+  },
+  "descricao": "Servo invisível do plano do ar: segue a presa sem nunca perder o rastro, bate com dois socos sem jamais aparecer e cumpre a ordem ao pé da letra, de jeito que trai quem a deu.",
+  "lore": [
+    {
+      "titulo": "Servo do Plano do Ar",
+      "texto": "Convocado de um plano distante, o perseguidor invisível cumpre tarefas de guardião, assassino ou rastreador para quem o invoca."
+    },
+    {
+      "titulo": "Letra da lei, não da vontade",
+      "texto": "Ressentido com a servidão, busca brechas em ordens mal formuladas, cumprindo o pedido ao pé da letra de formas que traem a intenção de quem o convocou."
+    }
+  ],
+  "imagens": [
+    "bestiario/perseguidor-invisivel_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "comportamento.social",
+      "motivo": "site"
+    },
+    {
+      "campo": "ataques",
+      "motivo": "os dois socos pela Rajada"
+    }
+  ]
+}

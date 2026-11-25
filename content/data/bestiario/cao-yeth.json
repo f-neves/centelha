@@ -1,0 +1,315 @@
+{
+  "id": "cao-yeth",
+  "idAntigo": "mon-yeth-hound",
+  "nome": "Cão Yeth",
+  "nomeIngles": "Yeth Hound",
+  "categoria": "corruptor",
+  "papel": "soldado",
+  "ameaca": 3,
+  "centelha": 2,
+  "corpo": {
+    "postura": "quatro patas; voador",
+    "apoio": "quadrupede",
+    "altura": 1.2,
+    "largura": 0.5,
+    "profundidade": null,
+    "comprimento": 2.67,
+    "comprimentoSemCauda": 1.7,
+    "caudaGrossa": false,
+    "envergadura": 3.4,
+    "massa": 180,
+    "area": 0.82,
+    "posturaDoTamanho": "silhueta vista de lado, de pé",
+    "segundoTamanho": {
+      "area": 2.8,
+      "posturaDoTamanho": "de baixo, asas abertas, em voo"
+    }
+  },
+  "couraca": 1,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 5,
+    "destreza": 4,
+    "vigor": 4,
+    "percepcao": 4,
+    "inteligencia": 1,
+    "raciocinio": 2,
+    "influencia": 2,
+    "perspicacia": 2,
+    "compostura": 3
+  },
+  "habilidades": {
+    "briga": 4,
+    "bloqueio": 0,
+    "esquiva": 1,
+    "atletismo": 3,
+    "furtividade": 2,
+    "integridade": 3,
+    "prontidao": 2,
+    "resistencia": 3,
+    "sociabilidade": 0,
+    "sobrevivencia": 3
+  },
+  "habilidadesSec": {
+    "intimidacao": 3,
+    "voo": 3,
+    "musculatura": 2
+  },
+  "especialidades": {
+    "prontidao": [
+      {
+        "foco": "faro",
+        "valor": 3,
+        "origem": "natural"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 5,
+    "compaixao": 1,
+    "conviccao": 5,
+    "temperanca": 1
+  },
+  "vontade": 7,
+  "aparencia": 1,
+  "deslocamento": {
+    "terra": {
+      "batalha": 4,
+      "arranque": 6,
+      "corrida": 9
+    },
+    "voo": {
+      "batalha": 6
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Mordida",
+      "parte": "mandibula",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "O \"Golpe planar\" do site (1 dado, 5 Ticks, corte): a mordida de cão, Média, como a do lobo do molde. Jogada: Força 5 + Briga 4 + 2 × o menor entre Centelha 2 e Briga 4 (4)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Posturas de combate",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Médio: silhueta vista de lado, de pé. Grande: de baixo, asas abertas, em voo. Vale o Tamanho da postura atual. Abrir as asas ao voar e fechá-las ao pousar faz parte do movimento, sem custo adicional",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "Uivo apavorante",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "uma ação, Velocidade 6, um uivo",
+      "duracao": "18 Ticks",
+      "alcance": "quem ouve, até 90 m",
+      "area": "esfera de 90 m em volta dele",
+      "efeito": "quem falha fica Em pânico",
+      "dano": "nenhum",
+      "resistencia": "Influência + Intimidação da criatura contra a Defesa Mental do alvo, com o Resistir do livro. quem passa não é pego por esse uivo de novo",
+      "limiteDeUso": "uma vez por cena para cada vítima. Usar repetidamente causa esforço e pode levar ao cansaço. Sem custo"
+    },
+    {
+      "nome": "Mordida sinistra",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "ataque": "Mordida",
+      "categoria": "inato",
+      "ativacao": "a Mordida que fere",
+      "duracao": "para Abalado, até o fim da cena ou até Recompor",
+      "alcance": "o da mordida",
+      "area": "um alvo",
+      "efeito": "quem falha fica Abalado. Abalado dá −2 nas jogadas até o fim da cena ou até Recompor, ação de Velocidade 5 sem teste",
+      "dano": "o do golpe",
+      "resistencia": "a jogada da mordida da criatura contra a Defesa Mental do alvo, com o Resistir do livro. quem passa só leva o dano",
+      "limiteDeUso": "um por golpe. Sem custo"
+    },
+    {
+      "nome": "paralisado de medo",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "sobrenatural",
+      "ativacao": "quando o ataque descrito atinge a vítima",
+      "duracao": "6 Ticks",
+      "alcance": "toque, pelo ataque descrito",
+      "area": "a vítima descrita pelo poder",
+      "efeito": "quem já está apavorado e leva a mordida fica paralisado de medo por um instante. A vítima fica Paralisada. Defesas Físicas 0, mente livre",
+      "dano": "nenhum adicional",
+      "resistencia": "Influência + Intimidação contra a Defesa Mental do alvo, com o Resistir do livro",
+      "limiteDeUso": "Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "mordida corrompida",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "enquanto a condição se aplica",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Este golpe ignora até 2 pontos de Absorção sobrenatural. A proteção de armadura vestida continua",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "prata fere inteira",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "ao receber o golpe",
+      "duracao": "enquanto a condição se aplica",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Contra prata, aplique a Absorção inteira e cobre todo o dano restante. Contra as demais armas, reduza à metade o dano que passou pela Absorção",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "caçador da noite",
+      "formas": "todas",
+      "texto": "persegue a presa pelo céu, uiva para a fazer fugir e desce para morder quem foge; evita a luz do sol acima de tudo."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão no escuro",
+      "descricao": "enxerga no escuro absoluto",
+      "formas": "todas"
+    },
+    {
+      "nome": "faro",
+      "descricao": "de cão; Prontidão (faro) +3; não perde o rastro",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "camuflagem": "no céu noturno",
+    "mente": "inteligência de cão, cruel",
+    "tracos": "cão escuro de 1,2 m de cernelha, com asas de morcego membranosas e olhos vermelhos"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "matilha, às vezes ao lado de bruxas noturnas e caçadores cruéis",
+    "atividade": "noturno; evita a luz do sol",
+    "dieta": "carnívoro",
+    "caca": "persegue presas inteligentes pelo céu por quilômetros",
+    "dianteDeGente": "caça; odeia outros caninos"
+  },
+  "ecologia": {
+    "terreno": [
+      "céu",
+      "qualquer"
+    ],
+    "clima": [
+      "temperado",
+      "extraplanar"
+    ]
+  },
+  "descricao": "Cão alado de asas de morcego que persegue presas inteligentes por quilômetros pelo céu noturno e foge da luz do sol acima de tudo. O uivo espalha terror, e ele costuma andar ao lado de bruxas noturnas como batedor alado.",
+  "lore": [
+    {
+      "titulo": "Caçadores da noite",
+      "texto": "Perseguem presas inteligentes por quilômetros através do céu noturno, temendo e evitando a luz do sol acima de tudo."
+    },
+    {
+      "titulo": "Companhia sinistra",
+      "texto": "Costumam ser vistos ao lado de bruxas da noite e caçadores cruéis, servindo como batedores alados."
+    },
+    {
+      "titulo": "Inimigos dos cães selvagens",
+      "texto": "Odeiam outras criaturas caninas, como worgs e barghests, e os atacam sempre que têm vantagem numérica."
+    }
+  ],
+  "imagens": [
+    "bestiario/cao-yeth_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [
+      {
+        "tipo": "luz",
+        "formas": "todas"
+      },
+      {
+        "tipo": "sagrado",
+        "formas": "todas"
+      }
+    ],
+    "resistencias": [
+      {
+        "tipo": "corte",
+        "formas": "todas"
+      },
+      {
+        "tipo": "perfuracao",
+        "formas": "todas"
+      },
+      {
+        "tipo": "impacto",
+        "formas": "todas"
+      }
+    ],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "corpo.envergadura",
+      "motivo": "Duas vezes o corpo sem a cauda: asa de morcego, larga e curta. O site não dá a envergadura; o cão voa pela Centelha, e não pela asa"
+    },
+    {
+      "campo": "couraca",
+      "motivo": "Cobertura do corpo pela R49; metades arredondadas para cima. Absorção natural do livro (`combate.md`). Couraça 1: couro de cão, um acima do lobo (0) pela pele de exterior .; resistência a Corte, Perfuração e Impacto, como a do súcubo e do kyton; a prata ficou sem regra ainda"
+    },
+    {
+      "campo": "comportamento.dieta",
+      "motivo": ""
+    },
+    {
+      "campo": "habilidadesEspeciais.paralisado de medo",
+      "motivo": "R10 e D-197. Duração sugerida de 6 Ticks para abrir uma janela de combate com o corpo paralisado. R1 e D-197. Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. O limite preserva o primeiro uso e reserva repetição para esforço adicional. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "ataques",
+      "motivo": "o site gravava um \"Golpe planar\" de 1 dado e 5 Ticks, de corte (`inimigos.json`: \"1d6 +7 corte\", dano médio 10,5). A D-241 levou a Pesado só o golpe de cinco planares; aqui a classe sai do gesto: a mordida fica Média, como a do lobo. Dano médio: 10,5 antes; depois, 10,5 (sem mudança)"
+    },
+    {
+      "campo": "corpo.area",
+      "motivo": "Grande de asas abertas, em voo, com a envergadura estimada em duas vezes o corpo"
+    }
+  ]
+}

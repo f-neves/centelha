@@ -1,0 +1,296 @@
+{
+  "id": "gigante-das-nuvens",
+  "idAntigo": "mon-gigante-das-nuvens",
+  "nome": "Gigante das Nuvens",
+  "nomeIngles": "Giant, Cloud",
+  "categoria": "gigante",
+  "papel": "chefe",
+  "ameaca": 5,
+  "centelha": 2,
+  "corpo": {
+    "postura": "bípede, de pé",
+    "apoio": "bipede",
+    "altura": 7,
+    "largura": 1.75,
+    "profundidade": 0.89,
+    "comprimento": null,
+    "massa": 4692,
+    "area": 10.89,
+    "posturaDoTamanho": "de frente"
+  },
+  "couraca": 2,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 12,
+    "destreza": 3,
+    "vigor": 8,
+    "percepcao": 5,
+    "inteligencia": 3,
+    "raciocinio": 4,
+    "influencia": 4,
+    "perspicacia": 4,
+    "compostura": 5
+  },
+  "habilidades": {
+    "briga": 5,
+    "arremesso": 3,
+    "bloqueio": 1,
+    "esquiva": 1,
+    "atletismo": 2,
+    "integridade": 5,
+    "prontidao": 3,
+    "oficios-gerais": 2,
+    "sociabilidade": 1
+  },
+  "habilidadesSec": {
+    "etiqueta": 2,
+    "musculatura": 3
+  },
+  "especialidades": {
+    "arremesso": [
+      {
+        "foco": "rocha",
+        "valor": 1,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 5,
+    "compaixao": 1,
+    "conviccao": 3,
+    "temperanca": 2
+  },
+  "vontade": 6,
+  "aparencia": 4,
+  "deslocamento": {
+    "terra": {
+      "batalha": 5,
+      "arranque": 8,
+      "corrida": 12
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Pancada descomunal",
+      "parte": "punho",
+      "classe": "pesada",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": "2d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "impacto",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "A do site (3 dados, impacto, 7 Ticks): o punho de um gigante de 7 m com o corpo girando atrás. Pesada pelo gesto (`regra-construcao.md` §7), golpe de membro, Força × 1, como a Pancada descomunal do gigante da colina; o terceiro dado sai, porque a Pesada vai a 2 dados. Jogada: Força 12 + Briga 5 + 2 × o menor entre Centelha 2 e Briga 5 (4)"
+    },
+    {
+      "nome": "Rocha arremessada",
+      "arma": "rocha",
+      "justificativa": "Rocha Enorme de 60 kg. O alcance depende da massa. Jogada: Força 12 + Arremesso 3 + 2 × o menor entre Centelha 2 e Arremesso 3 (4)",
+      "tamanho": "enorme"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Arremesso de rocha",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "ataque": "Rocha arremessada",
+      "categoria": "inato",
+      "ativacao": "uma ação, Velocidade 6, com uma rocha na mão (pegar uma do chão gasta outra ação)",
+      "duracao": "instantânea",
+      "alcance": "pela fórmula de arremesso para uma rocha de 60 kg",
+      "area": "um alvo",
+      "efeito": "Se o golpe causar ao menos 1 PV depois da Absorção, pode resolver Derrubar contra a defesa normal, com as travas de massa e sem ação separada",
+      "dano": "3d6 + Força + Centelha, Impacto",
+      "resistencia": "corpo, contra a jogada, só para não cair; o dano vem inteiro",
+      "limiteDeUso": "enquanto houver rocha por perto"
+    },
+    {
+      "nome": "Levitar",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "vento",
+        "nivel": 4
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 6. O efeito sai no Tick do Golpe",
+      "duracao": "enquanto quiser, sem limite de tempo",
+      "alcance": "o próprio corpo, e quem ou o que ele leva",
+      "area": "ele e até mais 900 kg de carga ou de um companheiro",
+      "efeito": "flutua, subindo e descendo devagar, sem asas; a Batalha no ar é a metade da de terra",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "Névoa",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "agua",
+        "nivel": 3,
+        "efeito": "neblina"
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 5. O efeito sai no Tick do Golpe",
+      "duracao": "até o fim da cena, ou até um vento forte dispersar",
+      "alcance": "18 m",
+      "area": "uma esfera de 9 m de raio",
+      "efeito": "névoa espessa que tapa a visão de quem está dentro: quem está dentro fica Na escuridão para ver, os aliados dele somam +2 em Furtividade, e o ataque à distância contra quem está dentro leva −2",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "Telepatia",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "nenhuma; sempre ativa",
+      "duracao": "permanente",
+      "alcance": "18 m",
+      "area": "os aliados que ele escolher",
+      "efeito": "fala com os aliados pela mente, sem língua em comum",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "nenhum. Sem custo"
+    },
+    {
+      "nome": "servos alados",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "conjuracao",
+        "nivel": 4
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 6",
+      "duracao": "até o fim da cena",
+      "alcance": "9 m",
+      "area": "um aliado",
+      "efeito": "Convoca um aliado com o perfil Águia Gigante para lutar até o fim da cena. Só funciona no próprio domínio",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "1 uso grátis por cena. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "agarrar",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Pancada descomunal",
+      "categoria": "inato",
+      "regra": "agarrar"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "caçada do castelo",
+      "formas": "todas",
+      "texto": "trata a luta como um jogo; cobre o campo de névoa, arremessa rochas do alto e só desce para esmagar quem o diverte menos."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão e audição",
+      "descricao": "as de um humano atento; vê longe do alto das nuvens",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "camuflagem": "dentro da própria névoa (Manobras)",
+    "mente": "humanoide, caprichosa e vaidosa",
+    "tracos": "gigante de 7 m de porte nobre e roupas finas, que flutua sem asas"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": true,
+    "tracao": true
+  },
+  "comportamento": {
+    "social": "nobreza aérea, em castelos flutuantes servidos por ogros e águias gigantes",
+    "atividade": "qualquer hora",
+    "dieta": "onívoro; banquetes suntuosos",
+    "caca": "caça por passatempo",
+    "dianteDeGente": "trata mortais como curiosidades ou peças de um jogo"
+  },
+  "ecologia": {
+    "terreno": [
+      "céu",
+      "montanha"
+    ],
+    "clima": [
+      "frio"
+    ]
+  },
+  "descricao": "Nobre dos castelos que flutuam entre as nuvens, de 7 m, caprichoso e vaidoso. Levita com quem quiser levar, cobre o campo de névoa e arremessa rochas do alto; prefere enigmas e caçadas à guerra.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Caprichoso e vaidoso, trata mortais como curiosidades ou peças de um jogo, e prefere enigmas e caçadas a guerra direta."
+    },
+    {
+      "titulo": "Sociedade",
+      "texto": "Forma uma espécie de nobreza aérea, vivendo em castelos flutuantes sustentados por magia antiga, servida por ogros e águias gigantes."
+    },
+    {
+      "titulo": "Hábitos",
+      "texto": "Coleciona curiosidades trazidas de baixo e organiza banquetes suntuosos e caçadas como passatempo."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "Seus castelos no céu são relíquia viva de um tempo em que a magia domava até o vento, prova de que o mundo já foi diferente antes da Supressão. Poucos mortais os avistam, e quem avista raramente é acreditado."
+    },
+    {
+      "titulo": "Aptidões",
+      "texto": "montaria não · carga sim · tração sim"
+    }
+  ],
+  "imagens": [
+    "bestiario/gigante-das-nuvens_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "couraca",
+      "motivo": "Cobertura do corpo pela R49; metades arredondadas para cima. Absorção natural do livro (`combate.md`). Couraça: o \"couro nas alturas\" do site, como o couro grosso do gigante da colina (2) .; 2, couro grosso"
+    },
+    {
+      "campo": "ataques.Rocha arremessada",
+      "motivo": "60 kg, o dobro da referência de 30 kg para o projétil Enorme. Tamanho Enorme, 3d6 de base. Valor de molde, para a bancada."
+    },
+    {
+      "campo": "habilidadesEspeciais.Levitar",
+      "motivo": "R1 e D-197. Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação uma ação, Velocidade 6 -> uma ação, Velocidade 6. O efeito sai no Tick do Golpe. Pela régua da Arte de base. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Névoa",
+      "motivo": "R1 e D-197. Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação uma ação, Velocidade 6 -> uma ação, Velocidade 5. O efeito sai no Tick do Golpe. Pela régua da Arte de base. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "habilidades.prontidao",
+      "motivo": "3, a da nota do site; o campo dizia 2"
+    },
+    {
+      "campo": "ataques",
+      "motivo": "a Pancada usa os 2 dados da classe Pesada (perda de mecânica publicada, no relato)"
+    }
+  ]
+}

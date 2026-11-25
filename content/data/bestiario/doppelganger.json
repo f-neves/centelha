@@ -1,0 +1,269 @@
+{
+  "id": "doppelganger",
+  "idAntigo": "mon-doppelganger",
+  "nome": "Doppelganger",
+  "nomeIngles": "Doppelganger",
+  "categoria": "aberracao",
+  "papel": "soldado",
+  "ameaca": 3,
+  "centelha": 2,
+  "formaPrincipal": {
+    "id": "verdadeira",
+    "nome": "forma verdadeira"
+  },
+  "corpo": {
+    "postura": "bípede, de pé",
+    "apoio": "bipede",
+    "altura": 1.8,
+    "largura": 0.42,
+    "profundidade": 0.22,
+    "comprimento": null,
+    "massa": 70,
+    "area": 0.67,
+    "posturaDoTamanho": "de frente"
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 3,
+    "destreza": 3,
+    "vigor": 4,
+    "percepcao": 4,
+    "inteligencia": 3,
+    "raciocinio": 4,
+    "influencia": 3,
+    "perspicacia": 3,
+    "compostura": 4
+  },
+  "habilidades": {
+    "armas": 3,
+    "briga": 2,
+    "bloqueio": 1,
+    "esquiva": 2,
+    "atletismo": 1,
+    "furtividade": 2,
+    "prontidao": 2,
+    "integridade": 4,
+    "manha": 4,
+    "empatia": 3,
+    "sociabilidade": 2,
+    "investigacao": 2
+  },
+  "habilidadesSec": {
+    "atuacao": 3,
+    "musculatura": 0
+  },
+  "especialidades": {
+    "manha": [
+      {
+        "foco": "passar-se pela pessoa cujo rosto usa",
+        "valor": 3,
+        "origem": "natural"
+      }
+    ],
+    "empatia": [
+      {
+        "foco": "ler a vítima",
+        "valor": 1,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 2,
+    "compaixao": 2,
+    "conviccao": 3,
+    "temperanca": 3
+  },
+  "vontade": 7,
+  "aparencia": 4,
+  "deslocamento": {
+    "terra": {
+      "batalha": 3,
+      "arranque": 5,
+      "corrida": 7
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Espada curta",
+      "arma": "espada-curta",
+      "justificativa": "A arma do livro (`armas.json`, `espada-curta`): Leve, Velocidade 5, Acerto +2, Defesa +1, ★C · P(N1). A Centelha soma inteira no dano (`centelha.md`). Jogada: Destreza 3 + Armas 3 + 2 × o menor entre Centelha 2 e Armas 3 (4)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Mudar de forma",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "materia",
+        "nivel": 2
+      },
+      "categoria": "inato",
+      "ativacao": "uma ação, Velocidade 5",
+      "duracao": "até ele desfazer, ou até cair inconsciente",
+      "alcance": "o próprio corpo",
+      "area": "não se aplica",
+      "efeito": "assume o corpo, o rosto, a voz e o cheiro de qualquer humanoide de Tamanho perto do dele que já tenha visto; os números ficam os dele; só a magia ou a Manha de quem conviveu muito com o original percebe a troca. Use o perfil da forma. O restante é herdado. O equipamento só acompanha quando indicado",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "à vontade. Usar repetidamente causa esforço e pode levar ao cansaço. Sem custo"
+    },
+    {
+      "nome": "Ler pensamentos",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "adivinhacao",
+        "nivel": 1
+      },
+      "categoria": "sobrenatural",
+      "ativacao": "nenhuma; sempre ativo, e uma ação, Velocidade 5, para sondar fundo",
+      "duracao": "enquanto o alvo estiver perto",
+      "alcance": "9 m",
+      "area": "um alvo por vez",
+      "efeito": "sempre ativo, ouve os pensamentos de superfície de quem está perto; na sondagem, quem falha revela um segredo ou uma intenção",
+      "dano": "nenhum",
+      "resistencia": "Percepção + Empatia da criatura contra a Defesa Mental do alvo, com o Resistir do livro. quem passa não revela nada e sente a sondagem",
+      "limiteDeUso": "A escuta de superfície é contínua. Para a sondagem profunda: 1 uso grátis por cena, sem repetir o alvo. Repetir o alvo ou fazer outro uso custa 1 de Energia"
+    },
+    {
+      "nome": "Mente protegida",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Ignora leitura de mente e domínio por comandos simples. Dano físico de Arte e conversa comum seguem as regras normais",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "Contínuo, sem custo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "rosto roubado",
+      "formas": "todas",
+      "texto": "evita a luta; quando é descoberto, ataca com a espada para abrir caminho e foge; mais tarde volta com outro rosto."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão e audição",
+      "descricao": "as de um humano",
+      "formas": "todas"
+    },
+    {
+      "nome": "mente",
+      "descricao": "ouve os pensamentos de superfície de quem está a 9 m (Ler pensamentos, nas Manobras)",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "mente": "inteligente; fria e paciente",
+    "tracos": "pele cinzenta e lisa, corpo magro, olhos grandes e sem cor, rosto quase sem traços"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "sozinho",
+    "atividade": "qualquer hora; vive a rotina da vítima",
+    "dieta": "a de um humano",
+    "caca": "estuda uma vítima, mata ou some com ela e toma o lugar dela",
+    "dianteDeGente": "finge ser alguém conhecido; foge ao menor sinal de suspeita"
+  },
+  "ecologia": {
+    "terreno": [
+      "urbano"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Coisa cinzenta de rosto liso que mata uma pessoa e vive anos com o rosto, a voz e as memórias dela. Lê o que os outros pensam e foge ao primeiro sinal de suspeita, para voltar com outro rosto.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Elimina ou substitui alguém e assume sua forma e memórias, infiltrando-se em vilas e cortes para viver anos a fio sem ser notado."
+    },
+    {
+      "titulo": "Sociedade",
+      "texto": "Age sozinho por segurança, evitando até os de sua própria espécie, mas negocia informações com quem paga bem e mantém segredo."
+    },
+    {
+      "titulo": "Hábitos",
+      "texto": "Estuda a vítima antes de roubar seu rosto, memoriza trejeitos e voz, e foge ao menor sinal de suspeita."
+    },
+    {
+      "titulo": "Personalidade",
+      "texto": "Pragmático e frio, sobrevivente acima de tudo, sente-se mais seguro na pele alheia do que na própria."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "Prospera na desconfiança generalizada que a Supressão semeou, pois ninguém espera magia tão sutil e silenciosa; em Calin, onde caçam 'possuídos' com fervor, aprendeu a apontar o dedo primeiro para desviar suspeita de si."
+    }
+  ],
+  "imagens": [
+    "bestiario/doppelganger_criatura.webp"
+  ],
+  "formas": [
+    {
+      "id": "disfarce",
+      "nome": "disfarce",
+      "fisiologia": {
+        "camuflagem": "assume o corpo e a aparência de um humanoide, mantendo os números da ficha"
+      }
+    }
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "habilidades.briga",
+      "motivo": "De mãos nuas, luta de rua; 2; o site gravava 4, que era a Habilidade da arma"
+    },
+    {
+      "campo": "comportamento.dieta",
+      "motivo": "site"
+    },
+    {
+      "campo": "formas.disfarce",
+      "motivo": "Mudar de forma muda o rosto, o corpo, a voz e o cheiro; os números ficam os dele  Descrição anterior: Anatomia: a de qualquer humanoide de tamanho perto do dele que já tenha visto; Altura e Massa: as do disfarce, dentro do Tamanho Médio; Aparência: a da pessoa copiada; Equipamento: o que a pessoa usava; Camuflagem: passa pela pessoa copiada; o resto: o do doppelganger."
+    },
+    {
+      "campo": "habilidadesEspeciais.Mudar de forma",
+      "motivo": "R3. Ativação uma ação, Velocidade 6 -> uma ação, Velocidade 8 Pela referência corporal ou de deslocamento do poder."
+    },
+    {
+      "campo": "habilidadesEspeciais.Ler pensamentos",
+      "motivo": "R1 e D-197. 1 uso grátis por cena, sem repetir o alvo. Repetir o alvo ou fazer outro uso custa 1 de Energia. O limite preserva o primeiro uso e reserva repetição para esforço adicional. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "formas",
+      "motivo": "forma verdadeira e disfarce (D-201); o disfarce é Variante que muda o corpo e o rosto, e os números são os dele"
+    },
+    {
+      "campo": "equipamento",
+      "motivo": "a espada curta do livro no lugar da \"Arma\" de corte do site"
+    },
+    {
+      "campo": "virtudes",
+      "motivo": "Bravura 2 e Temperança 3; o site tinha 3 e 2"
+    }
+  ]
+}

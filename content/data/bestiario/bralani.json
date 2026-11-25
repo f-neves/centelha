@@ -1,0 +1,363 @@
+{
+  "id": "bralani",
+  "idAntigo": "mon-bralani",
+  "nome": "Bralani",
+  "nomeIngles": "Bralani",
+  "categoria": "outsider",
+  "papel": "elite",
+  "ameaca": 4,
+  "centelha": 4,
+  "formaPrincipal": {
+    "id": "vento",
+    "nome": "forma de vento"
+  },
+  "corpo": {
+    "postura": "redemoinho de pé; voador",
+    "apoio": "bipede",
+    "altura": 1.8,
+    "largura": 0.45,
+    "profundidade": 0.23,
+    "comprimento": null,
+    "massa": 80,
+    "area": 0.72,
+    "posturaDoTamanho": "de frente"
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 6,
+    "destreza": 5,
+    "vigor": 5,
+    "percepcao": 4,
+    "inteligencia": 3,
+    "raciocinio": 4,
+    "influencia": 4,
+    "perspicacia": 4,
+    "compostura": 4
+  },
+  "habilidades": {
+    "armas": 3,
+    "briga": 5,
+    "bloqueio": 1,
+    "esquiva": 1,
+    "atletismo": 2,
+    "prontidao": 2,
+    "integridade": 4,
+    "persuasao": 2,
+    "sobrevivencia": 2,
+    "atirador": 3,
+    "sociabilidade": 1
+  },
+  "habilidadesSec": {
+    "voo": 4,
+    "musculatura": 0
+  },
+  "especialidades": {
+    "briga": [
+      {
+        "foco": "golpe de vento",
+        "valor": 2,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 4,
+    "compaixao": 2,
+    "conviccao": 4,
+    "temperanca": 2
+  },
+  "vontade": 9,
+  "aparencia": 6,
+  "deslocamento": {
+    "terra": {
+      "batalha": 4,
+      "arranque": 6,
+      "corrida": 9
+    },
+    "voo": {
+      "batalha": 10
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Golpe de vento",
+      "parte": "o-proprio-redemoinho",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "impacto",
+      "nivelPerfuracao": null,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "O \"Golpe planar\" do site na forma de vento: o redemoinho bate com a força do corpo, Média (`regra-construcao.md` §7). A Centelha soma inteira. Jogada: Força 6 + Briga 5 + 2 × o menor entre Centelha 4 e Briga 5 (8)"
+    },
+    {
+      "nome": "Rajada cortante",
+      "parte": "lamina-de-ar",
+      "classe": "distancia",
+      "pgr": [
+        1,
+        1,
+        3
+      ],
+      "dado": "3d6",
+      "multiplicadorForca": 0,
+      "tipoDano": "corte",
+      "nivelPerfuracao": null,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Ataque natural a distância, Classe Distância (manual, Passo 10); os números vão na linha da Rajada nas Manobras (D-197). Sem jogada de ataque."
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Forma de vento",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "uma ação, Velocidade 8",
+      "duracao": "até ele voltar com outra ação",
+      "alcance": "o próprio corpo",
+      "area": "não se aplica",
+      "efeito": "vira a forma élfica (Variante) ou volta ao redemoinho; só no redemoinho voa e lança a Rajada. Use o perfil da forma. O restante é herdado. O equipamento só acompanha quando indicado",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "à vontade. Usar repetidamente causa esforço e pode levar ao cansaço. Sem custo"
+    },
+    {
+      "nome": "Rajada cortante",
+      "formas": [
+        "vento"
+      ],
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "vento",
+        "nivel": 3
+      },
+      "ataque": "Rajada cortante",
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 5. O efeito sai no Tick do Golpe",
+      "duracao": "instantânea",
+      "alcance": "18 m à frente",
+      "area": "linha de 18 m",
+      "efeito": "uma lâmina de ar corta todos na linha. Após a área, só há dano residual quando um efeito da ficha o declara",
+      "dano": "3d6 + Centelha, Corte",
+      "resistencia": "sem jogada de ataque. Cada alvo resolve a saída de área pelo livro",
+      "limiteDeUso": "Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "Ventos a serviço",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "vento",
+        "nivel": 2,
+        "efeito": "empurrao-elemental"
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 5. O efeito sai no Tick do Golpe",
+      "duracao": "o ofuscar e a ilusão, até o fim da cena; o resto, instantâneo",
+      "alcance": "18 m",
+      "area": "um alvo, ou uma imagem de até 3 m",
+      "efeito": "à escolha: ofusca a visão de um inimigo (Ofuscado); uma rajada que empurra 3 m; uma ilusão passageira de vento e luz; ou fecha ferimentos graves de um aliado. Ofuscado dá −2 nas ações de visão, inclusive ataques, sem alterar as Defesas. Cego prevalece",
+      "dano": "nenhum; a cura devolve 2d6 + Centelha PV",
+      "resistencia": "corpo, Vigor + Resistência contra Dificuldade 10, para o ofuscar e a rajada",
+      "limiteDeUso": "Usos grátis: 3 por cena. Cada uso extra custa 1 de Energia. As opções compartilham os usos grátis"
+    },
+    {
+      "nome": "Resistência à magia",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "sempre ativa",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a própria criatura",
+      "efeito": "Resistência à magia de grau 2. Soma +4 às Defesas e à jogada de resistir contra Artes e efeitos similares à magia, até o teto comum de +6",
+      "dano": "nenhum adicional",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo. Sem custo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "tempestade arisca",
+      "formas": [
+        "vento"
+      ],
+      "texto": "entra na luta pelo gosto da briga, corta de longe com a rajada, ofusca o mais perigoso e cura os aliados; some no vento quando enjoa."
+    },
+    {
+      "nome": "elfo de espada",
+      "formas": [
+        "elfica"
+      ],
+      "texto": "entra na luta pelo gosto da briga, com a espada longa; ofusca o mais perigoso, cura os aliados e vira vento para cortar de longe ou para sumir."
+    },
+    {
+      "nome": "Projétil natural",
+      "formas": "todas",
+      "texto": "Contra um alvo, use o maior entre Vigor, Destreza e Percepção + Atirador. Ao cobrir uma área, só os alvos fazem a jogada de saída."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão e audição",
+      "descricao": "as de um elfo; sente o vento à volta",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "não precisa",
+    "prendeRespiracao": "não precisa",
+    "camuflagem": "confundido com um redemoinho de poeira, neve ou areia (site)",
+    "mente": "inteligente; selvagem e alegre",
+    "tracos": "redemoinho de poeira, neve ou areia de 1,8 m com feições élficas"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "sozinho ou em pequenos grupos",
+    "atividade": "qualquer hora; segue as tempestades",
+    "dieta": "não precisa comer; gosta de boa comida e vinho",
+    "caca": "não se aplica",
+    "dianteDeGente": "media disputas; busca uma boa luta"
+  },
+  "ecologia": {
+    "terreno": [
+      "céu",
+      "qualquer"
+    ],
+    "clima": [
+      "extraplanar"
+    ]
+  },
+  "descricao": "Espírito do vento, o mais selvagem dos espíritos do bem: vira um redemoinho de poeira, neve ou areia, corta com lâminas de ar e cura os aliados com o vento. Na outra forma, é um elfo alto que luta com espada.",
+  "lore": [
+    {
+      "titulo": "Temperamento",
+      "texto": "Entre os espíritos do bem, os bralanis são os mais selvagens e ariscos, vivendo o momento e sempre em busca de uma boa luta ou uma tempestade para atravessar."
+    },
+    {
+      "titulo": "Aparência",
+      "texto": "Assumem forma élfica ou de um redemoinho de poeira, neve ou areia, sendo às vezes confundidos com espíritos do vento."
+    },
+    {
+      "titulo": "Sociedade",
+      "texto": "Não precisam comer, mas apreciam boa comida e vinho especiado, e gostam de mediar disputas entre mortais, espíritos da natureza e seres elementais, ainda que prefiram deixar a negociação final para os próprios interessados."
+    }
+  ],
+  "imagens": [
+    "bestiario/bralani_criatura.webp"
+  ],
+  "formas": [
+    {
+      "id": "elfica",
+      "nome": "forma élfica",
+      "equipamento": {
+        "arsenal": []
+      },
+      "deslocamento": {
+        "voo": null
+      },
+      "fisiologia": {
+        "respiracao": "ar",
+        "prendeRespiracao": "a de um elfo",
+        "camuflagem": "passa por um elfo",
+        "tracos": "elfo alto de cabelo prateado"
+      },
+      "ataques": [
+        {
+          "nome": "Espada longa",
+          "arma": "espada-longa"
+        }
+      ]
+    }
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [
+      {
+        "tipo": "corte",
+        "formas": "todas"
+      },
+      {
+        "tipo": "perfuracao",
+        "formas": "todas"
+      },
+      {
+        "tipo": "impacto",
+        "formas": "todas"
+      }
+    ],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "habilidades.armas",
+      "motivo": "A lâmina da forma élfica (o site gravava tudo em `briga`)"
+    },
+    {
+      "campo": "corpo.largura",
+      "motivo": "O corpo de base (D-192, manual 4.2): o redemoinho guarda o tamanho do corpo"
+    },
+    {
+      "campo": "corpo.massa",
+      "motivo": "Da ficha publicada ; o vento leva junto a matéria do corpo (D-187); 80 kg também no redemoinho"
+    },
+    {
+      "campo": "couraca",
+      "motivo": "Absorção natural do livro (`combate.md`). Corpo de vento: nível 0. A \"Pele ao Vento\" do site (\"absorve boa parte de golpes de ferro comum\") vai em Elementos, como resistência às três armas"
+    },
+    {
+      "campo": "comportamento.social",
+      "motivo": ""
+    },
+    {
+      "campo": "formas.elfica",
+      "motivo": "O corpo élfico do site: luta com a lâmina e anda; voa e corta com o vento só na forma de vento"
+    },
+    {
+      "campo": "ataques.Rajada cortante",
+      "motivo": "Antes: jogada de ataque na tabela. R36: Sem jogada de ataque, pois o efeito ocupa a área descrita nas Manobras. Cada alvo resolve a defesa de área.; R1 e D-197. Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação uma ação, Velocidade 7, a jogada da tabela (o maior entre Vigor, Destreza e Percepção + Atirador) -> uma ação, Velocidade 5, a jogada da tabela (o maior entre Vigor, Destreza e Percepção + Atirador). O efeito sai no Tick do Golpe. Pela régua da Arte de base. R3 e D-197. P/G/R do ataque 3/1/3 -> 1/1/3 para o golpe sair na Velocidade 5 do poder. valor de molde, para a bancada (uso extra de 1 de Energia).; números sugeridos pela ficha (D-197)"
+    },
+    {
+      "campo": "habilidadesEspeciais.Forma de vento",
+      "motivo": "R3. Ativação uma ação, Velocidade 6 -> uma ação, Velocidade 8 Pela referência corporal ou de deslocamento do poder."
+    },
+    {
+      "campo": "habilidadesEspeciais.Ventos a serviço",
+      "motivo": "R1 e D-197. Usos grátis: 3 por cena. Cada uso extra custa 1 de Energia. As opções compartilham os usos grátis. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação uma ação, Velocidade 6 -> uma ação, Velocidade 5. O efeito sai no Tick do Golpe. Pela régua da Arte de base. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Resistência à magia",
+      "motivo": "R7. SR 17 da fonte passa a grau 2 (+4)."
+    },
+    {
+      "campo": "formas",
+      "motivo": "forma de vento principal e forma élfica (D-201)"
+    },
+    {
+      "campo": "habilidadesEspeciais",
+      "motivo": "resistência a Corte, Perfuração e Impacto"
+    },
+    {
+      "campo": "virtudes.temperanca",
+      "motivo": "2; o site tinha 3"
+    }
+  ]
+}

@@ -1,0 +1,238 @@
+{
+  "id": "cultista",
+  "nome": "Cultista Sombrio",
+  "nomeIngles": "Dark Cultist",
+  "categoria": "humanoide",
+  "papel": "elite",
+  "ameaca": 4,
+  "centelha": 1,
+  "corpo": {
+    "postura": "bípede, de pé",
+    "apoio": "bipede",
+    "altura": 1.7,
+    "largura": 0.41,
+    "profundidade": 0.21,
+    "comprimento": null,
+    "massa": 62,
+    "area": 0.62,
+    "posturaDoTamanho": "de frente"
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 2,
+    "destreza": 3,
+    "vigor": 3,
+    "percepcao": 3,
+    "inteligencia": 3,
+    "raciocinio": 2,
+    "influencia": 4,
+    "perspicacia": 2,
+    "compostura": 2
+  },
+  "habilidades": {
+    "ocultismo": 4,
+    "esquiva": 2,
+    "prontidao": 2,
+    "manha": 3,
+    "integridade": 3,
+    "persuasao": 2,
+    "furtividade": 1,
+    "briga": 0,
+    "bloqueio": 0
+  },
+  "habilidadesSec": {
+    "acerto-arcano": 4,
+    "ritualismo": 3,
+    "musculatura": 0
+  },
+  "especialidades": {
+    "ocultismo": [
+      {
+        "foco": "necromancia",
+        "valor": 1,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 1,
+    "conviccao": 4,
+    "temperanca": 2
+  },
+  "vontade": 7,
+  "aparencia": 4,
+  "deslocamento": {
+    "terra": {
+      "batalha": 3,
+      "arranque": 5,
+      "corrida": 7
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {
+    "morte": 2
+  },
+  "ataques": [
+    {
+      "nome": "Soco",
+      "parte": "mao",
+      "classe": "leve",
+      "pgr": [
+        1,
+        1,
+        3
+      ],
+      "dado": "1d6-2",
+      "multiplicadorForca": 1,
+      "tipoDano": "impacto",
+      "nivelPerfuracao": null,
+      "acerto": 1,
+      "bloqueiaComoArma": null,
+      "justificativa": "A mão nua de quem não sabe brigar (`regra-construcao.md` §7, a classe Leve). A Centelha soma inteira. Jogada: Destreza 3 + Briga 0. O \"Toque mórbido (Morte 1)\" do site é Arte e não entra nesta tabela (D-196): é o Dreno, nas Manobras"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Drenar vida",
+      "formas": "todas",
+      "classe": "livro",
+      "arte": {
+        "id": "morte",
+        "nivel": 1
+      },
+      "categoria": "magia"
+    },
+    {
+      "nome": "Maldição do apodrecer",
+      "formas": "todas",
+      "classe": "livro",
+      "arte": {
+        "id": "morte",
+        "nivel": 2
+      },
+      "categoria": "magia"
+    },
+    {
+      "nome": "Podridão",
+      "formas": "todas",
+      "classe": "livro",
+      "arte": {
+        "id": "morte",
+        "nivel": 1
+      },
+      "categoria": "magia"
+    },
+    {
+      "nome": "Ritual da morte",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "morte",
+        "nivel": 2
+      },
+      "categoria": "magia",
+      "ativacao": "ritual sobre o cadáver",
+      "duracao": "pelo ritual",
+      "alcance": "toque",
+      "area": "um alvo",
+      "efeito": "Prepara o cadáver. Para erguê-lo é preciso Morte 4 ou poder de grau igual",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "1 uso grátis por cena. Cada uso extra custa 1 de Mana"
+    },
+    {
+      "nome": "Sem inimizades naturais",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "texto": "Relação inicial do Humano: +1 com Elfo e Meio-Elfo, −1 com Orc e Meio-Orc, Neutro com os demais. A relação vale do Humano para o outro povo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "frágil no corpo a corpo",
+      "formas": "todas",
+      "texto": "Bloqueio 6, 34 PV e Absorção baixa; mantém distância, põe os mortos-vivos e os seguidores na frente e drena quem chega perto."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão, audição, olfato",
+      "descricao": "humanos",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "prendeRespiracao": "pela regra do personagem",
+    "mente": "humana; fanática",
+    "tracos": "vestes escuras, rosto pálido e fundo, símbolos da seita, mãos frias"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "numa seita escondida, com seguidores e mortos-vivos",
+    "atividade": "noturno",
+    "dieta": "onívoro",
+    "caca": "atrai desesperados e drena vítimas",
+    "dianteDeGente": "esconde-se das igrejas; recruta ou drena"
+  },
+  "ecologia": {
+    "terreno": [
+      "urbano",
+      "ruínas"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Servo de uma seita da morte que drena a vida das vítimas, apodrece o corpo de quem o enfrenta e ergue mortos em ritual. Frágil de perto: deixa os mortos e os seguidores na frente.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Serve poderes que a maioria teme nomear, drenando a vida de vítimas e erguendo os mortos para servir sua vontade."
+    },
+    {
+      "titulo": "Sociedade",
+      "texto": "Opera em seitas escondidas, longe da vista das ortodoxias supressoras, atraindo desesperados e ambiciosos com promessas de poder proibido."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "Aprendeu a colher a Centelha dos mortos em vez de deixá-la voltar à Primeira Luz, um crime que a Ceifadora e as igrejas de Calin igualmente condenam; muitos desses cultos rastreiam sua doutrina até horrores vindos da Fenda, no White Wall."
+    }
+  ],
+  "imagens": [
+    "bestiario/cultista_pdm.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "comportamento.social",
+      "motivo": "site (Sociedade)"
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": ""
+    },
+    {
+      "campo": "habilidadesEspeciais.Ritual da morte",
+      "motivo": "R1 e D-197. 1 uso grátis por cena. Cada uso extra custa 1 de Mana. Um uso de abertura até a definição do efeito. valor de molde, para a bancada (uso extra de 1 de Mana). Uso extra: falta grau de Duração (piso 0 pela T7, RT-134.6)."
+    },
+    {
+      "campo": "virtudes",
+      "motivo": "Compaixão 1 e Convicção 4; o site tinha 2 e 3"
+    }
+  ]
+}

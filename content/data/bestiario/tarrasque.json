@@ -1,0 +1,316 @@
+{
+  "id": "tarrasque",
+  "idAntigo": "mon-tarrasque",
+  "nome": "Tarrasque",
+  "nomeIngles": "Tarrasque",
+  "categoria": "besta-magica",
+  "papel": "chefe",
+  "ameaca": 6,
+  "centelha": 10,
+  "corpo": {
+    "postura": "de pé, erguida; anda curvada",
+    "apoio": "bipede",
+    "altura": 15,
+    "largura": 4.6,
+    "profundidade": null,
+    "comprimento": 27,
+    "massa": 450000,
+    "area": 96,
+    "posturaDoTamanho": "silhueta vista de lado, erguida",
+    "tamanhoEscolhido": "colossal"
+  },
+  "couraca": 12,
+  "perfilCouraca": "rigida",
+  "atributos": {
+    "forca": 16,
+    "destreza": 2,
+    "vigor": 14,
+    "percepcao": 4,
+    "inteligencia": 1,
+    "raciocinio": 2,
+    "influencia": 4,
+    "perspicacia": 2,
+    "compostura": 4
+  },
+  "habilidades": {
+    "briga": 5,
+    "bloqueio": 0,
+    "esquiva": 0,
+    "atletismo": 3,
+    "furtividade": 0,
+    "integridade": 4,
+    "prontidao": 4,
+    "resistencia": 6,
+    "sociabilidade": 0,
+    "sobrevivencia": 3
+  },
+  "habilidadesSec": {
+    "intimidacao": 4,
+    "musculatura": 4
+  },
+  "especialidades": {},
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 4,
+    "compaixao": 1,
+    "conviccao": 3,
+    "temperanca": 2
+  },
+  "vontade": 12,
+  "aparencia": 2,
+  "deslocamento": {
+    "terra": {
+      "batalha": 4,
+      "arranque": 6,
+      "corrida": 9
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Mordida",
+      "parte": "boca",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 1,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "A mordida com o pescoço atrás, Média, como a do tiranossauro. Jogada: Força 16 + Briga 5 + 2 × o menor entre Centelha 10 e Briga 5 (10)"
+    },
+    {
+      "nome": "Garras",
+      "parte": "garra",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "corte",
+      "nivelPerfuracao": 1,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "A garra do braço com o corpo atrás, Média. Jogada: Força 16 + Briga 5 + 2 × o menor entre Centelha 10 e Briga 5 (10)"
+    },
+    {
+      "nome": "Cauda",
+      "parte": "cauda",
+      "classe": "pesada",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": "2d6",
+      "multiplicadorForca": 2,
+      "tipoDano": "impacto",
+      "nivelPerfuracao": null,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "A cauda que varre com o giro do corpo inteiro: Pesada, Força × 2 (manual 7.6). Jogada: Força 16 + Briga 5 + 2 × o menor entre Centelha 10 e Briga 5 (10)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "fúria implacável",
+      "formas": "todas",
+      "classe": "sem regra ainda",
+      "categoria": "inato",
+      "efeito": "abaixo da metade dos PV, ganha mais um ataque por rodada"
+    },
+    {
+      "nome": "Regeneração 40",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "fraqueza": {
+        "forma": "interrompe",
+        "tipos": [
+          "fogo",
+          "ácido"
+        ],
+        "duracao": "6 Ticks"
+      },
+      "texto": "Origem sobrenatural. Quando sofre dano de fogo ou ácido, toda a regeneração para por 6 Ticks. Depois, todas as feridas voltam a fechar. Recupera 40 PV por minuto, até o máximo de PV. Em combate, recupera 4 PV a cada 6 Ticks, contados a partir do Tick do primeiro dano"
+    },
+    {
+      "nome": "Imortalidade Tênue",
+      "formas": "todas",
+      "classe": "livro",
+      "tecnica": {
+        "id": "imortalidade-tenue",
+        "nivel": 6
+      },
+      "categoria": "inato"
+    },
+    {
+      "nome": "Bramido de pânico",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "morte",
+        "nivel": 3,
+        "efeito": "mortalha"
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 5, um rugido. O efeito sai no Tick do Golpe",
+      "duracao": "6 Ticks",
+      "alcance": "quem ouve, até 18 m",
+      "area": "esfera de 18 m em volta dela",
+      "efeito": "quem falha fica Em pânico e foge sem escolher direção",
+      "dano": "nenhum",
+      "resistencia": "Influência + Intimidação da criatura contra a Defesa Mental do alvo, com o Resistir do livro. quem passa fica imune pela cena",
+      "limiteDeUso": "Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "Carapaça que reflete magia",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "nenhuma; quando uma Arte de raio, linha ou cone a mira",
+      "duracao": "instantânea",
+      "alcance": "o próprio corpo",
+      "area": "a Arte que a mira",
+      "efeito": "rola 1d6; em 1 ou 2, a Arte volta para quem a conjurou",
+      "dano": "o da Arte, em quem conjurou",
+      "resistencia": "nenhum",
+      "limiteDeUso": "uma vez por Arte. Sem custo"
+    },
+    {
+      "nome": "quase imune",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Soma +1d6 no teste de Vigor + Resistência contra veneno ou doença. Também resiste a influências mentais. O ferimento do golpe continua",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "Contínuo, sem custo"
+    },
+    {
+      "nome": "investida destruidora",
+      "formas": "todas",
+      "classe": "sem regra ainda",
+      "categoria": "inato",
+      "efeito": "atropela tudo no caminho, sem ligar para terreno nem estrutura leve"
+    },
+    {
+      "nome": "Multiataque",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "uma ação de Rajada",
+      "duracao": "uma ação",
+      "alcance": "o de cada parte",
+      "area": "os alvos da Rajada",
+      "efeito": "Golpeia nesta ordem: mordida, garra, cauda. Cada golpe extra acumula −1d6 e conta para Guarda sob pressão. Não acumula com a Rajada comum",
+      "dano": "o de cada ataque que acertar",
+      "resistencia": "a Defesa de cada golpe",
+      "limiteDeUso": "até 3 golpes por ação, sem Energia. O uso repetido causa esforço e pode levar ao cansaço"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "fim do mundo",
+      "formas": "todas",
+      "texto": "desperta do sono milenar só para destruir e devorar, ignora dor, fogo e feitiço, e volta a dormir."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "sentidos",
+      "descricao": "Prontidão 4; sente o que se move pela terra que treme sob ela",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "mente": "animal (fera de Inteligência 1), fúria pura",
+    "tracos": "réptil colossal de 27 m e 15 m quando se ergue, carapaça escura, dois chifres para a frente, cauda pesada"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitária",
+    "atividade": "dorme por séculos; desperta para destruir",
+    "dieta": "devora tudo no caminho",
+    "caca": "não caça: arrasa",
+    "dianteDeGente": "destrói"
+  },
+  "ecologia": {
+    "terreno": [
+      "qualquer"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Cataclismo vivo que não caça por fome nem conquista por ambição: desperta do sono milenar só para destruir, devorar e voltar a dormir, ignorando dor, fogo e feitiço. A passagem dela deixa a terra estéril por gerações.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "A Tarrasca não caça por fome nem conquista por ambição: desperta de seu sono milenar apenas para destruir, devorar e voltar a dormir, ignorando dor, fogo e feitiço enquanto arrasa tudo em seu caminho."
+    },
+    {
+      "titulo": "Ecologia",
+      "texto": "Nenhum predador a ameaça e nenhum ecossistema a contém; sua passagem deixa terra estéril por gerações, e reinos inteiros aprenderam a ler os sinais de seu despertar como quem lê o fim do mundo."
+    },
+    {
+      "titulo": "Personalidade",
+      "texto": "Não há malícia nela, só fúria pura e instinto: é uma força da natureza, não uma vilã que pensa, o que a torna ainda mais aterradora para quem tenta negociar ou fugir."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "As lendas dizem que a Tarrasca desperta quando o orgulho e o poder dos mortais crescem demais, um eco distante da Grande Guerra que quase destruiu Uldun. As igrejas supressoras de Calin usam sua história como sermão vivo: prova de que magia e tecnologia desenfreadas convocam monstros que nem os deuses sobreviventes ousam despertar de novo."
+    }
+  ],
+  "imagens": [
+    "bestiario/tarrasque_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "corpo.massa",
+      "motivo": "A do site. A regra de altura e massa dos lotes 32 e 33, mantida nos lotes 34 a 36: a medida do site manda, e a massa do site fica quando um fator de forma plausível sobre o animal de base a alcança. A altura erguida manda, a postura em que luta: o tiranossauro (7,5 t, 3,9 m) escalado pelo cubo da altura (15 ÷ 3,9 = × 3,846) dá 427 t; a cauda mais curta tira peso e o corpo mais grosso e a carapaça põem de volta, fator 1,05: 450 t; 450 t, a do site, pela altura erguida e o tiranossauro (fator 1,05). Nada muda: Faixa, PV e Tamanho ficam os do site"
+    },
+    {
+      "campo": "corpo.area",
+      "motivo": "A área do tiranossauro (11,82 m²) escalada pelo quadrado da altura (174,8 m²) e encurtada pelo comprimento do site (27 contra 49 m: × 0,549): 96,0; Colossal na borda de 5% (96 m²), pela carapaça e pelos chifres"
+    },
+    {
+      "campo": "habilidadesEspeciais.Regeneração 40",
+      "motivo": "Antes: 1 hora. Proponho 6 Ticks após o dano de fogo ou ácido: a brecha suprime um pulso de 4 PV e permite que a criatura máxima volte a se recuperar no combate. Valor de molde, para a bancada."
+    },
+    {
+      "campo": "habilidadesEspeciais.Bramido de pânico",
+      "motivo": "R1 e D-197. Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação uma ação, Velocidade 6, um rugido -> uma ação, Velocidade 5, um rugido. O efeito sai no Tick do Golpe. Pela régua da Arte de base. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "ataques",
+      "motivo": "o site gravava um ataque só, \"Garras e presas\" (`inimigos.json`: \"4d6 +26 perfurante\", 7 Ticks, dano médio 40). A ficha separa os golpes pelo gesto, um por ação (D-097). Dano médio: 40 antes; depois, mordida 29,5, garras 29,5, cauda 49,0"
+    }
+  ]
+}

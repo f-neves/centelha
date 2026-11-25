@@ -1,0 +1,266 @@
+{
+  "id": "golem-de-gelo",
+  "idAntigo": "mon-ice-golem",
+  "nome": "Golem de Gelo",
+  "nomeIngles": "Golem, Ice",
+  "categoria": "construto",
+  "papel": "elite",
+  "ameaca": 4,
+  "centelha": 1,
+  "corpo": {
+    "postura": "bípede, de pé",
+    "apoio": "bipede",
+    "altura": 2.1,
+    "largura": 0.53,
+    "profundidade": 0.27,
+    "comprimento": null,
+    "massa": 115,
+    "area": 0.98,
+    "posturaDoTamanho": "de frente"
+  },
+  "couraca": 4,
+  "perfilCouraca": "rigida",
+  "atributos": {
+    "forca": 5,
+    "destreza": 2,
+    "vigor": 4,
+    "percepcao": 2,
+    "inteligencia": 0,
+    "raciocinio": 2,
+    "influencia": 1,
+    "perspicacia": 1,
+    "compostura": 1
+  },
+  "habilidades": {
+    "briga": 4,
+    "bloqueio": 0,
+    "esquiva": 0,
+    "atletismo": 1,
+    "integridade": 0,
+    "prontidao": 1,
+    "resistencia": 0
+  },
+  "habilidadesSec": {
+    "musculatura": 2
+  },
+  "especialidades": {},
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 6,
+    "compaixao": 1,
+    "conviccao": 1,
+    "temperanca": 1
+  },
+  "vontade": 3,
+  "aparencia": 4,
+  "deslocamento": {
+    "terra": {
+      "batalha": 3,
+      "arranque": 5,
+      "corrida": 7
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Punho gelado",
+      "parte": "punho",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "impacto",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Os \"Punhos gelados\" do site (1 dado, impacto, 5 Ticks): o punho de um corpo de 2,1 m, Média como o Punho de pedra do golem de pedra (`regra-construcao.md` §7), golpe de membro, Força × 1; a Velocidade passa de 5 a 6 com a classe. O frio vem pelo Frio cortante (Manobras). Jogada: Força 5 + Briga 4 + 2 × o menor entre Centelha 1 e Briga 4 (2)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "agarrar",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Punho gelado",
+      "categoria": "inato",
+      "regra": "agarrar"
+    },
+    {
+      "nome": "derrubar",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Punho gelado",
+      "categoria": "inato",
+      "regra": "derrubar"
+    },
+    {
+      "nome": "Frio cortante",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "nenhuma; sempre ativo",
+      "duracao": "permanente",
+      "alcance": "toque",
+      "area": "quem ele toca ou acerta com o Punho gelado, e quem o acerta com a mão nua, a garra ou a mordida",
+      "efeito": "o corpo de gelo queima de frio quem encosta nele",
+      "dano": "1d6, gelo",
+      "resistencia": "nenhum",
+      "limiteDeUso": "nenhum. Sem custo"
+    },
+    {
+      "nome": "Sopro congelante",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "gelo",
+        "nivel": 2,
+        "efeito": "sopro-do-norte"
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 5",
+      "duracao": "instantânea",
+      "alcance": "6 m à frente",
+      "area": "cone de 6 m",
+      "efeito": "um sopro de frio brutal castiga todos à frente. Após a área, só há dano residual quando um efeito da ficha o declara",
+      "dano": "3d6 + Centelha, gelo",
+      "resistencia": "sem jogada de ataque. Cada alvo resolve a saída de área pelo livro",
+      "limiteDeUso": "Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "Explosão final",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "chega a 0 PV e é destruído",
+      "duracao": "o dano é instantâneo; o Sangrando vai até alguém tratar",
+      "alcance": "o próprio corpo",
+      "area": "quem está a até 3 m",
+      "efeito": "estilhaça em lascas de gelo cortante; quem não passa fica Sangrando",
+      "dano": "2d6 + Centelha, Corte",
+      "resistencia": "esquiva, contra Dificuldade 11 (10 + Centelha 1); quem passa leva metade e não sangra",
+      "limiteDeUso": "uma vez, na destruição. Sem custo"
+    },
+    {
+      "nome": "imune à magia",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "enquanto a condição se aplica",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Ignora Artes que alteram seu corpo ou sua mente, incluindo medo, sono, domínio, leitura de mente e confusão. O dano elemental passa pela resistência e pela Absorção do golem. As reações próprias do material descritas nesta ficha têm precedência. Neste material, aplicam-se Frio cortante",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "guardião das terras geladas",
+      "formas": "todas",
+      "texto": "vigia os corredores congelados; anda na direção do intruso com o gelo estalando, sopra o frio sobre o grupo e bate com o punho gelado; não fala nem recua."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão e audição",
+      "descricao": "as de um guarda humano",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "camuflagem": "parado no gelo, passa por um bloco de gelo esculpido",
+    "mente": "nenhuma; obedece ao criador",
+    "tracos": "esculpido num único bloco de gelo puro, de figura tosca e congelada; o gelo estala sem parar quando ele anda. Não se cansa",
+    "tipoCorpo": "constructo"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitário",
+    "atividade": "qualquer hora",
+    "caca": "não se aplica: guarda",
+    "dianteDeGente": "ataca quem a ordem manda atacar"
+  },
+  "ecologia": {
+    "terreno": [
+      "gélido",
+      "montanha"
+    ],
+    "clima": [
+      "frio"
+    ]
+  },
+  "descricao": "Estátua de 2,1 m esculpida num bloco de gelo puro, que vigia corredores congelados. Queima de frio quem a toca, sopra um cone de frio brutal e, ao ser destruída, explode em lascas cortantes. O frio não a fere; o fogo a racha.",
+  "lore": [
+    {
+      "titulo": "Estátua que anda",
+      "texto": "Esculpido de um único bloco de gelo puro, pode variar de uma figura tosca e congelada a uma escultura cristalina de rara beleza."
+    },
+    {
+      "titulo": "Guardião das terras geladas",
+      "texto": "Não fala nem geme, apenas o estalar constante do gelo denuncia sua aproximação nos corredores congelados que costuma vigiar."
+    }
+  ],
+  "imagens": [
+    "bestiario/golem-de-gelo_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [
+      {
+        "tipo": "fogo",
+        "formas": "todas"
+      }
+    ],
+    "resistencias": [
+      {
+        "tipo": "perfuracao",
+        "formas": "todas"
+      }
+    ],
+    "imunidades": [
+      {
+        "tipo": "gelo",
+        "formas": "todas"
+      }
+    ]
+  },
+  "revisao": [
+    {
+      "campo": "atributos.vigor",
+      "motivo": "O construto mantém o Vigor como medida do corpo (C-002, C-040): gelo maciço, que não sangra nem cansa, mas racha; abaixo da argila endurecida (5) e do granito (6). O site tinha 0; 4 por julgamento (gelo que racha); o site tinha 0"
+    },
+    {
+      "campo": "habilidades.briga",
+      "motivo": "O combate de um guarda, como o golem de pedra: o site tinha 5, demais para quem não aprende"
+    },
+    {
+      "campo": "habilidadesSec.musculatura",
+      "motivo": "Pelo corpo, julgado pelo material e pela forma (manual 3.5; tamanho-decisoes-3, item 12: 0 corpo de resistência, 2 comum, 3 robusto): gelo maciço na proporção de um homem, mais leve e mais quebradiço que o granito do golem de pedra (3). Comum, 2"
+    },
+    {
+      "campo": "corpo.massa",
+      "motivo": "Pelo material e pelo volume (manual 4.2): o corpo de base escalado pelo cubo da altura (× 1,59) tem 0,125 m³, e em gelo (917 kg/m³), 115 kg. O site dizia 225 kg, o que dá 1.794 kg/m³ para esse corpo, o dobro do gelo; com os ombros 25% mais largos, ainda 1.435 kg/m³. Vale a conta (D-187), como no elemental da terra grande do lote 25; 115 kg pelo gelo (0,125 m³ × 917 kg/m³); o site dizia 225 kg, o dobro da densidade do gelo. Com 225 kg, Faixa 4 e PV 46"
+    },
+    {
+      "campo": "habilidadesEspeciais.Sopro congelante",
+      "motivo": "R1 e D-197. Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R4/C-002. Gelo do construto é efeito similar à magia de base Gelo 2, V5. O corpo construído não produz doses. R3. Ativação uma ação, Velocidade 7 -> uma ação, Velocidade 5. O efeito sai no Tick do Golpe. Pela régua da Arte de base. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "couraca",
+      "motivo": "4, gelo duro e quebradiço"
+    }
+  ]
+}

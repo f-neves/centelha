@@ -1,0 +1,275 @@
+{
+  "id": "nobre-drow",
+  "idAntigo": "mon-drow-noble",
+  "nome": "Nobre Drow",
+  "nomeIngles": "Drow Noble",
+  "categoria": "humanoide",
+  "papel": "soldado",
+  "ameaca": 3,
+  "centelha": 2,
+  "corpo": {
+    "postura": "bípede, de pé",
+    "apoio": "bipede",
+    "altura": 1.6,
+    "largura": 0.4,
+    "profundidade": 0.2,
+    "comprimento": null,
+    "massa": 55,
+    "area": 0.57,
+    "posturaDoTamanho": "de frente"
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 3,
+    "destreza": 5,
+    "vigor": 3,
+    "percepcao": 5,
+    "inteligencia": 2,
+    "raciocinio": 4,
+    "influencia": 3,
+    "perspicacia": 2,
+    "compostura": 4
+  },
+  "habilidades": {
+    "armas": 4,
+    "briga": 2,
+    "bloqueio": 1,
+    "esquiva": 1,
+    "atletismo": 1,
+    "furtividade": 2,
+    "prontidao": 2,
+    "integridade": 4,
+    "ocultismo": 3,
+    "persuasao": 2,
+    "politica": 2,
+    "manha": 2,
+    "sociabilidade": 1
+  },
+  "habilidadesSec": {
+    "religiao": 3,
+    "musculatura": 0
+  },
+  "especialidades": {
+    "armas": [
+      {
+        "foco": "espada curta",
+        "valor": 1,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 1,
+    "conviccao": 4,
+    "temperanca": 2
+  },
+  "vontade": 7,
+  "aparencia": 4,
+  "deslocamento": {
+    "terra": {
+      "batalha": 3,
+      "arranque": 5,
+      "corrida": 7
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Espada curta",
+      "arma": "espada-curta",
+      "justificativa": "A arma do livro (`armas.json`, `espada-curta`): Leve, Velocidade 5, Acerto +2, Defesa +1, ★C · P(N1). A Centelha soma inteira. Jogada: Destreza 5 + Armas 4 + 2 × o menor entre Centelha 2 e Armas 4 (4)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Toque sangrento",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "morte",
+        "nivel": 1
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 5, a jogada de Briga para tocar. O efeito sai no Tick do Golpe",
+      "duracao": "até a ferida ser tratada (Estabilizar)",
+      "alcance": "toque",
+      "area": "um alvo",
+      "efeito": "abre uma ferida que sangra: o alvo fica Sangrando (Sangramento 2)",
+      "dano": "o do Sangramento, pela regra do livro",
+      "resistencia": "corpo, Vigor + Resistência contra a jogada do toque; quem passa não sangra",
+      "limiteDeUso": "Usos grátis: 3 por cena. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "Canalizar energia negativa",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "morte",
+        "nivel": 2
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 5. O efeito sai no Tick do Golpe",
+      "duracao": "instantânea",
+      "alcance": "9 m",
+      "area": "esfera de 9 m em volta dela",
+      "efeito": "uma onda de energia corruptora fere os vivos em volta; ela escolhe quem fica de fora",
+      "dano": "1d6 + Centelha, fenômeno",
+      "resistencia": "corpo, Vigor + Resistência contra Dificuldade 10; quem passa leva metade",
+      "limiteDeUso": "Usos grátis: 2 por cena. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "Toque do caos",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "fortuna",
+        "nivel": 1
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 5, tocando o alvo. O efeito sai no Tick do Golpe",
+      "duracao": "até o próximo resultado importante do alvo, ou o fim da cena",
+      "alcance": "toque",
+      "area": "um alvo",
+      "efeito": "o próximo resultado importante do alvo é rolado de novo, e vale o segundo, para melhor ou para pior",
+      "dano": "nenhum",
+      "resistencia": "Influência + Ocultismo da criatura contra a Defesa Mental do alvo, com o Resistir do livro",
+      "limiteDeUso": "Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "Bênçãos sombrias",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "sombra",
+        "nivel": 1
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 5. O efeito sai no Tick do Golpe",
+      "duracao": "as trevas e a ilusão, até o fim da cena; o favor, até a próxima jogada do aliado",
+      "alcance": "18 m",
+      "area": "à escolha: trevas numa esfera de 6 m; uma ilusão de som ou de imagem pequena; ou um aliado",
+      "efeito": "as trevas apagam a luz comum; a ilusão engana quem não desconfia; o favor soma +1d6 na próxima jogada importante do aliado",
+      "dano": "nenhum",
+      "resistencia": "Influência + Ocultismo da criatura contra a Defesa Mental do alvo, com o Resistir do livro",
+      "limiteDeUso": "Usos grátis: 3 por cena. Cada uso extra custa 1 de Energia. As opções compartilham os usos grátis"
+    },
+    {
+      "nome": "Sensibilidade à luz",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "luz forte (sol, Arte de Luz, lanterna de perto)",
+      "duracao": "enquanto durar a exposição",
+      "alcance": "o próprio corpo",
+      "area": "não se aplica",
+      "efeito": "Fica Ofuscado sob sol forte. Sofre −2 nas ações que dependem da visão, inclusive ataques",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "nenhum. Sem custo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "sacerdotisa da casa",
+      "formas": "todas",
+      "texto": "fica atrás dos guerreiros drow, abre com as trevas, fere o grupo com a onda negativa, sangra o mais perigoso e abençoa os seus; foge da luz."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão no escuro",
+      "descricao": "enxerga no escuro absoluto a uma distância considerável",
+      "formas": "todas"
+    },
+    {
+      "nome": "audição e olfato",
+      "descricao": "os de um humano",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "prendeRespiracao": "pela regra do personagem",
+    "mente": "humanoide; ambiciosa e implacável",
+    "tracos": "pele escura, cabelo branco longo, orelhas pontudas, vestes de sacerdotisa com símbolos de aranha, espada curta"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "à frente de uma patrulha da casa, com guerreiros drow",
+    "atividade": "qualquer hora, no escuro",
+    "dieta": "onívoro",
+    "caca": "captura escravos e elimina rivais",
+    "dianteDeGente": "domina, captura ou elimina"
+  },
+  "ecologia": {
+    "terreno": [
+      "subterrâneo"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Sacerdotisa de uma casa nobre drow, servidora de deusas do caos e da morte. Abre ferida que sangra com um toque, solta uma onda de energia corruptora e abençoa os seus; treinada desde cedo para intrigar e eliminar rivais.",
+  "lore": [
+    {
+      "titulo": "Sacerdotisa da noite eterna",
+      "texto": "Serve deusas do caos e da morte, liderando rituais sombrios nas profundezas das cidades drow."
+    },
+    {
+      "titulo": "Nobreza implacável",
+      "texto": "Nasceu em uma das grandes casas nobres, treinada desde cedo para intrigar, seduzir e eliminar rivais sem hesitar."
+    }
+  ],
+  "imagens": [
+    "bestiario/nobre-drow_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "aparencia",
+      "motivo": "Degrau 4, \"Feio\", fica como no site. A Aparência Universal do Elfo parente não passa a ela (D-207); 4, a do site"
+    },
+    {
+      "campo": "comportamento.social",
+      "motivo": "site"
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": ""
+    },
+    {
+      "campo": "habilidadesEspeciais.Toque sangrento",
+      "motivo": "R1 e D-197. Usos grátis: 3 por cena. Cada uso extra custa 1 de Energia. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação uma ação, Velocidade 5, a jogada de Briga para tocar -> uma ação, Velocidade 5, a jogada de Briga para tocar. O efeito sai no Tick do Golpe. Pela régua da Arte de base. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Canalizar energia negativa",
+      "motivo": "R1 e D-197. Usos grátis: 2 por cena. Cada uso extra custa 1 de Energia. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação uma ação, Velocidade 7 -> uma ação, Velocidade 5. O efeito sai no Tick do Golpe. Pela régua da Arte de base. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Toque do caos",
+      "motivo": "R1 e D-197. Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação uma ação, Velocidade 5, tocando o alvo -> uma ação, Velocidade 5, tocando o alvo. O efeito sai no Tick do Golpe. Pela régua da Arte de base. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Bênçãos sombrias",
+      "motivo": "R1 e D-197. Usos grátis: 3 por cena. Cada uso extra custa 1 de Energia. As opções compartilham os usos grátis. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação uma ação, Velocidade 6 -> uma ação, Velocidade 5. O efeito sai no Tick do Golpe. Pela régua da Arte de base. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "virtudes",
+      "motivo": "Compaixão 1 e Convicção 4; o site tinha 2 e 3"
+    }
+  ]
+}

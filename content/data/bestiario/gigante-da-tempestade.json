@@ -1,0 +1,301 @@
+{
+  "id": "gigante-da-tempestade",
+  "idAntigo": "mon-gigante-da-tempestade",
+  "nome": "Gigante da Tempestade",
+  "nomeIngles": "Giant, Storm",
+  "categoria": "gigante",
+  "papel": "chefe",
+  "ameaca": 5,
+  "centelha": 4,
+  "corpo": {
+    "postura": "bípede, de pé",
+    "apoio": "bipede",
+    "altura": 7.5,
+    "largura": 1.88,
+    "profundidade": 0.96,
+    "comprimento": null,
+    "massa": 5772,
+    "area": 12.5,
+    "posturaDoTamanho": "de frente"
+  },
+  "couraca": 2,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 13,
+    "destreza": 4,
+    "vigor": 9,
+    "percepcao": 6,
+    "inteligencia": 5,
+    "raciocinio": 5,
+    "influencia": 4,
+    "perspicacia": 5,
+    "compostura": 5
+  },
+  "habilidades": {
+    "briga": 5,
+    "bloqueio": 1,
+    "esquiva": 1,
+    "atletismo": 2,
+    "integridade": 5,
+    "prontidao": 4,
+    "conhecimentos": 2,
+    "ocultismo": 2,
+    "sociabilidade": 2
+  },
+  "habilidadesSec": {
+    "intimidacao": 3,
+    "natacao": 3,
+    "musculatura": 3
+  },
+  "especialidades": {},
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 5,
+    "compaixao": 1,
+    "conviccao": 3,
+    "temperanca": 2
+  },
+  "vontade": 8,
+  "aparencia": 4,
+  "deslocamento": {
+    "terra": {
+      "batalha": 5,
+      "arranque": 8,
+      "corrida": 12
+    },
+    "nado": {
+      "batalha": 4
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Pancada descomunal",
+      "parte": "punho",
+      "classe": "pesada",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": "2d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "impacto",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "A do site (3 dados, impacto, 7 Ticks): o punho de um gigante de 7,5 m com o corpo girando atrás. Pesada pelo gesto (`regra-construcao.md` §7), golpe de membro, Força × 1, como a Pancada descomunal do gigante da colina; o terceiro dado sai, porque a Pesada vai a 2 dados. O raio vem pela Fúria do raio (Manobras). Jogada: Força 13 + Briga 5 + 2 × o menor entre Centelha 4 e Briga 5 (8)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Comandar o clima",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "vento",
+        "nivel": 5,
+        "efeito": "tempestade"
+      },
+      "categoria": "milagre",
+      "ativacao": "Um porta-voz dos atingidos pede ao gigante uma mudança do tempo e aceita acolher quem precisar de abrigo. Se o gigante concordar, observa o céu a descoberto e se concentra por dez minutos antes de chamar ou dissipar a tempestade",
+      "duracao": "até ele dissipar, ou até o fim do dia",
+      "alcance": "o céu sobre uma região inteira",
+      "area": "uma região, de quilômetros",
+      "efeito": "convoca ou dissipa uma tempestade: nuvens carregadas, ventania, raios caindo ao acaso, a critério do Mestre",
+      "dano": "o dos raios ao acaso, a critério do Mestre",
+      "resistencia": "nenhum",
+      "limiteDeUso": "uma vez por dia. Limite fixo, sem uso extra nem ampliação"
+    },
+    {
+      "nome": "Relâmpago em cadeia",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "raio",
+        "nivel": 4,
+        "efeito": "corrente"
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 6. O efeito sai no Tick do Golpe",
+      "duracao": "instantânea",
+      "alcance": "36 m até o primeiro alvo",
+      "area": "o primeiro alvo e até quatro outros, cada um a até 9 m do anterior",
+      "efeito": "um relâmpago sai das mãos dele e salta de um alvo para o próximo",
+      "dano": "4d6 + Centelha, raio, no primeiro; 2d6 + Centelha, raio, em cada um dos outros",
+      "resistencia": "esquiva, contra Dificuldade 14 (10 + Centelha 4); quem passa leva metade",
+      "limiteDeUso": "Usos grátis: 3 por dia. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "Respirar água",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "agua",
+        "nivel": 3,
+        "efeito": "bolha-de-ar"
+      },
+      "categoria": "inato",
+      "ativacao": "nenhuma; sempre ativo",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "não se aplica",
+      "efeito": "respira água como quem respira ar, sem esforço nem limite de tempo, e nada sem penalidade (site, Anfíbio)",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "nenhum. Sem custo"
+    },
+    {
+      "nome": "Fúria do raio",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "ataque": "Pancada descomunal",
+      "categoria": "inato",
+      "ativacao": "a Pancada descomunal que acerta",
+      "duracao": "instantânea",
+      "alcance": "o do corpo a corpo",
+      "area": "um alvo",
+      "efeito": "o punho solta uma descarga elétrica",
+      "dano": "mais 1d6, raio",
+      "resistencia": "nenhum",
+      "limiteDeUso": "um por golpe. Sem custo"
+    },
+    {
+      "nome": "Presença régia",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "a primeira vez na cena em que ele fala, ruge ou ataca",
+      "duracao": "para Abalado, até o fim da cena ou até Recompor",
+      "alcance": "18 m",
+      "area": "os inimigos que o veem a até 18 m",
+      "efeito": "quem falha fica Abalado. Abalado dá −2 nas jogadas até o fim da cena ou até Recompor, ação de Velocidade 5 sem teste",
+      "dano": "nenhum",
+      "resistencia": "Influência 4 + Intimidação 3 + 2 × o menor entre Centelha 4 e Intimidação 3 (6) = 13 mais a rolagem da criatura contra a Defesa Mental do alvo, com o Resistir do livro. quem passa fica imune até o fim da cena",
+      "limiteDeUso": "Contínuo, sem custo. A imunidade individual segue a resistência deste poder"
+    },
+    {
+      "nome": "agarrar",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Pancada descomunal",
+      "categoria": "inato",
+      "regra": "agarrar"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "juiz das águas",
+      "formas": "todas",
+      "texto": "observa antes de agir; quando age, chama o raio sobre os culpados, esmaga com o punho e volta para o mar."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão e audição",
+      "descricao": "as de um humano atento; vê debaixo d'água como fora dela",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar e água (Respirar água)",
+    "prendeRespiracao": "não precisa",
+    "mente": "humanoide, sábia e reservada",
+    "tracos": "gigante de 7,5 m de porte nobre, pele de tom violáceo e cabelos como nuvem de chuva"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": true,
+    "tracao": true
+  },
+  "comportamento": {
+    "social": "isolado, em fortalezas sobre recifes ou ilhas",
+    "atividade": "qualquer hora",
+    "dieta": "onívoro",
+    "caca": "pesca e caça no mar",
+    "dianteDeGente": "observa de longe; age com justiça severa"
+  },
+  "ecologia": {
+    "terreno": [
+      "litoral",
+      "aquático"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Gigante de 7,5 m, sábio e reservado, que vive em fortalezas sobre recifes e respira água. Prefere observar a interferir; quando age, convoca a tempestade, lança relâmpagos que saltam de alvo em alvo e esmaga com punhos que soltam raios. O raio não o fere.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Sábio e reservado, prefere observar a interferir, e quando age, age com justiça severa e definitiva."
+    },
+    {
+      "titulo": "Sociedade",
+      "texto": "Vive isolado em fortalezas sobre recifes ou ilhas remotas, evitando contato tanto com outros gigantes quanto com mortais."
+    },
+    {
+      "titulo": "Personalidade",
+      "texto": "Filósofo e guardião por natureza, valoriza conhecimento e equilíbrio acima de qualquer demonstração de força."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "Diz vigiar de longe as rotas do Senhor do Mar e das Estradas, cuidando das águas sem se intrometer nos assuntos dos homens. Sua Centelha, a maior entre os gigantes, o aproxima do divino e o torna ainda mais temido pelas igrejas supressoras."
+    },
+    {
+      "titulo": "Aptidões",
+      "texto": "montaria não · carga sim · tração sim"
+    }
+  ],
+  "imagens": [
+    "bestiario/gigante-da-tempestade_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": [
+      {
+        "tipo": "raio",
+        "formas": "todas"
+      }
+    ]
+  },
+  "revisao": [
+    {
+      "campo": "couraca",
+      "motivo": "Cobertura do corpo pela R49; metades arredondadas para cima. Absorção natural do livro (`combate.md`). Couraça: pele grossa de gigante, como o gigante da colina (2) ; o nível fica fora da Absorção (decisoes-autor §16). A imunidade é a da habilidade publicada (Elementos); 2, pele grossa de gigante"
+    },
+    {
+      "campo": "comportamento.dieta",
+      "motivo": "site"
+    },
+    {
+      "campo": "comportamento.caca",
+      "motivo": "site"
+    },
+    {
+      "campo": "habilidadesEspeciais.Comandar o clima",
+      "motivo": "R1 e D-197. Proponho um porta-voz da comunidade e o compromisso de dar abrigo. O preparo a céu aberto conserva os dez minutos de concentração da ficha."
+    },
+    {
+      "campo": "habilidadesEspeciais.Relâmpago em cadeia",
+      "motivo": "R1 e D-197. Usos grátis: 3 por dia. Cada uso extra custa 1 de Energia. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação uma ação, Velocidade 7 -> uma ação, Velocidade 6. O efeito sai no Tick do Golpe. Pela régua da Arte de base. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "habilidades.prontidao",
+      "motivo": "4, a da nota do site; o campo dizia 3"
+    },
+    {
+      "campo": "ataques",
+      "motivo": "a Pancada de 3 dados vira Pesada de 2 dados (perda de mecânica publicada, no relato)"
+    },
+    {
+      "campo": "fisiologia.tracos",
+      "motivo": "a cor da pele e do cabelo é leitura da ficha; o site não a descreve"
+    }
+  ]
+}

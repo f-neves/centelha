@@ -1,0 +1,309 @@
+{
+  "id": "shoggoth",
+  "idAntigo": "mon-shoggoth",
+  "nome": "Shoggoth",
+  "nomeIngles": "Shoggoth",
+  "categoria": "limo",
+  "papel": "chefe",
+  "ameaca": 6,
+  "centelha": 0,
+  "corpo": {
+    "postura": "massa espalhada no chão",
+    "apoio": "outro",
+    "altura": 1.2,
+    "largura": 4.5,
+    "profundidade": 4.5,
+    "comprimento": 4.5,
+    "massa": 12850,
+    "area": 15.9,
+    "posturaDoTamanho": "massa espalhada no chão"
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 13,
+    "destreza": 6,
+    "vigor": 11,
+    "percepcao": 6,
+    "inteligencia": 1,
+    "raciocinio": 4,
+    "influencia": 3,
+    "perspicacia": 2,
+    "compostura": 5
+  },
+  "habilidades": {
+    "briga": 5,
+    "bloqueio": 0,
+    "esquiva": 2,
+    "prontidao": 4,
+    "integridade": 5,
+    "sobrevivencia": 3,
+    "sociabilidade": 0
+  },
+  "habilidadesSec": {
+    "escalada": 3,
+    "natacao": 3,
+    "musculatura": 3
+  },
+  "especialidades": {},
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 1,
+    "conviccao": 1,
+    "temperanca": 1
+  },
+  "vontade": 5,
+  "aparencia": 1,
+  "deslocamento": {
+    "terra": {
+      "batalha": 5,
+      "arranque": 8,
+      "corrida": 12
+    },
+    "nado": {
+      "batalha": 5
+    },
+    "escalada": {
+      "batalha": 2
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Pseudópode",
+      "parte": "massa-contratil",
+      "classe": "pesada",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": "2d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "impacto",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Todo o corpo participa do golpe; jogada 18 com Briga"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Agarrar",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Pseudópode",
+      "categoria": "inato",
+      "regra": "agarrar",
+      "texto": "envolve a presa com a massa aderente"
+    },
+    {
+      "nome": "Cacofonia enlouquecedora",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "fascinacao",
+        "nivel": 3
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 5",
+      "duracao": "6 Ticks",
+      "alcance": "até onde ouve",
+      "area": "um alvo",
+      "efeito": "Quem ouve e falha fica Confuso, pela condição do livro",
+      "dano": "nenhum",
+      "resistencia": "Influência + Ocultismo contra Defesa Mental com o Resistir do livro",
+      "limiteDeUso": "1 uso grátis por cena"
+    },
+    {
+      "nome": "Tragar múltiplo",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "ação de Velocidade 7 contra vítima menor já Agarrada que cabe na boca",
+      "duracao": "até sair",
+      "alcance": "toque",
+      "area": "a vítima engolida",
+      "efeito": "Dentro, fica Imobilizada para o corpo, pode atacar com arma curta e sofre sufocamento pelo livro. Uma ferida interna de 15 PV abre a saída, por dentro ou com ajuda de fora. Também pode escapar pela garganta como no agarrão. Se a criatura morre, a vítima sai com uma ação",
+      "dano": "3d6 de ácido uma vez a cada 6 Ticks. A armadura vestida não protege contra o ácido",
+      "resistencia": "escape do agarrão pela garganta",
+      "limiteDeUso": "sem custo. Usar repetidamente causa esforço e pode levar ao cansaço"
+    },
+    {
+      "nome": "Visão total",
+      "formas": "todas",
+      "classe": "sem regra ainda",
+      "categoria": "inato",
+      "efeito": "os olhos distribuídos pelo corpo dificultam surpreendê-lo"
+    },
+    {
+      "nome": "Regeneração 10",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "texto": "Recompõe os ferimentos sem fraqueza específica. Recupera 10 PV por minuto, até o máximo de PV. Em combate, recupera 1 PV a cada 6 Ticks, contados a partir do Tick do primeiro dano"
+    },
+    {
+      "nome": "Resistência à magia",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "sempre ativa",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a própria criatura",
+      "efeito": "Resistência à magia de grau 3. Soma +6 às Defesas e à jogada de resistir contra Artes e efeitos similares à magia, até o teto comum de +6",
+      "dano": "nenhum adicional",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo. Sem custo"
+    },
+    {
+      "nome": "Imunidades sensoriais",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Ignora cegueira, surdez e domínio por encantamento. Dano físico de Arte e conversa comum seguem as regras normais",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "Contínuo, sem custo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "Corpo multiforme",
+      "formas": "todas",
+      "texto": "forma pseudópodes conforme a posição da presa; escolhe um golpe por ação ou usa Rajada."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão",
+      "descricao": "olhos em todas as direções, inclusive no escuro",
+      "formas": "todas"
+    },
+    {
+      "nome": "olfato",
+      "descricao": "percebe o cheiro das presas",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "trocas pela superfície",
+    "camuflagem": "massa de lodo escuro",
+    "mente": "instintiva",
+    "tracos": "Massa escura que forma olhos, bocas e pseudópodes"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitário",
+    "atividade": "qualquer hora",
+    "dieta": "carne e outros materiais orgânicos",
+    "caca": "persegue e traga",
+    "dianteDeGente": "tenta dissolver quem se aproxima"
+  },
+  "ecologia": {
+    "terreno": [
+      "aquático",
+      "subterrâneo",
+      "gélido"
+    ],
+    "clima": [
+      "frio"
+    ]
+  },
+  "descricao": "Massa escura que forma olhos, bocas e pseudópodes",
+  "lore": [
+    {
+      "titulo": "Criação de eras esquecidas",
+      "texto": "Moldado muito antes dos primeiros deuses voltarem sua atenção ao mundo, o shoggoth é obra de mãos mais antigas e mais estranhas do que qualquer registro histórico."
+    },
+    {
+      "titulo": "Loucura que ecoa nas trincheiras",
+      "texto": "Emerge raramente de oceanos gelados e cavernas esquecidas, e quando o faz, deixa atrás de si apenas destruição e mentes despedaçadas."
+    },
+    {
+      "titulo": "Massa que nunca dorme",
+      "texto": "Sem forma fixa, gera olhos e bocas onde bem entende, um lembrete vivo de que nem tudo que existe deveria ter sido criado."
+    }
+  ],
+  "imagens": [
+    "bestiario/shoggoth_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [
+      {
+        "tipo": "corte",
+        "formas": "todas"
+      },
+      {
+        "tipo": "perfuracao",
+        "formas": "todas"
+      },
+      {
+        "tipo": "acido",
+        "formas": "todas"
+      },
+      {
+        "tipo": "raio",
+        "formas": "todas"
+      },
+      {
+        "tipo": "fogo",
+        "formas": "todas"
+      }
+    ],
+    "imunidades": [
+      {
+        "tipo": "gelo",
+        "formas": "todas"
+      }
+    ]
+  },
+  "revisao": [
+    {
+      "campo": "habilidadesSec.musculatura",
+      "motivo": "Massa capaz de criar membros e constrições potentes"
+    },
+    {
+      "campo": "corpo.altura",
+      "motivo": "Comprimento ou diâmetro de 4,5 m publicado; espessura e largura da massa achatada estimadas"
+    },
+    {
+      "campo": "corpo.comprimento",
+      "motivo": "Comprimento ou diâmetro de 4,5 m publicado; espessura e largura da massa achatada estimadas"
+    },
+    {
+      "campo": "corpo.largura",
+      "motivo": "Comprimento ou diâmetro de 4,5 m publicado; espessura e largura da massa achatada estimadas"
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": "Comportamento"
+    },
+    {
+      "campo": "habilidadesEspeciais.Cacofonia enlouquecedora",
+      "motivo": "R1 e D-197. 1 uso grátis por cena. Somente os usos grátis estão disponíveis. Um uso de abertura até a definição do efeito."
+    },
+    {
+      "campo": "habilidadesEspeciais.Resistência à magia",
+      "motivo": "R7. SR 30 da fonte passa a grau 3 (+6)."
+    },
+    {
+      "campo": "ataques.Pseudópode",
+      "motivo": "Antes: 3d6 + Força, dano médio 23,5. Agora: 2d6 + Força, dano médio 20, pela classe Pesada."
+    }
+  ]
+}

@@ -1,0 +1,455 @@
+{
+  "id": "ghaele-azata",
+  "idAntigo": "mon-ghaele-azata",
+  "nome": "Ghaele (azata)",
+  "nomeIngles": "Ghaele",
+  "categoria": "celestial",
+  "papel": "chefe",
+  "ameaca": 5,
+  "centelha": 6,
+  "formaPrincipal": {
+    "id": "humanoide",
+    "nome": "forma humanoide"
+  },
+  "corpo": {
+    "postura": "bípede, de pé, ereto",
+    "apoio": "bipede",
+    "altura": 1.8,
+    "largura": 0.48,
+    "profundidade": 0.26,
+    "comprimento": null,
+    "massa": 90,
+    "area": 0.77,
+    "posturaDoTamanho": "de pé"
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 6,
+    "destreza": 6,
+    "vigor": 5,
+    "percepcao": 6,
+    "inteligencia": 6,
+    "raciocinio": 6,
+    "influencia": 7,
+    "perspicacia": 7,
+    "compostura": 7
+  },
+  "habilidades": {
+    "briga": 0,
+    "bloqueio": 3,
+    "esquiva": 2,
+    "prontidao": 4,
+    "integridade": 7,
+    "sobrevivencia": 0,
+    "sociabilidade": 3,
+    "atirador": 4,
+    "ocultismo": 4,
+    "oratoria": 0,
+    "empatia": 3,
+    "armas": 5
+  },
+  "habilidadesSec": {
+    "musculatura": 0
+  },
+  "especialidades": {},
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 5,
+    "compaixao": 5,
+    "conviccao": 5,
+    "temperanca": 4
+  },
+  "vontade": 11,
+  "aparencia": 12,
+  "deslocamento": {
+    "terra": {
+      "batalha": 5,
+      "arranque": 8,
+      "corrida": 12
+    },
+    "voo": {
+      "batalha": 15
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {
+    "cura": 4,
+    "protecao": 4,
+    "luz": 4,
+    "fascinacao": 4,
+    "raio": 4
+  },
+  "ataques": [
+    {
+      "nome": "Espada longa",
+      "arma": "espada-longa",
+      "justificativa": "Espada da forma humanoide já registrada; jogada Destreza 6 + Armas 5 + 2 × o menor entre Centelha 6 e Armas 5 + Acerto 1 = 22"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Aura sagrada",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "protecao",
+        "nivel": 4,
+        "efeito": "barreira"
+      },
+      "categoria": "inato",
+      "ativacao": "nenhuma; sempre ativa",
+      "duracao": "permanente",
+      "alcance": "6 m",
+      "area": "a própria ghaele e os aliados no raio",
+      "efeito": "soma +4 em Esquiva, Bloqueio e Defesa Mental",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "nenhum. Sem custo"
+    },
+    {
+      "nome": "Forma de globo de luz",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "espirito",
+        "nivel": 3
+      },
+      "categoria": "inato",
+      "ativacao": "uma ação, Velocidade 5",
+      "duracao": "até desfazer com outra ação",
+      "alcance": "o próprio corpo",
+      "area": "não se aplica",
+      "efeito": "vira o globo da Variante ou retorna à forma humanoide desta ficha; o equipamento só existe na forma humanoide",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "à vontade. Usar repetidamente causa esforço e pode levar ao cansaço. Sem custo"
+    },
+    {
+      "nome": "Raio de luz",
+      "formas": [
+        "globo-de-luz"
+      ],
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "luz",
+        "nivel": 3,
+        "efeito": "projetil-conjurado"
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 5, o maior entre Vigor, Destreza e Percepção + Atirador. O efeito sai no Tick do Golpe",
+      "duracao": "instantânea; a cegueira dura 12 Ticks",
+      "alcance": "9 m",
+      "area": "um alvo",
+      "efeito": "o raio fere se acertar e ofusca os olhos do atingido; quem teme a luz leva o dano inteiro, e quem não a teme leva a metade, arredondada para cima, antes da Absorção da Centelha",
+      "dano": "2d6 + Centelha, fenômeno",
+      "resistencia": "corpo, Vigor + Resistência contra a jogada do raio; quem passa evita a cegueira, mas recebe o dano do acerto",
+      "limiteDeUso": "Usos grátis: 1 por cena. O uso extra não custa Mana"
+    },
+    {
+      "nome": "Sem membros para bloquear",
+      "formas": [
+        "globo-de-luz"
+      ],
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "passiva",
+      "duracao": "enquanto estiver na forma de globo",
+      "alcance": "o próprio corpo",
+      "area": "não se aplica",
+      "efeito": "não pode bloquear nem aparar ataques, por não ter membros",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "contínuo. Sem custo"
+    },
+    {
+      "nome": "Corpo de luz",
+      "formas": [
+        "globo-de-luz"
+      ],
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Na forma de globo, atravessa matéria. Na forma incorpórea atravessa matéria sem levar corpos materiais. Não pode agarrar nem empurrar",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "Contínuo, sem custo"
+    },
+    {
+      "nome": "Detectar pensamentos e o mal",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "adivinhacao",
+        "nivel": 2
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 5. O efeito sai no Tick do Golpe",
+      "duracao": "até o fim da cena",
+      "alcance": "18 m",
+      "area": "uma criatura por ação",
+      "efeito": "sente intenção imediata e presença de mal sobrenatural, sem ler lembranças",
+      "dano": "nenhum",
+      "resistencia": "Perspicácia + Integridade da criatura contra a Defesa Mental do alvo, com o Resistir do livro. quem passa conserva a intenção oculta",
+      "limiteDeUso": "Usos grátis: 1 por cena. Cada uso extra custa 1 de Mana"
+    },
+    {
+      "nome": "Resistência à magia",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "sempre ativa",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a própria criatura",
+      "efeito": "Resistência à magia de grau 2. Soma +4 às Defesas e à jogada de resistir contra Artes e efeitos similares à magia, até o teto comum de +6",
+      "dano": "nenhum adicional",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo. Sem custo"
+    },
+    {
+      "nome": "Aura de beleza",
+      "formas": [
+        "humanoide"
+      ],
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "fascinacao",
+        "nivel": 3
+      },
+      "categoria": "inato",
+      "ativacao": "nenhuma; quando alguém a encara",
+      "duracao": "para Abalado, até o fim da cena ou até Recompor",
+      "alcance": "6 m",
+      "area": "um inimigo que a encare",
+      "efeito": "quem falha fica Abalado e hesita diante da beleza. Abalado dá −2 nas jogadas até o fim da cena ou até Recompor, ação de Velocidade 5 sem teste",
+      "dano": "nenhum",
+      "resistencia": "Influência + Oratória da criatura contra a Defesa Mental do alvo, com o Resistir do livro. quem passa ignora a aura nesta cena",
+      "limiteDeUso": "Contínuo, sem custo. A imunidade individual segue a resistência deste poder"
+    },
+    {
+      "nome": "Fascinar pela beleza",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "fascinacao",
+        "nivel": 3,
+        "efeito": "boa-impressao"
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 5",
+      "duracao": "6 Ticks",
+      "alcance": "9 m",
+      "area": "um alvo",
+      "efeito": "Fascina pela beleza quem pode ver sua forma e prende sua atenção",
+      "dano": "nenhum",
+      "resistencia": "Influência + Ocultismo contra Defesa Mental com o Resistir do livro",
+      "limiteDeUso": "1 uso grátis por cena. Cada uso extra custa 1 de Mana"
+    },
+    {
+      "nome": "Ilusões feéricas",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "fascinacao",
+        "nivel": 5,
+        "efeito": "imagem-viva"
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 7",
+      "duracao": "uma cena",
+      "alcance": "9 m",
+      "area": "um alvo",
+      "efeito": "Cria uma imagem pelo efeito Ilusão. Quem duvida e testa pode perceber a mentira",
+      "dano": "nenhum",
+      "resistencia": "teste de quem duvida, pelo efeito Ilusão",
+      "limiteDeUso": "1 uso grátis por cena. Cada uso extra custa 1 de Mana"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "Feitiços feéricos",
+      "formas": [
+        "humanoide"
+      ],
+      "texto": "combina Luz, Raio, Fascinação, Cura e Proteção para ocultar aliados, distrair perseguidores e manter seus protegidos vivos."
+    },
+    {
+      "nome": "guarda celestial",
+      "formas": [
+        "globo-de-luz"
+      ],
+      "texto": "luta como globo para sobrevoar o campo e cegar perseguidores; volta à forma humanoide quando precisa da espada."
+    },
+    {
+      "nome": "combate na outra forma",
+      "formas": [
+        "humanoide"
+      ],
+      "texto": "luta com a espada longa e conjura para proteger seus aliados."
+    },
+    {
+      "nome": "Projétil natural",
+      "formas": "todas",
+      "texto": "Contra um alvo, use o maior entre Vigor, Destreza e Percepção + Atirador. Ao cobrir uma área, só os alvos fazem a jogada de saída."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão",
+      "descricao": "acompanha os movimentos e a luz do ambiente",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "camuflagem": "passa por elfa",
+    "mente": "inteligente, comprometida com seus protegidos",
+    "tracos": "guerreira de beleza sobrenatural que assume forma luminosa"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "cortejo de aliados",
+    "atividade": "qualquer hora",
+    "dieta": "não precisa comer",
+    "caca": "não se aplica",
+    "dianteDeGente": "socorre e protege"
+  },
+  "ecologia": {
+    "terreno": [
+      "qualquer"
+    ],
+    "clima": [
+      "extraplanar"
+    ]
+  },
+  "descricao": "Campeã celeste que socorre causas justas e desaparece antes dos agradecimentos. Alterna entre guerreira de beleza sobrenatural e globo luminoso.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Campeã caótica do bem, ágil e etérea, aparece para socorrer causas justas e some antes de ser agradecida."
+    },
+    {
+      "titulo": "Sociedade",
+      "texto": "Viaja com cortejos de fadas e heróis mortais que jurou proteger, sem hierarquia fixa, movida por afinidade e capricho."
+    },
+    {
+      "titulo": "Personalidade",
+      "texto": "Apaixonada e artística, ama a beleza tanto quanto a justiça e não vê contradição nenhuma nisso."
+    },
+    {
+      "titulo": "Hábitat",
+      "texto": "Vem de um plano de liberdade selvagem, atravessando o véu de espíritos quando sente um chamado justo."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "Por vir de um plano ligado ao véu feérico, uma ghaele às vezes é confundida com espírito da natureza pelos animistas de Syl, que a recebem com reverência sem saber que lidam com uma potência muito além dos kami locais."
+    }
+  ],
+  "imagens": [
+    "bestiario/ghaele-azata_criatura.webp"
+  ],
+  "formas": [
+    {
+      "id": "globo-de-luz",
+      "nome": "globo de luz",
+      "equipamento": {
+        "arsenal": []
+      },
+      "deslocamento": {
+        "terra": null,
+        "nado": null,
+        "escalada": null
+      },
+      "corpo": {
+        "postura": "pairando",
+        "apoio": "outro",
+        "altura": 0.5542,
+        "comprimento": 0.5542,
+        "comprimentoSemCauda": 0.5542,
+        "largura": 0.5542,
+        "profundidade": 0.5542,
+        "semMassa": true,
+        "volume": 0.089109,
+        "area": 0.2412,
+        "naoErgue": true
+      },
+      "atributos": {
+        "forca": 0
+      },
+      "fisiologia": {
+        "tipoCorpo": "incorporeo",
+        "camuflagem": "nenhuma, emite luz",
+        "tracos": "globo luminoso sem membros"
+      },
+      "ataques": [
+        {
+          "nome": "Raio de luz",
+          "parte": "raio-de-luz",
+          "habilidade": "atirador",
+          "acerto": 0,
+          "bloqueiaComoArma": null,
+          "nivelPerfuracao": 0,
+          "classe": "distancia",
+          "pgr": [
+            3,
+            1,
+            3
+          ],
+          "dado": "2d6",
+          "multiplicadorForca": 0,
+          "tipoDano": "fenomeno"
+        }
+      ]
+    }
+  ],
+  "elementos": {
+    "fraquezas": [
+      {
+        "tipo": "profano",
+        "formas": "todas"
+      }
+    ],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "comportamento.atividade",
+      "motivo": ""
+    },
+    {
+      "campo": "formas.globo-de-luz",
+      "motivo": "Volume por equivalência ao corpo documentado: 90 ÷ 1.010 = 0,089109 m³. Diâmetro (6 × volume ÷ π)^(1/3) = 0,5542 m; área π × diâmetro² ÷ 4 = 0,2412 m². Tabela: 25 + 3 × Vigor 5 = 40 PV. Retirado o aumento obtido pela esfera arbitrária de 1 m. Ghaele, Light Form: luz voa e dispara, mas não conjura nem golpeia fisicamente; retirados Bloqueio 0 e Musculatura 0, pois as Habilidades são fixas entre formas; o Peso erguido não ergue exprime corpo.naoErgue e a proibição de bloquear fica na habilidade especial marcada da forma, sem alterar os níveis. a conferir."
+    },
+    {
+      "campo": "habilidadesEspeciais.Raio de luz",
+      "motivo": "R1 e D-197. Usos grátis: 1 por cena. Cada uso extra custa 1 de Mana. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação uma ação, Velocidade 7, o maior entre Vigor, Destreza e Percepção + Atirador -> uma ação, Velocidade 5, o maior entre Vigor, Destreza e Percepção + Atirador. O efeito sai no Tick do Golpe. Pela régua da Arte de base. uso extra calculado pela regra de custo (T7, RT-134.6): nível do Efeito 1 + Dano 2 − Centelha 6, no piso 0; o uso extra não custa Mana. A conta cobre só o projétil: o alcance de 9 m e a cegueira de 12 Ticks não entram."
+    },
+    {
+      "campo": "habilidadesEspeciais.Detectar pensamentos e o mal",
+      "motivo": "R1 e D-197. Usos grátis: 1 por cena. Cada uso extra custa 1 de Mana. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação uma ação, Velocidade 7 -> uma ação, Velocidade 5. O efeito sai no Tick do Golpe. Pela régua da Arte de base. valor de molde, para a bancada (uso extra de 1 de Mana). Uso extra: falta grau de Alcance, Alvos e Duração (piso 0 pela T7, RT-134.6)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Resistência à magia",
+      "motivo": "R7. SR 25 da fonte passa a grau 2 (+4)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Fascinar pela beleza",
+      "motivo": "R1 e D-197. 1 uso grátis por cena. Cada uso extra custa 1 de Mana. Um uso de abertura até a definição do efeito. valor de molde, para a bancada (uso extra de 1 de Mana). Uso extra: falta grau de Alcance (piso 0 pela T7, RT-134.6)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Ilusões feéricas",
+      "motivo": "R1 e D-197. 1 uso grátis por cena. Cada uso extra custa 1 de Mana. Um uso de abertura até a definição do efeito. valor de molde, para a bancada (uso extra de 1 de Mana). Uso extra: falta grau de Alcance, Área e Duração (piso 0 pela T7, RT-134.6)."
+    }
+  ]
+}

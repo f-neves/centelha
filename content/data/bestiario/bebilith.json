@@ -1,0 +1,382 @@
+{
+  "id": "bebilith",
+  "idAntigo": "mon-bebilith",
+  "nome": "Bebilith",
+  "nomeIngles": "Bebilith",
+  "categoria": "corruptor",
+  "papel": "chefe",
+  "ameaca": 5,
+  "centelha": 5,
+  "corpo": {
+    "postura": "sobre as patas; escala parede e teto",
+    "apoio": "outro",
+    "altura": 1.9,
+    "largura": 1.8,
+    "profundidade": null,
+    "comprimento": 3,
+    "massa": 2700,
+    "area": 7.44,
+    "posturaDoTamanho": "de cima, sobre as patas"
+  },
+  "couraca": 5,
+  "perfilCouraca": "rigida",
+  "atributos": {
+    "forca": 11,
+    "destreza": 3,
+    "vigor": 9,
+    "percepcao": 3,
+    "inteligencia": 2,
+    "raciocinio": 3,
+    "influencia": 3,
+    "perspicacia": 3,
+    "compostura": 3
+  },
+  "habilidades": {
+    "briga": 5,
+    "bloqueio": 0,
+    "esquiva": 1,
+    "atletismo": 3,
+    "furtividade": 2,
+    "integridade": 3,
+    "prontidao": 1,
+    "resistencia": 5,
+    "sobrevivencia": 3,
+    "ocultismo": 1,
+    "atirador": 3
+  },
+  "habilidadesSec": {
+    "escalada": 5,
+    "musculatura": 3
+  },
+  "especialidades": {},
+  "especialidadesSec": {
+    "escalada": [
+      {
+        "foco": "parede e teto",
+        "valor": 3,
+        "origem": "natural"
+      }
+    ]
+  },
+  "virtudes": {
+    "bravura": 6,
+    "compaixao": 1,
+    "conviccao": 5,
+    "temperanca": 1
+  },
+  "vontade": 10,
+  "aparencia": 0,
+  "deslocamento": {
+    "terra": {
+      "batalha": 4,
+      "arranque": 6,
+      "corrida": 9
+    },
+    "escalada": {
+      "batalha": 2
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Mordida",
+      "parte": "queliceras",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 2,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "A \"Mordida Apodrecedora\" (site): as quelíceras que furam com a cabeça atrás, Média (`regra-construcao.md` §7). N2: presas de quitina de um bicho de 2,7 t . Leva a podridão (Manobras). Jogada: Força 11 + Briga 5 + 2 × o menor entre Centelha 5 e Briga 5 (10)"
+    },
+    {
+      "nome": "Garras",
+      "parte": "patas-dianteiras-farpadas",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "corte",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "O \"Golpe planar\" do site (3 dados, corte): a pata dianteira que rasga com o corpo atrás, Média. Duas por ação pela Rajada (Manobras). Jogada: Força 11 + Briga 5 + 2 × o menor entre Centelha 5 e Briga 5 (10)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Duas garras",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Garras",
+      "categoria": "inato",
+      "regra": "rajada",
+      "texto": "Até dois golpes por ação"
+    },
+    {
+      "nome": "Teia abissal",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "substancia",
+      "ativacao": "uma ação, Velocidade 7, o ataque natural a distância (o maior entre Vigor, Destreza e Percepção + Atirador)",
+      "duracao": "até o alvo escapar",
+      "alcance": "9 m",
+      "area": "um alvo",
+      "efeito": "o fio grudento prende o alvo no lugar: não se desloca, mas age, como preso pela Rede do livro; escapa com Força + Atletismo contra o total do disparo, gastando a ação",
+      "dano": "nenhum",
+      "resistencia": "esquiva, contra a jogada do disparo; quem passa não fica preso",
+      "limiteDeUso": "O corpo guarda 3 doses e produz 1 dose a cada 1 hora. Cada uso gasta 1 dose. Nada acelera a produção"
+    },
+    {
+      "nome": "Mordida apodrecedora",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "ataque": "Mordida",
+      "categoria": "inato",
+      "ativacao": "a mordida abre uma ferida e contamina a carne",
+      "duracao": "até a doença regredir ou o agente ser retirado",
+      "alcance": "toque",
+      "area": "um alvo",
+      "efeito": "Podridão da bebilith. Exposição: a mordida abre uma ferida e contamina a carne. Incubação: 10 minutos. Virulência 15. Após a incubação, teste Vigor + Resistência uma vez por dia, com os estágios da doença do livro. Cura ou cirurgia adequada remove o agente e interrompe a progressão",
+      "dano": "pela progressão da doença",
+      "resistencia": "Vigor + Resistência contra Virulência 15",
+      "limiteDeUso": "um por golpe. Sem custo"
+    },
+    {
+      "nome": "só cede a cura poderosa",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "por exposição",
+      "duracao": "pelo relógio do efeito",
+      "alcance": "toque",
+      "area": "um alvo",
+      "efeito": "Cura ou cirurgia adequada pode retirar o agente da mordida e interromper a progressão",
+      "dano": "o do efeito",
+      "resistencia": "pela regra do livro",
+      "limiteDeUso": "acompanha a doença da Mordida apodrecedora"
+    },
+    {
+      "nome": "desarme brutal",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "as duas garras acertam o alvo protegido",
+      "duracao": "até conserto",
+      "alcance": "contato",
+      "area": "a peça atingida",
+      "efeito": "A peça perde um grau de Integridade por exposição que vencer sua resistência: inteira, avariada, quebrada. O conserto recupera um grau por trabalho",
+      "dano": "nenhum",
+      "resistencia": "a resistência da peça contra a exposição",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "golpe que atravessa",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "enquanto a condição se aplica",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Este golpe ignora até 4 pontos de Absorção sobrenatural. A proteção de armadura vestida continua",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "passagem entre planos",
+      "formas": "todas",
+      "classe": "sem regra ainda",
+      "categoria": "magia",
+      "efeito": "Aguarda o lore dos planos. Usos grátis: 1 por dia"
+    },
+    {
+      "nome": "Escalador nato",
+      "formas": "todas",
+      "classe": "livro",
+      "tecnica": {
+        "id": "andar-de-aranha",
+        "nivel": 4
+      },
+      "categoria": "inato"
+    },
+    {
+      "nome": "Faro",
+      "formas": "todas",
+      "classe": "livro",
+      "tecnica": {
+        "id": "faro",
+        "nivel": 1
+      },
+      "categoria": "inato"
+    },
+    {
+      "nome": "medonho",
+      "formas": "todas",
+      "classe": "sem regra ainda",
+      "categoria": "inato",
+      "efeito": "quem vê a bebilith pela primeira vez sente o nojo e o pavor de uma aranha do tamanho de uma casa; o corpo quer recuar antes de qualquer golpe"
+    },
+    {
+      "nome": "Multiataque",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "uma ação de Rajada",
+      "duracao": "uma ação",
+      "alcance": "o de cada parte",
+      "area": "os alvos da Rajada",
+      "efeito": "Golpeia nesta ordem: garra esquerda, garra direita, mordida. Cada golpe extra acumula −1d6 e conta para Guarda sob pressão. Não acumula com a Rajada comum",
+      "dano": "o de cada ataque que acertar",
+      "resistencia": "a Defesa de cada golpe",
+      "limiteDeUso": "até 3 golpes por ação, sem Energia. O uso repetido causa esforço e pode levar ao cansaço"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "caçadora de demônios",
+      "formas": "todas",
+      "texto": "tece a teia em fendas e cavernas e espera; prende de longe, cai sobre a presa, quebra a armadura com as patas e apodrece a carne com a mordida; abre uma fenda e some quando a caça não vale a pena."
+    },
+    {
+      "nome": "Projétil natural",
+      "formas": "todas",
+      "texto": "Contra um alvo, use o maior entre Vigor, Destreza e Percepção + Atirador. Ao cobrir uma área, só os alvos fazem a jogada de saída."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão no escuro",
+      "descricao": "enxerga no escuro absoluto",
+      "formas": "todas"
+    },
+    {
+      "nome": "faro",
+      "descricao": "acha presa escondida pelo cheiro, mesmo através de névoa e fumaça (Técnica faro, Manobras)",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "camuflagem": "no escuro das fendas, com a Furtividade",
+    "mente": "inteligente, de caçador",
+    "tracos": "aranha verminosa de corpo escuro e brilhante, patas compridas e farpadas, quelíceras grossas e muitos olhos; não precisa comer, mas mastiga carne de demônio por gosto"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "sozinha",
+    "atividade": "qualquer hora",
+    "dieta": "carne de demônio, por gosto; não precisa comer",
+    "caca": "teia em fendas e cavernas, emboscada",
+    "dianteDeGente": "caça se for presa fácil; prefere demônios"
+  },
+  "ecologia": {
+    "terreno": [
+      "qualquer"
+    ],
+    "clima": [
+      "extraplanar"
+    ]
+  },
+  "descricao": "Predador que caça os próprios demônios no Abismo, aranha do tamanho de uma casa com teia, patas farpadas e uma mordida que apodrece. É mais esperta do que parece, e só não vira flagelo dos planos porque só quer caçar.",
+  "lore": [
+    {
+      "titulo": "Natureza",
+      "texto": "Mesmo no Abismo, existem predadores que caçam os próprios demônios: o bebilith é o mais temido deles, uma criatura evoluída para farejar e destruir a horda demoníaca."
+    },
+    {
+      "titulo": "Comportamento",
+      "texto": "É mais inteligente do que sua forma verminosa e monstruosa sugere; ainda bem que seu único interesse é a caça, pois se tivesse ambição de conquista, sua capacidade de cruzar planos o tornaria um flagelo sem igual."
+    },
+    {
+      "titulo": "Caçada",
+      "texto": "Não precisa se alimentar para sobreviver, mas mesmo assim aprecia mastigar carne demoníaca, tecendo suas teias em fendas e cavernas do Abismo à espera da próxima presa."
+    }
+  ],
+  "imagens": [
+    "bestiario/bebilith_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [
+      {
+        "tipo": "luz",
+        "formas": "todas"
+      },
+      {
+        "tipo": "sagrado",
+        "formas": "todas"
+      }
+    ],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "corpo.altura",
+      "motivo": "O site não dá; o corpo de 0,95 m de espessura erguido cerca de um metro sobre as patas"
+    },
+    {
+      "campo": "corpo.comprimento",
+      "motivo": "Os 7 m do site são as patas abertas; o corpo é a medida da ficha, como na aranha gigante"
+    },
+    {
+      "campo": "corpo.largura",
+      "motivo": "Cerca de 60% do comprimento do corpo"
+    },
+    {
+      "campo": "couraca",
+      "motivo": "Cobertura do corpo pela R49; metades arredondadas para cima. Absorção natural do livro (`combate.md`). Couraça 5: a carapaça de quitina de um artrópode de 2,7 t, como o crocodilo (4 a 5) .; 5, carapaça de quitina, como o crocodilo"
+    },
+    {
+      "campo": "comportamento.dianteDeGente",
+      "motivo": "site"
+    },
+    {
+      "campo": "ataques.Mordida.nivelPerfuracao",
+      "motivo": "A \"Mordida Apodrecedora\" (site): as quelíceras que furam com a cabeça atrás, Média (`regra-construcao.md` §7). N2: presas de quitina de um bicho de 2,7 t . Leva a podridão (Manobras). Jogada: Força 11 + Briga 5 + 2 × o menor entre Centelha 5 e Briga 5 (10)"
+    },
+    {
+      "campo": "habilidadesEspeciais.Teia abissal",
+      "motivo": "R1/R4, D-197. Três doses preservam a reserva para mais de uma presa. Sugestão de 3 doses e 1 h por dose para repor fora da luta. valor de molde, para a bancada (3 doses e produz 1 dose a cada 1 hora)."
+    },
+    {
+      "campo": "habilidadesEspeciais.passagem entre planos",
+      "motivo": "R1 e D-197. 1 uso grátis por cena. Cada uso extra custa 1 de Energia. Um uso de abertura até a definição do efeito. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "corpo.massa",
+      "motivo": "2,7 t, a do site, que fecha com o elipsoide do corpo; altura, comprimento do corpo e largura são da ficha, porque o site só dá os 7 m das patas"
+    },
+    {
+      "campo": "corpo.area",
+      "motivo": "7,44 m² pelo método da aranha gigante (corpo de cima mais oito patas); patas de 2,0 × 0,2 m são estimativa"
+    },
+    {
+      "campo": "ataques",
+      "motivo": "o site gravava um \"Golpe planar\" de 3 dados e 7 Ticks, de corte. A D-241 levou a Pesado só o golpe de cinco planares; aqui a classe sai do gesto: a mordida e as garras ficam Médias, e é aqui que a ficha mais perde dano (de 2d6 + 11 para 1d6 + 11)"
+    },
+    {
+      "campo": "habilidadesEspeciais.Mordida apodrecedora",
+      "motivo": "1d6 a cada 6 Ticks por 18 Ticks é número da ficha (D-197); \"drenar o Vigor\" do site ficou como dano, porque o livro não tem dreno de Atributo"
+    }
+  ]
+}

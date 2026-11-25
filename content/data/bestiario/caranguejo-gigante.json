@@ -1,0 +1,206 @@
+{
+  "id": "caranguejo-gigante",
+  "idAntigo": "mon-giant-crab",
+  "nome": "Caranguejo-gigante",
+  "nomeIngles": "Giant Crab",
+  "categoria": "animal",
+  "papel": "fera",
+  "ameaca": 2,
+  "centelha": 0,
+  "corpo": {
+    "postura": "patas dos lados, corpo baixo e largo; anda de lado",
+    "apoio": "outro",
+    "altura": 0.41,
+    "largura": 1.03,
+    "profundidade": null,
+    "comprimento": 0.7,
+    "massa": 202.5,
+    "area": 1.17,
+    "posturaDoTamanho": "de cima",
+    "linhaPV": "acima",
+    "linhaPVMotivo": "carapaça mineralizada"
+  },
+  "couraca": 5,
+  "perfilCouraca": "rigida",
+  "atributos": {
+    "forca": 5,
+    "destreza": 2,
+    "vigor": 5,
+    "percepcao": 2,
+    "inteligencia": 1,
+    "raciocinio": 2,
+    "influencia": 1,
+    "perspicacia": 1,
+    "compostura": 1
+  },
+  "habilidades": {
+    "briga": 3,
+    "bloqueio": 3,
+    "esquiva": 1,
+    "atletismo": 2,
+    "furtividade": 2,
+    "integridade": 1,
+    "prontidao": 2,
+    "resistencia": 3,
+    "empatia": 0,
+    "sobrevivencia": 2
+  },
+  "habilidadesSec": {
+    "equilibrio": 1,
+    "escalada": 0,
+    "natacao": 2,
+    "voo": 0,
+    "musculatura": 4
+  },
+  "especialidades": {
+    "resistencia": [
+      {
+        "foco": "fora da água",
+        "valor": 3,
+        "origem": "natural"
+      }
+    ],
+    "furtividade": [
+      {
+        "foco": "na toca",
+        "valor": 1,
+        "origem": "natural"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 2,
+    "compaixao": 1,
+    "conviccao": 1,
+    "temperanca": 1
+  },
+  "vontade": 3,
+  "aparencia": 6,
+  "deslocamento": {
+    "terra": {
+      "batalha": 3,
+      "arranque": 5,
+      "corrida": 6
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Pinça",
+      "parte": "pinca",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "impacto",
+      "nivelPerfuracao": null,
+      "acerto": 0,
+      "bloqueiaComoArma": 1,
+      "justificativa": "Era 1d6 + 9, média 12,5: a Força desce de 9 para 7 (D-115); a sétima rodada não a muda. Golpe que pede o corpo atrás (seção 7). A pinça esmaga, e não corta: fica Impacto, como a mordida que esmaga (ver as notas). Quebra concha de ostra e de caranguejo (fishconsult.org)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "agarrar",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "regra": "agarrar"
+    },
+    {
+      "nome": "puxar para a água",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "ataque": "Pinça",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "enquanto a condição se aplica",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Ao manter o agarrão, desloca-se com a presa a metade da Batalha, até o peso que arrasta. O movimento integra a manutenção",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    }
+  ],
+  "comoLuta": [],
+  "sentidos": [
+    {
+      "nome": "sentidos",
+      "descricao": "nada achado com número",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "água, e aguenta horas no ar úmido (Resistência (fora da água) +3 , Especialidade natural, )",
+    "prendeRespiracao": "não se aplica (respira por brânquias); fora da água, a S. paramamosain aguenta 120 h, da própria espécie não achado",
+    "mente": "animal, de mente simples: imune à influência social (não entende a influência) e vulnerável a medo e a magia mental (decisão 7 de 19/10/2026 e resposta do autor ao lote 1, 20/10/2026). A imunidade a efeitos mentais do livro publicado sai (Imunidade Mental: \"Por não possuir mente articulada, é imune a efeitos que dependem de compreensão ou emoção\")",
+    "tracos": "carapaça lisa, pinças enormes no macho; fica mole e vulnerável na muda, quando outros caranguejos o atacam"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitário, canibal",
+    "atividade": "ligada à maré, de dia e de noite",
+    "dieta": "carnívoro e carniceiro: ostras, moluscos, crustáceos, vermes",
+    "caca": "forrageia no fundo na maré enchendo; 79% do tempo parado"
+  },
+  "ecologia": {
+    "terreno": [
+      "aquático",
+      "litoral"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Passa a maré na toca da margem do mangue; sai com a água subindo para quebrar ostras e caranguejos menores com as pinças.",
+  "lore": [
+    {
+      "titulo": "Predador Costeiro",
+      "texto": "Alimenta-se tanto de algas e fungos quanto de peixes, aves marinhas e incautos que se aproximam demais da maré."
+    },
+    {
+      "titulo": "Variação da Espécie",
+      "texto": "Existem variedades de todos os tamanhos, da pequena caranguejeira de coco ao monstruoso naufragador de navios, cada uma adaptando cor e força ao ambiente onde vive."
+    }
+  ],
+  "imagens": [
+    "bestiario/caranguejo-gigante_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "atributos.forca",
+      "motivo": "Era 9. Reanalisado na sétima rodada: fica, porque com 622 kg (era 540) a Força de referência da massa é 7,87, e os vizinhos de massa são o cavalo (470 kg, Força 7), o alce (407,5 kg, 7), o bisão (570 kg, 8), o daeodon (750 kg, 8) e o boi (788 kg, 8): o caranguejo fica com o cavalo e o alce, abaixo do topo, porque o corpo é de carapaça baixa e larga, que anda de lado e passa 79% do tempo parado (Hewitt et al. 2023), sem o músculo de tronco do boi ou do cavalo. O que ele tem de excepcional é a pinça, \"muito grande, forte e pesada\" no macho (fishconsult.org), e isso vai para a Musculatura. A pinça escalada pelo quadrado do tamanho daria cerca de 62.000 N (pela relação do caranguejo-dos-coqueiros, 1.765 N com 2,1 kg e expoente 0,82, Oka et al. 2016: cerca de 506 N na base de 0,461 kg, × 11,04²) , e não decide a Força. Continua acima da Scylla de base (Força 1 , pelo item 8; ver \"Comparação com o animal de base\"), como pede a D-176"
+    },
+    {
+      "campo": "corpo.altura",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 0,60 × 0,6879 = 0,413 . Antes: O tamanho do site fica (passa no item 7). 0,4 vez a largura, a proporção estimada pela Bestiarista (0,10 m num caranguejo de 25 cm; o corpo achatado erguido sobre as patas); altura não achada"
+    },
+    {
+      "campo": "corpo.largura",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 1,50 × 0,6879 = 1,032 . Antes: A largura da carapaça da ficha atual (\"largura 1,5 m\"), que fica e decide a massa: 135,8 mm da base típica × 11,04. Passa no item 7 da `tamanho-decisoes-5.md` (Grande, quatro portes acima da base Minúscula)"
+    },
+    {
+      "campo": "corpo.massa",
+      "motivo": "Etapa 2 (20/10/2026): Decisão 6 de 19/10/2026: o tamanho do gigante é escolhido por criatura, e o caranguejo de 500 kg desceu porque não era condizente. O autor pôs nas Variantes o macho de 205 kg e a fêmea de 200 kg (escala × 1.000 sobre 205 e 200 g), Alvo Médio; a principal fica na média dos dois, 202,5 kg , e as medidas e a área descem pelo cubo da massa . Resposta do autor às dúvidas dos lotes 2 a 5 (20/10/2026, seção 13): a base é de 202,5 g, ampliada 1.000 vezes (a medida, 10 vezes). Fonte da base conferida: não achei estudo com exatamente 205 g no macho e 200 g na fêmea. O mais perto é a população de Karachi, no Paquistão (Khan, Khan e Mustaqeem 2014, 488 machos e 450 fêmeas): largura média da carapaça de 103,8 mm nos machos e 100,8 mm nas fêmeas (o resumo), e massa média de 203,44 g nos machos e 168,48 g nas fêmeas (a legenda de uma tabela do artigo, vista só pela busca; a página recusou o acesso). Em Cochin a média é bem maior (macho 513,5 g e fêmea 409,3 g, Aneesa e colegas 2025). A base de 202,5 g fica dentro da espécie, num caranguejo de cerca de 10 cm de carapaça, e o gigante, com a medida 10 vezes maior, fica com cerca de 1 m de carapaça. A faixa de manobra passa da 4 para a 3 (até 220 kg). Antes: Era 540 kg. Gigante pelo cubo, com o tamanho do site e a massa saindo dele (item 5 da `tamanho-decisoes-5.md`): massa típica da base × (largura do gigante ÷ largura da base)³ = 0,46143 × (1,5 ÷ 0,135815)³ = 0,46143 × 1.347,2 = 621,6 kg, 622 na mesa; k = 11,04. Base típica : machos 513,53 ± 365,99 g com 136,59 ± 30,29 mm de largura de carapaça (n = 2.048) e fêmeas 409,33 ± 250,85 g com 135,04 ± 28,75 mm (n = 1.974), estuário de Cochin, Índia, 2020 a 2023, caranguejos de desembarque de pesca (Aneesa, Chaithanya e Varghese 2025, Heliyon 11: e42829, tabela 1); média simples das duas massas, 461,43 g, e das duas larguras, 135,8 mm, da mesma fonte e da mesma população. A amostra inclui alguns jovens (a maturidade vem por volta de 90 mm, fishconsult.org). Era a *S. serrata* adulta grande de 2,5 kg (meio do \"peso entre 2 e 3 kg\" do SeaLifeBase) com 25 cm. Faixa do adulto: 50 a 1.955 g e 56 a 214 mm em Cochin; máximo publicado 3,0 kg (SeaLifeBase) ou 3,5 kg (Wikipédia); no gigante, pela mesma conta (× 1.347), a faixa de Cochin dá de 67 kg a 2,6 t. Sexos (a diferença é de 25% na massa e quase nula na largura): macho 513,5 g na base, 692 kg no gigante; fêmea 409,3 g na base, 551 kg no gigante. Os machos têm as pinças maiores (fishconsult.org). A largura de 1,5 m é a da ficha atual do Centelha, que diz 180 kg: as duas medidas não fecham pela base (180 kg pediriam cerca de 1,0 m de largura), e vale o tamanho (item 5). A Faixa 4 vem de `calc6.mjs` (o corte de 35 kg substitui o de 25 kg, decisão 22) e decide o PV, e não o Alvo"
+    }
+  ]
+}

@@ -1,0 +1,249 @@
+{
+  "id": "crocodilo-do-nilo",
+  "idAntigo": "mon-crocodilo",
+  "nome": "Crocodilo-do-nilo",
+  "nomeIngles": "Nile crocodile",
+  "categoria": "animal",
+  "papel": "fera",
+  "ameaca": 2,
+  "centelha": 0,
+  "corpo": {
+    "postura": "corpo baixo",
+    "apoio": "quadrupede",
+    "altura": 0.5,
+    "largura": 0.64,
+    "profundidade": null,
+    "comprimento": 3.84,
+    "comprimentoSemCauda": 2.01,
+    "caudaGrossa": true,
+    "massa": 215,
+    "area": 1.58,
+    "posturaDoTamanho": "vista de cima",
+    "linhaPV": "acima",
+    "linhaPVMotivo": "couraça de osteodermos"
+  },
+  "couraca": 5,
+  "perfilCouraca": "rigida",
+  "atributos": {
+    "forca": 7,
+    "destreza": 2,
+    "vigor": 3,
+    "percepcao": 3,
+    "inteligencia": 1,
+    "raciocinio": 2,
+    "influencia": 1,
+    "perspicacia": 1,
+    "compostura": 1
+  },
+  "habilidades": {
+    "briga": 4,
+    "bloqueio": 2,
+    "esquiva": 2,
+    "atletismo": 2,
+    "furtividade": 3,
+    "integridade": 1,
+    "prontidao": 2,
+    "resistencia": 3,
+    "empatia": 0,
+    "sobrevivencia": 2
+  },
+  "habilidadesSec": {
+    "equilibrio": 0,
+    "escalada": 0,
+    "natacao": 2,
+    "voo": 0,
+    "corrida": 0,
+    "musculatura": 3
+  },
+  "especialidades": {
+    "prontidao": [
+      {
+        "foco": "vibração na água",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ],
+    "resistencia": [
+      {
+        "foco": "apneia",
+        "valor": 3,
+        "origem": "natural"
+      }
+    ],
+    "furtividade": [
+      {
+        "foco": "submerso",
+        "valor": 1,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 1,
+    "conviccao": 1,
+    "temperanca": 1
+  },
+  "vontade": 3,
+  "aparencia": 6,
+  "deslocamento": {
+    "terra": {
+      "batalha": 2,
+      "arranque": 4,
+      "corrida": 5
+    },
+    "nado": {
+      "batalha": 4
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Mordida",
+      "parte": "mordida",
+      "classe": "pesada",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": "2d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 1,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Era 2d6 + 9, média 16. 7 + 8. Pesada é \"a mordida que agarra e torce\". Força × 1 (golpe de boca). Nível N1 : os 3.043 N medidos (N0) são de animais de 86 kg; o adulto típico de 198 kg morde mais, e os 22 kN de Brady Barr num adulto (Wikipédia, documentário de TV, não artigo) dariam N2. Fica no N1 (4.000 a 15.000 N), entre a medida pequena e a cifra de TV. Os 64 a 68 dentes (SDZG)."
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "agarrar",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "regra": "agarrar"
+    },
+    {
+      "nome": "rolamento (giro da morte)",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Mordida",
+      "categoria": "inato",
+      "regra": "agarrar",
+      "texto": "é a manutenção do agarrão, rolando na água"
+    },
+    {
+      "nome": "arrastar para a água",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "ataque": "Mordida",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "enquanto a condição se aplica",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Ao manter o agarrão, desloca-se com a presa a metade da Batalha, até o peso que arrasta. O movimento integra a manutenção",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "emboscada aquática",
+      "formas": "todas",
+      "texto": "espera submerso e ataca de surpresa (Furtividade); o alvo surpreso tem a Defesa zerada (Combate, Quando a Defesa zera)."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "vibração",
+      "descricao": "Prontidão (vibração na água) +2, Especialidade natural (notar presa pela pressão e vibração na água); alcance Órgãos tegumentares",
+      "formas": "todas"
+    },
+    {
+      "nome": "visão",
+      "descricao": "campo de 270° e sobreposição binocular de 25° (SDZG, conferido): texto, sem Especialidade",
+      "formas": "todas"
+    },
+    {
+      "nome": "audição",
+      "descricao": "de 100 a 4.000 Hz (SDZG, conferido): texto, nada que passe do humano",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar; vive entre a água e a margem",
+    "prendeRespiracao": "até 2 horas submerso em repouso total; mergulhos comuns de poucos minutos; até 30 minutos nadando submerso se ameaçado. A Resistência (apneia) +3 não troca este campo",
+    "camuflagem": "água",
+    "mente": "animal",
+    "tracos": "dependência de água; fôlego curto em terra (\"fica exausto fácil em terra\", SDZG); os músculos que abrem a boca são muito fracos, o que fica para o Mestre"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitário na caça; agrega-se no sol e na carcaça grande, com hierarquia rígida por tamanho, e anda centenas de metros até ela",
+    "dieta": "carnívoro (até 70% de peixe no adulto)",
+    "caca": "emboscada",
+    "dianteDeGente": "ataca"
+  },
+  "ecologia": {
+    "terreno": [
+      "aquático",
+      "pântano"
+    ],
+    "clima": [
+      "tropical"
+    ]
+  },
+  "descricao": "Espera na margem o mamífero que vem beber, agarra, arrasta para a água e gira. Come até 20% da própria massa numa refeição (SDZG); a fêmea guarda o ninho e leva os filhotes na boca até a água.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Caçador de emboscada: fica imóvel por horas, quase todo submerso, até fechar as mandíbulas sobre a presa e arrastá-la para debaixo d'água. Não tem malícia nem plano, só fome e paciência."
+    },
+    {
+      "titulo": "Hábitat",
+      "texto": "Vive em rios lentos, pântanos e mangues, sobretudo nas terras baixas e alagadas de Mére e nas margens quentes do sul de Calin."
+    },
+    {
+      "titulo": "Ecologia",
+      "texto": "Topo da cadeia alimentar de sua lagoa: come peixes, aves, mamíferos que vêm beber água e, sem hesitar, gente descuidada na beira do rio."
+    }
+  ],
+  "imagens": [
+    "bestiario/crocodilo-do-nilo_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "corpo.altura",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 0,49 × 1,0278 = 0,504 . Antes: Era 0,55 m, estimativa do Arquiteto para o macho de 4,20 m (`porte-dimensoes.mjs`; `regua-d139.md` §2): não há altura na pesquisa. Escalado pelo cubo da massa: 0,55 × (198 ÷ 280)^(1/3) = 0,55 × 0,891 = 0,49"
+    },
+    {
+      "campo": "corpo.comprimento",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 3,74 × 1,0278 = 3,844 . Antes: Era 4,20 m , o ponto médio de 3,3 a 5,0 m do macho (Wikipédia). As dimensões da v3 descrevem o macho de cerca de 280 kg, e não os 400 kg de trabalho: o maior medido com precisão (6,45 m e cerca de 1.066 kg, meio de 1.043 a 1.089, Wood 1983) levado pelo cubo a 4,20 m dá 1.066 × (4,20 ÷ 6,45)³ = 294 kg, perto da média do macho. Escalado pelo cubo da massa ao adulto típico: 4,20 × (198 ÷ 280)^(1/3) = 4,20 × 0,891 = 3,74. Para conferência: o meio das faixas dos dois sexos, 4,15 (macho, 3,3 a 5,0) e 3,0 m (fêmea, 2,2 a 3,8), dá 3,6 m. Divergência de fonte: o SDZG dá 2,0 a 3,3 m de típico (`dimensoes.md`)"
+    },
+    {
+      "campo": "corpo.comprimentoSemCauda",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 1,96 × 1,0278 = 2,015 . Antes: Era 2,20 m (do Arquiteto: a cauda é cerca de metade do total). Escalado pelo cubo da massa: 2,20 × 0,891 = 1,96"
+    },
+    {
+      "campo": "corpo.largura",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 0,62 × 1,0278 = 0,637 . Antes: Era 0,70 m, estimada pelo Arquiteto (`porte-area-forca.md` §1.2); a pesquisa não mediu largura. Escalada pelo cubo da massa: 0,70 × 0,891 = 0,62"
+    }
+  ]
+}

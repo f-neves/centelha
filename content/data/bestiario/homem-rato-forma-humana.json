@@ -1,0 +1,408 @@
+{
+  "id": "homem-rato-forma-humana",
+  "idAntigo": "mon-wererat-human-form",
+  "nome": "Homem-Rato",
+  "nomeIngles": "Lycanthrope, Wererat",
+  "categoria": "humanoide",
+  "papel": "soldado",
+  "ameaca": 2,
+  "centelha": 2,
+  "formaPrincipal": {
+    "id": "hibrida",
+    "nome": "forma híbrida"
+  },
+  "corpo": {
+    "postura": "bípede, de pé, curvado",
+    "apoio": "bipede",
+    "altura": 1.7,
+    "largura": 0.42,
+    "profundidade": 0.21,
+    "comprimento": null,
+    "massa": 65,
+    "area": 0.63,
+    "posturaDoTamanho": "de frente"
+  },
+  "couraca": 1,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 3,
+    "destreza": 5,
+    "vigor": 4,
+    "percepcao": 5,
+    "inteligencia": 2,
+    "raciocinio": 3,
+    "influencia": 1,
+    "perspicacia": 2,
+    "compostura": 2
+  },
+  "habilidades": {
+    "armas": 3,
+    "briga": 3,
+    "bloqueio": 1,
+    "esquiva": 1,
+    "atletismo": 2,
+    "furtividade": 3,
+    "prestidigitacao": 2,
+    "prontidao": 2,
+    "integridade": 2,
+    "manha": 2
+  },
+  "habilidadesSec": {
+    "escalada": 2,
+    "musculatura": 0
+  },
+  "especialidades": {
+    "prontidao": [
+      {
+        "foco": "faro",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ],
+    "armas": [
+      {
+        "foco": "alvo desprevenido",
+        "valor": 1,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 2,
+    "conviccao": 3,
+    "temperanca": 2
+  },
+  "vontade": 7,
+  "aparencia": 3,
+  "deslocamento": {
+    "terra": {
+      "batalha": 3,
+      "arranque": 5,
+      "corrida": 7
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Espada curta",
+      "arma": "espada-curta",
+      "justificativa": "A arma do livro (`armas.json`, `espada-curta`): Leve, Velocidade 5, Acerto +2, Defesa +1, ★C · P(N1). A Centelha soma inteira. Jogada: Destreza 5 + Armas 3 + 2 × o menor entre Centelha 2 e Armas 3 (4)"
+    },
+    {
+      "nome": "Mordida",
+      "parte": "dentes-de-rato",
+      "classe": "leve",
+      "pgr": [
+        1,
+        1,
+        3
+      ],
+      "dado": "1d6-2",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 1,
+      "bloqueiaComoArma": null,
+      "justificativa": "Mordida rápida de boca pequena, Leve (`regra-construcao.md` §7). Passa a maldição (Manobras). Jogada: Destreza 5 + Briga 3 + 2 × o menor entre Centelha 2 e Briga 3 (4)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Forma mutável",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "uma ação, Velocidade 8",
+      "duracao": "até ele voltar com outra ação; na lua cheia, até o sol nascer",
+      "alcance": "o próprio corpo",
+      "area": "não se aplica",
+      "efeito": "vira a forma humana ou a de rato (Variantes), ou volta à híbrida; o que ele segura cai na forma de rato. Use o perfil da forma. O restante é herdado. O equipamento só acompanha quando indicado",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "à vontade fora da lua cheia. Usar repetidamente causa esforço e pode levar ao cansaço. Sem custo"
+    },
+    {
+      "nome": "Mordida maldita",
+      "formas": [
+        "hibrida",
+        "rato"
+      ],
+      "classe": "regra da ficha",
+      "ataque": "Mordida",
+      "categoria": "inato",
+      "ativacao": "a Mordida que fere (1 de dano ou mais depois da Absorção)",
+      "duracao": "permanente, se pegar",
+      "alcance": "o do corpo a corpo",
+      "area": "um alvo",
+      "efeito": "quem sobrevive à mordida e não trata a ferida até o fim do dia vira homem-rato na próxima lua cheia",
+      "dano": "o da Mordida",
+      "resistencia": "corpo, Vigor + Resistência contra Dificuldade 10; a maldição só não pega se a ferida for tratada a tempo",
+      "limiteDeUso": "um por golpe. Sem custo"
+    },
+    {
+      "nome": "Esquiva sobrenatural",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "um efeito de área que pede esquiva",
+      "duracao": "instantânea",
+      "alcance": "o próprio corpo",
+      "area": "não se aplica",
+      "efeito": "se passa na esquiva, não leva dano nenhum, em vez de metade",
+      "dano": "nenhum",
+      "resistencia": "esquiva, a do próprio efeito",
+      "limiteDeUso": "nenhum. Sem custo"
+    },
+    {
+      "nome": "Afinidade com ratos",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "uma ação, Velocidade 6, um guincho ou um gesto",
+      "duracao": "até o fim da cena",
+      "alcance": "onde o guincho é ouvido",
+      "area": "os ratos comuns e gigantes que o ouvem",
+      "efeito": "Os ratos comuns e gigantes o reconhecem como um dos seus, não o atacam e seguem ordens simples transmitidas por guinchos ou gestos: avançar, atacar, guardar um lugar, acompanhar ou fugir, até o fim da cena",
+      "dano": "nenhum",
+      "resistencia": "nenhuma; o comando dos ratos é inato",
+      "limiteDeUso": "um enxame ou até 6 ratos gigantes por vez. Usar repetidamente causa esforço e pode levar ao cansaço. Sem custo"
+    },
+    {
+      "nome": "Golpe na brecha",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "o primeiro golpe da ação que fere um alvo Surpreso ou Flanqueado",
+      "duracao": "instantânea",
+      "alcance": "o do golpe",
+      "area": "o alvo atingido",
+      "efeito": "Explora o ponto vital. Quem ignora dano extra de ponto vital ignora esse acréscimo",
+      "dano": "+1d6 no dano do golpe",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "uma vez por ação, sem custo"
+    },
+    {
+      "nome": "Resistência à arma comum",
+      "formas": [
+        "hibrida"
+      ],
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "enquanto a condição se aplica",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Contra armas comuns, a parcela de Corte, Perfuração ou Impacto que passa pela Absorção cai à metade. A prata atravessa a resistência e ainda enfrenta a Absorção",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "ladrão da guilda",
+      "formas": "todas",
+      "texto": "de dia é gente comum; à noite ataca de surpresa no beco, morde para amaldiçoar e foge pelo esgoto na forma de rato."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "faro",
+      "descricao": "de rato; Prontidão (faro) +2",
+      "formas": "todas"
+    },
+    {
+      "nome": "visão e audição",
+      "descricao": "apuradas",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "mente": "humana, com a astúcia de rato",
+    "tracos": "pelo pardo, focinho e dentes de rato, cauda nua e fina, mãos de garras curtas"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "numa guilda escondida, com outros homens-rato e ratos",
+    "atividade": "noturno",
+    "dieta": "onívoro",
+    "caca": "rouba e contrabandeia",
+    "dianteDeGente": "de dia, vive como mercador, ladrão ou guarda; esconde o que é"
+  },
+  "ecologia": {
+    "terreno": [
+      "urbano"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Homem-rato das guildas escondidas sob a cidade: de dia vive como gente comum, à noite ataca de surpresa com espada e dentes. Só a prata o fere de verdade, e quem sobrevive à mordida pode virar homem-rato.",
+  "lore": [
+    {
+      "titulo": "Sociedade nas Sombras",
+      "texto": "Vivem em guildas escondidas sob cidades, misturados entre ladrões e contrabandistas comuns."
+    },
+    {
+      "titulo": "Maldição que se Espalha",
+      "texto": "Cada mordida não curada é uma sentença: a vítima pode em breve se tornar outra criatura como ela, sem nunca ter escolhido esse destino."
+    },
+    {
+      "titulo": "Disfarce Perfeito",
+      "texto": "Durante o dia, muitos vivem vidas comuns como mercadores, ladrões ou guardas, escondendo a fera sob a pele humana."
+    }
+  ],
+  "imagens": [
+    "bestiario/homem-rato-forma-humana_criatura.webp"
+  ],
+  "formas": [
+    {
+      "id": "humana",
+      "nome": "forma humana",
+      "couraca": 0,
+      "aparencia": 4,
+      "corpo": {
+        "postura": "bípede, de pé"
+      },
+      "atributos": {
+        "destreza": 4
+      },
+      "fisiologia": {
+        "camuflagem": "passa por gente comum",
+        "tracos": "homem magro de olhos inquietos"
+      },
+      "ataques": [
+        {
+          "nome": "Espada curta",
+          "arma": "espada-curta"
+        }
+      ]
+    },
+    {
+      "id": "rato",
+      "nome": "forma de rato",
+      "couraca": 0,
+      "equipamento": {
+        "arsenal": []
+      },
+      "deslocamento": {
+        "terra": {
+          "batalha": 7,
+          "arranque": 9,
+          "corrida": 15
+        }
+      },
+      "corpo": {
+        "postura": "quadrúpede",
+        "apoio": "quadrupede",
+        "altura": 0.28,
+        "comprimento": 1.4,
+        "comprimentoSemCauda": 0.75,
+        "largura": 0.21,
+        "profundidade": null,
+        "massa": 12.38,
+        "area": 0.1475,
+        "posturaDoTamanho": "de lado",
+        "linhaPV": "acima",
+        "linhaPVMotivo": "corpo resistente de rato gigante"
+      },
+      "atributos": {
+        "forca": 2,
+        "destreza": 3,
+        "vigor": 5
+      },
+      "fisiologia": {
+        "camuflagem": "passa por um rato gigante comum",
+        "tracos": "rato gigante de pelo pardo e cauda nua e fina"
+      },
+      "ataques": [
+        {
+          "nome": "Mordida",
+          "parte": "dentes-de-rato",
+          "classe": "leve",
+          "pgr": [
+            1,
+            1,
+            3
+          ],
+          "dado": "1d6-2",
+          "multiplicadorForca": 1,
+          "tipoDano": "perfuracao",
+          "nivelPerfuracao": 0,
+          "acerto": 1,
+          "bloqueiaComoArma": null
+        }
+      ]
+    }
+  ],
+  "elementos": {
+    "fraquezas": [
+      {
+        "tipo": "prata",
+        "formas": "todas"
+      }
+    ],
+    "resistencias": [
+      {
+        "tipo": "corte",
+        "formas": [
+          "hibrida"
+        ]
+      },
+      {
+        "tipo": "perfuracao",
+        "formas": [
+          "hibrida"
+        ]
+      },
+      {
+        "tipo": "impacto",
+        "formas": [
+          "hibrida"
+        ]
+      }
+    ],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "atributos.destreza",
+      "motivo": "Degrau 5, \"Pico humano\": a forma de rato é mais rápida e esquiva que a humana (4, a do site); 5 na híbrida, 4 na humana (a do site)"
+    },
+    {
+      "campo": "aparencia",
+      "motivo": "Degrau 3, \"Muito feio\": focinho, dentes e pelo de rato num corpo de homem (a Aparência mede a beleza, D-205). A forma humana fica com o 4 do site (Variante); 3 na híbrida; o site tinha 4, que fica na humana"
+    },
+    {
+      "campo": "couraca",
+      "motivo": "Cobertura do corpo pela R49; metades arredondadas para cima. Absorção natural do livro (`combate.md`). Couraça 1: a \"pele grossa\" da forma híbrida (site) . As resistências são as do site: \"absorve boa parte dos golpes comuns; apenas prata a fere por completo\" (linha Elementos), como no lobisomem; nível 1 pela pele grossa"
+    },
+    {
+      "campo": "comportamento.social",
+      "motivo": "site (Sociedade nas Sombras)"
+    },
+    {
+      "campo": "comportamento.dieta",
+      "motivo": ""
+    },
+    {
+      "campo": "formas.rato",
+      "motivo": "A referência genérica ao rato gigante foi explicitada. Medidas, Força, Destreza, Vigor e Couraça são os do molde; a mente, o treino e Musculatura 0 ficam os do homem, pelo mesmo critério das formas do lobisomem. Centelha 2. PV 30. PV na linha de cima: corpo resistente de rato gigante. A escolha está na zona de transição. Peso pela R15 com Musculatura 0, 48,55 kg, em vez dos 71,96 kg do rato de Musculatura 2; Referência antes implícita; escolhas físicas explícitas na Variante. A escolha da linha superior de PV precisa ser lida na forma, como na principal."
+    },
+    {
+      "campo": "habilidadesEspeciais.Forma mutável",
+      "motivo": "R3. Ativação uma ação, Velocidade 6; na noite de lua cheia, à força, quando a lua nasce -> uma ação, Velocidade 8; na noite de lua cheia, à força, quando a lua nasce Pela referência corporal ou de deslocamento do poder."
+    }
+  ]
+}

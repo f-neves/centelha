@@ -1,0 +1,302 @@
+{
+  "id": "arconte-cao",
+  "idAntigo": "mon-archon-cao",
+  "nome": "Arconte Cão",
+  "nomeIngles": "Archon, Hound",
+  "categoria": "celestial",
+  "papel": "soldado",
+  "ameaca": 3,
+  "centelha": 4,
+  "formaPrincipal": {
+    "id": "guardiao",
+    "nome": "forma de guardião"
+  },
+  "corpo": {
+    "postura": "de pé, em combate",
+    "apoio": "bipede",
+    "altura": 1.8,
+    "largura": 0.45,
+    "profundidade": 0.29,
+    "comprimento": null,
+    "massa": 100,
+    "area": 0.72,
+    "posturaDoTamanho": "de pé"
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 5,
+    "destreza": 4,
+    "vigor": 5,
+    "percepcao": 4,
+    "inteligencia": 3,
+    "raciocinio": 4,
+    "influencia": 3,
+    "perspicacia": 3,
+    "compostura": 3
+  },
+  "habilidades": {
+    "briga": 4,
+    "bloqueio": 2,
+    "esquiva": 1,
+    "prontidao": 3,
+    "integridade": 3,
+    "sobrevivencia": 2,
+    "sociabilidade": 0,
+    "armas": 4,
+    "atletismo": 2,
+    "empatia": 2
+  },
+  "habilidadesSec": {
+    "musculatura": 0
+  },
+  "especialidades": {},
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 4,
+    "compaixao": 5,
+    "conviccao": 5,
+    "temperanca": 4
+  },
+  "vontade": 9,
+  "aparencia": 10,
+  "deslocamento": {
+    "terra": {
+      "batalha": 4,
+      "arranque": 6,
+      "corrida": 9
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Espada longa",
+      "arma": "espada-longa",
+      "justificativa": "Arma do catálogo, espada-longa; jogada maior entre Força e Destreza + Armas 4 + 2 × o menor entre Centelha 4 e Armas 4; um ataque por ação"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Aura de ameaça",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "fascinacao",
+        "nivel": 2,
+        "efeito": "pavor"
+      },
+      "categoria": "inato",
+      "ativacao": "nenhuma; ao entrar na aura",
+      "duracao": "para Abalado, até o fim da cena ou até Recompor",
+      "alcance": "6 m",
+      "area": "inimigos no raio",
+      "efeito": "quem falha fica Abalado. Abalado dá −2 nas jogadas até o fim da cena ou até Recompor, ação de Velocidade 5 sem teste",
+      "dano": "nenhum",
+      "resistencia": "Influência + Integridade da criatura contra a Defesa Mental do alvo, com o Resistir do livro. quem passa ignora a aura nesta cena",
+      "limiteDeUso": "Contínuo, sem custo. A imunidade individual segue a resistência deste poder"
+    },
+    {
+      "nome": "Teleporte",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "conjuracao",
+        "nivel": 3,
+        "efeito": "fresta"
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 8",
+      "duracao": "instantânea",
+      "alcance": "12 m visíveis",
+      "area": "o próprio arconte",
+      "efeito": "Reaparece num ponto que vê ou conhece bem no mesmo plano, levando o que carrega. Pode sair de um agarrão. Outros viajantes só seguem dentro do limite declarado, voluntários e em contato",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "1 uso grátis por cena. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "Farejar o mal",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "adivinhacao",
+        "nivel": 1
+      },
+      "categoria": "inato",
+      "ativacao": "nenhuma; sempre ativo",
+      "duracao": "permanente",
+      "alcance": "18 m",
+      "area": "criaturas no raio",
+      "efeito": "percebe a presença de mal sobrenatural, mesmo atrás de cobertura; não lê pensamentos",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "nenhum. Sem custo"
+    },
+    {
+      "nome": "Forma canina",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "espirito",
+        "nivel": 3
+      },
+      "categoria": "inato",
+      "ativacao": "uma ação, Velocidade 5",
+      "duracao": "até desfazer com outra ação",
+      "alcance": "o próprio corpo",
+      "area": "não se aplica",
+      "efeito": "assume a forma canina da Variante ou retorna à forma de guardião. Use o perfil da forma. O restante é herdado. O equipamento só acompanha quando indicado",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "à vontade. Usar repetidamente causa esforço e pode levar ao cansaço. Sem custo"
+    },
+    {
+      "nome": "Círculo protetor",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "protecao",
+        "nivel": 2,
+        "efeito": "circulo"
+      },
+      "categoria": "inato",
+      "ativacao": "nenhuma; sempre ativo",
+      "duracao": "permanente",
+      "alcance": "3 m",
+      "area": "o próprio arconte e os aliados no raio",
+      "efeito": "os protegidos somam +2 em Esquiva, Bloqueio e Defesa Mental contra ataques ou efeitos de criaturas malignas",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "nenhum. Sem custo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "guarda celestial",
+      "formas": [
+        "guardiao"
+      ],
+      "texto": "mantém a formação, ameaça com a espada e usa o faro para vigiar as aproximações."
+    },
+    {
+      "nome": "combate na outra forma",
+      "formas": [
+        "canina"
+      ],
+      "texto": "morde e corre junto da matilha."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão e audição",
+      "descricao": "observa e ouve o campo de batalha",
+      "formas": "todas"
+    },
+    {
+      "nome": "faro celestial",
+      "descricao": "a detecção do mal está na habilidade Farejar o mal",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "mente": "inteligente, comprometida com seus protegidos",
+    "tracos": "cabeça de cão sobre corpo de guerreiro, espada na mão"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "matilha organizada",
+    "atividade": "qualquer hora",
+    "caca": "não se aplica",
+    "dianteDeGente": "socorre e protege"
+  },
+  "ecologia": {
+    "terreno": [
+      "montanha",
+      "qualquer"
+    ],
+    "clima": [
+      "extraplanar"
+    ]
+  },
+  "descricao": "Patrulheiro de cabeça canina que combate em formação e fareja o mal. Pode correr junto da matilha na forma de cão.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Guerreiro leal e disciplinado, patrulha fronteiras do bem com cabeça de cão sempre alerta e faro apurado para a mentira."
+    },
+    {
+      "titulo": "Sociedade",
+      "texto": "Serve em matilhas organizadas sob comando de arautos maiores, cumprindo sua função sem jamais questionar a ordem recebida."
+    },
+    {
+      "titulo": "Personalidade",
+      "texto": "Honesto até a rigidez, desconfia de artimanhas e de quem fala demais; prefere o combate franco a qualquer estratagema."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "Contido pela Lei que impede os deuses de agir direto, um archon cão só cruza ao mundo mortal em raros chamados desesperados, e mesmo assim evita ser visto: para o povo da Supressão, um anjo com cara de cão seria mais um monstro a temer do que um salvador."
+    }
+  ],
+  "imagens": [
+    "bestiario/arconte-cao_criatura.webp"
+  ],
+  "formas": [
+    {
+      "id": "canina",
+      "nome": "forma canina",
+      "equipamento": {
+        "arsenal": []
+      },
+      "deslocamento": {
+        "terra": {
+          "batalha": 5,
+          "arranque": 8,
+          "corrida": 12
+        }
+      },
+      "corpo": {
+        "altura": 0.9,
+        "comprimento": 1.8,
+        "largura": 0.35,
+        "area": 0.55
+      },
+      "fisiologia": {
+        "camuflagem": "passa por cão de guerra",
+        "tracos": "cão robusto de pelagem clara"
+      },
+      "ataques": []
+    }
+  ],
+  "elementos": {
+    "fraquezas": [
+      {
+        "tipo": "profano",
+        "formas": "todas"
+      }
+    ],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "comportamento.atividade",
+      "motivo": ""
+    },
+    {
+      "campo": "formas.canina",
+      "motivo": "Massa e mente preservadas, corpo mais baixo; movimento extra do corpo quadrúpede"
+    },
+    {
+      "campo": "habilidadesEspeciais.Teleporte",
+      "motivo": "R1 e D-197. Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação uma ação, Velocidade 8 -> uma ação, Velocidade 5. O efeito sai no Tick do Golpe. Pela régua da Arte de base. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    }
+  ]
+}

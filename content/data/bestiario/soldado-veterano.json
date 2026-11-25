@@ -1,0 +1,284 @@
+{
+  "id": "soldado-veterano",
+  "nome": "Soldado Veterano",
+  "nomeIngles": "Veteran Soldier",
+  "categoria": "humanoide",
+  "papel": "soldado",
+  "ameaca": 3,
+  "centelha": 0,
+  "corpo": {
+    "postura": "bípede, de pé",
+    "apoio": "bipede",
+    "altura": 1.78,
+    "largura": 0.48,
+    "profundidade": null,
+    "comprimento": null,
+    "massa": 82,
+    "area": 0.64,
+    "posturaDoTamanho": "de frente"
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 3,
+    "destreza": 4,
+    "vigor": 3,
+    "percepcao": 2,
+    "inteligencia": 2,
+    "raciocinio": 3,
+    "influencia": 2,
+    "perspicacia": 2,
+    "compostura": 3
+  },
+  "habilidades": {
+    "armas": 4,
+    "bloqueio": 2,
+    "esquiva": 3,
+    "briga": 2,
+    "arremesso": 1,
+    "atirador": 1,
+    "atletismo": 2,
+    "furtividade": 1,
+    "integridade": 5,
+    "prontidao": 3,
+    "resistencia": 3,
+    "empatia": 1,
+    "sociabilidade": 1,
+    "sobrevivencia": 2
+  },
+  "habilidadesSec": {
+    "estrategia": 2,
+    "lideranca": 1,
+    "intimidacao": 1,
+    "cura": 1,
+    "musculatura": 0,
+    "halterofilismo": 1
+  },
+  "especialidades": {
+    "armas": [
+      {
+        "foco": "contra inimigo isolado",
+        "valor": 1,
+        "origem": "livro"
+      },
+      {
+        "foco": "espada longa",
+        "valor": 1,
+        "origem": "livro"
+      }
+    ],
+    "prontidao": [
+      {
+        "foco": "emboscada",
+        "valor": 1,
+        "origem": "livro"
+      }
+    ],
+    "integridade": [
+      {
+        "foco": "medo na batalha",
+        "valor": 1,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 2,
+    "conviccao": 3,
+    "temperanca": 2
+  },
+  "vontade": 6,
+  "aparencia": 4,
+  "deslocamento": {
+    "terra": {
+      "batalha": 3,
+      "arranque": 5,
+      "corrida": 7
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": [
+      {
+        "base": "malha",
+        "vestida": true
+      }
+    ]
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Espada longa",
+      "arma": "espada-longa",
+      "justificativa": "A arma do livro (`armas.json`): Média, Versátil, Velocidade 6, Acerto +1, Defesa +1, ★C · P(N1). Jogada: Destreza + Armas, (4 + 4)"
+    },
+    {
+      "nome": "Espada longa a duas mãos",
+      "parte": "espada-longa-duas-maos",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 2,
+      "tipoDano": "corte",
+      "nivelPerfuracao": 1,
+      "acerto": 1,
+      "bloqueiaComoArma": 1,
+      "justificativa": "Versátil: com as duas mãos soma Força × 2 (`armas-e-armaduras.md`)"
+    },
+    {
+      "nome": "Punhos",
+      "parte": "punhos",
+      "classe": "leve",
+      "pgr": [
+        1,
+        1,
+        3
+      ],
+      "dado": "1d6-2",
+      "multiplicadorForca": 1,
+      "tipoDano": "impacto",
+      "nivelPerfuracao": null,
+      "acerto": 1,
+      "bloqueiaComoArma": 1,
+      "justificativa": "Luta desarmada do livro (Briga)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "derrubar",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "regra": "derrubar"
+    },
+    {
+      "nome": "empurrar",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Punhos",
+      "categoria": "inato",
+      "regra": "empurrar"
+    },
+    {
+      "nome": "agarrar",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Punhos",
+      "categoria": "inato",
+      "regra": "agarrar"
+    },
+    {
+      "nome": "explora aberturas",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "sobrenatural",
+      "ativacao": "quando um golpe dirigido ao veterano passa raspando",
+      "duracao": "instantânea",
+      "alcance": "toque",
+      "area": "um alvo",
+      "efeito": "Faz um contra-ataque físico com a arma empunhada contra quem abriu a guarda",
+      "dano": "o da arma",
+      "resistencia": "Defesa Física do atacante",
+      "limiteDeUso": "1 uso grátis por cena. Sem uso extra"
+    },
+    {
+      "nome": "Sem inimizades naturais",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "texto": "Relação inicial do Humano: +1 com Elfo e Meio-Elfo, −1 com Orc e Meio-Orc, Neutro com os demais. A relação vale do Humano para o outro povo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "golpe calculado",
+      "formas": "todas",
+      "texto": "não desperdiça movimento; lê a postura do inimigo, espera a abertura e responde com economia."
+    },
+    {
+      "nome": "saber quando não lutar",
+      "formas": "todas",
+      "texto": "recua, cede terreno e foge se a luta está perdida; não morre por bravura."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão, audição, olfato",
+      "descricao": "humanos",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "prendeRespiracao": "pela regra do personagem",
+    "mente": "humana",
+    "tracos": "cicatrizes de campanha; mãos calejadas de espada e de pá"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "sozinho ou numa companhia de soldados (típico 4 a 10)",
+    "atividade": "diurno",
+    "dieta": "onívoro",
+    "caca": "não se aplica",
+    "dianteDeGente": "depende de quem paga: guarda, escolta, mercenário"
+  },
+  "ecologia": {
+    "terreno": [
+      "urbano",
+      "planície"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Soldado de muitas guerras, que lê a postura do inimigo e responde com economia. Foca quem luta sem apoio e não morre por bravura: recua quando a luta está perdida.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Não desperdiça movimento: lê a postura do inimigo, espera a abertura e responde com economia. Anos de campanha lhe ensinaram que bravura sem cálculo mata cedo."
+    },
+    {
+      "titulo": "Personalidade",
+      "texto": "Cansado, pragmático, sem ilusões sobre glória; trata recrutas com uma mistura de desprezo e cuidado paternal."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "Homens assim sobraram das guerras de fronteira de Calin e das campanhas contra os horrores da Fenda no White Wall: sobreviveram por saber quando não lutar."
+    }
+  ],
+  "imagens": [
+    "bestiario/soldado-veterano_pdm.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "atributos.raciocinio",
+      "motivo": "Degrau 3. A ficha publicada diz que ele \"lê o combate e explora aberturas\" e \"nunca é pego de surpresa fácil\": decidir com o chão fugindo é Raciocínio (`atributos.md`). O site tinha 2; sobem de 2 para 3 pela descrição publicada. Se o autor quiser a ficha publicada intacta nos Atributos, voltam a 2 (a Defesa Social cai para 6, a Defesa Mental para 13, a Iniciativa para 1d6 + 5, a Energia para 6)"
+    },
+    {
+      "campo": "atributos.compostura",
+      "motivo": "Degrau 3. \"Cansado, pragmático, sem ilusões\": a máscara do veterano que não deixa o medo chegar ao rosto. O site tinha 2; sobem de 2 para 3 pela descrição publicada. Se o autor quiser a ficha publicada intacta nos Atributos, voltam a 2 (a Defesa Social cai para 6, a Defesa Mental para 13, a Iniciativa para 1d6 + 5, a Energia para 6)"
+    },
+    {
+      "campo": "habilidadesSec.estrategia",
+      "motivo": "O site tinha `tatica` 2, que não existe no livro. A secundária mais perto é Estratégia (conhecimento). Ver as notas de observação; o `tatica` do site não existe no livro; na tabela das Habilidades antigas (manual 3.5, D-190), `tatica` para Estratégia é provisório. Estratégia é conhecimento (planejar a campanha), e o que a ficha publicada descreve é ler a luta na hora, que já está em Raciocínio e Prontidão. Se o autor preferir, a linha sai e o 2 vira uma Especialidade de Prontidão"
+    },
+    {
+      "campo": "comportamento.social",
+      "motivo": "site (soldado); patrulha e companhia"
+    }
+  ]
+}

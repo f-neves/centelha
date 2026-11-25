@@ -1,0 +1,288 @@
+{
+  "id": "lacador",
+  "idAntigo": "mon-roper",
+  "nome": "Laçador",
+  "nomeIngles": "Roper",
+  "categoria": "aberracao",
+  "papel": "chefe",
+  "ameaca": 5,
+  "centelha": 5,
+  "corpo": {
+    "postura": "de pé, como uma estalagmite",
+    "apoio": "bipede",
+    "altura": 3,
+    "largura": 1.12,
+    "profundidade": null,
+    "comprimento": null,
+    "massa": 1000,
+    "area": 1.68,
+    "posturaDoTamanho": "de lado"
+  },
+  "couraca": 3,
+  "perfilCouraca": "rigida",
+  "atributos": {
+    "forca": 9,
+    "destreza": 3,
+    "vigor": 10,
+    "percepcao": 5,
+    "inteligencia": 3,
+    "raciocinio": 4,
+    "influencia": 3,
+    "perspicacia": 3,
+    "compostura": 4
+  },
+  "habilidades": {
+    "briga": 5,
+    "bloqueio": 0,
+    "esquiva": 1,
+    "atletismo": 1,
+    "furtividade": 3,
+    "prontidao": 2,
+    "integridade": 4,
+    "ocultismo": 3,
+    "sociabilidade": 1,
+    "resistencia": 3,
+    "atirador": 3
+  },
+  "habilidadesSec": {
+    "musculatura": 2
+  },
+  "especialidades": {
+    "furtividade": [
+      {
+        "foco": "entre pedras ou gelo",
+        "valor": 3,
+        "origem": "natural"
+      }
+    ],
+    "ocultismo": [
+      {
+        "foco": "religiões sombrias",
+        "valor": 1,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 4,
+    "compaixao": 1,
+    "conviccao": 3,
+    "temperanca": 3
+  },
+  "vontade": 10,
+  "aparencia": 1,
+  "deslocamento": {
+    "terra": {
+      "batalha": 1,
+      "arranque": 2,
+      "corrida": 2
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Mordida",
+      "parte": "boca-dentada-na-base",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "O site dava \"Garras e presas\" de 2 dados e 6 Ticks, perfurante: a boca de dentes de pedra, com o corpo de 1 t atrás, Média (`regra-construcao.md` §7). Morde quem os filamentos puxaram. Jogada: Força 9 + Briga 5 + 2 × o menor entre Centelha 5 e Briga 5 (10)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Filamentos pegajosos",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "substancia",
+      "ativacao": "uma ação, Velocidade 6; ataque a distância, o maior entre Vigor, Destreza e Percepção + Atirador",
+      "duracao": "até o alvo se soltar ou o filamento ser cortado",
+      "alcance": "15 m",
+      "area": "um alvo por ação",
+      "efeito": "O filamento prende à distância. O alvo fica Preso pela Rede do livro. A fraqueza do filamento segue Veneno e doença",
+      "dano": "nenhum",
+      "resistencia": "Esquiva contra o disparo. Para se soltar, aplicar Preso da Rede ou cortar o fio. O veneno mantém a resistência própria",
+      "limiteDeUso": "O corpo guarda 3 doses e produz 1 dose a cada 4 horas. Cada uso gasta 1 dose. Nada acelera a produção. Uma aplicação usa a mesma dose para o contato e seu veneno"
+    },
+    {
+      "nome": "puxão",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "enquanto a condição se aplica",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Se a presa couber no peso que arrasta, recolhe-a até metade da Batalha enquanto mantém a captura, sem novo teste de escape",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "Resistência à magia",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "sempre ativa",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a própria criatura",
+      "efeito": "Resistência à magia de grau 3. Soma +6 às Defesas e à jogada de resistir contra Artes e efeitos similares à magia, até o teto comum de +6",
+      "dano": "nenhum adicional",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo. Sem custo"
+    },
+    {
+      "nome": "Multiataque",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "uma ação de Rajada",
+      "duracao": "uma ação",
+      "alcance": "o de cada parte",
+      "area": "os alvos da Rajada",
+      "efeito": "Golpeia nesta ordem: primeiro filamento, segundo filamento, terceiro filamento. Cada golpe extra acumula −1d6 e conta para Guarda sob pressão. Não acumula com a Rajada comum. Cada filamento gasta uma dose da reserva",
+      "dano": "o de cada ataque que acertar",
+      "resistencia": "a Defesa de cada golpe",
+      "limiteDeUso": "até 3 golpes por ação, sem Energia. O uso repetido causa esforço e pode levar ao cansaço"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "estalagmite que espera",
+      "formas": "todas",
+      "texto": "imóvel entre as estalagmites, deixa a presa chegar, prende vários de uma vez com os filamentos, puxa o mais fraco até a boca e morde. Gosta de conversar com quem prende, se o assunto for a morte."
+    },
+    {
+      "nome": "Projétil natural",
+      "formas": "todas",
+      "texto": "Contra um alvo, use o maior entre Vigor, Destreza e Percepção + Atirador. Ao cobrir uma área, só os alvos fazem a jogada de saída."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "sentidos",
+      "descricao": "visão no escuro e na penumbra",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "prendeRespiracao": "a de um bicho grande",
+    "camuflagem": "entre pedras ou gelo; Furtividade (entre pedras ou gelo) +3",
+    "mente": "inteligente, filosófica, paciente",
+    "tracos": "cone cinzento de pele que parece pedra, um olho amarelo no alto, boca de dentes de pedra na base, filamentos finos que saem de poros"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "em grupos pequenos e isolados",
+    "atividade": "qualquer hora; espera imóvel",
+    "dieta": "carnívoro",
+    "caca": "emboscada disfarçado de estalagmite",
+    "dianteDeGente": "prende e come; às vezes conversa"
+  },
+  "ecologia": {
+    "terreno": [
+      "subterrâneo",
+      "gélido"
+    ],
+    "clima": [
+      "frio",
+      "temperado"
+    ]
+  },
+  "descricao": "Imóvel como uma coluna de pedra ou gelo, aguarda entre estalagmites até a presa chegar perto. Prende com filamentos pegajosos que enfraquecem e a puxa até a boca. É uma das criaturas mais inteligentes das profundezas e discute por horas sobre a morte e as religiões sombrias.",
+  "lore": [
+    {
+      "titulo": "Estátua que espera",
+      "texto": "Imóvel como uma coluna de pedra ou gelo, o roper aguarda pacientemente, disfarçado entre estalagmites, até que uma presa se aproxime o bastante para seus filamentos."
+    },
+    {
+      "titulo": "Filósofo das profundezas",
+      "texto": "Apesar da forma monstruosa, é uma das criaturas mais inteligentes dos abismos subterrâneos, capaz de discutir por horas sobre a morte e as religiões mais sombrias do mundo."
+    },
+    {
+      "titulo": "Vizinho incômodo",
+      "texto": "Prefere viver em pequenos grupos isolados, mas às vezes tolera a companhia de outros horrores subterrâneos, unidos por um interesse mútuo em segredos antigos."
+    },
+    {
+      "titulo": "Veneno e doença",
+      "texto": "Veneno no jogo: Fraqueza dos filamentos · Potência 16 · 1 Tick (toque) · a cada 1 minuto · pool 4 (Força) · Desgaste 1 · pelos Filamentos pegajosos. Os números do \"Ferrão de gigante\" dos moldes, com a Força como o \"Físico\" do site; pelo toque em pele intacta, a Potência cai 4."
+    }
+  ],
+  "imagens": [
+    "bestiario/lacador_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [
+      {
+        "tipo": "fogo",
+        "formas": "todas"
+      }
+    ],
+    "resistencias": [
+      {
+        "tipo": "gelo",
+        "formas": "todas"
+      }
+    ],
+    "imunidades": [
+      {
+        "tipo": "raio",
+        "formas": "todas"
+      }
+    ]
+  },
+  "revisao": [
+    {
+      "campo": "atributos.forca",
+      "motivo": "O site tinha 11. Com 1 t, ficaria acima de todo bicho do molde até 3 t (o tubarão-branco de 1,26 t e o elasmossauro de 2,1 t têm 9; o rinoceronte de 2,25 t, 8) e do aboleth de 2,7 t (10). Desce para 9, perto da Força de referência da massa (8,66, manual 3.9), pelo teste de ordem; 9; o site tinha 11"
+    },
+    {
+      "campo": "habilidadesSec.musculatura",
+      "motivo": "Animal comum na escala da decisão 12"
+    },
+    {
+      "campo": "couraca",
+      "motivo": "Cobertura do corpo pela R49; metades arredondadas para cima. Absorção natural do livro (`combate.md`). Pele pétrea ;; nível 3"
+    },
+    {
+      "campo": "habilidadesEspeciais.Filamentos pegajosos",
+      "motivo": "R1/R4, D-197. Três doses preservam a reserva para mais de uma presa. Sugestão de 3 doses e 4 h por dose para repor fora da luta. valor de molde, para a bancada (3 doses e produz 1 dose a cada 4 horas)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Resistência à magia",
+      "motivo": "R7. SR 27 da fonte passa a grau 3 (+6)."
+    },
+    {
+      "campo": "virtudes.temperanca",
+      "motivo": "3; o site tinha 2"
+    },
+    {
+      "campo": "habilidadesEspeciais",
+      "motivo": "a fraqueza dos filamentos, Potência 16, pool 4 de Força"
+    },
+    {
+      "campo": "ataques",
+      "motivo": "Mordida Média no lugar das \"Garras e presas\""
+    }
+  ]
+}

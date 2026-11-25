@@ -1,0 +1,282 @@
+{
+  "id": "megalodonte",
+  "idAntigo": "mon-dire-shark-megalodon",
+  "nome": "Megalodonte",
+  "nomeIngles": "Megalodon",
+  "categoria": "animal",
+  "papel": "fera",
+  "ameaca": 5,
+  "centelha": 0,
+  "corpo": {
+    "postura": "nadador",
+    "apoio": "outro",
+    "altura": 3.37,
+    "largura": 3.08,
+    "profundidade": null,
+    "comprimento": 14.57,
+    "comprimentoSemCauda": 12.31,
+    "caudaGrossa": false,
+    "massa": 36000,
+    "area": 36.99,
+    "posturaDoTamanho": "de cima"
+  },
+  "couraca": 3,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 13,
+    "destreza": 2,
+    "vigor": 8,
+    "percepcao": 2,
+    "inteligencia": 1,
+    "raciocinio": 2,
+    "influencia": 1,
+    "perspicacia": 1,
+    "compostura": 1
+  },
+  "habilidades": {
+    "briga": 5,
+    "bloqueio": 0,
+    "esquiva": 1,
+    "atletismo": 0,
+    "furtividade": 2,
+    "integridade": 1,
+    "prontidao": 2,
+    "resistencia": 4,
+    "empatia": 0,
+    "sobrevivencia": 3
+  },
+  "habilidadesSec": {
+    "equilibrio": 0,
+    "escalada": 0,
+    "natacao": 2,
+    "voo": 0,
+    "musculatura": 2
+  },
+  "especialidades": {
+    "prontidao": [
+      {
+        "foco": "eletrorrecepção",
+        "valor": 3,
+        "origem": "natural"
+      },
+      {
+        "foco": "linha lateral e faro",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ],
+    "briga": [
+      {
+        "foco": "presa grande: nadadeira e cauda",
+        "valor": 1,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 1,
+    "conviccao": 1,
+    "temperanca": 1
+  },
+  "vontade": 3,
+  "aparencia": 6,
+  "deslocamento": {
+    "nado": {
+      "batalha": 8
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Mordida",
+      "parte": "mordida",
+      "classe": "pesada",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": "2d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 3,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "7 + 13; era 2d6 + 18, média 25. Seção 7: a mordida que agarra e torce. Dentes triangulares e serrilhados de até 18,4 cm, mais de 250 em cinco fileiras (Wikipédia). Força × 1 (boca). N3 : de 108.514 a 182.201 N na mordida de trás (Wroe e colegas 2008), muito acima dos 30.000 N da linha N3 da seção 7. O Nível do ataque é da arma, e não da Couraça."
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "agarrar",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "regra": "agarrar"
+    },
+    {
+      "nome": "investida de baixo",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Mordida",
+      "categoria": "inato",
+      "regra": "investida"
+    },
+    {
+      "nome": "sangramento",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "ataque": "Mordida",
+      "categoria": "inato",
+      "ativacao": "quando a mordida abre uma ferida",
+      "duracao": "até estancar",
+      "alcance": "o do golpe",
+      "area": "a vítima ferida",
+      "efeito": "Aplica o Sangramento comum. A ferida não fecha sozinha. Para estancar, é preciso vencer um teste de Raciocínio + Cura. Estabilizar com o cuidado simples não basta",
+      "dano": "nenhum adicional",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "a cada ferida que provoca Sangramento, sem custo"
+    },
+    {
+      "nome": "engolir",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "ataque": "Mordida",
+      "categoria": "inato",
+      "ativacao": "ação de Velocidade 7 contra vítima menor já Agarrada que cabe na boca",
+      "duracao": "até sair",
+      "alcance": "toque",
+      "area": "a vítima engolida",
+      "efeito": "Dentro, fica Imobilizada para o corpo, pode atacar com arma curta e sofre sufocamento pelo livro. Uma ferida interna de 15 PV abre a saída, por dentro ou com ajuda de fora. Também pode escapar pela garganta como no agarrão. Se a criatura morre, a vítima sai com uma ação",
+      "dano": "3d6 de Impacto uma vez a cada 6 Ticks",
+      "resistencia": "escape do agarrão pela garganta",
+      "limiteDeUso": "sem custo. Usar repetidamente causa esforço e pode levar ao cansaço"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "morder a nadadeira",
+      "formas": "todas",
+      "texto": "morde a nadadeira ou a cauda da presa grande para imobilizá-la antes de matar."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "eletrorrecepção",
+      "descricao": "Prontidão (eletrorrecepção) +3 , Especialidade natural (era +4, bônus fixo de sentido) ; alcance",
+      "formas": "todas"
+    },
+    {
+      "nome": "linha lateral e faro",
+      "descricao": "Prontidão (linha lateral e faro) +2, Especialidade natural ; alcance",
+      "formas": "todas"
+    },
+    {
+      "nome": "visão",
+      "descricao": "",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "água",
+    "mente": "animal",
+    "tracos": "endotermia regional (Wikipédia); crescia cerca de 16 cm por ano e vivia de 88 a 100 anos (Shimada e colegas 2021); nascia com cerca de 3,6 a 4 m (Wikipédia)"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "dieta": "carnívoro",
+    "caca": "emboscada",
+    "dianteDeGente": "não se aplica"
+  },
+  "ecologia": {
+    "terreno": [
+      "aquático"
+    ],
+    "clima": [
+      "temperado",
+      "tropical"
+    ]
+  },
+  "descricao": "O maior tubarão predador conhecido: mordia o peito da baleia ou a nadadeira, para imobilizá-la, e nascia em berçários de água rasa e quente.",
+  "lore": [
+    {
+      "titulo": "O terror ancestral do oceano",
+      "texto": "Onde tubarões comuns já inspiram pavor, o megalodon representa o ápice dessa linhagem, um predador capaz de engolir um cavalo inteiro sem esforço."
+    },
+    {
+      "titulo": "Lendas de navios devorados",
+      "texto": "Muitas histórias de embarcações que desaparecem no mar aberto encontram nesse gigante das profundezas sua explicação mais provável."
+    }
+  ],
+  "imagens": [
+    "bestiario/megalodonte_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "atributos.percepcao",
+      "motivo": "Seção 13: 2 para os extintos. Os sentidos de tubarão vão nas Especialidades naturais."
+    },
+    {
+      "campo": "atributos.raciocinio",
+      "motivo": "Seção 13: 2 para os outros predadores."
+    },
+    {
+      "campo": "habilidades.briga",
+      "motivo": "Degrau 5: predador de presa grande. Vértebras de baleia com mordidas fundas, costelas mordidas na região do coração e do pulmão, nadadeiras e caudas mordidas para imobilizar a baleia grande (Wikipédia). Acima do tubarão-branco (4)."
+    },
+    {
+      "campo": "habilidades.furtividade",
+      "motivo": "O levantamento : investida de baixo, pelas fraturas de compressão em cetáceos pequenos (Wikipédia), como o tubarão-branco. Régua: 2, usa a cobertura como hábito. Fica como hoje."
+    },
+    {
+      "campo": "habilidades.prontidao",
+      "motivo": "Degrau 2. Os sentidos vão nas Especialidades naturais."
+    },
+    {
+      "campo": "habilidades.resistencia",
+      "motivo": "Etapa 2 (20/10/2026): Decisão 3 de 19/10/2026: os muito grandes tendem a ter mais. Com 36 t e vida de 88 a 100 anos (Shimada e colegas 2021), fica com 4, igual à orca e acima do tubarão-branco (3) . Antes: Era 0. Régua da diretriz 2: 2 é o normal da espécie no próprio meio, . Mares quentes e temperados do mundo todo (Wikipédia), endotermia regional pelos isótopos (Wikipédia). Nenhum dado de fome, veneno, doença ou ferida acima do comum. O cruzeiro de modelo fica na nota de pesquisa (jornada)."
+    },
+    {
+      "campo": "habilidadesSec.natacao",
+      "motivo": "Etapa 2 (20/10/2026): Decisão de 20/10/2026: a Habilidade secundária de Natação vale nas jogadas (manobrar na água), e a velocidade continua congelada; o nado em m por Tick não muda. A decisão põe o megalodonte entre os nadadores que recebem a Habilidade pela pesquisa: \"em geral não um nadador rápido\" (Wikipédia), com cruzeiro estimado baixo (Cooper e colegas 2022) e corpo Imenso. Fica 2, bem abaixo do tubarão-branco (6) . Antes: Fica como hoje. Com o porte Imenso e o Vigor 8, o nado da conta já passa de todos os cruzeiros estimados."
+    },
+    {
+      "campo": "corpo.altura",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 3,28 × 1,0261 = 3,366 . Antes: Era 3,7 m, da Bestiarista-5, pela proporção do tubarão-branco da ficha (1,1 ÷ 4,7) em 16 m. Escalado pelo cubo da massa: 3,7 × (33.325 ÷ 48.000)^(1/3) = 3,7 × 0,885 = 3,28 m"
+    },
+    {
+      "campo": "corpo.comprimento",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 14,20 × 1,0261 = 14,570 . Antes: Era 16 m (o tamanho de Cooper 2022, 15,9 m, e do espécime belga de Shimada 2025, 16,4 m), o animal dos 48 t. Escalado pelo cubo da massa: 16 × 0,885 = 14,17 m. Confere com Gottfried e colegas 1996: o meio das faixas de comprimento dos machos maduros (10,5 a 14,3 m, meio 12,4) e das fêmeas maduras (13,3 a 17 m, meio 15,15) dá 13,8 m"
+    },
+    {
+      "campo": "corpo.comprimentoSemCauda",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 12,00 × 1,0261 = 12,313 . Antes: Era 13,6 m (proporção do tubarão-branco, 4,0 ÷ 4,7, em 16 m); escalado pelo cubo da massa: 13,6 × 0,885 = 12,04 m"
+    },
+    {
+      "campo": "corpo.largura",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 3,00 × 1,0261 = 3,078 . Antes: Era 3,4 m (a mesma proporção, 1,0 ÷ 4,7, em 16 m; não preservada); escalado pelo cubo da massa: 3,4 × 0,885 = 3,01 m"
+    },
+    {
+      "campo": "aparencia",
+      "motivo": "D-107: a maioria fica no 6.  A pele não se conhece."
+    },
+    {
+      "campo": "comportamento.caca",
+      "motivo": "investida de baixo (Wikipédia)"
+    }
+  ]
+}

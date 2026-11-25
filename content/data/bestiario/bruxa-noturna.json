@@ -1,0 +1,376 @@
+{
+  "id": "bruxa-noturna",
+  "idAntigo": "mon-night-hag",
+  "nome": "Bruxa Noturna",
+  "nomeIngles": "Hag, Night",
+  "categoria": "corruptor",
+  "papel": "chefe",
+  "ameaca": 5,
+  "centelha": 5,
+  "formaPrincipal": {
+    "id": "verdadeira",
+    "nome": "forma verdadeira"
+  },
+  "corpo": {
+    "postura": "bípede, de pé",
+    "apoio": "bipede",
+    "altura": 1.9,
+    "largura": 0.41,
+    "profundidade": 0.21,
+    "comprimento": null,
+    "massa": 70,
+    "area": 0.69,
+    "posturaDoTamanho": "silhueta de frente, de pé"
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 6,
+    "destreza": 5,
+    "vigor": 7,
+    "percepcao": 5,
+    "inteligencia": 5,
+    "raciocinio": 5,
+    "influencia": 5,
+    "perspicacia": 5,
+    "compostura": 5
+  },
+  "habilidades": {
+    "briga": 5,
+    "bloqueio": 1,
+    "esquiva": 1,
+    "atletismo": 2,
+    "furtividade": 2,
+    "integridade": 5,
+    "prontidao": 2,
+    "resistencia": 4,
+    "empatia": 3,
+    "sociabilidade": 0,
+    "manha": 4,
+    "ocultismo": 5
+  },
+  "habilidadesSec": {
+    "intimidacao": 3,
+    "musculatura": 0
+  },
+  "especialidades": {},
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 6,
+    "compaixao": 1,
+    "conviccao": 5,
+    "temperanca": 1
+  },
+  "vontade": 10,
+  "aparencia": 0,
+  "deslocamento": {
+    "terra": {
+      "batalha": 3,
+      "arranque": 5,
+      "corrida": 7
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Garras",
+      "parte": "maos-de-garra",
+      "classe": "leve",
+      "pgr": [
+        1,
+        1,
+        3
+      ],
+      "dado": "1d6-2",
+      "multiplicadorForca": 1,
+      "tipoDano": "corte",
+      "nivelPerfuracao": 0,
+      "acerto": 1,
+      "bloqueiaComoArma": null,
+      "justificativa": "As garras, golpe rápido de membro, Leve (`regra-construcao.md` §7), como as da bruxa verde; as duas mãos fazem par (Manobras). Jogada: Força 6 + Briga 5 + 2 × o menor entre Centelha 5 e Briga 5 (10)"
+    },
+    {
+      "nome": "Mordida",
+      "parte": "dentes-negros",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "O \"Golpe planar\" do site (1 dado, 5 Ticks, corte) e a \"Mordida doentia\": a mordida com a cabeça atrás, Média. A febre vai nas Manobras. Jogada: Força 6 + Briga 5 + 2 × o menor entre Centelha 5 e Briga 5 (10)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Garras",
+      "formas": [
+        "verdadeira"
+      ],
+      "classe": "livro",
+      "categoria": "inato",
+      "ataque": "Garras",
+      "regra": "empunhadura-dupla"
+    },
+    {
+      "nome": "Mordida doentia",
+      "formas": [
+        "verdadeira"
+      ],
+      "classe": "regra da ficha",
+      "ataque": "Mordida",
+      "categoria": "inato",
+      "ativacao": "a Mordida que fere",
+      "duracao": "até a cura",
+      "alcance": "o da mordida",
+      "area": "um alvo",
+      "efeito": "quem falha pega a febre demoníaca e fica Doente; a cada dia sem cura, perde um nível de Vigor, até ser curado ou sucumbir. Se o Vigor chegar a 0, a vítima morre",
+      "dano": "o do golpe",
+      "resistencia": "corpo, Vigor + Resistência contra a jogada da mordida, de novo a cada dia; quem passa só leva o dano",
+      "limiteDeUso": "um por golpe. Sem custo"
+    },
+    {
+      "nome": "Mudar de forma",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "uma ação, Velocidade 8",
+      "duracao": "até ela desfazer",
+      "alcance": "o próprio corpo",
+      "area": "não se aplica",
+      "efeito": "assume a forma de qualquer humanoide (o disfarce, em Variantes); a mente e os números ficam os dela. Use o perfil da forma. O restante é herdado. O equipamento só acompanha quando indicado",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "à vontade. Usar repetidamente causa esforço e pode levar ao cansaço. Sem custo"
+    },
+    {
+      "nome": "ferro frio e arma mágica ferem inteiros",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "ao receber o golpe",
+      "duracao": "enquanto a condição se aplica",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Contra ferro frio ou arma mágica, aplique a Absorção inteira e cobre todo o dano restante. Contra as demais armas, reduza à metade o dano que passou pela Absorção",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "mente imune",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Ignora domínio, sono e medo imposto por poderes ou Artes. Dano físico de Arte e conversa comum seguem as regras normais",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "Contínuo, sem custo"
+    },
+    {
+      "nome": "Resistência à magia",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "sempre ativa",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a própria criatura",
+      "efeito": "Resistência à magia de grau 2. Soma +4 às Defesas e à jogada de resistir contra Artes e efeitos similares à magia, até o teto comum de +6",
+      "dano": "nenhum adicional",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo. Sem custo"
+    },
+    {
+      "nome": "assombrar sonhos",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "sobrenatural",
+      "ativacao": "uma noite com a gema e acesso ao alvo adormecido",
+      "duracao": "durante o sonho de cada noite",
+      "alcance": "o alvo adormecido acessível",
+      "area": "um alvo",
+      "efeito": "Domina o sonho da vítima e decide as imagens que a afligem enquanto ela dorme. Cada noite vencida causa Desgaste 1 e avança uma etapa. Na quarta noite prende a alma na gema. Tirar a gema interrompe o acesso",
+      "dano": "nenhum",
+      "resistencia": "Influência + Ocultismo contra Defesa Mental com o Resistir do livro",
+      "limiteDeUso": "1 uso grátis por cena. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "pedra do coração",
+      "formas": "todas",
+      "classe": "sem regra ainda",
+      "categoria": "inato",
+      "efeito": "a gema que ela carrega cura as doenças dela e a fortalece contra provações; sem ela, perde o poder de ficar etérea e de prender almas"
+    },
+    {
+      "nome": "Multiataque",
+      "formas": [
+        "verdadeira"
+      ],
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "uma ação de Rajada",
+      "duracao": "uma ação",
+      "alcance": "o de cada parte",
+      "area": "os alvos da Rajada",
+      "efeito": "Golpeia nesta ordem: garra esquerda, garra direita, mordida. Cada golpe extra acumula −1d6 e conta para Guarda sob pressão. Não acumula com a Rajada comum",
+      "dano": "o de cada ataque que acertar",
+      "resistencia": "a Defesa de cada golpe",
+      "limiteDeUso": "até 3 golpes por ação, sem Energia. O uso repetido causa esforço e pode levar ao cansaço"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "corretora de almas",
+      "formas": "todas",
+      "texto": "evita a luta aberta; disfarçada, escolhe a vítima no momento mais fraco, morde para deixar a febre e volta à noite pelos sonhos."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão no escuro",
+      "descricao": "enxerga no escuro absoluto",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "camuflagem": "passa por qualquer humanoide, no disfarce",
+    "mente": "inteligente, paciente, cruel",
+    "tracos": "velha alta e magra de 1,9 m, pele roxa e manchada, dentes negros, cabelo como palha seca, garras longas e uma gema escura pendurada no pescoço"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "sozinha, às vezes num coven; com cães yeth como batedores",
+    "atividade": "noturna",
+    "dieta": "sofrimento e almas; come carne",
+    "caca": "escolhe vítimas nos momentos de maior fraqueza",
+    "dianteDeGente": "engana disfarçada; atormenta pelos sonhos"
+  },
+  "ecologia": {
+    "terreno": [
+      "qualquer"
+    ],
+    "clima": [
+      "extraplanar"
+    ]
+  },
+  "descricao": "Caça mortais nos momentos de maior fraqueza e prolonga a agonia noite após noite, cavalgando os sonhos deles, até prender a alma torturada numa gema escura para os mercados sombrios de almas. Assume a forma de qualquer humanoide à vontade.",
+  "lore": [
+    {
+      "titulo": "Corretora de almas",
+      "texto": "Caça mortais nos momentos de maior vulnerabilidade, prolongando a agonia noite após noite até prender a alma torturada em gemas escuras."
+    },
+    {
+      "titulo": "Rosto mutável, fome antiga",
+      "texto": "Sua aparência varia muito de uma para outra, mas todas compartilham o mesmo apetite por sofrimento alheio e mercados sombrios de almas."
+    }
+  ],
+  "imagens": [
+    "bestiario/bruxa-noturna_criatura.webp"
+  ],
+  "formas": [
+    {
+      "id": "disfarce",
+      "nome": "disfarce",
+      "fisiologia": {
+        "camuflagem": "assume a aparência de qualquer humanoide, com a altura e a massa visuais do disfarce"
+      }
+    }
+  ],
+  "elementos": {
+    "fraquezas": [
+      {
+        "tipo": "luz",
+        "formas": "todas"
+      },
+      {
+        "tipo": "sagrado",
+        "formas": "todas"
+      }
+    ],
+    "resistencias": [
+      {
+        "tipo": "corte",
+        "formas": "todas"
+      },
+      {
+        "tipo": "perfuracao",
+        "formas": "todas"
+      },
+      {
+        "tipo": "impacto",
+        "formas": "todas"
+      }
+    ],
+    "imunidades": [
+      {
+        "tipo": "fogo",
+        "formas": "todas"
+      },
+      {
+        "tipo": "gelo",
+        "formas": "todas"
+      }
+    ]
+  },
+  "revisao": [
+    {
+      "campo": "couraca",
+      "motivo": "Absorção natural do livro (`combate.md`). Couraça 0: pele de gente, como a bruxa verde. O nível fica fora da Absorção (decisoes-autor §16). A \"Pele curtida\" do site (absorve golpes comuns) e a imunidade a fogo e frio, pela linha Elementos, como a pele do súcubo; resistência a Corte, Perfuração e Impacto e imunidade a Fogo e Gelo; ferro frio, arma mágica, encanto, medo, sono e resistência à magia sem regra ficaram sem regra ainda"
+    },
+    {
+      "campo": "comportamento.dieta",
+      "motivo": ""
+    },
+    {
+      "campo": "formas.disfarce",
+      "motivo": "\"Pode assumir a forma de qualquer humanoide à vontade\" (site); a mente e os números ficam os dela, como no disfarce da bruxa verde e do doppelganger  A forma mantém os números da bruxa; o disfarce corporal é visual."
+    },
+    {
+      "campo": "habilidadesEspeciais.Mudar de forma",
+      "motivo": "R3. Ativação uma ação, Velocidade 6 -> uma ação, Velocidade 8 Pela referência corporal ou de deslocamento do poder."
+    },
+    {
+      "campo": "habilidadesEspeciais.Resistência à magia",
+      "motivo": "R7. SR 24 da fonte passa a grau 2 (+4)."
+    },
+    {
+      "campo": "habilidadesEspeciais.assombrar sonhos",
+      "motivo": "R1 e D-197. 1 uso grátis por cena. Cada uso extra custa 1 de Energia. Um uso de abertura até a definição do efeito. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "ataques",
+      "motivo": "o site gravava um \"Golpe planar\" de 1 dado e 5 Ticks, de corte (`inimigos.json`: \"1d6 +11 corte\", dano médio 14,5). A D-241 levou a Pesado só o golpe de cinco planares; aqui a classe sai do gesto: a mordida fica Média e as garras Leves, em par, como na bruxa verde. Dano médio: 14,5 antes; depois, a mordida 14,5, as garras 12,5 cada"
+    },
+    {
+      "campo": "formas",
+      "motivo": "verdadeira e disfarce (D-201), como a bruxa verde"
+    },
+    {
+      "campo": "habilidadesEspeciais.Mordida doentia",
+      "motivo": "números da ficha (D-197); o Doente é a condição do livro, e a doença vai só pelo nome"
+    },
+    {
+      "campo": "fisiologia",
+      "motivo": "resistência a Corte, Perfuração e Impacto e imunidade a Fogo e Gelo; ferro frio, arma mágica, encanto, medo, sono e resistência à magia sem regra ficaram sem regra ainda"
+    }
+  ]
+}

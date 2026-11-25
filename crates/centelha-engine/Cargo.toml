@@ -1,0 +1,12 @@
+[package]
+name = "centelha-engine"
+description = "Regras puras do jogo: ficha, criaturas, combate, tempo, Artes e a lógica do Grid. Sem IO."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+
+[dependencies]
+
+[lints]
+workspace = true

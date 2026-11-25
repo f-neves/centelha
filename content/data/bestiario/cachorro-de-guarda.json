@@ -1,0 +1,222 @@
+{
+  "id": "cachorro-de-guarda",
+  "idAntigo": "mon-riding-dog",
+  "nome": "Cão de guarda",
+  "nomeIngles": "Riding Dog",
+  "categoria": "animal",
+  "papel": "fera",
+  "ameaca": 1,
+  "centelha": 0,
+  "corpo": {
+    "postura": "quatro patas",
+    "apoio": "quadrupede",
+    "altura": 0.79,
+    "largura": 0.35,
+    "profundidade": null,
+    "comprimento": 1.76,
+    "comprimentoSemCauda": 1.24,
+    "caudaGrossa": false,
+    "massa": 85,
+    "area": 0.4,
+    "posturaDoTamanho": "de lado"
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 3,
+    "destreza": 3,
+    "vigor": 3,
+    "percepcao": 3,
+    "inteligencia": 1,
+    "raciocinio": 2,
+    "influencia": 2,
+    "perspicacia": 2,
+    "compostura": 2
+  },
+  "habilidades": {
+    "briga": 3,
+    "bloqueio": 0,
+    "esquiva": 3,
+    "atletismo": 2,
+    "furtividade": 3,
+    "integridade": 3,
+    "prontidao": 4,
+    "resistencia": 3,
+    "empatia": 2,
+    "sobrevivencia": 2
+  },
+  "habilidadesSec": {
+    "equilibrio": 0,
+    "escalada": 0,
+    "natacao": 0,
+    "voo": 0,
+    "corrida": 0,
+    "musculatura": 3
+  },
+  "especialidades": {
+    "prontidao": [
+      {
+        "foco": "faro",
+        "valor": 3,
+        "origem": "natural"
+      },
+      {
+        "foco": "audição",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ],
+    "briga": [
+      {
+        "foco": "derrubar e segurar no chão",
+        "valor": 1,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 1,
+    "conviccao": 1,
+    "temperanca": 1
+  },
+  "vontade": 3,
+  "aparencia": 6,
+  "deslocamento": {
+    "terra": {
+      "batalha": 6,
+      "arranque": 9,
+      "corrida": 12
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Mordida",
+      "parte": "mordida",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Não muda: a Força fica 4. Morde e segura com o corpo atrás: Média (`regra-construcao.md` §7), como o lobo. N0: de 946 a 1.063 N no canino estimados pelo crânio (Ellis et al. 2009); abaixo de 4.000 N."
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "derrubar",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "regra": "derrubar"
+    },
+    {
+      "nome": "agarrar",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "regra": "agarrar"
+    }
+  ],
+  "comoLuta": [],
+  "sentidos": [
+    {
+      "nome": "faro",
+      "descricao": "Prontidão (faro) +3 (era +4; teto da decisão 3); o do cão (Jenkins, DeChant e Perry 2018)",
+      "formas": "todas"
+    },
+    {
+      "nome": "audição",
+      "descricao": "Prontidão (audição) +2 (o do cão; Wikipédia)",
+      "formas": "todas"
+    },
+    {
+      "nome": "penumbra",
+      "descricao": "texto; tapetum lucidum, como no cão (Wikipédia)",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "camuflagem": "não",
+    "mente": "animal",
+    "tracos": "cabeça larga e focinho curto; ossatura pesada; peito largo e fundo (padrão AKC)"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": true
+  },
+  "comportamento": {
+    "social": "vive com a família que cuida dele",
+    "dieta": "o que recebe",
+    "caca": "não caça; guarda",
+    "dianteDeGente": "indiferente a estranhos, protetor dos seus; guarda noturno de propriedade desde por volta de 1500"
+  },
+  "ecologia": {
+    "terreno": [
+      "qualquer"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Cão grande de guarda e de guerra, levado às arenas de Roma e usado pelos conquistadores espanhóis; calmo em casa, derruba e segura quem invade.",
+  "lore": [
+    {
+      "titulo": "Raças robustas",
+      "texto": "Vem de linhagens maiores e mais fortes, como os mastins, criadas para guardar a casa e o rebanho e para puxar carroça pequena."
+    },
+    {
+      "titulo": "Parceiro de estrada",
+      "texto": "Guarda a casa da família que cuida dele e puxa a carroça pequena dos povos menores, como halflings e gnomos."
+    },
+    {
+      "titulo": "Veneno e doença",
+      "texto": "Variante cão raivoso: Raiva · Virulência 14 · dia · só no animal raivoso, ao critério do Mestre, e nunca no comum · contágio por ferida: quem levou dano que passou da Absorção rola uma vez por cena, Vigor + Resistência contra a Virulência inteira"
+    },
+    {
+      "titulo": "Aptidões",
+      "texto": "montaria não (ver as notas) · carga não · tração sim (carroça de cão; ver Corpo e movimento)"
+    }
+  ],
+  "imagens": [],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "habilidades.empatia",
+      "motivo": "Era sem linha. Lê o outro: separa a família, com quem é afetuoso, do estranho, a quem é indiferente (FCI nº 264), e trabalha sob comando do guarda (AKC).  do temperamento do padrão; a pesquisa não mede leitura.; 2, nova,  do temperamento do padrão FCI (família contra estranho)"
+    },
+    {
+      "campo": "corpo.altura",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 0,76 × 1,0335 = 0,785 . Antes: o mínimo do macho no padrão AKC (76,2 cm); a fêmea a partir de 69,9 cm"
+    },
+    {
+      "campo": "corpo.comprimento",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 1,70 × 1,0335 = 1,757 . Antes: estimado na pesquisa (160 a 185 cm), conferido contra o recordista Zorba (2,55 m com 145 kg e 89 cm de cernelha, Guinness)"
+    },
+    {
+      "campo": "corpo.comprimentoSemCauda",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 1,20 × 1,0335 = 1,240 . Antes: estimado na pesquisa (115 a 130 cm): corpo \"um pouco mais longo\" que a cernelha (padrão AKC), mais a cabeça grande e o pescoço curto. A cauda é fina e não conta (D-155)"
+    },
+    {
+      "campo": "corpo.largura",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 0,34 × 1,0335 = 0,351 . Antes: pesquisa: 30 a 38 cm no peito, pelo perímetro do peito de Zorba (1,447 m, Guinness) escalado para a metade da massa; peito \"largo, fundo e arredondado\" (padrão AKC)"
+    }
+  ]
+}

@@ -1,0 +1,243 @@
+{
+  "id": "elemental-da-agua-pequeno",
+  "idAntigo": "mon-small-water-elemental",
+  "nome": "Elemental da Água (Pequeno)",
+  "nomeIngles": "Elemental, Water",
+  "categoria": "elemental",
+  "papel": "soldado",
+  "ameaca": 2,
+  "centelha": 1,
+  "corpo": {
+    "postura": "de pé, silhueta humanoide de água que escorre e se refaz",
+    "apoio": "bipede",
+    "altura": 1.2,
+    "largura": 0.3,
+    "profundidade": 0.15,
+    "comprimento": null,
+    "massa": 23.4,
+    "area": 0.32,
+    "posturaDoTamanho": "de pé, sem o vórtice",
+    "segundoTamanho": {
+      "area": 0.9,
+      "posturaDoTamanho": "com o vórtice ativo"
+    }
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 3,
+    "destreza": 2,
+    "vigor": 3,
+    "percepcao": 2,
+    "inteligencia": 1,
+    "raciocinio": 2,
+    "influencia": 2,
+    "perspicacia": 2,
+    "compostura": 2
+  },
+  "habilidades": {
+    "briga": 3,
+    "bloqueio": 0,
+    "esquiva": 0,
+    "integridade": 2,
+    "prontidao": 1,
+    "sobrevivencia": 1,
+    "resistencia": 0
+  },
+  "habilidadesSec": {
+    "natacao": 3,
+    "musculatura": 1
+  },
+  "especialidades": {},
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 1,
+    "conviccao": 3,
+    "temperanca": 2
+  },
+  "vontade": 6,
+  "aparencia": 5,
+  "deslocamento": {
+    "terra": {
+      "batalha": 2,
+      "arranque": 3,
+      "corrida": 5
+    },
+    "nado": {
+      "batalha": 9
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Pancada de água",
+      "parte": "braco-de-agua",
+      "classe": "leve",
+      "pgr": [
+        1,
+        1,
+        3
+      ],
+      "dado": "1d6-2",
+      "multiplicadorForca": 1,
+      "tipoDano": "impacto",
+      "nivelPerfuracao": 0,
+      "acerto": 1,
+      "bloqueiaComoArma": null,
+      "justificativa": "O braço de água que bate como uma onda (site: 1 dado, 5 Ticks, impacto). Leve, gesto rápido de membro (`regra-construcao.md` §7), como a pancada do elemental do fogo. Jogada: Força 3 + Briga 3 + 2 × o menor entre Centelha 1 e Briga 3 (2)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Posturas de combate",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Pequeno: de pé, sem o vórtice. Médio: com o vórtice ativo. Vale o Tamanho da postura atual. Cada troca entre essas posturas custa 1 Tick e vale até ser desfeita. A postura ativa não dispensa a ativação, a duração e os usos do poder correspondente",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "Vórtice",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "agua",
+        "nivel": 2
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 5, dentro da água ou sobre ela. O efeito sai no Tick do Golpe",
+      "duracao": "até 18 Ticks, ou até ele desfazer com outra ação",
+      "alcance": "o próprio corpo",
+      "area": "quem está a até 1 m dele",
+      "efeito": "vira um redemoinho de água que suga quem está perto; quem é sugado fica Agarrado dentro dele e Confuso enquanto estiver lá, e sai quando o vórtice se desfaz ou quando vence a manobra para se soltar. Enquanto Confuso, declara a ação e rola 1d6. Com 1 a 3, faz o declarado. Com 4 ou 5, o Mestre escolhe ação e alvo. Com 6, perde a ação",
+      "dano": "o da Pancada de água a quem está dentro, a cada 6 Ticks",
+      "resistencia": "esquiva, contra Força + Briga dele; quem passa não é sugado",
+      "limiteDeUso": "Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "Encharcar",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "o toque ou a Pancada de água",
+      "duracao": "instantânea",
+      "alcance": "toque",
+      "area": "um objeto, ou um alvo",
+      "efeito": "encharca tochas, pergaminhos e outros itens sensíveis à água, e apaga fogo pequeno (uma tocha, uma fogueira pequena, ou a condição Em chamas de quem ele toca)",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "nenhum. Sem custo"
+    },
+    {
+      "nome": "Domínio da água",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "nenhuma; vale enquanto ele está dentro da água",
+      "duracao": "enquanto estiver na água",
+      "alcance": "o próprio corpo",
+      "area": "não se aplica",
+      "efeito": "não se afoga e quase não se deixa arrastar: +3 contra Agarrar, Derrubar e Empurrar, como uma faixa de massa a mais; quem o ataca de dentro da água tira 2 do dano do golpe",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "nenhum. Sem custo"
+    },
+    {
+      "nome": "feito de água pura",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Não se cansa. Ignora veneno e doença. Demais efeitos que peçam teste de corpo usam o teste normal",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "Contínuo, sem custo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "onda com vontade",
+      "formas": "todas",
+      "texto": "luta de dentro da água sempre que pode, suga o alvo no vórtice e apaga tochas e fogueiras; em terra é lento e só cumpre a ordem."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão e audição",
+      "descricao": "as de um humano",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "mente": "simples; obedece a quem o conjurou e, solto, volta ao próprio plano",
+    "tracos": "água limpa na forma de um homem pequeno, que escorre o tempo todo e se refaz; deixa o chão molhado por onde passa",
+    "tipoCorpo": "elemental"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "sozinho, ou com quem o conjurou",
+    "atividade": "qualquer hora",
+    "caca": "não caça",
+    "dianteDeGente": "cumpre a ordem de quem o trouxe; não odeia nem ama"
+  },
+  "ecologia": {
+    "terreno": [
+      "aquático"
+    ],
+    "clima": [
+      "extraplanar"
+    ]
+  },
+  "descricao": "Fragmento de um plano de água: rápido no mar e lento em terra, suga quem chega perto num vórtice, encharca o que toca e apaga o fogo.",
+  "lore": [
+    {
+      "titulo": "Onda com vontade",
+      "texto": "Convocado das águas de outro plano, assume forma líquida que nunca para de se mover, mesmo em repouso aparente."
+    },
+    {
+      "titulo": "Frieza sem malícia",
+      "texto": "Não odeia nem ama; apenas cumpre a vontade de quem o trouxe até se libertar do vínculo."
+    }
+  ],
+  "imagens": [],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "atributos.forca",
+      "motivo": "O site tinha 4 (For 14 no Pathfinder). Desce para 3 pelo teste de ordem (manual, Passo 6): com 4, os 23 kg de água ficariam acima do lobo de 55 kg do molde (3), mais pesado. Com 3, fica igual ao lobo, e o peso da onda vai na Musculatura 1; 3 pelo teste de ordem; o site tinha 4. Com 4, o dano médio seria 6,5 e o peso erguido 118,62 kg"
+    },
+    {
+      "campo": "comportamento.social",
+      "motivo": "site"
+    },
+    {
+      "campo": "habilidadesEspeciais.Vórtice",
+      "motivo": "R1 e D-197. Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação uma ação, Velocidade 6, dentro da água ou sobre ela -> uma ação, Velocidade 5, dentro da água ou sobre ela. O efeito sai no Tick do Golpe. Pela régua da Arte de base. valor de molde, para a bancada (uso extra de 1 de Energia).; poder natural de uma vez por cena, e não forma (linha Formas): o redemoinho é um modo de ataque com duração, sem corpo próprio a descrever"
+    },
+    {
+      "campo": "corpo.area",
+      "motivo": "Médio com o vórtice ativo, o funil de 0,90 m² com a largura do redemoinho do elemental do ar; se o funil fosse da largura da Área do Vórtice (1 m à volta, 2,3 m), seriam 1,56 m², Grande, 8% acima do corte (decisão do autor de 24/10/2026, D-213)"
+    }
+  ]
+}

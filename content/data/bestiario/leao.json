@@ -1,0 +1,224 @@
+{
+  "id": "leao",
+  "idAntigo": "mon-leao",
+  "nome": "Leão",
+  "nomeIngles": "Lion",
+  "categoria": "animal",
+  "papel": "fera",
+  "ameaca": 3,
+  "centelha": 0,
+  "corpo": {
+    "postura": "quatro patas",
+    "apoio": "quadrupede",
+    "altura": 1.43,
+    "largura": 0.75,
+    "profundidade": null,
+    "comprimento": 3,
+    "comprimentoSemCauda": 2.4,
+    "caudaGrossa": false,
+    "massa": 173,
+    "area": 1.04,
+    "posturaDoTamanho": "de lado"
+  },
+  "couraca": 1,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 6,
+    "destreza": 4,
+    "vigor": 5,
+    "percepcao": 3,
+    "inteligencia": 1,
+    "raciocinio": 3,
+    "influencia": 3,
+    "perspicacia": 2,
+    "compostura": 2
+  },
+  "habilidades": {
+    "briga": 4,
+    "bloqueio": 2,
+    "esquiva": 3,
+    "atletismo": 2,
+    "furtividade": 3,
+    "integridade": 3,
+    "prontidao": 2,
+    "resistencia": 4,
+    "empatia": 1,
+    "sobrevivencia": 3
+  },
+  "habilidadesSec": {
+    "equilibrio": 0,
+    "escalada": 0,
+    "natacao": 0,
+    "voo": 0,
+    "corrida": 0,
+    "musculatura": 3
+  },
+  "especialidades": {
+    "resistencia": [
+      {
+        "foco": "doenças",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ],
+    "briga": [
+      {
+        "foco": "segurar pela garganta",
+        "valor": 1,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 1,
+    "conviccao": 1,
+    "temperanca": 1
+  },
+  "vontade": 3,
+  "aparencia": 7,
+  "deslocamento": {
+    "terra": {
+      "batalha": 7,
+      "arranque": 12,
+      "corrida": 16
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Mordida",
+      "parte": "mordida",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Morde a garganta ou o focinho e segura (Schaller 1972): o golpe pede o corpo atrás, Média. N0: 1.593,8 N na leoa, abaixo de 4.000 N. Era 1d6 + 8, média 11,5."
+    },
+    {
+      "nome": "Patada",
+      "parte": "garra",
+      "classe": "leve",
+      "pgr": [
+        1,
+        1,
+        3
+      ],
+      "dado": "1d6-2",
+      "multiplicadorForca": 1,
+      "tipoDano": "corte",
+      "nivelPerfuracao": null,
+      "acerto": 1,
+      "bloqueiaComoArma": null,
+      "justificativa": "Garra da pata dianteira, que agarra e derruba (Schaller 1972). Era 1d6 − 2 + 8, média 9,5. Opção, não segundo golpe (D-097)."
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "agarrar",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "regra": "agarrar"
+    },
+    {
+      "nome": "derrubar",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "regra": "derrubar"
+    },
+    {
+      "nome": "bote",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Mordida",
+      "categoria": "inato",
+      "regra": "investida"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "emboscar",
+      "formas": "todas",
+      "texto": "sai da Furtividade; o alvo surpreso tem a Defesa zerada (Combate, Quando a Defesa zera)."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão no escuro",
+      "descricao": ". Caça sobretudo à noite e de madrugada (ADW); visão noturna sem número. Nada que passe do humano com número",
+      "formas": "todas"
+    },
+    {
+      "nome": "faro",
+      "descricao": "(olfato sem número)",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "camuflagem": "como traço do corpo; aproveita a noite e a cobertura para se aproximar (Schaller 1972)",
+    "mente": "animal",
+    "tracos": "rugido audível a até 4,8 km (San Diego Zoo); a juba do macho sinaliza sexo e condição a distância (ADW)"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "bando (2 a 40, média 13; coalizões de machos tomam bandos)",
+    "atividade": "noturno (caça sobretudo à noite e de madrugada; dorme até 20 horas por dia)",
+    "dieta": "carnívoro",
+    "caca": "espreita (até cerca de 30 m antes do ataque); as fêmeas caçam a maior parte; sucesso 17% sozinho e 30% em grupo",
+    "dianteDeGente": "foge (em geral, de pessoa a pé)"
+  },
+  "ecologia": {
+    "terreno": [
+      "planície"
+    ],
+    "clima": [
+      "tropical"
+    ]
+  },
+  "descricao": "Em geral foge de quem está a pé, mas há antropofagia ocasional: os leões de Tsavo comeram cerca de 35 pessoas (Yeakel et al. 2009).",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Vive em bando liderado por fêmeas caçadoras, enquanto o macho protege o território e disputa domínio com rivais de fora."
+    },
+    {
+      "titulo": "Sociedade",
+      "texto": "Divide o cuidado dos filhotes entre as fêmeas do bando, um arranjo social raro entre os grandes felinos."
+    },
+    {
+      "titulo": "Hábitat",
+      "texto": "Prefere savanas e planícies abertas, típicas das terras mais quentes de Mére."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "Nas planícies de Mére é símbolo de realeza e coragem para diversos povos locais, caçado tanto por respeito quanto como prova de valentia."
+    }
+  ],
+  "imagens": [],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": []
+}

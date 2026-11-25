@@ -1,0 +1,235 @@
+{
+  "id": "aranha-das-fases",
+  "idAntigo": "mon-aranha-das-fases",
+  "nome": "Aranha das Fases",
+  "nomeIngles": "Phase Spider",
+  "categoria": "besta-magica",
+  "papel": "fera",
+  "ameaca": 4,
+  "centelha": 3,
+  "corpo": {
+    "postura": "oito patas",
+    "apoio": "outro",
+    "altura": 0.69,
+    "largura": 0.57,
+    "profundidade": null,
+    "comprimento": 1.5,
+    "massa": 160,
+    "area": 2.21,
+    "posturaDoTamanho": "vista de cima, pernas abertas"
+  },
+  "couraca": 1,
+  "perfilCouraca": "rigida",
+  "atributos": {
+    "forca": 6,
+    "destreza": 5,
+    "vigor": 6,
+    "percepcao": 3,
+    "inteligencia": 1,
+    "raciocinio": 2,
+    "influencia": 2,
+    "perspicacia": 2,
+    "compostura": 3
+  },
+  "habilidades": {
+    "briga": 5,
+    "bloqueio": 0,
+    "esquiva": 1,
+    "atletismo": 2,
+    "atirador": 2,
+    "furtividade": 3,
+    "integridade": 3,
+    "prontidao": 1,
+    "resistencia": 3,
+    "sociabilidade": 0,
+    "sobrevivencia": 3
+  },
+  "habilidadesSec": {
+    "escalada": 3,
+    "musculatura": 2
+  },
+  "especialidades": {},
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 1,
+    "conviccao": 3,
+    "temperanca": 2
+  },
+  "vontade": 8,
+  "aparencia": 2,
+  "deslocamento": {
+    "terra": {
+      "batalha": 4,
+      "arranque": 6,
+      "corrida": 9
+    },
+    "escalada": {
+      "batalha": 2
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Mordida",
+      "parte": "queliceras",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "As presas de aranha grande com o corpo atrás, Média. O veneno vai em Veneno e doença. Jogada: Força 6 + Briga 5 + 2 × o menor entre Centelha 3 e Briga 5 (6)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Peçonha da aranha das fases",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "ataque": "Mordida",
+      "categoria": "substancia",
+      "ativacao": "Mordida ao causar ao menos 1 PV depois da Absorção",
+      "duracao": "até o fim do efeito do veneno",
+      "alcance": "toque",
+      "area": "um alvo",
+      "efeito": "Peçonha de aranha gigante (referência provisória do catálogo para Aranha das Fases). Aplicar os parâmetros de Veneno e doença",
+      "dano": "apenas o pool do veneno",
+      "resistencia": "Vigor + Resistência pelo relógio do veneno",
+      "limiteDeUso": "O corpo guarda 2 doses e produz 1 dose em 6 horas. Cada uso gasta 1 dose"
+    },
+    {
+      "nome": "Salto etéreo",
+      "formas": "todas",
+      "classe": "sem regra ainda",
+      "categoria": "magia",
+      "efeito": "Aguarda o lore dos planos. Usos grátis: 1 por dia"
+    },
+    {
+      "nome": "fio de teia",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "substancia",
+      "ativacao": "uma ação, Velocidade 6, dispara pelas fieiras com o maior entre Vigor, Destreza e Percepção + Atirador",
+      "duracao": "até o alvo se soltar",
+      "alcance": "até 6 m",
+      "area": "um alvo",
+      "efeito": "o acerto prende pela teia, pelo Preso da Rede do livro",
+      "dano": "nenhum",
+      "resistencia": "nenhum teste adicional; para se soltar, usa a regra da Rede contra o total do disparo",
+      "limiteDeUso": "O corpo guarda 3 doses e produz 1 dose a cada 1 hora. Cada uso gasta 1 dose. Nada acelera a produção"
+    },
+    {
+      "nome": "arrastar para o véu",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "enquanto a condição se aplica",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Ao manter o agarrão, desloca-se com a presa a metade da Batalha, até o peso que arrasta. O movimento integra a manutenção. O trecho etéreo aguarda o lore dos planos",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "emboscada etérea",
+      "formas": "todas",
+      "texto": "surge do véu sem aviso, morde e some de novo; gravemente ferida, foge para o véu na hora."
+    },
+    {
+      "nome": "Projétil natural",
+      "formas": "todas",
+      "texto": "Contra um alvo, use o maior entre Vigor, Destreza e Percepção + Atirador. Ao cobrir uma área, só os alvos fazem a jogada de saída."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "sentir o véu",
+      "descricao": "enxerga o que está do outro lado, no etéreo",
+      "formas": "todas"
+    },
+    {
+      "nome": "tato das patas",
+      "descricao": "sente o fio da teia vibrar",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "camuflagem": "some no véu etéreo",
+    "mente": "animal (fera de Inteligência 1)",
+    "tracos": "aranha de corpo de 1,5 m e pernas de 3 m, pálida, que tremula e some como reflexo"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitária",
+    "atividade": "qualquer hora",
+    "dieta": "carnívora",
+    "caca": "embosca pelo véu e arrasta a presa para o outro lado",
+    "dianteDeGente": "caça"
+  },
+  "ecologia": {
+    "terreno": [
+      "floresta",
+      "subterrâneo"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Aranha gigante que some e reaparece piscando entre este mundo e um véu etéreo logo abaixo dele, usando a passagem para emboscar sem aviso e escapar de perseguições impossíveis. Tece teias dos dois lados e arrasta a presa envenenada para o lado etéreo, onde devora em paz.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Aranha gigante que some e reaparece piscando entre este mundo e um véu etéreo logo abaixo dele, usando essa passagem para emboscar presas sem aviso e escapar de perseguições impossíveis."
+    },
+    {
+      "titulo": "Ecologia",
+      "texto": "Tece teias tanto no mundo material quanto no véu que o espelha, e arrasta presas paralisadas por seu veneno para o lado etéreo, onde devora em paz, longe de qualquer resgate."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "É tratada como parente distante dos horrores que atravessam a Fenda: não vem de lá, mas cruza um véu do mesmo jeito, e isso basta para que caçadores de Syl a tratem com o mesmo respeito assustado que dão a um espírito hostil fora de lugar."
+    }
+  ],
+  "imagens": [
+    "bestiario/aranha-das-fases_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "habilidadesEspeciais.Salto etéreo",
+      "motivo": "R3. Ativação uma ação, Velocidade 5 -> uma ação, Velocidade 8 Pela referência corporal ou de deslocamento do poder.; poder natural com a base e os usos do site (Espírito 2, à vontade) e números da ficha (D-197); o alcance de 9 m é o do site"
+    },
+    {
+      "campo": "habilidadesEspeciais.fio de teia",
+      "motivo": "R1/R4, D-197. Três doses preservam a reserva para mais de uma presa. Sugestão de 3 doses e 1 h por dose para repor fora da luta. valor de molde, para a bancada (3 doses e produz 1 dose a cada 1 hora)."
+    },
+    {
+      "campo": "ataques",
+      "motivo": "o site gravava um ataque só, \"Garras e presas\" (`inimigos.json`: \"2d6 +9 perfurante\", 6 Ticks, dano médio 16). A ficha separa os golpes pelo gesto, um por ação (D-097). Dano médio: 16 antes; depois, mordida 12,5"
+    }
+  ]
+}

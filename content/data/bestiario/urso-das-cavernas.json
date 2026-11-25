@@ -1,0 +1,253 @@
+{
+  "id": "urso-das-cavernas",
+  "idAntigo": "mon-dire-bear-cave-bear",
+  "nome": "Urso-das-cavernas",
+  "nomeIngles": "Dire Bear",
+  "categoria": "animal",
+  "papel": "fera",
+  "ameaca": 4,
+  "centelha": 0,
+  "corpo": {
+    "postura": "quatro patas",
+    "apoio": "quadrupede",
+    "altura": 1.41,
+    "largura": 0.94,
+    "profundidade": null,
+    "comprimento": 2.36,
+    "comprimentoSemCauda": 2.26,
+    "caudaGrossa": false,
+    "massa": 378,
+    "area": 1.59,
+    "posturaDoTamanho": "de lado"
+  },
+  "couraca": 2,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 8,
+    "destreza": 3,
+    "vigor": 6,
+    "percepcao": 3,
+    "inteligencia": 1,
+    "raciocinio": 2,
+    "influencia": 1,
+    "perspicacia": 1,
+    "compostura": 1
+  },
+  "habilidades": {
+    "briga": 3,
+    "bloqueio": 2,
+    "esquiva": 1,
+    "atletismo": 2,
+    "furtividade": 2,
+    "integridade": 3,
+    "prontidao": 2,
+    "resistencia": 4,
+    "empatia": 0,
+    "sobrevivencia": 2
+  },
+  "habilidadesSec": {
+    "equilibrio": 0,
+    "escalada": 0,
+    "natacao": 0,
+    "voo": 0,
+    "corrida": 0,
+    "musculatura": 4
+  },
+  "especialidades": {
+    "prontidao": [
+      {
+        "foco": "faro",
+        "valor": 3,
+        "origem": "natural"
+      }
+    ],
+    "resistencia": [
+      {
+        "foco": "fome",
+        "valor": 3,
+        "origem": "natural"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 1,
+    "conviccao": 1,
+    "temperanca": 1
+  },
+  "vontade": 4,
+  "aparencia": 6,
+  "deslocamento": {
+    "terra": {
+      "batalha": 7,
+      "arranque": 13,
+      "corrida": 16
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Patada",
+      "parte": "garra",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "corte",
+      "nivelPerfuracao": null,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "O golpe com o ombro atrás, como no urso-pardo (seção 7). Era 1d6 + 9, média 12,5."
+    },
+    {
+      "nome": "Mordida",
+      "parte": "mordida",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Mordida abaixo da dos grandes felinos e acima da do urso-polar (Grandal-d'Anglade 2010, sem o número lido); o urso-polar e o urso-pardo ficam abaixo de 4.000 N: N0. Opção, não segundo golpe (D-097). Era 1d6 + 9, média 12,5."
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "agarrar (o \"abraço\")",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "regra": "agarrar"
+    }
+  ],
+  "comoLuta": [],
+  "sentidos": [
+    {
+      "nome": "faro",
+      "descricao": "Prontidão (faro) +3 pelo urso-pardo (era +4; a decisão 3 põe o teto em +3)",
+      "formas": "todas"
+    },
+    {
+      "nome": "audição e visão",
+      "descricao": "nada que passe do humano",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "mente": "animal",
+    "tracos": "hibernava em caverna, mais que o urso-pardo; as cavernas da Europa guardam milhares de ossos dele, de animais mortos na hibernação (Kurtén 1968, via Wikipédia). É o fato da Resistência (fome) +3. Vivia raramente mais de 20 anos (Bieder 2005, via Wikipédia)"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitário",
+    "dieta": "herbívoro, com onivoria em algumas populações",
+    "caca": "forrageio (folhas, caules e o que a região desse)",
+    "dianteDeGente": "defende a toca"
+  },
+  "ecologia": {
+    "terreno": [
+      "floresta",
+      "montanha"
+    ],
+    "clima": [
+      "frio"
+    ]
+  },
+  "descricao": "Urso enorme da Europa da Era do Gelo, que comia sobretudo planta e hibernava fundo nas cavernas, onde defendia a toca de lobos, hienas e leões.",
+  "lore": [
+    {
+      "titulo": "Natureza",
+      "texto": "Maior, mais agressivo e muito mais letal que seus primos comuns, o urso das cavernas é um horror primitivo que sobreviveu desde eras esquecidas."
+    },
+    {
+      "titulo": "Comportamento",
+      "texto": "Evita as regiões mais civilizadas do mundo, preferindo os recantos mais remotos da natureza selvagem; é curto de temperamento e rápido a se enfurecer com qualquer intruso em seu território."
+    },
+    {
+      "titulo": "Caçada",
+      "texto": "Avistar um urso das cavernas é raro e aterrorizante, mesmo para quem já conhece ursos comuns."
+    }
+  ],
+  "imagens": [
+    "bestiario/urso-das-cavernas_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "atributos.destreza",
+      "motivo": "pelo urso-pardo: degrau 3, \"reflexo rápido e mão firme\" (cava e apara com a pata). Fica, porque a velocidade congelada sai dela."
+    },
+    {
+      "campo": "atributos.percepcao",
+      "motivo": "pelo urso-pardo. O faro vai como Especialidade natural."
+    },
+    {
+      "campo": "atributos.influencia",
+      "motivo": "Era 3. Não é espécie social (diretriz 1): solitário  pelos ursos vivos. Fazer gente recuar é Briga e tamanho, e não trato entre os seus."
+    },
+    {
+      "campo": "habilidades.atletismo",
+      "motivo": "Etapa 2 (20/10/2026): Decisão 4 de 19/10/2026: a versão maior tende a ter mais Atletismo que a comum. Sobe para 2, igual ao urso-pardo, e não acima: o corpo é mais pesado e não há dado de corrida . A velocidade continua congelada. Antes: Mais pesado que o urso-pardo (2), com o corpo de urso: o fôlego de arrancada é . Fica, porque a velocidade congelada sai dele (decisão 23)."
+    },
+    {
+      "campo": "habilidades.integridade",
+      "motivo": "Defende a toca e a cria, como o urso-pardo ."
+    },
+    {
+      "campo": "habilidades.empatia",
+      "motivo": "Não usa: solitário ."
+    },
+    {
+      "campo": "corpo.altura",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 1,37 × 1,0322 = 1,414 . Antes: Era 1,50 m, a do macho grande de 450 kg: o urso-pardo da ficha v3 de então (1,20 m, macho de 230 kg) × (450 ÷ 230)^(1/3) = 1,25. Escalada agora pelo cubo da massa: 1,50 × (343,75 ÷ 450)^(1/3) = 1,371. O teto vem do museu: \"até 1,70 m de cernelha\" (SNSB-BSPG, Munique, https://bspg.snsb.de/?p=3076 ). O alto da cabeça não foi achado"
+    },
+    {
+      "campo": "corpo.comprimento",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 2,29 × 1,0322 = 2,364 . Antes: Era 2,50 m, o corpo do macho grande (2,40) mais a cauda curta e fina de cerca de 0,1 m, como no urso-pardo. Escalado pelo cubo da massa: 2,50 × (343,75 ÷ 450)^(1/3) = 2,285."
+    },
+    {
+      "campo": "corpo.comprimentoSemCauda",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 2,19 × 1,0322 = 2,260 . Antes: Era 2,40 m: o urso-pardo da v3 de então (2,00 m) × 1,25 = 2,50, arredondado para 2,40 para não se afastar mais dos \"até 2 m\" de Palmer (1999, via Wikipédia). O museu dá \"até 3,50 m de comprimento\" (SNSB-BSPG), o máximo; não usado como típico. Escalado pelo cubo da massa: 2,40 × (343,75 ÷ 450)^(1/3) = 2,194."
+    },
+    {
+      "campo": "corpo.largura",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 0,91 × 1,0322 = 0,939 . Antes: Era 1,00 m: o urso-pardo da v3 de então (0,80 m, estimada pelo Arquiteto) × 1,25. Escalada pelo cubo da massa: 1,00 × (343,75 ÷ 450)^(1/3) = 0,914."
+    },
+    {
+      "campo": "couraca",
+      "motivo": "Cobertura do corpo pela R49; metades arredondadas para cima. A pele não se preservou e nada indica cobertura dura; pelo e gordura de hibernador  pelos ursos vivos. Razão do nível em `couraca.mjs`, escrita com a massa de então (o macho grande de 450 kg): \"pelo e gordura grossos, [...]\", e o nível não muda com o adulto típico de 343,75 kg. A linha 2 da escala inclui \"pelo e gordura grossos\"; a referência mais próxima é o javali macho com o escudo do ombro (nível 2), ao lado do urso-polar de mesma massa (nível 2). Era Corte 0, Perfuração 0, Nível 0 na v3."
+    },
+    {
+      "campo": "comportamento.social",
+      "motivo": "pelos ursos vivos"
+    },
+    {
+      "campo": "comportamento.dianteDeGente",
+      "motivo": "sem registro possível"
+    }
+  ]
+}

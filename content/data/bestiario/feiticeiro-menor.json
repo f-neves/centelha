@@ -1,0 +1,212 @@
+{
+  "id": "feiticeiro-menor",
+  "nome": "Feiticeiro Menor",
+  "nomeIngles": "Minor Sorcerer",
+  "categoria": "humanoide",
+  "papel": "elite",
+  "ameaca": 4,
+  "centelha": 1,
+  "corpo": {
+    "postura": "bípede, de pé",
+    "apoio": "bipede",
+    "altura": 1.68,
+    "largura": 0.42,
+    "profundidade": 0.21,
+    "comprimento": null,
+    "massa": 60,
+    "area": 0.63,
+    "posturaDoTamanho": "de frente"
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 2,
+    "destreza": 3,
+    "vigor": 2,
+    "percepcao": 4,
+    "inteligencia": 4,
+    "raciocinio": 2,
+    "influencia": 2,
+    "perspicacia": 2,
+    "compostura": 2
+  },
+  "habilidades": {
+    "briga": 0,
+    "bloqueio": 0,
+    "esquiva": 2,
+    "atletismo": 1,
+    "furtividade": 1,
+    "integridade": 5,
+    "ocultismo": 3,
+    "prontidao": 2,
+    "sociabilidade": 1,
+    "empatia": 1
+  },
+  "habilidadesSec": {
+    "acerto-arcano": 3,
+    "halterofilismo": 0,
+    "musculatura": 0
+  },
+  "especialidades": {
+    "ocultismo": [
+      {
+        "foco": "a Centelha",
+        "valor": 1,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 2,
+    "conviccao": 3,
+    "temperanca": 2
+  },
+  "vontade": 6,
+  "aparencia": 4,
+  "deslocamento": {
+    "terra": {
+      "batalha": 3,
+      "arranque": 5,
+      "corrida": 7
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {
+    "fogo": 2
+  },
+  "ataques": [
+    {
+      "nome": "Soco",
+      "parte": "mao",
+      "classe": "leve",
+      "pgr": [
+        1,
+        1,
+        3
+      ],
+      "dado": "1d6-2",
+      "multiplicadorForca": 1,
+      "tipoDano": "impacto",
+      "nivelPerfuracao": null,
+      "acerto": 1,
+      "bloqueiaComoArma": null,
+      "justificativa": "A mão nua de quem não sabe brigar (`regra-construcao.md` §7, a classe Leve). Jogada: Destreza 3 + Briga 0"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "dardo flamejante",
+      "formas": "todas",
+      "classe": "livro",
+      "arte": {
+        "id": "fogo",
+        "nivel": 1
+      },
+      "categoria": "magia"
+    },
+    {
+      "nome": "chama que gruda",
+      "formas": "todas",
+      "classe": "livro",
+      "arte": {
+        "id": "fogo",
+        "nivel": 2
+      },
+      "categoria": "magia"
+    },
+    {
+      "nome": "acende e apaga",
+      "formas": "todas",
+      "classe": "livro",
+      "arte": {
+        "id": "fogo",
+        "nivel": 1
+      },
+      "categoria": "magia"
+    },
+    {
+      "nome": "Sem inimizades naturais",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "texto": "Relação inicial do Humano: +1 com Elfo e Meio-Elfo, −1 com Orc e Meio-Orc, Neutro com os demais. A relação vale do Humano para o outro povo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "mantém distância",
+      "formas": "todas",
+      "texto": "abre distância antes de conjurar e se reposiciona fora do alcance do inimigo; com 8 de Mana, conjura de duas a oito vezes por cena."
+    },
+    {
+      "nome": "frágil no corpo a corpo",
+      "formas": "todas",
+      "texto": "Bloqueio 6, 31 PV e Absorção baixa; se alguém o alcança, foge ou se rende."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão e audição",
+      "descricao": "as de um humano",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "mente": "humana; inseguro quanto ao próprio poder",
+    "tracos": "magro, mãos marcadas de queimaduras pequenas"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "sozinho ou com um grupo pequeno que o protege",
+    "atividade": "diurno",
+    "dieta": "onívoro",
+    "caca": "não se aplica",
+    "dianteDeGente": "foge ou ataca de longe, conforme o medo"
+  },
+  "ecologia": {
+    "terreno": [
+      "urbano"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Conjurador iniciante, frágil de perto e perigoso de longe: abre distância e lança dardos de fogo antes que o inimigo o alcance.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Evita o corpo a corpo, onde é frágil, e prefere abrir distância para golpear com fogo antes que o inimigo chegue perto."
+    },
+    {
+      "titulo": "Personalidade",
+      "texto": "Inseguro quanto ao próprio poder, ainda descobrindo os limites da centelha que desperta em si."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "É exatamente o tipo de figura que a Supressão ensinou o povo a temer: um conjurador iniciante, tocado por um poder que as igrejas ortodoxas de Calin chamam de herança da Tecelã e pregam contra."
+    }
+  ],
+  "imagens": [
+    "bestiario/feiticeiro-menor_pdm.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "comportamento.social",
+      "motivo": "site"
+    }
+  ]
+}

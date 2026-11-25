@@ -1,0 +1,317 @@
+{
+  "id": "naga-espirita",
+  "idAntigo": "mon-naga-espirita",
+  "nome": "Naga Espírita",
+  "nomeIngles": "Spirit Naga",
+  "categoria": "aberracao",
+  "papel": "chefe",
+  "ameaca": 5,
+  "centelha": 5,
+  "corpo": {
+    "postura": "serpente; luta enroscada sobre o tesouro, e se ergue para o bote",
+    "apoio": "outro",
+    "altura": 0.34,
+    "largura": 0.34,
+    "profundidade": null,
+    "comprimento": 6,
+    "massa": 320,
+    "area": 0.54,
+    "posturaDoTamanho": "enroscada",
+    "segundoTamanho": {
+      "area": 1.51,
+      "posturaDoTamanho": "erguida ou esticada, de lado"
+    }
+  },
+  "couraca": 1,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 6,
+    "destreza": 3,
+    "vigor": 6,
+    "percepcao": 5,
+    "inteligencia": 5,
+    "raciocinio": 5,
+    "influencia": 5,
+    "perspicacia": 5,
+    "compostura": 5
+  },
+  "habilidades": {
+    "briga": 5,
+    "bloqueio": 0,
+    "esquiva": 1,
+    "atletismo": 1,
+    "furtividade": 2,
+    "prontidao": 4,
+    "integridade": 5,
+    "ocultismo": 4,
+    "persuasao": 3,
+    "empatia": 2,
+    "sociabilidade": 2,
+    "atirador": 3
+  },
+  "habilidadesSec": {
+    "natacao": 3,
+    "acerto-arcano": 5,
+    "musculatura": 2
+  },
+  "especialidades": {
+    "furtividade": [
+      {
+        "foco": "na água ou na vegetação",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ],
+    "prontidao": [
+      {
+        "foco": "emboscada",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ],
+    "ocultismo": [
+      {
+        "foco": "magia de antes da Supressão",
+        "valor": 2,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 4,
+    "compaixao": 1,
+    "conviccao": 3,
+    "temperanca": 2
+  },
+  "vontade": 10,
+  "aparencia": 1,
+  "deslocamento": {
+    "terra": {
+      "batalha": 4,
+      "arranque": 6,
+      "corrida": 9
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {
+    "fascinacao": 5,
+    "fogo": 4,
+    "ofuscacao": 3,
+    "cura": 1
+  },
+  "ataques": [
+    {
+      "nome": "Mordida",
+      "parte": "presas",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "O site dava \"Garras e presas\" de 2 dados e 6 Ticks, perfurante; a naga morde com o bote do corpo de 320 kg, Média (`regra-construcao.md` §7), com os 6 Ticks do site. Passa o veneno (Veneno e doença). Jogada: Força 6 + Briga 5 + 2 × o menor entre Centelha 5 e Briga 5 (10)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Posturas de combate",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Médio: enroscada. Grande: erguida ou esticada, de lado. Vale o Tamanho da postura atual. Cada troca entre essas posturas custa 1 Tick e vale até ser desfeita",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "Mordida venenosa",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Mordida",
+      "categoria": "substancia",
+      "texto": "A Mordida inocula ao causar ao menos 1 PV depois da Absorção. O cuspe e a Mordida gastam a mesma reserva de peçonha"
+    },
+    {
+      "nome": "Cuspe venenoso",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "substancia",
+      "ativacao": "uma ação, Velocidade 7; ataque a distância, o maior entre Vigor, Destreza e Percepção + Atirador",
+      "duracao": "a do veneno",
+      "alcance": "9 m",
+      "area": "um alvo",
+      "efeito": "o cuspe mira os olhos e a boca; mucosa exposta conta como sangue (`venenos.json`), e o veneno da linha Veneno e doença entra",
+      "dano": "nenhum além do veneno",
+      "resistencia": "esquiva, contra o ataque; corpo, pela regra do veneno",
+      "limiteDeUso": "O corpo guarda 3 doses e produz 1 dose a cada 4 horas. Cada uso gasta 1 dose. Nada acelera a produção. A Mordida usa esta mesma reserva"
+    },
+    {
+      "nome": "Olhar encantador",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "fascinacao",
+        "nivel": 3,
+        "efeito": "sugestao-plantada"
+      },
+      "categoria": "sobrenatural",
+      "ativacao": "uma ação, Velocidade 5, contra quem cruza o olhar com ela",
+      "duracao": "até o fim da cena",
+      "alcance": "9 m, à vista",
+      "area": "um alvo",
+      "efeito": "o alvo fica Dominado e obedece a ela. O controlador dá ordens de movimento ou ação pela voz a quem cruzou seu olhar durante a duração indicada. A vítima pode recusar cada ordem pagando 1 + Margem de Força de Vontade, até 4",
+      "dano": "nenhum",
+      "resistencia": "Influência 5 + Persuasão 3 + 2 × o menor entre Centelha 5 e Persuasão 3 (6) = 14 mais a rolagem da criatura contra a Defesa Mental do alvo, com o Resistir do livro. quem desvia o rosto não é tocado, mas ataca a −4 enquanto não olhar",
+      "limiteDeUso": "1 uso grátis por cena, sem repetir o alvo. Repetir o alvo ou fazer outro uso custa 1 de Mana"
+    },
+    {
+      "nome": "Imune ao próprio veneno",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Ignora apenas a própria secreção. Venenos de outras fontes exigem o teste normal. O ferimento do golpe continua",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "Contínuo, sem custo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "rainha das ruínas",
+      "formas": "todas",
+      "texto": "enroscada sobre o tesouro, encanta o mais forte com o olhar, abre com a Bola de Fogo e o cuspe, e só negocia quando lhe convém."
+    },
+    {
+      "nome": "Projétil natural",
+      "formas": "todas",
+      "texto": "Contra um alvo, use o maior entre Vigor, Destreza e Percepção + Atirador. Ao cobrir uma área, só os alvos fazem a jogada de saída."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "sentidos",
+      "descricao": "sentidos aguçados, difícil de emboscar; Prontidão (emboscada) +2",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "prendeRespiracao": "a de uma serpente grande",
+    "camuflagem": "na água e na vegetação; Furtividade (na água ou na vegetação) +2",
+    "mente": "inteligente, longeva, arrogante",
+    "tracos": "serpente de escamas escuras com cabeça de traços humanos e olhar fixo"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "sozinha, com poucos servos ou cultistas",
+    "atividade": "qualquer hora",
+    "dieta": "carnívora",
+    "caca": "ataca com veneno e feitiço quem entra no covil",
+    "dianteDeGente": "ataca antes de negociar; negocia quando convém"
+  },
+  "ecologia": {
+    "terreno": [
+      "selva",
+      "pântano",
+      "aquático"
+    ],
+    "clima": [
+      "tropical"
+    ]
+  },
+  "descricao": "Serpente longeva e arrogante que se enrosca sobre tesouros em templos afundados e ruínas de civilizações que ela viu cair. Encanta com o olhar, cospe veneno e conjura fogo e ilusões antes mesmo de pensar em negociar.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Enrosca-se sobre tesouros e ruínas esquecidas, atacando com veneno e feitiços antes mesmo de considerar negociar, e só o faz quando lhe convém."
+    },
+    {
+      "titulo": "Hábitat",
+      "texto": "Vive em templos afundados, pântanos antigos e ruínas de civilizações que ela própria viu cair."
+    },
+    {
+      "titulo": "Sociedade",
+      "texto": "Isolada como uma pequena rainha decadente, cercada quando muito por poucos servos ou cultistas atraídos por promessas de poder."
+    },
+    {
+      "titulo": "Personalidade",
+      "texto": "Arrogante e longeva, vê os mortais como efêmeros demais para merecer qualquer respeito."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "Relíquia de eras anteriores à Grande Guerra, guarda segredos de magia que a Supressão tentou apagar; em Mére, onde cidades mágicas se escondem sob a selva, é temida como guardiã de um passado que devia ter ficado enterrado."
+    },
+    {
+      "titulo": "Veneno e doença",
+      "texto": "Veneno no jogo: Peçonha de naga · Potência 16 · 1 Tick (sangue) · a cada 1 minuto · pool 4 (Vigor) · Desgaste 1 · pela Mordida e pelo Cuspe venenoso. Os números do \"Ferrão de gigante\" dos moldes, com o Vigor como o atributo que o \"dano contínuo\" do site tira; quem está com o veneno ativo fica Abalado (site) até o pool zerar."
+    }
+  ],
+  "imagens": [
+    "bestiario/naga-espirita_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "habilidadesSec.musculatura",
+      "motivo": "Animal comum na escala da decisão 12"
+    },
+    {
+      "campo": "corpo.altura",
+      "motivo": "O diâmetro que dá a massa do site (linha Massa). Erguida, levanta um terço do corpo"
+    },
+    {
+      "campo": "couraca",
+      "motivo": "Cobertura do corpo pela R49; metades arredondadas para cima. Absorção natural do livro (`combate.md`). Escamas de serpente ;; nível 1"
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": ""
+    },
+    {
+      "campo": "comportamento.dieta",
+      "motivo": ""
+    },
+    {
+      "campo": "habilidadesEspeciais",
+      "motivo": "Antes: Potência 16, pool 4 de Vigor, com Abalado  O pool atinge Vigor. Aplica-se o desfecho letal do veneno."
+    },
+    {
+      "campo": "habilidadesEspeciais.Cuspe venenoso",
+      "motivo": "R1/R4, D-197. Três doses preservam a reserva para mais de uma presa. Sugestão de 3 doses e 4 h por dose para repor fora da luta. R3. Ativação uma ação, Velocidade 6; ataque a distância, o maior entre Vigor, Destreza e Percepção + Atirador (o maior entre Vigor, Destreza e Percepção + Atirador + 2 × o menor entre Centelha 5 e Disparo 3, 6) -> uma ação, Velocidade 7; ataque a distância, o maior entre Vigor, Destreza e Percepção + Atirador (o maior entre Vigor, Destreza e Percepção + Atirador + 2 × o menor entre Centelha 5 e Disparo 3, 6) Pela referência corporal ou de deslocamento do poder. valor de molde, para a bancada (3 doses e produz 1 dose a cada 4 horas)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Olhar encantador",
+      "motivo": "R1 e D-197. 1 uso grátis por cena, sem repetir o alvo. Repetir o alvo ou fazer outro uso custa 1 de Mana. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação uma ação, Velocidade 5, contra quem cruza o olhar com ela -> uma ação, Velocidade 6, contra quem cruza o olhar com ela Pela referência corporal ou de deslocamento do poder. valor de molde, para a bancada (uso extra de 1 de Mana). Uso extra: falta grau de Alcance e Duração (piso 0 pela T7, RT-134.6)."
+    },
+    {
+      "campo": "ataques",
+      "motivo": "Mordida Média no lugar das \"Garras e presas\""
+    }
+  ]
+}

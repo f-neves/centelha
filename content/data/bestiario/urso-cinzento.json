@@ -1,0 +1,231 @@
+{
+  "id": "urso-cinzento",
+  "idAntigo": "mon-grizzly-bear",
+  "nome": "Urso Cinzento",
+  "nomeIngles": "Grizzly Bear",
+  "categoria": "animal",
+  "papel": "fera",
+  "ameaca": 3,
+  "centelha": 0,
+  "corpo": {
+    "postura": "quatro patas",
+    "apoio": "quadrupede",
+    "altura": 1.09,
+    "largura": 0.72,
+    "profundidade": 1.9,
+    "comprimento": 1.9,
+    "massa": 170,
+    "area": 0.97,
+    "posturaDoTamanho": "quatro patas",
+    "segundoTamanho": {
+      "area": 1.6,
+      "posturaDoTamanho": "erguido nas patas traseiras"
+    }
+  },
+  "couraca": 2,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 7,
+    "destreza": 3,
+    "vigor": 6,
+    "percepcao": 3,
+    "inteligencia": 1,
+    "raciocinio": 1,
+    "influencia": 1,
+    "perspicacia": 1,
+    "compostura": 2
+  },
+  "habilidades": {
+    "briga": 4,
+    "bloqueio": 0,
+    "esquiva": 1,
+    "prontidao": 2,
+    "integridade": 2,
+    "sobrevivencia": 3,
+    "sociabilidade": 0,
+    "resistencia": 3,
+    "furtividade": 1
+  },
+  "habilidadesSec": {
+    "natacao": 3,
+    "musculatura": 4
+  },
+  "especialidades": {
+    "prontidao": [
+      {
+        "foco": "faro",
+        "valor": 3,
+        "origem": "natural"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 1,
+    "conviccao": 1,
+    "temperanca": 1
+  },
+  "vontade": 4,
+  "aparencia": 4,
+  "deslocamento": {
+    "terra": {
+      "batalha": 4,
+      "arranque": 6,
+      "corrida": 10
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Garra",
+      "parte": "pata-dianteira",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "corte",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Golpe de membro com o corpo atrás; jogada 11 com Briga"
+    },
+    {
+      "nome": "Mordida",
+      "parte": "mandibula",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Alternativa à garra, sem golpe adicional; jogada 11 com Briga"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Posturas de combate",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Médio: quatro patas. Grande: erguido nas patas traseiras. Vale o Tamanho da postura atual. Cada troca entre essas posturas custa 1 Tick e vale até ser desfeita",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "Agarrar",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Garra",
+      "categoria": "inato",
+      "regra": "agarrar",
+      "texto": "prende o alvo com as patas dianteiras"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "Combate próximo",
+      "formas": "todas",
+      "texto": "usa uma garra ou a mordida por ação; pode usar Rajada."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "faro",
+      "descricao": "Prontidão (faro) +3 para notar presas e intrusos pelo cheiro",
+      "formas": "todas"
+    },
+    {
+      "nome": "visão",
+      "descricao": "distingue movimentos na penumbra",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "mente": "instintiva",
+    "tracos": "Urso de pelagem castanha com pontas claras e ombros musculosos"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitário",
+    "atividade": "amanhecer e entardecer",
+    "dieta": "raízes, frutos, insetos, peixe, carniça e caça",
+    "caca": "forrageia e caça de modo oportunista",
+    "dianteDeGente": "costuma evitar pessoas; defende alimento e filhotes se ameaçado"
+  },
+  "ecologia": {
+    "terreno": [
+      "floresta"
+    ],
+    "clima": [
+      "frio"
+    ]
+  },
+  "descricao": "Urso de pelagem castanha com pontas claras e ombros musculosos",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Onívoro poderoso, come desde frutos e peixes até pequenos mamíferos, mas é fortemente territorial: expulsa, mata e devora qualquer intruso que veja como ameaça ou competição."
+    },
+    {
+      "titulo": "Caçada",
+      "texto": "Diante de uma ameaça, tenta subjugar ou matar com as garras; quando consegue agarrar um alvo, insiste nele até que fuja, desmaie ou morra."
+    }
+  ],
+  "imagens": [],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "habilidadesSec.musculatura",
+      "motivo": "Patas dianteiras de cavador, como o urso-pardo"
+    },
+    {
+      "campo": "corpo.altura",
+      "motivo": "Dimensões do urso-pardo de 200 kg × (170/200)^(1/3), para o grizzly típico pesquisado"
+    },
+    {
+      "campo": "corpo.comprimento",
+      "motivo": "Dimensões do urso-pardo de 200 kg × (170/200)^(1/3), para o grizzly típico pesquisado"
+    },
+    {
+      "campo": "corpo.largura",
+      "motivo": "Dimensões do urso-pardo de 200 kg × (170/200)^(1/3), para o grizzly típico pesquisado"
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": "Comportamento"
+    },
+    {
+      "campo": "ataques.Garra",
+      "motivo": "Antes: ataque genérico 2d6 + 7, média 14; agora 1d6 + 7, média 10,5, Corte."
+    }
+  ]
+}

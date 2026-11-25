@@ -1,0 +1,419 @@
+{
+  "id": "dragao-azul-adulto",
+  "idAntigo": "mon-dragao-azul-adulto",
+  "nome": "Dragão Azul Adulto",
+  "nomeIngles": "Dragon, Adult Blue",
+  "categoria": "dragao",
+  "papel": "chefe",
+  "ameaca": 5,
+  "centelha": 6,
+  "corpo": {
+    "postura": "quatro patas; voador",
+    "apoio": "quadrupede",
+    "altura": 2.87,
+    "largura": 1.98,
+    "profundidade": null,
+    "comprimento": 9.5,
+    "comprimentoSemCauda": 5.07,
+    "caudaGrossa": true,
+    "envergadura": 19.8,
+    "massa": 7500,
+    "area": 12.34,
+    "posturaDoTamanho": "de lado, pousado, asas fechadas",
+    "segundoTamanho": {
+      "area": 82.4,
+      "posturaDoTamanho": "de baixo, asas abertas"
+    }
+  },
+  "couraca": 9,
+  "perfilCouraca": "rigida",
+  "atributos": {
+    "forca": 11,
+    "destreza": 2,
+    "vigor": 9,
+    "percepcao": 5,
+    "inteligencia": 5,
+    "raciocinio": 5,
+    "influencia": 5,
+    "perspicacia": 5,
+    "compostura": 5
+  },
+  "habilidades": {
+    "briga": 5,
+    "bloqueio": 0,
+    "esquiva": 0,
+    "atletismo": 2,
+    "furtividade": 4,
+    "integridade": 5,
+    "prontidao": 4,
+    "sociabilidade": 2,
+    "manha": 4,
+    "atirador": 4
+  },
+  "habilidadesSec": {
+    "intimidacao": 4,
+    "voo": 3,
+    "acerto-arcano": 4,
+    "musculatura": 3
+  },
+  "especialidades": {
+    "furtividade": [
+      {
+        "foco": "enterrado na areia",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ],
+    "manha": [
+      {
+        "foco": "enganar",
+        "valor": 2,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 6,
+    "compaixao": 2,
+    "conviccao": 5,
+    "temperanca": 3
+  },
+  "vontade": 11,
+  "aparencia": 9,
+  "deslocamento": {
+    "terra": {
+      "batalha": 4,
+      "arranque": 6,
+      "corrida": 9
+    },
+    "voo": {
+      "batalha": 20
+    },
+    "escavacao": {
+      "batalha": 2
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {
+    "raio": 4,
+    "fascinacao": 3,
+    "morte": 3
+  },
+  "ataques": [
+    {
+      "nome": "Mordida",
+      "parte": "boca",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 3,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Mordida de predador grande (`regra-construcao.md` §7), como no branco jovem. Golpe de boca: Força × 1. N3, um acima do branco jovem (N2), para a mordida dos adultos e anciões . Jogada: Força 11 + Briga 5 + 2 × o menor entre Centelha 6 e Briga 5 (10)"
+    },
+    {
+      "nome": "Garras",
+      "parte": "pata-dianteira",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "corte",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Patada de predador grande, Média (§7), como no branco jovem; garra Cortante. Bloqueia como a mão nua (D-100). Jogada: Força 11 + Briga 5 + 2 × o menor entre Centelha 6 e Briga 5 (10)"
+    },
+    {
+      "nome": "Cauda",
+      "parte": "cauda",
+      "classe": "pesada",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": "2d6",
+      "multiplicadorForca": 2,
+      "tipoDano": "impacto",
+      "nivelPerfuracao": null,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "O golpe de cauda do multiataque do site: a cauda grossa varre com o peso, Pesada (§7). Força × 2: a massa do corpo inteiro empurra a cauda (manual, seção 3: \"× 2 quando a massa do corpo inteiro empurra (investida, pisão, cauda)\"), como nas caudas do estegossauro e do anquilossauro. Jogada: Força 11 + Briga 5 + 2 × o menor entre Centelha 6 e Briga 5 (10)"
+    },
+    {
+      "nome": "Sopro elétrico",
+      "parte": "boca",
+      "classe": "distancia",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": "9d6",
+      "multiplicadorForca": 0,
+      "tipoDano": "raio",
+      "nivelPerfuracao": null,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Ataque natural a distância, Classe Distância (manual, Passo 10), como no branco jovem. \"Linha de 18 m; 9d6 de dano\" (site). Os números são sugestão da ficha (D-197), descritos na linha do sopro nas Manobras. Sem jogada de ataque."
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Posturas de combate",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Enorme: de lado, pousado, asas fechadas. Imenso: de baixo, asas abertas. Vale o Tamanho da postura atual. Abrir as asas ao voar e fechá-las ao pousar faz parte do movimento, sem custo adicional",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "Sopro elétrico",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "raio",
+        "nivel": 4
+      },
+      "ataque": "Sopro elétrico",
+      "categoria": "substancia",
+      "ativacao": "uma ação, Velocidade 6",
+      "duracao": "instantânea",
+      "alcance": "18 m à frente",
+      "area": "linha de 18 m",
+      "efeito": "o relâmpago atravessa todos na linha. Após a área, só há dano residual quando um efeito da ficha o declara",
+      "dano": "9d6 + Centelha, raio",
+      "resistencia": "sem jogada de ataque. Cada alvo resolve a saída de área pelo livro",
+      "limiteDeUso": "O corpo guarda 2 doses e produz 1 dose a cada 12 horas. Cada uso gasta 1 dose. Nada acelera a produção"
+    },
+    {
+      "nome": "garras em sequência",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Garras",
+      "categoria": "inato",
+      "regra": "rajada"
+    },
+    {
+      "nome": "cauda em sequência",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Cauda",
+      "categoria": "inato",
+      "regra": "rajada"
+    },
+    {
+      "nome": "Multiataque",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "uma ação de Rajada",
+      "duracao": "uma ação",
+      "alcance": "o de cada parte",
+      "area": "os alvos da Rajada",
+      "efeito": "Golpeia nesta ordem: garra esquerda, garra direita, mordida. Cada golpe extra acumula −1d6 e conta para Guarda sob pressão. Não acumula com a Rajada comum",
+      "dano": "o de cada ataque que acertar",
+      "resistencia": "a Defesa de cada golpe",
+      "limiteDeUso": "até 3 golpes por ação, sem Energia. O uso repetido causa esforço e pode levar ao cansaço"
+    },
+    {
+      "nome": "Presença",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "morte",
+        "nivel": 3
+      },
+      "categoria": "inato",
+      "ativacao": "a primeira vez na cena em que ele ruge, ataca ou desce do céu",
+      "duracao": "para Abalado, até o fim da cena ou até Recompor",
+      "alcance": "18 m",
+      "area": "esfera de 18 m em volta dele",
+      "efeito": "quem falha fica Abalado. Abalado dá −2 nas jogadas até o fim da cena ou até Recompor, ação de Velocidade 5 sem teste",
+      "dano": "nenhum",
+      "resistencia": "Influência 5 + Intimidação 4 + 2 × o menor entre Centelha 6 e Intimidação 4 (8) = 17 mais a rolagem da criatura contra a Defesa Mental do alvo, com o Resistir do livro. quem passa fica imune até o fim da cena",
+      "limiteDeUso": "Contínuo, sem custo. A imunidade individual segue a resistência deste poder"
+    },
+    {
+      "nome": "Miragem no deserto",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "fascinacao",
+        "nivel": 3,
+        "efeito": "imagem-viva"
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 5. O efeito sai no Tick do Golpe",
+      "duracao": "até o fim da próxima ação do alvo",
+      "alcance": "36 m",
+      "area": "um alvo",
+      "efeito": "uma ilusão esconde onde ele está de verdade: para esse alvo, fica Invisível",
+      "dano": "nenhum",
+      "resistencia": "Influência 5 + Manha 4 + 2 × o menor entre Centelha 6 e Manha 4 (8) = 17 mais a rolagem da criatura contra a Defesa Mental do alvo, com o Resistir do livro",
+      "limiteDeUso": "Usos grátis: 3 por cena. Cada uso extra custa 1 de Mana"
+    },
+    {
+      "nome": "Enterrar e emergir",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "sair de baixo da areia para atacar",
+      "duracao": "instantânea",
+      "alcance": "o da escavação",
+      "area": "um alvo",
+      "efeito": "+1d6 na Iniciativa no ataque que emerge",
+      "dano": "o do golpe",
+      "resistencia": "nenhum",
+      "limiteDeUso": "um a cada vez que se enterra de novo. Sem custo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "senhor das dunas",
+      "formas": "todas",
+      "texto": "espera enterrado, emerge com o relâmpago em linha, esconde-se com a miragem e morde quem procura o lugar errado."
+    },
+    {
+      "nome": "Projétil natural",
+      "formas": "todas",
+      "texto": "Contra um alvo, use o maior entre Vigor, Destreza e Percepção + Atirador. Ao cobrir uma área, só os alvos fazem a jogada de saída."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão no escuro",
+      "descricao": "Distingue formas sem cor até 18 m no escuro, sem atravessar obstáculos",
+      "formas": "todas"
+    },
+    {
+      "nome": "faro",
+      "descricao": "apurado",
+      "formas": "todas"
+    },
+    {
+      "nome": "sentidos do deserto",
+      "descricao": "Percebe vibrações no mesmo solo até 18 m. Quem voa fica fora desse sentido",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "prendeRespiracao": "a de um bicho grande; quanto tempo, o Mestre decide",
+    "camuflagem": "escama azul contra o céu; enterrado na areia",
+    "mente": "inteligente, vaidosa e territorial",
+    "tracos": "escamas azuis brilhantes, um chifre grande no focinho, orelhas em leque, asas de couro"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitário",
+    "atividade": "qualquer hora",
+    "dieta": "carnívoro",
+    "caca": "enterrado na areia, emerge e sopra",
+    "dianteDeGente": "exige tributo ou ataca"
+  },
+  "ecologia": {
+    "terreno": [
+      "deserto",
+      "montanha"
+    ],
+    "clima": [
+      "tropical"
+    ]
+  },
+  "descricao": "Dragão azul adulto de 9,5 m, ilusionista do deserto. Espera enterrado na areia, emerge com um relâmpago em linha de 18 m e esconde onde está com miragens.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "O dragão azul adulto é caçador paciente e territorial ao extremo, capaz de se enterrar na areia por dias esperando a presa certa antes de golpear com o sopro de raios e as garras afiadas."
+    },
+    {
+      "titulo": "Hábitat",
+      "texto": "Domina desertos e ermos áridos, marcando cada duna e rocha de seu território com um senso quase obsessivo de posse, atacando qualquer intruso, mágico ou não, sem hesitar."
+    },
+    {
+      "titulo": "Personalidade",
+      "texto": "Mais orgulhoso do próprio domínio do que do tesouro em si, encara qualquer pegada estranha em suas terras como insulto pessoal, e pode perseguir um intruso por léguas só para provar um ponto."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "Nas fronteiras áridas de Mére, tribos locais aprenderam a ler as tempestades de areia como aviso de que um dragão azul está caçando, e evitam certas rotas havia gerações, muito antes de qualquer igreja supressora inventar nome para o medo."
+    }
+  ],
+  "imagens": [
+    "bestiario/dragao-azul-adulto_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": [
+      {
+        "tipo": "raio",
+        "formas": "todas"
+      }
+    ]
+  },
+  "revisao": [
+    {
+      "campo": "corpo.altura",
+      "motivo": "A do dragão branco jovem (1,3 m, 700 kg) escalada pela massa: × (massa ÷ 700)^(1/3) = × 2,205"
+    },
+    {
+      "campo": "corpo.comprimentoSemCauda",
+      "motivo": "2,3 m do branco jovem × 2,205; a cauda tem o resto do comprimento do site, 4,43 m"
+    },
+    {
+      "campo": "corpo.largura",
+      "motivo": "0,9 m do branco jovem × 2,205"
+    },
+    {
+      "campo": "couraca",
+      "motivo": "Cobertura do corpo pela R49; metades arredondadas para cima. Absorção natural do livro (`combate.md`). Escama de dragão: os níveis 9 a 12 ficam para os adultos e anciões (o texto do branco jovem) . As \"Escamas azuis\" do site (Absorção +3d6) são esta Couraça.; nível 9"
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": ""
+    },
+    {
+      "campo": "ataques.Mordida.nivelPerfuracao",
+      "motivo": "Mordida de predador grande (`regra-construcao.md` §7), como no branco jovem. Golpe de boca: Força × 1. N3, um acima do branco jovem (N2), para a mordida dos adultos e anciões . Jogada: Força 11 + Briga 5 + 2 × o menor entre Centelha 6 e Briga 5 (10)"
+    },
+    {
+      "campo": "ataques.Sopro elétrico",
+      "motivo": "Antes: jogada de ataque na tabela. R36: Sem jogada de ataque, pois o efeito ocupa a área descrita nas Manobras. Cada alvo resolve a defesa de área.; R1/R4, D-197. Dois sopros prontos permitem alternar sopro e golpes. Sugestão de 2 doses e 12 h por dose para repor fora da luta. valor de molde, para a bancada (2 doses e produz 1 dose a cada 12 horas)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Miragem no deserto",
+      "motivo": "R1 e D-197. Usos grátis: 3 por cena. Cada uso extra custa 1 de Mana. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação uma ação, Velocidade 6 -> uma ação, Velocidade 5. O efeito sai no Tick do Golpe. Pela régua da Arte de base. valor de molde, para a bancada (uso extra de 1 de Mana). Uso extra: falta grau de Alcance, Área e Duração (piso 0 pela T7, RT-134.6)."
+    },
+    {
+      "campo": "ataques",
+      "motivo": "9d6 + Centelha, linha de 18 m, uma vez a cada 24 Ticks, pela sugestão da ficha (D-197)"
+    }
+  ]
+}

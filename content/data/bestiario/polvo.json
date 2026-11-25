@@ -1,0 +1,272 @@
+{
+  "id": "polvo",
+  "idAntigo": "mon-octopus",
+  "nome": "Polvo-comum",
+  "nomeIngles": "Common octopus",
+  "categoria": "animal",
+  "papel": "fera",
+  "ameaca": 2,
+  "centelha": 0,
+  "corpo": {
+    "postura": "nadador (vive no fundo)",
+    "apoio": "outro",
+    "altura": 0.13,
+    "largura": 0.27,
+    "profundidade": null,
+    "comprimento": 0.82,
+    "massa": 2.2,
+    "area": 0.65,
+    "posturaDoTamanho": "braços abertos",
+    "segundoTamanho": {
+      "area": 0.125,
+      "posturaDoTamanho": "de cima, braços juntos",
+      "tamanhoEscolhido": "miudo"
+    }
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 1,
+    "destreza": 4,
+    "vigor": 2,
+    "percepcao": 3,
+    "inteligencia": 2,
+    "raciocinio": 3,
+    "influencia": 1,
+    "perspicacia": 1,
+    "compostura": 1
+  },
+  "habilidades": {
+    "briga": 2,
+    "bloqueio": 0,
+    "esquiva": 3,
+    "atletismo": 0,
+    "furtividade": 4,
+    "integridade": 1,
+    "prontidao": 2,
+    "resistencia": 2,
+    "empatia": 0,
+    "sobrevivencia": 2
+  },
+  "habilidadesSec": {
+    "equilibrio": 0,
+    "escalada": 0,
+    "natacao": 2,
+    "voo": 0,
+    "corrida": 0,
+    "musculatura": 3
+  },
+  "especialidades": {
+    "furtividade": [
+      {
+        "foco": "camuflagem de cor e textura, parado",
+        "valor": 3,
+        "origem": "natural"
+      }
+    ],
+    "prontidao": [
+      {
+        "foco": "tato e gosto nas ventosas",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ],
+    "briga": [
+      {
+        "foco": "Agarrão",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 1,
+    "compaixao": 1,
+    "conviccao": 1,
+    "temperanca": 1
+  },
+  "vontade": 3,
+  "aparencia": 6,
+  "deslocamento": {
+    "nado": {
+      "batalha": 1
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Bico",
+      "parte": "mordida",
+      "classe": "leve",
+      "pgr": [
+        1,
+        1,
+        3
+      ],
+      "dado": "1d6-2",
+      "multiplicadorForca": 1,
+      "tipoDano": "corte",
+      "nivelPerfuracao": 0,
+      "acerto": 1,
+      "bloqueiaComoArma": null,
+      "justificativa": "Soma a Força 1 da sétima rodada (D-115: \"Força 4 bate como Força 4 em qualquer criatura\"); era 1d6 − 2, média 1,5. O que pesa é a saliva: a mordida num humano deu úlcera inflamada que levou cerca de 10 dias para melhorar (Haddad e Magalhães 2014). Veneno sem id no catálogo (nota). Um ataque por ação (D-097)."
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Posturas de combate",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Médio: braços abertos. Miúdo: de cima, braços juntos. Vale o Tamanho da postura atual. Cada troca entre essas posturas custa 1 Tick e vale até ser desfeita",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "Cefalotoxina",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "ataque": "Bico",
+      "categoria": "substancia",
+      "ativacao": "Bico ao causar ao menos 1 PV depois da Absorção",
+      "duracao": "até o fim do efeito do veneno",
+      "alcance": "toque",
+      "area": "um alvo",
+      "efeito": "Cefalotoxina. Aplicar os parâmetros de Veneno e doença",
+      "dano": "apenas o pool do veneno",
+      "resistencia": "Vigor + Resistência pelo relógio do veneno",
+      "limiteDeUso": "O corpo guarda 3 doses e produz 1 dose em 4 horas. Cada uso gasta 1 dose"
+    },
+    {
+      "nome": "agarrar",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "regra": "agarrar"
+    },
+    {
+      "nome": "nuvem de tinta",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "substancia",
+      "ativacao": "uma ação, Velocidade 7",
+      "duracao": "6 Ticks, ou até o fim do Tick seguinte em corrente forte",
+      "alcance": "na água ao redor da criatura",
+      "area": "nuvem de raio 3 m",
+      "efeito": "A tinta impede ver através da nuvem. Quem olha de dentro fica Cego para o que tenta ver por ela",
+      "dano": "nenhum",
+      "resistencia": "sair da nuvem",
+      "limiteDeUso": "O corpo guarda 2 doses e produz 1 dose em 4 horas. Cada uso gasta 1 dose"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "jato para trás",
+      "formas": "todas",
+      "texto": "foge em jato."
+    },
+    {
+      "nome": "espremer por fenda",
+      "formas": "todas",
+      "texto": "passa por abertura de pouco mais de 2,5 cm."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "tato e gosto nas ventosas",
+      "descricao": "Especialidade natural Prontidão (tato e gosto nas ventosas) +2; quimiorreceptores (Wikipédia \"Octopus\"; Graziadei 1964)",
+      "formas": "todas"
+    },
+    {
+      "nome": "visão",
+      "descricao": "sem cor (Wikipédia \"Octopus\"); distingue brilho, forma e orientação (Wikipédia \"Common octopus\"). Sem Especialidade",
+      "formas": "todas"
+    },
+    {
+      "nome": "equilíbrio",
+      "descricao": "dois estatocistos (Wikipédia \"Octopus\"). Sem Especialidade",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "água",
+    "prendeRespiracao": "(tempo fora d'água não achado)",
+    "camuflagem": "muda cor e textura (geral dos polvos); Furtividade 4 e Especialidade natural +3",
+    "mente": "animal, com Inteligência 2 (lista da diretriz 1)",
+    "tracos": "sem esqueleto, só o bico duro; cerca de 500 milhões de neurônios, dois terços nos braços (Wikipédia \"Common octopus\"); vive de 1 a 2 anos; a fêmea perde um terço do peso na desova (ADW)"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitário",
+    "atividade": "crepuscular",
+    "dieta": "carnívoro",
+    "caca": "emboscada e busca no fundo",
+    "dianteDeGente": "foge"
+  },
+  "ecologia": {
+    "terreno": [
+      "aquático",
+      "litoral"
+    ],
+    "clima": [
+      "temperado",
+      "frio"
+    ]
+  },
+  "descricao": "Some no fundo mudando de cor e textura; pego, morde, e a mordida inflama por dias.",
+  "lore": [
+    {
+      "titulo": "Caçadora astuta",
+      "texto": "Usa táticas surpreendentemente complexas para emboscar e capturar suas presas nas águas costeiras."
+    },
+    {
+      "titulo": "Veneno e doença",
+      "texto": "Veneno no jogo: Cefalotoxina · Potência 8 · minuto (sangue) · a cada 1 hora · pool 4 (PV) · Desgaste 1 · pelo Bico"
+    }
+  ],
+  "imagens": [],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "habilidades.resistencia",
+      "motivo": "Fixada em `valores.mjs`. Régua: 2 é o normal da espécie no próprio meio. Nada medido de fome, frio, veneno ou ferida; a fêmea perde um terço do peso na desova e o animal vive 1 a 2 anos (ADW) . Era 0."
+    },
+    {
+      "campo": "habilidadesSec.natacao",
+      "motivo": "Etapa 2 (20/10/2026): Decisão de 20/10/2026: a Habilidade secundária de Natação vale nas jogadas (manobrar na água), e a velocidade continua congelada; o nado em m por Tick não muda. A decisão põe o polvo entre os nadadores que recebem a Habilidade pela pesquisa: velocidade da espécie não medida (Huffard 2006), mas foge a jato para trás e se espreme entre as rochas (Wikipédia \"Octopus\"). Fica 2, abaixo das lulas (4), que vivem nadando . Antes: Sem velocidade medida da espécie (Huffard 2006: nenhuma publicada); o nado sai da anatomia."
+    },
+    {
+      "campo": "corpo.comprimento",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 0,79 × 1,0323 = 0,816 . Antes: escalado pelo cubo da massa: 0,9 × (2 ÷ 3)^(1/3) = 0,79; os 0,9 m eram o alto de \"1 a 3 pés com os braços\", de 0,3 a 0,9 m (ADW), postos no animal de 3 kg. Braço de até 1 m no maior (Norman 2000, Wikipédia). Era 0,9 m"
+    },
+    {
+      "campo": "corpo.largura",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 0,26 × 1,0323 = 0,268 . Antes: não achada. Escalado pelo cubo da massa: 0,3 × (2 ÷ 3)^(1/3) = 0,26. Era 0,3 m"
+    },
+    {
+      "campo": "corpo.massa",
+      "motivo": "Etapa 2 (20/10/2026): Decisão 5 de 19/10/2026: a ficha principal usa uma versão um pouco acima da média da espécie, dentro da faixa real. 2 kg mais 10% = 2,2 kg , dentro da faixa real (comum de 1 a 3 kg, máximo de 10 kg; FAO). Antes: Era 3 kg. Referência: 2 kg, o meio da faixa comum de 1 a 3 kg da FAO, (1 + 3) ÷ 2 = 2 : meio de faixa, e não média, porque a média por sexo não foi achada. Faixa do adulto de 1 a 10 kg: \"comum 1 a 3 kg com manto de 10 a 20 cm\", máximo de 10 kg e manto de 23 cm (FAO); \"até 9 kg\" (Norman 2000, citado na Wikipédia). Sexos: o macho chega maior (comprimento total máximo de 180 cm contra 120 cm da fêmea, SeaLifeBase, trecho de busca, não conferido); média por sexo . A faixa comum é  (pesca, FAO)"
+    },
+    {
+      "campo": "habilidadesEspeciais.nuvem de tinta",
+      "motivo": "R1 e D-197. Estoque sugerido de 2 doses e 6 horas por dose para permitir duas exposições próximas e recuperação fora da luta. O efeito pendente continua para o autor. valor de molde, para a bancada (2 doses e produz 1 dose em 6 horas)."
+    }
+  ]
+}

@@ -1,0 +1,191 @@
+{
+  "id": "objeto-animado",
+  "idAntigo": "mon-animated-object",
+  "nome": "Objeto Animado",
+  "nomeIngles": "Animated Object",
+  "categoria": "construto",
+  "papel": "soldado",
+  "ameaca": 3,
+  "centelha": 1,
+  "corpo": {
+    "postura": "de pé, sobre os pés do móvel",
+    "apoio": "bipede",
+    "altura": 1.5,
+    "largura": 0.9,
+    "profundidade": 0.5,
+    "comprimento": null,
+    "massa": 150,
+    "area": 1.35,
+    "posturaDoTamanho": "de frente"
+  },
+  "couraca": 3,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 4,
+    "destreza": 2,
+    "vigor": 3,
+    "percepcao": 2,
+    "inteligencia": 0,
+    "raciocinio": 0,
+    "influencia": 1,
+    "perspicacia": 1,
+    "compostura": 1
+  },
+  "habilidades": {
+    "briga": 4,
+    "bloqueio": 0,
+    "esquiva": 0,
+    "integridade": 0,
+    "prontidao": 0,
+    "resistencia": 0
+  },
+  "habilidadesSec": {
+    "musculatura": 0
+  },
+  "especialidades": {},
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 6,
+    "compaixao": 1,
+    "conviccao": 1,
+    "temperanca": 1
+  },
+  "vontade": 3,
+  "aparencia": 4,
+  "deslocamento": {
+    "terra": {
+      "batalha": 3,
+      "arranque": 5,
+      "corrida": 7
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Pancada",
+      "parte": "o-corpo-do-movel",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "impacto",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "A \"Pancada\" do site (1 dado, impacto, 5 Ticks): o móvel que tomba e bate com a própria massa (site, Golpe bruto). Média, de 1 dado como no site (`regra-construcao.md` §7); a Velocidade passa de 5 a 6 com a classe. Jogada: Força 4 + Briga 4 + 2 × o menor entre Centelha 1 e Briga 4 (2)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "empurrar",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Pancada",
+      "categoria": "inato",
+      "regra": "empurrar"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "formas variadas",
+      "formas": "todas",
+      "texto": "Cada objeto animado usa o perfil de seu próprio corpo, conforme sua forma e material."
+    },
+    {
+      "nome": "guardião do cômodo",
+      "formas": "todas",
+      "texto": "fica parado entre os móveis até alguém cruzar o posto; então tomba sobre o intruso e bate, sem hesitar nem cansar, até a última ordem se cumprir."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão e audição",
+      "descricao": "percebe quem cruza o posto, sem olhos nem ouvidos à vista, como um guarda humano",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "camuflagem": "parado, passa por um móvel comum",
+    "mente": "nenhuma; cumpre a última ordem recebida",
+    "tracos": "armário de carvalho de 1,5 m com ferragens de ferro, que anda aos trancos e bate as portas. Não se cansa",
+    "tipoCorpo": "constructo"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitário",
+    "atividade": "qualquer hora",
+    "caca": "não se aplica: guarda",
+    "dianteDeGente": "ataca quem cruza o posto"
+  },
+  "ecologia": {
+    "terreno": [
+      "qualquer",
+      "ruínas"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Um móvel comum despertado por magia para guardar um cômodo: parado, ninguém o nota; quando alguém cruza o posto, tomba e bate com a própria massa, sem hesitação, cansaço ou piedade. O tamanho e o material mudam tudo, do candelabro ao navio.",
+  "lore": [
+    {
+      "titulo": "Origem",
+      "texto": "Um objeto animado não nasce, é feito. Móveis, estátuas, armaduras vazias e portões inteiros já foram despertados por magia para servir como guardiões silenciosos."
+    },
+    {
+      "titulo": "Comportamento",
+      "texto": "Sem mente própria, o objeto apenas cumpre a última ordem recebida ou ataca qualquer intruso que cruze seu posto, sem hesitação, cansaço ou piedade."
+    },
+    {
+      "titulo": "Tamanho e Material",
+      "texto": "Objetos animados variam enormemente: um candelabro desperto e um navio animado são a mesma criatura em escalas opostas. O tamanho e o material (madeira, pedra ou metal) alteram muito a Força, a Destreza, os PV, a Defesa e a Absorção. Os valores desta ficha são de um objeto Médio; ajuste conforme o item. Exemplos por porte: Minúsculo: candelabro · Pequeno: cadeira · Médio: jaula · Grande: estátua · Enorme: carroça · Imenso: catapulta · Colossal: navio."
+    }
+  ],
+  "imagens": [
+    "bestiario/objeto-animado_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [
+      {
+        "tipo": "perfuracao",
+        "formas": "todas"
+      }
+    ],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "atributos.vigor",
+      "motivo": "O construto mantém o Vigor como medida do corpo (C-002, C-040): tábuas de carvalho que não sangram nem cansam, mas lascam e se partem; abaixo dos golens maciços (4 a 7). O site tinha 0; 3 por julgamento (tábuas que lascam); o site tinha 0"
+    },
+    {
+      "campo": "habilidadesSec.musculatura",
+      "motivo": "Pelo corpo, julgado pelo material e pela forma (manual 3.5; tamanho-decisoes-3, item 12: 0 corpo de resistência, 2 comum, 3 robusto): caixa oca de tábuas, sem membro nem alavanca para erguer; bate com o peso, e não empurra com força; 0, caixa oca de tábuas"
+    },
+    {
+      "campo": "corpo.largura",
+      "motivo": "As medidas de um armário de 1,5 m"
+    },
+    {
+      "campo": "corpo",
+      "motivo": "o armário de carvalho, e não a jaula do exemplo do site, que pela área das barras ficaria abaixo do Médio"
+    },
+    {
+      "campo": "couraca",
+      "motivo": "3, tábua de carvalho de 3 cm"
+    }
+  ]
+}

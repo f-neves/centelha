@@ -1,0 +1,14 @@
+#!/bin/sh
+# Reprova mensagem de commit com termo proibido (R9, R11).
+. "$(dirname "$0")/termos.sh"
+
+achado=$(grep -v '^#' "$1" | achados_texto_e_palavra)
+ident="$(git var GIT_AUTHOR_IDENT) $(git var GIT_COMMITTER_IDENT)"
+achado_ident=$(printf '%s' "$ident" | achados_texto_e_palavra)
+
+if [ -n "$achado$achado_ident" ]; then
+	echo "commit-msg: termo proibido na mensagem ou na identidade do commit:" >&2
+	printf '%s\n%s\n' "$achado" "$achado_ident" | grep -v '^$' | sed 's/^/  /' >&2
+	exit 1
+fi
+exit 0

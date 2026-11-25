@@ -1,0 +1,194 @@
+{
+  "id": "plesiossauro",
+  "nome": "Plesiossauro",
+  "nomeIngles": "Plesiosaurus",
+  "categoria": "animal",
+  "papel": "fera",
+  "ameaca": 2,
+  "centelha": 0,
+  "corpo": {
+    "postura": "nadador",
+    "apoio": "outro",
+    "altura": 0.6,
+    "largura": 0.8,
+    "profundidade": null,
+    "comprimento": 3.2,
+    "comprimentoSemCauda": 2.4,
+    "caudaGrossa": true,
+    "massa": 143,
+    "area": 1.47,
+    "posturaDoTamanho": "de cima",
+    "tamanhoEscolhido": "medio"
+  },
+  "couraca": 1,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 5,
+    "destreza": 2,
+    "vigor": 3,
+    "percepcao": 2,
+    "inteligencia": 1,
+    "raciocinio": 2,
+    "influencia": 1,
+    "perspicacia": 1,
+    "compostura": 1
+  },
+  "habilidades": {
+    "briga": 2,
+    "bloqueio": 0,
+    "esquiva": 2,
+    "atletismo": 0,
+    "furtividade": 2,
+    "integridade": 1,
+    "prontidao": 2,
+    "resistencia": 2,
+    "empatia": 0,
+    "sobrevivencia": 2
+  },
+  "habilidadesSec": {
+    "equilibrio": 0,
+    "escalada": 0,
+    "natacao": 3,
+    "voo": 0,
+    "musculatura": 2
+  },
+  "especialidades": {
+    "prontidao": [
+      {
+        "foco": "visão",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 2,
+    "compaixao": 1,
+    "conviccao": 1,
+    "temperanca": 1
+  },
+  "vontade": 3,
+  "aparencia": 6,
+  "deslocamento": {
+    "nado": {
+      "batalha": 4
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Mordida",
+      "parte": "mordida",
+      "classe": "leve",
+      "pgr": [
+        1,
+        1,
+        3
+      ],
+      "dado": "1d6-2",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 1,
+      "bloqueiaComoArma": null,
+      "justificativa": "3,5 − 2 + 5. Era 1d6 − 2 + 6, média 7,5: a Força desce a 5 na sétima rodada (D-115). Seção 7 da regra: Leve é o gesto rápido de boca pequena. Cabeça pequena, 20 a 25 dentes por fileira de cima, cônicos, finos e apontando para a frente (Wikipédia). Força × 1. N0 : nenhuma força de mordida achada, e o dente é de pegar peixe."
+    }
+  ],
+  "habilidadesEspeciais": [],
+  "comoLuta": [],
+  "sentidos": [
+    {
+      "nome": "visão",
+      "descricao": "Prontidão (visão) +2, Especialidade natural (era Especialidade comum, com o mesmo valor); notar presa na água; alcance . : olhos grandes, voltados para cima e para os lados, com anel esclerótico de olho achatado para o mergulho, e caça visual (Wikipédia, \"Plesiosaur\")",
+      "formas": "todas"
+    },
+    {
+      "nome": "faro",
+      "descricao": "sem Especialidade. No Plesiosaurus, as narinas não parecem adaptadas a cheirar debaixo d'água (Wikipédia, \"Plesiosaurus\")",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar (réptil marinho)",
+    "prendeRespiracao": "(apneia não achada)",
+    "mente": "animal",
+    "tracos": "não sai da água (nadadeiras rígidas demais para andar, Everhart 2005, via Wikipédia); parto vivo no grupo (um Polycotylus com um filhote dentro, O'Keefe e Chiappe 2011); talvez de sangue quente (Houssaye 2013)"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "dieta": "piscívoro",
+    "caca": "emboscada",
+    "dianteDeGente": "não se aplica"
+  },
+  "ecologia": {
+    "terreno": [
+      "aquático",
+      "litoral"
+    ],
+    "clima": [
+      "temperado",
+      "tropical"
+    ]
+  },
+  "descricao": "Réptil marinho do tamanho de um crocodilo pequeno, de pescoço longo e cabeça pequena. Caça peixe de tocaia, pela vista, e é presa de tubarões e de répteis marinhos maiores.",
+  "lore": [],
+  "imagens": [
+    "bestiario/plesiossauro_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "atributos.forca",
+      "motivo": "Era 6, escolhida quando a massa era 500 kg. Reanalisada na sétima rodada pela massa nova de cerca de 130 kg  e pelo corpo (D-158): a Força de referência dos 130 kg é 6, e o corpo é de nadador que pega peixe, largo como o de uma tartaruga (Wikipédia), com cabeça pequena e dentes finos de \"armadilha de peixe\" (Storrs 1997, via Wikipédia), sem agarrão nem arrasto. Nenhuma força medida. Vizinhos nas fichas v3: o golfinho (260 kg, Força 5), outro nadador que pega peixe, com o dobro da massa; o elasmossauro (1,9 t, 7), do mesmo grupo, quase 3 abaixo da referência da massa dele (9,7); e, em terra, o urso-negro (97,5 kg, 6) e o gorila (126 kg, 7), que usam o corpo para cavar, bater e agarrar. Fica um abaixo da referência, com o golfinho."
+    },
+    {
+      "campo": "atributos.vigor",
+      "motivo": "Reanalisado na sétima rodada: fica, porque com os 130 kg o réptil (decisão 10) fica com o crocodilo-do-nilo (198 kg, Vigor 3) e abaixo do elasmossauro (1,9 t, 4) e do golfinho (260 kg, 4), mais pesados. Réptil (decisão 10: tendem a Vigor menor), de cerca de 130 kg . Resistência a ferimento e doença: . O nado sustentado, se de sangue quente (Houssaye 2013), não entra no Vigor (diretriz 2); fica na nota de pesquisa (jornada)."
+    },
+    {
+      "campo": "atributos.percepcao",
+      "motivo": "Seção 13: 2 para os extintos. A visão vai na Especialidade natural."
+    },
+    {
+      "campo": "habilidades.esquiva",
+      "motivo": "Degrau 2. Os plesiossauromorfos eram feitos para manobra, não para velocidade, e capazes de rolar rápido (Wikipédia, \"Plesiosaur\")."
+    },
+    {
+      "campo": "habilidades.furtividade",
+      "motivo": "Não tinha linha. O levantamento : o pescoço longo atrapalharia a aceleração, e talvez caçasse de tocaia em vez de perseguir (estudo de hidrodinâmica de 2017, notícia na ScienceDaily). Régua: 2, usa a cobertura como hábito."
+    },
+    {
+      "campo": "habilidades.resistencia",
+      "motivo": "Era 0. Régua da diretriz 2: 2 é o normal da espécie no próprio meio, . Nenhum dado de frio, fome, veneno, doença ou ferida. O cruzeiro de modelo do grupo e o sangue quente possível (Houssaye 2013) não sustentam a Resistência e ficam na nota de pesquisa (jornada)."
+    },
+    {
+      "campo": "corpo.altura",
+      "motivo": "do Arquiteto: \"altura do corpo e corpo sem cauda pela proporção do Plesiosaurus de 3,2 m\" (`dimensoes.md` dá \"sem dado\")"
+    },
+    {
+      "campo": "corpo.comprimentoSemCauda",
+      "motivo": "do Arquiteto, pela mesma proporção"
+    },
+    {
+      "campo": "aparencia",
+      "motivo": "D-107: a maioria fica no 6.  A pele e a cor não se conhecem."
+    },
+    {
+      "campo": "comportamento.caca",
+      "motivo": "o pescoço longo atrapalharia a aceleração; talvez caçasse de tocaia em vez de perseguir (estudo de hidrodinâmica de 2017, notícia na ScienceDaily)."
+    }
+  ]
+}

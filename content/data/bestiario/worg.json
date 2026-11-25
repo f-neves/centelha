@@ -1,0 +1,216 @@
+{
+  "id": "worg",
+  "idAntigo": "mon-worg",
+  "nome": "Worg",
+  "nomeIngles": "Worg",
+  "categoria": "besta-magica",
+  "papel": "fera",
+  "ameaca": 2,
+  "centelha": 1,
+  "corpo": {
+    "postura": "quatro patas",
+    "apoio": "quadrupede",
+    "altura": 0.9,
+    "largura": 0.41,
+    "profundidade": null,
+    "comprimento": 2,
+    "comprimentoSemCauda": 1.33,
+    "caudaGrossa": false,
+    "massa": 80,
+    "area": 0.5,
+    "posturaDoTamanho": "silhueta vista de lado"
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 5,
+    "destreza": 4,
+    "vigor": 3,
+    "percepcao": 4,
+    "inteligencia": 1,
+    "raciocinio": 2,
+    "influencia": 2,
+    "perspicacia": 2,
+    "compostura": 3
+  },
+  "habilidades": {
+    "briga": 3,
+    "bloqueio": 0,
+    "esquiva": 1,
+    "atletismo": 3,
+    "furtividade": 2,
+    "integridade": 3,
+    "prontidao": 2,
+    "resistencia": 4,
+    "sociabilidade": 0,
+    "sobrevivencia": 3,
+    "manha": 1
+  },
+  "habilidadesSec": {
+    "musculatura": 2
+  },
+  "especialidades": {
+    "prontidao": [
+      {
+        "foco": "faro",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 1,
+    "conviccao": 3,
+    "temperanca": 2
+  },
+  "vontade": 7,
+  "aparencia": 4,
+  "deslocamento": {
+    "terra": {
+      "batalha": 5,
+      "arranque": 8,
+      "corrida": 12
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Mordida",
+      "parte": "mandibula",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "A mordida de lobo, que morde, segura e sacode: Média, como a do lobo atroz. Jogada: Força 5 + Briga 3 + 2 × o menor entre Centelha 1 e Briga 3 (2)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Mordida derrubadora",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Mordida",
+      "categoria": "inato",
+      "texto": "Se o golpe causar ao menos 1 PV depois da Absorção, pode resolver Derrubar contra a defesa normal, com as travas de massa e sem ação separada"
+    },
+    {
+      "nome": "corredor incansável",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "quando usa a adaptação descrita",
+      "duracao": "a jogada",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "aguenta a perseguição longa sem se cansar e alcança a presa que foge. A adaptação concede +1d6 na jogada de perseguição",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "Sem custo. O uso ativo repetido causa esforço e pode levar ao cansaço"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "caçada em bando",
+      "formas": "todas",
+      "texto": "a alcateia cerca e morde quem cai; um deles faz de isca, fingindo ser um viajante em apuros."
+    },
+    {
+      "nome": "montaria que manda",
+      "formas": "todas",
+      "texto": "quando um goblin o monta, quem decide a luta é o worg."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão no escuro",
+      "descricao": "enxerga no escuro absoluto",
+      "formas": "todas"
+    },
+    {
+      "nome": "visão na penumbra",
+      "descricao": "enxerga com pouca luz",
+      "formas": "todas"
+    },
+    {
+      "nome": "faro",
+      "descricao": "Prontidão (faro) +2; de noite, quase ninguém se esconde dele",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "mente": "astuto; entende e fala o Comum e o Goblin",
+    "tracos": "lobo grande de pelagem cinzenta e olhar astuto"
+  },
+  "aptidoes": {
+    "montaria": true,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "alcateia de até onze, perto de tocas de goblins",
+    "atividade": "noturno",
+    "dieta": "carnívoro",
+    "caca": "caça em bando, com emboscada e isca",
+    "dianteDeGente": "caça, ou se alia a goblins e raças selvagens"
+  },
+  "ecologia": {
+    "terreno": [
+      "floresta",
+      "planície"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Lobo grande e astuto que fala o Comum e o Goblin e caça em alcateias de até onze. Um da alcateia finge ser um viajante em apuros para atrair a presa à emboscada; quando um goblin o monta, é quase sempre o worg quem manda.",
+  "lore": [
+    {
+      "titulo": "Montaria e mestre",
+      "texto": "Quando cavalgado por goblins, é quase sempre o worg quem manda, não o cavaleiro."
+    },
+    {
+      "titulo": "A isca",
+      "texto": "Um membro da alcateia finge ser um viajante em apuros para atrair presas inteligentes a uma emboscada."
+    },
+    {
+      "titulo": "Pelagem cinzenta",
+      "texto": "Ronda florestas e campos temperados em bandos de até onze, sempre próximo de tocas de goblins ou raças selvagens."
+    }
+  ],
+  "imagens": [
+    "bestiario/worg_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "comportamento.atividade",
+      "motivo": "site (caça à noite)"
+    },
+    {
+      "campo": "habilidadesEspeciais.corredor incansável",
+      "motivo": "R6. A adaptação corporal vale +1d6 na jogada."
+    },
+    {
+      "campo": "ataques",
+      "motivo": "o site gravava um ataque só, \"Garras e presas\" (`inimigos.json`: \"1d6 +6 perfurante\", 5 Ticks, dano médio 9,5). A ficha fica com a mordida, Média, a do lobo atroz. Dano médio: 9,5 antes; depois, mordida 9,5 (sem mudança)"
+    }
+  ]
+}

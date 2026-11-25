@@ -1,0 +1,250 @@
+{
+  "id": "ankheg",
+  "idAntigo": "mon-ankheg",
+  "nome": "Ankheg",
+  "nomeIngles": "Ankheg",
+  "categoria": "besta-magica",
+  "papel": "fera",
+  "ameaca": 3,
+  "centelha": 2,
+  "corpo": {
+    "postura": "seis patas",
+    "apoio": "outro",
+    "altura": 0.98,
+    "largura": 0.6,
+    "profundidade": null,
+    "comprimento": 3,
+    "massa": 160,
+    "area": 1.78,
+    "posturaDoTamanho": "vista de cima"
+  },
+  "couraca": 3,
+  "perfilCouraca": "rigida",
+  "atributos": {
+    "forca": 6,
+    "destreza": 2,
+    "vigor": 6,
+    "percepcao": 3,
+    "inteligencia": 1,
+    "raciocinio": 1,
+    "influencia": 1,
+    "perspicacia": 1,
+    "compostura": 2
+  },
+  "habilidades": {
+    "briga": 4,
+    "bloqueio": 0,
+    "esquiva": 0,
+    "atletismo": 2,
+    "atirador": 2,
+    "furtividade": 2,
+    "integridade": 2,
+    "prontidao": 1,
+    "resistencia": 3,
+    "sociabilidade": 0,
+    "sobrevivencia": 3
+  },
+  "habilidadesSec": {
+    "musculatura": 4
+  },
+  "especialidades": {},
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 1,
+    "conviccao": 3,
+    "temperanca": 2
+  },
+  "vontade": 7,
+  "aparencia": 2,
+  "deslocamento": {
+    "terra": {
+      "batalha": 3,
+      "arranque": 5,
+      "corrida": 7
+    },
+    "escavacao": {
+      "batalha": 2
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Mandíbulas",
+      "parte": "mandibulas",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "corte",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "A prensa das mandíbulas com o corpo atrás, Média. O ácido vai nas Manobras. Jogada: Força 6 + Briga 4 + 2 × o menor entre Centelha 2 e Briga 4 (4)"
+    },
+    {
+      "nome": "Cuspe ácido",
+      "parte": "boca",
+      "classe": "distancia",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": "2d6",
+      "multiplicadorForca": 0,
+      "tipoDano": "acido",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Ataque natural a distância, Classe Distância, como o sopro do cão infernal. Os números são da ficha, descritos na linha do cuspe nas Manobras. Sem jogada de ataque."
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Mordida ácida",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "ataque": "Mandíbulas",
+      "categoria": "substancia",
+      "ativacao": "as Mandíbulas que acertam",
+      "duracao": "instantânea",
+      "alcance": "o das mandíbulas",
+      "area": "um alvo",
+      "efeito": "as mandíbulas injetam ácido a cada mordida",
+      "dano": "+1d6 de ácido, somado ao do golpe",
+      "resistencia": "nenhum",
+      "limiteDeUso": "O corpo guarda 3 doses e produz 1 dose a cada 4 horas. Cada uso gasta 1 dose. Nada acelera a produção"
+    },
+    {
+      "nome": "prensa",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Mandíbulas",
+      "categoria": "inato",
+      "regra": "agarrar"
+    },
+    {
+      "nome": "arrastar para o túnel",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "enquanto a condição se aplica",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Ao manter o agarrão, desloca-se com a presa a metade da Batalha, até o peso que arrasta. O movimento integra a manutenção",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "Cuspe ácido",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "ataque": "Cuspe ácido",
+      "categoria": "substancia",
+      "ativacao": "uma ação, Velocidade 7",
+      "duracao": "instantânea",
+      "alcance": "9 m à frente",
+      "area": "linha de 9 m",
+      "efeito": "um jato de ácido em linha reta. Após a área, só há dano residual quando um efeito da ficha o declara",
+      "dano": "2d6 + Centelha, ácido",
+      "resistencia": "sem jogada de ataque. Cada alvo resolve a saída de área pelo livro",
+      "limiteDeUso": "O corpo guarda 3 doses e produz 1 dose a cada 4 horas. Cada uso gasta 1 dose. Nada acelera a produção"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "emboscada de baixo",
+      "formas": "todas",
+      "texto": "espera sob a terra solta, sente o passo da presa, sai, prende e recua para o túnel antes que alguém a socorra."
+    },
+    {
+      "nome": "Projétil natural",
+      "formas": "todas",
+      "texto": "Contra um alvo, use o maior entre Vigor, Destreza e Percepção + Atirador. Ao cobrir uma área, só os alvos fazem a jogada de saída."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "sentido de tremor",
+      "descricao": "sente pelo chão quem se move perto, sem ver",
+      "formas": "todas"
+    },
+    {
+      "nome": "visão",
+      "descricao": "de inseto, sem nada além do comum",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "camuflagem": "sob a terra",
+    "mente": "animal (fera de Inteligência 1)",
+    "tracos": "inseto de 3 m e seis patas, casca marrom, antenas longas e mandíbulas que pingam ácido"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitário",
+    "atividade": "qualquer hora",
+    "dieta": "carnívoro; gado e viajantes",
+    "caca": "emboscada de baixo do solo",
+    "dianteDeGente": "evita cidades; ataca o viajante descuidado"
+  },
+  "ecologia": {
+    "terreno": [
+      "planície",
+      "subterrâneo"
+    ],
+    "clima": [
+      "temperado",
+      "tropical"
+    ]
+  },
+  "descricao": "Inseto escavador que assola campos e fazendas, atraído pela terra solta. Embosca de baixo do solo, prende a presa nas mandíbulas ácidas e recua para os túneis, onde a devora antes que chegue socorro.",
+  "lore": [
+    {
+      "titulo": "Praga Rural",
+      "texto": "O ankheg assola campos e fazendas, atraído pela terra solta que facilita suas escavações. Evita cidades grandes, mas devora gado e viajantes descuidados sem hesitar."
+    },
+    {
+      "titulo": "Caçada",
+      "texto": "Prefere emboscar de baixo do solo, agarrar a presa com a mordida e recuar para seus túneis, onde a vítima é devorada antes que qualquer socorro chegue."
+    }
+  ],
+  "imagens": [
+    "bestiario/ankheg_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "ataques.Cuspe ácido",
+      "motivo": "Antes: jogada de ataque na tabela. R36: Sem jogada de ataque, pois o efeito ocupa a área descrita nas Manobras. Cada alvo resolve a defesa de área.; R1/R4, D-197. Três doses preservam a reserva para mais de uma presa. Sugestão de 3 doses e 4 h por dose para repor fora da luta. valor de molde, para a bancada (3 doses e produz 1 dose a cada 4 horas).; números da ficha (D-197); o site dava \"dano ácido considerável, metade com Vigor\", uma vez por cena"
+    },
+    {
+      "campo": "habilidadesEspeciais.Mordida ácida",
+      "motivo": "R1/R4, D-197. Três doses preservam a reserva para mais de uma presa. Sugestão de 3 doses e 4 h por dose para repor fora da luta. valor de molde, para a bancada (3 doses e produz 1 dose a cada 4 horas).; números da ficha (D-197); o site dava \"dano ácido considerável, metade com Vigor\", uma vez por cena"
+    },
+    {
+      "campo": "ataques",
+      "motivo": "o site gravava um ataque só, \"Garras e presas\" (`inimigos.json`: \"2d6 +8 perfurante\", 6 Ticks, dano médio 15). A ficha fica com as mandíbulas, Médias, e o ácido vai na Mordida ácida. Dano médio: 15 antes; depois, mandíbulas 11,5, mais 1d6 de ácido (média 3,5): 15 com o ácido, sem mudança; cuspe 9,0"
+    }
+  ]
+}

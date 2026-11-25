@@ -1,0 +1,234 @@
+{
+  "id": "trogloditas",
+  "idAntigo": "mon-trogloditas",
+  "nome": "Trogloditas",
+  "nomeIngles": "Troglodyte",
+  "categoria": "humanoide",
+  "papel": "soldado",
+  "ameaca": 2,
+  "centelha": 0,
+  "corpo": {
+    "postura": "bípede, de pé, curvado",
+    "apoio": "bipede",
+    "altura": 1.7,
+    "largura": 0.45,
+    "profundidade": 0.23,
+    "comprimento": null,
+    "massa": 75,
+    "area": 0.68,
+    "posturaDoTamanho": "de frente"
+  },
+  "couraca": 2,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 3,
+    "destreza": 2,
+    "vigor": 4,
+    "percepcao": 2,
+    "inteligencia": 2,
+    "raciocinio": 2,
+    "influencia": 2,
+    "perspicacia": 2,
+    "compostura": 2
+  },
+  "habilidades": {
+    "armas": 2,
+    "briga": 2,
+    "bloqueio": 1,
+    "esquiva": 0,
+    "atletismo": 1,
+    "furtividade": 1,
+    "prontidao": 1,
+    "resistencia": 2,
+    "integridade": 2,
+    "sobrevivencia": 2
+  },
+  "habilidadesSec": {
+    "musculatura": 0
+  },
+  "especialidades": {
+    "furtividade": [
+      {
+        "foco": "contra pedra",
+        "valor": 3,
+        "origem": "natural"
+      }
+    ],
+    "armas": [
+      {
+        "foco": "martelo",
+        "valor": 1,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 2,
+    "conviccao": 3,
+    "temperanca": 1
+  },
+  "vontade": 5,
+  "aparencia": 4,
+  "deslocamento": {
+    "terra": {
+      "batalha": 3,
+      "arranque": 5,
+      "corrida": 7
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Martelo",
+      "arma": "martelo",
+      "justificativa": "A arma do livro (`armas.json`, `martelo`): Média, Velocidade 6, Acerto +1, Defesa +1, ★I. Jogada: Força 3 + Armas 2"
+    },
+    {
+      "nome": "Garras",
+      "parte": "maos-de-garras",
+      "classe": "leve",
+      "pgr": [
+        1,
+        1,
+        3
+      ],
+      "dado": "1d6-2",
+      "multiplicadorForca": 1,
+      "tipoDano": "corte",
+      "nivelPerfuracao": 0,
+      "acerto": 1,
+      "bloqueiaComoArma": null,
+      "justificativa": "\"Garras\" (site). Garra rápida de membro, Leve (regra-construcao §7). Jogada: Força 3 + Briga 2"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Fedor nauseante",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "substancia",
+      "ativacao": "libera a substância ao entrar em contato com os alvos no alcance",
+      "duracao": "enquanto exposto e por mais 6 Ticks depois de sair",
+      "alcance": "3 m",
+      "area": "esfera de 3 m em volta dele",
+      "efeito": "A exposição deixa a vítima Enjoada, com −2 nas jogadas. Constructos não enjoam",
+      "dano": "nenhum",
+      "resistencia": "Vigor + Resistência contra Dificuldade 10. Quem passa fica imune a esta fonte pelo resto da cena",
+      "limiteDeUso": "O corpo guarda 3 doses e produz 1 dose a cada 4 horas. Cada uso gasta 1 dose. Nada acelera a produção"
+    },
+    {
+      "nome": "Garras",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "ataque": "Garras",
+      "texto": "as Garras da tabela, no lugar do golpe de martelo (um ataque por ação)"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "toca defendida",
+      "formas": "todas",
+      "texto": "espera camuflado na pedra, ataca quem entra na toca, solta o fedor e bate; não persegue para fora das galerias."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão no escuro",
+      "descricao": "enxerga sem luz em cavernas",
+      "formas": "todas"
+    },
+    {
+      "nome": "audição e olfato",
+      "descricao": "os de um humano",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "prendeRespiracao": "pela regra do personagem",
+    "camuflagem": "o couro muda de cor contra a pedra; Especialidade natural",
+    "mente": "humanoide; primitiva e territorial",
+    "tracos": "couro cinzento e escamoso que muda de tom, crista curta na cabeça, garras, cheiro forte de almíscar"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "em clã pequeno, típico 3 a 8",
+    "atividade": "qualquer hora, no escuro",
+    "dieta": "carne, morcegos e fungos",
+    "caca": "caça nas galerias",
+    "dianteDeGente": "defende a toca; ataca quem a encurrala"
+  },
+  "ecologia": {
+    "terreno": [
+      "subterrâneo"
+    ],
+    "clima": [
+      "temperado",
+      "tropical"
+    ]
+  },
+  "descricao": "Réptil bípede das cavernas, de couro que some contra a pedra e cheiro que enjoa quem chega perto. Defende a toca com garras e martelo e quase nunca sobe à superfície.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Agressivos e territoriais, atacam por instinto puro quando encurralados ou famintos."
+    },
+    {
+      "titulo": "Hábitos",
+      "texto": "Liberam de si um fedor nauseante que atordoa intrusos, e vivem em cavernas úmidas onde caçam morcegos, fungos e o que cai nas galerias."
+    },
+    {
+      "titulo": "Sociedade",
+      "texto": "Pequenos clãs primitivos sem ambição além de defender a própria toca, quase sem contato com a superfície."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "Parentes distantes e degenerados dos lagartos, multiplicaram-se nas profundezas abandonadas do White Wall depois que a Fenda expulsou os anões, reivindicando túneis que antes eram forja e hoje são só caverna."
+    }
+  ],
+  "imagens": [
+    "bestiario/trogloditas_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "couraca",
+      "motivo": "Cobertura do corpo pela R49; metades arredondadas para cima. Absorção natural do livro (`combate.md`). Couro grosso e escamoso, abaixo do crocodilo (4 a 5) da escala (tamanho-decisoes-5, item 2); nível 2 pelo couro escamoso"
+    },
+    {
+      "campo": "comportamento.social",
+      "motivo": "site (Sociedade)"
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": "site"
+    },
+    {
+      "campo": "habilidadesEspeciais.Fedor nauseante",
+      "motivo": "R1/R4, D-197. Três doses preservam a reserva para mais de uma presa. Sugestão de 3 doses e 4 h por dose para repor fora da luta. R13 e D-197. Dificuldade fixa sugerida 10 (10 + Centelha 0) para graduar a potência deste fedor. valor de molde, para a bancada (3 doses e produz 1 dose a cada 4 horas)."
+    },
+    {
+      "campo": "equipamento",
+      "motivo": "martelo do livro, sem armadura"
+    },
+    {
+      "campo": "virtudes.temperanca",
+      "motivo": "1; o site tinha 2"
+    }
+  ]
+}

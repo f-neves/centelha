@@ -1,0 +1,272 @@
+{
+  "id": "minotauro",
+  "idAntigo": "mon-minotauro",
+  "nome": "Minotauro",
+  "nomeIngles": "Minotaur",
+  "categoria": "humanoide-monstruoso",
+  "papel": "soldado",
+  "ameaca": 3,
+  "centelha": 1,
+  "corpo": {
+    "postura": "bípede, de pé",
+    "apoio": "bipede",
+    "altura": 2.4,
+    "largura": 0.69,
+    "profundidade": 0.35,
+    "comprimento": null,
+    "massa": 250,
+    "area": 1.55,
+    "posturaDoTamanho": "de frente"
+  },
+  "couraca": 1,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 7,
+    "destreza": 2,
+    "vigor": 5,
+    "percepcao": 2,
+    "inteligencia": 1,
+    "raciocinio": 2,
+    "influencia": 2,
+    "perspicacia": 2,
+    "compostura": 2
+  },
+  "habilidades": {
+    "armas": 4,
+    "briga": 3,
+    "bloqueio": 1,
+    "esquiva": 0,
+    "atletismo": 3,
+    "furtividade": 1,
+    "prontidao": 3,
+    "resistencia": 3,
+    "integridade": 2,
+    "sobrevivencia": 2
+  },
+  "habilidadesSec": {
+    "intimidacao": 3,
+    "musculatura": 3
+  },
+  "especialidades": {
+    "prontidao": [
+      {
+        "foco": "faro",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ],
+    "atletismo": [
+      {
+        "foco": "ficar de pé",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ],
+    "armas": [
+      {
+        "foco": "machado",
+        "valor": 1,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 4,
+    "compaixao": 2,
+    "conviccao": 3,
+    "temperanca": 1
+  },
+  "vontade": 6,
+  "aparencia": 4,
+  "deslocamento": {
+    "terra": {
+      "batalha": 3,
+      "arranque": 5,
+      "corrida": 7
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Machado pesado",
+      "arma": "machado-pesado",
+      "justificativa": "A arma do livro (`armas.json`, `machado-pesado`): Pesada, duas mãos, Velocidade 7, Acerto +0, Defesa −2, ★C · I. Duas mãos somam a Força dobrada (`armas-e-armaduras.md`). A Centelha soma inteira. Jogada: Força 7 + Armas 4 + 2 × o menor entre Centelha 1 e Armas 4 (2)"
+    },
+    {
+      "nome": "Chifrada",
+      "parte": "chifres",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 1,
+      "acerto": 0,
+      "bloqueiaComoArma": 1,
+      "justificativa": "Chifrada de cabeça, o golpe que pede o corpo atrás (Média; regra-construcao §7). Chifre bloqueia como arma (D-100). N1 pela ponta do chifre num pescoço de touro. Na Investida, Força × 2 (Manobras). Jogada: Força 7 + Armas 4 + 2 × o menor entre Centelha 1 e Armas 4 (2)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Investida",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "regra": "investida"
+    },
+    {
+      "nome": "Investida chifruda",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "ataque": "Chifrada",
+      "categoria": "inato",
+      "ativacao": "a Investida com a Chifrada, depois de correr 4 m ou mais",
+      "duracao": "instantânea",
+      "alcance": "o do corpo a corpo",
+      "area": "um alvo",
+      "efeito": "o corpo inteiro entra no golpe, e o alvo atingido pode cair, pelas travas de massa do livro",
+      "dano": "1d6 + Força × 2 + Centelha, Perfuração",
+      "resistencia": "corpo, Força + Atletismo do alvo contra a jogada do golpe; quem falha fica Caído",
+      "limiteDeUso": "uma por Investida. Sem custo"
+    },
+    {
+      "nome": "Fúria de touro",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "ao ficar Abalado ou ao cair abaixo da metade dos PV",
+      "duracao": "até o fim da cena",
+      "alcance": "o próprio corpo",
+      "area": "não se aplica",
+      "efeito": "Fica Enfurecido pelo Frenesi. +2 nas ações físicas exceto tiro, −2 em Esquiva e Bloqueio, só ações físicas. Não pode ser convencido. Mantém +2 no dano dos golpes. Sofre as penalidades de ferimento",
+      "dano": "+2 nos golpes",
+      "resistencia": "nenhum",
+      "limiteDeUso": "uma vez por cena. Sem custo"
+    },
+    {
+      "nome": "Faro no labirinto",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "nenhuma; sempre ativo",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "não se aplica",
+      "efeito": "nunca se perde em passagens, túneis e labirintos e sempre sabe o caminho de volta",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "nenhum. Sem custo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "dono do labirinto",
+      "formas": "todas",
+      "texto": "espera numa curva, investe com os chifres e acaba com o machado; persegue quem foge pelos corredores e não recua."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "faro",
+      "descricao": "o de um touro; Prontidão (faro) +2",
+      "formas": "todas"
+    },
+    {
+      "nome": "visão e audição",
+      "descricao": "as de um humano",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "mente": "simples, de memória boa para lugares e rostos",
+    "tracos": "cabeça de touro com chifres largos, pescoço grosso, corpo de homem coberto de pelo, pernas que acabam em cascos; machado de duas mãos"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "sozinho ou em clã pequeno, típico 2 a 4",
+    "atividade": "qualquer hora, no escuro dos túneis",
+    "dieta": "carne",
+    "caca": "caça quem entra no labirinto",
+    "dianteDeGente": "ataca o intruso e guarda rancor de quem escapa"
+  },
+  "ecologia": {
+    "terreno": [
+      "subterrâneo",
+      "ruínas"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Homem de 2,4 m com cabeça de touro que guarda labirintos e ruínas. Investe com os chifres, racha com um machado de duas mãos e nunca se perde nos corredores que conhece de cor.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Força bruta e fúria primitiva guiam o minotauro em combate; carrega machado enorme e não recua diante de nada, confiando no instinto e na violência para resolver qualquer impasse."
+    },
+    {
+      "titulo": "Sociedade",
+      "texto": "Vive isolado ou em pequenos clãs dentro de labirintos, ruínas e complexos de túneis que conhece de cor, guardando tesouro ou território com posse quase religiosa."
+    },
+    {
+      "titulo": "Personalidade",
+      "texto": "Orgulhoso e vingativo, guarda rancor de intrusos por anos; sob a brutalidade esconde uma memória apurada para cada corredor e cada rosto que já invadiu seu domínio."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "As selvas de Mére escondem cidades e complexos labirínticos antigos demais para qualquer mapa comum, e é lá, entre pedra esquecida e cultos caídos, que os minotauros mais temidos ainda vivem, isolados do resto do mundo."
+    }
+  ],
+  "imagens": [
+    "bestiario/minotauro_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "atributos.forca",
+      "motivo": "Acima de 6 pela física (D-143): 250 kg de homem e touro, acima da Força de referência da massa (6,37, manual 3.9) e acima do gorila de 180 kg (Força 7, D-117), que fica igual por ser bicho de braço. O site tinha 6; For 19 no Pathfinder, acima do ogro em músculo por quilo; 7; o site tinha 6"
+    },
+    {
+      "campo": "habilidades.briga",
+      "motivo": "Chifrada e luta corpo a corpo de quem vive brigando; 3, para a Chifrada; o site gravava 4, que era a Habilidade da arma"
+    },
+    {
+      "campo": "comportamento.social",
+      "motivo": "site (Sociedade)"
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": "site"
+    },
+    {
+      "campo": "comportamento.dieta",
+      "motivo": "site"
+    },
+    {
+      "campo": "virtudes",
+      "motivo": "Bravura 4 e Temperança 1; o site tinha 3 e 2"
+    },
+    {
+      "campo": "couraca",
+      "motivo": "Especialidade natural +2 em Atletismo"
+    }
+  ]
+}

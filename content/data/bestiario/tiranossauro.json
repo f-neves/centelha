@@ -1,0 +1,266 @@
+{
+  "id": "tiranossauro",
+  "idAntigo": "mon-tyrannosaurus",
+  "nome": "Tiranossauro",
+  "nomeIngles": "Tyrannosaurus",
+  "categoria": "animal",
+  "papel": "fera",
+  "ameaca": 5,
+  "centelha": 0,
+  "corpo": {
+    "postura": "bípede de corpo horizontal",
+    "apoio": "bipede",
+    "altura": 3.9,
+    "largura": 1.2,
+    "profundidade": null,
+    "comprimento": 12.8,
+    "comprimentoSemCauda": 7.1,
+    "caudaGrossa": true,
+    "massa": 7500,
+    "area": 11.82,
+    "posturaDoTamanho": "vista de lado"
+  },
+  "couraca": 2,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 12,
+    "destreza": 2,
+    "vigor": 10,
+    "percepcao": 2,
+    "inteligencia": 1,
+    "raciocinio": 2,
+    "influencia": 1,
+    "perspicacia": 1,
+    "compostura": 1
+  },
+  "habilidades": {
+    "briga": 4,
+    "bloqueio": 0,
+    "esquiva": 1,
+    "atletismo": 0,
+    "furtividade": 2,
+    "integridade": 3,
+    "prontidao": 2,
+    "resistencia": 4,
+    "empatia": 0,
+    "sobrevivencia": 2
+  },
+  "habilidadesSec": {
+    "equilibrio": 0,
+    "escalada": 0,
+    "natacao": 0,
+    "voo": 0,
+    "musculatura": 3
+  },
+  "especialidades": {
+    "prontidao": [
+      {
+        "foco": "faro",
+        "valor": 3,
+        "origem": "natural"
+      },
+      {
+        "foco": "visão",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 1,
+    "conviccao": 1,
+    "temperanca": 1
+  },
+  "vontade": 3,
+  "aparencia": 6,
+  "deslocamento": {
+    "terra": {
+      "batalha": 3,
+      "arranque": 5,
+      "corrida": 7
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Mordida",
+      "parte": "mordida",
+      "classe": "pesada",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": "2d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 2,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Era 2d6 + 17, média 24. 7 + 12. Pesada: a mordida que arranca e quebra osso, com mordidas repetidas (Gignac e Erickson 2017). Força × 1 (boca, seção 7). N2 é o da própria mordida, e não do porte: os dentes de trás de 18.014 a 34.522 N (Gignac e Erickson 2017) ficam na faixa de 15.000 a 30.000 N; o meio do estudo conferido com sete adultos."
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "agarrar",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "regra": "agarrar"
+    },
+    {
+      "nome": "engolir",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "ataque": "Mordida",
+      "categoria": "inato",
+      "ativacao": "ação de Velocidade 7 contra vítima menor já Agarrada que cabe na boca",
+      "duracao": "até sair",
+      "alcance": "toque",
+      "area": "a vítima engolida",
+      "efeito": "Dentro, fica Imobilizada para o corpo, pode atacar com arma curta e sofre sufocamento pelo livro. Uma ferida interna de 10 PV abre a saída, por dentro ou com ajuda de fora. Também pode escapar pela garganta como no agarrão. Se a criatura morre, a vítima sai com uma ação",
+      "dano": "2d6 de Impacto uma vez a cada 6 Ticks",
+      "resistencia": "escape do agarrão pela garganta",
+      "limiteDeUso": "sem custo. Usar repetidamente causa esforço e pode levar ao cansaço"
+    },
+    {
+      "nome": "ferida que sangra",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "ataque": "Mordida",
+      "categoria": "inato",
+      "ativacao": "quando a mordida abre uma ferida com um acerto preciso",
+      "duracao": "até estancar",
+      "alcance": "o do golpe",
+      "area": "a vítima ferida",
+      "efeito": "Aplica o Sangramento comum. A ferida não fecha sozinha. Para estancar, é preciso vencer um teste de Raciocínio + Cura. Estabilizar com o cuidado simples não basta",
+      "dano": "nenhum adicional",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "a cada ferida que provoca Sangramento, sem custo"
+    }
+  ],
+  "comoLuta": [],
+  "sentidos": [
+    {
+      "nome": "faro",
+      "descricao": "Prontidão (faro) +3, Especialidade natural. Bulbos olfatórios os maiores entre 21 dinossauros não avianos amostrados (Zelenitsky e colegas 2009)",
+      "formas": "todas"
+    },
+    {
+      "nome": "visão",
+      "descricao": "Prontidão (visão) +2, Especialidade natural . Campo binocular de cerca de 55°; a acuidade de 13 vezes a humana e o alcance de 6 km são de Kent Stevens 2006",
+      "formas": "todas"
+    },
+    {
+      "nome": "audição",
+      "descricao": "de baixa frequência, texto. Cóclea longa (Witmer e Ridgely 2009)",
+      "formas": "todas"
+    },
+    {
+      "nome": "Tato no focinho",
+      "descricao": "canais neurovasculares na mandíbula (Kawabe e Hattori 2021), texto",
+      "formas": "todas"
+    },
+    {
+      "nome": "Pouca visão noturna, pelo anel esclerótico do Gorgosaurus",
+      "descricao": "de Carpenter 2013",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "camuflagem": "(cor não conhecida)",
+    "mente": "animal",
+    "tracos": "braços curtos de dois dedos com garra, de uso debatido (o bíceps levantaria cerca de 199 kg, Carpenter e Smith 2001); boca abre cerca de 80 graus (Lautenschlager 2015); comia osso (osteofagia; Gignac e Erickson 2017); penas, se houvesse, só no dorso (Bell e colegas 2017)"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitário",
+    "atividade": "diurno",
+    "dieta": "carnívoro (também carniceiro)"
+  },
+  "ecologia": {
+    "terreno": [
+      "floresta",
+      "planície"
+    ],
+    "clima": [
+      "tropical"
+    ]
+  },
+  "descricao": "Predador do topo e carniceiro, que quebra osso a mordidas. Caminhante econômico (Dececchi e colegas 2020), de andar preferido de 4,6 km/h (van Bijlert e colegas 2021): cobre terreno andando, sem correr.",
+  "lore": [
+    {
+      "titulo": "Ápice da cadeia alimentar",
+      "texto": "Nenhum outro predador das florestas e planícies quentes ousa disputar território com um exemplar adulto."
+    },
+    {
+      "titulo": "Faro de caçador",
+      "texto": "Rastreia presas feridas a quilômetros de distância, atraído pelo cheiro de sangue."
+    }
+  ],
+  "imagens": [
+    "bestiario/tiranossauro_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "atributos.vigor",
+      "motivo": "Etapa 2 (20/10/2026): Decisão de 20/10/2026: a D-164 era diretriz, o estegossauro fica com 10, e o tricerátops, o anquilossauro e o tiranossauro podem subir junto. Com 7,5 t, quase o dobro do estegossauro (3,8 t), o tiranossauro fica igual a ele. A Sue viveu com infecção na mandíbula e fraturas saradas (Wolff e colegas 2009). Antes: Fica (D-164; v2). Gigante de 7 t, e a pesquisa mostra corpo que aguenta ferida: a Sue viveu com lesões de infecção na mandíbula (Wolff e colegas 2009) e morreu entre 27 e 33 anos; marcas de mordida curadas no rosto (, leitura de patologias). Não sai da corrida (diretriz 2)."
+    },
+    {
+      "campo": "atributos.percepcao",
+      "motivo": "Teste de ordem: 2 para os extintos . Faro e visão vão nas Especialidades naturais."
+    },
+    {
+      "campo": "habilidades.furtividade",
+      "motivo": "Era sem linha (0). O levantamento: modo de caça desconhecido; diurno pelo anel esclerótico do Gorgosaurus (Carpenter 2013). Fica no 2, o de quem usa cobertura como hábito normal : predador de planície costeira e floresta de rio, sem dado de emboscada nem de perseguição."
+    },
+    {
+      "campo": "habilidades.integridade",
+      "motivo": "Marcas de mordida curadas no rosto, atribuídas a brigas com outro tiranossauro:  (leitura de patologias). Degrau 3."
+    },
+    {
+      "campo": "habilidades.prontidao",
+      "motivo": "Predador que caça. Degrau 2. . O faro e a visão vão nas Especialidades naturais."
+    },
+    {
+      "campo": "corpo.altura",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 3,8 × 1,0233 = 3,888 . Antes: ponto médio dos 3,66 a 3,96 m de quadril da Sue (Field Museum; Hutchinson e colegas 2011). A fonte dá o quadril, e não o alto da cabeça"
+    },
+    {
+      "campo": "corpo.comprimento",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 12,5 × 1,0233 = 12,791 . Antes: ponto médio de 12 a 13 m (Sue 12,3 a 12,8; Scotty cerca de 13, Persons e colegas 2019)"
+    },
+    {
+      "campo": "corpo.comprimentoSemCauda",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 6,9 × 1,0233 = 7,061 . Antes: do Arquiteto: \"corpo sem cauda (cerca de 55% de 12,5 m)\"; a fonte só dá o comprimento total (`dimensoes.md`)"
+    },
+    {
+      "campo": "aparencia",
+      "motivo": "D-107: \"A maioria fica no 6 (comum)\".  A pele e a cor não se conhecem. Escamas pequenas em mosaico (Bell e colegas 2017); lábios em debate."
+    },
+    {
+      "campo": "comportamento.social",
+      "motivo": "O bando é leitura de Philip Currie, contestada (Roach e Brinkman 2007); a ficha fica na leitura solitária."
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": "Anel esclerótico do Gorgosaurus (Carpenter 2013, via Wikipédia)."
+    }
+  ]
+}

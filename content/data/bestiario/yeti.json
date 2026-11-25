@@ -1,0 +1,248 @@
+{
+  "id": "yeti",
+  "idAntigo": "mon-yeti",
+  "nome": "Yeti",
+  "nomeIngles": "Yeti",
+  "categoria": "humanoide-monstruoso",
+  "papel": "soldado",
+  "ameaca": 3,
+  "centelha": 2,
+  "corpo": {
+    "postura": "bípede, curvado",
+    "apoio": "bipede",
+    "altura": 2.7,
+    "largura": 0.78,
+    "profundidade": 0.4,
+    "comprimento": null,
+    "massa": 360,
+    "area": 1.87,
+    "posturaDoTamanho": "de frente"
+  },
+  "couraca": 1,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 7,
+    "destreza": 3,
+    "vigor": 5,
+    "percepcao": 3,
+    "inteligencia": 2,
+    "raciocinio": 2,
+    "influencia": 2,
+    "perspicacia": 2,
+    "compostura": 2
+  },
+  "habilidades": {
+    "briga": 4,
+    "bloqueio": 0,
+    "esquiva": 1,
+    "atletismo": 3,
+    "furtividade": 2,
+    "prontidao": 1,
+    "integridade": 2,
+    "resistencia": 3,
+    "sobrevivencia": 3
+  },
+  "habilidadesSec": {
+    "escalada": 3,
+    "musculatura": 3
+  },
+  "especialidades": {
+    "furtividade": [
+      {
+        "foco": "na neve",
+        "valor": 3,
+        "origem": "natural"
+      }
+    ],
+    "briga": [
+      {
+        "foco": "garras",
+        "valor": 2,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 2,
+    "conviccao": 3,
+    "temperanca": 2
+  },
+  "vontade": 7,
+  "aparencia": 4,
+  "deslocamento": {
+    "terra": {
+      "batalha": 4,
+      "arranque": 6,
+      "corrida": 9
+    },
+    "escalada": {
+      "batalha": 3
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Garras",
+      "parte": "maos-de-garra",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "corte",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "O \"Arma\" do site (2 dados, corte, 6 Ticks): a patada de garra de um corpo de urso, Média (`regra-construcao.md` §7, \"patada do urso\"); as duas mãos fazem par (Manobras). A Centelha soma inteira. Jogada: Força 7 + Briga 4 + 2 × o menor entre Centelha 2 e Briga 4 (4)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Investida das garras",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "as duas garras na mesma ação, pela empunhadura dupla do livro (as duas a −1d6)",
+      "duracao": "instantânea",
+      "alcance": "o do corpo a corpo",
+      "area": "um alvo",
+      "efeito": "se as duas garras acertam o mesmo alvo, ele é dilacerado. Quando combina arma empunhada e parte do corpo, usa o custo e as penalidades da empunhadura dupla",
+      "dano": "+2d6, Corte, além das duas garras",
+      "resistencia": "nenhum",
+      "limiteDeUso": "uma vez por ação. Sem custo"
+    },
+    {
+      "nome": "Corpo gélido",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "cada golpe de garra ou de mão nua que acerta",
+      "duracao": "instantânea",
+      "alcance": "o do corpo a corpo",
+      "area": "um alvo",
+      "efeito": "o frio do corpo queima a carne",
+      "dano": "+1d6, gelo, somado ao golpe",
+      "resistencia": "nenhum",
+      "limiteDeUso": "um por golpe. Sem custo"
+    },
+    {
+      "nome": "Olhar paralisante",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "sobrenatural",
+      "ativacao": "uma ação, Velocidade 6",
+      "duracao": "6 Ticks",
+      "alcance": "até onde vê",
+      "area": "a vítima descrita pelo poder",
+      "efeito": "o terror do olhar paralisa a vítima. A vítima fica Paralisada. Defesas Físicas 0, mente livre",
+      "dano": "nenhum adicional",
+      "resistencia": "Influência + Intimidação contra a Defesa Mental do alvo, com o Resistir do livro",
+      "limiteDeUso": "Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "abominável da montanha",
+      "formas": "todas",
+      "texto": "espera camuflado na neve, paralisa o mais forte com o olhar e dilacera com as duas garras; leva gado e gente montanha acima."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão, audição e olfato",
+      "descricao": "os de um humano; enxerga bem na neve ofuscante",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "camuflagem": "some contra a neve; Especialidade natural",
+    "mente": "humanoide; tribal, isolada",
+    "tracos": "corpo enorme coberto de pelagem branca e espessa, cara de macaco, garras negras, pés descalços enormes"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "em clã pequeno, típico 2 a 6; os violentos andam sozinhos",
+    "atividade": "qualquer hora",
+    "dieta": "carnívoro",
+    "caca": "desce para roubar gado e gente",
+    "dianteDeGente": "evita; os expulsos saqueiam"
+  },
+  "ecologia": {
+    "terreno": [
+      "montanha",
+      "gélido"
+    ],
+    "clima": [
+      "frio"
+    ]
+  },
+  "descricao": "Homem das neves de 2,7 m e pelagem branca, que vive em clãs isolados no alto das montanhas. Paralisa com o olhar, rasga com as duas garras geladas e some contra a neve; o fogo o fere fundo.",
+  "lore": [
+    {
+      "titulo": "Abomináveis das montanhas",
+      "texto": "Moradores das encostas baixas contam lendas de homens das neves que descem para roubar gado ou até pessoas, deixando apenas pegadas descalças no sangue sobre a neve."
+    },
+    {
+      "titulo": "Tribos isoladas",
+      "texto": "Vivem em pequenos clãs no alto das montanhas, isolados do contato com outras raças; os mais violentos são expulsos e se tornam saqueadores solitários."
+    },
+    {
+      "titulo": "Fronteira com o alheio",
+      "texto": "Suas moradas erguem-se onde o véu entre este mundo e outros se afina, e ninguém sabe dizer se os yetis vieram de lá ou apenas foram corrompidos pela proximidade."
+    }
+  ],
+  "imagens": [
+    "bestiario/yeti_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [
+      {
+        "tipo": "fogo",
+        "formas": "todas"
+      }
+    ],
+    "resistencias": [],
+    "imunidades": [
+      {
+        "tipo": "gelo",
+        "formas": "todas"
+      }
+    ]
+  },
+  "revisao": [
+    {
+      "campo": "atributos.forca",
+      "motivo": "Acima de 6 pela física (D-143): 360 kg de corpo de urso, acima da Força de referência da massa (6,97) e não abaixo do gorila de 180 kg (Força 7, D-117). O site tinha 6 (For 19 na fonte); 7; o site tinha 6"
+    },
+    {
+      "campo": "couraca",
+      "motivo": "Cobertura do corpo pela R49; metades arredondadas para cima. Absorção natural do livro (`combate.md`). Pelagem espessa e gordura: nível 1, como o couro peludo do molde (tamanho-decisoes-5, item 6: \"Pelagem e gordura podem subir a Couraça e dar Resistência (frio) ao mesmo tempo\") . A imunidade e a fraqueza vão em Elementos; nível 1 pela pelagem e gordura"
+    },
+    {
+      "campo": "comportamento.social",
+      "motivo": "site (Tribos isoladas)"
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": ""
+    },
+    {
+      "campo": "habilidadesEspeciais.Olhar paralisante",
+      "motivo": "R10 e D-197. Duração sugerida de 6 Ticks para abrir uma janela de combate com o corpo paralisado. R1 e D-197. Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação sem Velocidade escrita -> uma ação, Velocidade 6 Pela referência corporal ou de deslocamento do poder. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    }
+  ]
+}

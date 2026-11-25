@@ -1,0 +1,334 @@
+{
+  "id": "diabrete-imp",
+  "idAntigo": "mon-diabrete-imp",
+  "nome": "Diabrete (Imp)",
+  "nomeIngles": "Devil, Imp",
+  "categoria": "corruptor",
+  "papel": "soldado",
+  "ameaca": 2,
+  "centelha": 2,
+  "corpo": {
+    "postura": "bípede, curvado; voa",
+    "apoio": "bipede",
+    "altura": 0.6,
+    "largura": 0.17,
+    "profundidade": 0.08,
+    "comprimento": null,
+    "massa": 3.6,
+    "area": 0.09,
+    "posturaDoTamanho": "silhueta de frente, de pé"
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 2,
+    "destreza": 5,
+    "vigor": 2,
+    "percepcao": 3,
+    "inteligencia": 3,
+    "raciocinio": 3,
+    "influencia": 4,
+    "perspicacia": 4,
+    "compostura": 3
+  },
+  "habilidades": {
+    "briga": 3,
+    "bloqueio": 0,
+    "esquiva": 1,
+    "atletismo": 1,
+    "furtividade": 4,
+    "integridade": 3,
+    "prontidao": 1,
+    "resistencia": 1,
+    "empatia": 3,
+    "manha": 3,
+    "persuasao": 2,
+    "sociabilidade": 2,
+    "ocultismo": 2
+  },
+  "habilidadesSec": {
+    "labia": 3,
+    "voo": 3,
+    "musculatura": 2
+  },
+  "especialidades": {
+    "furtividade": [
+      {
+        "foco": "espiar",
+        "valor": 2,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 5,
+    "compaixao": 1,
+    "conviccao": 5,
+    "temperanca": 4
+  },
+  "vontade": 7,
+  "aparencia": 1,
+  "deslocamento": {
+    "terra": {
+      "batalha": 2,
+      "arranque": 3,
+      "corrida": 5
+    },
+    "voo": {
+      "batalha": 5
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Ferrão",
+      "parte": "cauda-de-ferrao",
+      "classe": "leve",
+      "pgr": [
+        1,
+        1,
+        3
+      ],
+      "dado": "1d6-2",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 1,
+      "bloqueiaComoArma": null,
+      "justificativa": "\"Ferrão venenoso\" (site) e o \"Golpe planar\" de 1 dado e 5 Ticks: o ferrão de bicho pequeno, gesto rápido, Leve (`regra-construcao.md` §7). Leva o veneno (Veneno e doença). Jogada: Destreza 5 + Briga 3 + 2 × o menor entre Centelha 2 e Briga 3 (4)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Ferrão venenoso",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "ataque": "Ferrão",
+      "categoria": "substancia",
+      "ativacao": "o golpe do Ferrão que causa ao menos 1 PV depois da Absorção",
+      "duracao": "a do veneno",
+      "alcance": "o da cauda",
+      "area": "um alvo",
+      "efeito": "o alvo fica Envenenado pelo veneno do diabrete (Veneno e doença), que tira força",
+      "dano": "o do veneno",
+      "resistencia": "corpo, pelo veneno",
+      "limiteDeUso": "O corpo guarda 3 doses e produz 1 dose a cada 4 horas. Cada uso gasta 1 dose. Nada acelera a produção"
+    },
+    {
+      "nome": "invisibilidade",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "sobrenatural",
+      "ativacao": "uma ação, Velocidade 5",
+      "duracao": "até atacar ou desfazer",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Fica Invisível. Som, cheiro e rastro continuam perceptíveis. Ao atacar, Furtividade contra Percepção Passiva determina se o alvo percebe o ataque",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "Adivinhação",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "adivinhacao",
+        "nivel": 1,
+        "efeito": "oraculo"
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 5. O efeito sai no Tick do Golpe",
+      "duracao": "instantânea",
+      "alcance": "um alvo ou uma cena à vista",
+      "area": "não se aplica",
+      "efeito": "revela ao diabrete uma informação oculta sobre o alvo ou a cena; o Mestre responde a uma pergunta; a pergunta alcança até 10 minutos, para trás ou para a frente (Distância no tempo 1 do Oráculo)",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "Forma alternativa",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "materia",
+        "nivel": 2
+      },
+      "categoria": "inato",
+      "ativacao": "uma ação, Velocidade 5",
+      "duracao": "até ele voltar, com outra ação",
+      "alcance": "o próprio corpo",
+      "area": "não se aplica",
+      "efeito": "vira corvo, aranha pequena, rato ou gato preto; os números ficam os do diabrete, menos o deslocamento, que é o do bicho, e a Furtividade, que ganha +2 na forma de aranha ou de rato; na forma de bicho não fala. Use o perfil da forma. O restante é herdado. O equipamento só acompanha quando indicado",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "à vontade. Usar repetidamente causa esforço e pode levar ao cansaço. Sem custo"
+    },
+    {
+      "nome": "Regeneração 2",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "fraqueza": {
+        "forma": "naoRegenera",
+        "tipos": [
+          "prata",
+          "arma abençoada"
+        ]
+      },
+      "texto": "Origem sobrenatural. O dano de prata ou arma abençoada só fecha com outras curas, como Arte, Cura ou descanso. As demais feridas se regeneram normalmente. Recupera 2 PV por minuto, até o máximo de PV. Em combate, recupera 0,2 PV a cada 6 Ticks, contados a partir do Tick do primeiro dano"
+    },
+    {
+      "nome": "imune a veneno",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "o veneno não pega no corpo de diabo. O ferimento do golpe continua",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "Contínuo, sem custo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "espião paciente",
+      "formas": "todas",
+      "texto": "evita a luta; espia na forma de corvo ou de gato, sussurra e manipula; se for pego, pica, fica invisível e foge pelo ar."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão no escuro",
+      "descricao": "enxerga no escuro",
+      "formas": "todas"
+    },
+    {
+      "nome": "visão e audição",
+      "descricao": "as de um bicho pequeno, sem nada além do que a Percepção 3 dá",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "camuflagem": "invisível, ou na forma de bicho comum",
+    "mente": "inteligente, perspicaz, sarcástica",
+    "tracos": "diabo de 60 cm, de pele avermelhada, chifrinhos, asas de morcego e cauda fina terminada em ferrão"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "serve a um feiticeiro ou senhor infernal",
+    "atividade": "qualquer hora",
+    "dieta": "não precisa comer",
+    "caca": "espia, sussurra e tece a queda de alguém",
+    "dianteDeGente": "manipula; evita a luta aberta"
+  },
+  "ecologia": {
+    "terreno": [
+      "qualquer"
+    ],
+    "clima": [
+      "extraplanar"
+    ]
+  },
+  "descricao": "Diabo pequeno e alado que serve de familiar e espião a feiticeiros e senhores infernais, por anos a fio, em troca de proteção ou de uma alma prometida. Perspicaz e paciente, vira corvo, rato ou gato preto para ouvir tudo e tecer devagar a queda de alguém.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Prefere espionar, sussurrar e manipular a lutar abertamente, trocando de forma (rato, corvo, gato preto) para se infiltrar sem ser notado."
+    },
+    {
+      "titulo": "Hábitos",
+      "texto": "Serve como familiar e espião de feiticeiros e senhores infernais, cumprindo tarefas por anos a fio em troca de proteção ou de uma alma prometida ao final do serviço."
+    },
+    {
+      "titulo": "Personalidade",
+      "texto": "Perspicaz, sarcástico e paciente, prefere o plano de longo prazo à violência imediata, sempre com um contrato ou uma armadilha guardada na manga."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "Circula em Calin como o mais discreto dos horrores: um corvo comum pousado na janela do inquisidor, ouvindo tudo, relatando tudo, tecendo lentamente a queda de alguém."
+    }
+  ],
+  "imagens": [
+    "bestiario/diabrete-imp_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [
+      {
+        "tipo": "luz",
+        "formas": "todas"
+      },
+      {
+        "tipo": "sagrado",
+        "formas": "todas"
+      }
+    ],
+    "resistencias": [
+      {
+        "tipo": "gelo",
+        "formas": "todas"
+      },
+      {
+        "tipo": "acido",
+        "formas": "todas"
+      }
+    ],
+    "imunidades": [
+      {
+        "tipo": "fogo",
+        "formas": "todas"
+      }
+    ]
+  },
+  "revisao": [
+    {
+      "campo": "comportamento.dieta",
+      "motivo": ""
+    },
+    {
+      "campo": "habilidadesEspeciais.Ferrão venenoso",
+      "motivo": "R1/R4, D-197. Três doses preservam a reserva para mais de uma presa. Sugestão de 3 doses e 4 h por dose para repor fora da luta. valor de molde, para a bancada (3 doses e produz 1 dose a cada 4 horas)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Adivinhação",
+      "motivo": "R1 e D-197. Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação uma ação, Velocidade 6 -> uma ação, Velocidade 5. O efeito sai no Tick do Golpe. Pela régua da Arte de base. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Forma alternativa",
+      "motivo": "R3. Ativação uma ação, Velocidade 6 -> uma ação, Velocidade 8 Pela referência corporal ou de deslocamento do poder."
+    },
+    {
+      "campo": "corpo",
+      "motivo": "17 antes, 6 depois. O site dava 17; a tabela de PV pela massa dá 5 + 2 ÷ 2 = 6. A massa está na zona de transição (3 a 5 kg) e a faixa de cima daria 12; fica a de baixo, como o quasit, porque o corpo de 3,6 kg não é robusto"
+    },
+    {
+      "campo": "atributos.vigor",
+      "motivo": "17 antes, 6 depois. O site dava 17; a tabela de PV pela massa dá 5 + 2 ÷ 2 = 6. A massa está na zona de transição (3 a 5 kg) e a faixa de cima daria 12; fica a de baixo, como o quasit, porque o corpo de 3,6 kg não é robusto"
+    },
+    {
+      "campo": "virtudes.temperanca",
+      "motivo": "4, e não 1, pelo texto do site (\"paciente\"); `compaixao` 0 sobe a 1, o piso da régua"
+    },
+    {
+      "campo": "ataques",
+      "motivo": "o site gravava um \"Golpe planar\" de 1 dado e 5 Ticks, de corte (`inimigos.json`: \"1d6 +4 corte\", dano médio 7,5). A D-241 levou a Pesado só o golpe de cinco planares; aqui a classe sai do gesto: o ferrão fica Leve, o gesto rápido de bicho pequeno, como os 5 Ticks do site. Dano médio: 7,5 antes; depois, 5,5"
+    },
+    {
+      "campo": "habilidadesEspeciais",
+      "motivo": "sem id no catálogo; os números são provisórios, os do quasit com a Força"
+    }
+  ]
+}

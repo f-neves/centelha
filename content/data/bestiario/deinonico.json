@@ -1,0 +1,261 @@
+{
+  "id": "deinonico",
+  "idAntigo": "mon-deinonychus",
+  "nome": "Deinonico",
+  "nomeIngles": "Deinonychus",
+  "categoria": "animal",
+  "papel": "fera",
+  "ameaca": 3,
+  "centelha": 0,
+  "corpo": {
+    "postura": "ereto (bípede, de corpo horizontal)",
+    "apoio": "bipede",
+    "altura": 0.87,
+    "largura": 0.4,
+    "profundidade": null,
+    "comprimento": 3.35,
+    "comprimentoSemCauda": 1.5,
+    "caudaGrossa": true,
+    "massa": 97,
+    "area": 0.57,
+    "posturaDoTamanho": "vista de lado"
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 4,
+    "destreza": 3,
+    "vigor": 4,
+    "percepcao": 2,
+    "inteligencia": 1,
+    "raciocinio": 2,
+    "influencia": 1,
+    "perspicacia": 1,
+    "compostura": 1
+  },
+  "habilidades": {
+    "briga": 3,
+    "bloqueio": 0,
+    "esquiva": 3,
+    "atletismo": 2,
+    "furtividade": 2,
+    "integridade": 2,
+    "prontidao": 2,
+    "resistencia": 3,
+    "empatia": 0,
+    "sobrevivencia": 2
+  },
+  "habilidadesSec": {
+    "equilibrio": 0,
+    "escalada": 0,
+    "natacao": 0,
+    "voo": 0,
+    "musculatura": 2
+  },
+  "especialidades": {
+    "prontidao": [
+      {
+        "foco": "faro",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 2,
+    "compaixao": 1,
+    "conviccao": 1,
+    "temperanca": 1
+  },
+  "vontade": 3,
+  "aparencia": 6,
+  "deslocamento": {
+    "terra": {
+      "batalha": 3,
+      "arranque": 5,
+      "corrida": 7
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Garra em foice do pé",
+      "parte": "garra",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "A Força não muda: o dano fica (era 1d6 + 4, média 7,5). Garra de mais de 120 mm com a bainha (Ostrom 1969). Fura e prende, não corta: a perna robótica em carcaça de porco só fez furos rasos (Manning e colegas 2006). Média: chute com o corpo atrás. N0 pelo tamanho (seção 7 da regra)."
+    },
+    {
+      "nome": "Mordida",
+      "parte": "mordida",
+      "classe": "leve",
+      "pgr": [
+        1,
+        1,
+        3
+      ],
+      "dado": "1d6-2",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 1,
+      "bloqueiaComoArma": null,
+      "justificativa": "Fica (era 1d6 − 2 + 4, média 5,5). Cerca de 70 dentes em lâmina, rasgo puxando com o pescoço (Tse e colegas 2024). N0 pelos 706 N conferidos; se os 8.200 N de Gignac 2010 forem confirmados, sobe para N1."
+    },
+    {
+      "nome": "Garras da mão",
+      "parte": "garra",
+      "classe": "leve",
+      "pgr": [
+        1,
+        1,
+        3
+      ],
+      "dado": "1d6-2",
+      "multiplicadorForca": 1,
+      "tipoDano": "corte",
+      "nivelPerfuracao": null,
+      "acerto": 1,
+      "bloqueiaComoArma": null,
+      "justificativa": "Fica (era 1d6 − 2 + 4, média 5,5). Mãos de três garras para agarrar (Senter 2006)."
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "agarrar",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "regra": "agarrar",
+      "texto": "puxam a presa"
+    },
+    {
+      "nome": "prender com o peso do corpo",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Garra em foice do pé",
+      "categoria": "inato",
+      "regra": "agarrar",
+      "texto": "segura a presa no chão com o pé e come viva"
+    },
+    {
+      "nome": "investida saltada",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Garra em foice do pé",
+      "categoria": "inato",
+      "regra": "investida"
+    }
+  ],
+  "comoLuta": [],
+  "sentidos": [
+    {
+      "nome": "faro",
+      "descricao": "Prontidão (faro) +2, Especialidade natural (era a Especialidade +2 de hoje, que a decisão 3 passa a natural); alcance . pelos bulbos olfatórios dos dromeossaurídeos (Zelenitsky e colegas 2009)",
+      "formas": "todas"
+    },
+    {
+      "nome": "visão",
+      "descricao": "sem Especialidade; nota: visão estereoscópica melhor do que Ostrom pensava (Maxwell e Witmer 1996, via Wikipédia)",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "mente": "animal",
+    "tracos": "penas por parentesco (Microraptor: Xu e colegas 2003; Velociraptor com nós de pena na ulna: Turner e colegas 2007); chocava os ovos com o corpo, ovo de cerca de 7 cm (Grellet-Tinner e Makovicky 2006)"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitário, com agrupamento na carcaça; caça em grupo em disputa",
+    "dieta": "carnívoro",
+    "dianteDeGente": "não se aplica"
+  },
+  "ecologia": {
+    "terreno": [
+      "floresta"
+    ],
+    "clima": [
+      "tropical"
+    ]
+  },
+  "descricao": "Predador do peso de um homem grande, de garra em foice no pé, que furava e prendia. Achado junto de herbívoros de uma tonelada, sozinho ou em grupo (em disputa).",
+  "lore": [
+    {
+      "titulo": "Predador da carcaça",
+      "texto": "Caça sozinho, e vários se juntam na carcaça grande, onde brigam entre si; retalha a presa com a garra em foice da pata de trás."
+    },
+    {
+      "titulo": "Parentes próximos",
+      "texto": "Indivíduos menores e ainda mais ágeis são conhecidos como velociraptors; os maiores e mais avançados, como megaraptors."
+    }
+  ],
+  "imagens": [
+    "bestiario/deinonico_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "atributos.vigor",
+      "motivo": "Fica (D-172; v2). Predador ágil de 97 kg , de sangue quente pelo que se estima, por isso não desce como os répteis (decisão 10). O 4 vem do corpo que aguenta a dor e a ferida da luta com presa de uma tonelada . Não sai da corrida: o índice de corredor baixo (CLP −2,2, Persons e Currie 2016) fica na nota de pesquisa (jornada)."
+    },
+    {
+      "campo": "atributos.percepcao",
+      "motivo": "Teste de ordem: 2 para os extintos . O faro vai nas Especialidades naturais."
+    },
+    {
+      "campo": "habilidades.esquiva",
+      "motivo": "O ágil comum. Degrau 2. ."
+    },
+    {
+      "campo": "habilidades.atletismo",
+      "motivo": "O salto sobre a presa é  de Fowler e colegas 2011. Degrau 2."
+    },
+    {
+      "campo": "habilidades.furtividade",
+      "motivo": "Era sem linha (0). O levantamento: modo de caça desconhecido; predador no normal, o 2 de quem usa cobertura como hábito . Vivia em planícies de inundação e pântanos de floresta (Forster 1984), terreno de cobertura."
+    },
+    {
+      "campo": "habilidades.prontidao",
+      "motivo": "Predador que caça. Degrau 2. . O faro vai na Especialidade natural."
+    },
+    {
+      "campo": "habilidades.resistencia",
+      "motivo": "Era sem linha (0). O normal da espécie no próprio meio : a pesquisa não traz frio, fome, veneno nem ferida curada. Nenhuma fratura de estresse em 43 ossos da mão e 52 do pé (Rothschild e colegas 2001) mostra esqueleto sadio, e não resistência acima do normal. O índice de corredor (CLP −2,2) fica na nota de pesquisa (jornada)."
+    },
+    {
+      "campo": "corpo.comprimentoSemCauda",
+      "motivo": "estimativa do Arquiteto: 3,35 m de total menos a cauda de dromeossaurídeo (cerca de 55%)"
+    },
+    {
+      "campo": "aparencia",
+      "motivo": "D-107: \"A maioria fica no 6 (comum), alguns acima ou abaixo pela pelagem, pele, penas e cuidado. A faixa vai de 4 (Feio) a 8 (Atraente)\".  A pele e a cor não se conhecem; fica na maioria. Penas:  por parentesco (Microraptor, Velociraptor), aceita pela maioria."
+    },
+    {
+      "campo": "comportamento.social",
+      "motivo": "Roach e Brinkman 2007 (agrupamento na carcaça) e Frederickson e colegas 2020 (convivência tolerante, sem bando de lobo) contra Ostrom e Maxwell 1995 e Brinkman 1998 (caça em grupo). A ficha segue a leitura solitária (diretriz 1)."
+    }
+  ]
+}

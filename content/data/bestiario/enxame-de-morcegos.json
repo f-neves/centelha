@@ -1,0 +1,228 @@
+{
+  "id": "enxame-de-morcegos",
+  "idAntigo": "mon-bat-swarm",
+  "nome": "Enxame de morcegos",
+  "nomeIngles": "Bat Swarm",
+  "categoria": "animal",
+  "papel": "fera",
+  "ameaca": 2,
+  "centelha": 0,
+  "enxame": {
+    "individuosPorQuadrado": 20,
+    "tamanhoEquivalente": "medio"
+  },
+  "corpo": {
+    "postura": "voador",
+    "apoio": "outro",
+    "altura": 0.03,
+    "largura": 0.025,
+    "profundidade": null,
+    "comprimento": 0.09,
+    "comprimentoSemCauda": 0.054,
+    "caudaGrossa": false,
+    "envergadura": 0.28,
+    "massa": 0.011,
+    "area": 0.01,
+    "posturaDoTamanho": "de baixo, asas abertas; indivíduo, anatomia"
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 0,
+    "destreza": 3,
+    "vigor": 3,
+    "percepcao": 3,
+    "inteligencia": 1,
+    "raciocinio": 2,
+    "influencia": 1,
+    "perspicacia": 1,
+    "compostura": 1
+  },
+  "habilidades": {
+    "briga": 1,
+    "bloqueio": 0,
+    "esquiva": 0,
+    "atletismo": 3,
+    "furtividade": 2,
+    "integridade": 1,
+    "prontidao": 2,
+    "resistencia": 2,
+    "empatia": 0,
+    "sobrevivencia": 3
+  },
+  "habilidadesSec": {
+    "equilibrio": 0,
+    "escalada": 0,
+    "natacao": 0,
+    "voo": 4,
+    "musculatura": 0
+  },
+  "especialidades": {
+    "prontidao": [
+      {
+        "foco": "ecolocalização",
+        "valor": 3,
+        "origem": "natural"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 1,
+    "compaixao": 1,
+    "conviccao": 1,
+    "temperanca": 1
+  },
+  "vontade": 3,
+  "aparencia": 6,
+  "deslocamento": {
+    "terra": {
+      "batalha": 1,
+      "arranque": 1,
+      "corrida": 2
+    },
+    "voo": {
+      "batalha": 5
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Mordida do enxame",
+      "parte": "mordida",
+      "classe": "leve",
+      "pgr": [
+        1,
+        1,
+        3
+      ],
+      "dado": "1d6-2",
+      "multiplicadorForca": 0,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 1,
+      "bloqueiaComoArma": null,
+      "justificativa": "Boca pequena de insetívoro: Leve. Força 0: só o dado (D-115). Mordida não medida; N0. Um ataque por ação (D-097), como o enxame de ratos. A Força não muda: segue 1,5"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Pulso do enxame",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "quando um alvo começa uma ação dentro de um quadrado ocupado pelo enxame",
+      "duracao": "instantânea",
+      "alcance": "o quadrado ocupado",
+      "area": "cada alvo dentro do quadrado",
+      "efeito": "O dano é automático, sem jogada de ataque; a Absorção conta. Sair do quadrado ocupado evita os próximos pulsos",
+      "dano": "1d6 + 1 de Perfuração",
+      "resistencia": "sem jogada de ataque; a Absorção conta",
+      "limiteDeUso": "no máximo um pulso por alvo a cada 6 Ticks, sem custo"
+    },
+    {
+      "nome": "Corpo de enxame",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Arma comum fere; cada golpe atinge um quadrado. Ataque de área causa seu dano inteiro em cada quadrado coberto, sem dividir. O quadrado cheio é Médio para atacar e ser alvo. O Tamanho de cada indivíduo só descreve onde cabe e por onde passa. PV e dispersão seguem a quantidade de indivíduos de cada quadrado",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "Posturas de combate",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Anatomia do indivíduo: Minúsculo: de baixo, asas abertas. Minúsculo: pousado, asas fechadas. Vale o Tamanho da postura atual. Abrir as asas ao voar e fechá-las ao pousar faz parte do movimento, sem custo adicional. O quadrado cheio é Médio para atacar e ser alvo",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    }
+  ],
+  "comoLuta": [],
+  "sentidos": [
+    {
+      "nome": "ecolocalização",
+      "descricao": "Prontidão (ecolocalização) +3 (Especialidade natural, era +4). Chamados de 49 a 70 kHz no voo, que caem para 25 a 40 kHz ao achar o alvo (ADW). Alcance: . Vale no escuro",
+      "formas": "todas"
+    },
+    {
+      "nome": "visão e olfato",
+      "descricao": "sem número",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "mente": "animal",
+    "tracos": "colônias de até 20 milhões em Bracken Cave (Bat Conservation International) ou cerca de 4 milhões nas seis grandes cavernas somadas pela contagem térmica (Betke et al. 2008); saem em um a três episódios ao anoitecer (Betke et al. 2008). A caverna da colônia tem o ar carregado de amônia e de pó de guano"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "colônia",
+    "atividade": "noturno; sai ao anoitecer",
+    "dieta": "insetívoro",
+    "caca": "caça no ar, de 6 a 15 m de altura",
+    "dianteDeGente": "foge; morde se pego na mão"
+  },
+  "ecologia": {
+    "terreno": [
+      "subterrâneo",
+      "ruínas",
+      "urbano"
+    ],
+    "clima": [
+      "temperado",
+      "tropical"
+    ]
+  },
+  "descricao": "A nuvem de morcegos que sai da caverna ao anoitecer e envolve quem está na boca dela; o perigo maior é o pó de guano da caverna.",
+  "lore": [
+    {
+      "titulo": "Habitat",
+      "texto": "Vivem em grandes cavernas, ruínas esquecidas e até esgotos de cidades, qualquer lugar escuro onde possam se esconder durante o dia."
+    },
+    {
+      "titulo": "Comportamento",
+      "texto": "Só saem em massa ao amanhecer e ao entardecer, ou quando são expulsos de seus covis por algum intruso ou incêndio."
+    },
+    {
+      "titulo": "Caçada",
+      "texto": "Cada morcego é inofensivo sozinho, mas centenas deles atacando ao mesmo tempo conseguem reduzir um viajante desavisado a uma carcaça em minutos."
+    },
+    {
+      "titulo": "Veneno e doença",
+      "texto": "Doença no jogo: Histoplasmose · Virulência 7 · dia · pelo pó de guano da caverna: quem passa a cena na caverna da colônia rola uma vez, Vigor + Resistência contra a Virulência inteira"
+    },
+    {
+      "titulo": "Enxame",
+      "texto": "20 morcegos por quadrado · voa, numa coluna do chão a 2,5 m · quem fere: só ataque em área (pá, capa ou tocha contam como área improvisada, pelo Mestre) · armadura: vale, só pega o rosto e as mãos expostos · dentro: só foge ou tira os bichos de cima; qualquer outra ação pede Compostura + Integridade contra 10"
+    }
+  ],
+  "imagens": [
+    "bestiario/enxame-de-morcegos_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": []
+}

@@ -1,0 +1,281 @@
+{
+  "id": "carcaju-atroz",
+  "idAntigo": "mon-dire-wolverine",
+  "nome": "Carcaju atroz",
+  "nomeIngles": "Dire Wolverine",
+  "categoria": "animal",
+  "papel": "fera",
+  "ameaca": 3,
+  "centelha": 0,
+  "corpo": {
+    "postura": "quatro patas",
+    "apoio": "quadrupede",
+    "altura": 1.26,
+    "largura": 0.75,
+    "profundidade": null,
+    "comprimento": 3.15,
+    "comprimentoSemCauda": 2.55,
+    "caudaGrossa": false,
+    "massa": 405,
+    "area": 2.27,
+    "posturaDoTamanho": "de lado"
+  },
+  "couraca": 1,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 7,
+    "destreza": 3,
+    "vigor": 6,
+    "percepcao": 3,
+    "inteligencia": 1,
+    "raciocinio": 2,
+    "influencia": 1,
+    "perspicacia": 1,
+    "compostura": 1
+  },
+  "habilidades": {
+    "briga": 4,
+    "bloqueio": 5,
+    "esquiva": 5,
+    "atletismo": 4,
+    "furtividade": 2,
+    "integridade": 4,
+    "prontidao": 3,
+    "resistencia": 4,
+    "empatia": 0,
+    "sobrevivencia": 3
+  },
+  "habilidadesSec": {
+    "equilibrio": 0,
+    "escalada": 1,
+    "natacao": 0,
+    "voo": 0,
+    "corrida": 0,
+    "musculatura": 4
+  },
+  "especialidades": {
+    "resistencia": [
+      {
+        "foco": "frio",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ],
+    "prontidao": [
+      {
+        "foco": "faro",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ],
+    "briga": [
+      {
+        "foco": "presa atolada na neve",
+        "valor": 1,
+        "origem": "livro"
+      }
+    ],
+    "sobrevivencia": [
+      {
+        "foco": "esconder comida",
+        "valor": 1,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 1,
+    "conviccao": 1,
+    "temperanca": 1
+  },
+  "vontade": 4,
+  "aparencia": 6,
+  "deslocamento": {
+    "terra": {
+      "batalha": 8,
+      "arranque": 13,
+      "corrida": 18
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Patada",
+      "parte": "garra",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "corte",
+      "nivelPerfuracao": null,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Era 1d6 + 9, média 12,5. No corpo de 400 kg a garra vira o golpe com o ombro atrás, como a do urso (seção 7)."
+    },
+    {
+      "nome": "Mordida",
+      "parte": "mordida",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Era 1d6 + 9, média 12,5. A mordida do carcaju (254 N) escalada pela área do músculo (× 3² = 9): cerca de 2.290 N , abaixo de 4.000 N: N0. Opção, não segundo golpe (D-097)."
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "fúria ao ferimento",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "na ação seguinte àquela em que é ferido",
+      "duracao": "até um dos lados cair ou o combate acabar",
+      "alcance": "o próprio corpo",
+      "area": "a própria criatura",
+      "efeito": "Fica Enfurecido. +2 nas ações físicas exceto tiro, −2 em Esquiva e Bloqueio, só ações físicas. Não pode ser convencido. Sofre as penalidades de ferimento",
+      "dano": "nenhum adicional",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "A cada exposição ao gatilho, sem custo"
+    },
+    {
+      "nome": "presença aterradora",
+      "formas": "todas",
+      "classe": "sem regra ainda",
+      "categoria": "inato",
+      "efeito": "do tamanho de um urso, a simples aproximação dele assusta presas e rivais"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "perseguição longa",
+      "formas": "todas",
+      "texto": "segue a presa por quilômetros na neve até ela cansar."
+    },
+    {
+      "nome": "escalada",
+      "formas": "todas",
+      "texto": "sobe barranco e rocha íngreme com facilidade."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "faro",
+      "descricao": "Prontidão (faro) +2, o do carcaju",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "mente": "animal",
+    "tracos": "os do carcaju, no tamanho de um urso grande; pelagem oleosa (Resistência (frio) +2)"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitário",
+    "dieta": "carnívoro e carniceiro",
+    "caca": "carniça e caça",
+    "dianteDeGente": "não recua"
+  },
+  "ecologia": {
+    "terreno": [
+      "floresta",
+      "montanha"
+    ],
+    "clima": [
+      "frio"
+    ]
+  },
+  "descricao": "O carcaju no tamanho de um urso grande. O motivo de existir fica na descrição, não na mecânica.",
+  "lore": [
+    {
+      "titulo": "Fúria territorial",
+      "texto": "Ainda mais territorial que seus parentes menores, não hesita em atacar até vilarejos inteiros construídos em suas terras."
+    },
+    {
+      "titulo": "Gigante das terras frias",
+      "texto": "Passa de 3 m de comprimento e de 400 kg, um pesadelo peludo das florestas geladas."
+    }
+  ],
+  "imagens": [],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "atributos.forca",
+      "motivo": "Era 9. Muito acima da do carcaju (2), como pede a D-176 (\"Especialmente se uma criatura é uma versão maior da outra\"). Pela massa: 405 kg, com o urso-polar (8, 346 kg), o urso-das-cavernas (8) e o crocodilo-do-nilo (8, 198 kg), e um acima do urso-pardo (7). Fica no topo das âncoras de 7 a 8 dos predadores de várias centenas de quilos, e não acima delas: nada do carcaju real pede uma Força que passe a dos ursos do mesmo peso."
+    },
+    {
+      "campo": "atributos.vigor",
+      "motivo": "D-176: \"Criaturas maiores costumam ter mais Força e Vigor\". Um acima do carcaju (4), a dureza do inverno ártico e da carniça congelada (Wikipédia; Magoun 2018) num corpo 27 vezes mais pesado. Igual ao urso-pardo e ao urso-polar, de massa parecida. O Vigor pesa em PV, absorção, fome e frio, e não na corrida (decisão 5 da quarta rodada)."
+    },
+    {
+      "campo": "habilidades.esquiva",
+      "motivo": "Corpo pesado de 400 kg, como os ursos; o carcaju tem 2."
+    },
+    {
+      "campo": "habilidadesSec.escalada",
+      "motivo": "Era sem linha. O carcaju tem 2 pelas garras de grampo (Wikipédia); um corpo de 400 kg não sobe em árvore como o de 15 kg, mas as garras ainda o levam por terreno íngreme e rocha.; 1, nova, abaixo do carcaju (2) pelo corpo de 400 kg;"
+    },
+    {
+      "campo": "corpo.altura",
+      "motivo": "0,42 × 3"
+    },
+    {
+      "campo": "corpo.comprimento",
+      "motivo": "1,05 × 3"
+    },
+    {
+      "campo": "corpo.comprimentoSemCauda",
+      "motivo": "0,85 × 3"
+    },
+    {
+      "campo": "corpo.largura",
+      "motivo": "0,25 × 3 (a do carcaju já era estimada)"
+    },
+    {
+      "campo": "corpo.massa",
+      "motivo": "Referência: 405 kg, a conta do gigante pelo cubo (mantida): massa de base 15 kg, o carcaju macho adulto, meio da faixa do macho de 11 a 18 kg (ADF&G, conferido em 15/10/2026) ; fator linear k = 3; 15 × 3³ = 405 kg. Faixa pela mesma conta: 297 a 486 kg (o macho de 11 a 18 kg × 27). Sexos pela mesma conta: macho 297 a 486 kg, fêmea 162 a 324 kg (a fêmea de 6 a 12 kg × 27; machos 30 a 40% mais pesados, ADF&G).  (escala pelo cubo; não há animal real). Fonte da base: ADF&G, \"Wolverine\"; ADW. D-141, com o corte de 35 kg da decisão 22 (não muda de faixa)"
+    },
+    {
+      "campo": "comportamento.dianteDeGente",
+      "motivo": ""
+    },
+    {
+      "campo": "ataques.Mordida",
+      "motivo": "Era 1d6 + 9, média 12,5. A mordida do carcaju (254 N) escalada pela área do músculo (× 3² = 9): cerca de 2.290 N , abaixo de 4.000 N: N0. Opção, não segundo golpe (D-097)."
+    },
+    {
+      "campo": "habilidadesEspeciais.fúria ao ferimento",
+      "motivo": "R9. O ferimento dispara o Frenesi da criatura. O término segue o combate entre os dois lados. A ficha não concedia imunidade a penalidade de ferimento."
+    },
+    {
+      "campo": "deslocamento",
+      "motivo": "congelada (decisão 23); 63 km/h, sem real para conferir"
+    }
+  ]
+}

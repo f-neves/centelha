@@ -1,0 +1,275 @@
+{
+  "id": "capa-sombria",
+  "idAntigo": "mon-cloaker",
+  "nome": "Capa Sombria",
+  "nomeIngles": "Cloaker",
+  "categoria": "aberracao",
+  "papel": "elite",
+  "ameaca": 4,
+  "centelha": 4,
+  "corpo": {
+    "postura": "voadora, de abas abertas",
+    "apoio": "outro",
+    "altura": 0.15,
+    "largura": 2.4,
+    "profundidade": null,
+    "comprimento": 1.8,
+    "comprimentoSemCauda": 1.8,
+    "caudaGrossa": false,
+    "massa": 45,
+    "area": 2.16,
+    "posturaDoTamanho": "de cima, abas abertas"
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 5,
+    "destreza": 5,
+    "vigor": 6,
+    "percepcao": 4,
+    "inteligencia": 4,
+    "raciocinio": 4,
+    "influencia": 4,
+    "perspicacia": 4,
+    "compostura": 4
+  },
+  "habilidades": {
+    "briga": 5,
+    "bloqueio": 0,
+    "esquiva": 1,
+    "atletismo": 1,
+    "furtividade": 3,
+    "prontidao": 2,
+    "integridade": 4,
+    "ocultismo": 1
+  },
+  "habilidadesSec": {
+    "voo": 3,
+    "musculatura": 0
+  },
+  "especialidades": {
+    "furtividade": [
+      {
+        "foco": "imóvel, como manto",
+        "valor": 3,
+        "origem": "natural"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 1,
+    "conviccao": 3,
+    "temperanca": 2
+  },
+  "vontade": 9,
+  "aparencia": 1,
+  "deslocamento": {
+    "terra": {
+      "batalha": 1,
+      "arranque": 2,
+      "corrida": 2
+    },
+    "voo": {
+      "batalha": 4
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Mordida",
+      "parte": "boca-na-face-de-baixo",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "O site dava \"Garras e presas\" de 2 dados e 6 Ticks, perfurante; a capa não tem garras: é a boca de dentes. Golpe que pede o corpo atrás (Média), com os 6 Ticks do site. A Centelha soma inteira. Jogada: Destreza 5 (igual à Força) + Briga 5 + 2 × o menor entre Centelha 4 e Briga 5 (8)"
+    },
+    {
+      "nome": "Cauda",
+      "parte": "cauda-de-chicote",
+      "classe": "leve",
+      "pgr": [
+        1,
+        1,
+        3
+      ],
+      "dado": "1d6-2",
+      "multiplicadorForca": 1,
+      "tipoDano": "impacto",
+      "nivelPerfuracao": null,
+      "acerto": 1,
+      "bloqueiaComoArma": null,
+      "justificativa": "Chicote rápido de membro, Leve (regra-construcao §7) . Jogada: Destreza 5 + Briga 5 + 2 × o menor entre Centelha 4 e Briga 5 (8)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Envolver",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "ataque": "Mordida",
+      "categoria": "inato",
+      "ativacao": "uma ação, Velocidade 7, lançando-se sobre um alvo de Tamanho Grande ou menor",
+      "duracao": "até o alvo se soltar ou ela soltar",
+      "alcance": "o do corpo a corpo",
+      "area": "um alvo",
+      "efeito": "na jogada de Agarrar do livro que acerta, envolve o alvo no próprio corpo: ele fica Agarrado e Cego, e a Mordida acerta sem jogada a cada 6 Ticks; quem ataca a capa enquanto ela envolve alguém faz metade do dano nela e metade na vítima. Cego aplica −1d6 nas ações de visão. Se souber do ataque, Esquiva −4 e Bloqueio −8. Se não souber, Surpreso, com Defesas 0",
+      "dano": "o da Mordida",
+      "resistencia": "corpo, para escapar, pela jogada de Agarrar do livro",
+      "limiteDeUso": "um alvo envolvido por vez. Usar repetidamente causa esforço e pode levar ao cansaço. Sem custo"
+    },
+    {
+      "nome": "Gemido sônico",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "fascinacao",
+        "nivel": 3
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 5. O efeito sai no Tick do Golpe",
+      "duracao": "à escolha, abaixo",
+      "alcance": "9 m em volta dela",
+      "area": "à escolha: pavor, todos na área ficam Em pânico até o fim da cena; náusea, todos na área ficam Caídos e passam o próximo Tick só levantando; lamento, todos na área ficam Abalados até o fim da cena",
+      "efeito": "o lamento infrassônico não pega nela nem em outra capa sombria (\"Imune ao próprio gemido\", site)",
+      "dano": "nenhum",
+      "resistencia": "Influência + Integridade da criatura contra a Defesa Mental do alvo, com o Resistir do livro",
+      "limiteDeUso": "Pavor: 1 uso grátis por dia. Outros gemidos: 1 uso grátis por cena. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "Manipulação de sombras",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "ofuscacao",
+        "nivel": 3
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 5, só em penumbra ou escuridão. O efeito sai no Tick do Golpe",
+      "duracao": "até o fim da cena, ou até ela desfazer",
+      "alcance": "o próprio corpo, ou 18 m para a imagem falsa",
+      "area": "à escolha: borrada, conta como em Cobertura parcial contra quem a ataca; duplicatas, três imagens dela, e quem a ataca escolhe uma ao acaso (uma em quatro é ela, e a imagem acertada some); imagem falsa, uma cena de sombras de até 6 m",
+      "efeito": "o descrito na escolha",
+      "dano": "nenhum",
+      "resistencia": "Influência + Integridade da criatura contra a Defesa Mental do alvo, com o Resistir do livro",
+      "limiteDeUso": "Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. um efeito por vez"
+    },
+    {
+      "nome": "torpor do gemido",
+      "formas": "todas",
+      "classe": "sem regra ainda",
+      "categoria": "inato",
+      "efeito": "o gemido entorpece um alvo, que fica travado sem conseguir agir"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "espreita do túnel",
+      "formas": "todas",
+      "texto": "espera imóvel como um manto pendurado, cai sobre o último do grupo e o envolve, geme para apavorar os outros e se esconde nas próprias sombras se a luta vira."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão no escuro",
+      "descricao": "enxerga no escuro dos túneis",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "camuflagem": "imita um manto, lençol ou couro pendurado; Furtividade (imóvel, como manto) +3",
+    "mente": "inteligente; intenções obscuras; fala a língua das profundezas (site)",
+    "tracos": "arraia de couro negro, abas largas com garras de osso na borda (que parecem fivelas de manto), olhos vermelhos, boca de dentes por baixo e cauda de chicote"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "sozinha",
+    "atividade": "qualquer hora, no escuro",
+    "dieta": "carnívora",
+    "caca": "emboscada, imitando um objeto inerte",
+    "dianteDeGente": "ataca o desavisado; raramente se associa a alguém"
+  },
+  "ecologia": {
+    "terreno": [
+      "subterrâneo"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Arraia de couro negro que desliza sem som pelos túneis e passa por manto pendurado até atacar. Envolve a vítima no próprio corpo, geme num lamento que apavora, derruba ou paralisa, e se multiplica nas sombras.",
+  "lore": [
+    {
+      "titulo": "Terror das Profundezas",
+      "texto": "Parecendo uma arraia diabólica voadora, o cloaker desliza silenciosamente pelos túneis, imitando objetos inertes até o momento de atacar."
+    },
+    {
+      "titulo": "Motivos Obscuros",
+      "texto": "Suas intenções permanecem um mistério até para quem estuda a espécie; fala apenas a língua das profundezas e raramente se associa a outras criaturas."
+    }
+  ],
+  "imagens": [
+    "bestiario/capa-sombria_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "atributos.forca",
+      "motivo": "O site tinha 7; com 45 kg, ficaria igual ao gorila (180 kg, Força 7) e muito acima da Força de referência da massa (5,53, manual 3.9). Desce para 5, pelo teste de ordem; 5; o site tinha 7"
+    },
+    {
+      "campo": "corpo.comprimento",
+      "motivo": "O site dá só a envergadura; 1,8 m de corpo e cauda de 1,2 m, estimados; o site dá só a envergadura"
+    },
+    {
+      "campo": "comportamento.social",
+      "motivo": "site"
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": ""
+    },
+    {
+      "campo": "comportamento.dieta",
+      "motivo": ""
+    },
+    {
+      "campo": "ataques.Cauda",
+      "motivo": "Chicote rápido de membro, Leve (regra-construcao §7) . Jogada: Destreza 5 + Briga 5 + 2 × o menor entre Centelha 4 e Briga 5 (8)"
+    },
+    {
+      "campo": "habilidadesEspeciais.Gemido sônico",
+      "motivo": "R1 e D-197. Pavor: 1 uso grátis por dia. Outros gemidos: 1 uso grátis por cena. Cada uso extra custa 1 de Energia. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação uma ação, Velocidade 7 -> uma ação, Velocidade 5. O efeito sai no Tick do Golpe. Pela régua da Arte de base. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Manipulação de sombras",
+      "motivo": "R1 e D-197. Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. um efeito por vez. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação uma ação, Velocidade 6, só em penumbra ou escuridão -> uma ação, Velocidade 5, só em penumbra ou escuridão. O efeito sai no Tick do Golpe. Pela régua da Arte de base. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "ataques",
+      "motivo": "Mordida Média e Cauda Leve no lugar das \"Garras e presas\""
+    }
+  ]
+}

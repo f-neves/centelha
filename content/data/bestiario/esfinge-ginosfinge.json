@@ -1,0 +1,299 @@
+{
+  "id": "esfinge-ginosfinge",
+  "idAntigo": "mon-esfinge-ginosfinge",
+  "nome": "Esfinge (Ginosfinge)",
+  "nomeIngles": "Sphinx",
+  "categoria": "besta-magica",
+  "papel": "chefe",
+  "ameaca": 5,
+  "centelha": 5,
+  "corpo": {
+    "postura": "quatro patas; voadora",
+    "apoio": "quadrupede",
+    "altura": 1.47,
+    "largura": 0.77,
+    "profundidade": null,
+    "comprimento": 3.75,
+    "comprimentoSemCauda": 3,
+    "caudaGrossa": false,
+    "envergadura": 6,
+    "massa": 230,
+    "area": 1.48,
+    "posturaDoTamanho": "silhueta vista de lado, asas fechadas, no chão",
+    "segundoTamanho": {
+      "area": 7.56,
+      "posturaDoTamanho": "de baixo, asas abertas, em voo"
+    }
+  },
+  "couraca": 1,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 7,
+    "destreza": 4,
+    "vigor": 6,
+    "percepcao": 5,
+    "inteligencia": 5,
+    "raciocinio": 5,
+    "influencia": 5,
+    "perspicacia": 5,
+    "compostura": 5
+  },
+  "habilidades": {
+    "briga": 5,
+    "bloqueio": 1,
+    "esquiva": 1,
+    "atletismo": 2,
+    "furtividade": 1,
+    "integridade": 5,
+    "prontidao": 4,
+    "resistencia": 3,
+    "conhecimentos": 5,
+    "ocultismo": 4,
+    "investigacao": 3,
+    "empatia": 3,
+    "oratoria": 3,
+    "sociabilidade": 0,
+    "sobrevivencia": 2
+  },
+  "habilidadesSec": {
+    "voo": 3,
+    "musculatura": 2
+  },
+  "especialidades": {},
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 4,
+    "compaixao": 1,
+    "conviccao": 3,
+    "temperanca": 2
+  },
+  "vontade": 10,
+  "aparencia": 7,
+  "deslocamento": {
+    "terra": {
+      "batalha": 4,
+      "arranque": 6,
+      "corrida": 9
+    },
+    "voo": {
+      "batalha": 6
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Garras",
+      "parte": "garra-patas-da-frente",
+      "classe": "leve",
+      "pgr": [
+        1,
+        1,
+        3
+      ],
+      "dado": "1d6-2",
+      "multiplicadorForca": 1,
+      "tipoDano": "corte",
+      "nivelPerfuracao": null,
+      "acerto": 1,
+      "bloqueiaComoArma": null,
+      "justificativa": "A patada de felino, Leve, como a do leão; as \"garras devastadoras\" do site vão pela Rajada. Jogada: Força 7 + Briga 5 + 2 × o menor entre Centelha 5 e Briga 5 (10)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Posturas de combate",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Grande: silhueta vista de lado, asas fechadas, no chão. Enorme: de baixo, asas abertas, em voo. Vale o Tamanho da postura atual. Abrir as asas ao voar e fechá-las ao pousar faz parte do movimento, sem custo adicional",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "Garras devastadoras",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Garras",
+      "categoria": "inato",
+      "regra": "rajada",
+      "texto": "Até dois golpes por ação"
+    },
+    {
+      "nome": "Enigma mortal",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "fascinacao",
+        "nivel": 4
+      },
+      "categoria": "milagre",
+      "ativacao": "uma ação, Velocidade 6, propondo o enigma em voz alta. A ginosfinge dirige o desafio a quem a ouve. Ela precisa formular e enunciar o enigma e dar ao desafiado a oportunidade de responder. Quem o enfrenta aceita a consequência do erro ou da recusa",
+      "duracao": "até o fim da cena",
+      "alcance": "quem ouve, até 18 m",
+      "area": "um alvo que aceita ou recusa o enigma",
+      "efeito": "quem recusa ou erra fica Amedrontado, ou leva a dor pura do dano, à escolha dela. Se escolher o sono ou a paralisia, a vítima fica Dormindo ou Paralisada pelo prazo do enigma",
+      "dano": "3d6 + Centelha, fenômeno, se ela escolher a dor",
+      "resistencia": "Influência + Oratória da criatura contra a Defesa Mental do alvo, com o Resistir do livro. quem passa ou responde certo não sofre nada",
+      "limiteDeUso": "uma vez por semana. Limite fixo, sem uso extra nem ampliação"
+    },
+    {
+      "nome": "Sabedoria ancestral",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "adivinhacao",
+        "nivel": 5
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 7, recordando. O efeito sai no Tick do Golpe",
+      "duracao": "instantânea",
+      "alcance": "o próprio saber",
+      "area": "não se aplica",
+      "efeito": "lembra algo que ninguém vivo deveria saber: um fato de história, o paradeiro de algo perdido, o nome verdadeiro de alguém; o Mestre diz o quanto ela revela",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "1 uso grátis por dia. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "Ver o invisível",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "ofuscacao",
+        "nivel": 3
+      },
+      "categoria": "inato",
+      "ativacao": "nenhuma, está sempre ligado",
+      "duracao": "contínua",
+      "alcance": "o da visão",
+      "area": "o que ela vê",
+      "efeito": "enxerga quem está invisível e vê através de ilusões e disfarces",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "à vontade. Sem custo"
+    },
+    {
+      "nome": "laços com outras esfinges",
+      "formas": "todas",
+      "classe": "sem regra ainda",
+      "categoria": "inato",
+      "efeito": "troca saber com esfinges distantes pela mente"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "feitiços arcanos",
+      "formas": "todas",
+      "texto": "lança magias de dano e de controle, mais de uma vez por cena. Os efeitos disponíveis em jogo são os poderes individuais descritos na ficha."
+    },
+    {
+      "nome": "guardiã de enigmas",
+      "formas": "todas",
+      "texto": "desafia o intruso com um enigma antes de lutar e respeita quem responde com inteligência; quem erra, ou ataca, enfrenta garras e feitiços."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "ver o invisível",
+      "descricao": "vê através da invisibilidade e da ilusão o tempo todo (Manobras)",
+      "formas": "todas"
+    },
+    {
+      "nome": "visão",
+      "descricao": "de felino, enxerga na penumbra",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "mente": "inteligente, paciente e orgulhosa do próprio intelecto; fala",
+    "tracos": "corpo de leoa de 3 m, asas de penas de 6 m e rosto de mulher de olhar fixo"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitária; troca saber com outras esfinges distantes",
+    "atividade": "qualquer hora",
+    "dieta": "carnívora",
+    "caca": "guarda ruínas; não caça gente por hábito",
+    "dianteDeGente": "propõe um enigma antes de cogitar o combate"
+  },
+  "ecologia": {
+    "terreno": [
+      "deserto",
+      "ruínas"
+    ],
+    "clima": [
+      "tropical"
+    ]
+  },
+  "descricao": "Leoa alada de rosto de mulher que guarda ruínas e tesouros de saber antigo, desafiando o intruso com enigmas antes de cogitar o combate. Respeita quem responde com inteligência mais do que com força; quem erra paga o preço.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Guarda ruínas e tesouros de saber antigo, desafiando qualquer intruso com enigmas antes de cogitar o combate, e respeita quem responde com inteligência mais do que com força."
+    },
+    {
+      "titulo": "Hábitat",
+      "texto": "Ocupa templos esquecidos, criptas de sábios e ruínas soterradas no deserto ou nas montanhas."
+    },
+    {
+      "titulo": "Sociedade",
+      "texto": "Solitária por hábito, mas mantém laços telepáticos e troca conhecimento com outras esfinges distantes, quase como uma irmandade invisível."
+    },
+    {
+      "titulo": "Personalidade",
+      "texto": "Paciente e orgulhosa do próprio intelecto, mais interessada em testar do que em destruir."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "Guardiã de um saber anterior à Grande Guerra, do tipo que a Tecelã protege e que as igrejas supressoras temem; suas ruínas talvez escondam respostas sobre a Fenda que ninguém mais ousa procurar."
+    }
+  ],
+  "imagens": [
+    "bestiario/esfinge-ginosfinge_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "comportamento.dieta",
+      "motivo": ""
+    },
+    {
+      "campo": "habilidadesEspeciais.Enigma mortal",
+      "motivo": "R3. Ativação uma ação, Velocidade 6, propondo o enigma em voz alta -> uma ação, Velocidade 6, propondo o enigma em voz alta. A ginosfinge dirige o desafio a quem a ouve. Ela precisa formular e enunciar o enigma e dar ao desafiado a oportunidade de responder. Quem o enfrenta aceita a consequência do erro ou da recusa. Pela referência corporal ou de deslocamento do poder.; poderes naturais com as bases e os usos do site e números da ficha (D-197); o Amedrontado é a condição do livro para o medo que o site nomeia, e o sono e a paralisia ficam sem regra ainda"
+    },
+    {
+      "campo": "habilidadesEspeciais.Sabedoria ancestral",
+      "motivo": "R3. Ativação uma ação, Velocidade 6, recordando -> uma ação, Velocidade 7, recordando. O efeito sai no Tick do Golpe. Pela régua da Arte de base. R1, aplicado em 04/11. Centelha 5 sustenta o uso extra depois da consulta diária. valor de molde, para a bancada (uso extra de 1 de Energia).; poderes naturais com as bases e os usos do site e números da ficha (D-197); o Amedrontado é a condição do livro para o medo que o site nomeia, e o sono e a paralisia ficam sem regra ainda"
+    },
+    {
+      "campo": "corpo.area",
+      "motivo": "Grande na borda de 5% (1,48 m², 2% acima do corte), pelas asas dobradas; Enorme em voo"
+    },
+    {
+      "campo": "ataques",
+      "motivo": "o site gravava um ataque só, \"Garras e presas\" (`inimigos.json`: \"2d6 +12 perfurante\", 6 Ticks, dano médio 19). A ficha separa os golpes pelo gesto, um por ação (D-097). Dano médio: 19 antes; depois, garras 13,5, duas pela Rajada"
+    },
+    {
+      "campo": "habilidadesEspeciais.Ver o invisível",
+      "motivo": "poderes naturais com as bases e os usos do site e números da ficha (D-197); o Amedrontado é a condição do livro para o medo que o site nomeia, e o sono e a paralisia ficam sem regra ainda"
+    }
+  ]
+}

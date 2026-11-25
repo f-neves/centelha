@@ -1,0 +1,2898 @@
+{
+  "escalaHabilidade": [
+    {
+      "nivel": 0,
+      "rotulo": "Leigo",
+      "texto": "Sem treino: só o talento bruto do Atributo, e mal. Erra o que um treinado acerta."
+    },
+    {
+      "nivel": 1,
+      "rotulo": "Iniciado",
+      "texto": "Noções básicas; o aprendiz. Resolve o trivial com sorte."
+    },
+    {
+      "nivel": 2,
+      "rotulo": "Competente",
+      "texto": "O profissional comum da área; faz bem o cotidiano."
+    },
+    {
+      "nivel": 3,
+      "rotulo": "Profissional",
+      "texto": "Confiável e respeitado; vence a maioria dos desafios médios sem suar."
+    },
+    {
+      "nivel": 4,
+      "rotulo": "Perito",
+      "texto": "Referência regional; resolve o que trava os outros."
+    },
+    {
+      "nivel": 5,
+      "rotulo": "Mestre",
+      "texto": "Um dos melhores que existem; faz o que poucos sequer sonham."
+    },
+    {
+      "nivel": 6,
+      "rotulo": "Lendário",
+      "texto": "O ápice absoluto do ofício; um nome que entra para a história da arte. Faz o que os próprios Mestres consideram impossível."
+    }
+  ],
+  "escalaCentelha": [
+    {
+      "nivel": 0,
+      "rotulo": "Mortal",
+      "texto": "Pessoa comum, cerca de 95% da população. Sem acesso a Proezas; conjura Artes com a Mana, uma reserva própria com o valor da Força de Vontade. Tem Energia, mas não a usa: ela serve às Proezas."
+    },
+    {
+      "nivel": 1,
+      "rotulo": "Tocado",
+      "texto": "A fagulha acendeu: refino sobre-humano, ainda dentro do possível. Proezas de nível 1; a Energia passa a servir e a Mana cresce."
+    },
+    {
+      "nivel": 2,
+      "rotulo": "Desperto",
+      "texto": "A Centelha firma-se: o que era lampejo vira força consciente. Um degrau acima do Tocado, ainda no limiar do herói. Proezas até o nível 2."
+    },
+    {
+      "nivel": 3,
+      "rotulo": "Herói",
+      "texto": "Façanhas sobre-humanas que assombram mortais. Proezas até o nível 3."
+    },
+    {
+      "nivel": 4,
+      "rotulo": "Campeão",
+      "texto": "Feitos conhecidos em muitos lugares; começa a quebrar as leis da física. Proezas até o nível 4."
+    },
+    {
+      "nivel": 5,
+      "rotulo": "Lendário",
+      "texto": "Há lendas sobre ele; mudou o rumo de nações. Proezas até o nível 5."
+    },
+    {
+      "nivel": 6,
+      "rotulo": "Semideus",
+      "texto": "Material de fábula, venerado como divindade. Proezas até o nível 6 (teto). É AQUI QUE O JOGADOR PARA: a régua segue até 12, mas os degraus acima são da ficção e do bestiário."
+    },
+    {
+      "nivel": 7,
+      "rotulo": "Divino · a nomear",
+      "provisorio": true,
+      "texto": "Onde o jogador para e a ficção continua: o primeiro degrau que nenhum personagem alcança. Não destrava Proeza nenhuma (o teto de nível de Proeza é 6), e daí para cima a Centelha só engorda ataque, as três Defesas, Energia e Mana. Anjo maior, senhor demoníaco, dragão ancestral."
+    },
+    {
+      "nivel": 8,
+      "rotulo": "Divino · a nomear",
+      "provisorio": true,
+      "texto": "A presença pesa no lugar antes de o ser agir. Ainda uma criatura do mundo, mas uma que exércitos não detêm."
+    },
+    {
+      "nivel": 9,
+      "rotulo": "Divino · a nomear",
+      "provisorio": true,
+      "texto": "Poder de escala regional: o que ele decide muda o mapa. É onde estão o Balor, o Solar e o Grande Wyrm."
+    },
+    {
+      "nivel": 10,
+      "rotulo": "Divino · a nomear",
+      "provisorio": true,
+      "texto": "Calamidade nomeada. Existe uma por era, e o mundo se organiza em volta dela. É o degrau do Tarrasque."
+    },
+    {
+      "nivel": 11,
+      "rotulo": "Divino · a nomear",
+      "provisorio": true,
+      "texto": "Força cosmológica menor: um princípio do mundo com vontade própria."
+    },
+    {
+      "nivel": 12,
+      "rotulo": "Divino · a nomear",
+      "provisorio": true,
+      "texto": "O teto real da régua. Divindade plena, entidade cósmica: o que não se enfrenta, se negocia ou se sobrevive."
+    }
+  ],
+  "notaEscalaCentelha": "A régua vai de 0 a 12, e o 12 é o teto real (`M-08`). O TETO DO JOGADOR é 6, e a razão é mecânica e não de gosto: acima de 6 a Centelha não destrava Proeza nenhuma, porque o nível máximo de Proeza é 6 e o portão é 'o nível N exige Centelha >= N'. Do 7 para cima ela só engorda ataque, as três Defesas, Energia e Mana, que é o que convém a um deus e não a um personagem. Os RÓTULOS dos degraus 7 a 12 estão marcados como `provisorio`: nomeá-los é worldbuilding e voltará à mesa como decisão de lore. Os degraus 7, 9 e 10 existem porque o bestiário já os usa: dez criaturas passam de 6, e as dez são `tipo: chefe` com `ameaça: 6`.",
+  "escalasProeza": {
+    "nota": "Cada Técnica cresce conforme seu nível (1 a 6). O TIPO de melhora define a trilha e a escala. A maioria das Técnicas é 'estado' (uma capacidade, sem número). Os valores abaixo somam por cima do 2*menor(Centelha,Habilidade) que já pesa em ataque e nas 4 defesas (Reforma da Centelha, 28/09/2026).",
+    "trilhas": {
+      "bonus": {
+        "rotulo": "Bônus",
+        "unidade": "+ à rolagem ou ao valor passivo",
+        "valores": [
+          "+3",
+          "+4",
+          "+6",
+          "+9",
+          "+12",
+          "+15"
+        ],
+        "uso": "Habilidade, ataque, defesa, resistir, disputa, penalidade ao alvo, Iniciativa, redução de Ticks"
+      },
+      "soak": {
+        "rotulo": "Absorção",
+        "unidade": "+ Absorção",
+        "valores": [
+          "+2",
+          "+3",
+          "+4",
+          "+6",
+          "+9",
+          "+12"
+        ],
+        "uso": "reduzir o dano recebido"
+      },
+      "dano": {
+        "rotulo": "Dano",
+        "unidade": "+ dados de dano",
+        "valores": [
+          "+1d6",
+          "+1d6",
+          "+2d6",
+          "+3d6",
+          "+4d6",
+          "+6d6"
+        ],
+        "uso": "golpe mais forte"
+      },
+      "penetracao": {
+        "rotulo": "Penetração",
+        "unidade": "Absorção ignorada",
+        "valores": [
+          "2",
+          "3",
+          "4",
+          "6",
+          "toda a armadura",
+          "armadura + Absorção natural"
+        ],
+        "uso": "furar a defesa do alvo"
+      },
+      "carga": {
+        "rotulo": "Carga",
+        "unidade": "× capacidade de erguer/carregar",
+        "valores": [
+          "×2",
+          "×3",
+          "×4",
+          "×10",
+          "×30",
+          "×100"
+        ],
+        "uso": "levantar, carregar, arremessar peso",
+        "anchor": [
+          "uma pessoa/porta",
+          "duas pessoas/portão",
+          "carroça/cavalo",
+          "~1 t: viga/pedra de cerco",
+          "~5-10 t: estátua/parede",
+          "dezenas de t: torre/navio"
+        ]
+      },
+      "salto": {
+        "rotulo": "Salto",
+        "unidade": "× distância/altura de salto",
+        "valores": [
+          "×2",
+          "×3",
+          "×4",
+          "×8",
+          "×20",
+          "×50"
+        ],
+        "uso": "pular longe/alto, cair sem dano",
+        "anchor": [
+          "telhado/fosso",
+          "muro alto/ravina",
+          "de telhado a telhado",
+          "cruza um rio",
+          "some da vista",
+          "de montanha a montanha"
+        ]
+      },
+      "velocidade": {
+        "rotulo": "Velocidade",
+        "unidade": "× deslocamento",
+        "valores": [
+          "×1,5",
+          "×1,75",
+          "×2",
+          "×3",
+          "×5",
+          "×10"
+        ],
+        "uso": "correr, mover-se",
+        "anchor": [
+          "mais rápido que a corrida",
+          "bem acima do atleta",
+          "atleta de elite dobrado",
+          "supera um cavalo a galope",
+          "um borrão",
+          "quase teleporte"
+        ]
+      },
+      "tamanho": {
+        "rotulo": "Tamanho",
+        "unidade": "tamanho que consegue afetar",
+        "valores": [
+          "seu tamanho",
+          "seu tamanho",
+          "+1 categoria",
+          "+2 categorias",
+          "+3 categorias",
+          "qualquer tamanho"
+        ],
+        "uso": "agarrar, bloquear, dominar criatura maior"
+      },
+      "estado": {
+        "rotulo": "Estado",
+        "unidade": "capacidade sem número",
+        "valores": [
+          "—",
+          "—",
+          "—",
+          "—",
+          "—",
+          "—"
+        ],
+        "uso": "destrava uma capacidade, sentido, imunidade, voo, invisibilidade, controle ou efeito qualitativo. É a MAIORIA das Técnicas.",
+        "nota": "em disputa resolve pela subtração: o efeito só cede a quem traz poder (nível/atributo) efetivamente maior."
+      }
+    },
+    "parametros": {
+      "nota": "Parâmetros secundários que uma Técnica pode escalar por cima do efeito principal, na mesma lógica do improviso do Arcano. As escalas SÃO diferentes das do Arcano de propósito: a Proeza é o corpo, o Arcano é o ambiente.",
+      "alcance": [
+        "3 m",
+        "5 m",
+        "8 m",
+        "20 m",
+        "50 m",
+        "150 m"
+      ],
+      "alvos": [
+        "1",
+        "2",
+        "3",
+        "10",
+        "50",
+        "300+"
+      ],
+      "duracao": [
+        "1 ação",
+        "6 Ticks",
+        "1 cena",
+        "várias cenas",
+        "horas",
+        "1 dia ou mais"
+      ]
+    },
+    "notaDesperto": "O nível 2 (Desperto) é o meio-degrau entre o Tocado (1) e o Herói (3): os valores numéricos interpolam entre os dois (bônus +4, Absorção +3, Penetração 3, ×3 em carga e salto). Onde a trilha é discreta e não tem meio-termo (os dados de dano, a categoria de tamanho), o Desperto repete o valor do Tocado e a própria Técnica carrega um efeito extra como seu degrau: uma Técnica de dano do Desperto soma +1d6 mais um raspão (atordoar, empurrar, penetrar)."
+  },
+  "escalaVontade": [
+    {
+      "nivel": 0,
+      "rotulo": "Sem reserva",
+      "texto": "Não há nada a queimar: nenhuma ação turbinada, nenhuma resistência extra, nenhuma conjuração que peça Força de Vontade. O piso grátis, de quem não investe nada."
+    },
+    {
+      "nivel": 1,
+      "rotulo": "Frágil",
+      "texto": "Vontade fraca: cede fácil ao medo, à manipulação e ao cansaço, e a reserva acaba na primeira cena dura."
+    },
+    {
+      "nivel": 5,
+      "rotulo": "Heroica",
+      "texto": "Reserva sólida de um herói. Gasta-se para potencializar ações, resistir a medo/manipulação e conjurar."
+    },
+    {
+      "nivel": 7,
+      "rotulo": "Férrea",
+      "texto": "Determinação acima do comum; raramente se esgota numa cena."
+    },
+    {
+      "nivel": 9,
+      "rotulo": "Lendária",
+      "texto": "Vontade que dobra o destino; um poço fundo de combustível heroico."
+    },
+    {
+      "nivel": 12,
+      "rotulo": "Titânica",
+      "texto": "Vontade no teto humano: um poço quase inesgotável de combustível heroico."
+    }
+  ],
+  "recuperacaoVontade": {
+    "sono": "1 ponto por noite de sono, em meditação, descanso completo ou sono profundo",
+    "firula": "Por Firula, quando o Mestre premiar a descrição, E se a Força de Vontade for a reserva escolhida pelo jogador: 1 ponto no nível 2, 3 pontos no nível 3. O nível 1 não devolve Força de Vontade (devolve 1 de Energia).",
+    "firulaPorNivel": { "1": 0, "2": 1, "3": 3 },
+    "reguaMoral": "1 ponto quando o personagem age fiel à conduta da própria Virtude num momento em que isso lhe custa, a critério do Mestre",
+    "tetoPorCena": null,
+    "quantoPorSono": 1,
+    "nota": "A Força de Vontade era a única das três reservas sem relógio: a Mana volta por hora (`arcano.recuperacaoMana`) e a Energia por cena. O gatilho do sono reusa de propósito o vocabulário da Mana, em vez de inventar uma taxonomia de descanso curto e longo que o sistema não tem.",
+    "respondido": "As duas metades caíram na `M-11b`, em 15/09/2026. A Firula de nível 3 devolve MAIS: 3 contra 1. E NÃO há teto por cena, nem de quantas Firulas nem de quantos pontos, em nenhuma das três reservas. `tetoPorCena` é `null` por decisão explícita da mesa, e não por falta de número.",
+      "aRevisar": "quanto XP a Firula de nível 3 devolve, além da reserva. Não foi decidido, e é número e não redação."
+  },
+  "gastoVontade": {
+    "nota": "O número do 'turbinar uma ação importante' que aparecia sem valor em aparencia-virtudes-vontade.md. Decidido em 26/09/2026 (B14 fase 2, item 12).",
+    "porPonto": "+1d6 numa jogada ativa, ou +4 numa Defesa (passiva)",
+    "teto": "1 ponto por ação ou jogada, inclusive cada golpe que se defende (não empilha dois pontos no mesmo lance)."
+  },
+  "virtudeSomaRegra": {
+    "nota": "Redigido por escrito em 26/09/2026, fechando a auditoria docs/pendencias/M-virtude-somada.md: nenhum teste soma Virtude a Atributo ou Habilidade na mesma parada. A Virtude rola sozinha (teste de Virtude, Frenesi) ou entra como bônus voluntário pelo Canalizar Virtude (aparencia-virtudes-vontade.md), que é a ÚNICA exceção. As 17 ocorrências de 'Vigor + Convicção' encontradas na auditoria viraram 'Vigor + Resistência' (a mesma Habilidade que já resolve veneno, doença e ambiente no capítulo Resistir); Banir e Círculo passaram a resistir pela Defesa Mental passiva.",
+    "excecao": "Canalizar Virtude: bônus voluntário, uma vez por cena por Virtude, some o valor cheio à rolagem normal (Atributo + Habilidade + Virtude). Não é teste: sem risco, sem Dificuldade própria. O teto ou contrapartida do bônus segue em aberto (M-18)."
+  },
+  "escalaAparencia": [
+    {
+      "nivel": 0,
+      "rotulo": "Monstruoso (−6)",
+      "texto": "Provoca horror ou repulsa imediata em quem olha; o piso grátis, de quem não investe nada. −6 nas jogadas sociais alinhadas, e +6 ao INTIMIDAR."
+    },
+    {
+      "nivel": 1,
+      "rotulo": "Deformado (−5)",
+      "texto": "Repulsivo ou desfigurado. −5 nas jogadas sociais alinhadas, mas +5 ao INTIMIDAR."
+    },
+    {
+      "nivel": 2,
+      "rotulo": "Repulsivo (−4)",
+      "texto": "Causa desconforto imediato em quem olha."
+    },
+    {
+      "nivel": 3,
+      "rotulo": "Muito feio (−3)",
+      "texto": "Destoa na multidão pela falta de graça."
+    },
+    {
+      "nivel": 4,
+      "rotulo": "Feio (−2)",
+      "texto": "Pouco atraente, sem chamar atenção pelo bem."
+    },
+    {
+      "nivel": 5,
+      "rotulo": "Sem graça (−1)",
+      "texto": "Discreto, um pouco aquém do comum, sem chamar atenção por isso."
+    },
+    {
+      "nivel": 6,
+      "rotulo": "Comum",
+      "texto": "Aparência mediana, sem bônus nem ônus."
+    },
+    {
+      "nivel": 7,
+      "rotulo": "Bonito (+1)",
+      "texto": "Atraente; chama olhares."
+    },
+    {
+      "nivel": 8,
+      "rotulo": "Atraente (+2)",
+      "texto": "Chama atenção com facilidade; um rosto que as pessoas notam e comentam."
+    },
+    {
+      "nivel": 9,
+      "rotulo": "Beleza (+3)",
+      "texto": "Beleza marcante; abre portas."
+    },
+    {
+      "nivel": 10,
+      "rotulo": "Beleza universal (+4)",
+      "texto": "Quem o vê não esquece."
+    },
+    {
+      "nivel": 11,
+      "rotulo": "Extraordinário (+5)",
+      "texto": "Beleza quase sobrenatural; para conversas num salão."
+    },
+    {
+      "nivel": 12,
+      "rotulo": "Ápice (+6)",
+      "texto": "O auge do que um rosto humano alcança; presença de tirar o fôlego."
+    }
+  ],
+  "aparencia": {
+    "nota": "Traço próprio 0 a 12 (não é atributo), piso 0, custo ×2 por ponto (ver xp.aparencia). Bônus DIRECIONAL somado FLAT: é o bônus social GERAL, entra em TODA jogada social (incluindo o Combate Social), separado dos Antecedentes, que desde 20/09/2026 não somam a jogada nenhuma: eles descontam passos do Neutro na Régua de Relação (a metade do nível do traço, para baixo, por passo, e só o 6 chega aos três; o Mestre soma outros traços quando a situação pedir, dentro dos três passos; D-027, ver antecedentes.md). + quando a aparência ajuda o objetivo (seduzir, impressionar), − quando atrapalha (intimidar, e o inverso para os feios). ALÉM do social: aparência muito alta é MEMORÁVEL e atrapalha passar despercebido (penalidade em furtividade urbana, seguir alguém, se misturar à multidão); o Mestre pode aplicar o mesmo a uma deformidade marcante, também inesquecível. A Compostura define o raio de quanto da Aparência real você consegue mascarar.",
+    "piso": 0,
+    "min": 0,
+    "max": 12,
+    "custoMult": 2,
+    "curva": {
+      "0": -6,
+      "1": -5,
+      "2": -4,
+      "3": -3,
+      "4": -2,
+      "5": -1,
+      "6": 0,
+      "7": 1,
+      "8": 2,
+      "9": 3,
+      "10": 4,
+      "11": 5,
+      "12": 6
+    }
+  },
+  "pisos": {
+    "atributo": 1,
+    "habilidade": 0,
+    "virtude": 1,
+    "vontade": 0,
+    "centelha": 0,
+    "caminho": 0,
+    "aparencia": 0
+  },
+  "limitesCriacao": {
+    "nota": "D-040 e D-055 (04/10/2026): a ficha básica não tem restrição de criação, nem de Atributo, de Habilidade ou de Centelha, e o pico deixou de existir; valem os máximos normais da ficha e os ajustes raciais. Quem informa aos jogadores as restrições da campanha é o Mestre."
+  },
+  "iniciante": 1500,
+  "veterano": 2000,
+  "especialista": 2600,
+  "forca": {
+    "notaLevantamento": "Esta tabela é hoje só a escala da Arte de força (levantamentoDaArte, motor.ts): o peso erguido do personagem e da criatura é a R15, pela massa (criatura.pesoErguido; D-184, D-267), e o capítulo Corpo e Movimento a mostra gerada do motor (gen-cap-peso-erguido.mjs). FAH = (Força × 3) + Halterofilismo, de 3 a 24. Atletismo NÃO entra: erguer o máximo é contração estática, e Atletismo é mobilidade e fôlego. O que sai da tabela é o peso que se tira do CHÃO até a altura do quadril, uma vez, sem sair do lugar. Erguer o mesmo peso ACIMA DA CABEÇA custa metade disso, e ARREMESSAR custa um quarto: quanto mais alto o peso precisa ir, menos peso vai.",
+    "notaCarga": "As cinco faixas de carga saem do peso máximo P: Mínima até P/8, Leve até P/4, Média até P/2, Pesada até 3P/4 e Máxima até P. A velocidade de deslocamento é vel = 1 − (peso ÷ 3P/4)^1,5. O expoente vem do ajuste da literatura de locomoção com carga: quinze soldados com mochila andam a 96% do passo carregando 22% do próprio peso, 87% carregando 44% e 76% carregando 66%, o que dá expoente 1,62 com menos de um ponto percentual de resíduo, e a varredura contra marcha e sprint juntos tem o mínimo em 1,5. Assim a Mínima acaba em 93%, a Leve em 81% e a Média em 46%. Na Pesada o deslocamento é pequeno mas existe, de 46% a zero. Acima de 3P/4 não há deslocamento nenhum: o peso se ergue e se segura, e não se leva a lugar nenhum.",
+    "notaArremesso": "FAA = (Força × 2) + Atletismo + Arremesso, de 2 a 24. Halterofilismo não entra aqui, mas entra pelo peso máximo, que é o teto do arremesso. Alcance = 7 × FAA^0,7 ÷ peso^0,4, e o número já supõe a melhor situação possível, correndo e girando. O ápice fica em 0,1 kg: abaixo disso a velocidade do braço satura e só o ar cobra, então cada vez que o peso cai pela metade o alcance perde 10%. O teto de arremesso é um quarto do peso máximo, e nos últimos 20% até ele o alcance desaba até zero.",
+    "levantamento": {
+      "3": 30,
+      "4": 44,
+      "5": 60,
+      "6": 76,
+      "7": 94,
+      "8": 115,
+      "9": 135,
+      "10": 155,
+      "11": 175,
+      "12": 195,
+      "13": 220,
+      "14": 240,
+      "15": 260,
+      "16": 290,
+      "17": 310,
+      "18": 340,
+      "19": 360,
+      "20": 390,
+      "21": 420,
+      "22": 440,
+      "23": 470,
+      "24": 500,
+      "25": 525,
+      "26": 550,
+      "27": 575,
+      "28": 625,
+      "29": 650,
+      "30": 675,
+      "31": 700,
+      "32": 750,
+      "33": 775,
+      "34": 800,
+      "35": 825,
+      "36": 875,
+      "37": 900,
+      "38": 925,
+      "39": 975,
+      "40": 1000
+    },
+    "cargaExpoente": 1.5,
+    "arremessoConst": 7,
+    "arremessoExpFaa": 0.7,
+    "arremessoExpMassa": 0.4,
+    "arremessoApice": 0.1,
+    "arremessoExpLeve": 0.15,
+    "arremessoTeto": 0.25,
+    "arremessoQueda": 0.8,
+    "levantamentoAcimaCabeca": 0.5,
+    "cargaCorte": 0.75,
+    "notaCargaAgua": "Curva própria pra Vel. de Natação (mesmo formato da curva de Corrida, vel = 1 − (peso ÷ maxKg ÷ corte)^expoente), mais dura: corte 0,5 e expoente 2, contra 0,75/1,5 da Corrida. Metade da carga máxima já zera a velocidade de natação (a pessoa para de nadar e começa a afundar), e a queda é mais brusca antes disso. Vale só pra Vel. de Natação; os três testes de água brava usam a Circunstância fixa (armadura: o dobro da Penalidade dela, carga acima da Leve +2), sem essa curva.",
+    "cargaCorteAgua": 0.5,
+    "cargaExpoenteAgua": 2
+  },
+"progressaoPorSessao": [
+    10,
+    20
+  ],
+  "centelhaGate": "A Centelha só aumenta com permissão do Mestre, num marco de história ou feito maior. Ela NÃO custa XP (ver `xp.centelha`): o salto de tier é narrativo, e não se compra em massa.",
+  "xp": {
+    "modelo": "O preço de UM nível é (base + mult × nível). O tipo diz como somar: 'acum' soma os preços do piso+1 até o nível; 'flat' cobra só o preço do nível pedido, sem os de baixo; 'gratis' não custa XP.",
+    "atributo": {
+      "tipo": "acum",
+      "base": 5,
+      "mult": 5,
+      "piso": 1,
+      "nota": "15·20·25·30·35 do nível 2 ao 6 · acumulado 15·35·60·90·125. Acima do 6 a escada continua (40·45·50…), se o Mestre abrir."
+    },
+    "habilidadePrimaria": {
+      "tipo": "acum",
+      "base": 4,
+      "mult": 2,
+      "piso": 0,
+      "nota": "6·8·10·12·14·16 · acumulado 6·14·24·36·50·66."
+    },
+    "habilidadeSecundaria": {
+      "tipo": "acum",
+      "base": 2,
+      "mult": 1,
+      "piso": 0,
+      "nota": "Metade exata da primária em todos os níveis: 3·4·5·6·7·8 · acumulado 3·7·12·18·25·33."
+    },
+    "antecedente": {
+      "tipo": "acum",
+      "base": 0,
+      "mult": 3,
+      "piso": 0,
+      "nota": "O custo do próximo ponto é o novo valor × 3: 3·6·9·12·15·18 · acumulado 3·9·18·30·45·63. Fica entre a Habilidade secundária e a primária, porque é poder de campanha e não de dado."
+    },
+    "especialidadePrimaria": {
+      "tipo": "acum",
+      "base": 8,
+      "mult": 4,
+      "piso": 0,
+      "nota": "O dobro da habilidade de mesmo nível: 12·16·20 · acumulado 12·28·48.",
+      "limite": "Especialidade nomeada: cada Habilidade abre até [nível/2] níveis no total (um quadrado por nível), distribuídos em escopos nomeados diferentes ou concentrados num só. Bônus situacional (só no escopo nomeado, o Mestre julga), não soma em toda rolagem."
+    },
+    "especialidadeSecundaria": {
+      "tipo": "acum",
+      "base": 4,
+      "mult": 2,
+      "piso": 0,
+      "nota": "Metade da especialidade primária: 6·8·10 · acumulado 6·14·24."
+    },
+    "virtude": {
+      "tipo": "acum",
+      "base": 4,
+      "mult": 2,
+      "piso": 1,
+      "nota": "8·10·12·14·16 do nível 2 ao 6 · acumulado 8·18·30·44·60."
+    },
+    "vontade": {
+      "tipo": "acum",
+      "base": 0,
+      "mult": 2,
+      "piso": 0,
+      "nota": "Multiplicador puro (2 × nível). O piso desceu de 1 para 0: o nível 1 passou a ser comprado."
+    },
+    "aparencia": {
+      "tipo": "acum",
+      "base": 0,
+      "mult": 2,
+      "piso": 0,
+      "nota": "Mesma trilha da Vontade. Piso 0, régua 0–12, modificador −6 a +6."
+    },
+    "centelha": {
+      "tipo": "gratis",
+      "base": 0,
+      "mult": 0,
+      "piso": 0,
+      "nota": "Não custa XP. O tier de Centelha é concedido pelo Mestre num marco de história (ver centelhaGate); cobrar XP por ele criava a situação de o Mestre conceder o marco e o jogador não poder pagá-lo."
+    },
+    "tecnica": {
+      "tipo": "flat",
+      "base": 5,
+      "mult": 5,
+      "piso": 0,
+      "nota": "Por Proeza, sem acumular: 10·15·20·25·30·35. O nível N exige Centelha ≥ N, e é esse portão que limita a profundidade. É de propósito: a Centelha é o eixo de história do sistema, concedida pelo Mestre num marco, e não se compra com XP: travar a profundidade de Técnica a ela é o desenho pretendido, não acidente."
+    },
+    "arte": {
+      "tipo": "acum",
+      "base": 10,
+      "mult": 5,
+      "piso": 0,
+      "nota": "Por Arte: 15·20·25·30·35·40 · acumulado 15·35·60·90·125·165."
+    },
+    "efeito": {
+      "tipo": "flat",
+      "base": 0,
+      "mult": 4,
+      "piso": 0,
+      "nota": "Efeito Especial dentro de uma Arte: 4 × nível, por Efeito, sem acumular. Não é preciso comprar o Efeito de nível 1 para comprar o de nível 2. Só até o nível que você tem na Arte."
+    }
+  },
+  "dadoArmaPorPeso": {
+    "leve": "1d6-2",
+    "media": "1d6",
+    "pesada": "2d6",
+    "hasteMedia": "1d6",
+    "hasteGuerra": "1d6+2"
+  },
+  "dificuldade": [
+    {
+      "dif": 5,
+      "desafio": "Fácil",
+      "aaltura": "3 · Iniciante"
+    },
+    {
+      "dif": 10,
+      "desafio": "Média",
+      "aaltura": "6 · Competente"
+    },
+    {
+      "dif": 15,
+      "desafio": "Difícil",
+      "aaltura": "9 · Perito"
+    },
+    {
+      "dif": 20,
+      "desafio": "Limite humano",
+      "aaltura": "12 · Mestre"
+    },
+    {
+      "dif": 25,
+      "desafio": "Excepcional",
+      "aaltura": "15 · Herói"
+    },
+    {
+      "dif": 30,
+      "desafio": "Sobre-humano",
+      "aaltura": "18 · Semideus"
+    },
+    {
+      "dif": 35,
+      "desafio": "Lendário",
+      "aaltura": "21 · além do teto do jogador"
+    },
+    {
+      "dif": 40,
+      "desafio": "Mítico",
+      "aaltura": "24 · além do teto do jogador"
+    },
+    {
+      "dif": 45,
+      "desafio": "Semidivino",
+      "aaltura": "27+ · além do teto do jogador"
+    }
+  ],
+  "ferimentos": [
+    {
+      "minPct": 61,
+      "maxPct": 100,
+      "estado": "Saudável",
+      "penAcao": 0,
+      "penAcaoDados": 0,
+      "penDefesa": 0
+    },
+    {
+      "minPct": 31,
+      "maxPct": 60,
+      "estado": "Machucado",
+      "penAcao": -2,
+      "penAcaoDados": 0,
+      "penDefesa": -2
+    },
+    {
+      "minPct": 11,
+      "maxPct": 30,
+      "estado": "Grave",
+      "penAcao": 0,
+      "penAcaoDados": -1,
+      "penDefesa": -4
+    },
+    {
+      "minPct": 1,
+      "maxPct": 10,
+      "estado": "Crítico",
+      "penAcao": 0,
+      "penAcaoDados": -2,
+      "penDefesa": -8
+    },
+    {
+      "minPct": 0,
+      "maxPct": 0,
+      "estado": "Incapacitado",
+      "penAcao": null,
+      "penAcaoDados": null,
+      "penDefesa": null
+    }
+  ],
+  "morte": {
+    "nota": "DANO É DANO, CURA É CURA (`M-21`). Todo dano soma no mesmo número (corte, perfuração, impacto, queimadura, queda, veneno) e qualquer cura cura, seja qual for o método. Não há segunda trilha e não há acumulador separado do que fere de verdade: o tipo do golpe pesa na ABSORÇÃO (`dano.modos`, `dano.soakNatural`) e não na cicatriz. Cai-se em Vida 0 ou menos, e morre-se ao perder vida ALÉM do zero até o limite abaixo.",
+    "quedaVida": 0,
+    "estadoQueda": "Incapacitado",
+    "condicaoMorte": "morto",
+    "limiteDivisor": 2,
+    "limiteArredonda": {
+      "semCentelha": "baixo",
+      "comCentelha": "alto"
+    },
+    "limiteComparacao": "<=",
+    "limiteNota": "O limite é a METADE do PV MÁXIMO, contada abaixo do zero: morre-se quando a Vida chega a −(PV máximo ÷ 2) ou menos. O NÚMERO NÃO SE ESCREVE em lugar nenhum, aqui inclusive, porque PV máximo varia por Vigor e por porte (`derivados.pv`): ele se deriva de cada ficha por este divisor, e os exemplos moram no capítulo, que é onde o portão os confere.",
+    "limiteArredondaNota": "QUEM NÃO TEM CENTELHA ARREDONDA PARA BAIXO, QUEM TEM ARREDONDA PARA CIMA (`M-21c`). Só muda alguma coisa em PV ímpar, e a diferença é de um ponto: o meio ponto que sobra da divisão vira a favor de quem tem a fagulha. Não é número novo, é a direção do arredondamento de um número que já existia. O contra comprado: é exceção num sistema que arredonda para baixo em toda parte, e exceção de um cálculo só é a cláusula que envelhece calada.",
+    "porqueMetade": "Decidido em 15/09/2026 com medição (docs/simulacao/caixa/m21-morte-medicao.md). Socorrer um caído custa cerca de 4 Ticks; o limite de um quarto do PV dá 5 Ticks de margem mediana e empata com o próprio socorro já a 8 metros, enquanto metade dá 10 Ticks no cenário comum. E três coisas que a medição não cobre puxam para o limite maior: o Sangramento come a margem por fora, a medição rodou uma build maximizada, e a Velocidade da ação de estabilizar é suposição.",
+    "contraComprado": "Com metade do PV e o inimigo ignorando quem caiu, ninguém morre por acidente: morrer vira decisão de quem está batendo. Foi comprado de propósito, e é a mesma leitura que substituiu as duas trilhas: fazer de 'não matar' a decisão de PARAR DE BATER, que acontece na mesa e no momento.",
+    "estadoDaMesa": "A tabela `ferimentos` continua respondendo pelo que se vê: Vida 0 ou menos é `Incapacitado`, em qualquer profundidade. O que a régua nova acrescenta abaixo do zero é o FIM dessa faixa, e o estado seguinte é a condição `morto` de condicoes.json. O Grid JÁ aplica o limite (`M-21`, item 4) desde a rodada da Regra do Quase-Acerto (27/09/2026), em `grid.astro`, `motor.mjs` e `artes-grid-mesa.ts`; a migração 40 (RPC `jogador_dano`) rodou em produção em 28/09/2026 (commit `caafa029`), com a Centelha DESCONHECIDA no lado do servidor; o arredondamento exato por Centelha continua em aberto, com as duas opções (a)/(b) documentadas dentro do próprio `supabase/migracao-40.sql`."
+  },
+  "derivados": {
+    "pv": {
+      "nota": "PV base considera criatura de porte Médio (humanoide). base + Vigor×vigorMult. Criaturas de outros portes usam a tabela `porte` (base e multiplicador escalam com o tamanho): maiores aguentam mais mesmo com o mesmo Vigor. Médio = valores do topo (default para PCs). O PC também usa a tabela: o porte vem de `racas.json` (`M-29`). E a régua para decidir o porte de uma raça nova, da `M-29b`: BAIXO NÃO É PEQUENO, LARGO COMPENSA. O porte acompanha a MASSA e não a altura, porque a altura já tem efeito próprio (o dois terços de deslocamento, `deslocamentoFrac`). É por isso que das três raças de baixa estatura duas são pequenas (Gnomo e Halfling) e o Anão, \"baixo e corpulento\", é médio.",
+      "base": 25,
+      "vigorMult": 3,
+      "porte": {
+        "minusculo": {
+          "base": 15,
+          "vigorMult": 1
+        },
+        "miudo": {
+          "base": 15,
+          "vigorMult": 1
+        },
+        "pequeno": {
+          "base": 20,
+          "vigorMult": 2
+        },
+        "medio": {
+          "base": 25,
+          "vigorMult": 3
+        },
+        "grande": {
+          "base": 30,
+          "vigorMult": 4
+        },
+        "enorme": {
+          "base": 35,
+          "vigorMult": 5
+        },
+        "imenso": {
+          "base": 40,
+          "vigorMult": 5
+        },
+        "colossal": {
+          "base": 45,
+          "vigorMult": 5
+        }
+      },
+      "massa": {
+        "nota": "Regra nova (decisoes-autor §9; D-180, ponto 9): a Vida pela massa, da criatura. O motor da criatura (src/lib/motor.ts) a lê pela `conta`, abaixo; a ficha do jogador usa derivados.pv.porte, pelo Tamanho da raça (D-234).",
+        "linhas": [
+          {
+            "massa": "até 100 g",
+            "pv": "1",
+            "comVigor3": 1,
+            "transicao": "70 a 130 g"
+          },
+          {
+            "massa": "100 g a 1 kg",
+            "pv": "Vigor",
+            "comVigor3": 3,
+            "transicao": "0,7 a 1,3 kg"
+          },
+          {
+            "massa": "1 a 4 kg",
+            "pv": "5 + (Vigor ÷ 2, para baixo)",
+            "comVigor3": 6,
+            "transicao": "3 a 5 kg"
+          },
+          {
+            "massa": "4 a 8 kg",
+            "pv": "10 + Vigor",
+            "comVigor3": 13,
+            "transicao": "6,4 a 9,6 kg"
+          },
+          {
+            "massa": "8 a 15 kg",
+            "pv": "15 + Vigor",
+            "comVigor3": 18,
+            "transicao": "12 a 18 kg"
+          },
+          {
+            "massa": "15 a 35 kg",
+            "pv": "20 + (Vigor × 2)",
+            "comVigor3": 26,
+            "transicao": "28 a 42 kg"
+          },
+          {
+            "massa": "35 a 220 kg",
+            "pv": "25 + (Vigor × 3)",
+            "comVigor3": 34,
+            "transicao": "187 a 253 kg"
+          },
+          {
+            "massa": "220 kg a 1,8 t",
+            "pv": "30 + (Vigor × 4)",
+            "comVigor3": 42,
+            "transicao": "1,62 a 1,98 t"
+          },
+          {
+            "massa": "1,8 a 14 t",
+            "pv": "35 + (Vigor × 5)",
+            "comVigor3": 50,
+            "transicao": "12,6 a 15,4 t"
+          },
+          {
+            "massa": "14 a 110 t",
+            "pv": "40 + (Vigor × 5)",
+            "comVigor3": 55,
+            "transicao": "104,5 a 115,5 t"
+          },
+          {
+            "massa": "acima de 110 t",
+            "pv": "45 + (Vigor × 5)",
+            "comVigor3": 60,
+            "transicao": ""
+          }
+        ],
+        "notaConta": "A mesma tabela em número, a que o motor lê (src/lib/motor.ts, plano-conversao.md, A2): até `ateKg` (inclusive), PV = base + Vigor × vigorMult ÷ vigorDivisor (para baixo). `zonaKg` é a zona de transição do topo da linha: nela a ficha escolhe a linha pelo corpo (robusto sobe, frágil desce; decisoes-autor §13) e guarda a escolha em `corpo.linhaPV`. Vale para a criatura; o jogador usa `porte`, pelo Tamanho da raça (D-234).",
+        "conta": [
+          { "ateKg": 0.1, "base": 1, "vigorMult": 0, "vigorDivisor": 1, "zonaKg": [0.07, 0.13] },
+          { "ateKg": 1, "base": 0, "vigorMult": 1, "vigorDivisor": 1, "zonaKg": [0.7, 1.3] },
+          { "ateKg": 4, "base": 5, "vigorMult": 1, "vigorDivisor": 2, "zonaKg": [3, 5] },
+          { "ateKg": 8, "base": 10, "vigorMult": 1, "vigorDivisor": 1, "zonaKg": [6.4, 9.6] },
+          { "ateKg": 15, "base": 15, "vigorMult": 1, "vigorDivisor": 1, "zonaKg": [12, 18] },
+          { "ateKg": 35, "base": 20, "vigorMult": 2, "vigorDivisor": 1, "zonaKg": [28, 42] },
+          { "ateKg": 220, "base": 25, "vigorMult": 3, "vigorDivisor": 1, "zonaKg": [187, 253] },
+          { "ateKg": 1800, "base": 30, "vigorMult": 4, "vigorDivisor": 1, "zonaKg": [1620, 1980] },
+          { "ateKg": 14000, "base": 35, "vigorMult": 5, "vigorDivisor": 1, "zonaKg": [12600, 15400] },
+          { "ateKg": 110000, "base": 40, "vigorMult": 5, "vigorDivisor": 1, "zonaKg": [104500, 115500] },
+          { "ateKg": null, "base": 45, "vigorMult": 5, "vigorDivisor": 1, "zonaKg": null }
+        ]
+      }
+    },
+    "danoForca": {
+      "nota": "Multiplicador da Força somada ao dano por nº de mãos: 1 mão ×1, 2 mãos ×2 (armas versáteis empunhadas com as duas mãos também ×2). À distância o multiplicador vem da arma (forcaMult): arco curto ×1 com teto forcaCap 3 (a Força máxima padrão do Curto), arco longo ×1, arco composto ×2 com forcaMin 4 (M-32; ver a D-075); bestas ×0 (não usam Força, bônus embutido em danoBonus; Pen pequena N1, média N1, grande N2). Arcos e bestas miram pela Percepção.",
+      "umaMao": 1,
+      "duasMaos": 2
+    },
+    "defesa": {
+      "atributo": "destreza",
+      "mult": 2,
+      "especialidade": true,
+      "especialidadeNota": "`true` quer dizer PODE SOMAR QUANDO O ESCOPO SE APLICAR, e não soma sempre (`M-03`). O portão da Especialidade é a situação, então ela não entra no número parado que a ficha imprime: entra por cima, na hora em que o escopo nomeado se revela. Vale igual nas três Defesas.",
+      "maisCentelha": true,
+      "centelhaMult": 1,
+      "centelhaNota": "DESATUALIZADO desde a Reforma da Centelha (28/09/2026): a regra viva é 2×menor(Centelha,Habilidade), calculada em calc.ts (centelhaNaJogada), não este campo flat. Mantido só porque scripts/lib-tempo.mjs e scripts/cost-examples.mjs ainda o leem (ver K35 em docs/pendencias/K-combate-linha-do-tempo.md)."
+    },
+    "defesaMental": {
+      "nota": "Barra invasão ou imposição direta na mente (controle, ordem, medo mágico, leitura mental, ataque psíquico). Raciocínio + Integridade + Força de Vontade + 2×menor(Centelha,Integridade) + Especialidade (soma simples, sem ×2, Reforma da Centelha de 28/09/2026). Só existe com mente: Int 0 é imune ('-').",
+      "mult": 1,
+      "maisRaciocinio": true,
+      "maisVontade": true,
+      "maisCentelha": true,
+      "centelhaMult": 1,
+      "centelhaNota": "DESATUALIZADO, mesma ressalva do bloco `defesa` acima: a regra viva capeia pela Integridade.",
+      "especialidade": true
+    },
+    "defesaSocial": {
+      "nota": "O escudo social geral (equivale ao MDV): resiste a ser convencido/movido E a ser lido. (Compostura + Sociabilidade) × 2 + 2×menor(Centelha,Sociabilidade) + Especialidade (Reforma da Centelha de 28/09/2026, a Centelha capeada pela Sociabilidade fica FORA do ×2). Feras (Int 1) trocam Sociabilidade por Sobrevivência (B14 fase 2, item C.7, 26/09/2026); Int 0 é imune ('-').",
+      "mult": 2,
+      "tracos": [
+        "compostura",
+        "sociabilidade"
+      ],
+      "centelhaMult": 1,
+      "centelhaNota": "DESATUALIZADO, mesma ressalva do bloco `defesa` acima: a regra viva capeia pela Sociabilidade.",
+      "especialidade": true,
+      "reguaNota": "Termo da Régua de Relação, decisão de 18/09/2026 (ver relacoes-sociais.md, 'A história empurra o dado'): remar contra o que o alvo já sente soma o nível à Defesa Social dele; remar a favor subtrai. Ataque que AQUECE o vínculo (aproximar, seduzir, persuadir a ajudar): soma se o alvo já é hostil, subtrai se já é favorável. Ataque que ESFRIA (intimidar, ameaçar, romper, semear desconfiança): soma se o alvo já é favorável, subtrai se já é hostil. Multiplicador ×1, sem teto além do próprio ±6 da régua, zera no Neutro. É situacional e por relação (quem é o alvo, contra quem), então não entra no número parado que a ficha imprime; entra por cima, como a Especialidade acima."
+    },
+    "ataque": {
+      "nota": "Bônus de Centelha somado à soma do ataque (as quatro defesas ganham o mesmo): 2×menor(Centelha,Habilidade) desde a Reforma da Centelha de 28/09/2026. Simétrico: entre Centelhas iguais e Habilidade que alcance, cancela; favorece quem tem mais Centelha.",
+      "centelhaMult": 1,
+      "centelhaNota": "DESATUALIZADO, mesma ressalva do bloco `defesa` acima: a regra viva capeia pela Habilidade daquele ataque."
+    },
+    "energia": {
+      "nota": "(Vigor + Compostura + Raciocínio + Vontade) / 2 [arredonda para baixo] + Centelha × 2.",
+      "atributos": [
+        "vigor",
+        "compostura",
+        "raciocinio"
+      ],
+      "maisVontade": true,
+      "divisor": 2,
+      "centelhaMult": 2
+    },
+    "mana": {
+      "centelhaMult": 2,
+      "maisVontade": true
+    },
+    "iniciativa": {
+      "dado": 6,
+      "soma": [
+        "raciocinio",
+        "prontidao"
+      ],
+      "nota": "Role 1d6 + Raciocínio + Prontidão. Em quem tem ficha o resultado vai de 2 a 18; um bicho de Raciocínio e Prontidão zerados pode tirar 1. Quem tirar o MAIOR entra sozinho no Tick 1; os demais entram um Tick depois por degrau de atraso: Tick = tickDoPrimeiro + arredonda-para-cima(atraso ÷ gapPorPenalidade). Cada degrau também custa 1d6 na ação (o contrapé), e essa penalidade DECAI 1d6 por Tick que passa: quem entrou no Tick 3 com −2d6 age no 3 por −2d6, no 4 por −1d6 ou no 5 inteiro. A iniciativa não é rolada de novo: depois da entrada, quem manda é o Tick de cada um.",
+      "tickDoPrimeiro": 1,
+      "gapPorPenalidade": 6,
+      "contrapeDadosPorDegrau": -1,
+      "contrapeDecaiPorTick": 1,
+      "contrapeNota": "O contrapé é do RELÓGIO, e não da ação: ele não se apaga por a pessoa fazer alguma coisa, e por isso não há como comprá-lo barato gastando um Tick em qualquer bobagem. Ele desce sozinho, um dado por Tick, e some quando o relógio anda o tanto de dados que ele valia.",
+      "empateNoTopo": "Os dois entram juntos no Tick 1. Quem age primeiro dentro do instante é o desempate: maior Raciocínio, e persistindo o empate, o dado."
+    },
+    "deslocamento": {
+      "nota": "Tick ≈ 1 segundo. Livre = distância grátis (m) na ação, e ela é UM TICK de movimento: com Tick ≈ 1 segundo, o número em metros é a velocidade em m/s. A faixa é humana de propósito (2 a 5 m/s): 2 + (Destreza + Atletismo) ÷ 4. Andar normal é 1,4 m/s e fechar distância numa briga fica entre 2 e 4; o teto de 5 é o acrobata. Corrida (Velocidade 3, interrompível a qualquer Tick): Arranque nos 3 primeiros Ticks, Corrida do 4º em diante (m/s = m por Tick). As duas ganharam BASE em 22/08: sem ela o piso caía em trote (o camponês \"corria\" a 2,5 m/s, mais devagar do que um destreinado esprinta) e o teto passava do recorde mundial (15 m/s contra os 12,4 de pico do Bolt). A Força pesa menos no Arranque do que pesava, porque com o peso antigo quem tinha Força alta arrancava mais rápido do que corria, e a média dos três primeiros segundos não pode passar da velocidade de topo. Salto (Velocidade 3, NÃO interrompível): Vertical em CM, Horizontais em M (o Correndo soma a velocidade atual, na ficha a de Corrida, impulso pleno; coef. já expandidos). Arredonda ao inteiro.",
+      "arranque": {
+        "base": 2,
+        "forca": 0.25,
+        "atletismo": 0.25,
+        "destreza": 0.5
+      },
+      "corrida": {
+        "base": 4,
+        "destreza": 0.75,
+        "atletismo": 0.5
+      },
+      "normal": {
+        "base": 2,
+        "destreza": 0.25,
+        "atletismo": 0.25
+      },
+      "natacao": {
+        "base": 1,
+        "vigor": 0.75,
+        "atletismo": 0.5,
+        "natacao": 0.5
+      },
+      "saltoVertical": {
+        "forca": 20,
+        "atletismo": 10,
+        "destreza": 4,
+        "centelha": 50
+      },
+      "saltoHorizontalParado": {
+        "forca": 0.5,
+        "atletismo": 0.5,
+        "centelha": 0.5
+      },
+      "saltoHorizontalCorrendo": {
+        "atletismo": 0.5,
+        "centelha": 1
+      }
+    }
+  },
+  "dano": {
+    "nota": "Três MODOS de ataque (Cortante, Perfurante, Impacto). A arma escolhe o modo por golpe. A armadura tem TRÊS Absorções: Impacto, Corte e Perfuração, e o Perfurante usa a Absorção de Perfuração (não se distingue projétil de estocada). A Absorção total de um golpe = Absorção natural do modo (Vigor + Centelha no Impacto; só a Centelha em Cortante/Perfurante) + a absorção da armadura na categoria correspondente.",
+    "modos": [
+      {
+        "id": "corte",
+        "nome": "Cortante",
+        "sigla": "(C)",
+        "natural": "zero",
+        "soakArmadura": "corte",
+        "gate": false
+      },
+      {
+        "id": "perfurante",
+        "nome": "Perfurante",
+        "sigla": "(P)",
+        "natural": "zero",
+        "soakArmadura": "perfuracao",
+        "gate": true
+      },
+      {
+        "id": "impacto",
+        "nome": "Impacto",
+        "sigla": "(I)",
+        "natural": "vigor",
+        "soakArmadura": "impacto",
+        "gate": false
+      }
+    ],
+    "soakNatural": {
+      "impacto": "vigor",
+      "corte": "zero",
+      "perfuracao": "zero"
+    },
+    "centelhaNoSoak": 1,
+"gatePerfuracao": {
+      "nota": "Só para o modo Perfurante. Se o Nível de Perfuração da arma for MENOR que a Resistência à Perfuração (Nível) da armadura, o golpe RESVALA (dano 0, nem rola). Se for IGUAL OU MAIOR, o gate abre: rola o dano e subtrai a Absorção de Perfuração. Cortante e Impacto nunca passam pelo gate.",
+      "modos": [
+        "perfurante"
+      ]
+    },
+    "modoSecundario": {
+      "nota": "Usar um modo NÃO-principal da arma é mais difícil e sai mais fraco: −2 ao acerto E −1d6 no dano. Armas com vários modos principais (ex.: Alabarda) não sofrem nada ao alternar entre eles.",
+      "acerto": -2,
+      "dano": "-1d6"
+    },
+    "empilhamento": "Absorção de cada categoria (Impacto/Corte/Perfuração) = MAIOR valor entre as peças; a Absorção natural soma por cima. Resistência à Perfuração (Nível) = sempre o MAIOR, NUNCA soma (vale também para Proezas de pele dura). Penalidade = SOMA das peças.",
+    "penalidade": {
+      "nota": "Valor único por armadura (geral: leve −1, média −2, pesada −3; pode variar por peça). Incide em qualquer ação física, incluindo Ataque, Esquiva, Bloqueio, Deslocamento e Salto. Para Furtividade e atividades delicadas, a Penalidade DOBRA.",
+      "leve": 1,
+      "media": 2,
+      "pesada": 3,
+      "furtividadeDobra": true,
+      "movimento": "No Deslocamento e nos Saltos usa-se METADE da Penalidade (arredondada para baixo): −[penalidade/2] metros nas medidas horizontais (Livre, Arranque, Corrida, Salto Horizontal) e −[penalidade/2]×10 cm no Salto Vertical (mínimo 0)."
+    },
+    "armaduraMult": 1.5,
+    "perfuracaoSoakNota": "A Absorção de Perfuração da armadura é baixa (arredonda p/ baixo): ao penetrar (gate aberto), a perfuração encontra pouca proteção. O Nível (R.Perf) é que mede a dificuldade de furar."
+  },
+  "combateTatico": {
+    "nota": "Modificadores situacionais aplicados ao valor PASSIVO da Defesa do alvo (+ = mais difícil de acertar, − = mais fácil). Cada ±1 ≈ ∓6% de chance perto do baseline (~42%).",
+    "bonusCap": 6,
+    "penalidadeCap": null,
+    "pisoDefesa": 0,
+    "teto": "Os BÔNUS de Defesa vão até +6; as PENALIDADES não têm teto (D-078); a Defesa nunca fica abaixo de 0. Tudo se soma: condição, restrição, situação e Guarda sob pressão.",
+    "modificadores": [
+      {
+        "nome": "Cobertura parcial",
+        "valor": 2,
+        "alvo": "defesa",
+        "nota": "parapeito, batente, aliado à frente"
+      },
+      {
+        "nome": "Cobertura pesada",
+        "valor": 4,
+        "alvo": "defesa",
+        "nota": "só cabeça/braço expostos, seteira (cobertura total não pode ser alvejada)"
+      },
+      {
+        "nome": "Defesa total",
+        "valor": 4,
+        "alvo": "defesa",
+        "nota": "abre mão do ataque para se proteger"
+      },
+      {
+        "nome": "Alvo errático à distância",
+        "valor": 2,
+        "alvo": "defesa",
+        "nota": "movimento imprevisível, zigue-zague (o tamanho do alvo agora está em porteAcerto)"
+      },
+      {
+        "nome": "Terreno alto",
+        "valor": -2,
+        "alvo": "defesa",
+        "nota": "atacante em posição superior"
+      },
+      {
+        "nome": "Mirar",
+        "valor": -2,
+        "alvo": "defesa",
+        "nota": "gasta uma ação preparando o golpe"
+      },
+      {
+        "nome": "Alvo caído, corpo a corpo",
+        "valor": -2,
+        "alvo": "defesa",
+        "nota": "caído é fácil de alcançar de perto"
+      },
+      {
+        "nome": "Alvo caído, à distância",
+        "valor": 2,
+        "alvo": "defesa",
+        "nota": "deitado é um alvo menor de longe"
+      },
+      {
+        "nome": "Flanco ou pelas costas",
+        "valor": -2,
+        "alvo": "defesa",
+        "nota": "não pode usar a melhor defesa contra você"
+      },
+      {
+        "nome": "Postura agressiva",
+        "valor": -2,
+        "alvo": "defesa-propria",
+        "nota": "−2 à sua própria Defesa e +2 ao seu ataque até a próxima ação"
+      }
+    ],
+    "defesaZerada": {
+      "nota": "Regra geral (D-078): quem não sabe do ataque ou não tem como se defender fica com a Defesa correspondente zerada; ataque imbloqueável zera só o Bloqueio, inesquivável só a Esquiva. A restrição de corpo e de lugar (leve, parcial, grave, total, pouco espaço, sem equilíbrio) está no capítulo Combate Físico, com o Agarrado (só contra quem está de fora) e o Imobilizado.",
+      "linhas": [
+        { "nome": "Surpreso (não sabe do ataque)", "tipo": "zera" },
+        { "nome": "Totalmente imobilizado (amarrado, soterrado; não zera a Defesa de agarrão)", "tipo": "zera" },
+        { "nome": "Dormindo ou Inconsciente", "tipo": "zera" },
+        { "nome": "Cego, vendado ou no escuro total, sabendo do ataque", "tipo": "soma", "esquiva": -4, "bloqueio": -8 }
+      ]
+    },
+    "restricao": {
+      "nota": "A tabela de restrição de corpo e de lugar do capítulo Combate Físico (D-079, D-081), em número, para o teste prender livro e dados. Só a parte presa conta. Esquiva e Bloqueio: um número é penalidade; 'zera' é a Defesa zerada. O Grid não lê esta chave (D-054).",
+      "linhas": [
+        { "id": "leve", "rotulo": "Corpo, leve", "exemplo": "pé enroscado, lama funda", "esquiva": -2, "bloqueio": 0 },
+        { "id": "parcial-pernas", "rotulo": "Corpo, parcial nas pernas", "exemplo": "uma perna presa; Preso por boleadeira ou por Arte de prender", "esquiva": -4, "bloqueio": 0 },
+        { "id": "parcial-bracos", "rotulo": "Corpo, parcial nos braços", "exemplo": "um braço preso, arma travada", "esquiva": 0, "bloqueio": -4 },
+        { "id": "grave", "rotulo": "Corpo, grave", "exemplo": "preso pela cintura; Agarrado (só contra quem está de fora)", "esquiva": -8, "bloqueio": -4 },
+        { "id": "total", "rotulo": "Corpo, total", "exemplo": "amarrado, soterrado; Imobilizado", "esquiva": "zera", "bloqueio": "zera" },
+        { "id": "pouco-espaco", "rotulo": "Lugar: pouco espaço", "exemplo": "corredor estreito, entre galhos, túnel", "esquiva": -2, "bloqueio": -4, "escudoPerdeOBonus": true },
+        { "id": "sem-equilibrio", "rotulo": "Lugar: sem equilíbrio", "exemplo": "corda bamba, telhado inclinado, convés no temporal", "esquiva": -4, "bloqueio": -2 }
+      ],
+      "agarrado": { "linha": "grave", "esquiva": -8, "bloqueio": -4, "soContraDeFora": true, "entreOsDois": "sem penalidade" },
+      "imobilizado": { "linha": "total", "esquiva": "zera", "bloqueio": "zera", "defesaDeAgarrao": "não zera" },
+      "preso": {
+        "tabela": { "esquiva": -4, "bloqueio": 0, "origens": ["boleadeira", "Arte de prender"] },
+        "rede": { "esquiva": -2, "bloqueio": -2, "porGrauDeMargem": -1, "tetoDeMargem": null, "paraSeSoltar": "Força + Atletismo contra o total do lançamento" }
+      }
+    }
+  },
+  "porteAcerto": {
+    "nota": "Modificador à JOGADA DE ACERTO de ataques FÍSICOS, pela diferença de categorias de tamanho entre atacante e alvo: +3 por categoria, SEM TETO (D-077). Só no acerto: NÃO altera a Defesa passiva do alvo, não é modificador de Defesa (fica fora do teto de +6 dos bônus de Defesa) e NÃO vale p/ ataques Sociais ou Mentais, nem para Artes de área sem rolagem de ataque. CORPO A CORPO: só o menor ganha (+3 por categoria contra o maior); o maior ataca o menor sem penalidade. À DISTÂNCIA (arremesso, projétil, arco, besta, ataque mágico, Artes físicas à distância): relativo nos dois sentidos, alvo maior +3 por categoria, alvo menor −3 por categoria. O quadrado cheio de enxame conta como Médio, nos dois papéis (R34). O tamanho não escala a Efetiva. O tamanho não decide a Vida, a Couraça nem as Manobras: a Vida e as Manobras vêm da massa, e a Couraça vem da pele.",
+    "gridNota": "O Grid segue a regra acima desde a D-179 (calc.ts, modificadorPorte, chamado em grid.astro com o ataque de perto ou de longe): sem teto, corpo a corpo só o menor ganha, à distância relativo nos dois sentidos, +3 por categoria pela ordem abaixo (do Minúsculo ao Colossal). Exceção desde a R34 (D-313): o Grid ainda mede o enxame pelo Tamanho do indivíduo, e não como Médio; está no N23 (D-054).",
+    "reforma": {
+      "porCategoria": 3,
+      "teto": null,
+      "corpoACorpo": "só o menor ganha: +3 por categoria contra o maior; o maior ataca o menor sem penalidade",
+      "aDistancia": "relativo nos dois sentidos: alvo maior +3 por categoria, alvo menor −3 por categoria",
+      "enxame": "o quadrado cheio conta como Médio, como alvo e como atacante; o tamanho do indivíduo só diz onde cabe e por onde passa (R34)",
+      "fora": ["ataques Sociais e Mentais", "Artes de área sem rolagem de ataque"],
+      "efetiva": "o porte não escala a Efetiva: entra só como bônus fixo no acerto"
+    },
+    "ordem": [
+      "minusculo",
+      "miudo",
+      "pequeno",
+      "medio",
+      "grande",
+      "enorme",
+      "imenso",
+      "colossal"
+    ]
+  },
+  "bloqueioLimite": {
+    "nota": "Limite físico do Bloqueio no CORPO A CORPO (D-180, ponto 20): não se apara atacante 2 faixas de massa ou mais acima; cada ponto de Centelha do defensor sobe a trava em uma faixa; o escudo grande plantado soma uma faixa. Força: trava se a do atacante for >= forcaRatio × a do defensor E >= defensor + forcaGapMin; só uma Centelha do defensor maior que 0 e igual ou maior que a do atacante ignora essa trava (entre mortais ela vale) (provisório). Não vale à distância (lá vale a regra de projéteis). Só trava a rota de Bloqueio; a Esquiva continua sempre. Os campos porteMaxDiferenca, centelhaSobePorte e escudoGrandeBonusPorte guardam a conta antiga, pela diferença de tamanho, e ficam nos dados até o código mudar; nenhum código os aplica.",
+    "porteMaxDiferenca": 1,
+    "centelhaSobePorte": 1,
+    "escudoGrandeBonusPorte": 1,
+    "escudosGrandes": [
+      "heater",
+      "kite",
+      "scutum",
+      "paves"
+    ],
+    "forcaRatio": 2,
+    "forcaGapMin": 4,
+    "centelhaIgnoraForca": true
+  },
+  "sangramento": {
+    "nota": "A cada 6 Ticks desde o ferimento ele sofre N de dano (já ignora a Absorção). Lento de propósito: dá tempo de estabilizar.",
+    "gatilhoEstado": "Grave",
+    "valorEstado": 1,
+    "tag": "Sangramento",
+    "valorTagMax": 3,
+    "teto": 5,
+    "estabilizar": {
+      "pericia": "Raciocínio + Cura",
+      "dif": 10,
+      "alternativa": "Vigor + Resistência (em si mesmo)"
+    }
+  },
+  "quaseAcerto": {
+    "margem": "Bônus QA da arma + Bônus QA da armadura do alvo",
+    "dano": "Dano QA da arma − Redução QA da armadura do alvo + Centelha do atacante − Centelha do alvo (mínimo 0)",
+    "ignoraSoak": true,
+    "errouPor": "(Defesa + 1) − total. É quanto faltou para acertar, e não a diferença crua: a regra do acerto é `total > Defesa` e empate não passa, então quem tira exatamente a Defesa errou por 1.",
+    "classePorDanoMedio": {
+      "nota": "A classe de QA sai do DANO MÉDIO da arma: dado × 3,5 + danoBonus. Até 2 é leve, de 2,5 a 5,5 é média, 6 ou mais é pesada. Substituiu, em 24/08/2026, a regra antiga do número de dados (1d6 leve, 2d6 média, 3d6 pesada): o catálogo mudou por baixo dela, 24 das 26 armas passaram a ter um dado só e nenhuma tem três, e ao pé da letra a espada longa virava leve e a categoria pesada deixava de existir. O dano médio é a mesma ideia (quanto a arma pesa no golpe) medida por um número que ainda varia.",
+      "formula": "dado × 3,5 + danoBonus",
+      "leveAte": 2,
+      "mediaAte": 5.5,
+      "semCatalogo": "Arma fora do catálogo (criatura, item do mestre): o dano médio sai da própria expressão de dano, contando os dados e o fixo. Ali a expressão É a arma."
+    },
+    "porClasseArma": {
+      "leve": {
+        "bonus": 3,
+        "dano": 2
+      },
+      "media": {
+        "bonus": 2,
+        "dano": 4
+      },
+      "pesada": {
+        "bonus": 1,
+        "dano": 6
+      }
+    },
+    "porClasseArmadura": {
+      "nenhuma": {
+        "bonus": 0,
+        "reducao": 0
+      },
+      "leve": {
+        "bonus": 1,
+        "reducao": 1
+      },
+      "media": {
+        "bonus": 2,
+        "reducao": 3
+      },
+      "pesada": {
+        "bonus": 3,
+        "reducao": 5
+      }
+    },
+    "nota": "Errar por ≤ margem é um raspão (não passa pela Absorção normal). Valores FIXOS por classe: a classe da arma sai do DANO MÉDIO dela (ver classePorDanoMedio), e não do número de dados. A armadura SOMA seu Bônus QA à margem (o alvo blindado é maior e mais lento, então é raspado com mais frequência) e abate o dano do raspão com a Redução. Leve nica muito e raso; pesada nica raro e fundo; a placa é nicada o tempo todo, mas a redução come quase tudo. Pode receber modificadores situacionais, de encantamento, de Proeza e de magia (ver cap. Quase-Acerto)."
+  },
+  "horda": {
+    "nota": "Esquadrão único: muitos capangas iguais lutam como UMA unidade. A Magnitude mede o tamanho e soma dados; o dano acumulado vira baixas. Cumpre o pilar 'um herói vence vários fracos, mas perde para a multidão'.",
+    "magnitude": {
+      "formula": "Magnitude = [log2(membros)]: cada degrau exige cerca do dobro de gente",
+      "tabela": [
+        {
+          "membros": "2–3",
+          "magnitude": 1
+        },
+        {
+          "membros": "4–7",
+          "magnitude": 2
+        },
+        {
+          "membros": "8–15",
+          "magnitude": 3
+        },
+        {
+          "membros": "16–31",
+          "magnitude": 4
+        },
+        {
+          "membros": "32–63",
+          "magnitude": 5
+        },
+        {
+          "membros": "64–127",
+          "magnitude": 6
+        }
+      ]
+    },
+    "ataque": "O esquadrão faz UM ataque por inimigo engajado, até Magnitude + 1 ataques (teto de frente de combate). Contra um alvo só os golpes concentram numa única rolagem; contra vários, espalham-se um por inimigo. Cada ataque rola o pool de um capanga + Magnitude d6 no ACERTO e + Magnitude d6 no DANO (o enxame que conecta cai todo em cima). Sem penalidade de guarda extra da Pressão: a ameaça já é a chuva de dados.",
+    "ataquesPorSeisTicks": "um por inimigo engajado, até Magnitude + 1, a cada 6 Ticks",
+    "modos": "Os ataques podem ser de modos diferentes (Impacto / Corte / Perfuração, corpo a corpo ou à distância). Um esquadrão híbrido o bastante (armas variadas) ataca sempre pelo modo de MENOR Absorção do alvo.",
+    "defesa": -2,
+    "defesaNota": "Defesa do esquadrão = a de um capanga −2 (aglomerado, alvo fácil).",
+    "pv": {
+      "nota": "PV do esquadrão = nº de membros × PV-de-horda do capanga. Na horda o capanga PERDE o piso heroico de 25 da fórmula de PV (esse piso vale só para PCs e NPCs nomeados).",
+      "porTier": {
+        "comum": 5,
+        "treinado": 10,
+        "elite": 15
+      }
+    },
+    "baixas": "O dano que você causa acumula no PV do esquadrão; cada vez que o total passa o PV-de-horda de um capanga, cai 1 membro (um golpe pesado derruba vários de uma vez). Conforme os membros caem, a Magnitude desce em degraus. Ataques em ÁREA batem direto no PV do esquadrão.",
+    "fim": "Em Magnitude 0 (1 membro) o último capanga volta a ser um NPC comum.",
+    "referencia": "Um lutador resistente abre caminho por ~20 Comuns, ~8 Treinados ou ~5 Elites antes de correr risco real; uma maré de 30–40 afoga até ele. Sem armadura, aguenta bem menos."
+  },
+  "economiaPoderes": {
+    "nota": "Tempo (Ticks) das Técnicas e empilhamento. A Energia limita a CENA; os Ticks limitam o MOMENTO.",
+    "passivaTicks": 0,
+    "reflexivaTicks": 0,
+    "reflexivaPorGatilho": 1,
+    "suplementarTicks": 0,
+    "ticksIndependente": [
+      {
+        "nivel": "1–3",
+        "ticks": 5
+      },
+      {
+        "nivel": "4",
+        "ticks": 6
+      },
+      {
+        "nivel": "5–6",
+        "ticks": 7
+      }
+    ],
+    "combo": {
+      "regra": "Numa única ação você empilha quantas Técnicas suplementares quiser, mas cada acréscimo encarece: a k-ésima Técnica somada à ação custa +(k−1) de Energia de sobretaxa (2ª +1, 3ª +2, 4ª +3…).",
+      "sobretaxaPorK": "(k−1)",
+      "sobretaxaTotal": "T(K−1) = (K−1)·K÷2",
+      "porque": "Combinar custa MAIS que usar separado, mas economiza Ticks e concentra os efeitos num só golpe (mais Margem)."
+    },
+    "posturas": {
+      "regra": "Postura sustentada: paga a Energia uma vez e dura a cena. Mantém até Centelha posturas ao mesmo tempo; abandonar é livre.",
+      "simultaneasMax": "Centelha"
+    }
+  },
+  "empilhamentoProezas": {
+    "nota": "Limites de acúmulo dos bônus de Proezas, para o número não quebrar o combate calibrado.",
+    "absorcao": "Absorção permanente de Proezas NÃO soma entre passivas: vale a MAIOR de cada tipo de dano (Impacto/Corte/Perfuração). Bônus reflexivos ou ativos de Absorção (ex.: Tensionar) entram por cima, só naquele golpe ou cena. A Absorção de Proeza soma normalmente com a da armadura e com a natural.",
+    "defesaReflexiva": "Bônus reflexivos de Defesa de Proezas (ex.: Aparar, Reflexos de Vento, Voz Calma, +3) contam para o TETO de +6 dos BÔNUS de Defesa: não empilham além disso com cobertura, postura defensiva, etc. As PENALIDADES de Defesa não têm teto (D-078), e a penalidade imposta por Proeza de outro personagem (ex.: o −3 de Quebrar Guarda) soma como qualquer outra: a exceção que a tirava do teto ficou sem objeto.",
+    "acaoExtra": "Efeitos que concedem ação ou ataque EXTRA não acumulam: no máximo UMA ação extra a cada 6 Ticks, qualquer que seja a fonte (Proeza ou Arte). Combos de 'aja de novo' não se somam.",
+    "bypassArmadura": "Ignorar a Absorção de armadura (ex.: Punho que Parte Pedra, Esmagar) afeta só a parte da ARMADURA; a Absorção natural do alvo (Vigor no Impacto, Centelha) continua valendo."
+  },
+  "arcano": {
+    "tetoNivelArte": {
+      "porCentelha": [2, 3, 4, 5, 6, 6, 6],
+      "nota": "O nível máximo de cada Arte é Centelha + 2, com teto 6 (o índice é a Centelha, de 0 a 6): Centelha 0 → 2; 1 → 3; 2 → 4; 3 → 5; 4, 5 ou 6 → 6. Decisão do autor de 03/10/2026 (D-006). O teto de PROEZA continua sendo a Centelha (o nível N exige Centelha >= N); não há conflito."
+    },
+    "nota": "Detalhamento do uso das Artes: improviso por parâmetros, conjuração composta (espelha o combo) e Rituais. Mana = nível do Efeito mais a soma dos níveis dos parâmetros escolhidos, menos a Centelha. Não existe rolagem geral de conjuração: os efeitos MIRADOS (o que sai da mão e voa até o alvo) rolam Percepção + Acerto Arcano, e os que tocam a mente sem projétil rolam Influência + a Habilidade social do Efeito; o resto se resolve por tabela ou por Dificuldade fixa do Efeito.",
+    "feiticoTicks": [
+      {
+        "nivel": "0–3",
+        "ticks": 5
+      },
+      {
+        "nivel": "4",
+        "ticks": 6
+      },
+      {
+        "nivel": "5–6",
+        "ticks": 7
+      }
+    ],
+    "resistencia": {
+      "rolagem": "Percepção + Acerto Arcano nos efeitos MIRADOS; Influência + a Habilidade social do Efeito nos que tocam a mente sem projétil. Não há rolagem de conjuração para o resto: o que não é mirado se resolve pela Dificuldade fixa do Efeito ((maior grau investido) × 5), pela Defesa passiva do alvo ou por tabela.",
+      "tipos": [
+        {
+          "efeito": "Dano e projéteis",
+          "resiste": "Defesa (Esquiva) para acertar; depois o dano é reduzido pela Absorção",
+          "ex": "dardo de fogo, raio, lança de gelo"
+        },
+        {
+          "efeito": "Corpo e veneno",
+          "resiste": "Vigor + Resistência (resistência de fortitude)",
+          "ex": "transmutação, doença, frio que enrijece, paralisia física"
+        },
+        {
+          "efeito": "Mente e alma",
+          "resiste": "Defesa Mental (passiva): a jogada de quem conjura (Influência + a Habilidade social do Efeito) precisa superá-la; passando, o alvo ainda pode pagar Força de Vontade para recusar o efeito ou encurtá-lo (ver Defesas)",
+          "ex": "medo, fascínio, ilusão, domínio"
+        },
+        {
+          "efeito": "Aprisionamento e contato",
+          "resiste": "Defesa para prender; o preso fica Preso (não se desloca, mas age) e escapa com Força + Atletismo contra a Dificuldade do Efeito, uma tentativa por ação",
+          "ex": "correntes, lama, agarrão telecinético"
+        },
+        {
+          "efeito": "Em aliados, objetos ou cenário",
+          "resiste": "sem resistência (efeito automático)",
+          "ex": "cura, escudo, muralha, luz"
+        }
+      ],
+      "armadura": "Armadura só protege contra dano FÍSICO. O que decide não é a aparência do efeito, é se ele deixou matéria no mundo: fenômeno puro (fogo, raio, o gelo que evapora ao acertar) é absorvido só pela Centelha; matéria conjurada (a lança de gelo que se pega) ou matéria pré-existente (o cascalho do chão, a água do rio) entra nas trilhas normais, no modo que o formato pedir (lança = Perfuração, pedra = Impacto).",
+      "margem": "Como no combate: cada 6 pontos acima da resistência do alvo vale +1 Margem (mais dano ou efeito mais forte)."
+    },
+    "improviso": {
+      "regra": "O efeito da Arte se monta investindo PONTOS nos parâmetros. Todo parâmetro custa 1 ponto por grau, linear, e o grau 0 é grátis em todos. O nível de Centelha é desconto no total; o que sobra vira o custo em Mana (1 ponto = 1 Mana). Se o total couber dentro da Centelha, o efeito é GRÁTIS e ilimitado. Não há rolagem para distribuir: a rolagem é só para acertar e vencer a resistência.",
+      "pontos": "invista quantos quiser: 1 ponto = 1 Mana. A Centelha desconta do total.",
+      "custoPorNivel": {
+        "padrao": 1,
+        "cura": 2
+      },
+      "desconto": "nível de Centelha, por conjuração",
+      "mana": "total de pontos − Centelha (mínimo 0; zero = grátis e ilimitado)",
+      "tetoPorParametro": "nível da Arte (Efeitos Especiais podem passar disso, ver `efeitos`)",
+      "escopo": "Os valores abaixo valem para as Artes ELEMENTAIS e, até cada uma ganhar régua própria, também para as universais. A Cura tem régua própria.",
+      "graus": {
+        "nota": "Graus 0 a 6. O grau 0 é o piso de todo parâmetro e é GRÁTIS: toque, uma manifestação mínima do elemento, nenhum alvo designado, nenhum dano e instantâneo. Um feitiço com tudo no grau 0 custa zero pontos, e é assim que se acende uma vela ou se gela uma bebida.",
+        "notaTurno": "A PONTE para quem quiser jogar por turnos, e só isso: 1 turno = 1 rodada = 6 Ticks. Turno e rodada são o ciclo em que todos agem, como no D&D, e não são nenhum dos três sistemas que este livro declara (`combate.sistemas`), que são todos de Tick. Desde a `M-04b` as escadas e o texto contam SÓ em Ticks; esta linha existe para a mesa que preferir o outro relógio converter de volta. A régua breve inteira cabe dentro de uma briga: o nível 6 são 300 Ticks, cinco minutos. Passou disso, é caso da régua longa.",
+        "alcance": [
+          "toque",
+          "1 m",
+          "2 m",
+          "4 m",
+          "10 m",
+          "20 m",
+          "50 m"
+        ],
+        "area": [
+          "0,1 m de diâmetro",
+          "1 m de diâmetro",
+          "1,5 m de diâmetro",
+          "2 m de diâmetro",
+          "2,5 m de diâmetro",
+          "3 m de diâmetro",
+          "4 m de diâmetro"
+        ],
+        "alvos": [
+          "nenhum designado",
+          "1",
+          "2",
+          "3",
+          "4",
+          "6",
+          "10"
+        ],
+        "dano": [
+          "nenhum",
+          "1d6",
+          "2d6",
+          "3d6",
+          "4d6",
+          "5d6",
+          "6d6"
+        ],
+        "duracaoBreve": [
+          "instantâneo (no máximo 1 tick)",
+          "6 Ticks",
+          "12 Ticks",
+          "24 Ticks",
+          "60 Ticks",
+          "120 Ticks",
+          "300 Ticks"
+        ],
+        "duracaoLonga": [
+          "instantâneo (no máximo 6 Ticks)",
+          "10 minutos",
+          "1 hora",
+          "6 horas",
+          "1 dia",
+          "1 semana",
+          "1 mês"
+        ],
+        "notaDano": "Terra dobra o dado: cada nível de dano dela vale 2d6. Ar e Sombra não têm parâmetro de dano no improviso; o dano deles fica nos Efeitos que o declaram.",
+        "notaArea": "O nível compra um DIÂMETRO, e a área é a do círculo que ele desenha (grau 3 = 2 m de diâmetro = 3,1 m² de chão). Em círculo, o raio é sempre metade do diâmetro comprado. Esta régua é a dos Efeitos que ainda declaram Área. Ela está de saída: o chão de um Efeito passa a se comprar por MOLDE, com régua por forma, e passar os 46 Efeitos que hoje declaram Área para o molde que lhes cabe ainda está por fazer.",
+        "notaAlcance": "O toque é o grau 0 e é grátis: nenhum efeito paga para acontecer na própria mão. Quem CRIA algo para ser arremessado (uma bola de neve) não paga Alcance: o objeto voa até acertar, e se o alvo estiver longe pode precisar de Duração. Já o projétil que sai da mão e voa sozinho paga Alcance, e a jogada é Percepção + Acerto Arcano.",
+        "volume": [
+          "0,02x0,02x0,02",
+          "0,1x0,1x0,1",
+          "0,25x0,25x0,25",
+          "0,5x0,5x0,5",
+          "1x1x1",
+          "1,5x1,5x1,5",
+          "2x2x2"
+        ],
+        "volumeImproviso": [
+          "0,5 m",
+          "1 m",
+          "2 m",
+          "3 m",
+          "4 m",
+          "5 m",
+          "6 m"
+        ],
+        "notaVolumeImproviso": "O Volume tem DUAS RÉGUAS, como a Duração tem breve e longa, e o efeito usa uma ou a outra, nunca as duas. A régua da MANIFESTAÇÃO vale para o improviso: ela compra o lado da base de n × n da geometria em fatias, e mede elemento que sai do feiticeiro, ocupa o espaço e some (a labareda, o jorro, a lufada). A régua da MATÉRIA vale para o Efeito Especial: ela compra um lado de 2 cm a 2 m, mede elemento que passa a existir e fica (a lança de gelo que se pega, o bloco de pedra, o painel do Muro), e está calibrada como massa, com 169 kg de pedra no grau 3 e 10,8 t no grau 6. A distância entre as duas não é erro de calibragem, é a distância entre as duas coisas: fabricar um litro de gelo que dura e se carrega é caro, soprar 289 litros de chama que vivem um Tick e apagam é barato. O fator de estado também tem duas versões, uma para cada régua, e elas não dão o mesmo número. Na matéria ele multiplica o volume (a tabela de estados, abaixo); no improviso ele multiplica o lado da base (Terra metade do lado, Vento e névoa o dobro, o resto igual), e por isso a Terra improvisada fica com um oitavo do volume, e não com a metade, e o Fogo improvisado não dobra. Pedra não vira tapete, névoa vira.",
+        "volumeAncora": [
+          "8 cm³, um caroço",
+          "1 litro",
+          "16 litros",
+          "125 litros",
+          "1 m³, cinco metros de muro",
+          "3,4 m³",
+          "8 m³"
+        ],
+        "notaVolume": "Esta é a régua da MATÉRIA, e ela vale para o Efeito Especial que cria elemento que fica. O Volume compra um LADO e o que se ganha é o cubo daquele lado, mas ele perdeu o direito de virar forma: a forma agora é o molde. Lido como massa ele está calibrado, e o que parecia pequeno era pergunta de chão feita a uma régua de massa: em pedra, o grau 3 são 169 kg, o grau 4 são 1,4 t e o grau 6 são 10,8 t; em gelo, com 10 cm de espessura e 2 m de altura, o grau 4 dá cinco metros de muro.",
+        "notaAreaOuVolume": "Área e Volume são as DUAS RÉGUAS do mesmo parâmetro, como Duração breve e Duração longa: o efeito usa uma ou a outra, nunca as duas, e custam o mesmo em pontos. Não é escolha de otimização do jogador, é o que o efeito faz que decide. VOLUME mede o CORPO do elemento, quanta matéria ou quanto fenômeno saiu: as Lascas, a Onda, a Tromba, o Clarão Cegante. ÁREA mede a JURISDIÇÃO, a região onde a regra passa a valer, e ali não interessa quanto elemento existe, interessa quem está dentro: a Noite, o Santuário, a Barreira, o Círculo, a Praga, a Mordaça, a Bolha Temporal. Teste de mesa: o efeito é MATÉRIA ou é REGRA? Se a pergunta que ele responde é 'quanto elemento?', é Volume. Se é 'quem está dentro?', é Área. Uma mesma Arte usa as duas conforme o efeito: o Clarão de Luz é corpo, a Noite de Sombra é jurisdição. ESCOPO: este corte é dos EFEITOS ESPECIAIS. O improviso não escolhe entre Área e Volume, porque ele tem uma geometria só, que é a manifestação em fatias: lá o Volume compra o lado da base, e qualquer outra manifestação de volume é Efeito Especial.",
+        "volumePorEstado": {
+          "nota": "O Volume mede corpo, e um metro cúbico de pedra, de água, de chama e de névoa são quantidades de esforço muito diferentes. O multiplicador vale só para o VOLUME DA MATÉRIA, o dos Efeitos: a Área é jurisdição e não depende do material, e o improviso tem o fator de estado dele, que incide no LADO DA BASE (Terra metade do lado, Vento e névoa o dobro, o resto igual). As duas exceções do dano são as mesmas, em direções opostas: a Terra dobra o dado e divide o volume, o Vento não tem dano no improviso e multiplica o volume por oito.",
+          "tabela": [
+            {
+              "estado": "Sólido",
+              "fator": "metade",
+              "artes": "Terra (inclui o metal do nível 5)",
+              "porque": "8 m³ de pedra são 22 toneladas, e metade disso ainda é muito"
+            },
+            {
+              "estado": "Granular",
+              "fator": "normal",
+              "artes": "areia, cascalho, pó, neve solta, cinza",
+              "porque": "escorre, então rende mais chão que a rocha pelo mesmo esforço, e em troca NÃO dobra o dado como a Terra: material solto não concentra o golpe"
+            },
+            {
+              "estado": "Líquido e gelo",
+              "fator": "normal",
+              "artes": "Água, Gelo",
+              "porque": "a régua base"
+            },
+            {
+              "estado": "Fenômeno",
+              "fator": "dobro",
+              "artes": "Fogo, Luz, Sombra",
+              "porque": "não tem massa, mas tem borda"
+            },
+            {
+              "estado": "Gás",
+              "fator": "oito vezes",
+              "artes": "Vento, e os Efeitos de névoa",
+              "porque": "ocupa sem pesar. É o que a Neblina já fazia sem regra escrita"
+            },
+            {
+              "estado": "Caminho",
+              "fator": "vira Comprimento",
+              "artes": "Raio",
+              "porque": "descarga não tem corpo, tem trajeto: usa a régua do Muro"
+            }
+          ],
+          "exemplo": "No grau 4, que na régua base é 1 m³: Terra entrega 0,5 m³ (1,4 tonelada de pedra), Água 1 m³, Fogo 2 m³, Vento 8 m³.",
+          "notaGranular": "O granular é a razão de a escola importar. Quem trabalha areia move o mesmo volume que quem trabalha barro e mais chão que quem trabalha rocha, mas perde o dado dobrado da Terra. A escola da Areia troca dano por alcance e a da Pedra troca alcance por dano, e nenhuma das duas precisa de regra própria dizendo isso: sai desta tabela sozinho."
+        },
+        "notaAlvos": "O grau 0 é nenhum alvo DESIGNADO, e não \"nenhum alvo\": o dardo continua acertando quem você mira, pela pontaria, e o jorro continua pegando quem está dentro. O parâmetro Alvos serve para ESCOLHER vítimas a dedo, ignorando a geometria, e é por isso que ele quase não aparece nas Artes elementais: o lugar dele é em Cura, Fascinação, Conjuração e nas outras que agem sobre pessoas escolhidas."
+      },
+      "combinacoes": {
+        "nota": "A Arte crua não desenha: ela MANIFESTA o elemento. Fogo sai como labareda, Terra sai como pedra, estilhaço e estalactite. Quem dá forma é o Efeito Especial. Por isso os parâmetros não se combinam todos: a forma do improviso sai de quais foram pagos, e não de uma escolha do jogador.",
+        "definicoes": "Alcance é ONDE o efeito começa. Volume é O TAMANHO do que ele ocupa, lido na régua da manifestação: o lado da base de n × n. Na labareda o efeito começa na mão (Alcance 0, o toque, que é grátis) e ocupa um leque; no dardo ele começa longe e ocupa um alvo só. Pagar os dois ao mesmo tempo é pedir que o efeito comece longe E ocupe espaço: é a Massa lançada, um corpo do elemento que corre em linha reta e bate no primeiro obstáculo. A bola de fogo, que explode num ponto escolhido, é Efeito Especial (o Efeito Bola de Fogo está em recalibração).",
+        "areaNuncaColocada": "Área nunca é posta num ponto escolhido do mapa. Ou ela nasce no corpo do conjurador, ou ela viaja em linha reta a partir dele. Escolher um ponto a X metros e pôr uma área lá é Efeito Especial.",
+        "duracaoPedeConcentracao": "Duração improvisada se paga com CONCENTRAÇÃO. Duração que fica de pé sozinha, sem o conjurador sustentando, é Efeito Especial.",
+        "teto": "No máximo TRÊS parâmetros acima do grau 0. O parâmetro Alvos nunca entra no improviso elemental: escolher várias vítimas a dedo é precisão, e precisão se compra.",
+        "lista": [
+          {
+            "nome": "Dardo",
+            "paga": "Alcance + Dano",
+            "forma": "um pedaço do elemento sai da mão e voa até o alvo",
+            "atinge": "um alvo, pela Defesa como qualquer projétil"
+          },
+          {
+            "nome": "Jorro",
+            "paga": "Volume + Dano",
+            "forma": "o elemento sai do corpo, em leque à frente ou irrompendo em volta, conforme o que ele faz por natureza",
+            "atinge": "quem estiver dentro, aliado incluído"
+          },
+          {
+            "nome": "Massa lançada",
+            "paga": "Alcance + Volume + Dano",
+            "forma": "um corpo do elemento corre em linha reta a partir do conjurador",
+            "atinge": "o primeiro alvo ou obstáculo da reta. Ela não para onde o jogador quiser"
+          },
+          {
+            "nome": "Sustentado",
+            "paga": "Dardo ou Jorro + Duração",
+            "forma": "o conjurador se planta e mantém: o Dardo sustentado vira jato contínuo, o Jorro sustentado vira a labareda que não apaga",
+            "atinge": "fere ao fim de cada janela de 6 Ticks da Duração comprada, um pulso por janela (Duração 1, 6 Ticks: um pulso, no 6º Tick depois de sair; Duração 2, 12 Ticks: dois, no 6º e no 12º; Duração 3, 24 Ticks: quatro), e a Centelha de quem conjura soma inteira em cada pulso. A Massa lançada não se sustenta, porque ela viaja e acaba"
+          }
+        ],
+        "concentracao": {
+          "acao": "gasta a ação do lance",
+          "posicao": "o conjurador não sai do lugar",
+          "defesa": "defender-se é permitido, porque proibir defesa faria de sustentar um suicídio",
+          "aoSofrerDano": "teste de Compostura + Concentração contra Dificuldade 10 para segurar (a Força de Vontade entra só como +1d6 antes da jogada, 1 ponto por ação); falhando, o efeito cai",
+          "aRevisar": "a dificuldade do teste (fixa ou crescendo com o tamanho do golpe), e a Habilidade definitiva quando a conjuração por Tradição fechar"
+        },
+        "consequencias": [
+          "O improviso não tem bola de fogo: pôr uma explosão num ponto escolhido só sai com Efeito Especial comprado.",
+          "Improvisar área é coisa de linha de frente: sem alcance, quem quer área precisa estar a distância de toque.",
+          "Uma flecha de fogo para atirar com arco é Efeito Especial mesmo sendo pequena, porque persiste sem concentração e é entregue a outra coisa."
+        ],
+        "escopo": "Escrito para as Artes elementais, onde 'manifestação do elemento' quer dizer alguma coisa concreta. As universais não manifestam elemento e usam a tabela dos parâmetros para Alcance, Alvos, Área e Duração; a Cura usa a régua dela.",
+        "grauZero": "Com tudo no grau 0 o feitiço custa zero pontos e é o elemento apenas se manifestando: acender ou apagar uma vela, gelar uma bebida, umedecer uma superfície, faíscas, iluminar como uma tocha, suprimir a luz de uma tocha, assoprar folhas. Dura um Tick. Quem tem Centelha 1 paga a Duração 1 com o desconto e sustenta por 6 Ticks, e é sustentando de 6 em 6 Ticks que a vela vira lareira e a bebida vira gelo. O preço não é Mana, é a ação: sustentar é concentração."
+      },
+      "manifestacao": {
+        "nota": "A geometria do IMPROVISO: o que a Arte crua faz sem nenhum Efeito comprado. Ela nasce no feiticeiro e sai em fatias; os moldes com nome são o que se compra com XP.",
+        "regra": [
+          "O VOLUME compra uma BASE de n × n: frente somada vezes altura dá sempre n² (no modo da distância, n de frente somada e n de altura; no da altura, o padrão, cada fatia tem n de frente e n ÷ N de altura). Este é o único jeito de o improviso manifestar volume; qualquer outro é Efeito Especial.",
+          "A manifestação sai do FEITICEIRO, em fatias que partem todas do mesmo ponto e são obrigatoriamente vizinhas: é o mesmo ataque se abrindo, e não vários ataques.",
+          "A abertura de cada fatia é 60°, 90° ou 120°.",
+          "Com a base travada, o ângulo e o alcance não são independentes: raio = (frente da fatia ÷ 2) ÷ sen(ângulo ÷ 2). A base é um arco, e a frente de cada fatia é a corda dele.",
+          "Cada fatia é uma PIRÂMIDE de base curva, ápice no feiticeiro e base de pé no arco: no chão, ela é um setor de círculo.",
+          "O número de fatias nunca passa do nível da Arte, nem do que fecha o círculo."
+        ],
+        "ladoBase": [
+          "0,5 m",
+          "1 m",
+          "2 m",
+          "3 m",
+          "4 m",
+          "5 m",
+          "6 m"
+        ],
+        "formula": "altura (padrão): raio = (n ÷ 2) ÷ sen(θ÷2) · altura = n ÷ N · distância: raio = (n ÷ 2N) ÷ sen(θ÷2) · altura = n",
+        "formulaNota": "Chamando N o número de fatias e θ a abertura de cada uma. O que se compra é a SUPERFÍCIE, e ela não se mexe: frente somada × altura é sempre n², em qualquer abertura e em qualquer número de fatias. Quem paga a abertura é escolha do conjurador, a cada conjuração: no modo da altura, o padrão, o raio fica e a altura de cada fatia divide por N; no modo da distância, a altura fica e o raio encolhe com N, e o volume vai atrás dele.",
+        "aberturas": {
+          "porque": "60°, 90° e 120° são as três que fecham o círculo em número inteiro de fatias: seis, quatro e três. Qualquer outro ângulo deixa fenda ou sobrepõe, e um leque que não fecha obriga a inventar regra para o resto. Não é gosto, é a lista completa dos divisores úteis de 360° nessa faixa.",
+          "tabela": [
+            {
+              "abertura": "60°",
+              "raio": "6,000 m",
+              "volume": "75,40 m³ (24π)",
+              "fracao": "1"
+            },
+            {
+              "abertura": "90°",
+              "raio": "4,243 m (3√2)",
+              "volume": "56,55 m³ (18π)",
+              "fracao": "3 ÷ 4"
+            },
+            {
+              "abertura": "120°",
+              "raio": "3,464 m (2√3)",
+              "volume": "50,27 m³ (16π)",
+              "fracao": "2 ÷ 3"
+            }
+          ],
+          "nota": "Medido no grau 6, com uma fatia só (base de 6 × 6 m; com uma fatia, os modos da altura e da distância dão o mesmo). Abrir custa, e isso é de propósito: o 120° fica com dois terços do volume e com pouco mais da metade do raio. Em troca ele cobre o dobro do ângulo por fatia, e é o que serve ao feiticeiro de grau baixo, que não tem fatias sobrando para abrir de 60° em 60°."
+        },
+        "travaFatias": {
+          "regra": "O número de fatias não passa do nível da Arte: grau 3 abre até três, grau 6 até seis.",
+          "consequencias": [
+            "A cobertura cresce em todo grau, e nenhum grau é pior que o anterior.",
+            "Em fatias de 60° só o grau 6 fecha o círculo. Em 90°, o grau 4 já fecha; em 120°, o grau 3.",
+            "No modo da distância, com fatias iguais ao grau (frente de 1 m cada), o elemento nasce a 1 m do peito em 60°, a 71 cm em 90° e a 58 cm em 120°; com mais fatias que o grau a frente encolhe e ele nasce mais perto ainda. No modo da altura, o padrão, o raio não muda com as fatias: o que encolhe é a altura de cada uma."
+          ]
+        },
+        "botoes": {
+          "nota": "O que sobe e o que desce quando se abre.",
+          "tabela": [
+            {
+              "botao": "Número de fatias",
+              "sobe": "o ângulo coberto (N × θ)",
+              "desce": "no modo da distância, o raio, a frente de cada fatia, o volume e o chão; no da altura, só a altura de cada fatia (o raio e o volume ficam, e o chão cresce)"
+            },
+            {
+              "botao": "Abertura",
+              "sobe": "o ângulo de cada fatia",
+              "desce": "o raio, o volume e o chão, nos dois modos"
+            }
+          ],
+          "cercarSe": "No chão, cada fatia é um setor de círculo. No modo da distância o raio cai com N, e o chão cai junto: no grau 6 em fatias de 60°, uma fatia cobre 18,8 m² de chão com 6 m de raio, e as seis que fecham o círculo cobrem 3,1 m², um disco de 1 m de raio. Cercar-se assim é caríssimo, e é o preço de não ter flanco. No modo da altura, o padrão, o raio fica: as seis fatias fecham um disco de 6 m de raio (113 m²) com 1 m de altura."
+        },
+        "alturas": {
+          "regra": "O feiticeiro escolhe DUAS alturas: a de onde a pirâmide começa (o ápice: no chão, na mão, acima da cabeça) e a de onde ela acaba (o pé da base). A amarra é uma só: o ápice tem de estar dentro da altura da base.",
+          "exemplo": "Base de 5 m com o pé a 0,5 m ocupa de 0,5 a 5,5 m, então o ápice cabe em qualquer ponto desse intervalo e em nenhum de fora. O alcance do braço (cerca de 2,2 m) limita as duas, e daí sai de graça que a base não pode ser erguida longe do corpo: o ápice teria de acompanhá-la.",
+          "deGraca": "Deslizar o ápice não cobra nem rende: o volume da pirâmide sai da área da base e da distância perpendicular até o ápice, que no arco é o raio, e não de onde o ápice está sobre ela. São os mesmos 75,40 m³ com o ápice a 0, a 0,7, a 1,5 e a 2,2 m. Com isso o desperdício no subsolo deixa de existir: basta pousar o pé da base no chão.",
+          "tabela": [
+            {
+              "apice": "0 m, agachado com a mão no piso",
+              "faceDeBaixo": "horizontal",
+              "tocaOChao": "desde o pé do conjurador"
+            },
+            {
+              "apice": "1,5 m, na mão",
+              "faceDeBaixo": "uma rampa descendo",
+              "tocaOChao": "só a 6 m (no grau 6, em 60°)"
+            }
+          ],
+          "consequencia": "Saindo da mão com o pé da base no chão, a fatia é uma rampa que passa por cima de quem está deitado até quase a ponta. Quem quiser varrer o chão desde o próprio pé precisa agachar e sair do piso. Não é regra escrita, é consequência da forma."
+        },
+        "estadoNoLado": {
+          "formula": "Terra: metade do lado · Vento e névoa: o dobro · o resto: igual",
+          "nota": "O estado da matéria incide no LADO DA BASE, e não no volume final. É outra régua, diferente da tabela de estados da matéria, que multiplica o volume: aqui metade do lado é um oitavo do volume, e o Fogo fica igual à Água. No grau 6 isso dá 3 m para a Terra, 6 m para água, gelo, fogo, luz e sombra, e 12 m para o Vento. O Vento vira a Arte de domínio de espaço sem precisar de regra própria, o que casa com a decisão de tê-lo calibrado sem dano direto no improviso: a Arte que não fere de improviso é a que toma o campo, e o dano do Vento fica nos Efeitos que o declaram (o Muro e a Tempestade)."
+        },
+        "naoFaz": [
+          "Não põe nada num ponto escolhido. Ela nasce no feiticeiro, sempre. Pôr num ponto é Efeito Especial.",
+          "Não faz parede plana nem reta, e não faz bloco que se carregue. Muro, muralha e reta são Efeito Especial, e isso é escolha de escopo, não sobra.",
+          "Não ganha alcance com o nível da Arte: o nível segue só como teto do grau do parâmetro.",
+          "Não manifesta volume de nenhuma outra maneira. A fatia é a geometria inteira do improviso, e toda forma fora dela, num ponto escolhido, em parede, em reta, em bloco que se carregue, é Efeito Especial."
+        ],
+        "escopo": "Escrito para as Artes elementais. Cura, Fascinação, Adivinhação, Conjuração e Metamorfose não manifestam elemento, e a fatia não quer dizer nada nelas: quando pedem chão, usam a régua de Área da tabela dos parâmetros.",
+        "emAvaliacao": [
+          "O QUE A MATÉRIA DENTRO DA FATIA FAZ EM NÚMERO: a regra diz quanto elemento aparece e onde, e não diz o que 75 m³ de chama fazem além do parâmetro de Dano, nem o que a espessura de uma fatia de Terra aguenta antes de ceder."
+        ],
+        "oParametro": "Quem compra a base é o VOLUME, na régua da manifestação, e não a Área: área é jurisdição, uma região onde uma regra passa a valer, e a fatia não é isso, é corpo de elemento ocupando o espaço. O improviso não escolhe entre as duas réguas como o Efeito escolhe, porque ele tem uma geometria só. A consequência fecha o escopo: QUALQUER OUTRA MANIFESTAÇÃO DE VOLUME É EFEITO ESPECIAL.",
+        "numeros": {
+          "nota": "A geometria em número, para o tabuleiro não a reescrever. A base é n × n, sai em N fatias vizinhas com o mesmo ápice, e a base é um arco: no modo da distância, raio = (n ÷ 2N) ÷ sen(θ÷2); no da altura, o padrão, raio = (n ÷ 2) ÷ sen(θ÷2).",
+          "aberturas": [
+            60,
+            90,
+            120
+          ],
+          "aberturaPadrao": 60,
+          "fatiasMinimo": 1,
+          "fatiasPorNivel": 1,
+          "estadoNoLado": {
+            "terra": 0.5,
+            "metal": 0.5,
+            "ar": 2,
+            "nevoa": 2,
+            "padrao": 1
+          },
+          "base": "arco",
+          "baseNota": "A base é um ARCO: o lado do triângulo vira raio, a base vira arco e o chão vira setor de círculo. Decidido em 2026-08-19. O arco ganha as duas pontas que a corda cortava, rende θ ÷ sen θ a mais (+21% a 60°, +57% a 90°, +142% a 120°), e fechar os 360° dá um círculo completo em vez de um polígono com quinas.",
+          "abrirCobra": {
+            "nota": "Quem paga a abertura é ESCOLHA DO CONJURADOR, a cada conjuração, e não uma regra fixa da mesa. A base comprada é a mesma nos dois; o que muda é em qual medida ela é cobrada.",
+            "padrao": "altura",
+            "opcoes": [
+              {
+                "id": "distancia",
+                "nome": "a distância",
+                "formula": "raio = (n ÷ 2N) ÷ sen(θ÷2) · altura = n",
+                "efeito": "O raio encolhe a cada fatia, o volume divide por N e o chão também. Cercar-se é o gesto mais caro que existe: no grau 6 fechando 360° o elemento fica a 1 m do peito. Protege a decisão, porque cada fatia a mais cobra caro."
+              },
+              {
+                "id": "altura",
+                "nome": "a altura",
+                "formula": "raio = (n ÷ 2) ÷ sen(θ÷2) · altura = n ÷ N",
+                "efeito": "O raio não se mexe, o volume se conserva e o chão CRESCE com N. No grau 6 fechando 360° sai um disco de 6 m de raio com 1 m de altura, um lençol rasteiro que passa por cima de quem está deitado. Protege o alcance e o volume, e entrega o raio grande."
+              }
+            ],
+            "notaAltura": "O tabuleiro é visto de cima e engole a altura, então ela vem escrita na figura: sem o número, a escolha entre os dois modos seria invisível na mesa."
+          },
+          "ondeNasce": "Por ora o arco pode começar em QUALQUER LUGAR, e não só no conjurador. É afrouxamento provisório da trava de area nunca colocada, para a mesa experimentar; o Alcance comprado continua sendo conferido.",
+          "alturaMinimaBase": 1,
+          "alturaMinimaNota": "A base nunca fica com menos de 1 m de altura. Menos que isso não é mais uma parede de elemento, é uma faixa rasteira que passa por baixo de qualquer um em pé, e o volume comprado deixaria de prender. Como no modo da ALTURA a base é n ÷ N, o piso vira um teto de fatias: não se abre mais que o lado da base em metros. No modo da DISTÂNCIA a altura fica cheia, e aí quem limita é só o nível da Arte."
+        }
+      },
+      "exemplos": [
+        "Acender uma vela: tudo no grau 0 = 0 pontos. Sai de graça para qualquer um, e com Centelha 1 dá para pagar Duração 1 (6 Ticks) e ainda sair de graça, sustentando de 6 em 6 Ticks até virar uma fogueira.",
+        "Dardo: Alcance 3 (4 m) + Dano 2 (2d6) = 5 pontos. Com Centelha 2, custa 3 de Mana.",
+        "Jorro sustentado: Volume 3 (3 m de base) + Dano 2 (2d6) + Duração 2 (12 Ticks) = 7 pontos, três parâmetros acima do grau 0. Com Centelha 2, custa 5 de Mana."
+      ]
+    },
+    "moldes": {
+      "nota": "O parâmetro de chão de um Efeito Especial não é uma medida solta: é um MOLDE com nome, e cada molde tem a sua régua. O jogador escolhe a forma; a forma decide as dimensões.",
+      "porque": "Com uma régua métrica única e liberdade de moldar, o jogador lava matéria em alcance: 1 m³ (grau 4) esticado vira 127 m de cilindro de 5 cm de raio, 95 m de cone ou um anel de 41 m de vão, contra 1,24 m de esfera. A alavanca não é o cuboide, é a esbeltez, e qualquer molde com duas medidas livres a tem. O dano ao desenho seria concreto: sem os moldes, a laje improvisada venceria o Efeito comprado com XP a partir do grau 5 (17 m contra os 12 m do Muro).",
+      "fronteira": {
+        "nota": "Os cinco moldes são dos EFEITOS. O improviso tem geometria própria, que é a manifestação.",
+        "improviso": "a Arte crua, sem XP: fatias de 60°, 90° ou 120° saindo do feiticeiro.",
+        "efeito": "comprado com XP: um molde com nome e régua própria. O que o Efeito compra não é \"mais tamanho\", é uma forma que a manifestação não faz: pôr uma bola num ponto escolhido, esticar uma reta de vinte metros, erguer uma parede plana, saltar de alvo em alvo. A manifestação só sabe abrir leque em volta de quem conjura, e é essa a fronteira."
+      },
+      "lista": [
+        {
+          "id": "explosao",
+          "medida": "diametro",
+          "figura": "circulo",
+          "nome": "Explosão",
+          "compra": "diâmetro",
+          "escala": [
+            "0,5 m",
+            "1 m",
+            "2 m",
+            "3,5 m",
+            "5 m",
+            "6,5 m",
+            "8 m"
+          ],
+          "hexagonos": [
+            "1",
+            "1",
+            "7",
+            "13",
+            "19",
+            "37",
+            "61"
+          ],
+          "serve": "varrer quem está junto. É a que mais cresce em número de alvos e a que mais murcha quando os inimigos se abrem: 37 colados no grau 5, 10 espalhados."
+        },
+        {
+          "id": "leque",
+          "medida": "raio",
+          "figura": "leque",
+          "aberturaGraus": 60,
+          "nome": "Leque",
+          "compra": "comprimento, em 60°",
+          "escala": [
+            "1 m",
+            "2 m",
+            "3 m",
+            "4 m",
+            "5 m",
+            "6 m",
+            "8 m"
+          ],
+          "hexagonos": [
+            "1",
+            "4",
+            "7",
+            "12",
+            "17",
+            "24",
+            "44"
+          ],
+          "serve": "a linha de frente: cobre um setor à frente do conjurador e compra mais alcance que a Explosão pelo mesmo grau."
+        },
+        {
+          "id": "linha",
+          "medida": "comprimento",
+          "figura": "linha",
+          "larguraM": 1,
+          "nome": "Linha",
+          "compra": "comprimento, 1 m de largura",
+          "escala": [
+            "2 m",
+            "4 m",
+            "6 m",
+            "8 m",
+            "12 m",
+            "16 m",
+            "24 m"
+          ],
+          "hexagonos": [
+            "3",
+            "5",
+            "7",
+            "9",
+            "13",
+            "17",
+            "25"
+          ],
+          "serve": "chegar longe. Compra seis vezes o alcance da Explosão e paga com a largura: é o Raio contra a bola de fogo, e é a saída positiva para quem quer distância."
+        },
+        {
+          "id": "muralha",
+          "medida": "comprimento",
+          "figura": "linha",
+          "larguraM": 1,
+          "curvavel": true,
+          "nome": "Muralha",
+          "compra": "metros de frente",
+          "escala": [
+            "1 m",
+            "2 m",
+            "3 m",
+            "5 m",
+            "8 m",
+            "12 m",
+            "20 m"
+          ],
+          "hexagonos": null,
+          "serve": "barrar. É a régua que o Muro já tem, sem mexer num número."
+        },
+        {
+          "id": "cadeia",
+          "medida": "alvos",
+          "figura": "cadeia",
+          "saltoM": 3,
+          "nome": "Cadeia",
+          "compra": "inimigos ligados, salto de 3 m",
+          "escala": [
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "8",
+            "10"
+          ],
+          "hexagonos": null,
+          "serve": "acertar vários que não estão adjacentes. É o único molde que não muda de valor com a formação: pega os mesmos oito no grau 5, estejam os inimigos colados ou espalhados."
+        }
+      ],
+      "alcance": {
+        "nota": "O alcance que cada molde compra a partir da âncora é a outra moeda.",
+        "tabela": [
+          {
+            "molde": "Explosão (raio)",
+            "g3": "1,75 m",
+            "g4": "2,5 m",
+            "g5": "3,25 m",
+            "g6": "4 m"
+          },
+          {
+            "molde": "Leque",
+            "g3": "4 m",
+            "g4": "5 m",
+            "g5": "6 m",
+            "g6": "8 m"
+          },
+          {
+            "molde": "Linha",
+            "g3": "8 m",
+            "g4": "12 m",
+            "g5": "16 m",
+            "g6": "24 m"
+          }
+        ]
+      },
+      "aura": {
+        "id": "aura",
+        "medida": "raio",
+        "figura": "circulo",
+        "nome": "Aura",
+        "compra": "raio",
+        "escala": [
+          "0,25 m",
+          "0,5 m",
+          "1 m",
+          "1,5 m",
+          "2 m",
+          "2,5 m",
+          "3 m"
+        ],
+        "nota": "A Aura mantém a régua dela e é menor de propósito: ela acompanha o corpo em vez de ocupar o campo. A Aura é um Efeito só, com cinco sabores (Fogo, Gelo, Raio, Luz e Sombra), e o número é raio, não diâmetro."
+      },
+      "cadeiaRessalva": "A Cadeia é indiferente à formação, mas não é indiferente ao CAMINHO. Ela salta de um alvo ao mais próximo ainda não atingido, e onde o próximo estiver além do salto a corrente arrebenta ali, perdendo os elos restantes. É o molde de quem enfrenta muitos inimigos em fila ou em cordão, e é fraca contra dois grupos separados por um vão.",
+      "cuboide": "O cuboide não é proibido: ele ganha nome. O cuboide comprido é a Muralha, e a Muralha tem régua calibrada para ser comprida; o cuboide maciço é matéria, e matéria é Volume em m³. O abuso morre por construção e não por proibição, porque não sobra medida livre para trocar: quem escolhe as dimensões é o molde.",
+      "volume": "A régua do Volume fica exatamente como está (8 cm³ a 8 m³) para os Efeitos que criam matéria: lida como matéria ela está calibrada, e o grau 3 são 169 kg de pedra, o grau 4 são 1,4 t e o grau 6 são 10,8 t. O que ela ganhou foi MOLDE: a quantidade comprada é a mesma, e o molde diz em que forma ela aparece. Pedra não vira tapete e névoa vira, e isso continua sendo o fator de estado, não uma medida livre.",
+      "hexagonosNota": "Os hexágonos são coluna de leitura, não unidade: a régua é em metros, e o molde ancora onde o efeito nasce.",
+      "aRevisar": "A escola está fechada; as réguas acima são provisórias.",
+      "porForma": {
+        "nota": "A forma que o Efeito declara já diz o molde dele. Só a `zona` fica em aberto, porque ela é a genérica que engordou, e por isso ela pergunta: o padrão é a Explosão, e os 23 Efeitos que ainda a usam esperam o julgamento um a um.",
+        "zona": "explosao",
+        "cone": "leque",
+        "linha": "linha",
+        "muro": "muralha",
+        "cadeia": "cadeia",
+        "aura": "aura",
+        "escolhe": [
+          "zona"
+        ]
+      },
+      "solidos": {
+        "nota": "O Volume compra o LADO DE UM CUBO, e o que se ganha é o cubo dele. O molde não muda quanto se ganha: muda a forma em que aquilo aparece, e por tabela a pegada no chão e a altura. A mesma quantidade vira bolha, cúpula, coluna, bloco, jorro, pirâmide ou anel.",
+        "porque": "Sem molde, o Volume era lido como um quadrado de lado n e assentado no chão pelo molde de área, o que dava uma pegada sem relação com o que a matéria faz de pé. Com molde, a altura passa a existir: 1 m³ de água em coluna tem 1,1 m de altura e meio metro de raio; o mesmo metro cúbico em bloco tem 79 cm de altura e pouco mais de um terço a mais de chão (1,26 m² contra 0,92 m²).",
+        "padrao": "cubo",
+        "padraoPorque": "O cubo, porque é ele que a régua nomeia: comprou \"1x1x1\", saiu um cubo de 1 m. Quem quiser outra forma escolhe, e o que ganha continua sendo o mesmo volume.",
+        "trava": "O molde não é medida livre: cada um tem proporção fixa, e é isso que impede o abuso da esbeltez (esticar 1 m³ em 127 m de fio). Quem quer comprido compra a Muralha, que é molde de chão e tem régua calibrada para ser comprida.",
+        "lista": [
+          {
+            "id": "cubo",
+            "nome": "Cubo",
+            "pegada": "retangulo",
+            "proporcao": "o lado é a raiz cúbica do volume",
+            "serve": "a forma de referência da escada: o grau compra o lado dele, e é dele que as outras saem."
+          },
+          {
+            "id": "cuboide",
+            "nome": "Bloco",
+            "pegada": "retangulo",
+            "proporcao": "o cuboide 2 : 1 : 1, o comprimento em dobro da largura e da altura",
+            "serve": "a laje, o degrau, a mesa de pedra. Espalha no chão o que a bolha guarda em cima."
+          },
+          {
+            "id": "esfera",
+            "nome": "Esfera",
+            "pegada": "circulo",
+            "proporcao": "raio = ∛(3V ÷ 4π), altura de dois raios",
+            "serve": "a bolha. A menor pegada possível para um volume dado, e a que menos se aproveita em briga."
+          },
+          {
+            "id": "semiesfera",
+            "nome": "Cúpula",
+            "pegada": "circulo",
+            "proporcao": "meia esfera apoiada no chão: raio = ∛(3V ÷ 2π), e a altura é o raio",
+            "serve": "o abrigo, o domo. Cobre gente de pé com metade do volume de uma esfera do mesmo raio."
+          },
+          {
+            "id": "cilindro",
+            "nome": "Coluna",
+            "pegada": "circulo",
+            "proporcao": "altura de dois raios: raio = ∛(V ÷ 2π)",
+            "serve": "a coluna em pé, o tronco, o jato parado. É a forma que sobe sem espalhar."
+          },
+          {
+            "id": "cone",
+            "nome": "Cone",
+            "pegada": "circulo",
+            "proporcao": "altura de dois raios: raio = ∛(3V ÷ 2π), e o cone é um terço do cilindro que o contém",
+            "serve": "o jorro, a labareda, o monte de areia. Boca larga embaixo e ponta em cima."
+          },
+          {
+            "id": "piramide",
+            "nome": "Pirâmide",
+            "pegada": "retangulo",
+            "proporcao": "base quadrada com a altura igual ao lado: lado = ∛(3V)",
+            "serve": "a mesma economia do cone, de base quadrada: um terço do bloco que a contém."
+          },
+          {
+            "id": "torus",
+            "nome": "Anel",
+            "pegada": "circulo",
+            "proporcao": "o tubo é um terço do raio maior: raio = ∛(9V ÷ 2π²)",
+            "serve": "a rosca no chão, o cerco baixo. É a única com buraco no meio: cerca sem encher."
+          }
+        ],
+        "aRevisar": "As proporções acima são provisórias. Só o Volume da manifestação escapa: aquele tem geometria própria, as fatias de Como a Arte crua se manifesta."
+      }
+    },
+    "tempoDaArte": {
+      "nota": "A manifestação diz ONDE o elemento aparece. Esta parte diz o que acontece com quem está lá, e ela nasce de uma regra de tempo: a Arte resolve no TICK DO GOLPE, o penúltimo da ação.",
+      "ultimoTick": {
+        "nota": "O nome ultimoTick é histórico (até a D-084 a Arte saía no último Tick); a chave guarda a regra do Tick do Golpe. Renomear fica para a passada do Grid (D-054), porque os comentários do Grid e do test-artes-grid.mjs citam este nome.",
+        "regra": "No sistema Normal, a ação comum resolve no primeiro Tick (ou nos primeiros), e o resto da Velocidade é recuperação; no P/G/R toda ação resolve no Tick do Golpe. A ARTE resolve no TICK DO GOLPE, o penúltimo (a Velocidade menos um): uma conjuração de 7 Ticks acontece no sexto. Na Velocidade 5 o Golpe é o Tick 4, na 6 é o 5 e na 7 é o 6; o Preparo ocupa os Ticks antes dele e a Recuperação, o último.",
+        "excecao": "Vale mesmo quando a conjuração ocupa várias ações, e vale a não ser que o Efeito Especial diga o contrário: um Efeito pode comprar o direito de sair na hora, e é dele o ônus de dizer isso na própria ficha.",
+        "porque": "Não é detalhe de cronometragem, é a peça que sustenta o resto. Como a Arte se anuncia por quatro a seis Ticks (o Preparo e o Golpe), sair de perto pode ser movimento normal, na vez do alvo, e não uma reação fora de hora. E é o que faz da Arte uma decisão tomada com antecedência: o feiticeiro compromete a Velocidade inteira, de cinco a sete Ticks, montando uma coisa que os outros podem ver se juntando, e tem de acertar onde o inimigo VAI ESTAR, não onde ele está.",
+        "tabela": [
+          {
+            "momento": "Declaração, no primeiro Tick",
+            "decide": "se é improviso ou Efeito Especial, e QUANTO de cada parâmetro: Duração, Alcance, Volume, Dano, Alvos"
+          },
+          {
+            "momento": "Tick do Golpe, quando sai",
+            "decide": "PARA ONDE e COMO: o alvo, a direção, a abertura das fatias, o ângulo, onde a base pousa"
+          }
+        ],
+        "resumo": "Na declaração se compra o tamanho, no Tick do Golpe se dá a forma e a mira. O feiticeiro não fica preso à posição que o inimigo tinha na declaração, e também não pode trocar de feitiço porque a situação mudou."
+      },
+      "identificar": {
+        "nota": "Nem todo mundo entende o que está vendo se juntar. Há duas maneiras de saber.",
+        "deGraca": "Sem teste: quem tem a mesma Tradição daquela Arte, o nível da Arte e, sendo Efeito Especial, conhece aquele Efeito, reconhece na hora. Você identifica de imediato o que você mesmo saberia fazer.",
+        "teste": "Para todos os outros: Inteligência + Ocultismo (ou a habilidade específica que aquela Arte pedir) contra uma Dificuldade que CAI a cada Tick que passa. No primeiro Tick o sinal é um arrepio no ar; no Tick do Golpe é uma bola de fogo pronta na mão.",
+        "regras": [
+          "Um teste por efeito. Não se insiste.",
+          "O jogador escolhe em que Tick testa, e essa é a decisão interessante: cedo é difícil e rende tempo para agir, tarde é fácil e não rende nada.",
+          "Só se repete havendo motivo novo: o feiticeiro diz o nome, o elemento se revela, um aliado identificou e avisou."
+        ],
+        "ocultismo": "É o emprego que o Ocultismo ganhou quando o \"Ocultismo + Atributo\" saiu da conjuração: ele não conjura, ele LÊ."
+      },
+      "area": {
+        "regra": "Contra área não existe Esquiva nem Bloqueio. As duas são números contra um golpe que vem de uma direção, e a área não vem de direção nenhuma: ela OCUPA O ESPAÇO. Quem está lá quando ela sai, come. As saídas são duas, e NENHUMA É GRÁTIS: as duas gastam Tick e as duas pedem a mesma jogada. O que muda é de onde sai o Tick e em que estado se rola.",
+        "deslocamentoLivre": {
+          "titulo": "Livre, com a vez na mão: o próprio deslocamento",
+          "texto": "Quem ainda não agiu sai pelas próprias pernas: o Deslocamento de Batalha, 2 + (Destreza + Atletismo) ÷ 4 metros num Tick (3 m para o camponês, 4 para o aventureiro, 5 para o herói), ou o Arranque da Corrida, que rende mais. Esse Tick é GASTO: sair da área é o movimento, e não o passo de brinde que acompanha outra ação. E a jogada é a mesma de quem desvia fora da vez, porque a área pegou os dois. A vantagem de estar livre é dupla e é grande: um Tick só cobre vários metros, em vez de um metro por Tick, e a rolagem sai limpa, sem a escada de Preparo, Golpe ou Recuperação pesando no total. Depois do movimento você continua livre para agir.",
+          "semGabarito": "Como a mira e a forma só travam no Tick do Golpe, durante o Preparo o molde AINDA NÃO TEM LUGAR NO CHÃO. Não se sai de uma área que ainda não existe: o que se faz é ficar fora do alcance dela, e o alcance do improviso é o raio da fatia (no grau 6, com uma fatia: 6 m a 60°, 4,2 m a 90°, 3,5 m a 120°), contra um Deslocamento de Batalha de 3 a 5 m: a 60° andando você não escapa, correndo sim (o Arranque chega a 7 m para quem tem Força, Destreza e Atletismo 5). Por isso a mesa não precisa de gabarito desenhado durante o Preparo: o que está em jogo é distância do feiticeiro, não a borda de um desenho."
+        },
+        "desvio": {
+          "titulo": "Fora da vez, no Tick em que a Arte sai: o desvio de emergência",
+          "texto": "Quem já agiu não tem Tick na mão, então empresta: custa 1 Tick por metro que falte para o corpo sair, e esses Ticks empurram para frente a próxima ação do alvo. É a única coisa do sistema que se faz fora da própria vez, e ela é legítima justamente porque é cara: o Tick é emprestado do próprio futuro, como uma ação lenta atrasa a seguinte. E ela quase nunca sai limpa, porque estar fora da vez quer dizer estar no meio de um Preparo, de um Golpe ou de uma Recuperação, com a escada aberta. Fora da vez, a jogada leva no total a mesma escada que a Defesa leva: −2 se o alvo estiver no Preparo, −4 se estiver no Tick do Golpe; no modo P/G/R, também −2 por golpe ainda pendurado na Recuperação. Precisa de pelo menos 1 metro de deslocamento, porque ninguém sai de uma área ficando parado.",
+          "formula": "Metros = o que falta para o corpo ficar fora, pela direção mais barata · Ticks, livre = os do próprio deslocamento (vários metros por Tick) · Ticks, fora da vez = 1 por metro · Dificuldade (metade do dano) = 5 + 5 × metros, nos dois casos · Dificuldade (dano nenhum) = o DOBRO da anterior",
+          "numeros": {
+            "nota": "A mesma regra em número, para o tabuleiro não a reescrever. O Grid mede na figura quantos metros faltam para o corpo ficar fora, arredonda para cima com o mínimo de 1 m, e daí saem os Ticks e as duas Dificuldades. O `ticksPorMetro` é o preço de quem desvia FORA DA VEZ; quem está livre paga o Tick do próprio deslocamento e cobre a mesma distância por muito menos. As Dificuldades valem para os dois.",
+            "ticksPorMetro": 1,
+            "metrosMinimo": 1,
+            "difBase": 5,
+            "difPorMetro": 5,
+            "fatorDanoNenhum": 2,
+            "bonusIdentificou": 2,
+            "bonusIdentificouMargem": 4,
+            "jogada": "Destreza + Esquiva",
+            "jogadaParado": "Bravura ou Temperança",
+            "fracaoMetade": 0.5
+          },
+          "dificuldadeEDaTarefa": "A Dificuldade é da TAREFA, não de quem conjurou. Um efeito de Arte 6 e um de Arte 3 com a mesma área e o mesmo volume cobram o mesmo para atravessar: é a mesma parede de fogo. Um incêndio de verdade, sem magia nenhuma, usa a mesma fórmula pelo próprio tamanho. O que o nível da Arte compra não é uma Dificuldade extra escondida, é o TETO DE TAMANHO que o feiticeiro pode atingir.",
+          "tabela": [
+            {
+              "metros": "1, a borda",
+              "custa": "1 Tick",
+              "metade": "10, Média",
+              "nada": "20, Limite humano"
+            },
+            {
+              "metros": "2",
+              "custa": "2 Ticks",
+              "metade": "15, Difícil",
+              "nada": "30, Sobre-humano"
+            },
+            {
+              "metros": "3",
+              "custa": "3 Ticks",
+              "metade": "20, Limite humano",
+              "nada": "40, acima da escada"
+            },
+            {
+              "metros": "4, o núcleo",
+              "custa": "4 Ticks",
+              "metade": "25, Excepcional",
+              "nada": "50, acima da escada"
+            }
+          ],
+          "escada": "A distância é a única variável, e ela não inventa número novo: é a régua de sempre do capítulo de Ações (5 Fácil · 10 Média · 15 Difícil · 20 Limite humano · 25 Excepcional · 30 Sobre-humano), um degrau por metro.",
+          "leitura": {
+            "nota": "Uma jogada só, comparada aos dois patamares. Não existe uma segunda rolagem para tentar zerar: o mesmo resultado é lido contra os dois números.",
+            "tabela": [
+              {
+                "resultado": "Total ultrapassa a Dificuldade DOBRADA",
+                "sofre": "nada"
+              },
+              {
+                "resultado": "Total ultrapassa só a Dificuldade simples",
+                "sofre": "metade, arredondando para cima"
+              },
+              {
+                "resultado": "Total não ultrapassa nem a simples",
+                "sofre": "o dano inteiro"
+              }
+            ],
+            "porqueDobrar": "Dobrar funciona como teto de propósito. Sair ILESO na borda (Dif 20) é o limite do que um mortal de ponta consegue: a régua já chama esse patamar de Limite humano, e é justamente o teto de Atributo + Habilidade sem Centelha (12). Um passo além da borda, zerar o dano exige Dif 30, Sobre-humano, que a mesma régua reserva a quem tem Centelha, Proeza ou Arte turbinando a rolagem. A partir de 3 metros a Dificuldade dobrada sai da escada inteira: não é regra dizendo que é impossível, é a própria tabela dizendo isso sozinha."
+          },
+          "condicoes": [
+            "A JOGADA É A MESMA na vez e fora dela: a área pegou os dois, e os dois rolam Destreza + Esquiva contra os mesmos dois patamares. Estar livre não dispensa a rolagem. O que ela dispensa é o preço de um Tick por metro e a escada em cima do total.",
+            "Para rolar é preciso TENTAR SAIR DE VERDADE. Quem fica no lugar não testa e come inteiro. Não existe \"me encolho e rolo os dados\".",
+            "Os Ticks são gastos de qualquer maneira, passando ou falhando. É o que torna a decisão uma decisão, e não um bônus grátis.",
+            "Ter identificado o efeito rende bônus na jogada: +2 no total, ou +4 se a identificação passou com Margem. Lê-se cedo para escapar melhor, e é o prêmio do teste de Ocultismo."
+          ],
+          "ficarParado": "Ficar parado de propósito, para não testar nem gastar Tick, pede coragem e não pernas: um teste de Virtude (Bravura ou Temperança, ou outra Virtude, com Firula), a Virtude sozinha e sem Atributo, contra METADE da Dificuldade da linha \"metade\", arredondada para cima (borda 10 vira 5, dois metros 15 vira 8, três metros 20 vira 10, e o núcleo, a quatro metros, 25 vira 13). Passando, o personagem aguenta no lugar sem se mexer, e ainda come o dano inteiro, porque ficar parado nunca reduz o que a área faz, só evita o risco e o custo de tentar sair. Falhando, o corpo se move sozinho: vira o desvio de emergência de qualquer maneira.",
+          "retorno": {
+            "nota": "Contra uma Arte de grau 6 (6d6, 21 de dano médio), o dano poupado por tentativa de sair (entre parênteses, por Tick gasto), com Centelha 0 dos dois lados.",
+            "tabela": [
+              {
+                "quem": "Soldado (Des 3 + Esq 2)",
+                "m1": "2,8 (2,8)",
+                "m2": "0",
+                "m3": "0",
+                "m4": "0"
+              },
+              {
+                "quem": "Aventureiro (4 + 3)",
+                "m1": "7,6 (7,6)",
+                "m2": "1,7 (0,8)",
+                "m3": "0",
+                "m4": "0"
+              },
+              {
+                "quem": "Veterano (5 + 4)",
+                "m1": "10,7 (10,7)",
+                "m2": "5,7 (2,9)",
+                "m3": "1,0 (0,3)",
+                "m4": "0"
+              },
+              {
+                "quem": "Herói (5 + 5)",
+                "m1": "12,3 (12,3)",
+                "m2": "7,1 (3,6)",
+                "m3": "2,3 (0,8)",
+                "m4": "0,2 (0,05)"
+              }
+            ],
+            "notaCentelha": "Com Centelha 3 dos dois lados (dano 6d6 + 3, média 24; quem sai soma 2 × o menor entre 3 e a Esquiva), por tentativa (por Tick):",
+            "tabelaCentelha": [
+              {
+                "quem": "Soldado",
+                "m1": "9,8 (9,8)",
+                "m2": "2,0 (1,0)",
+                "m3": "0",
+                "m4": "0"
+              },
+              {
+                "quem": "Aventureiro",
+                "m1": "14,9 (14,9)",
+                "m2": "9,8 (4,9)",
+                "m3": "3,0 (1,0)",
+                "m4": "0,1 (0,03)"
+              },
+              {
+                "quem": "Veterano",
+                "m1": "19,9 (19,9)",
+                "m2": "11,5 (5,7)",
+                "m3": "7,8 (2,6)",
+                "m4": "1,9 (0,5)"
+              },
+              {
+                "quem": "Herói",
+                "m1": "21,3 (21,3)",
+                "m2": "12,0 (6,0)",
+                "m3": "9,1 (3,0)",
+                "m4": "3,6 (0,9)"
+              }
+            ],
+            "leitura": "Sem Centelha, o soldado só tenta na borda, o aventureiro desiste a partir de 2 m, e no núcleo ninguém poupa um ponto: ali a jogada certa é ficar quieto. Com Centelha 3 dos dois lados, todos poupam mais a cada metro, e o herói ainda tira 3,6 pontos do núcleo."
+          },
+          "direcoes": "As três direções valem, e todas cobram. Sair pelos lados, jogar-se ao chão (quando a faixa do elemento não encosta no piso) ou saltar por cima (quando ela é rasteira) são a mesma conta: o que importa é quantos metros faltam para o corpo ficar fora, e cada metro é um Tick. É aqui que as duas alturas da manifestação deixam de ser enfeite: faixa que sobe do chão obriga a sair pelos lados ou a saltar, faixa com o pé a um metro do chão se resolve caindo, e cair é barato. Onde o feiticeiro pousa a base decide qual saída ele deixa aberta."
+        },
+        "contraOPasso": "Um molde só prende, sem jogada, quem não tenta sair; quem o atravessa num Tick gasta o Tick e rola, mesmo estando livre. O Deslocamento de Batalha humano vai de 2 a 5 m por Tick (fórmula: 2 + (Des + Atl) ÷ 4), e a escada do lado da base (0,5 · 1 · 2 · 3 · 4 · 5 · 6 m) ainda a atravessa, só que mais acima: os três primeiros graus ficaram MENORES QUE O PASSO DE TODO MUNDO e só pegam quem está preso, surpreso ou sem vez; o grau 4 pega o camponês e o aventureiro; o 5 empata com o herói; e só o 6 passa dele. O piso de 2 m do passo é o preço disso, e foi escolhido de olhos abertos."
+      },
+      "aRevisar": [
+        "A calibragem de 5 + 5 × metros no desvio precisa de mesa: a forma está decidida e os números são provisórios. Os dois botões são o 5 (que move todo mundo) e o 5 por metro (que move só quem está fundo).",
+        "Metade por cobertura e metade por desvio não deveriam se multiplicar. Quem está com só as pernas dentro da faixa já sofre metade por física, e passando no desvio sofreria metade disso. A saída provável é valer a melhor das duas, não o produto.",
+        "A Dificuldade da identificação, e o quanto ela cai por Tick: precisa casar com a régua do capítulo de Ações e com o fato de que o teste é escolha de momento.",
+        "Se o teste de concentração (O que o improviso pode combinar) vale também para o PREPARO, e se o Mana volta quando o feitiço cai.",
+        "Os números de ficar parado (o teste de Bravura ou Temperança) ainda não passaram por mesa.",
+        "Proezas de Destreza são o lugar da exceção, e não como \"rolar para desviar\": como SAIR MAIS BARATO, com menos Ticks por metro, um Deslocamento de Batalha maior contra área ou o direito comprado de se mover fora da vez sem teste."
+      ]
+    },
+    "esticar": {
+      "nota": "Passar do nível da Arte num parâmetro. Investir mais Mana NÃO fura o teto sozinho: quem tem Fogo 3 leva tudo até o 3 pagando o normal, mas para alcançar o 4 tem de esticar.",
+      "custo": "Um parâmetro N níveis ACIMA do nível da Arte custa (nível do parâmetro) × (N + 1) pontos.",
+      "speed": "CADA nível acima soma outra vez a Velocidade da ação, somando entre todos os parâmetros esticados. Velocidade 5 vira 10 com um nível acima, 15 com dois.",
+      "decisaoTardia": "O feiticeiro NÃO decide de saída até onde vai. No Tick do Golpe de cada ciclo ele escolhe: soltar o efeito agora, ou segurar e subir mais um nível de um parâmetro. Se segurar, decide de novo no Tick do Golpe do ciclo seguinte. O Golpe do ciclo n cai no Tick n × V − 1, em que V é a Velocidade da conjuração: uma ação de Velocidade 5 decide no Tick 4; se esticar, decide de novo no 9, e outra vez no 14; o 19 é o Golpe do quarto ciclo, onde não há mais o que esticar. Só o ciclo final leva Recuperação. O Tick em que se decide esticar ainda é Preparo (−2 na Defesa), e só o Tick em que a Arte sai é Golpe (−4).",
+      "tabela": [
+        {
+          "acima": 0,
+          "custo": "nível × 1",
+          "speed": "×1"
+        },
+        {
+          "acima": 1,
+          "custo": "nível × 2",
+          "speed": "×2"
+        },
+        {
+          "acima": 2,
+          "custo": "nível × 3",
+          "speed": "×3"
+        },
+        {
+          "acima": 3,
+          "custo": "nível × 4",
+          "speed": "×4"
+        }
+      ],
+      "exemplo": "Centelha 2, Arte 2. Volume 2 + Dano 2 + Duração 2 = 6 pontos, Velocidade 5. Puxando para Volume 3, um acima: 3×2 + 2 + 2 = 10 pontos, Velocidade 10. Para Volume 4, dois acima: 4×3 + 2 + 2 = 16 pontos, Velocidade 15.",
+      "desconto": "a Centelha desconta do total, como em qualquer conjuração"
+    },
+    "guardar": {
+      "nota": "Conjurar agora e soltar depois. O feitiço fica COMITADO: o Mana já foi pago e a atenção do feiticeiro fica presa nele.",
+      "penalidadePassiva": "Raciocínio conta como um nível mais baixo em tudo que é calculado (Iniciativa, Defesa Mental e afins)",
+      "penalidadeAtiva": "−1d6 em qualquer rolagem que use Raciocínio",
+      "duracao": "enquanto o feitiço estiver guardado; soltá-lo ou desfazê-lo devolve o Raciocínio",
+      "aRevisar": "se a penalidade acumula por feitiço guardado, e se há teto de quantos dá para carregar"
+    },
+    "fraquezas": {
+      "nota": "Fraqueza e resistência não são comuns: a maioria das criaturas não tem nenhuma. Aparecem no sobrenatural (a múmia com o fogo, a luz e o sagrado; o vrock, um demônio, com a luz e o sagrado; o golem de gelo com o fogo) e no material de que a criatura é feita (folha, madeira, palha e gelo temem fogo; criatura de fogo ou de terra teme água; metal e pedra resistem ao fogo). Quando o mesmo tipo é também a fraqueza da Regeneração da criatura (o fogo e o ácido do trol), vale a regeneração para esse tipo, na forma que a ficha der: o dano não ignora a Absorção nem é agravado (Os Poderes das Criaturas, Regeneração). O profano é o mesmo tipo que o maligno da regeneração. O sagrado não é a arma abençoada da regeneração: o sagrado é elemento de dano (Arte ou efeito), e a arma abençoada é propriedade da arma, como a prata e o ferro frio, cujo golpe não é sagrado salvo se a arma ou a Arte disser. O dano de Luz fere todos, mas pela metade: contra quem não tem fraqueza a luz, ela é uma resistência como as outras e segue a ordem do livro: a armadura (que não absorve Luz), depois a metade, arredondando para cima, e só então a Centelha de quem recebe (dano 10 e Centelha 2: 10 ÷ 2 = 5, menos 2 = 3); quem também resiste à Luz soma as duas metades e leva um quarto; contra quem tem fraqueza a luz, vale o inteiro e é o da fraqueza (ignora a Absorção e agrava), salvo quando a Regeneração da criatura manda para esse tipo.",
+      "fraqueza": [
+        "o dano ignora TODA a Absorção, natural e de armadura",
+        "o dano é agravado: não fecha com descanso nem com a Habilidade Cura, só com tratamento específico ou a Arte de Cura",
+        "aparar de mãos nuas fere: quem tenta bloquear o golpe com o corpo sofre o dano do mesmo jeito"
+      ],
+      "exemplo": "Um elemental de madeira que tenta aparar uma lâmina feita inteira de fogo leva o dano cheio, sem absorver nada, e a queimadura não fecha sozinha.",
+      "resistencia": "O dano daquele tipo cai pela METADE, arredondando para cima, e nunca é agravado. A ordem importa: primeiro a ARMADURA absorve, depois a resistência corta o que sobrou pela metade, e só então entra a Absorção NATURAL da criatura. A flecha atravessa o couro do mesmo jeito em qualquer um; o que muda é o que o corpo do vampiro faz com o que passou. Resistência é o avesso da fraqueza, e as duas se anulam quando a mesma criatura tem as duas.",
+      "resistenciaExemplos": [
+        "Objeto e estrutura resistem a PERFURAÇÃO: furar uma porta não a derruba.",
+        "Morto-vivo e esqueleto resistem a Perfuração: não há órgão para a lâmina achar.",
+        "Planta e criatura de madeira resistem a Perfuração pelo mesmo motivo, e temem fogo.",
+        "Criatura de água ou de terra resiste a fogo.",
+        "Criatura de metal ou de pedra resiste a fogo."
+      ],
+      "campoBestiario": "criar `fraquezas` e `resistencias` na criatura, como listas de palavras-chave (luz, sagrado, profano, fogo, agua, prata, sol)"
+    },
+    "imunidade": {
+      "nota": "Imunidade a um tipo de dano (B14 fase 4, 29/09/2026): dano daquele tipo é ZERO, não metade como a resistência. Aparece em criatura cuja própria natureza rejeita o tipo (elemental de fogo e o fogo, morto-vivo e veneno, construto e doença).",
+      "regra": "o dano daquele tipo não fere nada: nem PV, nem condição, nem efeito de acompanhamento (veneno, doença, sangramento do mesmo tipo).",
+      "coexistencia": "se a MESMA criatura tiver imunidade e fraqueza ao mesmo tipo ao mesmo tempo, por um efeito de jogo que sobrepõe uma à outra (nunca pelo dado da própria criatura, que nunca grava as duas juntas para o mesmo tipo), o dano volta a ser NORMAL: as duas se cancelam, e nenhuma vence.",
+      "campoBestiario": "criar `imunidades` na criatura, lista de palavras-chave do MESMO vocabulário fechado de `fraquezas`/`resistencias`"
+    },
+    "efeitos": {
+      "nota": "Efeito é o resultado específico comprado dentro de uma Arte (o Special Effect do Sorcerer). A Arte dá o elemento em estado bruto; o Efeito dá forma, nome e comportamento. Régua: se precisa de um substantivo próprio para ser descrito, é Efeito.",
+      "xp": "4 × nível do Efeito (ver xp.efeito). Não acumula: comprar o Efeito de nível 2 não exige ter o de nível 1.",
+      "upgrade": "Em revisão (proposta, ainda não regra): efeito escalonável paga só a diferença: 4 × novo − 4 × antigo",
+      "outraArte": "Efeito que você já sabe e que cabe em outra Arte sua não custa XP, só treino; mas é preciso ter cada Arte no nível do Efeito",
+      "compra": "só até o nível que você tem na Arte; sem teto de quantidade",
+      "ticks": "4 + nível do Efeito + 1 por grau que qualquer parâmetro passe do nível dele",
+      "acaoLivre": "Um punhado de Efeitos não custa Velocidade nenhuma, porque o gesto de conjurar é o mesmo de puxar a arma da cintura ou de tirar a flecha da aljava: sai junto com a ação que o usa, e não no lugar dela. Continuam custando Mana como qualquer conjuração; o que não custam é tempo. São marcados com `acaoLivre` em efeitos.json, e o tabuleiro propõe Velocidade 0 para eles.",
+      "custo": "nível do Efeito + a soma dos parâmetros usados; a Centelha desconta do total, como em qualquer conjuração",
+      "acimaDaArte": "Alguns Efeitos Especiais têm parâmetros acima do nível da Arte, normalmente por serem mais específicos (a Neblina começa um nível acima em Área, trocando m² por m³).",
+      "exemplos": [
+        "Neblina (Efeito 1) + Alcance 2 (2 m) + Volume 3 (2×2×2 m) + Duração 2 (12 Ticks): 1 + 2 + 3 + 2 = 8 pontos, menos a Centelha.",
+        "Neblina (Efeito 1) + Alcance 1 (1 m) + Volume 2 (1,5×1,5×1,5 m) + Duração 1 (6 Ticks): 1 + 1 + 2 + 1 = 5 pontos, menos a Centelha.",
+        "Terremoto (Efeito 2) + Área 3 (2×2 m): 2 + 3 = 5 pontos, menos a Centelha."
+      ],
+      "fronteira": "Efeito de FRONTEIRA é o que mora em duas Artes vizinhas e empresta os verbos de uma para a outra. É o mesmo mecanismo de \"o Efeito que você já sabe e que cabe em outra Arte sua não custa XP\", visto pelo outro lado: ele é a vantagem concreta que uma Escola entrega. A escola da Areia é a de Terra que faz fronteira com o Vento, e por isso alcança Efeitos que a Terra pura não alcançaria. Raio e Vento se tocam pela tempestade e pela velocidade; Gelo e Água pela mesma matéria em dois estados."
+    },
+    "composta": {
+      "regra": "Espelha o combo das Técnicas: juntar K Artes numa conjuração custa a soma dos pontos, menos a Centelha uma vez, mais a sobretaxa progressiva +(k−1). Uma única rolagem (Arte condutora à escolha do feiticeiro); o nível efetivo para gating = o maior componente; os Ticks seguem a escada do maior grau investido.",
+      "sobretaxaPorK": "(k−1)"
+    },
+    "ritual": {
+      "definicao": "Ritual é a conjuração ESTENDIDA: em vez de Ticks, o cast passa a levar minutos ou horas. Vale a pena por dois motivos, à escolha do feiticeiro em cada conjuração.",
+      "escalaTempo": [
+        "Ticks (Velocidade normal)",
+        "1 minuto",
+        "6 minutos",
+        "60 minutos",
+        "6 horas",
+        "24 horas"
+      ],
+      "modoDesconto": {
+        "regra": "Cada grau de tempo acima do normal soma outra vez o desconto de Centelha. Um grau acima = Centelha × 2 de desconto; dois graus = Centelha × 3; e assim por diante.",
+        "exemplo": "Arte 3, Centelha 2, esticando de Ticks para 6 minutos (dois graus): desconto de Centelha × 3 = 6. Alcance 2 + Dano 3 + Duração 2 = 7 pontos − 6 = 1 de Mana."
+      },
+      "modoAcima": {
+        "regra": "Cada grau de tempo acima permite usar parâmetros um nível acima do seu nível de Arte, ao custo de 1 de Força de Vontade por grau. O Mana é o normal, como se você tivesse aquele nível de Arte: não paga o multiplicador do esticar.",
+        "exemplo": "Arte 3, Centelha 2, esticando de Ticks para 6 minutos (dois graus, 2 de Força de Vontade): a conjuração alcança o nível 5. Alcance 5 + Dano 3 + Duração 4 = 12 pontos − 2 de Centelha = 10 de Mana."
+      },
+      "discricao": "Ritual NÃO é silencioso: tem efeito visual e sonoro, às vezes até cheiro. Chama atenção, e isso é parte do custo.",
+      "cooperacao": "vários feiticeiros que conheçam a Arte somam Mana e Força de Vontade",
+      "backlash": false
+    },
+    "recuperacaoMana": {
+      "normal": "Centelha por hora",
+      "descanso": "2 × Centelha por hora em descanso completo ou sono profundo",
+      "firula": "1 de Mana por Firula de nível 2 e 3 por Firula de nível 3, quando a Mana for a reserva escolhida pelo jogador (`M-11b`). É a única porta que devolve Mana dentro da cena, e ela não é relógio, é recompensa.",
+      "nota": "Pelo RELÓGIO a reserva não volta por cena: o feiticeiro que se esvazia numa luta precisa de horas, não de um respiro. É o que separa a economia do Arcano da economia das Proezas (a Energia, essa sim, é o combustível da cena).",
+      "arteManipulacao": "A Arte Mana soma +1 por nível dela a cada 2 horas, e o dobro em descanso."
+    },
+    "fonteElemental": {
+      "nome": "A fonte do elemento",
+      "desconto": 1,
+      "resumo": "Quem conjura com o elemento ao alcance da mão não tira o efeito do nada: molda o que já está ali. Isso vale +1 de desconto, somado ao da Centelha, e muda a natureza do feitiço, que passa a ser manipulação.",
+      "requisito": "A fonte precisa ser farta o bastante para bancar o MAIOR parâmetro investido, não o nível do Efeito. Um Muro com Comprimento 4 exige terra de abundância 4, mesmo que os outros parâmetros fiquem no 1.",
+      "consumo": "O desconto cobra a fonte, e o consumo é proporcional ao nível usado: um efeito de nível 1 tirado de um barril leva só parte da água, e o barril ainda serve depois. Gastar a fonte não é opcional; é o que impede repetir o mesmo truque no mesmo lugar a noite inteira.",
+      "permanencia": {
+        "comMateria": "Elementos que têm corpo (terra, água, gelo) continuam no mundo quando a magia acaba, mas voltam ao estado natural: a parede de água desaba e molha o chão, a parede de terra vira um monte de terra empilhada. Se a água não escorreu nem se espalhou, dá para usá-la de novo como fonte.",
+        "excecao": "O Efeito manda mais que a fonte: quando ele diz que solta, solta. A Prisão erguida com terra de verdade abre e libera o alvo no fim da duração, porque prender é o que a magia estava fazendo; o que fica de pé é a matéria que ninguém precisa segurar, como um muro ou uma fenda.",
+        "semMateria": "Elementos sem corpo (fogo, raio, luz, sombra) simplesmente somem no fim da duração, como qualquer conjuração."
+      },
+      "ritual": {
+        "texto": "O +1 entra antes da multiplicação do Ritual, então um ritual longo à beira do rio rende bem mais do que o mesmo ritual num quarto seco.",
+        "contrapartida": "Em troca, o Ritual devora a fonte muito além do normal, e sugar tudo o que um lugar tem de um elemento raramente passa despercebido: o poço seca, o bosque murcha, a fogueira sagrada apaga. Efeitos colaterais indesejados são a regra, não a exceção."
+      },
+      "zeraCusto": "O desconto da fonte pode zerar o custo e deixar o efeito grátis e ilimitado. Não há nada de errado nisso: o mesmo efeito que fica grátis com Centelha 3 mais a fonte já ficaria grátis com Centelha 4 sem fonte nenhuma.",
+      "penalidade": "A falta do elemento não penaliza. Perder o desconto já é o preço de lutar longe da sua fonte, e só um motivo específico da cena (fogo debaixo d’água, por exemplo) justifica cobrar mais.",
+      "notaAr": "O ar é o elemento mais abundante que existe, então o Vento tem desconto em quase todo lugar até o nível 3. Do 4 em diante é preciso vento de verdade: campo aberto com rajada constante, alto de uma torre, ventania, tempestade. A vantagem geral do Vento é proposital, porque é o elemento que menos mata e o que causa menos dano.",
+      "abundancia": [
+        {
+          "arte": "fogo",
+          "niveis": [
+            "tocha acesa",
+            "fogueira",
+            "lareira grande, carroça em chamas",
+            "casa em chamas",
+            "quarteirão ou floresta em chamas",
+            "incêndio sem fim, rio de lava"
+          ]
+        },
+        {
+          "arte": "gelo",
+          "niveis": [
+            "balde de gelo, poça congelada",
+            "chão coberto de neve",
+            "lago congelado, neve caindo",
+            "campo de neve, geleira pequena",
+            "nevasca, encosta glacial",
+            "geleira, mar congelado"
+          ]
+        },
+        {
+          "arte": "raio",
+          "niveis": [
+            "ar seco e carregado, faísca de metal",
+            "trovoada ao longe",
+            "tempestade sobre a cabeça",
+            "tempestade elétrica forte",
+            "tempestade em mar aberto ou no alto da montanha",
+            "tempestade que se conta em canção"
+          ]
+        },
+        {
+          "arte": "agua",
+          "niveis": [
+            "alguns litros: odre, balde, poça",
+            "barril, poço, bebedouro",
+            "riacho, cisterna, chuva forte",
+            "rio, açude, temporal",
+            "rio caudaloso, lago",
+            "mar, cachoeira"
+          ]
+        },
+        {
+          "arte": "vento",
+          "niveis": [
+            "o ar de qualquer lugar",
+            "o ar de qualquer lugar",
+            "o ar de qualquer lugar",
+            "vento constante: campo aberto, alto de torre",
+            "ventania, tempestade, penhasco",
+            "vendaval, topo de montanha, mar aberto"
+          ]
+        },
+        {
+          "arte": "terra",
+          "niveis": [
+            "um saco de terra",
+            "chão de terra batida, horta",
+            "campo aberto, estrada de terra",
+            "encosta, pedreira",
+            "rocha viva, montanha",
+            "caverna funda, raiz da montanha"
+          ]
+        },
+        {
+          "arte": "luz",
+          "niveis": [
+            "tocha ou lampião aceso",
+            "sala bem iluminada",
+            "céu aberto em dia nublado",
+            "dia claro de sol",
+            "sol a pino",
+            "sol a pino no deserto ou sobre a neve"
+          ]
+        },
+        {
+          "arte": "sombra",
+          "niveis": [
+            "canto escuro, sombra de um beco",
+            "quarto sem janela, noite de lua cheia",
+            "porão, mata fechada de dia",
+            "noite sem lua",
+            "caverna, cripta",
+            "escuro absoluto, subterrâneo fundo"
+          ]
+        }
+      ],
+      "focos": {
+        "texto": "As Artes que não têm elemento no mundo podem ter o equivalente: um foco material que ancora o trabalho e rende o mesmo +1. A régua é a mesma das elementais, ou seja, o foco precisa ser bom o bastante para o maior parâmetro investido, e o trabalho gasta o foco. A lista abaixo é provisória.",
+        "lista": [
+          {
+            "arte": "cura",
+            "foco": "ervas, unguentos, kit de primeiros socorros, poções, água limpa e ataduras, um leito de verdade em vez do chão"
+          },
+          {
+            "arte": "ofuscacao",
+            "foco": "sombra e penumbra para os efeitos que se escondem nelas, além de multidão, disfarce e roupa que ajude a passar despercebido"
+          },
+          {
+            "arte": "adivinhacao",
+            "foco": "baralho de tarô, runas, ossos lançados, espelho, bacia de água parada, entranhas"
+          },
+          {
+            "arte": "fortuna",
+            "foco": "objetos de sorte, amuleto de estimação, dados, moeda gasta de tanto ser esfregada"
+          },
+          {
+            "arte": "protecao",
+            "foco": "símbolos sagrados, círculos desenhados, sal, talismãs, relicários"
+          },
+          {
+            "arte": "natureza",
+            "foco": "folhas, plantas, ervas, sementes, e o próprio mato vivo em volta"
+          },
+          {
+            "arte": "metamorfose",
+            "foco": "ossos, pele, penas, garras e outras partes do animal em que se quer virar"
+          }
+        ]
+      },
+      "pendencias": [
+        "Fechar os focos das Artes não elementais: quais Artes entram além das sete rascunhadas, e como se mede a abundância de um foco que não é elemento.",
+        "Se o desconto pode um dia passar de +1 sob alguma condição especial (lugar sagrado do elemento, estação do ano, um pacto)."
+      ]
+    },
+    "cura": {
+      "nome": "A economia da Cura",
+      "custoPorNivel": 2,
+      "resumo": "A Cura não segue a régua comum. Cada nível de parâmetro custa 2 de Mana em vez de 1, o que ela devolve não é 1d6 por nível, e o alcance é curto. Curar no meio da luta tem de doer no bolso: o lugar natural da Cura é depois da briga, com tempo, não no lugar do escudo.",
+      "graus": {
+        "alcance": [
+          "toque",
+          "1 m",
+          "4 m",
+          "8 m",
+          "12 m",
+          "16 m"
+        ],
+        "alvos": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "cura": [
+          "2",
+          "1d6",
+          "1d6+2",
+          "2d6",
+          "2d6+2",
+          "3d6"
+        ]
+      },
+      "semArea": "A cura comum não tem Área: ela vai a alvos escolhidos, um por um, nunca a todos que estiverem num pedaço de chão. Curar em área existe, mas só através de um Efeito Especial feito para isso.",
+      "outrasArtes": "A Cura é a Arte de curar, e nenhuma outra a alcança. Toda Arte que cura sem ser ela cura MENOS, ou cobra alguma restrição a mais: menos PV pelo mesmo Mana, só certos tipos de dano, exigência de tempo ou de contato. O custo em Mana, porém, é o mesmo: cura é sempre 2 por nível, em qualquer Arte. A Vida, por exemplo, não fecha ferimento: apressa o corpo a fechá-lo sozinho, em qualquer nível e em qualquer profundidade, inclusive abaixo do zero, onde soma ao teste de Tratar do dia (ver Vida, Ferimentos & Cura). Em quem está em 0 PV ou menos, a cura de PV soma ao PV negativo, e o alvo só acorda se chegar a 1 PV ou mais; chegando, acorda na hora.",
+      "divide": "Em mais de um alvo, o valor curado é DIVIDIDO entre eles: 2d6 em três pessoas é a rolagem inteira repartida em três, não 2d6 para cada uma. Comprar Alvos compra ação, não quantidade de cura.",
+      "nota": "O desconto da Centelha continua valendo sobre o total, e no modo Ritual ele é multiplicado pelo tempo gasto: é assim que o curandeiro trata os feridos depois da luta quase de graça, mesmo tendo pouco Mana para gastar durante ela."
+    },
+    "papelDoFeiticeiro": "Feitiçaria não é build barata nem para personagem iniciante: nos primeiros níveis as conjurações são escassas, como o mago de D&D. No Centelha o feiticeiro precisa de um papel secundário, e não necessariamente de combate. Quando o Mana acaba, ele depende de outros recursos para ser útil.",
+    "feiticoTicksNota": "Os Ticks são a Velocidade da conjuração (Preparo, Golpe e Recuperação), e a Arte resolve no Tick do Golpe, o penúltimo, ao contrário da ação comum, que no sistema Normal resolve no primeiro Tick. Ver `tempoDaArte`."
+  },
+  "combate": {
+    "nota": "A linha do tempo do combate. O jogo tem DOIS sistemas de tempo, à escolha do mestre por mesa, e UM conjunto de regras: tudo aqui está escrito em moeda comum (Ticks de Velocidade, dados de rolagem e pontos de Defesa) e vale nos dois. Ver `Combate_Tempo.md`, seção 15.",
+    "escalaPorTamanho": { "dadosPorCategoriaAcima": 1, "bonusPorCategoriaAbaixo": -2, "base": "medio", "vale": ["arma de outro tamanho", "rocha arremessada"], "nota": "G1 (D-363, 07/11/2026): uma arma feita para um corpo maior ou menor muda só o dado de dano base, +1d6 por categoria de Tamanho acima de Médio e −2 por categoria abaixo; a Força continua ×1 com uma mão e ×2 com duas. A régua das categorias é a do Porte (a mesma do Atropelar)." },
+    "sistemaPadrao": "normal",
+    "sistemas": [
+      {
+        "id": "normal",
+        "nome": "Normal",
+        "resumo": "A ação custa a Velocidade e resolve no primeiro Tick. É o sistema do capítulo IX.",
+        "detalhe": "Você declara, rola e resolve na hora; a Velocidade empurra a sua próxima ação. Só as Artes telegrafam, porque só elas têm montagem visível."
+      },
+      {
+        "id": "pgr",
+        "nome": "Três fases (P/G/R)",
+        "resumo": "A mesma Velocidade partida em Preparo, Golpe e Recuperação.",
+        "detalhe": "Tudo com Preparo maior que zero telegrafa: dá para ler o gesto do martelo e interromper, não só o do feiticeiro. No Preparo ainda dá para desistir; na Recuperação já não dá, só dá para pagar."
+      },
+      {
+        "id": "simultaneo",
+        "nome": "Simultâneo (Tick a Tick)",
+        "resumo": "A física do P/G/R com o relógio andando um Tick por vez: todo mundo decide a cada Tick, e o deslocamento acontece no mapa, passo a passo.",
+        "detalhe": "O relógio não pula: cada avanço é um Tick, e nele as peças em trajeto andam, os golpes agendados caem e quem está livre escolhe o que fazer. Decidir é no Tick de agora e valer é no seguinte: a ação declarada no Tick T começa em T+1, então o Tick 0 é só preparação da cena. Quem declara ataque fora do alcance desloca primeiro (dentro do Preparo, quando cabe) e golpeia quando chega. É o modo dos jogos de combate tático, e só existe na mesa digital."
+      }
+    ],
+    "marcacao": {
+      "nota": "Como a mesa DESENHA o tempo. Independe do sistema: a fita degenera com elegância no normal (Golpe no primeiro Tick, o resto Recuperação).",
+      "padrao": "fita",
+      "modos": [
+        {
+          "id": "fita",
+          "nome": "Fita de Ticks",
+          "resumo": "Uma linha por combatente, uma célula por Tick, três tons: Preparo, Golpe, Recuperação. A coluna do Tick corrente é uma régua por cima de todas as linhas."
+        },
+        {
+          "id": "numeros",
+          "nome": "Só os números",
+          "resumo": "A fila de iniciativa como sempre foi: o Tick de cada um, em ordem. Sem fita. O anel de Golpe no tabuleiro fica: no P/G/R o Tick do golpe não é o Tick da pessoa, e nenhum número da fila responde \"quem bate agora\"."
+        }
+      ]
+    },
+    "simultaneo": {
+      "nota": "O que só o sistema simultâneo usa. A física é a do P/G/R (preparo, escada, rajada, dupla: tudo igual); o que muda é o relógio e o deslocamento. Ver Combate_Simultaneo.md.",
+      "golpeNoCaido": {
+        "nota": "O golpe que cai num alvo que ja esta no chao. Decidido em 03/09 e CORRIGIDO no mesmo dia. O RETRATO DA ABERTURA DO TICK e a unica fonte de verdade: quem estava de pe quando o Tick abriu esta de pe para todos os golpes daquele Tick. Duas linhas, simetricas: caiu num Tick ANTERIOR, o atacante viu cair e pode cancelar ou redirecionar; caiu NESTE Tick, ninguem sabia, e o golpe resolve como foi declarado, no corpo que estava de pe quando o gesto saiu. A primeira versao mandava redirecionar tambem no mesmo Tick, e isso fazia o resultado depender de quem o motor processou primeiro: de duas pecas que se derrubam no mesmo Tick, o atacante de quem caiu primeiro redirecionava e o outro nao. A diferenca nao vinha de ficcao nenhuma, vinha da ordem do laco. Agora nao depende. O caso que sobra, o golpe caindo num corpo que acabou de cair, e a ficcao do simultaneo e nao um defeito dela.",
+        "retratoDaAbertura": true,
+        "redirecionaSeCaiuEmTickAnterior": true,
+        "cancelaSeCaiuEmTickAnterior": true,
+        "resolveComoDeclaradoSeCaiuNesteTick": true,
+        "redirecionaNoAlcanceDaArma": true,
+        "roboRedirecionaSozinho": true,
+        "roboNota": "A peca em modo automatico redireciona para o inimigo de pe mais proximo dentro do alcance, sem abrir caixa. Quem nao esta no automatico, o mestre escolhe. O criterio do mais proximo e escolha de politica escrita dentro do motor, e esta na lista de invencoes da bateria."
+      },
+      "decideEmValeDepois": 1,
+      "decideNota": "A ação declarada no Tick T começa em T+1. É o que faz o arco de Preparo 5 soltar a flecha no Tick 6, e o Tick 0 ser só preparação: decisão no Tick, efeito no avanço.",
+      "velocidadePadrao": {
+        "andar": 1.5,
+        "batalha": 3,
+        "corrida": 6,
+        "nota": "Metros por Tick quando a ficha não diz (o bestiário ainda não guarda passo, K28). O campo é editável na declaração: quem sabe o passo da criatura é a mesa. As referências são as de Golpe_Tardio.md §14: andar 1,5 · combate 2 a 5 · corrida 5 a 12."
+      },
+      "alcanceParaGolpe": {
+        "nota": "O trajeto declarado contra um alvo para quando entra no alcance da arma: 1 hexágono no corpo a corpo, 2 na haste (combate.alcance). O golpe cai em max(Preparo, Ticks de viagem) depois do início: deslocar cabe dentro do Preparo, e só o excedente atrasa o golpe."
+      },
+      "reprojecao": {
+        "nota": "A agenda é recalculada a CADA avanço enquanto a peça está a caminho, pela distância que sobrou depois do passo do Tick. Sem isso, o Tick do golpe ficava congelado na declaração (que assume o alvo parado) e o cartão vencia com o atacante ainda longe.",
+        "soAtrasa": true,
+        "soAtrasaNota": "O golpe anda para frente e nunca para trás: o Tick anunciado no log é o mais cedo que ele pode cair. Antecipar o golpe de quem chega adiantado (porque o alvo veio ao encontro) seria defensável e foi recusado em 02/09: mudaria debaixo da mesa um número que ela já leu, e o Preparo é piso de qualquer jeito.",
+        "tetoDeAdiamento": null,
+        "tetoNota": "Sem teto. Na perseguição que não fecha (alvo mais rápido), o golpe desliza um Tick por avanço, indefinidamente, e o log registra cada adiamento. Quem desiste do gesto é a mesa, no abortar, e não o motor: um teto automático decidiria pelo jogador na única hora em que ele ainda pode mudar de ideia."
+      },
+      "ia": {
+        "fugirAbaixoDePct": 25,
+        "nota": "O modo automático de uma criatura: ataca o inimigo de pé mais próximo, foge quando a Vida cai do limiar. O mestre liga e desliga por peça, e retoma o controle a qualquer momento."
+      },
+      "passoNoGolpe": {
+        "nota": "No Tick do Golpe o pé não planta de todo: o corpo cobre os últimos metros. Mas só PARA FRENTE, nunca para trás. Medido em 28/08 (scripts/sim-passo-golpe.mjs): o passo livre entregava o Tick a quem foge e custava 24% dos golpes de quem precisa colar; restrito à direção do alvo ele mede idêntico ao pé plantado nas três baterias, inclusive contra o bate-e-corre. É de graça.",
+        "aproximar": true,
+        "aproximarNota": "Anda na direção do alvo e PARA no alcance da arma. Não é um passo inteiro livre: é o que falta para encostar, e por isso não vira alcance de engajamento disfarçado.",
+        "travessia": true,
+        "travessiaExigeCorrida": true,
+        "travessiaNota": "A inércia: quem chega CORRENDO não para no impacto, segue em linha reta e sai do outro lado. Só para quem declarou Corrida ou Investida, e o freio já existe e é caro: nos dois a guarda cai para a da Corrida (Defesa −4), porque investir é uma forma de aproximação e não um degrau a mais. Sem esse portão, atravessar o inimigo vira fuga disfarçada: num corredor você sai pelo outro lado e deixa o resto do grupo dele para trás.",
+        "recuar": false,
+        "recuarNota": "Nunca. Não se inverte a inércia no instante do impacto, e é justamente o recuo que a bancada mostrou ser caro: todo o custo da versão livre vinha do bate-e-corre.",
+        "circularNaHaste": false,
+        "circularNota": "A haste giraria em volta do alvo mantendo a distância, mudando o ângulo sem fechar nem abrir. Faz sentido e tem risco baixo (não toca na economia de perseguição), mas exige andar pelo ANEL num tabuleiro de hexágonos, que é a única das variantes que precisa de geometria 2D de verdade. Fica anotada e desligada.",
+        "arqueiroAjusta": false,
+        "arqueiroNota": "Descartado por ora: o arco já tem Preparo alto e Recuperação 0, então anda de graça quase o ciclo inteiro, e o passo do Golpe seria marginal. O uso que o justificaria (desbloquear a linha de tiro) depende de linha de tiro e cobertura, que o Grid não modela."
+      }
+    },
+    "golpeAdiado": {
+      "nota": "O golpe sai no Tick agendado, e não na declaração. Não é regra nova: é a regra escrita do Preparo (declara-se em T e o golpe cai em T + Preparo), que o motor da mesa nunca cumpriu. Nasce DESLIGADA porque cumpri-la muda o ritmo da mesa, e isso se prova jogando.",
+      "padrao": false,
+      "nome": "Golpe adiado",
+      "resumo": "Declarar só agenda. O golpe cai em T + Preparo, e a mesa resolve ali: rola o acerto, aplica o dano e cobra a Pressão no alvo. Até lá o gesto fica no ar, e o alvo pode morrer, cair ou sair de baixo.",
+      "detalhe": "Com a chave desligada, declarar e resolver são o mesmo instante: o Grid rola, aplica e empurra o relógio de uma vez, que é o que a mesa faz desde sempre. Ligada, a folha da ação se parte em duas. A primeira só escolhe alvo e manobra, e não mostra número nenhum, porque no Tick da declaração ninguém sabe contra que guarda o golpe vai cair. A segunda abre no Tick do Golpe, com a Defesa daquele instante, e é ali que os dados rolam. Só tem efeito no P/G/R: no sistema normal o Preparo é zero em toda classe, e o golpe já cai na declaração.",
+      "soNoPgr": true
+    },
+    "rolagem": {
+      "nota": "Quem rola os dados. Não muda regra nenhuma: muda quem digita o resultado. O padrão é ninguém rolar no site, porque o dado na mão é metade da mesa.",
+      "padrao": "mesa",
+      "modos": [
+        {
+          "id": "mesa",
+          "nome": "Na mesa",
+          "resumo": "Ninguém rola no site. O Grid mostra o bolo de dados e a Defesa a superar; quem joga rola de verdade e escreve o número."
+        },
+        {
+          "id": "misto",
+          "nome": "Misto: as criaturas rolam sozinhas",
+          "resumo": "Os jogadores rolam os deles na mesa; as criaturas e os NPCs do mestre rolam no site. Metade das transcrições de uma sessão é o mestre rolando pelos próprios monstros."
+        },
+        {
+          "id": "site",
+          "nome": "No site",
+          "resumo": "Todo acerto e todo dano saem do Grid, dos dois lados, com os dados aparecendo um a um. O campo continua editável: rolar no site não impede digitar por cima."
+        }
+      ]
+    },
+    "alcance": {
+      "nota": "Até onde o golpe chega, e o que custa mirar longe. Estava escrito na tela do Grid e subiu para cá: o tabuleiro é o único que sabe a distância entre duas peças, e a régua que ele usa tem de ser a mesma que o livro usa.",
+      "corpoACorpo": {
+        "hexagonos": 1,
+        "hasteHexagonos": 2,
+        "nota": "Uma criatura de porte médio ocupa um hexágono, e o braço alcança o vizinho. A haste alcança o vizinho do vizinho, que é a razão de ela existir. Passou disso não há penalidade: há um passo a dar antes de bater."
+      },
+      "faixas": {
+        "nota": "O que sobra entre o alcance LIVRE e o MÁXIMO, cortado em partes iguais. Cada parte custa penPorParte no acerto. Ver Arremesso.md: os quartos são do que sobra, e não do total, e é isso que faz a mesma regra servir ao dardo e ao machado.",
+        "partes": 4,
+        "penPorParte": -3,
+        "ondeEntra": "na jogada de acerto, e não na Defesa do alvo: o alvo não ficou mais difícil, você é que ficou pior de mira. Por isso não é modificador de Defesa e não entra no teto de +6 dos bônus de Defesa.",
+        "alemDoMaximo": "não chega: o objeto cai antes e não há jogada a fazer."
+      },
+      "mostraNaoAplica": "O Grid MOSTRA a faixa e a penalidade, e não desconta nada sozinho. Quem põe o valor final do ataque é o mestre, de acordo com o que o jogador rolou na mesa."
+    },
+    "distancia": {
+      "nota": "A régua nova do tiro e do arremesso (D-072 a D-076, 09/10/2026). O catálogo traz a Efetiva por arma (`efetiva`, em metros, sempre par); a Máxima sai daqui (arcos e bestas) ou do FAA e do peso (arremesso, forca.notaArremesso). O bloco `alcance` acima é a régua antiga que o Grid ainda lê (D-054); esta ainda não é lida por código nenhum, os textos e o motor a seguem nas rodadas 2 a 4 do plano.",
+      "efetiva": {
+        "nota": "Distância em que o personagem acerta sem a distância atrapalhar, para alvo Médio, por arma e independente do personagem. Além dela, cada meia Efetiva custa o incremento abaixo no acerto, sem teto; com n incrementos = ⌈(d − E) ÷ (E ÷ 2)⌉. Cada incremento soma também 1 Tick de voo entre o Golpe e a chegada (D-073). A Efetiva pode ser maior que a Máxima, e o personagem joga sempre sem penalidade. O propulsor (atlatl) não a muda.",
+        "penPorIncremento": -3,
+        "ticksDeVooPorIncremento": 1,
+        "sempreParEm": "metros"
+      },
+      "maxima": {
+        "nota": "Distância Máxima do projétil. Arcos: tabela pela Força no arco (a menor entre a Força do personagem e a Força máxima do arco; acima de 8 conta como 8, no alcance e no dano). Bestas: valor fixo, sem Força. Arremesso: fórmula do FAA (forca.notaArremesso). Funda e atlatl dobram a Máxima final.",
+        "forcaAcimaDeContaComo": 8,
+        "arcos": {
+          "forcaMaximaPadrao": { "curto": 3 },
+          "nota": "Só o Arco Curto tem Força máxima padrão (3); o Longo e o Composto não têm, e neles a Força no arco é a do personagem. Arco com Força máxima definida (reforçado, de criatura) tem Força mínima = Força máxima − 3.",
+          "porForca": {
+            "curto": [50, 90, 120, 140, 155, 170, 180, 190],
+            "longo": [100, 180, 250, 295, 325, 350, 370, 390],
+            "composto": [120, 215, 300, 355, 390, 420, 445, 465]
+          }
+        },
+        "bestas": { "pequena": 100, "media": 200, "grande": 300 },
+        "multiplicadores": { "funda": 2, "atlatl": 2 }
+      },
+      "atlatl": {
+        "nota": "Item extra, não arma (armas-extras.json). Só com a azagaia: ×2 na Máxima final, +1× Força no dano (a azagaia passa de 1× para 2× Força) e +2 no Preparo (azagaia com atlatl: Velocidade 8). Usa 1 mão, a mesma que lança, e não muda a Efetiva.",
+        "so": ["azagaia"],
+        "preparoMais": 2,
+        "velocidadeDaAzagaia": 8
+      }
+    },
+    "movimento": {
+      "nota": "As três maneiras de andar em combate, e o que cada uma cobra. O número de metros por Tick está em derivados.deslocamento; aqui fica o preço.",
+      "batalha": {
+        "titulo": "Deslocamento de Batalha",
+        "custoTicksPorTick": 1,
+        "primeiroTickGratis": true,
+        "penalidade": 0,
+        "texto": "Andar com a guarda de pé. O primeiro Tick é de graça durante outra ação; daí em diante custa 1 Tick por Tick de movimento. NÃO gera penalidade nenhuma, nem de acerto nem de Defesa: quem gera é estar comprometido com um gesto, e disso cuida a escada."
+      },
+      "corrida": {
+        "titulo": "Corrida",
+        "defesa": -4,
+        "ataque": 0,
+        "texto": "Vai 40 a 60% mais longe por Tick no Arranque e mais que o dobro na Corrida, e cobra a guarda: Defesa −4 enquanto corre e até a sua próxima ação começar, que é o mesmo −4 do Tick do Golpe. Correndo, apara e esquiva mal. O acerto não sofre: quem parou, parou."
+      },
+      "investida": {
+        "titulo": "Investida",
+        "forcaExtra": 1,
+        "defesaExtra": -2,
+        "texto": "Gastar o Preparo CORRENDO em vez de andando: o golpe cobre a distância da Corrida em vez da de Batalha, a Defesa cai −2 além do que o Preparo já cobra, e o golpe soma a Força mais uma vez no dano, sem dado a mais (uma mão ou o corpo, de × 1 para × 2; arma de duas mãos, de × 2 para × 3; só na ação de Investida, e o mesmo golpe sem investir soma a Força como sempre). Não é regra nova: é o Preparo que a arma já tem, atravessado a outra velocidade."
+      },
+      "recarga": {
+        "titulo": "Recarga",
+        "tag": "recarga",
+        "permiteDeslocamento": false,
+        "permitePrimeiroTickGratis": false,
+        "texto": "O espelho da Investida: gastar o Preparo PARADO, porque não há outro jeito de girar a manivela. A arma com a tag `recarga` (as três bestas) não anda durante o Preparo, e isso inclui o primeiro Tick de Deslocamento de Batalha, que toda outra ação ganha de graça. O tiro sai no Tick do Golpe, como em qualquer arma de tiro; o que a besta perde é o passo, não o disparo.",
+        "porque": "O custo da recarga mora na Velocidade da própria arma (9, 12 e 15 Ticks), e o Preparo do tiro é `velocidade - 1 - recuperação` (D-082), então quem declara o tiro da Besta Grande (Velocidade 15, Preparo 12, Recuperação 2) fica doze Ticks comprometido com a escada de Defesa aberta em cima. Ficar parado é o que torna essa exposição real em vez de decorativa, e é o que o pavês existe para cobrir.",
+        "aberto": "O que acontece se o besteiro se mexer no meio da recarga (perde os Ticks já investidos, ou a recarga só pausa) NÃO foi decidido, e o motor ainda não lê esta bandeira: hoje ela é regra de mesa."
+      }
+    },
+    "pgr": {
+      "nota": "A régua P/G/R por classe de arma: em que Tick o golpe sai, contado da declaração. O Golpe é sempre 1 Tick; a Recuperação é o que sobra da Velocidade (P + G + R = Velocidade).",
+      "preparo": {
+        "leve": {
+          "fixo": 0
+        },
+        "media": {
+          "fixo": 1
+        },
+        "haste": {
+          "fixo": 2
+        },
+        "pesada": {
+          "fixo": 2
+        },
+        "distancia": {
+          "daVelocidade": -1,
+          "nota": "a flecha encaixada é preparo; a soltura é instantânea"
+        },
+        "arremesso": {
+          "daVelocidade": -2,
+          "nota": "um Tick para voltar à postura"
+        },
+        "arte": {
+          "daVelocidade": -1,
+          "nota": "o ataque de criatura que é conjuração (o bestiário estima pela cara do nome, '(Fogo 3)'): sai no último Tick, como a régua da Arte manda, com a Velocidade que o bloco já dava"
+        }
+      },
+      "arte": {
+        "preparoBase": 2,
+        "preparoPorNivel": 1,
+        "cicloBase": 3,
+        "cicloPorNivel": 1,
+        "nota": "A Arte sai no ÚLTIMO Tick da montagem: Preparo = 2 + nível, ciclo = nível + 3. É a §5.3 do Arcano, já no site."
+      },
+      "reforma": {
+        "nota": "A reforma de P/G/R da D-082 (tiro e arremesso na rodada 4a, corpo a corpo na 4b, a Arte na 4c, 10/10/2026): Preparo = Velocidade − 1 − Recuperação, com o Golpe sempre em 1 Tick, e toda arma de tiro tem Recuperação. Fica numa chave à parte porque `preparo` (a fórmula por classe, acima) é lida pelo motor do Grid (combate-tempo.ts), congelado pela D-054: o motor passa a ler esta na passada do Grid (N22 em N-grid-pendencias.md). Os números são os da tabela 'Preparo, Golpe e Recuperação' do capítulo Combate Físico, e o test-capitulo-armas.mjs os prende nos dois lados. O corpo a corpo, a Investida, a Rajada e a dupla (rodada 4b) estão em `corpoACorpo`, `investida`, `rajada` e `dupla`, na mesma chave e com o mesmo motivo.",
+        "corpoACorpo": [
+          { "id": "leve", "nome": "Leve", "velocidade": 5, "preparo": 1, "golpe": 1, "recuperacao": 3, "armas": ["adaga", "espada-curta", "machadinha", "bastao", "sabre", "chicote", "florete"] },
+          { "id": "media", "nome": "Média", "velocidade": 6, "preparo": 2, "golpe": 1, "recuperacao": 3, "armas": ["espada-longa", "machado", "espada-serrilhada", "maca", "picareta-de-guerra", "martelo", "maca-estrela"] },
+          { "id": "haste-media", "nome": "Haste média", "velocidade": 6, "preparo": 2, "golpe": 1, "recuperacao": 3, "armas": ["lanca", "bordao", "tridente", "forcado"] },
+          { "id": "haste-guerra", "nome": "Haste de Guerra", "velocidade": 7, "preparo": 3, "golpe": 1, "recuperacao": 3, "armas": ["alabarda", "glaive", "lanca-longa", "corrente-farpada"] },
+          { "id": "pesada", "nome": "Pesada", "velocidade": 7, "preparo": 3, "golpe": 1, "recuperacao": 3, "armas": ["montante", "martelo-de-guerra", "machado-pesado"] },
+          { "id": "punhos", "nome": "Punhos", "velocidade": 5, "preparo": 1, "golpe": 1, "recuperacao": 3, "armas": ["desarmado"] }
+        ],
+        "investida": {
+          "nota": "Toda arma investe, inclusive a leve (D-082, opção a do autor): o Preparo é o orçamento de deslocamento. Para a Sora (4 m por Tick andando, 7 m por Tick no Arranque) o que se cobre é o Preparo × 4 e o Preparo × 7.",
+          "andandoPorTick": 4,
+          "investindoPorTick": 7
+        },
+        "rajada": {
+          "nota": "A Rajada no P/G/R (D-083): P → G → G → … → R, declarada de uma vez. Cada golpe além do primeiro soma 1 Tick de Golpe e 1 de Recuperação (+2 no ciclo) e custa −1d6 acumulativo no acerto. Só corpo a corpo.",
+          "golpeExtraTicksDeGolpe": 1,
+          "golpeExtraTicksDeRecuperacao": 1,
+          "penDadosPorGolpeExtra": -1,
+          "teto": { "leve": 3, "media": 3, "haste-media": 2, "haste-guerra": 2, "pesada": 2 }
+        },
+        "dupla": {
+          "nota": "A empunhadura dupla no P/G/R (D-083): um Tick de Golpe por mão, ambas a −1d6. O par de leves faz o segundo Golpe comer a Recuperação (o ciclo não muda); com arma média na mão hábil o ciclo cresce 1. Segurando a segunda arma ou o escudo sem golpear com ela, o Tick de Golpe fica a −2 em vez de −4. Conta 2 ataques para a Guarda sob pressão.",
+          "penDados": -1,
+          "parDeLeves": { "preparo": 1, "golpes": 2, "recuperacao": 2, "ciclo": 5 },
+          "comMedia": { "preparo": 2, "golpes": 2, "recuperacao": 3, "ciclo": 7 },
+          "golpeSemGolpear": -2
+        },
+        "arte": {
+          "nota": "A Arte na D-082 e na D-084 (rodada 4c): sai no Tick do Golpe, o penúltimo (Velocidade − 1), com 1 Tick de Recuperação, que cobra −2 como a de qualquer ataque. A Velocidade vem do maior grau investido na conjuração (feiticoTicks). O motor do Grid segue em combate.pgr.preparo.arte e combate.pgr.arte, congelados pela D-054 (N22).",
+          "graus": [
+            { "id": "arte-0-3", "nome": "Arte, maior grau 0 a 3", "velocidade": 5, "preparo": 3, "golpe": 1, "recuperacao": 1 },
+            { "id": "arte-4", "nome": "Arte, maior grau 4", "velocidade": 6, "preparo": 4, "golpe": 1, "recuperacao": 1 },
+            { "id": "arte-5-6", "nome": "Arte, maior grau 5 ou 6", "velocidade": 7, "preparo": 5, "golpe": 1, "recuperacao": 1 }
+          ],
+          "esticar": {
+            "nota": "Esticar soma a Velocidade outra vez (T = n × V, n de 1 a 4). O Golpe do ciclo n cai no Tick n × V − 1 (V5: 4, 9, 14, 19); só o ciclo final leva Recuperação; o Tick em que se decide esticar ainda é Preparo (−2), e só o Tick em que a Arte sai é Golpe (−4). Custo total 2 × T + 2, o mesmo do Normal. O sinal dura T − 1 Ticks.",
+            "tickDoGolpeDoCiclo": "n × V − 1",
+            "exemploV5": [4, 9, 14],
+            "soOCicloFinalLevaRecuperacao": true,
+            "sinal": "T − 1"
+          }
+        },
+        "tiro": [
+          { "id": "arremesso-leve", "nome": "Arremesso leve", "velocidade": 4, "preparo": 2, "golpe": 1, "recuperacao": 1, "armas": ["shuriken", "mini-faca", "kunai"] },
+          { "id": "arremesso-medio", "nome": "Arremesso médio", "velocidade": 5, "preparo": 3, "golpe": 1, "recuperacao": 1, "armas": ["adaga-de-arremesso", "plumbata", "bumerangue", "bumerangue-de-retorno-cortante"] },
+          { "id": "arremesso-pesado", "nome": "Arremesso pesado", "velocidade": 6, "preparo": 3, "golpe": 1, "recuperacao": 2, "armas": ["bumerangue-de-caca", "bumerangue-de-caca-cortante", "machado-de-arremesso", "azagaia", "pilum", "boleadeira", "rede", "rocha"] },
+          { "id": "funda", "nome": "Funda", "velocidade": 6, "preparo": 4, "golpe": 1, "recuperacao": 1, "armas": ["funda"] },
+          { "id": "arco-curto", "nome": "Arco Curto", "velocidade": 6, "preparo": 4, "golpe": 1, "recuperacao": 1, "armas": ["arco-curto"] },
+          { "id": "arco-longo-composto", "nome": "Arco Longo e Composto", "velocidade": 7, "preparo": 4, "golpe": 1, "recuperacao": 2, "armas": ["arco-longo", "arco-composto"] },
+          { "id": "besta-pequena", "nome": "Besta Pequena", "velocidade": 9, "preparo": 7, "golpe": 1, "recuperacao": 1, "armas": ["besta-pequena"] },
+          { "id": "besta-media", "nome": "Besta Média", "velocidade": 12, "preparo": 9, "golpe": 1, "recuperacao": 2, "armas": ["besta-media"] },
+          { "id": "besta-grande", "nome": "Besta Grande", "velocidade": 15, "preparo": 12, "golpe": 1, "recuperacao": 2, "armas": ["besta-grande"] },
+          { "id": "azagaia-com-atlatl", "nome": "Azagaia com atlatl", "velocidade": 8, "preparo": 5, "golpe": 1, "recuperacao": 2, "armas": [], "extra": "atlatl" }
+        ]
+      }
+    },
+    "escada": {
+      "nota": "Estar comprometido com uma ação custa Defesa, e a moeda é o −2 da Guarda sob pressão: tudo deriva dela. No sistema normal a escada colapsa para o que o capítulo IX já cobrava, mais o −4 no Tick em que o golpe sai.",
+      "preparo": -2,
+      "golpe": -4,
+      "recuperacaoPorGolpe": -2,
+      "pressaoPorAtaque": -2,
+      "pressaoTeto": null,
+      "alivioSegundaMao": 2,
+      "alivioNota": "Quem empunha duas armas e golpeia com só uma tem −2 no Tick do Golpe em vez de −4: a outra mão continua guardando.",
+      "zeraEm": "livre"
+    },
+    "rajada": {
+      "nota": "Atacar N vezes com a MESMA arma numa ação só, declarado de uma vez, sem parar no meio: P → G → G → R. Só corpo a corpo.",
+      "penDadosPorGolpeExtra": -1,
+      "penDadosAcumula": true,
+      "velocidadePorGolpeExtra": 2,
+      "anatomia": {
+        "golpeExtra": 1,
+        "recuperacaoExtra": 1,
+        "nota": "no P/G/R o +2 de Velocidade é um Tick de Golpe mais um de Recuperação"
+      },
+      "teto": {
+        "leve": 3,
+        "media": 3,
+        "haste": 2,
+        "pesada": 2
+      },
+      "corpoACorpo": true
+    },
+    "dupla": {
+      "nota": "Uma arma em cada mão, um Tick de Golpe para cada mão, ambas a −1d6.",
+      "penDados": -1,
+      "penDadosAmbasAsMaos": true,
+      "cicloExtra": {
+        "leve": 0,
+        "media": 1,
+        "haste": 1,
+        "pesada": 1
+      },
+      "cicloExtraNota": "Vale a classe da arma da mão hábil, e SÓ no sistema P/G/R: o par de leves fecha no mesmo ciclo, com média o ciclo cresce 1.",
+      "cicloExtraNoNormal": 0,
+      "cicloExtraNoNormalNota": "No sistema normal a dupla fecha na mesma Velocidade em qualquer classe. É a única regra que se calibra diferente por sistema (§15.2)."
+    },
+    "recuperacao": {
+      "nota": "O que se pode fazer depois que o golpe saiu e antes de a guarda se refazer.",
+      "deslocamentoTicksPorMetro": 1,
+      "penDadosAcaoNaFase": -1,
+      "declaraAcaoNova": false,
+      "refazGuarda": false,
+      "deslocamentoNota": "Baixado de 2 para 1 em 21/08, depois de a bancada pôr os quatro preços de andar no mesmo eixo: a 2 Ticks por metro, mover 3 m na Recuperação custava 6 Ticks (quase uma ação inteira) e treze vezes o preço de correr na própria vez, o que fazia dela uma regra que ninguém pagaria. A 1, ela empata com o desvio de emergência da §5.5 e com o abortar do Preparo: andar fora da sua vez custa 1 Tick por metro, seja qual for o motivo. Os três números continuam separados aqui, de propósito, para dar para calibrar um sem mexer nos outros."
+    },
+    "abortar": {
+      "nota": "Abortar o gesto que ainda não saiu. Só no Preparo: no Golpe não se aborta (não há como interromper o próprio braço no instante em que ele cai) e na Recuperação não há o que abortar, o golpe já foi. É o desvio de emergência da §5.5 do Arcano virado regra geral, e é o que dá saída ao arqueiro e ao feiticeiro, que têm Recuperação zero.",
+      "fase": "preparo",
+      "ticksPorMetro": 1,
+      "ticksPorMetroNota": "O mesmo preço do desvio de emergência contra área (§5.5) e o mesmo 1 Tick por metro da Recuperação. O que muda é o resto: no Preparo você ainda pode desistir, na Recuperação você já não pode, só pode pagar.",
+      "para": [
+        "mover",
+        "desviar",
+        "interpor"
+      ],
+      "nuncaPara": "atacar",
+      "perdeOInvestido": true,
+      "perdeOInvestidoNota": "Os Ticks já gastos no Preparo não voltam: você fica livre no Tick de agora, e não no Tick em que declarou. É esse o preço, e é ele que impede abortar de ser de graça.",
+      "levarAdiante": "Quem quiser ignorar o perigo e levar o golpe adiante pode, com um teste de Virtude. Como se conta um teste de Virtude ainda não está decidido (K12): não entram Atributos nem Habilidades, só Virtudes."
+    },
+    "foraDeHora": {
+      "nota": "Agir fora da sua vez: paga a Velocidade da ação empurrada para o seu próprio futuro, a guarda não se refaz, uma por ação. Interromper atrasa o alvo em tantos Ticks quantos o interruptor pagou (o espelho).",
+      "umaPorAcao": true,
+      "espelho": true
+    },
+    "interpor": {
+      "nota": "As seis perguntas do Interpor, fechadas em 07/09/2026 (Pendencias.md, L34 §6). Quem leva o dano: o acerto e o dano já resolvidos contra o alvo original passam inteiros para o interpositor (nenhum novo teste de acerto); a Absorção que se aplica é a do interpositor, nunca a do alvo original. Teste: nenhum dedicado; pagando os Ticks e estando dentro do alcance, a interposição acontece, determinística (mesmo regime de 'Avançar para fechar distância' no catálogo). Alcance: teto = alcance da arma original medido do agressor; só à distância, o interpositor também precisa terminar numa casa que a reta (coordenadas cúbicas) do agressor até a posição original do aliado cruza; no corpo a corpo isso é redundante. Escudo: nada de novo, a bandeira `bloqueio` decide como em qualquer golpe. Duração: um golpe só, o que disparou a interposição; a tela tem de dizer contra qual golpe ela vale.",
+      "duasPortas": "NÃO SÃO PREÇOS CONCORRENTES, são duas portas já precificadas desde 20-21/08/2026 (Combate_Tempo.md §14.6): no Preparo, interpor é um dos destinos do abortar (`combate.abortar.para`), a `combate.abortar.ticksPorMetro`: você desiste do próprio gesto, sem teste, perde o investido; na Recuperação, interpor é a ação fora de hora do catálogo (§4.3), pelos dois campos abaixo, com o teste que a mesa fizer ali a `combate.recuperacao.penDadosAcaoNaFase`.",
+      "recuperacao": {
+        "ticksPorMetro": 1,
+        "minimoTicks": 2,
+        "nota": "O catálogo (§4.3): 'a distância em metros, mínimo 2'. O custo em Ticks é a distância percorrida, com piso de 2: quem já está a 1 metro ou menos ainda paga 2. Some ao `foraDeHora` como a Velocidade da reação: é a mesma transação, com outro número de entrada."
+      }
+    }
+  },
+  "bandeiras": {
+    "nota": "AS QUINZE BANDEIRAS DE REGRA. Cada uma liga ou desliga uma regra que a simulacao mede isolada (docs/simulacao/02-projeto-harness.md, secoes 0.6.1 item 11 e 0.7). O bloco e lido pela mesa E pelo harness, e mora aqui porque combate-tempo.ts ja importa este arquivo e nada mais, e porque o dados_hash do manifesto da bateria ja registra mudanca em src/data: trocar uma bandeira fica anotado na bateria que rodou com ela. NAO CONFUNDIR COM modulos.ts, que e so tela. O encontro CARIMBA este objeto ao comecar (migracao 29) e le do carimbo, para um deploy nao trocar o chao debaixo de uma cena aberta.",
+    "notaEstado": "TODAS NASCEM DESLIGADAS, e cada uma vira true NO COMMIT QUE A LIGA NO MOTOR. A versao anterior punha as nove de regra publicada em true, seguindo o padrao de producao da secao 0.6, e as seis do nucleo em false com a justificativa de que as regras que elas ligam ainda nao existem. A justificativa das seis valia igual para as nove: nenhuma esta ligada no motor (a margem nao entra no dano, o gate nao e chamado, o bloqueio nao existe). O perfil afirmava um jogo que a mesa nao joga, e no arranjo em que o harness le o mesmo objeto ele aplicaria a Margem que a mesa nao aplica: a primeira divergencia do espelho seria culpa do dado, e nao do codigo. O padrao de producao LIGADAS continua sendo o destino, alcancado uma bandeira por vez em vez de por antecipacao. A PRIMEIRA A LIGAR, em 06/09/2026, foi `porte`: `modificadorPorte`/`porteDeRotulo` em calc.ts, aplicados em `ajAtq.flat` de `folhaDaAcao` (grid.astro). So na MESA: o harness (scripts/sim/motor.mjs) continua sem le-la, porque a segunda bateria nao acontece (Pendencias.md L25) e o harness nao e mais o alvo desta ligacao. A SEGUNDA, no mesmo dia, foi `gate`: `gatePerfuracaoAbre` (calc.ts, ja existia, nunca era chamada) le `perfArma` do atacante (novo em combate-resumo.ts/mesa-bestiario.ts/gen-bestiario.mjs/gen-monsters.mjs) contra `resistPerf` do alvo, calculado UMA VEZ em `resvalaGate` e aplicado nos DOIS lugares de `folhaDaAcao` que decidem dano (`contaDoLance`, o oraculo/tela, E `fim`, que e o que `aplicarDano` de fato usa) - as duas armaduras conferidas contra `armas-e-armaduras.md:109-119` batem numero a numero com `armaduras.json`, entao a Adaga (Perfuracao 0) resvalando contra 7 das 9 armaduras e a regua, nao inflacao de catalogo.",
+    "margem": false,
+    "gate": true,
+    "porte": true,
+    "bloqueio": false,
+    "modo2": false,
+    "teto6": false,
+    "curaSemArea": false,
+    "curaDivide": false,
+    "porRodada": false,
+    "n1": false,
+    "n2": false,
+    "n3": false,
+    "n4": false,
+    "n5": false,
+    "n6": false,
+    "notaN1": "Enquanto n1 for false, quem manda e combate.simultaneo.decideEmValeDepois, que vale 1 (a acao comeca em T+1). No commit que escrever N1 os dois passam a ser a mesma coisa: decideEmValeDepois vira derivado de n1, e nao ha dois lugares dizendo a regra.",
+    "notaCouraca": "A couraca NAO e bandeira, e nao por esquecimento: a Absorcao de cada criatura ja sai do motor com a Couraca somada pelo nivel e pelo perfil (R49, D-328; src/lib/motor.ts, absorcaoDaCouraca) e vem pronta no monsters-mesa.json. Uma bandeira de tempo de execucao a somaria DUAS VEZES. A antiga couraca de porte, por tamanho, saiu do gerador em 5da94c0d. O que a bateria mede no lugar dela e o eixo do elenco: criatura grande contra criatura media."
+  },
+  "social": {
+    "nota": "A Régua de Relação e os dois modos, decisão de 18-19/09/2026 (ver o capítulo X, relacoes-sociais.md). O modo RÁPIDO (com dado) não move a régua: a Margem compra alcance do pedido, +1 nível por 6 de folga, só naquela cena. O modo DEVAGAR é o único lugar onde a conversa move a régua. Atos movem nos dois, com passo fixo e sem rolagem.",
+    "regua": {
+      "min": -6,
+      "max": 6,
+      "passosParaRomperNeutro": 3,
+      "tetoDeVidro": 2,
+      "tetoDeVidroNota": "Vale para tudo o que ACUMULA (gesto e cortejo). Só ato atravessa para +3 e acima, ou para -3 e abaixo.",
+      "esfriaPassosPorEstacao": 1
+    },
+    "modoRapido": {
+      "alcancePorMargem": 1,
+      "nota": "Alcance do pedido na tabela de Pedir as coisas, e nada mais. A régua não anda.",
+      "resistencia": {
+        "custoBase": 1,
+        "porMargem": 1,
+        "tetoCusto": 4,
+        "tetoCustoNota": "Resistir no Combate Social custa 1 + Margem de Força de Vontade, com teto de 4: nenhum efeito obriga o defensor a pagar mais de 4 (Proezas podem cobrar mais). O mesmo teto vale para o efeito mental e, por intervalo, para o cortejo (modoDevagar). Decisões do autor D-001 (03/10/2026) e D-017 (04/10/2026)."
+      }
+    },
+    "modoDevagar": {
+      "nota": "Sem dado. Ataque parado = Influência + Habilidade. Defesa parada = (Compostura + Sociabilidade) × multDefesa + 2×menor(Centelha,Sociabilidade) + termo da régua (decisão 1 do autor e Adendo 1 da correção da Reforma da Centelha, 02/10/2026; o `centelhaMult` abaixo ficou parado em 1 e não é lido por nenhum código, ver nota em derivados.defesaSocial). Tempo do passo, em intervalos = máx(pisoTempoDoPasso, defesa parada − ataque parado − soma dos gestos). O termo da régua é o mesmo de derivados.defesaSocial.reguaNota.",
+      "multDefesa": 1,
+      "multDefesaNota": "1 e não 2 porque não há dado: o ×2 de derivados.defesaSocial casa com a média de um punhado de dados rolados, e ataque parado vale a própria soma. Mesma calibragem, não outro número.",
+      "centelhaMult": 1,
+      "centelhaSoNaDefesa": true,
+      "pisoTempoDoPasso": 1,
+      "gestosPorIntervalo": 1,
+      "resistencia": {
+        "custoBase": 1,
+        "divisorExcedente": 6,
+        "excedenteComPisoZero": true,
+        "tetoCusto": 4,
+        "tetoCustoNota": "O custo por intervalo do cortejo tem o mesmo teto de 4 do Resistir, por intervalo (D-017, 04/10/2026, que substitui a D-015). A Força de Vontade presa continua somando de um intervalo para o outro, sem teto.",
+        "vontadePresa": true,
+        "vontadePresaNota": "A Força de Vontade investida em segurar fica presa enquanto o cortejo durar, e só volta quando ele acaba ou o alvo desiste. Vale SÓ para o cortejo longo, porque a Força de Vontade se recompõe a 1 por noite (recuperacaoVontade.quantoPorSono) e o intervalo tem 8 dias ou mais: sem a trava, qualquer custo por intervalo sai de graça."
+      }
+    }
+  },
+  "acoes": {
+    "escalaIntervalo": {
+      "nota": "A escada de seis degraus de intervalo usada pelos modos Acumulada e Longa (capítulo VIII).",
+      "degraus": ["tick", "minuto", "hora", "dia", "semana", "estacao"]
+    },
+    "longevidadeFirula": {
+      "nota": "O intervalo do cortejo social (capítulo X, relacoes-sociais.md) escala com a longevidade da raça de quem corteja (racas.json -> longevidade): intervalo em dias = intervaloBaseDias × multiplicador da faixa. SUBSTITUI o deslocamento de degrau da M-09 (17/09/2026), e a escada de seis degraus saiu desta regra porque o ajuste racial precisa de quatro degraus seguidos, os saltos entre os degraus que caberiam aqui multiplicam de 8 a 24 vezes cada um, e a única base plausível produzia um orc saindo de estranho a Apreço em quatro horas.",
+      "intervaloBaseDias": 8,
+      "porFaixa": {
+        "curta": { "multiplicador": 0.5, "exemplo": "orc, meio-orc" },
+        "padrao": { "multiplicador": 1, "exemplo": "humano, meio-elfo" },
+        "longa": { "multiplicador": 2, "exemplo": "anão, gnomo, halfling" },
+        "muito-longa": { "multiplicador": 4, "exemplo": "elfo" }
+      }
+    }
+  },
+  "criatura": {
+    "nota": "Os números das contas da criatura que o motor faz (src/lib/motor.ts; formato-criatura.md, seção 3; plano-conversao.md, A2). A Vida pela massa mora em derivados.pv.massa.conta. A fonte de cada um está na nota dele.",
+    "fraquezasDaRegeneracao": { "lista": ["prata", "ferro frio", "arma abençoada", "fogo", "ácido", "luz do sol", "água", "maligno"], "nota": "G5 (D-367, 07/11/2026): o vocabulário das fraquezas da Regeneração é lista fechada, e o Mestre pode acrescentar. A G7 (D-369) acrescenta água e maligno; o maligno cobre arma, efeito, artefato ou magia de origem maligna, e a ficha diz qual. O conversor aceita nome fora da lista com aviso, e não com erro. As formas são as duas da R47: interrompe (com o tempo escrito na ficha; o atrasar do tarrasque é esta) e não se regenera." },
+    "tamanho": {
+      "nota": "O Tamanho pela área da silhueta, na vista de maior área (D-155, D-183): até cada corte, em m², vale o id da mesma posição em porteAcerto.ordem; acima do último, Colossal. A menos de `folga` (5%) do corte, a ficha escolhe pelo corpo e justifica (decisoes-autor §13), e guarda a escolha em `corpo.tamanhoEscolhido` (D-216, D-225).",
+      "cortesM2": [0.03, 0.12, 0.45, 1.45, 6, 25, 100],
+      "folga": 0.05
+    },
+    "faixaMassa": {
+      "nota": "As 7 faixas de massa das manobras (decisoes-autor §9; D-180, ponto 10; D-141): até cada corte, em kg, a faixa da mesma posição mais um; acima do último, a 7. O incorpóreo usa o volume × `densidadeIncorporeoKgM3`, a carne e o osso (D-190).",
+      "cortesKg": [4, 35, 220, 1800, 14000, 110000],
+      "densidadeIncorporeoKgM3": 1010
+    },
+    "pesoErguido": {
+      "nota": "A R15 (D-184): P = max(curva(massa); piso × massa) × base^(E − E de referência); curva(m) = curvaA × 10^(curvaB × L − curvaC × L²), L = log10(m ÷ curvaMassaKg); E = (3 × Força + Halterofilismo + 3 × Musculatura) ÷ 4; E de referência = (3 × Força de referência + 6) ÷ 4; Força de referência = 6 + 3,8 × log10(m ÷ 60) abaixo de 60 kg, 6 de 60 a 200 kg, 6 + 3,8 × log10(m ÷ 200) acima, nunca abaixo de 0.",
+      "curvaA": 400, "curvaB": 0.53, "curvaC": 0.176, "curvaMassaKg": 100,
+      "piso": 0.25, "base": 1.3,
+      "eForca": 3, "eHalterofilismo": 1, "eMusculatura": 3, "eDivisor": 4,
+      "eRefForca": 3, "eRefSoma": 6,
+      "forcaRef": 6, "forcaRefInclinacao": 3.8, "forcaRefAbaixoKg": 60, "forcaRefAcimaKg": 200
+    },
+    "danoMedio": {
+      "nota": "A média de cada d6 no dano médio (manual-fichas-criatura.md, 5.3; o dado mais o resto: Força × multiplicador e a Centelha, D-209).",
+      "porDado": 3.5
+    },
+    "couraca": {
+      "nota": "Quanto a Couraça protege (R49, D-328, 05/11/2026; combate.md, Couraça): a ficha diz o nível N (0 a 12) e o perfil da cobertura, e o nível soma à Absorção a fração do perfil, com as metades arredondadas para cima. Não cria Nível de Perfuração. A ficha sem perfil (as de antes da R49) não soma nada: o motor não escolhe perfil por ela.",
+      "perfis": {
+        "rigida": { "corte": 1, "perfuracao": 1, "impacto": 0.5 },
+        "couro": { "corte": 1, "perfuracao": 0.5, "impacto": 0.5 },
+        "mole": { "corte": 0.5, "perfuracao": 0.5, "impacto": 1 }
+      }
+    }
+  }
+}

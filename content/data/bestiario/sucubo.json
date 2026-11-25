@@ -1,0 +1,333 @@
+{
+  "id": "sucubo",
+  "idAntigo": "mon-sucubo",
+  "nome": "Súcubo",
+  "nomeIngles": "Demon, Succubus",
+  "categoria": "corruptor",
+  "papel": "elite",
+  "ameaca": 4,
+  "centelha": 4,
+  "corpo": {
+    "postura": "bípede, de pé, ereto; voa",
+    "apoio": "bipede",
+    "altura": 1.75,
+    "largura": 0.44,
+    "profundidade": 0.22,
+    "comprimento": null,
+    "massa": 59,
+    "area": 0.68,
+    "posturaDoTamanho": "silhueta de frente, de pé"
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 3,
+    "destreza": 5,
+    "vigor": 6,
+    "percepcao": 4,
+    "inteligencia": 5,
+    "raciocinio": 5,
+    "influencia": 8,
+    "perspicacia": 7,
+    "compostura": 6
+  },
+  "habilidades": {
+    "briga": 5,
+    "bloqueio": 0,
+    "esquiva": 1,
+    "atletismo": 2,
+    "furtividade": 3,
+    "integridade": 6,
+    "prontidao": 2,
+    "resistencia": 3,
+    "empatia": 3,
+    "persuasao": 4,
+    "manha": 4,
+    "sociabilidade": 4,
+    "politica": 2,
+    "ocultismo": 2
+  },
+  "habilidadesSec": {
+    "seducao": 5,
+    "disfarce": 4,
+    "voo": 2,
+    "musculatura": 1
+  },
+  "especialidades": {
+    "persuasao": [
+      {
+        "foco": "seduzir",
+        "valor": 2,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 5,
+    "compaixao": 1,
+    "conviccao": 5,
+    "temperanca": 4
+  },
+  "vontade": 9,
+  "aparencia": 9,
+  "deslocamento": {
+    "terra": {
+      "batalha": 3,
+      "arranque": 5,
+      "corrida": 7
+    },
+    "voo": {
+      "batalha": 5
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Garras",
+      "parte": "unhas",
+      "classe": "leve",
+      "pgr": [
+        1,
+        1,
+        3
+      ],
+      "dado": "1d6-2",
+      "multiplicadorForca": 1,
+      "tipoDano": "corte",
+      "nivelPerfuracao": 0,
+      "acerto": 1,
+      "bloqueiaComoArma": null,
+      "justificativa": "O \"Golpe planar\" do site (1 dado, 5 Ticks, corte): as unhas de mão humana, gesto rápido de membro, Leve (`regra-construcao.md` §7). Jogada: Destreza 5 + Briga 5 + 2 × o menor entre Centelha 4 e Briga 5 (8)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Beijo dreno",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "fascinacao",
+        "nivel": 4
+      },
+      "categoria": "sobrenatural",
+      "ativacao": "uma ação, Velocidade 6, o beijo em quem está Agarrado, Dominado ou se deixa beijar",
+      "duracao": "instantânea",
+      "alcance": "toque",
+      "area": "um alvo",
+      "efeito": "bebe a vida da vítima com o beijo e se fecha com ela; deixa a vítima exausta",
+      "dano": "1d6 + Centelha, que ela recupera em PV",
+      "resistencia": "corpo, contra Influência + Sedução dela; quem passa não perde nada",
+      "limiteDeUso": "Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "Encanto",
+      "formas": "todas",
+      "classe": "livro",
+      "tecnica": {
+        "id": "encantamento",
+        "nivel": 4
+      },
+      "categoria": "inato"
+    },
+    {
+      "nome": "Sedução",
+      "formas": "todas",
+      "classe": "livro",
+      "tecnica": {
+        "id": "charme",
+        "nivel": 1
+      },
+      "categoria": "inato"
+    },
+    {
+      "nome": "aproximação livre",
+      "formas": "todas",
+      "classe": "sem regra ainda",
+      "categoria": "inato",
+      "efeito": "a sedução que dá certo abre uma ação livre de aproximação ou de distração"
+    },
+    {
+      "nome": "Mudar de forma",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "materia",
+        "nivel": 2
+      },
+      "categoria": "inato",
+      "ativacao": "uma ação, Velocidade 5",
+      "duracao": "até ela desfazer com outra ação",
+      "alcance": "o próprio corpo",
+      "area": "não se aplica",
+      "efeito": "assume o rosto, a voz e o corpo de qualquer humanoide Médio, sem diferença que se veja sem magia; os números ficam os dela, e as asas somem. Use o perfil da forma. O restante é herdado. O equipamento só acompanha quando indicado",
+      "dano": "nenhum",
+      "resistencia": "nenhum; quem tem visão verdadeira vê a forma real",
+      "limiteDeUso": "à vontade. Usar repetidamente causa esforço e pode levar ao cansaço. Sem custo"
+    },
+    {
+      "nome": "Teleporte",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "conjuracao",
+        "nivel": 4,
+        "efeito": "fresta"
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 8",
+      "duracao": "instantânea",
+      "alcance": "60 m",
+      "area": "o próprio súcubo",
+      "efeito": "Reaparece num ponto que vê ou conhece bem no mesmo plano, levando o que carrega. Pode sair de um agarrão. Outros viajantes só seguem dentro do limite declarado, voluntários e em contato",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "1 uso grátis por cena. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "arma abençoada fere inteira",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "ao receber o golpe",
+      "duracao": "enquanto a condição se aplica",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Contra arma abençoada, aplique a Absorção inteira e cobre todo o dano restante. Contra as demais armas, reduza à metade o dano que passou pela Absorção",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "sedutora paciente",
+      "formas": "todas",
+      "texto": "evita a luta; estuda a vítima, assume o rosto que ela deseja, encanta, beija e some pelo teleporte; quando luta, fica no ar e foge antes de cair."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão no escuro",
+      "descricao": "enxerga no escuro",
+      "formas": "todas"
+    },
+    {
+      "nome": "visão e audição",
+      "descricao": "as de um humano, mais finas",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "camuflagem": "a forma humana que escolhe",
+    "mente": "inteligente, demoníaca, paciente e calculista",
+    "tracos": "mulher de beleza perfeita demais para ser natural, com pequenos chifres, asas de morcego e cauda fina, que ela esconde na forma humana"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "sozinha, ou a serviço de um senhor demoníaco",
+    "atividade": "noturna, de preferência",
+    "dieta": "a energia vital e as emoções roubadas",
+    "caca": "seduz e corrompe aos poucos",
+    "dianteDeGente": "seduz, espia e corrompe"
+  },
+  "ecologia": {
+    "terreno": [
+      "qualquer"
+    ],
+    "clima": [
+      "extraplanar"
+    ]
+  },
+  "descricao": "Demônio de beleza perfeita demais para ser natural, que estuda a vítima, assume o rosto e a voz de quem ela deseja e a conduz passo a passo até a ruína. Vive da vida roubada em beijos e infiltra cortes e conventos como espiã e corruptora.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Sedutora paciente, estuda a vítima antes de agir, assume o rosto e a voz de quem o alvo deseja e conduz a presa passo a passo até a ruína."
+    },
+    {
+      "titulo": "Sociedade",
+      "texto": "Trabalha sozinha ou a serviço de senhores demoníacos maiores, infiltrando cortes e conventos mortais como espiã e corruptora, raramente revelando sua verdadeira forma."
+    },
+    {
+      "titulo": "Hábitos",
+      "texto": "Alimenta se da energia vital e emocional roubada em beijos e noites de prazer, deixando a vítima exausta, obcecada ou lentamente corrompida."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "Nas ortodoxias supressoras de Calin ela é o rosto do pecado perfeito: bela demais para ser natural, prova viva de que a Fenda também sabe seduzir, não só aterrorizar."
+    }
+  ],
+  "imagens": [
+    "bestiario/sucubo_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [
+      {
+        "tipo": "luz",
+        "formas": "todas"
+      },
+      {
+        "tipo": "sagrado",
+        "formas": "todas"
+      }
+    ],
+    "resistencias": [
+      {
+        "tipo": "corte",
+        "formas": "todas"
+      },
+      {
+        "tipo": "perfuracao",
+        "formas": "todas"
+      },
+      {
+        "tipo": "impacto",
+        "formas": "todas"
+      }
+    ],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "couraca",
+      "motivo": "Absorção natural do livro (`combate.md`). Couraça 0: pele humana; a resistência a arma comum vai na linha Elementos. O nível fica fora da Absorção (decisoes-autor §16). A \"pele resistente\" do site (metade do dano de arma comum), pela linha Elementos; \"metade do dano de armas comuns não abençoadas\" virou resistência a Corte, Perfuração e Impacto; a exceção da arma abençoada ficou sem regra ainda"
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": ""
+    },
+    {
+      "campo": "habilidadesEspeciais.Beijo dreno",
+      "motivo": "R1 e D-197. Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. O limite preserva o primeiro uso e reserva repetição para esforço adicional. valor de molde, para a bancada (uso extra de 1 de Energia).; 1d6 + Centelha com cura é número da ficha (D-197)"
+    },
+    {
+      "campo": "habilidadesEspeciais.Mudar de forma",
+      "motivo": "R3. Ativação uma ação, Velocidade 6 -> uma ação, Velocidade 8 Pela referência corporal ou de deslocamento do poder."
+    },
+    {
+      "campo": "habilidadesEspeciais.Teleporte",
+      "motivo": "R1 e D-197. Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação uma ação, Velocidade 8 -> uma ação, Velocidade 6. O efeito sai no Tick do Golpe. Pela régua da Arte de base. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "virtudes.temperanca",
+      "motivo": "4, e não 1, pelo texto do site; `compaixao` 0 sobe a 1, o piso da régua"
+    },
+    {
+      "campo": "ataques",
+      "motivo": "o site gravava um \"Golpe planar\" de 1 dado e 5 Ticks, de corte. A D-241 levou a Pesado só o golpe de cinco planares; aqui a classe sai do gesto: as unhas ficam Leves, como os 5 Ticks do site"
+    },
+    {
+      "campo": "habilidadesEspeciais",
+      "motivo": "o site tinha `encanto-irresistivel`, que não está no `tecnicas.json`; virou a Técnica encantamento (nível 4, Centelha 4)"
+    }
+  ]
+}

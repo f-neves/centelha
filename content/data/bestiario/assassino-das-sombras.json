@@ -1,0 +1,213 @@
+{
+  "id": "assassino-das-sombras",
+  "nome": "Assassino das Sombras",
+  "nomeIngles": "Shadow Assassin",
+  "categoria": "humanoide",
+  "papel": "elite",
+  "ameaca": 4,
+  "centelha": 3,
+  "corpo": {
+    "postura": "bípede, de pé",
+    "apoio": "bipede",
+    "altura": 1.7,
+    "largura": 0.42,
+    "profundidade": 0.21,
+    "comprimento": null,
+    "massa": 65,
+    "area": 0.63,
+    "posturaDoTamanho": "de frente"
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 3,
+    "destreza": 5,
+    "vigor": 3,
+    "percepcao": 4,
+    "inteligencia": 2,
+    "raciocinio": 2,
+    "influencia": 2,
+    "perspicacia": 2,
+    "compostura": 2
+  },
+  "habilidades": {
+    "armas": 4,
+    "furtividade": 5,
+    "esquiva": 4,
+    "prontidao": 4,
+    "manha": 3,
+    "integridade": 4,
+    "bloqueio": 1,
+    "briga": 2,
+    "atletismo": 3,
+    "investigacao": 2,
+    "sociabilidade": 1
+  },
+  "habilidadesSec": {
+    "musculatura": 0
+  },
+  "especialidades": {
+    "armas": [
+      {
+        "foco": "adaga",
+        "valor": 1,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 1,
+    "conviccao": 3,
+    "temperanca": 3
+  },
+  "vontade": 6,
+  "aparencia": 4,
+  "deslocamento": {
+    "terra": {
+      "batalha": 3,
+      "arranque": 5,
+      "corrida": 7
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": [
+      {
+        "base": "couro",
+        "vestida": true
+      }
+    ]
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Adaga",
+      "arma": "adaga",
+      "justificativa": "A arma do livro (`armas.json`, `adaga`): Leve, Velocidade 5, Acerto +2, Defesa +1, ★P(N0) · C; só fura pele, e contra armadura mira na fresta. A Centelha soma inteira. O site somava a Destreza no dano (\"Ágil\"); no livro o dano soma a Força, e \"Ágil\" é só descritiva. Jogada: Destreza 5 + Armas 4 + 2 × o menor entre Centelha 3 e Armas 4 (6)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Pisar Leve",
+      "formas": "todas",
+      "classe": "livro",
+      "tecnica": {
+        "id": "pisar-leve",
+        "nivel": 1
+      },
+      "categoria": "inato"
+    },
+    {
+      "nome": "Esgueirar",
+      "formas": "todas",
+      "classe": "livro",
+      "tecnica": {
+        "id": "esgueirar",
+        "nivel": 1
+      },
+      "categoria": "inato"
+    },
+    {
+      "nome": "Manto de Sombras",
+      "formas": "todas",
+      "classe": "livro",
+      "tecnica": {
+        "id": "manto-de-sombras",
+        "nivel": 3
+      },
+      "categoria": "inato"
+    },
+    {
+      "nome": "Bote Silencioso",
+      "formas": "todas",
+      "classe": "livro",
+      "tecnica": {
+        "id": "bote-silencioso",
+        "nivel": 3
+      },
+      "categoria": "inato"
+    },
+    {
+      "nome": "Sem inimizades naturais",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "texto": "Relação inicial do Humano: +1 com Elfo e Meio-Elfo, −1 com Orc e Meio-Orc, Neutro com os demais. A relação vale do Humano para o outro povo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "golpe e sumiço",
+      "formas": "todas",
+      "texto": "estuda o alvo, espera a distração, dá o Bote Silencioso e some com Esgueirar antes que alguém reaja; não fica para a luta aberta."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão, audição, olfato",
+      "descricao": "humanos",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "prendeRespiracao": "pela regra do personagem",
+    "camuflagem": "Pisar Leve e Manto de Sombras (Técnicas)",
+    "mente": "humana; fria e paciente",
+    "tracos": "roupa escura e justa, couro sem brilho, capuz, adaga na mão de dentro"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "sozinho, ou para uma guilda",
+    "atividade": "noturno",
+    "dieta": "onívoro",
+    "caca": "contrato: estuda o alvo e mata",
+    "dianteDeGente": "some na multidão"
+  },
+  "ecologia": {
+    "terreno": [
+      "urbano"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Matador de aluguel que estuda o alvo, espera o momento de menor atenção, golpeia uma vez das sombras e some antes que alguém reaja.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Estuda o alvo, espera o momento de menor atenção, ataca uma vez e desaparece antes que alguém reaja."
+    },
+    {
+      "titulo": "Sociedade",
+      "texto": "Trabalha sozinho ou para uma guilda discreta, vendido a quem paga bem e não faz perguntas."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "Carrega Centelha suficiente para se mover como sombra entre sombras, um talento raro que o torna valioso (e temido) tanto para nobres de Calin quanto para cultos escusos de Mére."
+    }
+  ],
+  "imagens": [
+    "bestiario/assassino-das-sombras_pdm.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "comportamento.atividade",
+      "motivo": ""
+    },
+    {
+      "campo": "virtudes",
+      "motivo": "Compaixão 1 e Temperança 3; o site tinha 2 e 2"
+    }
+  ]
+}

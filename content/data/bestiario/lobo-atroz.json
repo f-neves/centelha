@@ -1,0 +1,282 @@
+{
+  "id": "lobo-atroz",
+  "idAntigo": "mon-lobo-atroz",
+  "nome": "Lobo Atroz",
+  "nomeIngles": "Dire Wolf",
+  "categoria": "animal",
+  "papel": "fera",
+  "ameaca": 3,
+  "centelha": 0,
+  "corpo": {
+    "postura": "quatro patas",
+    "apoio": "quadrupede",
+    "altura": 0.89,
+    "largura": 0.37,
+    "profundidade": null,
+    "comprimento": 1.98,
+    "comprimentoSemCauda": 1.32,
+    "caudaGrossa": false,
+    "massa": 70,
+    "area": 0.49,
+    "posturaDoTamanho": "de lado",
+    "tamanhoEscolhido": "pequeno"
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 5,
+    "destreza": 3,
+    "vigor": 4,
+    "percepcao": 2,
+    "inteligencia": 1,
+    "raciocinio": 2,
+    "influencia": 1,
+    "perspicacia": 2,
+    "compostura": 2
+  },
+  "habilidades": {
+    "briga": 4,
+    "bloqueio": 0,
+    "esquiva": 3,
+    "atletismo": 3,
+    "furtividade": 2,
+    "integridade": 1,
+    "prontidao": 3,
+    "resistencia": 4,
+    "empatia": 2,
+    "sobrevivencia": 2
+  },
+  "habilidadesSec": {
+    "equilibrio": 0,
+    "escalada": 0,
+    "natacao": 0,
+    "voo": 0,
+    "corrida": 0,
+    "musculatura": 3
+  },
+  "especialidades": {
+    "prontidao": [
+      {
+        "foco": "faro",
+        "valor": 3,
+        "origem": "natural"
+      },
+      {
+        "foco": "audição",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 2,
+    "compaixao": 1,
+    "conviccao": 1,
+    "temperanca": 1
+  },
+  "vontade": 3,
+  "aparencia": 6,
+  "deslocamento": {
+    "terra": {
+      "batalha": 8,
+      "arranque": 12,
+      "corrida": 17
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Mordida",
+      "parte": "mordida",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Crava os dentes, segura e sacode a presa."
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "derrubar",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Mordida",
+      "categoria": "inato",
+      "regra": "derrubar",
+      "texto": "Sem custo nem limite próprio de usos. Usar repetidamente causa esforço e pode levar ao cansaço"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "caça em matilha",
+      "formas": "todas",
+      "texto": "ataca em grupo e cerca a presa."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "faro",
+      "descricao": "Prontidão (faro) +3 (era +4; teto da decisão 3); alcance . pelo lobo",
+      "formas": "todas"
+    },
+    {
+      "nome": "audição",
+      "descricao": "Prontidão (audição) +2; alcance . pelo lobo",
+      "formas": "todas"
+    },
+    {
+      "nome": "Sentidos do próprio animal",
+      "descricao": "não achados",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "mente": "animal",
+    "tracos": "possivelmente quebrava osso como hiena ( dos paleontólogos citados pelo NPS); crânio maior e dentição mais forte que a dos canídeos da época, arcos zigomáticos largos (Wikipédia; SDZG)"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "matilha",
+    "dieta": "carnívoro",
+    "caca": "perseguição"
+  },
+  "ecologia": {
+    "terreno": [
+      "floresta",
+      "montanha",
+      "planície"
+    ],
+    "clima": [
+      "frio",
+      "temperado"
+    ]
+  },
+  "descricao": "Lobo do tamanho de um lobo-cinzento grande e mais pesado, que caçava presa grande em matilha. Extinto há cerca de 10.000 anos, com o fim da megafauna (NPS).",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Como o lobo comum, mas maior e mais audacioso, ataca presas e grupos de viajantes que uma matilha comum evitaria."
+    },
+    {
+      "titulo": "Sociedade",
+      "texto": "Por vezes é domesticado por orcs e goblins, que o usam como montaria de guerra ou guarda de acampamento."
+    },
+    {
+      "titulo": "Hábitat",
+      "texto": "Prefere florestas profundas e regiões frias, territórios ainda pouco pisados por gente."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "Encontrado nos ermos mais selvagens de Mére e nas bordas do White Wall, muitas vezes adestrado pelos clãs ásperos que os anões um dia moldaram da rocha."
+    }
+  ],
+  "imagens": [],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "atributos.destreza",
+      "motivo": "Degrau 3, \"reflexo rápido\": morde a presa em movimento, não manipula. Igual ao lobo ."
+    },
+    {
+      "campo": "atributos.vigor",
+      "motivo": "pelo lobo. O Vigor pesa em PV, absorção, fome, frio e doença, e não na corrida (decisão 5 da quarta rodada). Do próprio animal não há dado de ferimento, doença, frio ou fome (`lobo-terrivel.md`: \"Não achado\"); o crânio e os dentes mais pesados não falam do resto do corpo. Fica igual ao lobo, degrau 3, \"aguenta esforço, frio e dor bem acima da média\"."
+    },
+    {
+      "campo": "atributos.percepcao",
+      "motivo": "Teste de ordem: 2 para os extintos . O faro vai em Especialidade natural."
+    },
+    {
+      "campo": "atributos.influencia",
+      "motivo": "Espécie social  (matilha, pela concentração de fósseis em La Brea; NPS, Wikipédia), e fica como hoje: pelo lobo, não impõe nada sozinho."
+    },
+    {
+      "campo": "atributos.perspicacia",
+      "motivo": "Espécie social, fica como hoje: a vida em matilha pede ler os outros. A mesma proporção alta de lobos-terríveis em La Brea é usada como argumento de vida social (estudo de 2009, PMC2657756) ."
+    },
+    {
+      "campo": "atributos.compostura",
+      "motivo": "Espécie social, fica como hoje: persegue e cerca, como o lobo; não é emboscador imóvel ."
+    },
+    {
+      "campo": "habilidades.briga",
+      "motivo": "Predador de presa grande em matilha: bisões, cavalos, camelídeos, preguiças-gigantes (NPS; isótopos com preferência por ruminantes, Wikipédia). Um degrau abaixo de quem mata sozinho, como o lobo. Degrau 3, \"derruba, imobiliza\".  pelo lobo."
+    },
+    {
+      "campo": "habilidades.atletismo",
+      "motivo": "Perna de lobo e presa grande de campo aberto (bisão, cavalo; NPS): igual ao lobo . Nenhuma velocidade publicada (`lobo-terrivel.md`). O fôlego fica na nota de pesquisa (jornada)."
+    },
+    {
+      "campo": "habilidades.furtividade",
+      "motivo": "Era sem linha (0). Levantamento : caça em matilha (La Brea) e, pelo lobo, por perseguição, e não por emboscada. 2, \"usa noite e cobertura\", como o lobo."
+    },
+    {
+      "campo": "habilidades.integridade",
+      "motivo": "Defende a matilha e a presa; sem dado de quem não recua.  pelo lobo."
+    },
+    {
+      "campo": "habilidades.prontidao",
+      "motivo": "Predador que caça pelo faro. Degrau 3, \"sente que tem gente no telhado antes de olhar para cima\".  pelo lobo."
+    },
+    {
+      "campo": "habilidades.resistencia",
+      "motivo": "Etapa 2 (20/10/2026): Decisão 3 de 19/10/2026: o lobo-terrível fica acima do lobo (que o autor pôs em 3). Mais pesado e de mordida mais forte, como a versão maior da decisão 4 (mais Vigor e Resistência). Antes: Era sem linha (0). Sem a corrida (diretriz 2): os 200 km por dia do lobo, que o levantamento usava para dar 4, ficam na nota de pesquisa (jornada). Do animal não há dado de fome, sede, frio, veneno, doença ou dor (`lobo-terrivel.md`), então fica na régua do normal da espécie no próprio meio.; 4 (em vigor na Etapa 2, 20/10/2026); antes: 2, sem a corrida (diretriz 2),  por falta de qualquer dado do animal; o levantamento dava 4 só pelos 200 km por dia do lobo, que ficam na nota de pesquisa (jornada)"
+    },
+    {
+      "campo": "habilidades.empatia",
+      "motivo": "Era sem linha. Lê o outro da própria espécie: matilha, pelo lobo e pela concentração de fósseis em La Brea (NPS; Wikipédia). ; a pesquisa não tem comportamento observado.; 2, nova,  da matilha suposta pelos fósseis de La Brea"
+    },
+    {
+      "campo": "habilidadesSec.escalada",
+      "motivo": "Não usa: pelo lobo, não sobe em árvore nem em rocha ."
+    },
+    {
+      "campo": "corpo.altura",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 0,85 × 1,0527 = 0,895 . Antes: ponto médio de duas fontes que divergem, 0,80 m (SDZG) e cerca de 0,90 m (NPS, \"cerca de 3 pés\")"
+    },
+    {
+      "campo": "corpo.comprimento",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 1,88 × 1,0527 = 1,979 . Antes: derivado: 1,25 + cauda 0,63 (SDZG)"
+    },
+    {
+      "campo": "corpo.comprimentoSemCauda",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 1,25 × 1,0527 = 1,316 . Antes: cabeça e corpo 125 cm (SDZG factsheet; uma só fonte). A cauda é fina e não conta (D-155)"
+    },
+    {
+      "campo": "corpo.largura",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 0,35 × 1,0527 = 0,368 . Antes: estimativa do Arquiteto; 0,37 m na ficha atual. Base da revisão anterior: 0,35 m, estimada pelo Arquiteto, sem fonte"
+    },
+    {
+      "campo": "aparencia",
+      "motivo": "D-107: a maioria fica no 6.  A pele e a cor não se conhecem; o pelo avermelhado sugerido depois de Perri et al. 2021 não vem de pelo preservado."
+    },
+    {
+      "campo": "comportamento.social",
+      "motivo": "dos paleontólogos citados pelo NPS e pela Wikipédia, pela concentração de fósseis em La Brea."
+    },
+    {
+      "campo": "comportamento.caca",
+      "motivo": "pelo lobo (persegue e cerca)."
+    }
+  ]
+}

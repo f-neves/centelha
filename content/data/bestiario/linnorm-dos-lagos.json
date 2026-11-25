@@ -1,0 +1,469 @@
+{
+  "id": "linnorm-dos-lagos",
+  "idAntigo": "mon-tarn-linnorm",
+  "nome": "Linnorm dos Lagos",
+  "nomeIngles": "Tarn Linnorm",
+  "categoria": "dragao",
+  "papel": "chefe",
+  "ameaca": 6,
+  "centelha": 6,
+  "corpo": {
+    "postura": "serpente com duas patas dianteiras; sem asas; voa",
+    "apoio": "outro",
+    "altura": 0.8,
+    "largura": 0.8,
+    "profundidade": null,
+    "comprimento": 36,
+    "massa": 11000,
+    "area": 21.6,
+    "posturaDoTamanho": "de lado, esticado ou com a frente erguida"
+  },
+  "couraca": 11,
+  "perfilCouraca": "rigida",
+  "atributos": {
+    "forca": 13,
+    "destreza": 8,
+    "vigor": 14,
+    "percepcao": 8,
+    "inteligencia": 2,
+    "raciocinio": 5,
+    "influencia": 8,
+    "perspicacia": 5,
+    "compostura": 8
+  },
+  "habilidades": {
+    "briga": 5,
+    "bloqueio": 0,
+    "esquiva": 2,
+    "atletismo": 2,
+    "integridade": 8,
+    "prontidao": 4,
+    "atirador": 5
+  },
+  "habilidadesSec": {
+    "natacao": 4,
+    "musculatura": 4
+  },
+  "especialidades": {
+    "prontidao": [
+      {
+        "foco": "surpresa",
+        "valor": 3,
+        "origem": "natural"
+      }
+    ],
+    "briga": [
+      {
+        "foco": "Agarrão",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 6,
+    "compaixao": 2,
+    "conviccao": 5,
+    "temperanca": 3
+  },
+  "vontade": 11,
+  "aparencia": 9,
+  "deslocamento": {
+    "terra": {
+      "batalha": 4,
+      "arranque": 6,
+      "corrida": 9
+    },
+    "voo": {
+      "batalha": 10
+    },
+    "nado": {
+      "batalha": 8
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Mordida",
+      "parte": "boca-cada-cabeca",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 3,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Mordida de predador grande (`regra-construcao.md` §7), N3 como a dos dragões adultos. Golpe de boca: Força × 1. Inocula o veneno (Veneno e doença) . Jogada: Força 13 + Briga 5 + 2 × o menor entre Centelha 6 e Briga 5 (10)"
+    },
+    {
+      "nome": "Garras",
+      "parte": "pata-dianteira",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "corte",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Patada de predador grande, Média (§7), como nos dragões. Bloqueia como a mão nua (D-100). Jogada: Força 13 + Briga 5 + 2 × o menor entre Centelha 6 e Briga 5 (10)"
+    },
+    {
+      "nome": "Cauda",
+      "parte": "cauda",
+      "classe": "pesada",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": "2d6",
+      "multiplicadorForca": 2,
+      "tipoDano": "impacto",
+      "nivelPerfuracao": null,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "A \"Cauda\" do site (impacto, \"pode agarrar e constringir\"): o corpo de 36 m varre com o peso, Pesada (§7). Força × 2: a massa do corpo inteiro empurra a cauda (manual, seção 3: \"× 2 quando a massa do corpo inteiro empurra (investida, pisão, cauda)\"). Jogada: Força 13 + Briga 5 + 2 × o menor entre Centelha 6 e Briga 5 (10)"
+    },
+    {
+      "nome": "Sopro ácido",
+      "parte": "boca",
+      "classe": "distancia",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": "9d6",
+      "multiplicadorForca": 0,
+      "tipoDano": "acido",
+      "nivelPerfuracao": null,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Ataque natural a distância, Classe Distância (manual, Passo 10), como nos dragões. O site não dá dados; 9d6 é o degrau da Centelha 6 na escada do lote 23 (D-197), descrito na linha do sopro nas Manobras. Sem jogada de ataque."
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Peçonha de linnorm dos lagos",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "ataque": "Mordida",
+      "categoria": "substancia",
+      "ativacao": "Mordida ao causar ao menos 1 PV depois da Absorção",
+      "duracao": "até o fim do efeito do veneno",
+      "alcance": "toque",
+      "area": "um alvo",
+      "efeito": "A peçonha drena apenas o pool de Vigor. A imunidade ao elemento não protege contra a peçonha. Se o Vigor chegar a 0, a vítima morre",
+      "dano": "pool de Vigor do veneno",
+      "resistencia": "Vigor + Resistência pelo relógio do veneno",
+      "limiteDeUso": "O corpo guarda 2 doses e produz 1 dose em 12 horas. Cada uso gasta 1 dose"
+    },
+    {
+      "nome": "Sopro ácido",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "agua",
+        "nivel": 4
+      },
+      "ataque": "Sopro ácido",
+      "categoria": "substancia",
+      "ativacao": "uma ação, Velocidade 6",
+      "duracao": "instantânea",
+      "alcance": "18 m à frente",
+      "area": "linha de 18 m ou cone de 12 m, à escolha",
+      "efeito": "o ácido corrói tudo o que toca. Após a área, só há dano residual quando um efeito da ficha o declara",
+      "dano": "9d6 + Centelha, ácido",
+      "resistencia": "sem jogada de ataque. Cada alvo resolve a saída de área pelo livro",
+      "limiteDeUso": "O corpo guarda 2 doses e produz 1 dose a cada 12 horas. Cada uso gasta 1 dose. Nada acelera a produção"
+    },
+    {
+      "nome": "fumaça do ácido",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "ao entrar em contato com o resíduo do sopro",
+      "duracao": "até o fim do Tick seguinte",
+      "alcance": "o do sopro",
+      "area": "o trecho atingido pelo sopro",
+      "efeito": "A fumaça ácida atinge quem a respira",
+      "dano": "1d6 de ácido",
+      "resistencia": "saída de área pelo livro",
+      "limiteDeUso": "uma exposição por alvo por dose de sopro, sem custo adicional"
+    },
+    {
+      "nome": "garras em sequência",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Garras",
+      "categoria": "inato",
+      "regra": "rajada"
+    },
+    {
+      "nome": "cauda em sequência",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Cauda",
+      "categoria": "inato",
+      "regra": "rajada"
+    },
+    {
+      "nome": "agarrar e constringir",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Cauda",
+      "categoria": "inato",
+      "regra": "agarrar"
+    },
+    {
+      "nome": "Nunca cercado",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "As duas cabeças vigiam os flancos. Ignora o −2 de Flanqueado. Sua Prontidão contra surpresa segue a ficha. Tamanho continua valendo",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "Contínuo, sem custo"
+    },
+    {
+      "nome": "Resistência à magia",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "sempre ativa",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a própria criatura",
+      "efeito": "Resistência à magia de grau 3. Soma +6 às Defesas e à jogada de resistir contra Artes e efeitos similares à magia, até o teto comum de +6",
+      "dano": "nenhum adicional",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo. Sem custo"
+    },
+    {
+      "nome": "Liberdade de movimento",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Nada de fora o deixa Agarrado, Preso ou Imobilizado. Paredes barram a passagem. Paralisado e Atordoado continuam valendo",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "Contínuo, sem custo"
+    },
+    {
+      "nome": "Regeneração 15",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "fraqueza": {
+        "forma": "naoRegenera",
+        "tipos": [
+          "ferro frio"
+        ]
+      },
+      "texto": "Origem sobrenatural. O dano de ferro frio só fecha com outras curas, como Arte, Cura ou descanso. As demais feridas se regeneram normalmente. Recupera 15 PV por minuto, até o máximo de PV. Em combate, recupera 1,5 PV a cada 6 Ticks, contados a partir do Tick do primeiro dano"
+    },
+    {
+      "nome": "Maldição da morte",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "ao morrer",
+      "duracao": "até Proteção 5 ou cura apropriada",
+      "alcance": "quem deu o golpe final",
+      "area": "o responsável pelo golpe final",
+      "efeito": "quem o mata nunca mais é curado por magia nem se recupera descansando, e definha aos poucos pelo resto da vida. Se falhar, a maldição só sai com Proteção 5 ou a cura apropriada",
+      "dano": "nenhum",
+      "resistencia": "Vigor + Resistência contra Dificuldade 20",
+      "limiteDeUso": "uma vez, na morte, sem custo"
+    },
+    {
+      "nome": "Imune a sono, paralisia, veneno e maldições comuns",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Ignora veneno, sono, paralisia e efeitos que instalam maldição comum. Recebe dano comum e morre pela perda de Vida como de costume. O ferimento do golpe continua",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "Contínuo, sem custo"
+    },
+    {
+      "nome": "Multiataque",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "uma ação de Rajada",
+      "duracao": "uma ação",
+      "alcance": "o de cada parte",
+      "area": "os alvos da Rajada",
+      "efeito": "Golpeia nesta ordem: mordida da primeira cabeça, mordida da segunda cabeça, garra. Cada golpe extra acumula −1d6 e conta para Guarda sob pressão. Não acumula com a Rajada comum",
+      "dano": "o de cada ataque que acertar",
+      "resistencia": "a Defesa de cada golpe",
+      "limiteDeUso": "até 3 golpes por ação, sem Energia. O uso repetido causa esforço e pode levar ao cansaço"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "fúria de duas cabeças",
+      "formas": "todas",
+      "texto": "emerge do lago gelado, cospe ácido sobre o barco, prende um com a cauda e morde com as duas cabeças quem ainda luta."
+    },
+    {
+      "nome": "Projétil natural",
+      "formas": "todas",
+      "texto": "Contra um alvo, use o maior entre Vigor, Destreza e Percepção + Atirador. Ao cobrir uma área, só os alvos fazem a jogada de saída."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "duas cabeças",
+      "descricao": "vigiam em todas as direções; Prontidão (surpresa) +3",
+      "formas": "todas"
+    },
+    {
+      "nome": "visão no escuro",
+      "descricao": "vê sem luz",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar e água (anfíbio, site)",
+    "prendeRespiracao": "não se aplica; respira na água",
+    "camuflagem": "escamas escuras na água escura",
+    "mente": "Inteligência 2; as duas cabeças raramente concordam no que comer, nunca em atacar",
+    "tracos": "duas cabeças em pescoços longos, escamas escuras e lisas, cheiro de ácido"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitário",
+    "atividade": "qualquer hora",
+    "dieta": "carnívoro",
+    "caca": "dono dos lagos gelados; ataca o que navega neles",
+    "dianteDeGente": "ninguém ousa navegar nos lagos dele"
+  },
+  "ecologia": {
+    "terreno": [
+      "aquático",
+      "pântano"
+    ],
+    "clima": [
+      "frio"
+    ]
+  },
+  "descricao": "O mais antigo e mortal dos linnorms, serpente-dragão de duas cabeças e 36 m dos lagos gelados. Cospe ácido, morde com as duas cabeças, prende com a cauda e fecha as próprias feridas; quem o mata nunca mais sara direito.",
+  "lore": [
+    {
+      "titulo": "O Mais Terrível dos Linormes",
+      "texto": "Entre os linormes, o das águas escuras é o mais antigo e mortal, dono de lagos gelados que ninguém ousa navegar."
+    },
+    {
+      "titulo": "Duas Fúrias, uma Só Fera",
+      "texto": "Suas duas cabeças raramente concordam sobre qual pedaço da presa comer primeiro, mas nunca discordam sobre atacar."
+    },
+    {
+      "titulo": "Morte que Não Cura",
+      "texto": "Sobreviventes que abateram este linorme carregam a maldição de nunca mais sarar direito, lembrete vivo do preço da vitória."
+    },
+    {
+      "titulo": "Veneno e doença",
+      "texto": "Veneno no jogo: Peçonha de linnorm dos lagos · Potência 16 · 1 Tick (sangue) · a cada 1 minuto · pool 4 (Vigor) · Desgaste 1 · pela Mordida. Os números do \"Ferrão de gigante\" dos moldes, com o Vigor do site; o ácido que queima por dentro fica descrito, sem número (sem regra ainda)."
+    }
+  ],
+  "imagens": [
+    "bestiario/linnorm-dos-lagos_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": [
+      {
+        "tipo": "acido",
+        "formas": "todas"
+      }
+    ]
+  },
+  "revisao": [
+    {
+      "campo": "atributos.forca",
+      "motivo": "O site tinha 16. Desce para 13 pelo teste de ordem (manual, Passo 7), o mesmo método que o autor mandou aplicar ao neothelid (pedido do autor de 24/10/2026 (ponto de coerência 2, sem número no registro)): com 16, a serpente de 11 t passava o grande wyrm vermelho de 88 t (16), o ancião de 59 t (14), o braquiossauro de 31 t (14) e o megalodonte de 36 t (13). Fica acima do dragão dourado adulto de 9 t (12), mais leve, e igual ao megalodonte, sem passar ninguém mais pesado. É a Força de referência da massa arredondada (12,61, manual 3.9); 13, pelo teste de ordem; o site tinha 16 (o mesmo método do neothelid, pedido do autor de 24/10/2026 (ponto de coerência 2, sem número no registro))"
+    },
+    {
+      "campo": "corpo.altura",
+      "motivo": "O diâmetro que dá a massa do site (linha Massa). Erguida, levanta um quinto do corpo"
+    },
+    {
+      "campo": "couraca",
+      "motivo": "Cobertura do corpo pela R49; metades arredondadas para cima. Absorção natural do livro (`combate.md`). Escama de linnorm, o mais antigo e mortal da família (site): dois degraus acima do linnorm dos penhascos (9) .; nível 11"
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": ""
+    },
+    {
+      "campo": "ataques.Mordida",
+      "motivo": "Mordida de predador grande (`regra-construcao.md` §7), N3 como a dos dragões adultos. Golpe de boca: Força × 1. Inocula o veneno (Veneno e doença) . Jogada: Força 13 + Briga 5 + 2 × o menor entre Centelha 6 e Briga 5 (10)"
+    },
+    {
+      "campo": "ataques.Sopro ácido",
+      "motivo": "Antes: jogada de ataque na tabela. R36: Sem jogada de ataque, pois o efeito ocupa a área descrita nas Manobras. Cada alvo resolve a defesa de área.; R1/R4, D-197. Dois sopros prontos permitem alternar sopro e golpes. Sugestão de 2 doses e 12 h por dose para repor fora da luta. valor de molde, para a bancada (2 doses e produz 1 dose a cada 12 horas)."
+    },
+    {
+      "campo": "habilidadesEspeciais",
+      "motivo": "Antes: pelo padrão do \"Ferrão de gigante\"  O pool atinge Vigor. Aplica-se o desfecho letal do veneno."
+    },
+    {
+      "campo": "habilidadesEspeciais.Resistência à magia",
+      "motivo": "R7. SR 31 da fonte passa a grau 3 (+6)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Maldição da morte",
+      "motivo": "R1 e D-197. 1 uso grátis por cena. Cada uso extra custa 1 de Energia. Um uso de abertura até a definição do efeito. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "corpo.area",
+      "motivo": "Enorme pela área do corpo de serpente; o site dizia Colossal"
+    },
+    {
+      "campo": "corpo",
+      "motivo": "nenhuma, como o linnorm dos penhascos"
+    },
+    {
+      "campo": "ataques",
+      "motivo": "9d6 + Centelha, linha de 18 m ou cone de 12 m, pela escada de Centelha do lote 23 (D-197)"
+    },
+    {
+      "campo": "habilidadesEspeciais.Regeneração 15",
+      "motivo": "Antes: sem regra e sem nível. N 15 pela referência Tarn Linnorm (Archives of Nethys)."
+    }
+  ]
+}

@@ -1,0 +1,234 @@
+{
+  "id": "braquiossauro",
+  "idAntigo": "mon-brachiosaurus",
+  "nome": "Braquiossauro",
+  "nomeIngles": "Brachiosaurus",
+  "categoria": "animal",
+  "papel": "fera",
+  "ameaca": 5,
+  "centelha": 0,
+  "corpo": {
+    "postura": "quatro patas",
+    "apoio": "quadrupede",
+    "altura": 11.29,
+    "largura": 3.08,
+    "profundidade": null,
+    "comprimento": 20.52,
+    "comprimentoSemCauda": 13.85,
+    "caudaGrossa": true,
+    "massa": 31000,
+    "area": 38.29,
+    "posturaDoTamanho": "vista de lado"
+  },
+  "couraca": 3,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 14,
+    "destreza": 1,
+    "vigor": 10,
+    "percepcao": 2,
+    "inteligencia": 1,
+    "raciocinio": 1,
+    "influencia": 1,
+    "perspicacia": 1,
+    "compostura": 1
+  },
+  "habilidades": {
+    "briga": 2,
+    "bloqueio": 2,
+    "esquiva": 0,
+    "atletismo": 0,
+    "furtividade": 0,
+    "integridade": 2,
+    "prontidao": 0,
+    "resistencia": 5,
+    "empatia": 0,
+    "sobrevivencia": 2
+  },
+  "habilidadesSec": {
+    "equilibrio": 0,
+    "escalada": 0,
+    "natacao": 0,
+    "voo": 0,
+    "corrida": 0,
+    "musculatura": 2
+  },
+  "especialidades": {},
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 2,
+    "compaixao": 1,
+    "conviccao": 1,
+    "temperanca": 1
+  },
+  "vontade": 3,
+  "aparencia": 6,
+  "deslocamento": {
+    "terra": {
+      "batalha": 3,
+      "arranque": 5,
+      "corrida": 6
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Pisão",
+      "parte": "corpo",
+      "classe": "pesada",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": "2d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "impacto",
+      "nivelPerfuracao": null,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Golpe Pesado, com Força × 1 no golpe comum (D-266); na ação de Investida, soma mais uma Força, sem +1d6 (P20-b)."
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "empurrar",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "regra": "empurrar"
+    },
+    {
+      "nome": "rabada",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "enquanto a condição se aplica",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "A parte alcança até 6 m medidos da borda do corpo",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "corpo colossal",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "enquanto a condição se aplica",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "A anatomia firme soma +4 à Defesa contra Derrubar e Empurrar. Aplicam-se as travas de massa",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "Atropelar",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "texto": "Atropelar"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "disputa de machos",
+      "formas": "todas",
+      "texto": "machos podem disputar em duas patas, embora o corpo seja mal adaptado para ficar de pé."
+    },
+    {
+      "nome": "Pisar num alvo",
+      "formas": "todas",
+      "texto": "O Pisoteio é um ataque físico normal contra um alvo, com o golpe Pisão."
+    }
+  ],
+  "sentidos": [],
+  "fisiologia": {
+    "respiracao": "ar",
+    "mente": "animal",
+    "tracos": "ossos pneumáticos, com sacos aéreos, que reduzem o peso; coração de cerca de 400 kg, com o dobro da pressão de uma girafa ; pescoço de postura debatida, quase vertical ou mais horizontal"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "dieta": "herbívoro",
+    "caca": "forrageio"
+  },
+  "ecologia": {
+    "terreno": [
+      "floresta",
+      "planície"
+    ],
+    "clima": [
+      "tropical"
+    ]
+  },
+  "descricao": "Herbívoro de copa alta, raro, que se defende pelo tamanho. Provável sangue quente no crescimento.",
+  "lore": [
+    {
+      "titulo": "Gigante pacífico",
+      "texto": "Apesar do tamanho descomunal, é herbívoro e só ataca quando ameaçado ou para proteger a manada."
+    },
+    {
+      "titulo": "Manadas errantes",
+      "texto": "Vive solitário, em pares ou em manadas de até doze indivíduos, migrando entre florestas e planícies quentes."
+    }
+  ],
+  "imagens": [
+    "bestiario/braquiossauro_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "atributos.vigor",
+      "motivo": "Fica. D-144 (\"pelo menos 10\") e D-164. Pelo corpo: o maior animal das 92 fichas, de 28,7 t , com coração estimado de cerca de 400 kg e o dobro da pressão de uma girafa  (Fastovsky e Weishampel 2016), provavelmente de sangue quente no crescimento (Sander e colegas 2010). O Vigor pesa aqui em PV e na absorção de Impacto. Não sai do forrageio (diretriz 2)"
+    },
+    {
+      "campo": "habilidades.furtividade",
+      "motivo": "Era sem linha (0). O levantamento: nenhum fato (pele, cor e atividade não achadas). Régua: 1, não se esconde"
+    },
+    {
+      "campo": "habilidades.integridade",
+      "motivo": "Grande demais para fugir de predador; defende o lugar. Degrau 2"
+    },
+    {
+      "campo": "habilidades.resistencia",
+      "motivo": "Era 0 (com Fôlego +2). Régua: o animal sem dado fica em 2, . Nenhum dado de frio, fome, sede, doença ou ferida; o Fôlego +2 de hoje se apoiava no consumo de 200 a 400 kg de planta por dia (Foster 2007), que não diz nada de resistência. Vivia num ambiente semiárido de estação seca marcada (Engelmann 2004), o normal da espécie"
+    },
+    {
+      "campo": "corpo.altura",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 11,00 × 1,0260 = 11,286 . Antes: ponto médio de 9,4 (Foster 2007) a 13 m (Paul 1988), via Klein e colegas 2011 (`dimensoes.md`). A postura do pescoço é debatida (Corpo, abaixo). A altura do ombro é  na fonte"
+    },
+    {
+      "campo": "corpo.comprimento",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 20,00 × 1,0260 = 20,521 . Antes: ponto médio de 18 a 22 m (Paul 1988; Seebacher 2001; Foster 2007)"
+    },
+    {
+      "campo": "corpo.comprimentoSemCauda",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 13,50 × 1,0260 = 13,851 . Antes: do Arquiteto: \"20 m menos cerca de 6,5 de cauda\""
+    },
+    {
+      "campo": "corpo.largura",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 3,00 × 1,0260 = 3,078 . Antes: estimativa do Arquiteto (`porte-area.mjs`); a pesquisa não mediu largura"
+    },
+    {
+      "campo": "aparencia",
+      "motivo": "D-107.  A pele e a cor não se conhecem; fica na maioria."
+    }
+  ]
+}

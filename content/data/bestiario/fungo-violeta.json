@@ -1,0 +1,212 @@
+{
+  "id": "fungo-violeta",
+  "idAntigo": "mon-violet-fungus",
+  "nome": "Fungo Violeta",
+  "nomeIngles": "Violet Fungus",
+  "categoria": "planta",
+  "papel": "soldado",
+  "ameaca": 3,
+  "centelha": 0,
+  "corpo": {
+    "postura": "de pé",
+    "apoio": "bipede",
+    "altura": 1.2,
+    "largura": 0.4,
+    "profundidade": 0.4,
+    "comprimento": 0.6,
+    "massa": 23,
+    "area": 0.6,
+    "posturaDoTamanho": "de pé"
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 3,
+    "destreza": 2,
+    "vigor": 5,
+    "percepcao": 2,
+    "inteligencia": 0,
+    "raciocinio": 2,
+    "influencia": 1,
+    "perspicacia": 1,
+    "compostura": 1
+  },
+  "habilidades": {
+    "briga": 3,
+    "bloqueio": 0,
+    "esquiva": 0,
+    "prontidao": 1,
+    "integridade": 0,
+    "sobrevivencia": 0,
+    "sociabilidade": 0,
+    "furtividade": 2
+  },
+  "habilidadesSec": {
+    "musculatura": 2
+  },
+  "especialidades": {},
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 5,
+    "compaixao": 1,
+    "conviccao": 1,
+    "temperanca": 1
+  },
+  "vontade": 3,
+  "aparencia": 3,
+  "deslocamento": {
+    "terra": {
+      "batalha": 1,
+      "arranque": 2,
+      "corrida": 2
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Tentáculo",
+      "parte": "ramo-ou-membro-natural",
+      "classe": "leve",
+      "pgr": [
+        1,
+        1,
+        3
+      ],
+      "dado": "1d6-2",
+      "multiplicadorForca": 1,
+      "tipoDano": "impacto",
+      "nivelPerfuracao": 0,
+      "acerto": 1,
+      "bloqueiaComoArma": null,
+      "justificativa": "Classe pelo gesto, sem usar Destreza no dano; jogada 7 com Briga"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Apodrecimento",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "o tentáculo toca carne exposta",
+      "duracao": "até a doença regredir ou o agente ser retirado",
+      "alcance": "toque",
+      "area": "um alvo",
+      "efeito": "Podridão do fungo-violeta. Exposição: o tentáculo toca carne exposta. Incubação: 1 hora. Virulência 10. Após a incubação, teste Vigor + Resistência uma vez por dia, com os estágios da doença do livro. Cura ou cirurgia adequada remove o agente e interrompe a progressão",
+      "dano": "pela progressão da doença",
+      "resistencia": "Vigor + Resistência contra Virulência 10",
+      "limiteDeUso": "por exposição"
+    },
+    {
+      "nome": "Imunidades fúngicas",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "venenos e aflições próprias de animais não o afetam. O ferimento do golpe continua",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "Contínuo, sem custo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "Tentáculos longos",
+      "formas": "todas",
+      "texto": "alcança além do caule e desfere um golpe por ação, ou usa Rajada."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão",
+      "descricao": "percebe luz fraca",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "não precisa",
+    "camuflagem": "parece vegetação imóvel",
+    "mente": "sem mente",
+    "tracos": "Fungo baixo com quatro tentáculos longos"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitário",
+    "atividade": "qualquer hora",
+    "dieta": "matéria decomposta",
+    "caca": "não se aplica",
+    "dianteDeGente": "ataca quem se aproxima"
+  },
+  "ecologia": {
+    "terreno": [
+      "subterrâneo"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Fungo baixo com quatro tentáculos longos",
+  "lore": [
+    {
+      "titulo": "Guardião de covis",
+      "texto": "Trogloditas e vegepygmies cultivam fungos violeta em entradas e cruzamentos de suas tocas, alimentando-os com carniça para mantê-los satisfeitos e parados no posto."
+    },
+    {
+      "titulo": "Marcas do encontro",
+      "texto": "Sobreviventes carregam cicatrizes fundas onde a carne foi consumida até o osso, prova silenciosa de um encontro quase fatal."
+    }
+  ],
+  "imagens": [
+    "bestiario/fungo-violeta_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [
+      {
+        "tipo": "fogo",
+        "formas": "todas"
+      }
+    ],
+    "resistencias": [
+      {
+        "tipo": "perfuracao",
+        "formas": "todas"
+      }
+    ],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "habilidadesSec.musculatura",
+      "motivo": "Fibras móveis capazes de prender e deslocar presas"
+    },
+    {
+      "campo": "corpo.altura",
+      "motivo": "Dimensão principal publicada; largura e profundidade estimadas pelo corpo"
+    },
+    {
+      "campo": "corpo.comprimento",
+      "motivo": "Dimensão principal publicada; largura e profundidade estimadas pelo corpo"
+    },
+    {
+      "campo": "corpo.largura",
+      "motivo": "Dimensão principal publicada; largura e profundidade estimadas pelo corpo"
+    },
+    {
+      "campo": "corpo.area",
+      "motivo": "Silhueta útil estimada em 0,6 m², descontando vazios entre os ramos; o retângulo externo não é todo preenchido"
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": "Comportamento"
+    }
+  ]
+}

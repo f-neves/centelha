@@ -1,0 +1,9 @@
+# Repositório inteiro em LF e UTF-8, também na árvore de trabalho (Windows incluído).
+* text=auto eol=lf
+
+*.webp binary
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.ico  binary
+*.wasm binary

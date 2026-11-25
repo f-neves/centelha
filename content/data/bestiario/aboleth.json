@@ -1,0 +1,334 @@
+{
+  "id": "aboleth",
+  "idAntigo": "mon-aboleth",
+  "nome": "Aboleth",
+  "nomeIngles": "Aboleth",
+  "categoria": "aberracao",
+  "papel": "elite",
+  "ameaca": 4,
+  "centelha": 5,
+  "corpo": {
+    "postura": "nadador; corpo na horizontal",
+    "apoio": "outro",
+    "altura": 1.2,
+    "largura": 0.85,
+    "profundidade": null,
+    "comprimento": 6.5,
+    "comprimentoSemCauda": 5,
+    "caudaGrossa": true,
+    "massa": 2700,
+    "area": 6.29,
+    "posturaDoTamanho": "de lado"
+  },
+  "couraca": 3,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 10,
+    "destreza": 3,
+    "vigor": 8,
+    "percepcao": 5,
+    "inteligencia": 5,
+    "raciocinio": 5,
+    "influencia": 5,
+    "perspicacia": 5,
+    "compostura": 5
+  },
+  "habilidades": {
+    "briga": 5,
+    "bloqueio": 1,
+    "esquiva": 1,
+    "atletismo": 1,
+    "prontidao": 3,
+    "integridade": 5,
+    "conhecimentos": 4,
+    "ocultismo": 3,
+    "persuasao": 2
+  },
+  "habilidadesSec": {
+    "natacao": 3,
+    "musculatura": 2
+  },
+  "especialidades": {
+    "conhecimentos": [
+      {
+        "foco": "eras esquecidas",
+        "valor": 3,
+        "origem": "natural"
+      }
+    ],
+    "ocultismo": [
+      {
+        "foco": "eras antigas",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ],
+    "persuasao": [
+      {
+        "foco": "escravos",
+        "valor": 1,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 1,
+    "conviccao": 3,
+    "temperanca": 4
+  },
+  "vontade": 10,
+  "aparencia": 1,
+  "deslocamento": {
+    "terra": {
+      "batalha": 1,
+      "arranque": 2,
+      "corrida": 2
+    },
+    "nado": {
+      "batalha": 6
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Tentáculo",
+      "parte": "tentaculo-de-3-m",
+      "classe": "pesada",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": "2d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "impacto",
+      "nivelPerfuracao": null,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "O site dava \"Garras e presas\" de 3 dados, perfurante, 7 Ticks; o aboleth não tem garras: são os tentáculos. O golpe de 7 Ticks, com o tentáculo de 3 m que gira, é o Pesado da tabela (regra-construcao §7); golpe de membro, Força × 1; tentáculo é Impacto. A Centelha soma inteira. Passa o muco (Manobras). Jogada: Força 10 + Briga 5 + 2 × o menor entre Centelha 5 e Briga 5 (10)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Tentáculos múltiplos",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Tentáculo",
+      "categoria": "inato",
+      "regra": "rajada"
+    },
+    {
+      "nome": "Muco transmutador",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "materia",
+        "nivel": 3
+      },
+      "ataque": "Tentáculo",
+      "categoria": "substancia",
+      "ativacao": "o Tentáculo que fere (1 de dano ou mais depois da Absorção)",
+      "duracao": "permanente, até uma Arte de Cura ou de Matéria desfazer (o Mestre decide o nível)",
+      "alcance": "o do Tentáculo",
+      "area": "um alvo",
+      "efeito": "a pele do alvo vira membrana viscosa: respira água como ar; fora d'água, cada hora sem molhar a pele dá Desgaste 1, até molhá-la",
+      "dano": "nenhum além do Tentáculo",
+      "resistencia": "corpo, Vigor + Resistência contra a jogada do Tentáculo",
+      "limiteDeUso": "O corpo guarda 3 doses e produz 1 dose a cada 4 horas. Cada uso gasta 1 dose. Nada acelera a produção"
+    },
+    {
+      "nome": "Domínio psíquico",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "fascinacao",
+        "nivel": 4
+      },
+      "categoria": "sobrenatural",
+      "ativacao": "uma ação, Velocidade 6, olhando ou tocando o alvo",
+      "duracao": "para Abalado, até o fim da cena ou até Recompor",
+      "alcance": "18 m",
+      "area": "um alvo",
+      "efeito": "o alvo fica Dominado e obedece a ordens simples; quem falha fica também Abalado pelo contato com a mente alienígena (\"Presença alienígena\", site). Abalado dá −2 nas jogadas até o fim da cena ou até Recompor, ação de Velocidade 5 sem teste. O controlador transmite ordens simples pela mente enquanto mantém contato durante a duração indicada. A vítima pode recusar cada ordem pagando 1 + Margem de Força de Vontade, até 4",
+      "dano": "nenhum",
+      "resistencia": "Influência + Ocultismo da criatura contra a Defesa Mental do alvo, com o Resistir do livro",
+      "limiteDeUso": "Usos grátis: 3 por dia. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "Ilusões",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "fascinacao",
+        "nivel": 5,
+        "efeito": "imagem-viva"
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 7. O efeito sai no Tick do Golpe",
+      "duracao": "até o fim da cena, ou enquanto ele mantiver",
+      "alcance": "36 m",
+      "area": "uma cena de até 9 m de lado, projetada na mente de quem o encara",
+      "efeito": "vista e som que não existem: um caminho seguro que é precipício, um aliado que é ele, um perigo falso; quem toca ou desconfia e testa vê através dela",
+      "dano": "nenhum",
+      "resistencia": "Influência + Ocultismo da criatura contra a Defesa Mental do alvo, com o Resistir do livro",
+      "limiteDeUso": "Usos grátis: 3 por dia. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "Telepatia",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "nenhuma; sempre ativa",
+      "duracao": "permanente",
+      "alcance": "90 m (\"alcance amplo\", site)",
+      "area": "quem ele escolher ao alcance",
+      "efeito": "fala com qualquer criatura pela mente, sem língua em comum e sem abrir a boca",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "nenhum. Sem custo"
+    },
+    {
+      "nome": "Preso à água",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "ficar fora d'água",
+      "duracao": "até voltar à água",
+      "alcance": "o próprio corpo",
+      "area": "não se aplica",
+      "efeito": "a cada 10 minutos fora d'água, Desgaste 1 (\"fora d'água por muito tempo fica Enfraquecido progressivamente\", site)",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "nenhum. Sem custo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "senhor do lago fundo",
+      "formas": "todas",
+      "texto": "não sobe à superfície; manda os escravos na frente, domina o mais forte do grupo, engana com ilusões e só agarra com os tentáculos quem chega perto da água."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão no escuro",
+      "descricao": "enxerga na água escura das profundezas",
+      "formas": "todas"
+    },
+    {
+      "nome": "telepatia",
+      "descricao": "sente as mentes ao alcance dela (Manobras)",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "água; fora d'água, a Manobra Preso à água",
+    "prendeRespiracao": "não respira ar",
+    "mente": "genial, antiga, arrogante",
+    "tracos": "peixe imenso cinza-azulado coberto de muco, três olhos em fileira, quatro tentáculos que saem de perto da cabeça e cauda de barbatana larga"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "colônias antigas, servidas por escravos transformados",
+    "atividade": "qualquer hora",
+    "dieta": "carnívoro",
+    "caca": "não caça: os escravos trazem",
+    "dianteDeGente": "domina, escraviza e transforma"
+  },
+  "ecologia": {
+    "terreno": [
+      "subterrâneo",
+      "aquático"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Peixe imenso das profundezas, mais velho que a memória dos povos, que fala dentro da cabeça das vítimas. Domina mentes, engana com ilusões e transforma quem toca com o muco dos tentáculos em escravo da água.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Paciente além de qualquer medida mortal, prefere manipular e escravizar a atacar diretamente. Fala dentro da mente das vítimas, sem precisar abrir a boca."
+    },
+    {
+      "titulo": "Sociedade",
+      "texto": "Vive em colônias antigas nas profundezas aquáticas, servido por escravos transformados: o limo de seu toque converte lentamente a vítima em criatura submissa e adaptada à água."
+    },
+    {
+      "titulo": "Hábitat e ecologia",
+      "texto": "Domina lagos subterrâneos, mares internos e ruínas afundadas, raramente emergindo à superfície. Suas memórias passam de geração em geração, e cada aboleth carrega dentro de si as lembranças de todos os seus ancestrais."
+    },
+    {
+      "titulo": "Personalidade",
+      "texto": "Arrogante e desdenhoso, considera-se herdeiro legítimo de um mundo que pertencia à sua espécie muito antes de elfos, anões ou homens caminharem sobre ele."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "Os aboleths parecem mais velhos que a própria Fenda, talvez até mais velhos que a divisão da Primeira Luz em Centelhas individuais. Os sábios de Syl sussurram que são restos de uma era que o mundo esqueceu de matar."
+    }
+  ],
+  "imagens": [
+    "bestiario/aboleth_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "habilidades.bloqueio",
+      "motivo": "Os tentáculos desviam o golpe às vezes: \"«Quase não bloqueia» é 1, e não 0\" (D-110); 1, pelos tentáculos; o site não gravava Bloqueio"
+    },
+    {
+      "campo": "corpo.largura",
+      "motivo": "Elipsoide de 5,0 × 1,2 × 0,85 m. O comprimento dos tentáculos : o site diz só \"corpo alongado com tentáculos\""
+    },
+    {
+      "campo": "corpo.area",
+      "motivo": "Corpo, elipse de 5,0 × 1,2 m = 4,71 m²; barbatana da cauda, 1,5 × 0,5 m × 0,5 = 0,38 m²; dois tentáculos à vista, 3 × 0,2 m cada = 1,20 m²  nas medidas da cauda e dos tentáculos; 6,29 m², 4,8% acima do corte de Enorme; as medidas da cauda e dos tentáculos são estimadas"
+    },
+    {
+      "campo": "couraca",
+      "motivo": "Cobertura do corpo pela R49; metades arredondadas para cima. Absorção natural do livro (`combate.md`). \"Pele antiga e escamosa: Absorção alta\" (site): ao lado do hipopótamo da escala (tamanho-decisoes-5, item 2) ;; nível 3 pela \"Absorção alta\" do site"
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": ""
+    },
+    {
+      "campo": "comportamento.dieta",
+      "motivo": ""
+    },
+    {
+      "campo": "habilidadesEspeciais.Muco transmutador",
+      "motivo": "R1/R4, D-197. Três doses preservam a reserva para mais de uma presa. Sugestão de 3 doses e 4 h por dose para repor fora da luta. valor de molde, para a bancada (3 doses e produz 1 dose a cada 4 horas)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Domínio psíquico",
+      "motivo": "R1 e D-197. Usos grátis: 3 por dia. Cada uso extra custa 1 de Energia. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação uma ação, Velocidade 7, olhando ou tocando o alvo -> uma ação, Velocidade 6, olhando ou tocando o alvo Pela referência corporal ou de deslocamento do poder. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Ilusões",
+      "motivo": "R1 e D-197. Usos grátis: 3 por dia. Cada uso extra custa 1 de Energia. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação uma ação, Velocidade 8 -> uma ação, Velocidade 7. O efeito sai no Tick do Golpe. Pela régua da Arte de base. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "ataques",
+      "motivo": "Tentáculo Pesado no lugar das \"Garras e presas\" de 3 dados; os quatro ataques viram a Rajada"
+    },
+    {
+      "campo": "virtudes.temperanca",
+      "motivo": "4; o site tinha 2. `compaixao`: 1, o piso da régua; o site tinha 0"
+    }
+  ]
+}

@@ -1,0 +1,271 @@
+{
+  "id": "golem-de-argila",
+  "idAntigo": "mon-clay-golem",
+  "nome": "Golem de Argila",
+  "nomeIngles": "Golem, Clay",
+  "categoria": "construto",
+  "papel": "chefe",
+  "ameaca": 5,
+  "centelha": 3,
+  "corpo": {
+    "postura": "bípede, de pé",
+    "apoio": "bipede",
+    "altura": 2.4,
+    "largura": 0.6,
+    "profundidade": 0.31,
+    "comprimento": null,
+    "massa": 270,
+    "area": 1.28,
+    "posturaDoTamanho": "de frente"
+  },
+  "couraca": 6,
+  "perfilCouraca": "rigida",
+  "atributos": {
+    "forca": 8,
+    "destreza": 2,
+    "vigor": 5,
+    "percepcao": 2,
+    "inteligencia": 0,
+    "raciocinio": 2,
+    "influencia": 1,
+    "perspicacia": 1,
+    "compostura": 1
+  },
+  "habilidades": {
+    "briga": 4,
+    "bloqueio": 2,
+    "esquiva": 0,
+    "atletismo": 1,
+    "integridade": 0,
+    "prontidao": 1,
+    "resistencia": 0
+  },
+  "habilidadesSec": {
+    "musculatura": 2
+  },
+  "especialidades": {},
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 6,
+    "compaixao": 1,
+    "conviccao": 1,
+    "temperanca": 1
+  },
+  "vontade": 3,
+  "aparencia": 4,
+  "deslocamento": {
+    "terra": {
+      "batalha": 2,
+      "arranque": 3,
+      "corrida": 5
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Punho de argila",
+      "parte": "punho",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "impacto",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": 1,
+      "justificativa": "A \"Arma\" do site (2 dados, corte, 6 Ticks) é o punho de barro: Média, como o Punho de pedra do golem de pedra (`regra-construcao.md` §7), golpe de membro, Força × 1; o segundo dado sai com a classe, e o tipo passa a Impacto, porque é punho, e não lâmina. Bloqueia como arma (D-066), Defesa +1 . Jogada: Força 8 + Briga 4 + 2 × o menor entre Centelha 3 e Briga 4 (6)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "agarrar",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Punho de argila",
+      "categoria": "inato",
+      "regra": "agarrar"
+    },
+    {
+      "nome": "derrubar",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Punho de argila",
+      "categoria": "inato",
+      "regra": "derrubar"
+    },
+    {
+      "nome": "empurrar",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Punho de argila",
+      "categoria": "inato",
+      "regra": "empurrar"
+    },
+    {
+      "nome": "Fúria descontrolada",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "a cada 6 Ticks de combate, o Mestre rola 1d6; o espírito se liberta com 6 na primeira rolagem, com 5 ou 6 na segunda, e o número desce um a cada rolagem que não liberta",
+      "duracao": "até ele ser destruído; ninguém volta a controlá-lo",
+      "alcance": "o próprio corpo",
+      "area": "não se aplica",
+      "efeito": "o espírito preso se liberta, e o golem ataca a criatura mais perto, amiga ou inimiga, e destrói o que encontra",
+      "dano": "nenhum além dos golpes",
+      "resistencia": "nenhum",
+      "limiteDeUso": "nenhum. Sem custo"
+    },
+    {
+      "nome": "Investida acelerada",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "uma ação, Velocidade 6, depois de pelo menos 6 Ticks de combate",
+      "duracao": "18 Ticks",
+      "alcance": "o próprio corpo",
+      "area": "não se aplica",
+      "efeito": "fica Acelerado. A Recuperação diminui 1 Tick, até 0. Os opostos se anulam e aplicações iguais não somam",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "uma vez por cena. Usar repetidamente causa esforço e pode levar ao cansaço. Sem custo"
+    },
+    {
+      "nome": "Ferida amaldiçoada",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "ataque": "Punho de argila",
+      "categoria": "sobrenatural",
+      "ativacao": "o Punho que fere",
+      "duracao": "até a cura que vence a maldição",
+      "alcance": "o do corpo a corpo",
+      "area": "um alvo",
+      "efeito": "a ferida não fecha sozinha nem com descanso; a cura por Arte só a fecha se quem cura passar numa jogada contra Dificuldade 13 (10 + Centelha 3)",
+      "dano": "o do Punho",
+      "resistencia": "nenhum",
+      "limiteDeUso": "Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "imune à magia",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "enquanto a condição se aplica",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Ignora Artes que alteram seu corpo ou sua mente, incluindo medo, sono, domínio, leitura de mente e confusão. O dano elemental passa pela resistência e pela Absorção do golem. As reações próprias do material descritas nesta ficha têm precedência",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "sentinela",
+      "formas": "todas",
+      "texto": "fica imóvel por décadas guardando a cripta ou a torre; desperto, cumpre a última ordem até o fim, sem pressa, até a fúria libertar o espírito."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão e audição",
+      "descricao": "as de um guarda humano; nota quem entra no lugar guardado",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "camuflagem": "parado, passa por estátua de barro",
+    "mente": "nenhuma; um espírito preso à força, que obedece ao criador até se libertar",
+    "tracos": "esculpido num único bloco de argila, de rosto tosco e sem expressão; o barro range quando anda. Não se cansa",
+    "tipoCorpo": "constructo"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitário",
+    "atividade": "qualquer hora",
+    "caca": "não se aplica: guarda",
+    "dianteDeGente": "ataca quem a ordem manda atacar; na fúria, ataca todos"
+  },
+  "ecologia": {
+    "terreno": [
+      "ruínas",
+      "subterrâneo",
+      "qualquer"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Estátua de barro de 2,4 m movida por um espírito preso à força. Guarda criptas e torres por décadas sem se mover; desperto, bate com punhos que deixam feridas que nem a magia fecha, e a cada instante de luta o espírito pode se libertar e atacar tudo à volta.",
+  "lore": [
+    {
+      "titulo": "Escultura que respira",
+      "texto": "Esculpido de um único bloco de argila e imbuído de um espírito preso à força, o golem de argila obedece cegamente até o momento em que deixa de obedecer."
+    },
+    {
+      "titulo": "Guardião silencioso",
+      "texto": "Muitas vezes posicionado como sentinela de cripta ou torre, permanece imóvel por décadas até que alguém desperte sua fúria."
+    }
+  ],
+  "imagens": [],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [
+      {
+        "tipo": "corte",
+        "formas": "todas"
+      },
+      {
+        "tipo": "perfuracao",
+        "formas": "todas"
+      },
+      {
+        "tipo": "fogo",
+        "formas": "todas"
+      }
+    ],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "atributos.vigor",
+      "motivo": "O construto mantém o Vigor como medida do corpo (C-002, C-040): argila endurecida maciça, que não sangra nem cansa, um degrau abaixo do granito do golem de pedra (6). O site tinha 1; 5 por julgamento (argila endurecida, abaixo do granito); o site tinha 1"
+    },
+    {
+      "campo": "habilidades.briga",
+      "motivo": "O combate de um guarda, como o golem de pedra: o site tinha 5, demais para quem não aprende"
+    },
+    {
+      "campo": "habilidadesSec.musculatura",
+      "motivo": "Pelo corpo, julgado pelo material e pela forma (manual 3.5; tamanho-decisoes-3, item 12: 0 corpo de resistência, 2 comum, 3 robusto): bloco de argila seca na forma de um homem, sem os ombros largos do golem de pedra (3) e de um material mais mole que o granito. Comum, 2; 2, pelo corpo de argila na proporção humana"
+    },
+    {
+      "campo": "ataques.Punho de argila",
+      "motivo": "A \"Arma\" do site (2 dados, corte, 6 Ticks) é o punho de barro: Média, como o Punho de pedra do golem de pedra (`regra-construcao.md` §7), golpe de membro, Força × 1; o segundo dado sai com a classe, e o tipo passa a Impacto, porque é punho, e não lâmina. Bloqueia como arma (D-066), Defesa +1 . Jogada: Força 8 + Briga 4 + 2 × o menor entre Centelha 3 e Briga 4 (6)"
+    },
+    {
+      "campo": "habilidadesEspeciais.Ferida amaldiçoada",
+      "motivo": "R1 e D-197. Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. O limite preserva o primeiro uso e reserva repetição para esforço adicional. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "couraca",
+      "motivo": "6, argila endurecida"
+    },
+    {
+      "campo": "ataques",
+      "motivo": "a \"Arma\" de 2 dados e corte vira o Punho de argila Média, de 1 dado e Impacto (perda de mecânica publicada, no relato)"
+    }
+  ]
+}

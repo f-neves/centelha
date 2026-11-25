@@ -1,0 +1,203 @@
+{
+  "id": "kobold",
+  "idAntigo": "mon-kobold",
+  "nome": "Kobold",
+  "nomeIngles": "Kobold",
+  "categoria": "humanoide",
+  "papel": "capanga",
+  "ameaca": 1,
+  "centelha": 0,
+  "corpo": {
+    "postura": "bípede, de pé, o tronco inclinado e a cauda atrás",
+    "apoio": "bipede",
+    "altura": 0.75,
+    "largura": 0.26,
+    "profundidade": 0.13,
+    "comprimento": 1.1,
+    "massa": 16,
+    "area": 0.22,
+    "posturaDoTamanho": "de frente",
+    "linhaPV": "abaixo",
+    "linhaPVMotivo": "corpo frágil"
+  },
+  "couraca": 1,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 2,
+    "destreza": 3,
+    "vigor": 2,
+    "percepcao": 2,
+    "inteligencia": 2,
+    "raciocinio": 2,
+    "influencia": 2,
+    "perspicacia": 2,
+    "compostura": 2
+  },
+  "habilidades": {
+    "armas": 2,
+    "briga": 1,
+    "bloqueio": 1,
+    "esquiva": 1,
+    "atletismo": 1,
+    "furtividade": 1,
+    "prontidao": 1,
+    "integridade": 2,
+    "oficios-gerais": 1,
+    "sociabilidade": 1
+  },
+  "habilidadesSec": {
+    "musculatura": 0
+  },
+  "especialidades": {
+    "armas": [
+      {
+        "foco": "lança",
+        "valor": 1,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 2,
+    "compaixao": 2,
+    "conviccao": 3,
+    "temperanca": 3
+  },
+  "vontade": 5,
+  "aparencia": 4,
+  "deslocamento": {
+    "terra": {
+      "batalha": 3,
+      "arranque": 5,
+      "corrida": 7
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Lança",
+      "arma": "lanca",
+      "justificativa": "A arma do livro (`armas.json`, `lanca`): Haste média, duas mãos, Velocidade 6, Acerto +1, Defesa +2, ★P(N1), alcance. Duas mãos somam a Força dobrada (`armas-e-armaduras.md`). Jogada: Destreza 3 + Armas 2"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Armadilheiro",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "texto": "monta armadilhas simples no túnel antes do combate; o efeito de cada uma fica com o Mestre"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "túnel armado",
+      "formas": "todas",
+      "texto": "não luta de frente; atrai o inimigo para a armadilha, ataca com a lança de trás do companheiro e foge pelos túneis se a luta vira."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão no escuro",
+      "descricao": "enxerga bem em túnel e caverna sem luz",
+      "formas": "todas"
+    },
+    {
+      "nome": "audição e olfato",
+      "descricao": "os de um humano",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "prendeRespiracao": "pela regra do personagem",
+    "mente": "humanoide; covarde, paciente e engenhosa",
+    "tracos": "escamas ferrugem ou pardas, focinho de lagarto, chifres curtos, cauda grossa"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "em clã, típico 4 a 12",
+    "atividade": "noturno, nos túneis",
+    "dieta": "onívoro",
+    "caca": "armadilha e emboscada",
+    "dianteDeGente": "foge do grupo forte; atrai o fraco para as armadilhas"
+  },
+  "ecologia": {
+    "terreno": [
+      "subterrâneo"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Réptil pequeno de cauda grossa que vive em túneis cheios de armadilhas. Covarde de frente, ataca em grupo com lanças de trás das engenhocas e venera qualquer dragão que o proteja.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Covardes em combate direto, letais quando podem escolher o momento, através de armadilhas, túneis colapsáveis e emboscadas planejadas com paciência."
+    },
+    {
+      "titulo": "Hábitos",
+      "texto": "Escavam warrens labirínticos cheios de engenhocas, chocam ovos em câmaras aquecidas e veneram ou imitam qualquer dragão que aceite protegê-los."
+    },
+    {
+      "titulo": "Sociedade",
+      "texto": "Clãs pequenos e disciplinados, com hierarquia rígida em que o mais fraco serve ao mais forte sem questionar."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "Primos distantes dos lagartos e trogloditas que povoam as profundezas de Mére e das ruínas do White Wall, os kobolds prosperam nos túneis abandonados desde que a Fenda expulsou os anões, ocupando galerias que ninguém mais ousa reclamar."
+    }
+  ],
+  "imagens": [
+    "bestiario/kobold_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "habilidades.armas",
+      "motivo": "O site gravava `briga` 1 para a \"Arma\"; no livro a arma branca é Armas (manual 3.5). A lança em grupo"
+    },
+    {
+      "campo": "corpo.comprimento",
+      "motivo": ""
+    },
+    {
+      "campo": "couraca",
+      "motivo": "Cobertura do corpo pela R49; metades arredondadas para cima. Absorção natural do livro (`combate.md`). Escamas finas, como a jararaca da escala, \"no máximo 1\" (tamanho-decisoes-5, item 2); nível 1 pelas escamas"
+    },
+    {
+      "campo": "comportamento.social",
+      "motivo": "site (Sociedade)"
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": "site"
+    },
+    {
+      "campo": "comportamento.dieta",
+      "motivo": ""
+    },
+    {
+      "campo": "equipamento",
+      "motivo": "lança do livro, sem armadura"
+    },
+    {
+      "campo": "virtudes",
+      "motivo": "Bravura 2 e Temperança 3; o site tinha 3 e 2"
+    }
+  ]
+}

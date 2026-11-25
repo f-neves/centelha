@@ -1,0 +1,335 @@
+{
+  "id": "rakshasa",
+  "idAntigo": "mon-rakshasa",
+  "nome": "Rakshasa",
+  "nomeIngles": "Rakshasa",
+  "categoria": "outsider",
+  "papel": "chefe",
+  "ameaca": 5,
+  "centelha": 5,
+  "formaPrincipal": {
+    "id": "verdadeira",
+    "nome": "forma verdadeira"
+  },
+  "corpo": {
+    "postura": "bípede, de pé",
+    "apoio": "bipede",
+    "altura": 1.8,
+    "largura": 0.45,
+    "profundidade": 0.23,
+    "comprimento": null,
+    "massa": 80,
+    "area": 0.72,
+    "posturaDoTamanho": "de frente"
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 4,
+    "destreza": 5,
+    "vigor": 5,
+    "percepcao": 3,
+    "inteligencia": 3,
+    "raciocinio": 3,
+    "influencia": 5,
+    "perspicacia": 4,
+    "compostura": 4
+  },
+  "habilidades": {
+    "briga": 5,
+    "bloqueio": 1,
+    "esquiva": 1,
+    "atletismo": 2,
+    "furtividade": 4,
+    "prontidao": 1,
+    "integridade": 4,
+    "manha": 5,
+    "persuasao": 3,
+    "empatia": 3,
+    "sociabilidade": 3,
+    "ocultismo": 3,
+    "politica": 3
+  },
+  "habilidadesSec": {
+    "etiqueta": 3,
+    "labia": 3,
+    "musculatura": 2
+  },
+  "especialidades": {
+    "manha": [
+      {
+        "foco": "enganar",
+        "valor": 2,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 6,
+    "compaixao": 1,
+    "conviccao": 5,
+    "temperanca": 1
+  },
+  "vontade": 10,
+  "aparencia": 6,
+  "deslocamento": {
+    "terra": {
+      "batalha": 4,
+      "arranque": 6,
+      "corrida": 9
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {
+    "fascinacao": 4,
+    "adivinhacao": 2,
+    "materia": 3,
+    "protecao": 4
+  },
+  "ataques": [
+    {
+      "nome": "Garras",
+      "parte": "maos-de-tigre",
+      "classe": "leve",
+      "pgr": [
+        1,
+        1,
+        3
+      ],
+      "dado": "1d6-2",
+      "multiplicadorForca": 1,
+      "tipoDano": "corte",
+      "nivelPerfuracao": 0,
+      "acerto": 1,
+      "bloqueiaComoArma": null,
+      "justificativa": "O \"Golpe planar\" do site (1 dado, corte, 5 Ticks) são as garras traiçoeiras: garra rápida de membro, Leve (regra-construcao §7). A Centelha soma inteira (`centelha.md`). Jogada: Destreza 5 + Briga 5 + 2 × o menor entre Centelha 5 e Briga 5 (10)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Garras traiçoeiras",
+      "formas": [
+        "verdadeira"
+      ],
+      "classe": "livro",
+      "ataque": "Garras",
+      "categoria": "inato",
+      "regra": "rajada",
+      "texto": "Até dois golpes por ação"
+    },
+    {
+      "nome": "Mudar de forma",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "materia",
+        "nivel": 3
+      },
+      "categoria": "inato",
+      "ativacao": "uma ação, Velocidade 5",
+      "duracao": "até ele desfazer, ou até cair inconsciente",
+      "alcance": "o próprio corpo",
+      "area": "não se aplica",
+      "efeito": "assume o corpo, o rosto e a voz de qualquer humanoide de Tamanho perto do dele; os números ficam os dele; sem magia, ninguém vê a troca. Use o perfil da forma. O restante é herdado. O equipamento só acompanha quando indicado",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "à vontade. Usar repetidamente causa esforço e pode levar ao cansaço. Sem custo"
+    },
+    {
+      "nome": "Ler pensamentos",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "adivinhacao",
+        "nivel": 2
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 5, olhando o alvo. O efeito sai no Tick do Golpe",
+      "duracao": "enquanto se concentra, até o fim da cena",
+      "alcance": "18 m",
+      "area": "um alvo",
+      "efeito": "ouve os pensamentos de superfície do alvo e descobre uma intenção ou um segredo dele",
+      "dano": "nenhum",
+      "resistencia": "Percepção + Empatia da criatura contra a Defesa Mental do alvo, com o Resistir do livro. quem passa não revela nada e sente a sondagem",
+      "limiteDeUso": "Usos grátis: 1 por cena. Cada uso extra custa 1 de Mana. um alvo por vez"
+    },
+    {
+      "nome": "Ilusões",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "fascinacao",
+        "nivel": 4,
+        "efeito": "imagem-viva"
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 6. O efeito sai no Tick do Golpe",
+      "duracao": "até o fim da cena, ou enquanto ele mantiver",
+      "alcance": "36 m",
+      "area": "uma imagem de até 6 m de lado",
+      "efeito": "uma imagem com som e cheiro, que se move como ele quer, para enganar ou distrair; quem toca ou desconfia e testa vê através dela",
+      "dano": "nenhum",
+      "resistencia": "Influência + Manha da criatura contra a Defesa Mental do alvo, com o Resistir do livro",
+      "limiteDeUso": "Usos grátis: 1 por cena. Cada uso extra custa 1 de Mana. uma ilusão por vez"
+    },
+    {
+      "nome": "Magia reversa",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "nenhuma; sempre ativa",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "não se aplica",
+      "efeito": "soma +4 na Defesa Mental e nas resistências contra Artes",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "nenhum. Sem custo"
+    },
+    {
+      "nome": "Feitiço que volta",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "sobrenatural",
+      "ativacao": "ao resistir a uma Arte dirigida a ele",
+      "duracao": "instantânea",
+      "alcance": "até quem conjurou a Arte",
+      "area": "o conjurador",
+      "efeito": "Devolve a Arte com o mesmo total e a mesma potência. Só devolve Artes dirigidas ao rakshasa. Áreas e cura ficam fora do efeito",
+      "dano": "o da Arte devolvida",
+      "resistencia": "o conjurador resiste normalmente",
+      "limiteDeUso": "1 uso grátis por cena. Cada uso extra custa 1 de Energia"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "trama de corte",
+      "formas": "todas",
+      "texto": "evita a luta aberta; deixa os servos e as vítimas enganadas na frente, confunde com ilusões e com Fascinação, e só entra com as garras quando a vitória é certa; ferido, muda de forma e some."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão, audição e faro",
+      "descricao": "os de um humano, com os olhos de tigre",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "mente": "inteligente; vaidosa, cruel e paciente",
+    "tracos": "cabeça de tigre, mãos de garras com as palmas viradas para fora, escondidas sob luvas; sedas finas e joias"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "sozinho; raramente em grupo",
+    "atividade": "qualquer hora; vive a vida de um nobre",
+    "dieta": "carne, inclusive humana, com refinamento",
+    "caca": "escolhe vítimas e as arruína devagar, por anos",
+    "dianteDeGente": "finge ser nobre, mercador ou sacerdote"
+  },
+  "ecologia": {
+    "terreno": [
+      "selva",
+      "urbano"
+    ],
+    "clima": [
+      "tropical",
+      "temperado"
+    ]
+  },
+  "descricao": "Fera de cabeça de tigre que vive décadas disfarçada de nobre, mercador ou sacerdote, lendo pensamentos e tecendo intrigas. Conjura ilusões e encantos, e só mostra as garras quando a vítima já não tem saída.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Predador social por excelência: disfarça-se de nobre, mercador ou sacerdote e manipula suas vítimas ao longo de anos, satisfazendo apetites cruéis sob uma máscara de refinamento impecável."
+    },
+    {
+      "titulo": "Sociedade",
+      "texto": "Raramente forma grupos; quando vários se reúnem, tecem intrigas de corte que se estendem por gerações, cada um fingindo servir ao outro enquanto trama a própria ascensão."
+    },
+    {
+      "titulo": "Personalidade",
+      "texto": "Vaidoso e epicurista, saboreia o luxo e o sofrimento alheio em doses iguais; despreza a violência bruta e prefere a ruína lenta, quase artística."
+    },
+    {
+      "titulo": "Hábitos",
+      "texto": "Veste as melhores sedas, come e bebe com refinamento obsceno, e mantém as palmas viradas ao contrário sempre escondidas sob luvas."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "As igrejas supressoras vigiam feitiços óbvios, mas não a sedução e a mentira: um rakshasa entrincheirado numa corte de Calin ou nas cidades ocultas de Mère passa décadas sem ser descoberto. A Lei que barra os deuses de tocar mortais nunca o alcançou, pois ele jamais foi mortal."
+    }
+  ],
+  "imagens": [
+    "bestiario/rakshasa_criatura.webp"
+  ],
+  "formas": [
+    {
+      "id": "disfarce",
+      "nome": "disfarce",
+      "fisiologia": {
+        "camuflagem": "assume o corpo e a aparência de um humanoide, mantendo os números da ficha"
+      }
+    }
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [
+      {
+        "tipo": "corte",
+        "formas": "todas"
+      },
+      {
+        "tipo": "impacto",
+        "formas": "todas"
+      }
+    ],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "habilidades.bloqueio",
+      "motivo": "Apara pouco com as garras; prefere não lutar. \"até um humano sem treino pode ter 1\" (decisoes-autor §1). Com a Centelha 5, já dá Defesa 14; 1; o site não gravava Bloqueio"
+    },
+    {
+      "campo": "aparencia",
+      "motivo": "Degrau 6, \"Comum\": cabeça de tigre em corpo de nobre, de seda e joias; marca quem o vê, sem ser medonho. O site gravava 0, que pela régua de 0 a 12 é \"Monstruoso\"; o medonho, se o autor quiser, é habilidade especial, e não número (D-181); 6; o site tinha 0"
+    },
+    {
+      "campo": "comportamento.dieta",
+      "motivo": "site"
+    },
+    {
+      "campo": "formas.disfarce",
+      "motivo": "Mudar de forma muda o corpo, o rosto e a voz; os números ficam os dele, e só a magia vê a troca (site)  Descrição anterior: Anatomia: a de qualquer humanoide; Altura e Massa: as do disfarce, dentro do Tamanho Médio; Aparência: a do disfarce; Camuflagem: passa por qualquer humanoide, e só a magia vê a troca; o resto: o do rakshasa."
+    },
+    {
+      "campo": "habilidadesEspeciais.Mudar de forma",
+      "motivo": "R3. Ativação uma ação, Velocidade 6 -> uma ação, Velocidade 8 Pela referência corporal ou de deslocamento do poder."
+    },
+    {
+      "campo": "habilidadesEspeciais.Ler pensamentos",
+      "motivo": "R1 e D-197. Usos grátis: 1 por cena. Cada uso extra custa 1 de Mana. um alvo por vez. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação uma ação, Velocidade 6, olhando o alvo -> uma ação, Velocidade 5, olhando o alvo. O efeito sai no Tick do Golpe. Pela régua da Arte de base. valor de molde, para a bancada (uso extra de 1 de Mana). Uso extra: falta grau de Alcance e Duração (piso 0 pela T7, RT-134.6)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Ilusões",
+      "motivo": "R1 e D-197. Usos grátis: 1 por cena. Cada uso extra custa 1 de Mana. uma ilusão por vez. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação uma ação, Velocidade 8 -> uma ação, Velocidade 6. O efeito sai no Tick do Golpe. Pela régua da Arte de base. valor de molde, para a bancada (uso extra de 1 de Mana). Uso extra: falta grau de Alcance, Área e Duração (piso 0 pela T7, RT-134.6)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Feitiço que volta",
+      "motivo": "R1 e D-197. 1 uso grátis por cena. Cada uso extra custa 1 de Mana. Um uso de abertura até a definição do efeito. valor de molde, para a bancada (uso extra de 1 de Mana)."
+    },
+    {
+      "campo": "formas",
+      "motivo": "forma verdadeira e disfarce (D-201), como o deva astral e o doppelganger"
+    }
+  ]
+}

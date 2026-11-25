@@ -1,0 +1,421 @@
+{
+  "id": "marilith",
+  "idAntigo": "mon-marilith",
+  "nome": "Marilith",
+  "nomeIngles": "Demon, Marilith",
+  "categoria": "corruptor",
+  "papel": "chefe",
+  "ameaca": 6,
+  "centelha": 7,
+  "corpo": {
+    "postura": "erguida sobre a cauda de serpente",
+    "apoio": "outro",
+    "altura": 2.7,
+    "largura": 0.68,
+    "profundidade": null,
+    "comprimento": 6,
+    "massa": 925,
+    "area": 3.5,
+    "posturaDoTamanho": "de lado, erguida"
+  },
+  "couraca": 3,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 10,
+    "destreza": 8,
+    "vigor": 9,
+    "percepcao": 5,
+    "inteligencia": 5,
+    "raciocinio": 5,
+    "influencia": 8,
+    "perspicacia": 7,
+    "compostura": 7
+  },
+  "habilidades": {
+    "briga": 5,
+    "armas": 5,
+    "bloqueio": 4,
+    "esquiva": 2,
+    "atletismo": 4,
+    "furtividade": 1,
+    "integridade": 7,
+    "prontidao": 4,
+    "resistencia": 5,
+    "empatia": 3,
+    "sociabilidade": 3,
+    "persuasao": 3,
+    "ocultismo": 3
+  },
+  "habilidadesSec": {
+    "lideranca": 4,
+    "estrategia": 5,
+    "intimidacao": 4,
+    "musculatura": 3
+  },
+  "especialidades": {
+    "armas": [
+      {
+        "foco": "espada longa",
+        "valor": 2,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {
+    "estrategia": [
+      {
+        "foco": "hordas demoníacas",
+        "valor": 2,
+        "origem": "livro"
+      }
+    ]
+  },
+  "virtudes": {
+    "bravura": 6,
+    "compaixao": 1,
+    "conviccao": 5,
+    "temperanca": 4
+  },
+  "vontade": 12,
+  "aparencia": 0,
+  "deslocamento": {
+    "terra": {
+      "batalha": 4,
+      "arranque": 6,
+      "corrida": 9
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Espada longa",
+      "arma": "espada-longa",
+      "justificativa": "A arma do livro (`armas.json`, `espada-longa`): Média, Versátil, Velocidade 6, Acerto +1, Defesa +1. Uma mão: Força × 1. Até três golpes pela Rajada (Manobras). Jogada: Força 10 + Armas 5 + 2 × o menor entre Centelha 7 e Armas 5 (10)"
+    },
+    {
+      "nome": "Cauda",
+      "parte": "cauda-de-serpente",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "impacto",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "\"Cauda constritora\" (site): a cauda que enrola e agarra, gesto de membro com o corpo atrás, Média. Leva o agarrão (Manobras). Jogada: Força 10 + Briga 5 + 2 × o menor entre Centelha 7 e Briga 5 (10)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "agarrar",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Cauda",
+      "categoria": "inato",
+      "regra": "agarrar"
+    },
+    {
+      "nome": "Aperto esmagador",
+      "formas": "todas",
+      "classe": "livro",
+      "tecnica": {
+        "id": "aperto-esmagador",
+        "nivel": 5
+      },
+      "categoria": "inato"
+    },
+    {
+      "nome": "Teleporte",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "conjuracao",
+        "nivel": 6,
+        "efeito": "fresta"
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 8",
+      "duracao": "instantânea",
+      "alcance": "qualquer lugar que ela conheça no mesmo plano",
+      "area": "a própria marilith",
+      "efeito": "Reaparece num ponto que vê ou conhece bem no mesmo plano, levando o que carrega. Pode sair de um agarrão. Outros viajantes só seguem dentro do limite declarado, voluntários e em contato",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "1 uso grátis por cena. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "Telecinese",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "forcas",
+        "nivel": 4,
+        "efeito": "arremesso"
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 6. O efeito sai no Tick do Golpe",
+      "duracao": "enquanto se concentrar",
+      "alcance": "18 m",
+      "area": "um objeto ou uma pessoa",
+      "efeito": "move objetos ou uma pessoa sem tocá-los, com a força de um homem forte; arremessa o que move",
+      "dano": "o do objeto arremessado, a critério do Mestre",
+      "resistencia": "esquiva, contra o objeto arremessado; corpo, para quem é erguido; quem passa não sai do lugar",
+      "limiteDeUso": "Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "Paralisar",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "sobrenatural",
+      "ativacao": "uma ação, Velocidade 6",
+      "duracao": "6 Ticks",
+      "alcance": "9 m",
+      "area": "a vítima descrita pelo poder",
+      "efeito": "o corpo do alvo trava e ele fica paralisado. A vítima fica Paralisada. Defesas Físicas 0, mente livre",
+      "dano": "nenhum adicional",
+      "resistencia": "Vigor + Resistência contra Dificuldade 15",
+      "limiteDeUso": "Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "Ver o invisível",
+      "formas": "todas",
+      "classe": "livro",
+      "tecnica": {
+        "id": "visao-verdadeira",
+        "nivel": 4
+      },
+      "categoria": "inato"
+    },
+    {
+      "nome": "visão verdadeira sempre ativa",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "18 m",
+      "area": "o campo de visão",
+      "efeito": "Percebe disfarces, ilusões e seres invisíveis. Paredes bloqueiam a visão e a Furtividade comum continua válida",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "Tática de guerra",
+      "formas": "todas",
+      "classe": "livro",
+      "tecnica": {
+        "id": "coordenar",
+        "nivel": 1
+      },
+      "categoria": "inato"
+    },
+    {
+      "nome": "Corpo de serpente",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "nenhuma; sempre ativo",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "não se aplica",
+      "efeito": "desliza sobre o chão sem perder deslocamento em Terreno difícil",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "nenhum. Sem custo"
+    },
+    {
+      "nome": "Regeneração 9",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "fraqueza": {
+        "forma": "naoRegenera",
+        "tipos": [
+          "arma abençoada",
+          "fogo"
+        ]
+      },
+      "texto": "Origem sobrenatural. O dano de arma abençoada ou fogo só fecha com outras curas, como Arte, Cura ou descanso. As demais feridas se regeneram normalmente. Recupera 9 PV por minuto, até o máximo de PV. Em combate, recupera 0,9 PV a cada 6 Ticks, contados a partir do Tick do primeiro dano"
+    },
+    {
+      "nome": "Presença aterradora",
+      "formas": "todas",
+      "classe": "livro",
+      "tecnica": {
+        "id": "temor-reverente",
+        "nivel": 3
+      },
+      "categoria": "inato"
+    },
+    {
+      "nome": "medonho",
+      "formas": "todas",
+      "classe": "sem regra ainda",
+      "categoria": "inato",
+      "efeito": "quem vê a marilith pela primeira vez sente o pavor dos seis braços armados sobre o corpo de serpente; o corpo quer recuar antes de qualquer golpe"
+    },
+    {
+      "nome": "Multiataque",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "uma ação de Rajada",
+      "duracao": "uma ação",
+      "alcance": "o de cada parte",
+      "area": "os alvos da Rajada",
+      "efeito": "Golpeia nesta ordem: primeira lâmina, segunda lâmina, terceira lâmina, quarta lâmina. Cada golpe extra acumula −1d6 e conta para Guarda sob pressão. Não acumula com a Rajada comum",
+      "dano": "o de cada ataque que acertar",
+      "resistencia": "a Defesa de cada golpe",
+      "limiteDeUso": "até 4 golpes por ação, sem Energia. O uso repetido causa esforço e pode levar ao cansaço"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "um alvo por vez",
+      "formas": "todas",
+      "texto": "a cauda segura e esmaga um alvo por vez, enquanto as espadas trabalham nos outros."
+    },
+    {
+      "nome": "generala",
+      "formas": "todas",
+      "texto": "comanda a horda antes de entrar na luta; entra com as seis espadas em combinações que nenhum mortal treina para enfrentar, agarra o mais forte com a cauda e o esmaga, e trava com a magia quem tenta fugir."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão no escuro",
+      "descricao": "enxerga no escuro absoluto",
+      "formas": "todas"
+    },
+    {
+      "nome": "visão verdadeira",
+      "descricao": "Até 18 m, distingue disfarce, ilusão e invisibilidade. Paredes e Furtividade comum limitam a percepção. Sem custo",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "mente": "inteligente, demoníaca, fria e disciplinada",
+    "tracos": "tronco de mulher de pele escura com seis braços, cada um com uma espada, sobre um corpo de serpente de escamas verdes e negras de 6 m"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "generala de exércitos demoníacos",
+    "atividade": "qualquer hora",
+    "dieta": "não precisa comer",
+    "caca": "conquista em campanha planejada",
+    "dianteDeGente": "massacra com ordem"
+  },
+  "ecologia": {
+    "terreno": [
+      "qualquer"
+    ],
+    "clima": [
+      "extraplanar"
+    ]
+  },
+  "descricao": "Generala dos exércitos do Abismo, de seis braços armados sobre um corpo de serpente. Despreza o caos dos demônios menores, impõe ordem tática às hordas e luta com seis espadas em combinações que nenhum mortal treina para enfrentar. Sonha em rivalizar com os senhores do Abismo.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Comanda com disciplina rara entre os demônios, planeja campanhas inteiras e usa suas seis espadas em combinações mortais que nenhum mortal treina para enfrentar."
+    },
+    {
+      "titulo": "Personalidade",
+      "texto": "Ambiciosa e implacável, despreza o caos desorganizado dos demônios inferiores e sonha em um dia rivalizar com os próprios senhores do Abismo."
+    },
+    {
+      "titulo": "Sociedade",
+      "texto": "Serve como generala de exércitos demoníacos, impondo ordem tática a hordas que normalmente só sabem destruir."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "Contam os poucos sobreviventes de invasões vindas da Fenda que, entre o caos de horrores desgovernados, às vezes surge algo pior: uma vontade fria que organiza o massacre."
+    }
+  ],
+  "imagens": [
+    "bestiario/marilith_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [
+      {
+        "tipo": "luz",
+        "formas": "todas"
+      },
+      {
+        "tipo": "sagrado",
+        "formas": "todas"
+      }
+    ],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "habilidades.prontidao",
+      "motivo": "A nota do site (\"Prontidão 4\"); o campo dizia 2; 4 pela nota do site, e não o 2 do campo"
+    },
+    {
+      "campo": "corpo.altura",
+      "motivo": "O site só dá o comprimento; o tronco da cintura para cima é o de um corpo de 2,7 m"
+    },
+    {
+      "campo": "corpo.massa",
+      "motivo": "Sem espécie medida: o tronco, metade de cima do corpo de base escalado a 2,7 m (80 × 3,375 ÷ 2 = 135 kg), com mais quatro braços (cerca de 20 kg), 155 kg; a cauda de 4,5 m e 0,6 m de diâmetro, afinando (60% do cilindro: π × 0,3² × 4,5 × 0,6 = 0,763 m³), com a densidade de carne e osso, 771 kg; soma 926 kg. O site dizia 1,8 t. Fica a calculada (D-187): as duas ficam na Faixa 4 e na mesma linha de PV; só o Peso erguido muda; 925 kg pelo tronco e pela cauda, contra os 1,8 t do site; a Faixa e o PV não mudam, só o Peso erguido"
+    },
+    {
+      "campo": "couraca",
+      "motivo": "Cobertura do corpo pela R49; metades arredondadas para cima. Absorção natural do livro (`combate.md`). Couraça 3: as escamas da cauda de serpente grande, entre o elefante (2 a 3) e o crocodilo (4 a 5) .; a Arte do site ficou sem poder próprio; 3, escamas de serpente grande"
+    },
+    {
+      "campo": "comportamento.dieta",
+      "motivo": ""
+    },
+    {
+      "campo": "habilidadesEspeciais.Teleporte",
+      "motivo": "R1 e D-197. Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação uma ação, Velocidade 8 -> uma ação, Velocidade 7. O efeito sai no Tick do Golpe. Pela régua da Arte de base. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Telecinese",
+      "motivo": "R1 e D-197. Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação uma ação, Velocidade 6 -> uma ação, Velocidade 6. O efeito sai no Tick do Golpe. Pela régua da Arte de base. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Paralisar",
+      "motivo": "R10 e D-197. Dificuldade sugerida 15 para resistir à imobilidade imposta pelo poder. R10 e D-197. Duração sugerida de 6 Ticks para abrir uma janela de combate com o corpo paralisado. R1 e D-197. Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação sem Velocidade escrita -> uma ação, Velocidade 6 Pela referência corporal ou de deslocamento do poder. R2 e D-197. Alcance sugerido de 9 m para uma manifestação dirigida a curta distância. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "aparencia",
+      "motivo": "0, e não o −1 do site, fora da régua; o texto do site não descreve beleza"
+    },
+    {
+      "campo": "virtudes.temperanca",
+      "motivo": "4, e não 1, pelo texto do site; `compaixao` 0 sobe a 1, o piso da régua"
+    },
+    {
+      "campo": "ataques",
+      "motivo": "o site gravava um \"Golpe planar\" de 2 dados e 6 Ticks, de corte. A D-241 levou a Pesado só o golpe de cinco planares; aqui a classe sai do gesto: as espadas são as do livro e a Cauda fica Média"
+    },
+    {
+      "campo": "habilidadesEspeciais",
+      "motivo": "o site dizia \"depende do agarrão; engolir 1 alvo por vez\". A marilith não engole; a ficha guarda o limite de um alvo por vez na cauda e lê o \"engolir\" como resto de outro texto"
+    },
+    {
+      "campo": "habilidadesEspeciais.Presença aterradora",
+      "motivo": "virou a Técnica temor-reverente; o site dizia \"falha no teste de Vontade = Abalado ao vê-la em combate\""
+    }
+  ]
+}

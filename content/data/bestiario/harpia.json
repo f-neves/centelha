@@ -1,0 +1,277 @@
+{
+  "id": "harpia",
+  "idAntigo": "mon-harpia",
+  "nome": "Harpia",
+  "nomeIngles": "Harpy",
+  "categoria": "humanoide-monstruoso",
+  "papel": "soldado",
+  "ameaca": 3,
+  "centelha": 2,
+  "corpo": {
+    "postura": "bípede, de pé; voadora",
+    "apoio": "bipede",
+    "altura": 1.6,
+    "largura": 0.4,
+    "profundidade": 0.2,
+    "comprimento": null,
+    "envergadura": 4.5,
+    "massa": 55,
+    "area": 3.03,
+    "posturaDoTamanho": "asas abertas",
+    "segundoTamanho": {
+      "area": 0.57,
+      "posturaDoTamanho": "de pé, asas fechadas"
+    }
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 3,
+    "destreza": 5,
+    "vigor": 2,
+    "percepcao": 3,
+    "inteligencia": 1,
+    "raciocinio": 2,
+    "influencia": 5,
+    "perspicacia": 3,
+    "compostura": 4
+  },
+  "habilidades": {
+    "briga": 4,
+    "bloqueio": 0,
+    "esquiva": 1,
+    "atletismo": 1,
+    "furtividade": 2,
+    "prontidao": 1,
+    "integridade": 4,
+    "oratoria": 2
+  },
+  "habilidadesSec": {
+    "canto": 3,
+    "voo": 3,
+    "musculatura": 0
+  },
+  "especialidades": {
+    "furtividade": [
+      {
+        "foco": "penhasco e ruína",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ],
+    "briga": [
+      {
+        "foco": "rasante",
+        "valor": 2,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 1,
+    "conviccao": 3,
+    "temperanca": 2
+  },
+  "vontade": 7,
+  "aparencia": 4,
+  "deslocamento": {
+    "terra": {
+      "batalha": 2,
+      "arranque": 3,
+      "corrida": 5
+    },
+    "voo": {
+      "batalha": 8
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Garras",
+      "parte": "pes-de-garra",
+      "classe": "leve",
+      "pgr": [
+        1,
+        1,
+        3
+      ],
+      "dado": "1d6-2",
+      "multiplicadorForca": 1,
+      "tipoDano": "corte",
+      "nivelPerfuracao": 0,
+      "acerto": 1,
+      "bloqueiaComoArma": null,
+      "justificativa": "Garra de ave, Leve (`regra-construcao.md` §7); os dois pés fazem par (Manobras). A Centelha soma inteira. Jogada: Destreza 5 + Briga 4 + 2 × o menor entre Centelha 2 e Briga 4 (4)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Posturas de combate",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Grande: asas abertas. Médio: de pé, asas fechadas. Vale o Tamanho da postura atual. Abrir as asas ao voar e fechá-las ao pousar faz parte do movimento, sem custo adicional",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "Canção cativante",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "fascinacao",
+        "nivel": 2
+      },
+      "categoria": "sobrenatural",
+      "ativacao": "uma ação, Velocidade 5, cantando; mantém cantando a cada ação",
+      "duracao": "enquanto ela cantar, e mais 6 Ticks",
+      "alcance": "até onde o canto é ouvido, cerca de 90 m",
+      "area": "todos os que ouvem, menos as harpias",
+      "efeito": "quem falha fica cativado: anda até ela pelo caminho mais curto, ignorando perigos (não entra em fogo nem em abismo sem testar de novo), e não age contra ela; quem é atacado se solta",
+      "dano": "nenhum",
+      "resistencia": "Influência + Canto da criatura contra a Defesa Mental do alvo, com o Resistir do livro. quem passa fica imune a esta canção até o fim da cena",
+      "limiteDeUso": "Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "Feitiçaria",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "fascinacao",
+        "nivel": 1
+      },
+      "categoria": "magia",
+      "ativacao": "no lugar da canção, uma ação, Velocidade 5. O efeito sai no Tick do Golpe",
+      "duracao": "até o fim da próxima ação do alvo",
+      "alcance": "18 m",
+      "area": "um alvo",
+      "efeito": "uma pequena ilusão ou um comando curto (\"vem\", \"larga\", \"olha\"); o alvo perde a próxima ação ou obedece a uma palavra",
+      "dano": "nenhum",
+      "resistencia": "Influência + Canto da criatura contra a Defesa Mental do alvo, com o Resistir do livro",
+      "limiteDeUso": "Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. A canção e a feitiçaria compartilham o uso grátis"
+    },
+    {
+      "nome": "Garras aviformes",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "regra": "empunhadura-dupla"
+    },
+    {
+      "nome": "Voo rasante",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "texto": "Voo; em baixa altura"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "bando do penhasco",
+      "formas": "todas",
+      "texto": "canta para atrair a presa, as outras cercam e despedaçam o cativado com as garras; foge para o alto se o canto falha."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão",
+      "descricao": "de ave, de longe",
+      "formas": "todas"
+    },
+    {
+      "nome": "audição e olfato",
+      "descricao": "os de um humano",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "mente": "simples, cruel e vaidosa",
+    "tracos": "torso e rosto de mulher, asas de penas sujas no lugar dos braços, pernas e garras de ave de rapina, cabelo emaranhado"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "em bando, típico 3 a 8",
+    "atividade": "diurno",
+    "dieta": "carnívora",
+    "caca": "atrai com o canto e despedaça",
+    "dianteDeGente": "atrai, cerca e mata"
+  },
+  "ecologia": {
+    "terreno": [
+      "litoral",
+      "montanha",
+      "ruínas"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Mulher-ave de asas largas que faz ninho em penhascos e ruínas à beira-mar. Atrai viajantes e marinheiros com um canto que cativa, e o bando despedaça a presa hipnotizada com garras e dentes.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Caça em bandos usando o canto encantador para atrair viajantes e marinheiros para perto, então cerca e despedaça a presa hipnotizada com garras e dentes."
+    },
+    {
+      "titulo": "Hábitos",
+      "texto": "Faz ninho em penhascos costeiros e ruínas à beira-mar, acumulando ossos e pertences de vítimas antigas ao redor do covil como um monturo macabro."
+    },
+    {
+      "titulo": "Personalidade",
+      "texto": "Cruel e vaidosa, tira prazer em ludibriar antes de matar; despreza presas que resistem ao canto e reserva ódio especial para quem escapa uma vez."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "Nos portos de Mére e nas costas ásperas do Neck, marinheiros confundem seu grito com os horrores de crânio de ave que se conta terem escapado da Fenda, e poucos se dão ao trabalho de corrigir o engano."
+    }
+  ],
+  "imagens": [
+    "bestiario/harpia_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "corpo.area",
+      "motivo": "O corpo, 0,72 × 0,889² = 0,57 m²; as asas, (4,5 − 0,40) × 0,6 m de largura média = 2,46 m²  na largura da asa; Grande de asas abertas, Médio de pé  na largura da asa"
+    },
+    {
+      "campo": "comportamento.social",
+      "motivo": "site (Comportamento)"
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": ""
+    },
+    {
+      "campo": "habilidadesEspeciais.Canção cativante",
+      "motivo": "R1 e D-197. Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. O limite preserva o primeiro uso e reserva repetição para esforço adicional. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Feitiçaria",
+      "motivo": "R1 e D-197. Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. A canção e a feitiçaria compartilham o uso grátis. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação no lugar da canção, uma ação, Velocidade 6 -> no lugar da canção, uma ação, Velocidade 5. O efeito sai no Tick do Golpe. Pela régua da Arte de base. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "virtudes.compaixao",
+      "motivo": "1; o site tinha 2"
+    }
+  ]
+}

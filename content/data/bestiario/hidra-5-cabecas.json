@@ -1,0 +1,237 @@
+{
+  "id": "hidra-5-cabecas",
+  "idAntigo": "mon-hidra-5-cabecas",
+  "nome": "Hidra (5 cabeças)",
+  "nomeIngles": "Hydra",
+  "categoria": "besta-magica",
+  "papel": "fera",
+  "ameaca": 3,
+  "centelha": 1,
+  "corpo": {
+    "postura": "quatro patas; os pescoços erguidos",
+    "apoio": "quadrupede",
+    "altura": 1.17,
+    "largura": 1.49,
+    "profundidade": null,
+    "comprimento": 9,
+    "comprimentoSemCauda": 4.71,
+    "caudaGrossa": false,
+    "massa": 4000,
+    "area": 14.7,
+    "posturaDoTamanho": "vista de cima, os pescoços abertos"
+  },
+  "couraca": 3,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 8,
+    "destreza": 3,
+    "vigor": 8,
+    "percepcao": 2,
+    "inteligencia": 1,
+    "raciocinio": 1,
+    "influencia": 1,
+    "perspicacia": 1,
+    "compostura": 2
+  },
+  "habilidades": {
+    "briga": 4,
+    "bloqueio": 0,
+    "esquiva": 1,
+    "atletismo": 2,
+    "furtividade": 1,
+    "integridade": 2,
+    "prontidao": 3,
+    "resistencia": 4,
+    "sociabilidade": 0,
+    "sobrevivencia": 3
+  },
+  "habilidadesSec": {
+    "natacao": 2,
+    "musculatura": 2
+  },
+  "especialidades": {},
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 1,
+    "conviccao": 3,
+    "temperanca": 2
+  },
+  "vontade": 6,
+  "aparencia": 2,
+  "deslocamento": {
+    "terra": {
+      "batalha": 2,
+      "arranque": 3,
+      "corrida": 5
+    },
+    "nado": {
+      "batalha": 2
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Mordida",
+      "parte": "cabeca-uma-das-cinco",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "A mordida de cada cabeça, com o pescoço atrás: Média. As cinco cabeças são a mesma parte, e vão juntas pela Rajada. Jogada: Força 8 + Briga 4 + 2 × o menor entre Centelha 1 e Briga 4 (2)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Regeneração 5",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "fraqueza": {
+        "forma": "naoRegenera",
+        "tipos": [
+          "fogo",
+          "ácido"
+        ]
+      },
+      "texto": "Origem natural. O dano de fogo ou ácido só fecha com outras curas, como Arte, Cura ou descanso. As demais feridas se regeneram normalmente. Recupera 5 PV por minuto, até o máximo de PV. Em combate, recupera 0,5 PV a cada 6 Ticks, contados a partir do Tick do primeiro dano"
+    },
+    {
+      "nome": "cabeças que rebrotam",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "enquanto a condição se aplica",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "A cabeça cortada rebrota em duas se o coto não for cauterizado em 6 Ticks. Mesmo com mais cabeças vivas, o Multiataque tem teto de 4 golpes",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "corpo descomunal",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "enquanto a condição se aplica",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "A anatomia firme soma +4 à Defesa contra Derrubar e Empurrar. Aplicam-se as travas de massa",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "Multiataque",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "uma ação de Rajada",
+      "duracao": "uma ação",
+      "alcance": "o de cada parte",
+      "area": "os alvos da Rajada",
+      "efeito": "Golpeia nesta ordem: primeira cabeça, segunda cabeça, terceira cabeça, quarta cabeça. Cada golpe extra acumula −1d6 e conta para Guarda sob pressão. Não acumula com a Rajada comum",
+      "dano": "o de cada ataque que acertar",
+      "resistencia": "a Defesa de cada golpe",
+      "limiteDeUso": "até 4 golpes por ação, sem Energia. O uso repetido causa esforço e pode levar ao cansaço"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "fome",
+      "formas": "todas",
+      "texto": "ataca tudo o que se move perto do território e não recua; embosca na água ou na lama, onde a fuga da presa é mais lenta."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "muitos olhos",
+      "descricao": "Prontidão 3; quase impossível de surpreender",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "prendeRespiracao": ", embosca na água",
+    "camuflagem": "na lama e na água do pântano",
+    "mente": "animal (fera de Inteligência 1)",
+    "tracos": "réptil de corpo de crocodilo e 9 m, com cinco pescoços longos de 4 m e uma cabeça de dentes em cada um"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitária",
+    "atividade": "qualquer hora",
+    "dieta": "carnívora",
+    "caca": "caça por fome; embosca na água ou na lama",
+    "dianteDeGente": "ataca o que se move perto demais"
+  },
+  "ecologia": {
+    "terreno": [
+      "pântano",
+      "aquático"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Réptil de cinco cabeças que vive em pântanos, lagos e cavernas úmidas e caça por fome, e não por estratégia. Cada cabeça morde por conta própria, e cortar uma sem cauterizar o coto só multiplica o problema.",
+  "lore": [
+    {
+      "titulo": "Ecologia",
+      "texto": "Vive em pântanos, lagos e cavernas úmidas, onde a fartura de presas sustenta suas cinco cabeças famintas. Cada cabeça morde por conta própria, e cortar uma sem cauterizar o coto só multiplica o problema."
+    },
+    {
+      "titulo": "Comportamento",
+      "texto": "Não caça por estratégia, caça por fome: ataca tudo que se move perto demais do território e raramente recua, porque uma cabeça perdida é rapidamente substituída por duas. Prefere emboscar na água ou na lama, onde a fuga da presa é mais lenta."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "É citada como prova de que a magia da era antiga ainda respira nos pântanos esquecidos; em Syl, quem se aventura perto de um covil de hidra deixa oferendas aos kami do lugar antes, achando que a besta é castigo por um espírito da água ofendido."
+    }
+  ],
+  "imagens": [
+    "bestiario/hidra-5-cabecas_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "corpo.massa",
+      "motivo": "A do site. A regra de altura e massa dos lotes 32 e 33, mantida nos lotes 34 e 35: a medida do site manda, e a massa do site fica quando um fator de forma plausível sobre o animal de base a alcança: o crocodilo-do-nilo (215 kg, 3,84 m) escalado pelo cubo do comprimento do site (× 2,344) dá 2.769 kg, um quarto dele de cauda; sem a cauda, 2.077 kg; com cinco pescoços no lugar dela, cada um mais fino que a cauda (0,56 da massa dela, 385 kg), 2.077 + 5 × 385 = 4.002 kg, os 4 t do site; 4 t, a do site, pelo crocodilo escalado com cinco pescoços no lugar da cauda. Nada muda: Faixa, PV e Tamanho ficam os do site"
+    },
+    {
+      "campo": "corpo.area",
+      "motivo": "A área do crocodilo-do-nilo (1,58 m², de cima) escalada pelo quadrado do comprimento (8,68 m², com um pescoço no lugar da cauda) mais quatro pescoços a mais, de 4,3 m por 0,35 m (1,5 m² cada): 14,7"
+    },
+    {
+      "campo": "couraca",
+      "motivo": "Cobertura do corpo pela R49; metades arredondadas para cima. Absorção natural do livro (`combate.md`). Couraça 3: escamas de réptil, abaixo do crocodilo (5), mais finas nos pescoços ."
+    },
+    {
+      "campo": "ataques",
+      "motivo": "o site gravava um ataque só, \"Garras e presas\" (`inimigos.json`: \"3d6 +9 perfurante\", 7 Ticks, dano médio 19,5). A ficha separa os golpes pelo gesto, um por ação (D-097). Dano médio: 19,5 antes; depois, mordida 12,5, até três pela Rajada"
+    }
+  ]
+}

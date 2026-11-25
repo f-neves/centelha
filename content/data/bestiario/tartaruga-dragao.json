@@ -1,0 +1,327 @@
+{
+  "id": "tartaruga-dragao",
+  "idAntigo": "mon-dragon-turtle",
+  "nome": "Tartaruga-Dragão",
+  "nomeIngles": "Dragon Turtle",
+  "categoria": "dragao",
+  "papel": "chefe",
+  "ameaca": 5,
+  "centelha": 5,
+  "corpo": {
+    "postura": "quatro nadadeiras; nadadora",
+    "apoio": "outro",
+    "altura": 0.93,
+    "largura": 2.33,
+    "profundidade": null,
+    "comprimento": 9,
+    "comprimentoSemCauda": 5.3,
+    "caudaGrossa": true,
+    "massa": 4000,
+    "area": 9.56,
+    "posturaDoTamanho": "de cima"
+  },
+  "couraca": 8,
+  "perfilCouraca": "rigida",
+  "atributos": {
+    "forca": 10,
+    "destreza": 2,
+    "vigor": 7,
+    "percepcao": 3,
+    "inteligencia": 3,
+    "raciocinio": 3,
+    "influencia": 3,
+    "perspicacia": 3,
+    "compostura": 3
+  },
+  "habilidades": {
+    "briga": 5,
+    "bloqueio": 0,
+    "esquiva": 0,
+    "atletismo": 2,
+    "furtividade": 1,
+    "integridade": 3,
+    "prontidao": 1,
+    "atirador": 3
+  },
+  "habilidadesSec": {
+    "natacao": 4,
+    "musculatura": 3
+  },
+  "especialidades": {
+    "furtividade": [
+      {
+        "foco": "na água",
+        "valor": 3,
+        "origem": "natural"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 6,
+    "compaixao": 2,
+    "conviccao": 5,
+    "temperanca": 3
+  },
+  "vontade": 10,
+  "aparencia": 9,
+  "deslocamento": {
+    "terra": {
+      "batalha": 2,
+      "arranque": 3,
+      "corrida": 5
+    },
+    "nado": {
+      "batalha": 3
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Mordida",
+      "parte": "boca",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 2,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Mordida de predador grande (`regra-construcao.md` §7), como a dos dragões. Golpe de boca: Força × 1. N2, a do branco jovem . Jogada: Força 10 + Briga 5 + 2 × o menor entre Centelha 5 e Briga 5 (10)"
+    },
+    {
+      "nome": "Garras",
+      "parte": "nadadeira-dianteira",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "corte",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "\"As duas garras dianteiras\" (site), Média (§7), como nos dragões. Atacam submersas. Bloqueia como a mão nua (D-100). Jogada: Força 10 + Briga 5 + 2 × o menor entre Centelha 5 e Briga 5 (10)"
+    },
+    {
+      "nome": "Sopro de vapor",
+      "parte": "boca",
+      "classe": "distancia",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": "6d6",
+      "multiplicadorForca": 0,
+      "tipoDano": "fogo",
+      "nivelPerfuracao": null,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Ataque natural a distância, Classe Distância (manual, Passo 10), como nos dragões. O site não dá dados; 6d6 é o degrau da Centelha 5 na escada do lote 23 (o dragão vermelho jovem, D-197), descrito na linha do sopro nas Manobras. Sem jogada de ataque."
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Sopro de vapor escaldante",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "fogo",
+        "nivel": 3
+      },
+      "categoria": "substancia",
+      "ativacao": "uma ação, Velocidade 5",
+      "duracao": "instantânea",
+      "alcance": "9 m à frente",
+      "area": "cone de 9 m, na superfície ou debaixo d'água",
+      "efeito": "o vapor fervente queima quem está na nuvem. Após a área, só há dano residual quando um efeito da ficha o declara",
+      "dano": "6d6 + Centelha, fogo",
+      "resistencia": "sem jogada de ataque. Cada alvo resolve a saída de área pelo livro",
+      "limiteDeUso": "O corpo guarda 2 doses e produz 1 dose a cada 12 horas. Cada uso gasta 1 dose. Nada acelera a produção"
+    },
+    {
+      "nome": "garras em sequência",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Garras",
+      "categoria": "inato",
+      "regra": "rajada"
+    },
+    {
+      "nome": "Multiataque",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "uma ação de Rajada",
+      "duracao": "uma ação",
+      "alcance": "o de cada parte",
+      "area": "os alvos da Rajada",
+      "efeito": "Golpeia nesta ordem: mordida, garra esquerda, garra direita. Cada golpe extra acumula −1d6 e conta para Guarda sob pressão. Não acumula com a Rajada comum",
+      "dano": "o de cada ataque que acertar",
+      "resistencia": "a Defesa de cada golpe",
+      "limiteDeUso": "até 3 golpes por ação, sem Energia. O uso repetido causa esforço e pode levar ao cansaço"
+    },
+    {
+      "nome": "Afunda embarcações",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "enquanto a condição se aplica",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Cada golpe atinge uma seção do barco, com PV e Absorção declarados pelo Mestre. Para virá-lo, role Força + Briga contra a resistência declarada para a embarcação",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "Firme contra o sono, a paralisia e o domínio da mente",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Ignora sono imposto, paralisia e domínio. As demais famílias mentais, a conversa comum e o dano físico de Arte seguem suas regras",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "Contínuo, sem custo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "senhora dos mares",
+      "formas": "todas",
+      "texto": "chega por baixo sem ruído, sopra vapor sobre o convés, vira o barco e morde quem cai na água."
+    },
+    {
+      "nome": "Projétil natural",
+      "formas": "todas",
+      "texto": "Contra um alvo, use o maior entre Vigor, Destreza e Percepção + Atirador. Ao cobrir uma área, só os alvos fazem a jogada de saída."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão",
+      "descricao": "enxerga debaixo d'água",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "prendeRespiracao": "muito tempo; ataca e sopra submersa",
+    "camuflagem": "o casco no fundo do mar",
+    "mente": "Inteligência 3; cobra tributo de quem navega",
+    "tracos": "casco de marrom-ferrugem a verde-azulado com reflexos de prata; cabeça e cauda com estrias douradas"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitária; reivindica territórios de mar",
+    "atividade": "qualquer hora",
+    "dieta": "carnívora",
+    "caca": "afunda navios e guarda no covil a carga e os destroços",
+    "dianteDeGente": "afunda quem navega sem pagar tributo"
+  },
+  "ecologia": {
+    "terreno": [
+      "aquático",
+      "litoral"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Tartaruga-dragão de casco lendário que reivindica vastos territórios de mar. Chega sem ruído por baixo dos navios, sopra vapor fervente sobre o convés e vira o barco de quem não pagou tributo; no covil, guarda a carga de todos os navios que afundou.",
+  "lore": [
+    {
+      "titulo": "Senhora dos mares",
+      "texto": "Reivindica vastos territórios oceânicos e afunda quem ousa navegar por eles sem prestar tributo."
+    },
+    {
+      "titulo": "Tesouros afundados",
+      "texto": "Guarda em seu covil os destroços e a carga valiosa de todos os navios que já capsizou."
+    },
+    {
+      "titulo": "Carapaça lendária",
+      "texto": "O casco varia de marrom ferrugem a verde-azulado com reflexos prateados, e a cabeça e a cauda mostram estrias douradas."
+    }
+  ],
+  "imagens": [
+    "bestiario/tartaruga-dragao_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": [
+      {
+        "tipo": "fogo",
+        "formas": "todas"
+      }
+    ]
+  },
+  "revisao": [
+    {
+      "campo": "corpo.comprimento",
+      "motivo": "Da ficha publicada : cabeça e pescoço de 2,2 m, casco de 3,1 m e cauda de 3,7 m"
+    },
+    {
+      "campo": "corpo.comprimentoSemCauda",
+      "motivo": "Cabeça, pescoço e casco"
+    },
+    {
+      "campo": "corpo.area",
+      "motivo": "Casco em elipse, π ÷ 4 × 3,1 × 2,33 = 5,67 m²; cabeça e pescoço, 2,2 × 0,6 × 0,8 = 1,06 m²; cauda que afina, 3,7 × 0,5 × 0,5 = 0,93 m²; quatro nadadeiras, cerca de 1,9 m² : 9,56 m²"
+    },
+    {
+      "campo": "couraca",
+      "motivo": "Cobertura do corpo pela R49; metades arredondadas para cima. Absorção natural do livro (`combate.md`). O casco: acima da escama do dragão jovem (6) e abaixo dos adultos (9) (\"carapaça lendária\", site) .; nível 8"
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": ""
+    },
+    {
+      "campo": "comportamento.dieta",
+      "motivo": ""
+    },
+    {
+      "campo": "ataques.Mordida.nivelPerfuracao",
+      "motivo": "Mordida de predador grande (`regra-construcao.md` §7), como a dos dragões. Golpe de boca: Força × 1. N2, a do branco jovem . Jogada: Força 10 + Briga 5 + 2 × o menor entre Centelha 5 e Briga 5 (10)"
+    },
+    {
+      "campo": "ataques.Sopro de vapor",
+      "motivo": "Antes: jogada de ataque na tabela. R36: Sem jogada de ataque, pois o efeito ocupa a área descrita nas Manobras. Cada alvo resolve a defesa de área."
+    },
+    {
+      "campo": "habilidadesEspeciais.Sopro de vapor escaldante",
+      "motivo": "R1/R4, D-197. Dois sopros prontos permitem alternar sopro e golpes. Sugestão de 2 doses e 12 h por dose para repor fora da luta. valor de molde, para a bancada (2 doses e produz 1 dose a cada 12 horas)."
+    },
+    {
+      "campo": "corpo",
+      "motivo": "casco de 3,1 m pela massa do site; pescoço e cauda completam os 9 m"
+    },
+    {
+      "campo": "ataques",
+      "motivo": "6d6 + Centelha, cone de 9 m, pela escada de Centelha do lote 23 (D-197)"
+    }
+  ]
+}

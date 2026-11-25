@@ -1,0 +1,257 @@
+{
+  "id": "triceratops",
+  "idAntigo": "mon-triceratops",
+  "nome": "Tricerátops",
+  "nomeIngles": "Triceratops",
+  "categoria": "animal",
+  "papel": "fera",
+  "ameaca": 5,
+  "centelha": 0,
+  "corpo": {
+    "postura": "quatro patas",
+    "apoio": "quadrupede",
+    "altura": 3.08,
+    "largura": 2.05,
+    "profundidade": null,
+    "comprimento": 8.72,
+    "comprimentoSemCauda": 6.16,
+    "caudaGrossa": true,
+    "massa": 8000,
+    "area": 11.03,
+    "posturaDoTamanho": "vista de lado"
+  },
+  "couraca": 3,
+  "perfilCouraca": "rigida",
+  "atributos": {
+    "forca": 11,
+    "destreza": 1,
+    "vigor": 10,
+    "percepcao": 2,
+    "inteligencia": 1,
+    "raciocinio": 1,
+    "influencia": 1,
+    "perspicacia": 1,
+    "compostura": 1
+  },
+  "habilidades": {
+    "briga": 3,
+    "bloqueio": 2,
+    "esquiva": 1,
+    "atletismo": 0,
+    "furtividade": 0,
+    "integridade": 3,
+    "prontidao": 1,
+    "resistencia": 4,
+    "empatia": 0,
+    "sobrevivencia": 2
+  },
+  "habilidadesSec": {
+    "equilibrio": 0,
+    "escalada": 0,
+    "natacao": 0,
+    "voo": 0,
+    "corrida": 0,
+    "musculatura": 3
+  },
+  "especialidades": {},
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 1,
+    "conviccao": 1,
+    "temperanca": 1
+  },
+  "vontade": 3,
+  "aparencia": 6,
+  "deslocamento": {
+    "terra": {
+      "batalha": 3,
+      "arranque": 5,
+      "corrida": 6
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Chifrada",
+      "parte": "chifre",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 1,
+      "acerto": 0,
+      "bloqueiaComoArma": 1,
+      "justificativa": "Era 1d6 + 15, média 18,5. 3,5 + 11. Golpe de cabeça com o corpo atrás (seção 7). Chifre de ponta de cerca de 1 m: N1 é o do próprio chifre, pelo tamanho (seção 7), e não do porte; força em N não achada. O buraco curado no malar com o diâmetro da ponta de um chifre (Farlow e Dodson 1975) mostra que ele fura."
+    },
+    {
+      "nome": "Investida de chifre",
+      "parte": "chifre",
+      "classe": "pesada",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": "2d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 1,
+      "acerto": 0,
+      "bloqueiaComoArma": 1,
+      "justificativa": "Golpe Pesado, com Força × 1 no golpe comum (D-266); na ação de Investida, soma mais uma Força, sem +1d6 (P20-b)."
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Investida",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Investida de chifre",
+      "categoria": "inato",
+      "regra": "investida"
+    },
+    {
+      "nome": "derrubar",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "regra": "derrubar"
+    },
+    {
+      "nome": "empurrar",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "regra": "empurrar"
+    },
+    {
+      "nome": "escudo de osso",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "enquanto a condição se aplica",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "A anatomia firme soma +4 à Defesa contra Derrubar e Empurrar. As travas de massa continuam",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "Atropelar",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "texto": "Atropelar"
+    }
+  ],
+  "comoLuta": [],
+  "sentidos": [
+    {
+      "nome": "faro",
+      "descricao": "fraco, sem Especialidade",
+      "formas": "todas"
+    },
+    {
+      "nome": "audição",
+      "descricao": "de baixa frequência (cóclea curta), sem Especialidade; texto",
+      "formas": "todas"
+    },
+    {
+      "nome": "sentidos",
+      "descricao": "Nada que passe do humano com número. Cabeça mantida a cerca de 45 graus do chão",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "mente": "animal",
+    "tracos": "gola curta e maciça, sem janelas, de osso fibrolamelar que cicatriza rápido; placa óssea sobre o sacro, da fusão das espinhas vertebrais; conchas nasais respiratórias prováveis, para resfriar o sangue do cérebro e dos olhos; côndilo occipital de até 106 mm, crânio muito pesado; escamas de base de até 90 mm, as maiores conhecidas em ceratopsianos"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "família",
+    "dieta": "herbívoro",
+    "caca": "forrageio"
+  },
+  "ecologia": {
+    "terreno": [
+      "planície"
+    ],
+    "clima": [
+      "tropical"
+    ]
+  },
+  "descricao": "Herbívoro dos mais comuns do fim do Cretáceo, presa do tiranossauro, que luta de chifre com os da própria espécie.",
+  "lore": [
+    {
+      "titulo": "Fera birrenta",
+      "texto": "Teimoso e de temperamento curto, ataca por qualquer motivo, por menor que seja a provocação."
+    },
+    {
+      "titulo": "Escudo de osso",
+      "texto": "A grande gola que emoldura a cabeça protege o pescoço dos golpes que viriam de frente."
+    }
+  ],
+  "imagens": [
+    "bestiario/triceratops_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "atributos.perspicacia",
+      "motivo": "Era 2. Não é espécie social (diretriz 1): o leito de ossos com três jovens (Mathews e colegas 2009) e o grupo de três tamanhos são pouca evidência, e a \"família\" é leitura de Peter Larson ; ver desvios"
+    },
+    {
+      "campo": "habilidades.furtividade",
+      "motivo": "Etapa 2 (20/10/2026): Decisão 8 de 19/10/2026: a Furtividade sai do comportamento, sem padrão por tamanho, e quem nunca tenta se esconder fica com 0. A penalidade do Alvo (R8) soma por cima. Nenhum fato de esconder-se no levantamento; o autor pôs o estegossauro e o braquiossauro em 0. Antes: Era sem linha (0). O levantamento: nenhum fato. Régua: 1, não se esconde"
+    },
+    {
+      "campo": "habilidades.integridade",
+      "motivo": "Encara de frente: as lesões curadas do chifre e do esquamosal são de confronto que ele sobreviveu. Degrau 3"
+    },
+    {
+      "campo": "corpo.altura",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 3,00 × 1,0263 = 3,079 . Antes: \"Big John\", 8 m e 3 m de altura (BBC 2021), escolhido na v3 como o mais próximo da massa de então (Era 8 t); faixa de 2,3 (Kelsey, Black Hills Institute) a 3,0 m (`dimensoes.md`)"
+    },
+    {
+      "campo": "corpo.comprimento",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 8,50 × 1,0263 = 8,724 . Antes: ponto médio de 8 a 9 m (Paul 2010 e Holtz 2011, via Wikipédia)"
+    },
+    {
+      "campo": "corpo.comprimentoSemCauda",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 6,00 × 1,0263 = 6,158 . Antes: do Arquiteto: \"corpo sem cauda (cerca de 70% de 8,5 m)\"; a fonte só dá o comprimento total"
+    },
+    {
+      "campo": "corpo.largura",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 2,00 × 1,0263 = 2,053 . Antes: estimativa do Arquiteto (`porte-area.mjs`); a pesquisa não mediu largura"
+    },
+    {
+      "campo": "aparencia",
+      "motivo": "D-107.  A pele e a cor não se conhecem; fica na maioria."
+    },
+    {
+      "campo": "comportamento.social",
+      "motivo": "Leito de ossos com três jovens (Mathews e colegas 2009); grupo de três de tamanhos diferentes, \"família\" na leitura de Peter Larson. Bando: pouca evidência. A ficha trata a espécie como não social (diretriz 1)"
+    }
+  ]
+}

@@ -1,0 +1,308 @@
+{
+  "id": "morcego-atroz",
+  "idAntigo": "mon-dire-bat",
+  "nome": "Morcego atroz",
+  "nomeIngles": "Dire Bat",
+  "categoria": "animal",
+  "papel": "fera",
+  "ameaca": 2,
+  "centelha": 0,
+  "corpo": {
+    "postura": "voador",
+    "apoio": "outro",
+    "altura": 0.75,
+    "largura": 0.53,
+    "profundidade": null,
+    "comprimento": 1.2,
+    "caudaGrossa": false,
+    "envergadura": 5.4,
+    "massa": 27,
+    "area": 4.79,
+    "posturaDoTamanho": "de baixo, asas abertas",
+    "segundoTamanho": {
+      "area": 0.53,
+      "posturaDoTamanho": "asas fechadas"
+    }
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 3,
+    "destreza": 3,
+    "vigor": 4,
+    "percepcao": 3,
+    "inteligencia": 1,
+    "raciocinio": 2,
+    "influencia": 2,
+    "perspicacia": 2,
+    "compostura": 2
+  },
+  "habilidades": {
+    "briga": 2,
+    "bloqueio": 0,
+    "esquiva": 2,
+    "atletismo": 2,
+    "furtividade": 2,
+    "integridade": 2,
+    "prontidao": 2,
+    "resistencia": 3,
+    "empatia": 1,
+    "sobrevivencia": 2
+  },
+  "habilidadesSec": {
+    "equilibrio": 0,
+    "escalada": 1,
+    "natacao": 0,
+    "voo": 1,
+    "musculatura": 0
+  },
+  "especialidades": {
+    "prontidao": [
+      {
+        "foco": "ecolocalização",
+        "valor": 3,
+        "origem": "natural"
+      },
+      {
+        "foco": "calor",
+        "valor": 3,
+        "origem": "natural"
+      }
+    ],
+    "furtividade": [
+      {
+        "foco": "sobre quem dorme",
+        "valor": 1,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 2,
+    "compaixao": 1,
+    "conviccao": 1,
+    "temperanca": 1
+  },
+  "vontade": 3,
+  "aparencia": 5,
+  "deslocamento": {
+    "terra": {
+      "batalha": 2,
+      "arranque": 2,
+      "corrida": 4
+    },
+    "voo": {
+      "batalha": 5
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Mordida",
+      "parte": "mordida",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "A saliva anticoagulante mantém a ferida sangrando. Estancar exige Raciocínio + Cura."
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Posturas de combate",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Grande: de baixo, asas abertas. Médio: asas fechadas. Vale o Tamanho da postura atual. Abrir as asas ao voar e fechá-las ao pousar faz parte do movimento, sem custo adicional",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "agarrar",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "regra": "agarrar"
+    },
+    {
+      "nome": "sangramento",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "ataque": "Mordida",
+      "categoria": "inato",
+      "ativacao": "quando a mordida abre uma ferida",
+      "duracao": "até estancar",
+      "alcance": "o do golpe",
+      "area": "a vítima ferida",
+      "efeito": "Aplica o Sangramento comum. A ferida não fecha sozinha. Para estancar, é preciso vencer um teste de Raciocínio + Cura. Estabilizar com o cuidado simples não basta",
+      "dano": "nenhum adicional",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "a cada ferida que provoca Sangramento, sem custo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "morder quem dorme",
+      "formas": "todas",
+      "texto": "morde sem acordar quem dorme (Furtividade, com a Especialidade sobre quem dorme)."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "ecolocalização",
+      "descricao": "Prontidão (ecolocalização) +3 (Especialidade natural, era +4), herdada do vampiro . Vale no escuro",
+      "formas": "todas"
+    },
+    {
+      "nome": "calor",
+      "descricao": "Prontidão (calor) +3 (Especialidade natural, era +4), herdada do vampiro (fossetas que respondem acima de 29 °C, Kürten e Schmidt 1982)",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "camuflagem": "nenhuma; vive no escuro",
+    "mente": "animal",
+    "tracos": "não voaria por músculo: o teto calculado para morcegos é de 1,1 a 2,3 kg, e os maiores conhecidos pesam 1,6 kg (Norberg e Norberg 2012); o atroz de 27 kg tem de 12 a 25 vezes isso. O voo é dado de fantasia (D-105)"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "pequeno grupo",
+    "atividade": "noturno",
+    "dieta": "hematófago e carnívoro",
+    "caca": "pousa perto e morde, como o vampiro",
+    "dianteDeGente": "morde quem dorme e quem estiver só no escuro"
+  },
+  "ecologia": {
+    "terreno": [
+      "subterrâneo",
+      "floresta"
+    ],
+    "clima": [
+      "temperado",
+      "tropical"
+    ]
+  },
+  "descricao": "Mora em caverna e sai à noite atrás de gado; numa refeição levaria de 5 a 8 kg de sangue, se seguisse o vampiro (20 a 30% da massa).",
+  "lore": [
+    {
+      "titulo": "Habitat",
+      "texto": "O morcego atroz costuma se abrigar em cavernas e áreas desoladas durante o dia, saindo à noite para caçar. Sua envergadura passa de cinco metros."
+    },
+    {
+      "titulo": "Comportamento",
+      "texto": "Raramente forma colônias grandes, preferindo viver sozinho ou em pequenos grupos, e prefere caçar gado e animais de rebanho quando disponíveis."
+    },
+    {
+      "titulo": "Veneno e doença",
+      "texto": "Variante morcego raivoso: Raiva · Virulência 14 · dia · só no animal raivoso, ao critério do Mestre, e nunca no comum · contágio por ferida: quem levou dano que passou da Absorção rola uma vez por cena, Vigor + Resistência contra a Virulência inteira"
+    }
+  ],
+  "imagens": [
+    "bestiario/morcego-atroz_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "atributos.forca",
+      "motivo": "Com 27 kg a Força de referência da massa é 4,7 (`calc.mjs`), mas asa de membrana e osso fino não dão mais: o morcego real nem voaria nesse tamanho (Norberg e Norberg 2012, teto de 1,1 a 2,3 kg). Maior que a do vampiro (0), como pede a D-176 para a versão maior. Acima do pteranodonte (2, 23,6 kg, sem garra que agarre): o atroz morde e se segura em gado. Sem feito medido"
+    },
+    {
+      "campo": "atributos.vigor",
+      "motivo": "D-176: \"Criaturas maiores costumam ter mais Força e Vigor. Especialmente se uma criatura é uma versão maior da outra.\" Dois acima do vampiro (2), como na ficha de hoje (D-177). O vampiro real é frágil (morre em menos de três dias sem comer, `morcego.md`), e o corpo de membrana pesa para baixo; o tamanho, para cima.  Não muda"
+    },
+    {
+      "campo": "atributos.influencia",
+      "motivo": "Espécie social, como a base (diretriz 1), e por isso fica como na ficha de hoje . A razão de hoje (uma asa de 5 m no escuro assusta) é a de fazer gente recuar, que a v3 do roc não aceitou como Influência; pelo uso entre os seus, a pesquisa não tem dado. Eu daria 1 (ver as notas)"
+    },
+    {
+      "campo": "atributos.perspicacia",
+      "motivo": "Espécie social (diretriz 1): o vampiro partilha sangue com os companheiros de abrigo (Carter e Wilkinson 2013, `morcego.md`) . Fica como na ficha de hoje"
+    },
+    {
+      "campo": "atributos.compostura",
+      "motivo": "Espécie social (diretriz 1): como o vampiro, chega à presa que dorme . Fica como na ficha de hoje"
+    },
+    {
+      "campo": "habilidades.briga",
+      "motivo": "O predador de presa pequena, no baixo: morde gado e animal que dorme; no tamanho dele, um humano é presa"
+    },
+    {
+      "campo": "habilidades.integridade",
+      "motivo": "Grande demais para fugir de tudo; defende o abrigo"
+    },
+    {
+      "campo": "habilidades.resistencia",
+      "motivo": "Etapa 2 (20/10/2026): Decisão 3 de 19/10/2026: a Resistência mede o quanto a criatura aguenta veneno, doença, ferimentos, falta de fôlego e ficar muito tempo na mesma posição. Decisão 4 de 19/10/2026: a versão maior tende a ter mais Resistência que a comum. Um acima do vampiro (2), como o Vigor (4 contra 2) . Antes: Régua: 2 é o normal da espécie no próprio meio, e o animal sem dado fica em 2 . Do levantamento : pelo vampiro, que morre em 2 a 3 dias sem comer; os 50 km por noite da raposa-voadora (ADW) são distância de voo e ficam na nota de pesquisa (jornada) (diretriz 2). Não tinha linha (0)"
+    },
+    {
+      "campo": "habilidades.empatia",
+      "motivo": "Como o vampiro, lê o da própria espécie: a partilha de sangue com quem voltou sem comer (`morcego.md`). Não tinha"
+    },
+    {
+      "campo": "habilidadesSec.escalada",
+      "motivo": "Como o vampiro, escala parede de caverna apoiado nos punhos e nos polegares. Não tinha (era texto)"
+    },
+    {
+      "campo": "habilidadesSec.voo",
+      "motivo": "Etapa 2 (20/10/2026): Decisão de 20/10/2026: os voadores (o morcego e o morcego atroz) recebem a Habilidade secundária de Voo pela pesquisa; vale nas jogadas (manobrar no ar), e a velocidade continua congelada. O vampiro ficou com 2 (lote 1c); o atroz, de 27 kg e que não voaria por músculo (Norberg e Norberg 2012), fica um abaixo, como a Esquiva . Antes: D-136; o vampiro não tem velocidade de cruzeiro que peça mais. A velocidade está congelada (decisão 23)"
+    },
+    {
+      "campo": "corpo.altura",
+      "motivo": "0,05 m do vampiro (estimada) × 15"
+    },
+    {
+      "campo": "corpo.comprimento",
+      "motivo": "0,08 m do vampiro × 15; sem cauda"
+    },
+    {
+      "campo": "corpo.largura",
+      "motivo": "0,035 m do vampiro (estimada) × 15"
+    },
+    {
+      "campo": "corpo.envergadura",
+      "motivo": "0,36 m do vampiro × 15. A ficha atual dá 4,5 m; o Pathfinder, cerca de 4,6 m"
+    },
+    {
+      "campo": "corpo.massa",
+      "motivo": "Valor de referência: 27 kg (decisão 13). As três contas a partir do vampiro de 35 g e 0,36 m, com k = 15 (5,4 m): pelo cubo, 0,035 × 15³ = 118 kg; regra do roc (expoente 2,28), 0,035 × 15^2,28 = 16,8 kg; reta dos voadores reais do bestiário (0,533 × envergadura^2,61, `tamanho-fichas-v2`), 0,533 × 5,4^2,61 = 43,5 kg. Faixa: 16,8 a 43,5 kg, entre as duas contas de referência. Sexos: não se aplica (no vampiro de base a diferença é de cerca de 3%). . Fonte: decisão 13 (`tamanho-decisoes-3.md`) e a Tabela 3 da `tamanho-fichas-v2`; a massa de base, Greenhall et al. 1983 e ADW (`morcego.md`). Era 118 kg, Faixa 3; a faixa, o PV e o peso erguido já foram refeitos para os 27 kg na v3, Faixa 2 pelo corte de 35 kg (decisão 22). A ficha atual e o Pathfinder dão 90 a 91 kg"
+    },
+    {
+      "campo": "comportamento.social",
+      "motivo": "a base é social; o texto da ficha antiga diz \"sozinho ou em pequenos grupos\""
+    },
+    {
+      "campo": "comportamento.dieta",
+      "motivo": "prefere gado (texto da ficha antiga e do Pathfinder)"
+    },
+    {
+      "campo": "comportamento.dianteDeGente",
+      "motivo": ""
+    }
+  ]
+}

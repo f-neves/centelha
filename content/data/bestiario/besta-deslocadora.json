@@ -1,0 +1,289 @@
+{
+  "id": "besta-deslocadora",
+  "idAntigo": "mon-besta-deslocadora",
+  "nome": "Besta Deslocadora",
+  "nomeIngles": "Displacer Beast",
+  "categoria": "besta-magica",
+  "papel": "fera",
+  "ameaca": 3,
+  "centelha": 2,
+  "corpo": {
+    "postura": "seis patas",
+    "apoio": "outro",
+    "altura": 1.61,
+    "largura": 0.78,
+    "profundidade": null,
+    "comprimento": 3.38,
+    "comprimentoSemCauda": 2.7,
+    "caudaGrossa": false,
+    "massa": 230,
+    "area": 1.32,
+    "posturaDoTamanho": "silhueta vista de lado"
+  },
+  "couraca": 1,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 7,
+    "destreza": 4,
+    "vigor": 6,
+    "percepcao": 3,
+    "inteligencia": 3,
+    "raciocinio": 3,
+    "influencia": 2,
+    "perspicacia": 2,
+    "compostura": 2
+  },
+  "habilidades": {
+    "briga": 4,
+    "bloqueio": 0,
+    "esquiva": 1,
+    "atletismo": 3,
+    "furtividade": 3,
+    "integridade": 2,
+    "prontidao": 2,
+    "resistencia": 3,
+    "empatia": 2,
+    "sociabilidade": 0,
+    "sobrevivencia": 3
+  },
+  "habilidadesSec": {
+    "musculatura": 3
+  },
+  "especialidades": {},
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 1,
+    "conviccao": 3,
+    "temperanca": 2
+  },
+  "vontade": 7,
+  "aparencia": 4,
+  "deslocamento": {
+    "terra": {
+      "batalha": 4,
+      "arranque": 6,
+      "corrida": 9
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Tentáculo",
+      "parte": "tentaculo-ponta-cornea",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "impacto",
+      "nivelPerfuracao": null,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "O chicote do tentáculo com o ombro atrás: Média; alcança até 1,8 m, o comprimento do tentáculo (D-180, ponto 19) . Jogada: Força 7 + Briga 4 + 2 × o menor entre Centelha 2 e Briga 4 (4)"
+    },
+    {
+      "nome": "Mordida",
+      "parte": "mordida",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "A mordida de felino grande: Média, como a do leão. Jogada: Força 7 + Briga 4 + 2 × o menor entre Centelha 2 e Briga 4 (4)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Tentáculos gêmeos",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Tentáculo",
+      "categoria": "inato",
+      "regra": "rajada",
+      "texto": "Até dois golpes por ação"
+    },
+    {
+      "nome": "agarrar",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Tentáculo",
+      "categoria": "inato",
+      "regra": "agarrar"
+    },
+    {
+      "nome": "Imobilizar",
+      "formas": "todas",
+      "classe": "livro",
+      "tecnica": {
+        "id": "imobilizar",
+        "nivel": 1
+      },
+      "categoria": "inato"
+    },
+    {
+      "nome": "Deslocamento",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "fascinacao",
+        "nivel": 1
+      },
+      "categoria": "inato",
+      "ativacao": "nenhuma, está sempre ligado",
+      "duracao": "contínua",
+      "alcance": "o próprio corpo",
+      "area": "não se aplica",
+      "efeito": "a luz em volta dela se dobra e mostra o corpo um passo fora de onde ele está; o primeiro ataque de cada oponente contra ela na cena erra",
+      "dano": "nenhum",
+      "resistencia": "nenhum; quem vê o invisível ou as ilusões não é enganado",
+      "limiteDeUso": "à vontade. Sem custo"
+    },
+    {
+      "nome": "Resistência a ataques à distância",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "nenhuma; sempre ativa",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "não se aplica",
+      "efeito": "a imagem fora do lugar engana quem lança de longe: soma +2 na Defesa Mental contra Arte dirigida a ela à distância",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "nenhum. Sem custo"
+    },
+    {
+      "nome": "Multiataque",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "uma ação de Rajada",
+      "duracao": "uma ação",
+      "alcance": "o de cada parte",
+      "area": "os alvos da Rajada",
+      "efeito": "Golpeia nesta ordem: tentáculo esquerdo, tentáculo direito, mordida. Cada golpe extra acumula −1d6 e conta para Guarda sob pressão. Não acumula com a Rajada comum",
+      "dano": "o de cada ataque que acertar",
+      "resistencia": "a Defesa de cada golpe",
+      "limiteDeUso": "até 3 golpes por ação, sem Energia. O uso repetido causa esforço e pode levar ao cansaço"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "caçada em bando",
+      "formas": "todas",
+      "texto": "o bando isola um alvo do grupo, cerca e ataca das sombras; o golpe certeiro vem do engano do deslocamento."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão",
+      "descricao": "de felino, enxerga na penumbra",
+      "formas": "todas"
+    },
+    {
+      "nome": "prontidão felina",
+      "descricao": "Prontidão 2",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "camuflagem": "nas sombras da mata; a distorção em volta do corpo esconde onde ela está",
+    "mente": "inteligente, cruel",
+    "tracos": "felino escuro de seis patas, com dois tentáculos de pontas córneas saindo dos ombros e olhos verdes"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "bando organizado",
+    "atividade": "noturna",
+    "dieta": "carnívora",
+    "caca": "isola um alvo do grupo e embosca das sombras",
+    "dianteDeGente": "caça"
+  },
+  "ecologia": {
+    "terreno": [
+      "floresta"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Felino de seis patas e dois tentáculos nos ombros que caça em bando e parece estar sempre um passo fora de onde realmente está. Sorrateira, paciente e cruel, isola um alvo antes de atacar, e a distorção em volta do corpo a torna quase impossível de acertar no primeiro golpe.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Predador felino de seis membros e dois tentáculos nos ombros, caça em grupo e usa uma distorção natural ao redor do corpo para parecer estar sempre um passo fora de onde realmente está; o golpe certeiro vem exatamente desse engano."
+    },
+    {
+      "titulo": "Ecologia",
+      "texto": "Caça em bandos organizados por florestas densas e cavernas, coordenando emboscadas com uma disciplina que surpreende quem espera fera comum. Carrega um ódio natural e antigo por cães teleportadores (os blink dogs) e criaturas semelhantes, instinto que nenhum estudioso soube explicar por completo."
+    },
+    {
+      "titulo": "Personalidade",
+      "texto": "Sorrateira, paciente e cruel, prefere isolar um alvo do grupo antes de atacar; a distorção visual que a cerca a torna quase impossível de acertar no primeiro golpe."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "Sábios de Calin suspeitam que a besta deslocadora não é totalmente deste mundo, que carrega em si um resquício de outro plano, torto como os horrores da Fenda; ninguém provou a origem, mas o medo já bastou para render um lugar entre os monstros mais temidos dos ermos."
+    }
+  ],
+  "imagens": [],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "atributos.forca",
+      "motivo": "Degrau 7: For 18 no 3.5. Teste de ordem: como o tigre (7, 192 kg) e o leão-das-cavernas (7, 235 kg), um acima do leão (6, 173 kg), que é mais leve. O site tinha 6; 6 para 7, pelo teste de ordem com o tigre (7 com 192 kg) e o leão-das-cavernas (7 com 235 kg)"
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": ""
+    },
+    {
+      "campo": "ataques.Tentáculo",
+      "motivo": "O chicote do tentáculo com o ombro atrás: Média; alcança até 1,8 m, o comprimento do tentáculo (D-180, ponto 19) . Jogada: Força 7 + Briga 4 + 2 × o menor entre Centelha 2 e Briga 4 (4)"
+    },
+    {
+      "campo": "corpo.massa",
+      "motivo": "230 kg, a do site, lendo os 2,7 m do site como o corpo sem a cauda (fator 0,93 sobre os 246 kg do leão escalado). Lendo como o total com a cauda, o leão escalado daria 126 kg, e o fator 1,8 não caberia; a leitura fica"
+    },
+    {
+      "campo": "corpo.area",
+      "motivo": "Grande para Médio, pela área do leão escalado (1,32 m²). Em jogo: o humano perde os +3 de acerto que tinha contra ela"
+    },
+    {
+      "campo": "ataques",
+      "motivo": "o site gravava um ataque só, \"Garras e presas\" (`inimigos.json`: \"2d6 +8 perfurante\", 6 Ticks, dano médio 15). A ficha separa os golpes pelo gesto, um por ação (D-097). Dano médio: 15 antes; depois, tentáculo 12,5 (dois pela Rajada), mordida 12,5"
+    },
+    {
+      "campo": "habilidadesEspeciais.Deslocamento",
+      "motivo": "poder natural com a base do site (Fascinação 1) e o efeito que o site descreve (\"o primeiro ataque de cada oponente contra ela erra\"); o livro não tem regra de erro automático, e o efeito fica como regra da ficha (D-197)"
+    },
+    {
+      "campo": "habilidadesEspeciais.Resistência a ataques à distância",
+      "motivo": "Antes: Resistência à magia, sem regra ainda e sem número. A exceção da fonte (o toque à distância) não tem par exato no livro: a Arte mirada já se esquiva, e o +2 fica na Defesa Mental"
+    }
+  ]
+}

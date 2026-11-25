@@ -1,0 +1,274 @@
+{
+  "id": "leopardo",
+  "idAntigo": "mon-leopard",
+  "nome": "Leopardo",
+  "nomeIngles": "Leopard",
+  "categoria": "animal",
+  "papel": "fera",
+  "ameaca": 2,
+  "centelha": 0,
+  "corpo": {
+    "postura": "quatro patas",
+    "apoio": "quadrupede",
+    "altura": 0.62,
+    "largura": 0.27,
+    "profundidade": null,
+    "comprimento": 2.16,
+    "comprimentoSemCauda": 1.34,
+    "caudaGrossa": false,
+    "massa": 52.5,
+    "area": 0.35,
+    "posturaDoTamanho": "de lado"
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 5,
+    "destreza": 4,
+    "vigor": 4,
+    "percepcao": 3,
+    "inteligencia": 1,
+    "raciocinio": 3,
+    "influencia": 1,
+    "perspicacia": 1,
+    "compostura": 1
+  },
+  "habilidades": {
+    "briga": 4,
+    "bloqueio": 2,
+    "esquiva": 3,
+    "atletismo": 3,
+    "furtividade": 4,
+    "integridade": 2,
+    "prontidao": 3,
+    "resistencia": 4,
+    "empatia": 0,
+    "sobrevivencia": 4
+  },
+  "habilidadesSec": {
+    "equilibrio": 2,
+    "escalada": 2,
+    "natacao": 0,
+    "voo": 0,
+    "corrida": 0,
+    "musculatura": 3
+  },
+  "especialidades": {
+    "prontidao": [
+      {
+        "foco": "audição",
+        "valor": 2,
+        "origem": "natural"
+      },
+      {
+        "foco": "penumbra",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ],
+    "atletismo": [
+      {
+        "foco": "saltar do galho sobre a presa",
+        "valor": 1,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {
+    "escalada": [
+      {
+        "foco": "árvore",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ]
+  },
+  "virtudes": {
+    "bravura": 2,
+    "compaixao": 1,
+    "conviccao": 1,
+    "temperanca": 1
+  },
+  "vontade": 3,
+  "aparencia": 7,
+  "deslocamento": {
+    "terra": {
+      "batalha": 8,
+      "arranque": 13,
+      "corrida": 19
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Mordida",
+      "parte": "mordida",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Segura a presa pela garganta ou pela nuca."
+    },
+    {
+      "nome": "Patada",
+      "parte": "garra",
+      "classe": "leve",
+      "pgr": [
+        1,
+        1,
+        3
+      ],
+      "dado": "1d6-2",
+      "multiplicadorForca": 1,
+      "tipoDano": "corte",
+      "nivelPerfuracao": null,
+      "acerto": 1,
+      "bloqueiaComoArma": null,
+      "justificativa": "As garras retráteis rasgam a presa."
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "agarrar",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "regra": "agarrar",
+      "texto": "na garganta ou na nuca"
+    },
+    {
+      "nome": "derrubar",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "regra": "derrubar"
+    },
+    {
+      "nome": "investida retalhadora",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Mordida",
+      "categoria": "inato",
+      "regra": "investida"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "saltar do galho sobre a presa",
+      "formas": "todas",
+      "texto": "embosca do alto."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "audição",
+      "descricao": "Prontidão (audição) +2; ouve o ultrassom do camundongo (San Diego Zoo, sem número)",
+      "formas": "todas"
+    },
+    {
+      "nome": "penumbra",
+      "descricao": "Prontidão (penumbra) +2 ; \"seis a oito vezes melhor que a do humano\" (SANBI, sem método)",
+      "formas": "todas"
+    },
+    {
+      "nome": "faro",
+      "descricao": "",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "camuflagem": "pelagem de rosetas (texto)",
+    "mente": "animal",
+    "tracos": "iça e guarda a presa em árvore, o que reduz o roubo pela hiena (Balme et al. 2017)"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitário, territorial (área de 13 a 35 km²)",
+    "atividade": "em fonte conferida",
+    "dieta": "carnívoro; presas de 10 a 40 kg; perto de gente, muito animal doméstico (87% em Akole, Índia)",
+    "caca": "emboscada (a 3 a 10 m) e salto do galho",
+    "dianteDeGente": "evita, mas ataca onde vive perto dela: em Junnar, de 1 a 7 ataques por ano antes da translocação e de 8 a 24 depois, com até 11 mortes por ano"
+  },
+  "ecologia": {
+    "terreno": [
+      "floresta"
+    ],
+    "clima": [
+      "temperado",
+      "tropical"
+    ]
+  },
+  "descricao": "Emboscador solitário que chega a poucos metros da presa e a leva árvore acima para não perdê-la. Vive em quase todo lugar, inclusive na periferia das cidades, e os comedores de gente da história (Rudraprayag, Panar) eram leopardos.",
+  "lore": [
+    {
+      "titulo": "Caçada",
+      "texto": "Prefere caçar à noite, emboscando presas de cima de árvores ou rochas altas; come quase qualquer animal que consiga derrubar, preferindo presas pequenas mas capaz de abater até presas grandes."
+    },
+    {
+      "titulo": "Comportamento",
+      "texto": "Leopardos saudáveis raramente são agressivos com humanoides: se não estão famintos nem se sentem ameaçados, é possível se aproximar bastante sem provocar uma reação hostil."
+    },
+    {
+      "titulo": "Sociedade",
+      "texto": "Ainda assim, um leopardo que se instala perto demais de uma civilização humanoide pode facilmente se tornar um predador perigoso e recorrente."
+    }
+  ],
+  "imagens": [
+    "bestiario/leopardo_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "habilidades.resistencia",
+      "motivo": "Era sem linha (0). O normal da espécie no próprio meio: resistência e fôlego \"não procurados a fundo\" na pesquisa ; vive do nível do mar a 5.638 m no Kilimanjaro (ADW), o que mostra o meio largo, sem número de frio. A arrancada não entra (diretriz 2).; 4 (em vigor na Etapa 2, 20/10/2026); antes: 2 , o normal da espécie; a pesquisa não procurou resistência a fundo (D-174)"
+    },
+    {
+      "campo": "habilidadesSec.equilibrio",
+      "motivo": "Era sem linha. Anda no galho e se joga dele sobre a presa (Blanco e Luzardo-Vera 2021); guarda a presa no alto da árvore (Balme et al. 2017). Sem número de equilíbrio .; 2, novas,  do hábito de árvore; nenhum número de equilíbrio (D-174)"
+    },
+    {
+      "campo": "corpo.altura",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 0,60 × 1,0321 = 0,619 . Antes: escalado pelo cubo da massa: 0,65 × (47,75 ÷ 60)^(1/3) = 0,60 m; era 0,65 m, o macho de 60 a 70 cm (Wikipédia)"
+    },
+    {
+      "campo": "corpo.comprimento",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 2,09 × 1,0321 = 2,157 . Antes: escalado pelo cubo da massa: 2,25 × (47,75 ÷ 60)^(1/3) = 2,09 m; era 2,25 m, o corpo mais a cauda de cerca de 0,85 m (64 a 99 cm, San Diego Zoo; 66 a 102, Wikipédia); dentro do total de 1,6 a 2,3 m do macho (ADW)"
+    },
+    {
+      "campo": "corpo.comprimentoSemCauda",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 1,30 × 1,0321 = 1,342 . Antes: escalado pelo cubo da massa: 1,40 × (47,75 ÷ 60)^(1/3) = 1,30 m; era 1,40 m, cabeça e corpo de 92 a 190 cm (San Diego Zoo), no meio da faixa para o macho. A cauda é fina e não conta (D-155)"
+    },
+    {
+      "campo": "corpo.largura",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 0,26 × 1,0321 = 0,268 . Antes: escalado pelo cubo da massa: 0,28 × (47,75 ÷ 60)^(1/3) = 0,26 m; era 0,28 m. Pesquisa: 25 a 30 cm no peito de um macho, pela largura do crânio (13 a 20 cm) e o tórax estreito de felino"
+    },
+    {
+      "campo": "atributos.forca",
+      "motivo": "5  por comparação, decisão do autor (D-178). O içar (a girafa jovem de quase 125 kg a 5,7 m, Hamilton 1976, lida só pela citação da Wikipédia; de 40% a 140% da própria massa em Sabi Sand, Balme et al. 2017) fica como contexto e não como base do número (D-159, D-118)"
+    },
+    {
+      "campo": "habilidadesSec.escalada",
+      "motivo": "2, novas,  do hábito de árvore; nenhum número de equilíbrio (D-174)"
+    }
+  ]
+}

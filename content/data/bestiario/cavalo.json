@@ -1,0 +1,241 @@
+{
+  "id": "cavalo",
+  "idAntigo": "mon-horse",
+  "nome": "Cavalo (de sela)",
+  "nomeIngles": "Horse",
+  "categoria": "animal",
+  "papel": "fera",
+  "ameaca": 2,
+  "centelha": 0,
+  "corpo": {
+    "postura": "quatro patas",
+    "apoio": "quadrupede",
+    "altura": 1.88,
+    "largura": 0.61,
+    "profundidade": null,
+    "comprimento": 2.45,
+    "comprimentoSemCauda": 2.55,
+    "caudaGrossa": false,
+    "massa": 500,
+    "area": 1.87,
+    "posturaDoTamanho": "vista de lado",
+    "cargaMedida": 100
+  },
+  "couraca": 1,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 7,
+    "destreza": 2,
+    "vigor": 6,
+    "percepcao": 3,
+    "inteligencia": 1,
+    "raciocinio": 2,
+    "influencia": 1,
+    "perspicacia": 2,
+    "compostura": 1
+  },
+  "habilidades": {
+    "briga": 1,
+    "bloqueio": 0,
+    "esquiva": 2,
+    "atletismo": 3,
+    "furtividade": 0,
+    "integridade": 1,
+    "prontidao": 3,
+    "resistencia": 5,
+    "empatia": 2,
+    "sobrevivencia": 2
+  },
+  "habilidadesSec": {
+    "equilibrio": 0,
+    "escalada": 0,
+    "natacao": 0,
+    "voo": 0,
+    "corrida": 1,
+    "musculatura": 2
+  },
+  "especialidades": {
+    "prontidao": [
+      {
+        "foco": "visão periférica",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 1,
+    "compaixao": 1,
+    "conviccao": 1,
+    "temperanca": 1
+  },
+  "vontade": 3,
+  "aparencia": 7,
+  "deslocamento": {
+    "terra": {
+      "batalha": 7,
+      "arranque": 13,
+      "corrida": 17
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Coice",
+      "parte": "casco",
+      "classe": "pesada",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": "2d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "impacto",
+      "nivelPerfuracao": null,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Era 2d6 + 8, média 15. O cavalo vira o corpo e escoiceia com as duas traseiras: preparado e lento, por isso Pesada. Força × 1 porque é golpe de membro (`regra-construcao.md` §7). O medido chega a 8.722 N (von Wachenfelt 2011)."
+    },
+    {
+      "nome": "Mordida",
+      "parte": "mordida",
+      "classe": "leve",
+      "pgr": [
+        1,
+        1,
+        3
+      ],
+      "dado": "1d6-2",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 1,
+      "bloqueiaComoArma": null,
+      "justificativa": "Era 1d6 − 2 + 8, média 9,5. Opção, não segundo golpe (D-097: \"um ataque por ação (D-068), também para as criaturas\"). Sem medida de força: N0."
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Atropelar",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "texto": "Atropelar"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "fôlego de estrada",
+      "formas": "todas",
+      "texto": "corre longas distâncias sem se cansar fácil."
+    },
+    {
+      "nome": "dócil",
+      "formas": "todas",
+      "texto": "só briga de fato quando adestrado para o combate; do contrário, foge."
+    },
+    {
+      "nome": "Pisar num alvo",
+      "formas": "todas",
+      "texto": "O Pisoteio é um ataque físico normal contra um alvo, com o golpe Coice."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão",
+      "descricao": "Prontidão (visão periférica) +2, natural; campo de cada olho até 228°, média perto de 195°, com ponto cego pequeno atrás; campo binocular de só 55 a 65° (Rørvang 2020) ou 65 a 80° (Murphy 2009). Acuidade pior que a da maioria dos mamíferos terrestres",
+      "formas": "todas"
+    },
+    {
+      "nome": "penumbra",
+      "descricao": "texto; vê melhor que o humano com pouca luz (Murphy 2009)",
+      "formas": "todas"
+    },
+    {
+      "nome": "audição",
+      "descricao": "texto; de cerca de 50 Hz a 33 kHz, com ganho de 10 a 20 dB pela orelha em funil (Rørvang 2020)",
+      "formas": "todas"
+    },
+    {
+      "nome": "faro",
+      "descricao": "texto; reconhece indivíduos do grupo pelo cheiro (Rørvang 2020). Alcance:",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "mente": "animal",
+    "tracos": "dorme 2,9 horas por dia, em intervalos curtos, em pé ou deitado (Wikipédia); vibrissas no focinho e em volta dos olhos (Rørvang 2020)"
+  },
+  "aptidoes": {
+    "montaria": true,
+    "carga": true,
+    "tracao": true
+  },
+  "comportamento": {
+    "social": "bando (5 a 11 éguas com 1 a 4 garanhões e as crias; até 26 éguas e 5 garanhões)",
+    "atividade": "(dorme em intervalos curtos, de dia e de noite)",
+    "dieta": "herbívoro",
+    "caca": "pastagem (gramíneas)",
+    "dianteDeGente": "foge"
+  },
+  "ecologia": {
+    "terreno": [
+      "planície"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Presa de bando, sempre de olho, que foge ao primeiro susto; encurralado, escoiceia. Doméstico no mundo todo, com populações ferais.",
+  "lore": [
+    {
+      "titulo": "Companheiro de estrada",
+      "texto": "Criados para cavalgar, puxar carroças ou arar campos, os cavalos servem lado a lado com quase todos os povos do mundo."
+    },
+    {
+      "titulo": "Duas linhagens",
+      "texto": "Cavalos leves de montaria e cavalos pesados de tração diferem em porte e resistência, mas compartilham o mesmo temperamento dócil."
+    },
+    {
+      "titulo": "Veneno e doença",
+      "texto": "Doença no jogo (ao tratar): Mormo · Virulência 10 · dia · pelo contato com o animal doente: quem cuida dele rola uma vez por dia contra a metade da Virulência (o Contágio do livro)"
+    },
+    {
+      "titulo": "Aptidões",
+      "texto": "montaria sim · carga sim · tração sim"
+    }
+  ],
+  "imagens": [
+    "bestiario/cavalo_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "corpo.altura",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 1,84 × 1,0208 = 1,878 . Antes: A cernelha de 1,53 m (ponto médio de 14 a 16 palmos, 1,42 a 1,63 m, Wikipédia \"Horse\") × 1,2, a proporção de 3 cabeças até a nuca contra 2,5 até a cernelha, que a busca atribui a \"Normal Proportions of the Horse\" (1843); o texto não foi conferido (`regua-d139.md` §2). Nenhuma medição de altura da nuca foi achada."
+    },
+    {
+      "campo": "corpo.comprimento",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 2,40 × 1,0208 = 2,450 . Antes: Do focinho à cauda (Wikipédia, \"Horse length\"), fora da pesquisa."
+    },
+    {
+      "campo": "corpo.comprimentoSemCauda",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 2,50 × 1,0208 = 2,552 . Antes: Ponto médio de 2,20 a 2,80 da espécie inteira (ADW). Passa do total: ver Notas de observação."
+    },
+    {
+      "campo": "corpo.largura",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 0,60 × 1,0208 = 0,613 . Antes: Estimada pelo Arquiteto (`porte-area-forca.md` §1.2); a pesquisa não mediu largura."
+    }
+  ]
+}

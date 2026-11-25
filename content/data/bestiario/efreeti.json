@@ -1,0 +1,310 @@
+{
+  "id": "efreeti",
+  "idAntigo": "mon-efreeti",
+  "nome": "Efreeti",
+  "nomeIngles": "Genie, Efreeti",
+  "categoria": "elemental",
+  "papel": "chefe",
+  "ameaca": 5,
+  "centelha": 4,
+  "corpo": {
+    "postura": "bípede, de pé; voador",
+    "apoio": "bipede",
+    "altura": 3.6,
+    "largura": 0.9,
+    "profundidade": 0.46,
+    "comprimento": null,
+    "massa": 320,
+    "area": 2.88,
+    "posturaDoTamanho": "de frente"
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 8,
+    "destreza": 5,
+    "vigor": 6,
+    "percepcao": 4,
+    "inteligencia": 4,
+    "raciocinio": 4,
+    "influencia": 4,
+    "perspicacia": 4,
+    "compostura": 4
+  },
+  "habilidades": {
+    "briga": 5,
+    "bloqueio": 0,
+    "esquiva": 1,
+    "atletismo": 2,
+    "integridade": 4,
+    "prontidao": 3,
+    "manha": 3,
+    "oficios-gerais": 4,
+    "persuasao": 2,
+    "ocultismo": 2,
+    "sociabilidade": 1
+  },
+  "habilidadesSec": {
+    "intimidacao": 3,
+    "voo": 2,
+    "musculatura": 0
+  },
+  "especialidades": {
+    "oficios-gerais": [
+      {
+        "foco": "forja e fornalha",
+        "valor": 2,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 4,
+    "compaixao": 1,
+    "conviccao": 3,
+    "temperanca": 2
+  },
+  "vontade": 9,
+  "aparencia": 5,
+  "deslocamento": {
+    "terra": {
+      "batalha": 2,
+      "arranque": 3,
+      "corrida": 5
+    },
+    "voo": {
+      "batalha": 4
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Punho em brasa",
+      "parte": "punho",
+      "classe": "pesada",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": "2d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "impacto",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "O \"Golpe planar\" do site (2 dados, corte, 6 Ticks): \"sua pele soca e machuca como brasa\" (site, Corpo em chamas). O punho de um corpo de 3,6 m com o peso atrás: Pesada, Velocidade 7, golpe de membro, Força × 1 (`regra-construcao.md` §7), o mesmo caminho dos golens e dos gigantes (D-241); os 2 dados ficam. O tipo passa a Impacto, porque é punho, e não lâmina; o fogo vem pelo Corpo em chamas (Manobras). Jogada: Força 8 + Briga 5 + 2 × o menor entre Centelha 4 e Briga 5 (8)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Corpo em chamas",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "fogo",
+        "nivel": 4,
+        "efeito": "aura"
+      },
+      "categoria": "inato",
+      "ativacao": "nenhuma; sempre ativo",
+      "duracao": "permanente",
+      "alcance": "toque",
+      "area": "quem entra no alcance do corpo a corpo dele, quem o acerta com um golpe corpo a corpo, quem o toca, e o alvo do Punho em brasa",
+      "efeito": "o corpo é fogo vivo; o calor queima quem chega perto e quem encosta nele, e o punho bate como brasa",
+      "dano": "1d6 + Centelha, fogo, a quem entra no alcance, a quem o acerta e a quem o toca; mais 1d6, fogo, a quem leva o Punho em brasa",
+      "resistencia": "corpo, Vigor + Resistência contra Dificuldade 14 (10 + Centelha 4), só ao entrar no alcance dele; quem passa não se queima ao entrar; quem o acerta ou o toca não resiste",
+      "limiteDeUso": "A cada exposição ao calor ou contato. Sem custo"
+    },
+    {
+      "nome": "Muralha de fogo",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "fogo",
+        "nivel": 4,
+        "efeito": "muro"
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 6. O efeito sai no Tick do Golpe",
+      "duracao": "até o fim da cena, ou até ele desfazer",
+      "alcance": "18 m",
+      "area": "uma parede de até 6 m de comprimento e 3 m de altura",
+      "efeito": "ergue uma cortina de chamas que fecha um corredor ou uma porta e tira a visão do outro lado; quem a atravessa se queima",
+      "dano": "3d6 + Centelha, fogo, a quem atravessa",
+      "resistencia": "esquiva, contra Dificuldade 14 (10 + Centelha 4); quem passa leva metade",
+      "limiteDeUso": "Usos grátis: 3 por dia. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "Conceder desejos",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "fortuna",
+        "nivel": 6
+      },
+      "categoria": "milagre",
+      "ativacao": "o pedido de quem o aprisiona, o suborna ou o convence, quando ele aceita. O interessado apresenta o pedido e negocia o preço com o efreeti. O preparo dura a negociação até ambos aceitarem o trato",
+      "duracao": "a do pedido",
+      "alcance": "o que o pedido alcança",
+      "area": "a do pedido",
+      "efeito": "realiza um pedido enorme, sempre pela letra e nunca pela intenção, e cobra um preço à altura; o Mestre decide o que cabe e qual é o preço. O limite é uma Arte até nível 6 que o concedente possa descrever. Preço e alvo são declarados antes do acordo. O desejo não altera o passado, não cria outro desejo e só traz mortos até onde a Cura permite",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "uma vez por dia, e raramente. Limite fixo, sem uso extra nem ampliação"
+    },
+    {
+      "nome": "Invisibilidade",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "ofuscacao",
+        "nivel": 1,
+        "efeito": "ausencia"
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 5. O efeito sai no Tick do Golpe",
+      "duracao": "até atacar ou desfazer",
+      "alcance": "o próprio corpo",
+      "area": "não se aplica",
+      "efeito": "Fica Invisível. Som, cheiro e rastro continuam perceptíveis. Ao atacar, Furtividade contra Percepção Passiva determina se o alvo percebe o ataque",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "Viagem planar",
+      "formas": "todas",
+      "classe": "sem regra ainda",
+      "categoria": "magia",
+      "efeito": "Aguarda o lore dos planos. Usos grátis: 1 por dia"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "tirano do fogo",
+      "formas": "todas",
+      "texto": "manda os escravos na frente, ergue a muralha para dividir o grupo, voa por cima e esmaga com o punho em brasa quem o desafia; quando perde, some invisível ou sai para o plano do fogo."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão e audição",
+      "descricao": "as de um humano",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "camuflagem": "a Invisibilidade (nas Manobras)",
+    "mente": "inteligente; cruel, orgulhosa e sádica",
+    "tracos": "gigante de 3,6 m de pele vermelha como brasa, olhos que ardem e fumaça que sobe do corpo de fogo vivo"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "em corte, com escravos e servos",
+    "atividade": "qualquer hora",
+    "dieta": "onívoro",
+    "caca": "não caça",
+    "dianteDeGente": "escraviza quem pode, e barganha com quem não pode; cumpre o trato pela letra fria do acordo"
+  },
+  "ecologia": {
+    "terreno": [
+      "deserto"
+    ],
+    "clima": [
+      "extraplanar"
+    ]
+  },
+  "descricao": "Tirano do plano do fogo, de 3,6 m: o corpo é fogo vivo e queima quem o acerta. Voa, ergue muralhas de chamas, some da vista e viaja entre planos. Preso ou convencido, concede um desejo, sempre pela letra e com um preço.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Tirano do fogo, constrói impérios de escravos e queima quem desafia sua autoridade, cumprindo tratos com prazer sádico pela letra fria do acordo."
+    },
+    {
+      "titulo": "Sociedade",
+      "texto": "Governa cidades inteiras de bronze e chamas no plano elemental, erguidas à custa de mãos escravizadas."
+    },
+    {
+      "titulo": "Personalidade",
+      "texto": "Cruel e orgulhoso, rival eterno dos djinns, vê a submissão alheia como prova viva de sua grandeza."
+    },
+    {
+      "titulo": "Hábitat",
+      "texto": "Reina sobre cidades como a lendária Cidade de Bronze, no coração do fogo elemental."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "Efreets povoam as lendas de Mère como senhores de fornalhas antigas, e alguns forjadores desesperados ainda arriscam pactos com um deles para acender fornos que a Supressão proibiu de reacender por meios arcanos."
+    }
+  ],
+  "imagens": [
+    "bestiario/efreeti_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [
+      {
+        "tipo": "agua",
+        "formas": "todas"
+      },
+      {
+        "tipo": "gelo",
+        "formas": "todas"
+      }
+    ],
+    "resistencias": [],
+    "imunidades": [
+      {
+        "tipo": "fogo",
+        "formas": "todas"
+      }
+    ]
+  },
+  "revisao": [
+    {
+      "campo": "comportamento.social",
+      "motivo": "site (Sociedade)"
+    },
+    {
+      "campo": "comportamento.dieta",
+      "motivo": "site"
+    },
+    {
+      "campo": "habilidadesEspeciais.Muralha de fogo",
+      "motivo": "R1 e D-197. Usos grátis: 3 por dia. Cada uso extra custa 1 de Energia. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação uma ação, Velocidade 8 -> uma ação, Velocidade 6. O efeito sai no Tick do Golpe. Pela régua da Arte de base. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Invisibilidade",
+      "motivo": "R1 e D-197. Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação uma ação, Velocidade 6 -> uma ação, Velocidade 5. O efeito sai no Tick do Golpe. Pela régua da Arte de base. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Viagem planar",
+      "motivo": "R1 e D-197. Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação uma ação, Velocidade 8 -> uma ação, Velocidade 6 Pela referência corporal ou de deslocamento do poder. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "habilidades.prontidao",
+      "motivo": "3, a da nota do site; o campo dizia 2 (o precedente do wyvern)"
+    },
+    {
+      "campo": "habilidadesSec.musculatura",
+      "motivo": "0, corpo leve de fogo e carne, como o djinn; com Musculatura 2 o peso erguido seria maior, sem fato no site que o peça"
+    },
+    {
+      "campo": "ataques",
+      "motivo": "o \"Golpe planar\" de 2 dados e corte vira o Punho em brasa Pesada, de 2 dados (D-241), e de Impacto pelo gesto"
+    },
+    {
+      "campo": "habilidadesEspeciais.Corpo em chamas",
+      "motivo": "o efeito do site, \"Resiste ao entrar, 1 vez por cena\", fica como a queima de quem entra no alcance, com resistência de corpo uma vez por cena; o mesmo poder diz `resiste: nenhum`, que fica para quem o acerta ou o toca"
+    }
+  ]
+}

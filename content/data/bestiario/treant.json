@@ -1,0 +1,240 @@
+{
+  "id": "treant",
+  "idAntigo": "mon-treant",
+  "nome": "Treant",
+  "nomeIngles": "Treant",
+  "categoria": "planta",
+  "papel": "chefe",
+  "ameaca": 5,
+  "centelha": 3,
+  "corpo": {
+    "postura": "de pé",
+    "apoio": "bipede",
+    "altura": 7.5,
+    "largura": 2.5,
+    "profundidade": 1,
+    "comprimento": 2.5,
+    "massa": 2000,
+    "area": 8.5,
+    "posturaDoTamanho": "de pé"
+  },
+  "couraca": 5,
+  "perfilCouraca": "rigida",
+  "atributos": {
+    "forca": 11,
+    "destreza": 2,
+    "vigor": 8,
+    "percepcao": 5,
+    "inteligencia": 3,
+    "raciocinio": 4,
+    "influencia": 3,
+    "perspicacia": 3,
+    "compostura": 4
+  },
+  "habilidades": {
+    "briga": 5,
+    "bloqueio": 0,
+    "esquiva": 0,
+    "prontidao": 2,
+    "integridade": 4,
+    "sobrevivencia": 3,
+    "sociabilidade": 2,
+    "persuasao": 2,
+    "empatia": 2,
+    "furtividade": 2
+  },
+  "habilidadesSec": {
+    "musculatura": 3
+  },
+  "especialidades": {},
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 0,
+    "conviccao": 2,
+    "temperanca": 1
+  },
+  "vontade": 8,
+  "aparencia": 3,
+  "deslocamento": {
+    "terra": {
+      "batalha": 3,
+      "arranque": 5,
+      "corrida": 7
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Pancada",
+      "parte": "ramo-ou-membro-natural",
+      "classe": "pesada",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": "2d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "impacto",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Classe pelo gesto, sem usar Destreza no dano; jogada 22 com Briga"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Animar árvores",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "vida",
+        "nivel": 3
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 5. O efeito sai no Tick do Golpe",
+      "duracao": "uma cena",
+      "alcance": "18 m",
+      "area": "até duas árvores próximas",
+      "efeito": "desperta até duas árvores, que lutam com a Pancada e os valores desta criatura; elas não animam outras árvores e voltam a enraizar ao fim do efeito",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "Usos grátis: 1 por dia. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "Casca reforçada",
+      "formas": "todas",
+      "classe": "sem regra ainda",
+      "categoria": "inato",
+      "efeito": "a casca protege contra golpes; sua proteção adicional depende de como o golpe atravessa a madeira"
+    },
+    {
+      "nome": "Guardião da floresta",
+      "formas": "todas",
+      "classe": "sem regra ainda",
+      "categoria": "inato",
+      "efeito": "conversa com plantas e compreende o estado da mata"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "Braços longos",
+      "formas": "todas",
+      "texto": "alcança até 3 m com os galhos."
+    },
+    {
+      "nome": "Defesa das árvores",
+      "formas": "todas",
+      "texto": "parece árvore comum enquanto imóvel; golpeia quem corta ou queima a floresta."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão",
+      "descricao": "percebe movimentos sob luz fraca",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "trocas gasosas pela superfície",
+    "camuflagem": "parece vegetação imóvel",
+    "mente": "inteligente",
+    "tracos": "Árvore desperta com braços de galhos e raízes móveis"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitário",
+    "atividade": "qualquer hora",
+    "dieta": "água e nutrientes do solo",
+    "caca": "não se aplica",
+    "dianteDeGente": "protege o bosque"
+  },
+  "ecologia": {
+    "terreno": [
+      "floresta"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Árvore desperta com braços de galhos e raízes móveis",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Árvore desperta há séculos, move-se e fala devagar, do jeito de quem pensa em estações e não em instantes; quando enfim decide agir, esmaga com a força bruta de um carvalho ancestral."
+    },
+    {
+      "titulo": "Sociedade",
+      "texto": "Guardião solitário de florestas antigas, aceita a companhia de dríades, sátiros e druidas, e trata madeireiros e incendiários como a pior ameaça que existe."
+    },
+    {
+      "titulo": "Personalidade",
+      "texto": "Paciente quase além da compreensão mortal, lento para confiar e mais lento ainda para esquecer um dano feito à sua floresta; uma vez irritado, carrega a raiva por gerações inteiras."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "Em Syl é reverenciado quase como um kami de carne e casca, guardião físico do que os espíritos protegem de forma sutil; sua ligação antiga com os elfos, povo nascido do véu feérico, faz dele um dos poucos seres que ainda lembra o mundo antes da Queda e da Supressão."
+    }
+  ],
+  "imagens": [
+    "bestiario/treant_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [
+      {
+        "tipo": "fogo",
+        "formas": "todas"
+      }
+    ],
+    "resistencias": [
+      {
+        "tipo": "impacto",
+        "formas": "todas"
+      },
+      {
+        "tipo": "perfuracao",
+        "formas": "todas"
+      }
+    ],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "habilidadesSec.musculatura",
+      "motivo": "Fibras móveis capazes de prender e deslocar presas"
+    },
+    {
+      "campo": "corpo.altura",
+      "motivo": "Dimensão principal publicada; largura e profundidade estimadas pelo corpo"
+    },
+    {
+      "campo": "corpo.comprimento",
+      "motivo": "Dimensão principal publicada; largura e profundidade estimadas pelo corpo"
+    },
+    {
+      "campo": "corpo.largura",
+      "motivo": "Dimensão principal publicada; largura e profundidade estimadas pelo corpo"
+    },
+    {
+      "campo": "corpo.area",
+      "motivo": "Silhueta útil estimada em 8,5 m², descontando vazios entre os ramos; o retângulo externo não é todo preenchido"
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": "Comportamento"
+    },
+    {
+      "campo": "habilidadesEspeciais.Animar árvores",
+      "motivo": "R1 e D-197. Usos grátis: 1 por dia. Cada uso extra custa 1 de Energia. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação uma ação, Velocidade 8 -> uma ação, Velocidade 5. O efeito sai no Tick do Golpe. Pela régua da Arte de base. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    }
+  ]
+}

@@ -1,0 +1,226 @@
+{
+  "id": "basidirond",
+  "idAntigo": "mon-basidirond",
+  "nome": "Basidirond",
+  "nomeIngles": "Basidirond",
+  "categoria": "planta",
+  "papel": "elite",
+  "ameaca": 4,
+  "centelha": 0,
+  "corpo": {
+    "postura": "de pé",
+    "apoio": "bipede",
+    "altura": 2,
+    "largura": 1.2,
+    "profundidade": 1.2,
+    "comprimento": 1.2,
+    "massa": 180,
+    "area": 1.9,
+    "posturaDoTamanho": "de pé"
+  },
+  "couraca": 2,
+  "perfilCouraca": "mole",
+  "atributos": {
+    "forca": 6,
+    "destreza": 3,
+    "vigor": 5,
+    "percepcao": 2,
+    "inteligencia": 0,
+    "raciocinio": 2,
+    "influencia": 1,
+    "perspicacia": 1,
+    "compostura": 1
+  },
+  "habilidades": {
+    "briga": 5,
+    "bloqueio": 0,
+    "esquiva": 1,
+    "prontidao": 1,
+    "integridade": 0,
+    "sobrevivencia": 0,
+    "sociabilidade": 0
+  },
+  "habilidadesSec": {
+    "musculatura": 2
+  },
+  "especialidades": {},
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 5,
+    "compaixao": 1,
+    "conviccao": 1,
+    "temperanca": 1
+  },
+  "vontade": 3,
+  "aparencia": 3,
+  "deslocamento": {
+    "terra": {
+      "batalha": 2,
+      "arranque": 3,
+      "corrida": 5
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Golpe",
+      "parte": "ramo-ou-membro-natural",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "impacto",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Classe pelo gesto, sem usar Destreza no dano; jogada 11 com Briga"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Nuvem de alucinação",
+      "formas": "todas",
+      "classe": "sem regra ainda",
+      "categoria": "substancia",
+      "efeito": "libera esporos invisíveis que provocam visões terríveis em quem os respira. O corpo guarda 2 doses e produz 1 dose em 6 horas"
+    },
+    {
+      "nome": "Esporos parasitas",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "substancia",
+      "ativacao": "os esporos entram na ferida do golpe ou nos pulmões de quem os inala",
+      "duracao": "até a doença regredir ou o agente ser retirado",
+      "alcance": "toque",
+      "area": "um alvo",
+      "efeito": "Esporose do basidirond. Exposição: os esporos entram na ferida do golpe ou nos pulmões de quem os inala. Incubação: 1 hora. Virulência 12. Após a incubação, teste Vigor + Resistência uma vez por dia, com os estágios da doença do livro. Cura ou cirurgia adequada remove o agente e interrompe a progressão",
+      "dano": "pela progressão da doença",
+      "resistencia": "Vigor + Resistência contra Virulência 12",
+      "limiteDeUso": "O corpo guarda 2 doses e produz 1 dose em 6 horas. Cada uso gasta 1 dose"
+    },
+    {
+      "nome": "Letargia pelo frio",
+      "formas": "todas",
+      "classe": "sem regra ainda",
+      "categoria": "inato",
+      "efeito": "o frio não o fere, mas reduz seus movimentos e suspende a produção de esporos"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "Caça fúngica",
+      "formas": "todas",
+      "texto": "aproxima a campânula e golpeia quem pisa em sua área."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "vibrações",
+      "descricao": "detecta aproximações pelo solo",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "trocas gasosas pela superfície",
+    "camuflagem": "parece vegetação imóvel",
+    "mente": "sem mente",
+    "tracos": "Fungo de campânula invertida sobre hastes móveis"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitário",
+    "atividade": "qualquer hora",
+    "dieta": "umidade e nutrientes",
+    "caca": "não se aplica",
+    "dianteDeGente": "ataca quem se aproxima"
+  },
+  "ecologia": {
+    "terreno": [
+      "subterrâneo"
+    ],
+    "clima": [
+      "temperado",
+      "tropical"
+    ]
+  },
+  "descricao": "Fungo de campânula invertida sobre hastes móveis",
+  "lore": [
+    {
+      "titulo": "Natureza",
+      "texto": "Fungo carnívoro que se alimenta de umidade rica em minerais, seja escorrendo das paredes de cavernas ou vinda de sangue fresco."
+    },
+    {
+      "titulo": "Uso",
+      "texto": "Habitantes das profundezas mais espertos chegam a manter basidironds como guardiões de suas tocas, desde que evitem cruzar as rotas de caça da criatura."
+    }
+  ],
+  "imagens": [
+    "bestiario/basidirond_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [
+      {
+        "tipo": "fogo",
+        "formas": "todas"
+      }
+    ],
+    "resistencias": [
+      {
+        "tipo": "perfuracao",
+        "formas": "todas"
+      }
+    ],
+    "imunidades": [
+      {
+        "tipo": "gelo",
+        "formas": "todas"
+      }
+    ]
+  },
+  "revisao": [
+    {
+      "campo": "habilidadesSec.musculatura",
+      "motivo": "Fibras móveis capazes de prender e deslocar presas"
+    },
+    {
+      "campo": "corpo.altura",
+      "motivo": "Dimensão principal publicada; largura e profundidade estimadas pelo corpo"
+    },
+    {
+      "campo": "corpo.comprimento",
+      "motivo": "Dimensão principal publicada; largura e profundidade estimadas pelo corpo"
+    },
+    {
+      "campo": "corpo.largura",
+      "motivo": "Dimensão principal publicada; largura e profundidade estimadas pelo corpo"
+    },
+    {
+      "campo": "corpo.area",
+      "motivo": "Silhueta útil estimada em 1,9 m², descontando vazios entre os ramos; o retângulo externo não é todo preenchido"
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": "Comportamento"
+    },
+    {
+      "campo": "habilidadesEspeciais.Nuvem de alucinação",
+      "motivo": "R1 e D-197. Estoque sugerido de 2 doses e 6 horas por dose para permitir duas exposições próximas e recuperação fora da luta. O efeito pendente continua para o autor. valor de molde, para a bancada (2 doses e produz 1 dose em 6 horas)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Esporos parasitas",
+      "motivo": "R1 e D-197. Estoque sugerido de 2 doses e 6 horas por dose para permitir duas exposições próximas e recuperação fora da luta. O efeito pendente continua para o autor. valor de molde, para a bancada (2 doses e produz 1 dose em 6 horas)."
+    }
+  ]
+}

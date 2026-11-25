@@ -1,0 +1,199 @@
+{
+  "id": "orc",
+  "idAntigo": "mon-orc",
+  "nome": "Orc",
+  "nomeIngles": "Orc",
+  "categoria": "humanoide",
+  "papel": "capanga",
+  "ameaca": 1,
+  "centelha": 0,
+  "corpo": {
+    "postura": "bípede, de pé",
+    "apoio": "bipede",
+    "altura": 2,
+    "largura": 0.5,
+    "profundidade": 0.26,
+    "comprimento": null,
+    "massa": 110,
+    "area": 0.89,
+    "posturaDoTamanho": "de frente"
+  },
+  "couraca": 0,
+  "bonusPV": 5,
+  "atributos": {
+    "forca": 5,
+    "destreza": 3,
+    "vigor": 5,
+    "percepcao": 3,
+    "inteligencia": 2,
+    "raciocinio": 2,
+    "influencia": 2,
+    "perspicacia": 2,
+    "compostura": 1
+  },
+  "habilidades": {
+    "armas": 3,
+    "briga": 2,
+    "bloqueio": 1,
+    "esquiva": 0,
+    "atletismo": 2,
+    "prontidao": 1,
+    "resistencia": 3,
+    "integridade": 2,
+    "sobrevivencia": 2
+  },
+  "habilidadesSec": {
+    "intimidacao": 2,
+    "musculatura": 0
+  },
+  "especialidades": {
+    "armas": [
+      {
+        "foco": "machado",
+        "valor": 1,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 4,
+    "compaixao": 2,
+    "conviccao": 3,
+    "temperanca": 2
+  },
+  "vontade": 5,
+  "aparencia": 4,
+  "deslocamento": {
+    "terra": {
+      "batalha": 3,
+      "arranque": 5,
+      "corrida": 7
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Machado",
+      "arma": "machado",
+      "justificativa": "A arma do livro (`armas.json`, `machado`): Média, Velocidade 6, Acerto +1, Defesa 0, ★C · I. Jogada: Força 5 + Armas 3"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Frenesi",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "texto": "Frenesi da raça Orc"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "selvagem",
+      "formas": "todas",
+      "texto": "avança gritando, entra em fúria no primeiro golpe forte, luta até cair e não recua."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão noturna",
+      "descricao": "enxerga sem penalidade na penumbra, mas não na escuridão total",
+      "formas": "todas"
+    },
+    {
+      "nome": "audição e olfato",
+      "descricao": "os de um humano",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "prendeRespiracao": "pela regra do personagem",
+    "mente": "humanoide; bruta e orgulhosa",
+    "tracos": "pele do marrom ao verde, olhos e cabelos pretos, presas inferiores, feições rudes, corpo alto e pesado"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "em bando, típico 4 a 12",
+    "atividade": "diurno e noturno",
+    "dieta": "onívoro",
+    "caca": "caça e saque",
+    "dianteDeGente": "ataca quem entende só a força; negocia com quem a respeita"
+  },
+  "ecologia": {
+    "terreno": [
+      "planície",
+      "montanha",
+      "subterrâneo"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Guerreiro de pele esverdeada, alto e truculento, que bate com o machado e entra em fúria quando a luta aperta. Em fúria não sente as feridas, não recua e só para quando cai.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Guerreiros ferozes que só respeitam força bruta e coragem provada em combate, e desprezam abertamente qualquer sinal de fraqueza."
+    },
+    {
+      "titulo": "Sociedade",
+      "texto": "Vivem em hordas ou tribos lideradas por quem vence em duelo direto; a lealdade dura só enquanto o chefe segue vencendo."
+    },
+    {
+      "titulo": "Hábitos",
+      "texto": "Têm vida curta e violenta, geram filhos cedo e marcham em bandos que saqueiam fronteiras e postos avançados isolados."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "Assim como os goblins, são filhos ásperos moldados pelos anões a partir da própria rocha da montanha; livres desde o nascimento, nunca escravizados, cresceram bárbaros e sem lugar fixo, e por isso vagam pelas fronteiras selvagens de Mére e do White Wall perdido."
+    }
+  ],
+  "imagens": [
+    "bestiario/orc_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "habilidades.armas",
+      "motivo": "O site gravava `briga` 1 para a \"Arma\"; no livro a arma branca é Armas (manual 3.5). Guerreiro de bando; 3 e 2; o site tinha só Briga 1"
+    },
+    {
+      "campo": "couraca",
+      "motivo": "Absorção natural do livro (`combate.md`). O \"couro grosso\" da raça já está na Vitalidade; a pele fica no nível 0, como a do humano; nível 0; o \"couro grosso\" da raça é a Vitalidade"
+    },
+    {
+      "campo": "comportamento.social",
+      "motivo": ""
+    },
+    {
+      "campo": "comportamento.caca",
+      "motivo": ""
+    },
+    {
+      "campo": "equipamento",
+      "motivo": "machado do livro, sem armadura"
+    },
+    {
+      "campo": "habilidades.briga",
+      "motivo": "3 e 2; o site tinha só Briga 1"
+    },
+    {
+      "campo": "virtudes.bravura",
+      "motivo": "4; o site tinha 3"
+    }
+  ]
+}

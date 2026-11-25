@@ -1,0 +1,461 @@
+{
+  "id": "dragao-vermelho-anciao",
+  "idAntigo": "mon-dragao-vermelho-anciao",
+  "nome": "Dragão Vermelho Ancião",
+  "nomeIngles": "Dragon, Ancient Red",
+  "categoria": "dragao",
+  "papel": "chefe",
+  "ameaca": 6,
+  "centelha": 7,
+  "corpo": {
+    "postura": "quatro patas; voador",
+    "apoio": "quadrupede",
+    "altura": 5.7,
+    "largura": 3.95,
+    "profundidade": null,
+    "comprimento": 16.5,
+    "comprimentoSemCauda": 10.08,
+    "caudaGrossa": true,
+    "envergadura": 39.4,
+    "massa": 59000,
+    "area": 48.83,
+    "posturaDoTamanho": "de lado, pousado, asas fechadas",
+    "segundoTamanho": {
+      "area": 325.8,
+      "posturaDoTamanho": "de baixo, asas abertas"
+    }
+  },
+  "couraca": 11,
+  "perfilCouraca": "rigida",
+  "atributos": {
+    "forca": 14,
+    "destreza": 2,
+    "vigor": 11,
+    "percepcao": 6,
+    "inteligencia": 6,
+    "raciocinio": 6,
+    "influencia": 6,
+    "perspicacia": 6,
+    "compostura": 6
+  },
+  "habilidades": {
+    "briga": 5,
+    "bloqueio": 0,
+    "esquiva": 0,
+    "atletismo": 2,
+    "furtividade": 1,
+    "integridade": 6,
+    "prontidao": 5,
+    "sociabilidade": 3,
+    "ocultismo": 5,
+    "persuasao": 5,
+    "conhecimentos": 4,
+    "atirador": 5
+  },
+  "habilidadesSec": {
+    "intimidacao": 5,
+    "voo": 4,
+    "acerto-arcano": 5,
+    "musculatura": 4
+  },
+  "especialidades": {
+    "prontidao": [
+      {
+        "foco": "surpresa",
+        "valor": 3,
+        "origem": "natural"
+      }
+    ],
+    "ocultismo": [
+      {
+        "foco": "magia antiga",
+        "valor": 2,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 6,
+    "compaixao": 2,
+    "conviccao": 5,
+    "temperanca": 3
+  },
+  "vontade": 12,
+  "aparencia": 9,
+  "deslocamento": {
+    "terra": {
+      "batalha": 4,
+      "arranque": 6,
+      "corrida": 9
+    },
+    "voo": {
+      "batalha": 25
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {
+    "conjuracao": 6,
+    "protecao": 5,
+    "fogo": 4,
+    "fascinacao": 4,
+    "forcas": 4
+  },
+  "ataques": [
+    {
+      "nome": "Mordida",
+      "parte": "boca",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 3,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Mordida de predador grande (`regra-construcao.md` §7), como no branco jovem. Golpe de boca: Força × 1. N3, um acima do branco jovem (N2), para a mordida dos adultos e anciões . Jogada: Força 14 + Briga 5 + 2 × o menor entre Centelha 7 e Briga 5 (10)"
+    },
+    {
+      "nome": "Garras",
+      "parte": "pata-dianteira",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "corte",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Patada de predador grande, Média (§7), como no branco jovem; garra Cortante. Bloqueia como a mão nua (D-100). Jogada: Força 14 + Briga 5 + 2 × o menor entre Centelha 7 e Briga 5 (10)"
+    },
+    {
+      "nome": "Cauda",
+      "parte": "cauda",
+      "classe": "pesada",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": "2d6",
+      "multiplicadorForca": 2,
+      "tipoDano": "impacto",
+      "nivelPerfuracao": null,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "O golpe de cauda do multiataque do site: a cauda grossa varre com o peso, Pesada (§7). Força × 2: a massa do corpo inteiro empurra a cauda (manual, seção 3: \"× 2 quando a massa do corpo inteiro empurra (investida, pisão, cauda)\"), como nas caudas do estegossauro e do anquilossauro. Jogada: Força 14 + Briga 5 + 2 × o menor entre Centelha 7 e Briga 5 (10)"
+    },
+    {
+      "nome": "Sopro de fogo",
+      "parte": "boca",
+      "classe": "distancia",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": "12d6",
+      "multiplicadorForca": 0,
+      "tipoDano": "fogo",
+      "nivelPerfuracao": null,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Ataque natural a distância, Classe Distância (manual, Passo 10), como no branco jovem. \"Cone de 15 m; 12d6 de dano\" (site). Os números são sugestão da ficha (D-197), descritos na linha do sopro nas Manobras. Sem jogada de ataque."
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Posturas de combate",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Imenso: de lado, pousado, asas fechadas. Colossal: de baixo, asas abertas. Vale o Tamanho da postura atual. Abrir as asas ao voar e fechá-las ao pousar faz parte do movimento, sem custo adicional",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "Sopro de fogo",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "fogo",
+        "nivel": 5
+      },
+      "ataque": "Sopro de fogo",
+      "categoria": "substancia",
+      "ativacao": "uma ação, Velocidade 7",
+      "duracao": "instantânea",
+      "alcance": "15 m à frente",
+      "area": "cone de 15 m",
+      "efeito": "o fogo queima tudo no cone. Após a área, só há dano residual quando um efeito da ficha o declara",
+      "dano": "12d6 + Centelha, fogo",
+      "resistencia": "sem jogada de ataque. Cada alvo resolve a saída de área pelo livro",
+      "limiteDeUso": "O corpo guarda 2 doses e produz 1 dose a cada 12 horas. Cada uso gasta 1 dose. Nada acelera a produção"
+    },
+    {
+      "nome": "garras em sequência",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Garras",
+      "categoria": "inato",
+      "regra": "rajada"
+    },
+    {
+      "nome": "cauda em sequência",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Cauda",
+      "categoria": "inato",
+      "regra": "rajada"
+    },
+    {
+      "nome": "Multiataque",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "uma ação de Rajada",
+      "duracao": "uma ação",
+      "alcance": "o de cada parte",
+      "area": "os alvos da Rajada",
+      "efeito": "Golpeia nesta ordem: garra esquerda, garra direita, mordida. Cada golpe extra acumula −1d6 e conta para Guarda sob pressão. Não acumula com a Rajada comum",
+      "dano": "o de cada ataque que acertar",
+      "resistencia": "a Defesa de cada golpe",
+      "limiteDeUso": "até 3 golpes por ação, sem Energia. O uso repetido causa esforço e pode levar ao cansaço"
+    },
+    {
+      "nome": "Presença",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "morte",
+        "nivel": 4
+      },
+      "categoria": "inato",
+      "ativacao": "a primeira vez na cena em que ele ruge, ataca ou desce do céu",
+      "duracao": "para Abalado, até o fim da cena ou até Recompor",
+      "alcance": "30 m",
+      "area": "esfera de 30 m em volta dele",
+      "efeito": "quem falha fica Abalado. Abalado dá −2 nas jogadas até o fim da cena ou até Recompor, ação de Velocidade 5 sem teste",
+      "dano": "nenhum",
+      "resistencia": "Influência 6 + Intimidação 5 + 2 × o menor entre Centelha 7 e Intimidação 5 (10) = 21 mais a rolagem da criatura contra a Defesa Mental do alvo, com o Resistir do livro. quem passa fica imune até o fim da cena",
+      "limiteDeUso": "Contínuo, sem custo. A imunidade individual segue a resistência deste poder"
+    },
+    {
+      "nome": "Resistência à magia",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "sempre ativa",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a própria criatura",
+      "efeito": "Resistência à magia de grau 3. Soma +6 às Defesas e à jogada de resistir contra Artes e efeitos similares à magia, até o teto comum de +6",
+      "dano": "nenhum adicional",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo. Sem custo"
+    },
+    {
+      "nome": "Autoridade dracônica",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Compare a Centelha antes de resolver medo ou domínio imposto por outra criatura. Ignora o efeito apenas se a Centelha da fonte for menor. Abalado de golpe social ou corporal continua valendo",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "Contínuo, sem custo"
+    },
+    {
+      "nome": "Feitiço sem gastar a ação",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "quando inicia uma conjuração",
+      "duracao": "a próxima ação",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Reduz a duração da conjuração em 2 Ticks, até o mínimo de 1 Tick",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "uma vez por cena, sem custo"
+    },
+    {
+      "nome": "paralisia da presença",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "sobrenatural",
+      "ativacao": "uma ação, Velocidade 6",
+      "duracao": "6 Ticks",
+      "alcance": "30 m",
+      "area": "a vítima descrita pelo poder",
+      "efeito": "o medo da presença trava o corpo da vítima. A vítima fica Paralisada. Defesas Físicas 0, mente livre",
+      "dano": "nenhum adicional",
+      "resistencia": "Influência + Intimidação contra a Defesa Mental do alvo, com o Resistir do livro",
+      "limiteDeUso": "Usos grátis: 1 por cena. Cada uso extra custa 1 de Mana"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "Voo dominante",
+      "formas": "todas",
+      "texto": "manobra total no ar; ignora o terreno difícil enquanto voa."
+    },
+    {
+      "nome": "senhor da montanha",
+      "formas": "todas",
+      "texto": "abre com o sopro, paralisa de medo os que vêm, abre portais e barreiras com a Arte e desce para morder o mais perigoso."
+    },
+    {
+      "nome": "Projétil natural",
+      "formas": "todas",
+      "texto": "Contra um alvo, use o maior entre Vigor, Destreza e Percepção + Atirador. Ao cobrir uma área, só os alvos fazem a jogada de saída."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão no escuro",
+      "descricao": "vê sem luz",
+      "formas": "todas"
+    },
+    {
+      "nome": "faro",
+      "descricao": "apurado",
+      "formas": "todas"
+    },
+    {
+      "nome": "sentidos onipresentes",
+      "descricao": "impossível de surpreender; percebe invisibilidade e ilusões comuns (sem regra ainda além da Prontidão (surpresa) +3)",
+      "formas": "todas",
+      "classe": "sem regra ainda"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "prendeRespiracao": "a de um bicho grande; quanto tempo, o Mestre decide",
+    "mente": "inteligente, antiga, orgulhosa e gananciosa",
+    "tracos": "escamas vermelhas como brasa, chifres curvos, asas de couro enormes; o ar em volta tremula de calor"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitário",
+    "atividade": "qualquer hora",
+    "dieta": "carnívoro",
+    "caca": "do alto, com o sopro, e guarda o tesouro",
+    "dianteDeGente": "exige tributo ou destrói"
+  },
+  "ecologia": {
+    "terreno": [
+      "montanha",
+      "subterrâneo"
+    ],
+    "clima": [
+      "temperado",
+      "tropical"
+    ]
+  },
+  "descricao": "Dragão vermelho de séculos, de 16,5 m. Sopra fogo em cone de 15 m, paralisa de medo quem o vê e conjura portais, barreiras e telecinese. Ninguém o surpreende.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Séculos de vida tornaram o dragão vermelho ancião paciente e cruel ao mesmo tempo: raramente ataca por impulso, preferindo manipular reinos inteiros à distância antes de mostrar as garras."
+    },
+    {
+      "titulo": "Sociedade",
+      "texto": "Comanda cultos, exércitos de mercenários e até nobres corrompidos pela promessa de poder, construindo uma rede de influência que rivaliza com a de qualquer corte humana."
+    },
+    {
+      "titulo": "Personalidade",
+      "texto": "Sua vaidade amadureceu em algo quase divino: acredita-se superior a reis, sacerdotes e talvez até a alguns dos próprios deuses, e poucos ousam contradizê-lo."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "Um dragão vermelho ancião é o tipo de relíquia que a Supressão gostaria de apagar da memória: prova viva e falante de que o mundo já foi mais mágico, sobrevivendo escondida nas montanhas mais remotas de Mére, cobrando tributo de quem ousa se aproximar."
+    }
+  ],
+  "imagens": [
+    "bestiario/dragao-vermelho-anciao_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": [
+      {
+        "tipo": "fogo",
+        "formas": "todas"
+      }
+    ]
+  },
+  "revisao": [
+    {
+      "campo": "sentidos.sentidos onipresentes",
+      "motivo": "sem regra ainda no livro"
+    },
+    {
+      "campo": "corpo.altura",
+      "motivo": "A do dragão branco jovem (1,3 m, 700 kg) escalada pela massa: × (massa ÷ 700)^(1/3) = × 4,384"
+    },
+    {
+      "campo": "corpo.comprimentoSemCauda",
+      "motivo": "2,3 m do branco jovem × 4,384; a cauda tem o resto do comprimento do site, 6,42 m"
+    },
+    {
+      "campo": "corpo.largura",
+      "motivo": "0,9 m do branco jovem × 4,384"
+    },
+    {
+      "campo": "couraca",
+      "motivo": "Cobertura do corpo pela R49; metades arredondadas para cima. Absorção natural do livro (`combate.md`). Escama de dragão, nos níveis 9 a 12 dos adultos e anciões (o texto do branco jovem); um abaixo do grande wyrm .; nível 11"
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": ""
+    },
+    {
+      "campo": "ataques.Mordida.nivelPerfuracao",
+      "motivo": "Mordida de predador grande (`regra-construcao.md` §7), como no branco jovem. Golpe de boca: Força × 1. N3, um acima do branco jovem (N2), para a mordida dos adultos e anciões . Jogada: Força 14 + Briga 5 + 2 × o menor entre Centelha 7 e Briga 5 (10)"
+    },
+    {
+      "campo": "ataques.Sopro de fogo",
+      "motivo": "Antes: jogada de ataque na tabela. R36: Sem jogada de ataque, pois o efeito ocupa a área descrita nas Manobras. Cada alvo resolve a defesa de área.; R1/R4, D-197. Dois sopros prontos permitem alternar sopro e golpes. Sugestão de 2 doses e 12 h por dose para repor fora da luta. valor de molde, para a bancada (2 doses e produz 1 dose a cada 12 horas)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Resistência à magia",
+      "motivo": "R7. SR 30 da fonte passa a grau 3 (+6)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Feitiço sem gastar a ação",
+      "motivo": "R1 e D-197. 1 uso grátis por cena. Cada uso extra custa 1 de Mana. Um uso de abertura até a definição do efeito. valor de molde, para a bancada (uso extra de 1 de Mana)."
+    },
+    {
+      "campo": "habilidadesEspeciais.paralisia da presença",
+      "motivo": "R10 e D-197. Duração sugerida de 6 Ticks para abrir uma janela de combate com o corpo paralisado. R1 e D-197. Usos grátis: 1 por cena. Cada uso extra custa 1 de Mana. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação sem Velocidade escrita -> uma ação, Velocidade 6 Pela referência corporal ou de deslocamento do poder. valor de molde, para a bancada (uso extra de 1 de Mana). Uso extra: sem Efeito na base (poder da ficha sem base; a conta da T7 não parte de nada)."
+    },
+    {
+      "campo": "ataques",
+      "motivo": "12d6 + Centelha, cone de 15 m, uma vez a cada 24 Ticks, pela sugestão da ficha (D-197)"
+    }
+  ]
+}

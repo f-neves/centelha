@@ -1,0 +1,238 @@
+{
+  "id": "lula-de-humboldt",
+  "nome": "Lula-de-humboldt",
+  "nomeIngles": "Humboldt squid",
+  "categoria": "animal",
+  "papel": "fera",
+  "ameaca": 2,
+  "centelha": 0,
+  "corpo": {
+    "postura": "nadador",
+    "apoio": "outro",
+    "altura": 0.09,
+    "largura": 0.09,
+    "profundidade": null,
+    "comprimento": 1.19,
+    "massa": 2.75,
+    "area": 0.043,
+    "posturaDoTamanho": "de lado"
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 1,
+    "destreza": 3,
+    "vigor": 2,
+    "percepcao": 3,
+    "inteligencia": 1,
+    "raciocinio": 3,
+    "influencia": 1,
+    "perspicacia": 2,
+    "compostura": 2
+  },
+  "habilidades": {
+    "briga": 3,
+    "bloqueio": 0,
+    "esquiva": 3,
+    "atletismo": 0,
+    "furtividade": 1,
+    "integridade": 2,
+    "prontidao": 2,
+    "resistencia": 2,
+    "empatia": 1,
+    "sobrevivencia": 3
+  },
+  "habilidadesSec": {
+    "equilibrio": 0,
+    "escalada": 0,
+    "natacao": 4,
+    "voo": 0,
+    "corrida": 0,
+    "musculatura": 2
+  },
+  "especialidades": {
+    "resistencia": [
+      {
+        "foco": "hipóxia",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ],
+    "prontidao": [
+      {
+        "foco": "visão na penumbra",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ],
+    "briga": [
+      {
+        "foco": "Agarrão",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 1,
+    "conviccao": 1,
+    "temperanca": 1
+  },
+  "vontade": 3,
+  "aparencia": 6,
+  "deslocamento": {
+    "nado": {
+      "batalha": 5
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Bico",
+      "parte": "mordida",
+      "classe": "leve",
+      "pgr": [
+        1,
+        1,
+        3
+      ],
+      "dado": "1d6-2",
+      "multiplicadorForca": 1,
+      "tipoDano": "corte",
+      "nivelPerfuracao": 0,
+      "acerto": 1,
+      "bloqueiaComoArma": null,
+      "justificativa": "Pela Força 1 da sétima rodada (D-115: \"Força 4 bate como Força 4 em qualquer criatura\"); era 1d6 − 2, média 1,5, com a Força 0, e 1d6 − 2 + 4, média 5,5, na ficha grande. Como o polvo de 2 kg (1d6 − 2 + 1, média 2,5). Bico entre os materiais orgânicos mais duros (Miserez 2008, trecho de busca). N0: nenhuma força de mordida revisada; os 455 kg de Barr não são medida aceita. William Gilly levou 15 pontos de uma mordida (National Geographic). Força × 1 (boca)."
+    },
+    {
+      "nome": "Braços e tentáculos",
+      "parte": "braco",
+      "classe": "leve",
+      "pgr": [
+        1,
+        1,
+        3
+      ],
+      "dado": "1d6-2",
+      "multiplicadorForca": 1,
+      "tipoDano": "corte",
+      "nivelPerfuracao": 0,
+      "acerto": 1,
+      "bloqueiaComoArma": null,
+      "justificativa": "Pela Força 1 da sétima rodada (D-115); era 1d6 − 2, média 1,5, com a Força 0, e 1d6 − 2 + 4, média 5,5, na ficha grande. Ventosas com anel dentado de proteína nos braços e nas clavas (guia da Hopkins/NOAA): arranham ao prender. Abre o agarrão. Força × 1 (membro). Um ataque por ação (D-097)."
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "agarrar",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "regra": "agarrar"
+    },
+    {
+      "nome": "arrastar para o fundo",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "ataque": "Braços e tentáculos",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "enquanto a condição se aplica",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Ao manter o agarrão, desloca-se com a presa a metade da Batalha, até o peso que arrasta. O movimento integra a manutenção",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "nuvem de tinta",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "substancia",
+      "ativacao": "uma ação, Velocidade 7",
+      "duracao": "6 Ticks, ou até o fim do Tick seguinte em corrente forte",
+      "alcance": "na água ao redor da criatura",
+      "area": "nuvem de raio 3 m",
+      "efeito": "A tinta impede ver através da nuvem. Quem olha de dentro fica Cego para o que tenta ver por ela",
+      "dano": "nenhum",
+      "resistencia": "sair da nuvem",
+      "limiteDeUso": "O corpo guarda 2 doses e produz 1 dose em 4 horas. Cada uso gasta 1 dose"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "jato para trás",
+      "formas": "todas",
+      "texto": "foge em jato (a Esquiva e o nado)."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão em pouca luz",
+      "descricao": "Especialidade natural Prontidão (visão na penumbra) +2; olhos grandes de predadora visual (guia da Hopkins/NOAA); alcance",
+      "formas": "todas"
+    },
+    {
+      "nome": "estatocisto, quimiorrecepção",
+      "descricao": "",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "água",
+    "prendeRespiracao": "não se aplica (brânquias). A tolerância à hipóxia está na Especialidade natural",
+    "camuflagem": "cromatóforos; pisca vermelho e branco a 2 a 4 Hz (Wikipédia); fotóforos sob a pele no corpo todo, de luz amarelo-esverdeada (Rev. Biol. Mar. Oceanogr. 2008). Sem Especialidade de Furtividade: a cor serve de sinal, e não de esconderijo, na caça em grupo",
+    "mente": "animal",
+    "tracos": "sem esqueleto, só o gládio (0,7 a 1% da massa, Wikipédia); vive cerca de 1 ano, no máximo 2 (ADW); aguenta hipóxia"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "cardume",
+    "atividade": "noturno",
+    "dieta": "carnívoro",
+    "caca": "caça ativa em grupo",
+    "dianteDeGente": "ataca em cardume"
+  },
+  "ecologia": {
+    "terreno": [
+      "aquático",
+      "litoral"
+    ],
+    "clima": [
+      "temperado",
+      "tropical"
+    ]
+  },
+  "descricao": "Sobe da escuridão à noite em cardume, piscando vermelho e branco, e cerca o que se move.",
+  "lore": [],
+  "imagens": [],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "corpo.comprimento",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 1,15 × 1,0323 = 1,187 . Antes: pela proporção do máximo da FAO (4 m de total para 1,5 m de manto, cerca de 2,7 vezes o manto): 0,427 × 2,7 = 1,15. A FAO dá \"comprimento total comum de 50 a 80 cm\", que não fecha com essa proporção (ver notas). Era 3,2 m (na ficha grande)"
+    },
+    {
+      "campo": "corpo.massa",
+      "motivo": "Etapa 2 (20/10/2026): Decisão 5 de 19/10/2026: a ficha principal usa uma versão um pouco acima da média da espécie, dentro da faixa real. 2,5 kg mais 10% = 2,75 kg , dentro da faixa real (comum de 2 a 3 kg, FAO; até 50 kg, ADW, ou 65 kg, ALR 2019). Antes: Era 68 kg (o adulto grande do sul do Chile, agora `lula-de-humboldt-grande.md`). Referência: 2,5 kg, meio da faixa do \"peso comum 2 ou 3 kg\" (FAO, Roper, Sweeney e Nauen 1984), (2 + 3) ÷ 2 = 2,5 : meio de faixa, e não média. Pela relação manto e massa da Universidad de Concepción, o manto médio de 38 cm da Helgoland 2008 dá 0,0151 × 38^3,2 = 1,7 kg, e os 42,7 cm dão os 2,5 kg. Faixa do adulto: de 2 a 3 kg, o comum (FAO), a 50 kg (ADW; Wikipédia) ou 65 kg (ALR 2019, resumo de busca); os 150 kg são resumo de busca sem fonte. Sexos: as fêmeas amadurecem maiores (Wikipédia); manto médio de 376 mm nos machos e 388,7 mm nas fêmeas (Helgoland 2008); massa por sexo"
+    },
+    {
+      "campo": "habilidadesEspeciais.nuvem de tinta",
+      "motivo": "R1 e D-197. Estoque sugerido de 2 doses e 6 horas por dose para permitir duas exposições próximas e recuperação fora da luta. O efeito pendente continua para o autor. valor de molde, para a bancada (2 doses e produz 1 dose em 6 horas)."
+    }
+  ]
+}

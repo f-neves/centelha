@@ -1,0 +1,231 @@
+{
+  "id": "bulette",
+  "idAntigo": "mon-bulette",
+  "nome": "Bulette",
+  "nomeIngles": "Bulette",
+  "categoria": "besta-magica",
+  "papel": "fera",
+  "ameaca": 4,
+  "centelha": 1,
+  "corpo": {
+    "postura": "quatro patas",
+    "apoio": "quadrupede",
+    "altura": 2.7,
+    "largura": 1.28,
+    "profundidade": null,
+    "comprimento": 6,
+    "comprimentoSemCauda": 4.87,
+    "caudaGrossa": false,
+    "massa": 4800,
+    "area": 5.84,
+    "posturaDoTamanho": "silhueta vista de lado",
+    "tamanhoEscolhido": "enorme"
+  },
+  "couraca": 7,
+  "perfilCouraca": "rigida",
+  "atributos": {
+    "forca": 10,
+    "destreza": 3,
+    "vigor": 9,
+    "percepcao": 3,
+    "inteligencia": 1,
+    "raciocinio": 2,
+    "influencia": 1,
+    "perspicacia": 1,
+    "compostura": 2
+  },
+  "habilidades": {
+    "briga": 5,
+    "bloqueio": 0,
+    "esquiva": 1,
+    "atletismo": 3,
+    "furtividade": 1,
+    "integridade": 2,
+    "prontidao": 2,
+    "resistencia": 4,
+    "sociabilidade": 0,
+    "sobrevivencia": 3
+  },
+  "habilidadesSec": {
+    "musculatura": 3
+  },
+  "especialidades": {},
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 1,
+    "conviccao": 3,
+    "temperanca": 2
+  },
+  "vontade": 6,
+  "aparencia": 2,
+  "deslocamento": {
+    "terra": {
+      "batalha": 4,
+      "arranque": 6,
+      "corrida": 9
+    },
+    "escavacao": {
+      "batalha": 1
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Mordida",
+      "parte": "boca",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "A mordida de boca larga com o pescoço atrás, Média. Jogada: Força 10 + Briga 5 + 2 × o menor entre Centelha 1 e Briga 5 (2)"
+    },
+    {
+      "nome": "Salto de emboscada",
+      "parte": "corpo-e-boca",
+      "classe": "pesada",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": "2d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 1,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Golpe Pesado, com Força × 1 no golpe comum (D-266); na ação de Investida, soma mais uma Força, sem +1d6 (P20-b). Jogada: Força 10 + Briga 5 + 2 × o menor entre Centelha 1 e Briga 5 (2)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "salto de emboscada",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Salto de emboscada",
+      "categoria": "inato",
+      "regra": "investida",
+      "texto": "só ao sair da terra"
+    },
+    {
+      "nome": "mordida trituradora",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Mordida",
+      "categoria": "inato",
+      "regra": "derrubar"
+    },
+    {
+      "nome": "primeira rodada",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "enquanto a condição se aplica",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Na entrada da cena, recebe +2 na Iniciativa quando embosca a presa. O avanço na ordem não concede ação extra",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "fúria voraz",
+      "formas": "todas",
+      "classe": "sem regra ainda",
+      "categoria": "inato",
+      "efeito": "bate mais forte em quem já está ferido ou Caído"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "nadar sob a terra",
+      "formas": "todas",
+      "texto": "some sob a terra, sente o passo da presa e salta de baixo; come o que se move e volta a cavar."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "sentido de tremor",
+      "descricao": "sente pelo chão quem se move perto, sem ver. Localiza a presa pelo solo, mesmo sem ver",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "camuflagem": "sob a terra",
+    "mente": "animal (fera de Inteligência 1)",
+    "tracos": "fera de 6 m, de placas cinza-azuladas, cabeça de cunha, garras de cavar e uma crista de placas no dorso"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitário, de território vasto",
+    "atividade": "qualquer hora",
+    "dieta": "carnívoro; devora quase tudo que se move",
+    "caca": "emerge do solo sem aviso",
+    "dianteDeGente": "ataca por instinto"
+  },
+  "ecologia": {
+    "terreno": [
+      "subterrâneo",
+      "planície"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Predador solitário que nada sob a terra e emerge sem aviso para atacar por puro instinto voraz. Sente as vibrações do solo a grande distância, devora quase tudo que se move e volta a cavar.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Predador solitário que emerge do solo sem aviso e ataca por puro instinto voraz, sem malícia real. Devora quase tudo que se move e depois volta a cavar, indiferente ao que deixou para trás."
+    },
+    {
+      "titulo": "Hábitat",
+      "texto": "Vive sob campos, charnecas e bosques abertos, sentindo vibrações do solo a grande distância. Prefere terrenos macios onde possa se deslocar sob a terra com facilidade."
+    },
+    {
+      "titulo": "Ecologia",
+      "texto": "Não caça em bando nem forma qualquer laço, defendendo sozinha um território vasto. Nada além de comer e cavar parece lhe interessar."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "É uma fera relíquia de um mundo mais mágico que a Supressão tentou apagar. Camponeses de Calin e Mére contam histórias de campos que engolem gado inteiro, e as igrejas supressoras usam o bulette como prova viva de que a magia selvagem ainda espreita sob os pés de todos."
+    }
+  ],
+  "imagens": [
+    "bestiario/bulette_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "corpo.area",
+      "motivo": "Enorme na borda de 5% (5,84 m²), pela crista"
+    },
+    {
+      "campo": "ataques",
+      "motivo": "o site gravava um ataque só, \"Garras e presas\" (`inimigos.json`: \"3d6 +11 perfurante\", 7 Ticks, dano médio 21,5). A ficha separa os golpes pelo gesto, um por ação (D-097). Dano médio: 21,5 antes; depois, mordida 14,5; o salto de emboscada 28,0, só ao sair da terra"
+    }
+  ]
+}

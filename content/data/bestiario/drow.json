@@ -1,0 +1,263 @@
+{
+  "id": "drow",
+  "idAntigo": "mon-drow",
+  "nome": "Drow",
+  "nomeIngles": "Drow",
+  "categoria": "humanoide",
+  "papel": "capanga",
+  "ameaca": 1,
+  "centelha": 1,
+  "corpo": {
+    "postura": "bípede, de pé",
+    "apoio": "bipede",
+    "altura": 1.6,
+    "largura": 0.4,
+    "profundidade": 0.2,
+    "comprimento": null,
+    "massa": 55,
+    "area": 0.57,
+    "posturaDoTamanho": "de frente"
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 2,
+    "destreza": 4,
+    "vigor": 2,
+    "percepcao": 2,
+    "inteligencia": 2,
+    "raciocinio": 2,
+    "influencia": 2,
+    "perspicacia": 2,
+    "compostura": 2
+  },
+  "habilidades": {
+    "armas": 2,
+    "briga": 1,
+    "bloqueio": 1,
+    "esquiva": 1,
+    "atletismo": 1,
+    "furtividade": 2,
+    "prontidao": 1,
+    "integridade": 2,
+    "manha": 1
+  },
+  "habilidadesSec": {
+    "musculatura": 0
+  },
+  "especialidades": {
+    "armas": [
+      {
+        "foco": "espada curta",
+        "valor": 1,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 1,
+    "conviccao": 3,
+    "temperanca": 2
+  },
+  "vontade": 6,
+  "aparencia": 4,
+  "deslocamento": {
+    "terra": {
+      "batalha": 3,
+      "arranque": 5,
+      "corrida": 7
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": [],
+    "veneno": "1 dose de veneno do sono drow"
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Espada curta",
+      "arma": "espada-curta",
+      "justificativa": "A espada corta ou estoca. Se a lâmina estiver envenenada, a dose entra quando o golpe causa ao menos 1 PV depois da Absorção. Jogada: Destreza 4 + Armas 2 + 2 × o menor entre Centelha 1 e Armas 2 (2)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Sensibilidade à luz",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "luz forte (sol, Arte de Luz, lanterna de perto)",
+      "duracao": "enquanto durar a exposição",
+      "alcance": "o próprio corpo",
+      "area": "não se aplica",
+      "efeito": "Fica Ofuscado sob sol forte. Sofre −2 nas ações que dependem da visão, inclusive ataques",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "nenhum. Sem custo"
+    },
+    {
+      "nome": "Resiliência mental",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "texto": "Resiliência mental do Elfo"
+    },
+    {
+      "nome": "Imune ao sono mágico",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Ignora sono imposto por Arte ou poder. Sono por cansaço ou veneno segue sua regra",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "Contínuo, sem custo"
+    },
+    {
+      "nome": "Trevas",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "sombra",
+        "nivel": 1,
+        "efeito": "manto-de-treva"
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 5",
+      "duracao": "até o fim da cena ou desfazer",
+      "alcance": "18 m",
+      "area": "esfera de 6 m",
+      "efeito": "Apaga a luz comum na esfera. A criatura enxerga dentro dela",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. Cada opção tem seu próprio uso grátis"
+    },
+    {
+      "nome": "Luzes dançantes",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "luz",
+        "nivel": 1
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 5",
+      "duracao": "até o fim da cena ou desfazer",
+      "alcance": "18 m",
+      "area": "um ponto visível",
+      "efeito": "Cria luzes móveis para iluminar ou enganar",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. Cada opção tem seu próprio uso grátis"
+    },
+    {
+      "nome": "Fogo feérico",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "luz",
+        "nivel": 1
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 5",
+      "duracao": "até o fim da cena ou desfazer",
+      "alcance": "18 m",
+      "area": "um alvo",
+      "efeito": "Contorna o alvo de luz e revela a sua posição enquanto durar",
+      "dano": "nenhum",
+      "resistencia": "esquiva, contra Influência + Manha dele",
+      "limiteDeUso": "Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. Cada opção tem seu próprio uso grátis"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "caçador de escravos",
+      "formas": "todas",
+      "texto": "apaga a luz com as trevas, marca o alvo com o fogo feérico e golpeia com a lâmina envenenada para levar o adormecido vivo."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão no escuro",
+      "descricao": "enxerga no escuro absoluto a uma distância considerável",
+      "formas": "todas"
+    },
+    {
+      "nome": "audição e olfato",
+      "descricao": "os de um humano",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "prendeRespiracao": "pela regra do personagem",
+    "mente": "humanoide; cruel e calculista",
+    "tracos": "pele preta ou cinza-escura, cabelo branco, orelhas pontudas, olhos vermelhos ou lilases, espada curta"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "em patrulha de uma casa nobre, típico 4 a 12",
+    "atividade": "qualquer hora, no escuro",
+    "dieta": "onívoro",
+    "caca": "captura escravos",
+    "dianteDeGente": "captura vivo com o veneno do sono"
+  },
+  "ecologia": {
+    "terreno": [
+      "subterrâneo"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Elfo das profundezas, de pele escura e cabelo branco, servo das casas nobres governadas por matriarcas. Apaga a luz com trevas, marca o alvo com fogo feérico e o captura vivo com o veneno do sono na lâmina.",
+  "lore": [
+    {
+      "titulo": "Primos sombrios",
+      "texto": "Aparentados aos elfos da superfície, mas moldados pela escuridão e crueldade das cavernas em que vivem."
+    },
+    {
+      "titulo": "Sociedade de matriarcas",
+      "texto": "Cidades subterrâneas são governadas por casas nobres rivais, chefiadas por matriarcas implacáveis que tramam umas contra as outras."
+    },
+    {
+      "titulo": "Veneno e doença",
+      "texto": "Veneno no jogo: Veneno do sono drow · Potência 13 · 1 minuto (sangue) · a cada 1 minuto · pool 2 (sono) · Desgaste 1 · pela Espada curta"
+    }
+  ],
+  "imagens": [
+    "bestiario/drow_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "aparencia",
+      "motivo": "Degrau 4, \"Feio\", fica como no site. O Elfo parente tem a Aparência Universal, que é traço de raça e não passa ao drow pela D-207; 4, a do site; a Aparência Universal do Elfo não passa ao drow"
+    },
+    {
+      "campo": "comportamento.social",
+      "motivo": "site (Sociedade de matriarcas)"
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": ""
+    },
+    {
+      "campo": "virtudes.compaixao",
+      "motivo": "1; o site tinha 2"
+    }
+  ]
+}

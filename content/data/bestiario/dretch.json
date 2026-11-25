@@ -1,0 +1,303 @@
+{
+  "id": "dretch",
+  "idAntigo": "mon-dretch",
+  "nome": "Dretch",
+  "nomeIngles": "Demon, Dretch",
+  "categoria": "corruptor",
+  "papel": "soldado",
+  "ameaca": 2,
+  "centelha": 2,
+  "corpo": {
+    "postura": "bípede, curvado",
+    "apoio": "bipede",
+    "altura": 0.9,
+    "largura": 0.36,
+    "profundidade": 0.18,
+    "comprimento": null,
+    "massa": 27,
+    "area": 0.29,
+    "posturaDoTamanho": "silhueta de frente, de pé"
+  },
+  "couraca": 1,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 3,
+    "destreza": 2,
+    "vigor": 4,
+    "percepcao": 2,
+    "inteligencia": 1,
+    "raciocinio": 2,
+    "influencia": 2,
+    "perspicacia": 2,
+    "compostura": 2
+  },
+  "habilidades": {
+    "briga": 3,
+    "bloqueio": 0,
+    "esquiva": 0,
+    "atletismo": 1,
+    "furtividade": 1,
+    "integridade": 2,
+    "prontidao": 1,
+    "resistencia": 3,
+    "sobrevivencia": 1
+  },
+  "habilidadesSec": {
+    "musculatura": 2
+  },
+  "especialidades": {
+    "resistencia": [
+      {
+        "foco": "doença e podridão",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 1,
+    "conviccao": 2,
+    "temperanca": 1
+  },
+  "vontade": 4,
+  "aparencia": 1,
+  "deslocamento": {
+    "terra": {
+      "batalha": 2,
+      "arranque": 3,
+      "corrida": 5
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Garras",
+      "parte": "mao-de-garras-curtas",
+      "classe": "leve",
+      "pgr": [
+        1,
+        1,
+        3
+      ],
+      "dado": "1d6-2",
+      "multiplicadorForca": 1,
+      "tipoDano": "corte",
+      "nivelPerfuracao": 0,
+      "acerto": 1,
+      "bloqueiaComoArma": null,
+      "justificativa": "O \"Golpe planar\" do site (1 dado, 5 Ticks, corte): a garra curta de bicho pequeno, gesto rápido de membro, Leve (`regra-construcao.md` §7). Duas por ação pela Rajada (Manobras). Jogada: Força 3 + Briga 3 + 2 × o menor entre Centelha 2 e Briga 3 (4)"
+    },
+    {
+      "nome": "Mordida",
+      "parte": "boca-de-dentes",
+      "classe": "leve",
+      "pgr": [
+        1,
+        1,
+        3
+      ],
+      "dado": "1d6-2",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 1,
+      "bloqueiaComoArma": null,
+      "justificativa": "\"Mordem, arranham e rasgam\" (site): a mordida de boca pequena, Leve. Jogada: Força 3 + Briga 3 + 2 × o menor entre Centelha 2 e Briga 3 (4)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Duas garras",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Garras",
+      "categoria": "inato",
+      "regra": "rajada",
+      "texto": "Até dois golpes por ação"
+    },
+    {
+      "nome": "Fedor nauseante",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "vento",
+        "nivel": 2
+      },
+      "categoria": "substancia",
+      "ativacao": "libera a substância ao entrar em contato com os alvos no alcance",
+      "duracao": "enquanto exposto e por mais 6 Ticks depois de sair",
+      "alcance": "3 m",
+      "area": "esfera de 3 m em volta dele",
+      "efeito": "A exposição deixa a vítima Enjoada, com −2 nas jogadas. Constructos não enjoam",
+      "dano": "nenhum",
+      "resistencia": "Vigor + Resistência contra Dificuldade 12. Quem passa fica imune a esta fonte pelo resto da cena",
+      "limiteDeUso": "O corpo guarda 3 doses e produz 1 dose a cada 4 horas. Cada uso gasta 1 dose. Nada acelera a produção"
+    },
+    {
+      "nome": "Susto",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "fascinacao",
+        "nivel": 1,
+        "efeito": "pavor"
+      },
+      "categoria": "sobrenatural",
+      "ativacao": "uma ação, Velocidade 5, um olhar ou um guincho",
+      "duracao": "para Abalado, até o fim da cena ou até Recompor",
+      "alcance": "9 m",
+      "area": "um alvo",
+      "efeito": "um terror súbito sem motivo; quem falha fica Abalado. Abalado dá −2 nas jogadas até o fim da cena ou até Recompor, ação de Velocidade 5 sem teste",
+      "dano": "nenhum",
+      "resistencia": "Influência + Briga da criatura contra a Defesa Mental do alvo, com o Resistir do livro. quem passa fica imune ao susto até o fim da cena",
+      "limiteDeUso": "Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "telepatia",
+      "formas": "todas",
+      "classe": "sem regra ainda",
+      "categoria": "inato",
+      "efeito": "fala com a mente de qualquer criatura a até 30 m, sem língua em comum"
+    },
+    {
+      "nome": "imune a veneno",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "o veneno não pega no corpo de demônio. O ferimento do golpe continua",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "Contínuo, sem custo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "enxame furioso",
+      "formas": "todas",
+      "texto": "sozinho foge; em bando, cerca, morde e arranha tudo o que alcança, até os outros dretches quando a fome aperta."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão no escuro",
+      "descricao": "enxerga no escuro",
+      "formas": "todas"
+    },
+    {
+      "nome": "visão e audição",
+      "descricao": "as de um bicho pequeno, sem nada além do que a Percepção 2 dá",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "camuflagem": "nenhuma; o fedor o anuncia",
+    "mente": "limitada, de enxame",
+    "tracos": "demônio pequeno e barrigudo, de pele flácida e cinzenta, braços curtos com garras e cara de verme; fede a carniça e se multiplica onde há morte e desespero"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "enxame de dretches",
+    "atividade": "qualquer hora",
+    "dieta": "qualquer coisa orgânica, viva ou podre",
+    "caca": "enxame que devora o que acha",
+    "dianteDeGente": "foge sozinho; ataca em bando"
+  },
+  "ecologia": {
+    "terreno": [
+      "qualquer"
+    ],
+    "clima": [
+      "extraplanar"
+    ]
+  },
+  "descricao": "O degrau mais baixo dos demônios: pequeno, barrigudo e fedorento, bucha de canhão que as hostes empurram para a frente. Sozinho foge; em enxame morde e rasga tudo, até os outros, e quando aparece aos montes é porque algo maior o empurrou para fora da fenda.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Covardes quando sozinhos, mas ganham fúria cega em enxame: mordem, arranham e rasgam tudo o que está ao alcance, inclusive uns aos outros quando a fome aperta."
+    },
+    {
+      "titulo": "Sociedade",
+      "texto": "Ocupam o degrau mais baixo entre os demônios do Abismo, tratados como bucha de canhão pelos demônios maiores; não têm lealdade nem hierarquia própria, só medo do que vem depois deles na cadeia de comando."
+    },
+    {
+      "titulo": "Hábitos",
+      "texto": "Comem qualquer coisa orgânica, viva ou podre, e se multiplicam onde há morte e desespero acumulados."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "Quando a Fenda cospe algo pequeno e numeroso, é quase sempre um enxame de dretches; camponeses do White Wall os chamam de vermes da fenda e sabem que, se aparecem aos montes, algo maior os empurrou para fora."
+    }
+  ],
+  "imagens": [
+    "bestiario/dretch_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [
+      {
+        "tipo": "luz",
+        "formas": "todas"
+      },
+      {
+        "tipo": "sagrado",
+        "formas": "todas"
+      }
+    ],
+    "resistencias": [
+      {
+        "tipo": "fogo",
+        "formas": "todas"
+      },
+      {
+        "tipo": "gelo",
+        "formas": "todas"
+      },
+      {
+        "tipo": "acido",
+        "formas": "todas"
+      }
+    ],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "vontade",
+      "motivo": "A régua do livro (D-202): abaixo do herói típico (5 ou mais), porque o site o descreve covarde sozinho, só com medo do que vem acima dele. O site tinha 7; 4, e não 7; `bravura` 3, e não 5; `conviccao` 2, e não 5: pelo texto do site (\"covardes quando sozinhos\", \"sem lealdade nem hierarquia própria, só medo\")"
+    },
+    {
+      "campo": "couraca",
+      "motivo": "Cobertura do corpo pela R49; metades arredondadas para cima. Absorção natural do livro (`combate.md`). Couraça 1: pele grossa e flácida de demônio, como o cavalo .; 1"
+    },
+    {
+      "campo": "habilidadesEspeciais.Fedor nauseante",
+      "motivo": "R1/R4, D-197. Três doses preservam a reserva para mais de uma presa. Sugestão de 3 doses e 4 h por dose para repor fora da luta. R13 e D-197. Dificuldade fixa sugerida 12 (10 + Centelha 2) para graduar a potência deste fedor. valor de molde, para a bancada (3 doses e produz 1 dose a cada 4 horas)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Susto",
+      "motivo": "R1 e D-197. Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. O limite preserva o primeiro uso e reserva repetição para esforço adicional. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "ataques",
+      "motivo": "o site gravava um \"Golpe planar\" de 1 dado e 5 Ticks, de corte. A D-241 levou a Pesado só o golpe de cinco planares; aqui a classe sai do gesto: garras e mordida Leves, o gesto rápido de bicho pequeno, como os 5 Ticks do site"
+    },
+    {
+      "campo": "habilidadesEspeciais",
+      "motivo": "o \"Enjoado\" do site não é condição do livro; fica Abalado, como no ghast do lote 30"
+    }
+  ]
+}

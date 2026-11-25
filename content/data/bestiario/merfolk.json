@@ -1,0 +1,226 @@
+{
+  "id": "merfolk",
+  "idAntigo": "mon-merfolk",
+  "nome": "Merfolk",
+  "nomeIngles": "Merfolk",
+  "categoria": "humanoide",
+  "papel": "capanga",
+  "ameaca": 1,
+  "centelha": 1,
+  "corpo": {
+    "postura": "deitado na água, nadando; de pé na cauda, à tona",
+    "apoio": "bipede",
+    "altura": 0.9,
+    "largura": 0.45,
+    "profundidade": 0.23,
+    "comprimento": 2,
+    "comprimentoSemCauda": 0.9,
+    "caudaGrossa": true,
+    "massa": 90,
+    "area": 0.7,
+    "posturaDoTamanho": "de lado, nadando"
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 3,
+    "destreza": 3,
+    "vigor": 4,
+    "percepcao": 2,
+    "inteligencia": 2,
+    "raciocinio": 2,
+    "influencia": 2,
+    "perspicacia": 2,
+    "compostura": 2
+  },
+  "habilidades": {
+    "armas": 2,
+    "atirador": 2,
+    "briga": 1,
+    "bloqueio": 1,
+    "esquiva": 1,
+    "prontidao": 1,
+    "integridade": 2,
+    "sobrevivencia": 2
+  },
+  "habilidadesSec": {
+    "natacao": 4,
+    "musculatura": 0
+  },
+  "especialidades": {
+    "armas": [
+      {
+        "foco": "tridente, debaixo d'água",
+        "valor": 1,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 2,
+    "conviccao": 3,
+    "temperanca": 2
+  },
+  "vontade": 6,
+  "aparencia": 4,
+  "deslocamento": {
+    "terra": {
+      "batalha": 0.5,
+      "arranque": 0.75,
+      "corrida": 1
+    },
+    "nado": {
+      "batalha": 5,
+      "arranque": 8,
+      "corrida": 12
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Tridente",
+      "arma": "tridente",
+      "justificativa": "Estoca com as três pontas do tridente. Jogada: Destreza 3 + Armas 2 + 2 × o menor entre Centelha 1 e Armas 2 (2)"
+    },
+    {
+      "nome": "Besta Média",
+      "arma": "besta-media",
+      "justificativa": "O virote tem alcance efetivo de 60 m e máximo de 200 m. O atirador fica parado durante o preparo. Jogada de Percepção + Atirador: 2 + 2 + 2 × o menor entre Centelha 1 e Atirador 2 (2)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Anfíbio",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "nenhuma; sempre ativo",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "não se aplica",
+      "efeito": "respira na água e no ar; fora d'água só se arrasta",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "nenhum. Sem custo"
+    },
+    {
+      "nome": "Guerreiro do mar",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "texto": "o tridente e a besta do livro, que servem debaixo d'água e na superfície (o Mestre decide o alcance da besta debaixo d'água)"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "guarda do segredo",
+      "formas": "todas",
+      "texto": "atira com a besta da água, chega perto com o tridente só contra quem caiu no mar; afasta navegantes dos seus domínios e não sai da água."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão na penumbra",
+      "descricao": "enxerga bem com pouca luz, nas profundezas",
+      "formas": "todas"
+    },
+    {
+      "nome": "audição e olfato",
+      "descricao": "os de um humano",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "água e ar (Anfíbio)",
+    "prendeRespiracao": "não precisa",
+    "mente": "humanoide; desconfiada de forasteiros",
+    "tracos": "torso de gente, pele azulada ou esverdeada, cauda de peixe escamosa, cabelo longo, tridente e besta"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "em grupo, típico 4 a 12",
+    "atividade": "diurno, na água",
+    "dieta": "peixe e frutos do mar",
+    "caca": "pesca com o tridente",
+    "dianteDeGente": "evita forasteiros; às vezes ataca navegantes"
+  },
+  "ecologia": {
+    "terreno": [
+      "aquático",
+      "litoral"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Povo do mar de torso humano e cauda de peixe, rápido na água e quase parado em terra. Luta com tridente e besta, guarda um segredo nas profundezas e afasta navegantes dos seus domínios.",
+  "lore": [
+    {
+      "titulo": "Segredo nas Profundezas",
+      "texto": "Contam que protegem um segredo terrível preso nas profundezas, e por isso evitam contato com forasteiros."
+    },
+    {
+      "titulo": "Beleza e Isolamento",
+      "texto": "Com torso humano e cauda de peixe, raramente se aproximam de terra, e alguns chegam a usar violência para afastar navegantes de seus domínios."
+    },
+    {
+      "titulo": "Sussurros de Corrupção",
+      "texto": "Sábios e marinheiros falam de merfolk degenerados nas águas mais isoladas, corrompidos por poderes sombrios que talvez controlem até os que se julgam livres."
+    }
+  ],
+  "imagens": [
+    "bestiario/merfolk_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "corpo.altura",
+      "motivo": "O tronco e a cabeça do corpo de base"
+    },
+    {
+      "campo": "corpo.area",
+      "motivo": "Na água, deitado, a vista de lado mostra mais área: corpo de 2,0 m com 0,3 m de altura média = 0,60 m², mais os braços e a nadadeira, 0,10 m²; de lado, nadando; as medidas são estimadas"
+    },
+    {
+      "campo": "aparencia",
+      "motivo": "Degrau 4, \"Feio\", fica como no site. O site fala de \"Beleza\" do povo do mar; a Aparência mede a beleza (D-205), mas o número publicado fica sem outra base; 4, a do site; o texto fala de beleza"
+    },
+    {
+      "campo": "comportamento.social",
+      "motivo": ""
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": ""
+    },
+    {
+      "campo": "comportamento.dieta",
+      "motivo": ""
+    },
+    {
+      "campo": "comportamento.caca",
+      "motivo": ""
+    },
+    {
+      "campo": "ataques.Besta Média",
+      "motivo": "Tiro com arma equipada usa Percepção + Atirador pela D-208."
+    },
+    {
+      "campo": "deslocamento",
+      "motivo": "antes, Batalha 0,5 m/Tick apenas em texto, Arranque e Corrida ausentes; depois, terra 0,5 / 0,75 / 1,0 m/Tick. Preserva o arrastar publicado e distingue esforço breve e máximo, ambos limitados pela cauda sem pernas (36.2) ."
+    }
+  ]
+}

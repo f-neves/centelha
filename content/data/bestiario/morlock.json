@@ -1,0 +1,261 @@
+{
+  "id": "morlock",
+  "idAntigo": "mon-morlock",
+  "nome": "Morlock",
+  "nomeIngles": "Morlock",
+  "categoria": "humanoide-monstruoso",
+  "papel": "soldado",
+  "ameaca": 2,
+  "centelha": 2,
+  "corpo": {
+    "postura": "de quatro membros, curvado",
+    "apoio": "quadrupede",
+    "altura": 1.5,
+    "largura": 0.45,
+    "profundidade": 0.23,
+    "comprimento": null,
+    "massa": 68,
+    "area": 0.6,
+    "posturaDoTamanho": "de frente, de pé"
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 4,
+    "destreza": 5,
+    "vigor": 4,
+    "percepcao": 4,
+    "inteligencia": 1,
+    "raciocinio": 2,
+    "influencia": 1,
+    "perspicacia": 1,
+    "compostura": 2
+  },
+  "habilidades": {
+    "armas": 2,
+    "briga": 2,
+    "bloqueio": 0,
+    "esquiva": 1,
+    "atletismo": 3,
+    "furtividade": 3,
+    "prontidao": 2,
+    "integridade": 2,
+    "sobrevivencia": 2
+  },
+  "habilidadesSec": {
+    "escalada": 3,
+    "musculatura": 0
+  },
+  "especialidades": {
+    "prontidao": [
+      {
+        "foco": "faro",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ],
+    "armas": [
+      {
+        "foco": "alvo desprevenido",
+        "valor": 1,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {
+    "escalada": [
+      {
+        "foco": "parede e teto de pedra com fendas",
+        "valor": 3,
+        "origem": "natural"
+      }
+    ]
+  },
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 1,
+    "conviccao": 3,
+    "temperanca": 1
+  },
+  "vontade": 7,
+  "aparencia": 4,
+  "deslocamento": {
+    "terra": {
+      "batalha": 4,
+      "arranque": 6,
+      "corrida": 9
+    },
+    "escalada": {
+      "batalha": 3
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Bastão",
+      "arma": "bastao",
+      "justificativa": "A arma do livro (`armas.json`, `bastao`): Leve, Velocidade 5, Acerto +2, Defesa +1, ★I. A Centelha soma inteira. Jogada: Destreza 5 + Armas 2 + 2 × o menor entre Centelha 2 e Armas 2 (4)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Salto certeiro",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "um salto que o leva até o alvo, com o golpe",
+      "duracao": "instantânea",
+      "alcance": "o salto (Atletismo)",
+      "area": "um alvo",
+      "efeito": "golpeia no começo, no meio ou no fim do salto, e o movimento não abre a guarda dele a quem está no caminho",
+      "dano": "o do golpe",
+      "resistencia": "nenhum",
+      "limiteDeUso": "a cada ação. Sem custo"
+    },
+    {
+      "nome": "Luta em enxame",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "nenhuma; vale quando dois morlocks atacam o mesmo alvo",
+      "duracao": "enquanto os dois estiverem juntos",
+      "alcance": "o do corpo a corpo",
+      "area": "o espaço de um, que os dois dividem",
+      "efeito": "os dois cabem no mesmo espaço apertado e o alvo conta como Flanqueado por eles",
+      "dano": "nenhum além dos golpes",
+      "resistencia": "nenhum",
+      "limiteDeUso": "nenhum. Sem custo"
+    },
+    {
+      "nome": "Cego pela luz",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "luz repentina e intensa (um clarão, uma tocha acesa de perto, o sol de repente)",
+      "duracao": "enquanto durar a exposição",
+      "alcance": "o próprio corpo",
+      "area": "não se aplica",
+      "efeito": "Fica Ofuscado sob sol forte. Sofre −2 nas ações que dependem da visão, inclusive ataques",
+      "dano": "nenhum",
+      "resistencia": "corpo, Vigor + Resistência contra Dificuldade 10; quem passa fica só Ofuscado",
+      "limiteDeUso": "nenhum. Sem custo"
+    },
+    {
+      "nome": "Imune a veneno e doença",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "toxinas e pragas não o pegam. O ferimento do golpe continua. Pode carregar o agente e expor outros, a critério do Mestre",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "Contínuo, sem custo"
+    },
+    {
+      "nome": "Golpe na brecha",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "o primeiro golpe da ação que fere um alvo Surpreso ou Flanqueado",
+      "duracao": "instantânea",
+      "alcance": "o do golpe",
+      "area": "o alvo atingido",
+      "efeito": "Explora o ponto vital. Quem ignora dano extra de ponto vital ignora esse acréscimo",
+      "dano": "+1d6 no dano do golpe",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "uma vez por ação, sem custo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "bando nas ruínas",
+      "formas": "todas",
+      "texto": "cai do teto em bando, dois a dois em cada alvo, salta e golpeia, e foge da luz."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão no escuro",
+      "descricao": "enxerga no escuro a grande distância",
+      "formas": "todas"
+    },
+    {
+      "nome": "faro",
+      "descricao": "localiza presa pelo cheiro; Prontidão (faro) +2",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "mente": "simples, de fera",
+    "tracos": "corpo nodoso e pálido, olhos enormes, cabelo ralo, mãos e pés de dedos longos, anda de quatro"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "em bando, típico 4 a 12",
+    "atividade": "qualquer hora, no escuro",
+    "dieta": "carnívoro",
+    "caca": "emboscada em bando",
+    "dianteDeGente": "ataca em bando e foge da luz"
+  },
+  "ecologia": {
+    "terreno": [
+      "subterrâneo",
+      "ruínas"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Humano degenerado das profundezas que perdeu a fala e anda de quatro, escala paredes e tetos como aranha e ataca em bando, dois a dois em cada presa. Cultua as estátuas das cidades em ruínas e foge da luz.",
+  "lore": [
+    {
+      "titulo": "Humanos degenerados",
+      "texto": "Descendentes de povos que se refugiaram no subsolo há gerações, perderam a fala civilizada e viraram feras rastejantes de quatro membros."
+    },
+    {
+      "titulo": "Cultuam os próprios ancestrais",
+      "texto": "Vivem nas ruínas de antigas cidades e veneram como deuses as estátuas deixadas por quem construiu aqueles salões, hoje esquecidos."
+    }
+  ],
+  "imagens": [
+    "bestiario/morlock_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "habilidades.armas",
+      "motivo": "O site gravava `briga` 3 para a \"Arma\"; no livro a arma branca é Armas (manual 3.5)"
+    },
+    {
+      "campo": "comportamento.social",
+      "motivo": "site (grupo)"
+    },
+    {
+      "campo": "comportamento.dieta",
+      "motivo": ""
+    },
+    {
+      "campo": "equipamento",
+      "motivo": "bastão do livro"
+    },
+    {
+      "campo": "virtudes",
+      "motivo": "Compaixão 1 e Temperança 1; o site tinha 2 e 2"
+    }
+  ]
+}

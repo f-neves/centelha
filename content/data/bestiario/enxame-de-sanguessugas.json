@@ -1,0 +1,234 @@
+{
+  "id": "enxame-de-sanguessugas",
+  "idAntigo": "mon-leech-swarm",
+  "nome": "Enxame de sanguessugas",
+  "nomeIngles": "Leech Swarm",
+  "categoria": "animal",
+  "papel": "fera",
+  "ameaca": 3,
+  "centelha": 0,
+  "enxame": {
+    "individuosPorQuadrado": 400,
+    "tamanhoEquivalente": "pequeno"
+  },
+  "corpo": {
+    "postura": "verme (corpo deitado)",
+    "apoio": "outro",
+    "altura": 0.005,
+    "largura": 0.01,
+    "profundidade": null,
+    "comprimento": 0.12,
+    "massa": 0.004,
+    "area": 0,
+    "posturaDoTamanho": "indivíduo, anatomia"
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 0,
+    "destreza": 2,
+    "vigor": 3,
+    "percepcao": 2,
+    "inteligencia": 1,
+    "raciocinio": 2,
+    "influencia": 1,
+    "perspicacia": 1,
+    "compostura": 1
+  },
+  "habilidades": {
+    "briga": 2,
+    "bloqueio": 0,
+    "esquiva": 0,
+    "atletismo": 1,
+    "furtividade": 2,
+    "integridade": 0,
+    "prontidao": 2,
+    "resistencia": 2,
+    "empatia": 0,
+    "sobrevivencia": 2
+  },
+  "habilidadesSec": {
+    "equilibrio": 0,
+    "escalada": 0,
+    "natacao": 0,
+    "voo": 0,
+    "corrida": 0,
+    "musculatura": 2
+  },
+  "especialidades": {
+    "prontidao": [
+      {
+        "foco": "ondas na água",
+        "valor": 3,
+        "origem": "natural"
+      },
+      {
+        "foco": "calor",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ],
+    "resistencia": [
+      {
+        "foco": "fome",
+        "valor": 3,
+        "origem": "natural"
+      }
+    ],
+    "furtividade": [
+      {
+        "foco": "no lodo",
+        "valor": 1,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 1,
+    "compaixao": 1,
+    "conviccao": 1,
+    "temperanca": 1
+  },
+  "vontade": 3,
+  "aparencia": 5,
+  "deslocamento": {
+    "terra": {
+      "batalha": 0,
+      "arranque": 0,
+      "corrida": 0
+    },
+    "nado": {
+      "batalha": 0.4
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Mordida do enxame",
+      "parte": "ventosa-com-tres-mandibulas",
+      "classe": "leve",
+      "pgr": [
+        1,
+        1,
+        3
+      ],
+      "dado": "1d6-2",
+      "multiplicadorForca": 0,
+      "tipoDano": "corte",
+      "nivelPerfuracao": 0,
+      "acerto": 1,
+      "bloqueiaComoArma": null,
+      "justificativa": "Sem mudança: a Força segue 0, e o dano é só o dado (era 1d6 − 2, média 1,5; D-115). Três mandíbulas com cerca de 100 bordas cortantes (Wikipédia): Corte. A sanguessuga fica presa de 20 a 40 min e a ferida sangra por horas depois (hirudina): texto para o Mestre. Um ataque por ação (D-097)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Pulso do enxame",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "quando um alvo começa uma ação dentro de um quadrado ocupado pelo enxame",
+      "duracao": "instantânea",
+      "alcance": "o quadrado ocupado",
+      "area": "cada alvo dentro do quadrado",
+      "efeito": "O dano é automático, sem jogada de ataque; a Absorção conta. Sair do quadrado ocupado evita os próximos pulsos",
+      "dano": "1d6 + 3 de Corte",
+      "resistencia": "sem jogada de ataque; a Absorção conta",
+      "limiteDeUso": "no máximo um pulso por alvo a cada 6 Ticks, sem custo"
+    },
+    {
+      "nome": "Corpo de enxame",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Arma comum não fere este enxame. Ataque de área causa seu dano inteiro em cada quadrado coberto, sem dividir. O quadrado cheio é Médio para atacar e ser alvo. O Tamanho de cada indivíduo só descreve onde cabe e por onde passa. PV e dispersão seguem a quantidade de indivíduos de cada quadrado",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    }
+  ],
+  "comoLuta": [],
+  "sentidos": [
+    {
+      "nome": "onda na água",
+      "descricao": "Especialidade natural Prontidão (ondas na água) +3, na água. Acha a fonte de ondas de superfície",
+      "formas": "todas"
+    },
+    {
+      "nome": "calor",
+      "descricao": "Especialidade natural Prontidão (calor) +2; aquecer o lábio basta para disparar a ingestão",
+      "formas": "todas"
+    },
+    {
+      "nome": "química e luz",
+      "descricao": "o sal e a arginina disparam a mordida; cinco pares de olhos e sensilas que reagem à sombra, mais com fome. Texto. Alcance em metros:",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "pela pele, na água. Sensível a ressecamento",
+    "mente": "animal",
+    "tracos": "refeição de 5 a 15 mL, de 5 a 9 vezes a própria massa (estimativas concorrentes); fica de 6 a 18 meses sem comer (pesquisa). O sal como fraqueza (Pathfinder) não foi achado em fonte científica"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitária; populações de milhares numa lagoa",
+    "dieta": "sangue: mamíferos, peixes, aves aquáticas, anfíbios",
+    "caca": "emboscada e busca ativa pela onda",
+    "dianteDeGente": "morde quem entra na água; não ataca em grupo"
+  },
+  "ecologia": {
+    "terreno": [
+      "pântano",
+      "aquático"
+    ],
+    "clima": [
+      "temperado",
+      "tropical"
+    ]
+  },
+  "descricao": "Centenas de sanguessugas no fundo da lagoa parada, que acham quem entra pelo calor e pela onda; a ferida sangra por horas.",
+  "lore": [
+    {
+      "titulo": "Maré Negra",
+      "texto": "Onde uma sanguessuga é um perigo isolado, um enxame inteiro é uma maré viva de bocas famintas que consome tudo em segundos."
+    },
+    {
+      "titulo": "Fim Silencioso",
+      "texto": "Vítimas encontradas após um ataque de enxame aparecem esvaídas em sangue, sem marca de luta, só a pele flácida e pálida."
+    },
+    {
+      "titulo": "Infestação",
+      "texto": "Onde existe uma colônia raramente há apenas uma nuvem; várias se formam nos mesmos pântanos estagnados, alimentando-se juntas."
+    },
+    {
+      "titulo": "Veneno e doença",
+      "texto": "Doença no jogo: Infecção por Aeromonas · Virulência 4 · dia · contágio por ferida: quem levou dano que passou da Absorção rola uma vez por cena, Vigor + Resistência contra a Virulência inteira"
+    },
+    {
+      "titulo": "Enxame",
+      "texto": "400 sanguessugas por quadrado · nada, só na água e no fundo da lagoa · quem fere: só ataque em área · armadura: ignora, na água entram por baixo de tudo · dentro: só foge ou tira os bichos de cima; qualquer outra ação pede Compostura + Integridade contra 10"
+    }
+  ],
+  "imagens": [
+    "bestiario/enxame-de-sanguessugas_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": []
+}

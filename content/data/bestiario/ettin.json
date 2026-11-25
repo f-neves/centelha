@@ -1,0 +1,228 @@
+{
+  "id": "ettin",
+  "idAntigo": "mon-ettin",
+  "nome": "Ettin",
+  "nomeIngles": "Ettin",
+  "categoria": "gigante",
+  "papel": "elite",
+  "ameaca": 4,
+  "centelha": 0,
+  "corpo": {
+    "postura": "bípede, de pé",
+    "apoio": "bipede",
+    "altura": 4,
+    "largura": 1.25,
+    "profundidade": 0.51,
+    "comprimento": null,
+    "massa": 1094,
+    "area": 4.44,
+    "posturaDoTamanho": "de frente"
+  },
+  "couraca": 2,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 8,
+    "destreza": 2,
+    "vigor": 5,
+    "percepcao": 2,
+    "inteligencia": 1,
+    "raciocinio": 2,
+    "influencia": 2,
+    "perspicacia": 2,
+    "compostura": 2
+  },
+  "habilidades": {
+    "briga": 4,
+    "bloqueio": 1,
+    "esquiva": 0,
+    "atletismo": 1,
+    "integridade": 2,
+    "prontidao": 3,
+    "sobrevivencia": 2
+  },
+  "habilidadesSec": {
+    "intimidacao": 2,
+    "musculatura": 3
+  },
+  "especialidades": {},
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 4,
+    "compaixao": 1,
+    "conviccao": 3,
+    "temperanca": 2
+  },
+  "vontade": 5,
+  "aparencia": 4,
+  "deslocamento": {
+    "terra": {
+      "batalha": 4,
+      "arranque": 6,
+      "corrida": 9
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Pancada descomunal",
+      "parte": "punho",
+      "classe": "pesada",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": "2d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "impacto",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "A do site (2 dados, impacto, 6 Ticks): o punho de um gigante com o corpo girando atrás. Pesada pelo gesto (`regra-construcao.md` §7), golpe de membro, Força × 1, como a Pancada descomunal do gigante da colina; os 2 dados ficam. Jogada: Força 8 + Briga 4"
+    },
+    {
+      "nome": "Maça",
+      "arma": "maca",
+      "justificativa": "Tamanho Grande. Empunha uma maça em cada mão e usa empunhadura dupla.",
+      "tamanho": "grande"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Duas cabeças, dois ataques",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Pancada descomunal",
+      "categoria": "inato",
+      "regra": "rajada"
+    },
+    {
+      "nome": "Vigilância dupla",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "nenhuma; sempre ativa",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "não se aplica",
+      "efeito": "As duas cabeças vigiam lados opostos. Ignora o −2 de Flanqueado. A vigilância também impede que fique Surpreso. Tamanho continua valendo",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "nenhum. Sem custo"
+    },
+    {
+      "nome": "agarrar",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Pancada descomunal",
+      "categoria": "inato",
+      "regra": "agarrar"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "briga a dois",
+      "formas": "todas",
+      "texto": "as cabeças discutem até a última hora sobre quem atacar; depois bate com os dois braços, cada um num alvo, e guarda o que caça sem dividir."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão no escuro",
+      "descricao": "enxerga normalmente no escuro até 18 m",
+      "formas": "todas"
+    },
+    {
+      "nome": "audição",
+      "descricao": "a de um humano, em dobro de atenção (Vigilância dupla)",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "mente": "duas mentes de gigante, burras e rabugentas, que discutem sobre quase tudo",
+    "tracos": "gigante de 4 m com duas cabeças em dois pescoços, couro calejado e sujo, vestido de peles"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": true,
+    "tracao": true
+  },
+  "comportamento": {
+    "social": "solitário",
+    "atividade": "noturno",
+    "dieta": "onívoro",
+    "caca": "ataca viajantes por fome ou irritação",
+    "dianteDeGente": "ataca"
+  },
+  "ecologia": {
+    "terreno": [
+      "montanha",
+      "subterrâneo"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Gigante de duas cabeças que discutem sobre tudo, de quem come primeiro a quem atacar. Bate com os dois braços na mesma ação, cada um num alvo, e as duas cabeças vigiam: nunca é pego desprevenido.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "As duas cabeças discutem entre si sobre quase tudo, da direção a seguir a quem come primeiro, o que o torna imprevisível em combate."
+    },
+    {
+      "titulo": "Hábitos",
+      "texto": "Vive em cavernas isoladas nas montanhas, ataca viajantes por fome ou irritação, e guarda o que caça sem dividir com ninguém."
+    },
+    {
+      "titulo": "Personalidade",
+      "texto": "Burro e rabugento, mas as duas mentes tornam difícil pegá-lo desprevenido."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "Outra relíquia gigante que sobrou nas serras despovoadas perto do White Wall, o ettin discutindo consigo mesmo virou folclore recorrente entre caçadores e viajantes de Mére, sinal certo de perigo duplo pela frente."
+    },
+    {
+      "titulo": "Aptidões",
+      "texto": "montaria não · carga sim · tração sim"
+    }
+  ],
+  "imagens": [
+    "bestiario/ettin_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "corpo.largura",
+      "motivo": "O corpo de base (D-192, manual 4.2) escalado pela altura (4,0 ÷ 1,80 = × 2,222), com os ombros 25% mais largos para os dois pescoços: 0,45 × 2,222 × 1,25 = 1,25 m; 0,23 × 2,222 = 0,51 m; 25% mais largo pelos dois pescoços, leitura da ficha"
+    },
+    {
+      "campo": "couraca",
+      "motivo": "Cobertura do corpo pela R49; metades arredondadas para cima. Absorção natural do livro (`combate.md`). Couraça: o \"couro calejado\" do site, como o couro grosso do gigante da colina (2) .; 2, couro calejado"
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": "site (visão no escuro)"
+    },
+    {
+      "campo": "ataques.Maça",
+      "motivo": "Arma Grande de 1 mão: 2d6 de base pelo porte, Força × 1 pela empunhadura. Empunha uma maça em cada mão e usa empunhadura dupla."
+    },
+    {
+      "campo": "corpo.massa",
+      "motivo": "1.094 kg pelo cubo da altura, com os ombros 25% mais largos para os dois pescoços; o site dizia 1,8 t (D-187). Na proporção humana, 875 kg"
+    },
+    {
+      "campo": "habilidades.prontidao",
+      "motivo": "3, a da nota do site; o campo dizia 1"
+    }
+  ]
+}

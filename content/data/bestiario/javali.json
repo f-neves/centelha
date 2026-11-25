@@ -1,0 +1,267 @@
+{
+  "id": "javali",
+  "idAntigo": "mon-javali",
+  "nome": "Javali",
+  "nomeIngles": "Boar",
+  "categoria": "animal",
+  "papel": "fera",
+  "ameaca": 2,
+  "centelha": 0,
+  "corpo": {
+    "postura": "quatro patas",
+    "apoio": "quadrupede",
+    "altura": 0.74,
+    "largura": 0.41,
+    "profundidade": null,
+    "comprimento": 2.04,
+    "comprimentoSemCauda": 1.55,
+    "caudaGrossa": false,
+    "massa": 87,
+    "area": 0.56,
+    "posturaDoTamanho": "de lado"
+  },
+  "couraca": 2,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 5,
+    "destreza": 2,
+    "vigor": 5,
+    "percepcao": 2,
+    "inteligencia": 1,
+    "raciocinio": 2,
+    "influencia": 3,
+    "perspicacia": 1,
+    "compostura": 1
+  },
+  "habilidades": {
+    "briga": 3,
+    "bloqueio": 1,
+    "esquiva": 2,
+    "atletismo": 2,
+    "furtividade": 0,
+    "integridade": 2,
+    "prontidao": 2,
+    "resistencia": 3,
+    "empatia": 0,
+    "sobrevivencia": 4
+  },
+  "habilidadesSec": {
+    "equilibrio": 0,
+    "escalada": 0,
+    "natacao": 2,
+    "voo": 0,
+    "corrida": 0,
+    "musculatura": 3
+  },
+  "especialidades": {
+    "prontidao": [
+      {
+        "foco": "faro",
+        "valor": 2,
+        "origem": "natural"
+      },
+      {
+        "foco": "audição",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ],
+    "sobrevivencia": [
+      {
+        "foco": "fuçar raiz e bolota",
+        "valor": 1,
+        "origem": "natural"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 1,
+    "conviccao": 1,
+    "temperanca": 1
+  },
+  "vontade": 5,
+  "aparencia": 6,
+  "deslocamento": {
+    "terra": {
+      "batalha": 6,
+      "arranque": 9,
+      "corrida": 12
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Presada (golpe de presa)",
+      "parte": "presa",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Ergue a cabeça e crava as presas de baixo para cima."
+    },
+    {
+      "nome": "Investida",
+      "parte": "corpo",
+      "classe": "pesada",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": "2d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "impacto",
+      "nivelPerfuracao": null,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Na ação de Investida, some a Força mais uma vez ao dano."
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "derrubar",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "regra": "derrubar",
+      "texto": "pelas pernas"
+    },
+    {
+      "nome": "investida",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Investida",
+      "categoria": "inato",
+      "regra": "investida"
+    },
+    {
+      "nome": "presas que sangram",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "quando a presa corta a vítima",
+      "duracao": "até estancar",
+      "alcance": "o do golpe",
+      "area": "a vítima ferida",
+      "efeito": "Aplica o Sangramento comum. A ferida não fecha sozinha. Para estancar, é preciso vencer um teste de Raciocínio + Cura. Estabilizar com o cuidado simples não basta",
+      "dano": "nenhum adicional",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "a cada ferida que provoca Sangramento, sem custo"
+    },
+    {
+      "nome": "teimosia",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "enquanto a condição se aplica",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Reduz em um degrau a penalidade de ferimento. Os PV seguem o dano recebido. Entre duas tolerâncias, use a maior",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    }
+  ],
+  "comoLuta": [],
+  "sentidos": [
+    {
+      "nome": "faro",
+      "descricao": "Prontidão (faro) +2 (Especialidade natural)",
+      "formas": "todas"
+    },
+    {
+      "nome": "audição",
+      "descricao": "Prontidão (audição) +2 (Especialidade natural)",
+      "formas": "todas"
+    },
+    {
+      "nome": "visão",
+      "descricao": "fraca, sem visão de cores; não reconhece uma pessoa parada a 10 a 15 m. Sem Especialidade",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "prendeRespiracao": "Nada bem e longe",
+    "mente": "animal",
+    "tracos": "escudo do ombro nos machos (camada subcutânea grossa, caráter sexual secundário; é o nível 2 de Couraça, ver Absorção e Variantes); salto de 140 a 150 cm"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "macho: solitário; fêmeas: bando (vara de 6 a 20 fêmeas aparentadas, às vezes mais de 100 animais)",
+    "atividade": "noturno ou crepuscular, conforme a estação e a temperatura",
+    "dieta": "onívoro",
+    "caca": "forrageio",
+    "dianteDeGente": "ataca"
+  },
+  "ecologia": {
+    "terreno": [
+      "floresta"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "O macho grande e sozinho ataca gente sem provocação, mais no inverno e de dia, e fere sobretudo pernas e pés. A vítima típica é um homem adulto sozinho a pé.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Pouco medroso apesar do tamanho, carrega com agressividade direta quando se sente encurralado."
+    },
+    {
+      "titulo": "Hábitos",
+      "texto": "Vive em grupos familiares e forrageia raízes, tubérculos e frutos caídos no solo da floresta."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "Comum nas florestas de Syl e nos campos cultivados de Calin, caçado tanto como praga agrícola quanto como prova de coragem entre jovens caçadores."
+    },
+    {
+      "titulo": "Veneno e doença",
+      "texto": "Doença no jogo (ao comer): Triquinose · Virulência 7 · dia · quem come a carne mal cozida rola uma vez"
+    }
+  ],
+  "imagens": [],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "corpo.altura",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 0,72 × 1,0338 = 0,744 . Antes: Era 0,78 m, o ponto médio de 0,75 a 0,80 m dos machos da Europa (Wikipédia). Como era medida do macho, escalada pelo cubo da massa: 0,78 × (78,75 ÷ 100)^(1/3) = 0,720"
+    },
+    {
+      "campo": "corpo.comprimento",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 1,97 × 1,0338 = 2,037 . Antes: ponto médio da espécie inteira, 1,53 a 2,40 m (ADW). Já é dos dois sexos juntos, e não do macho: não se escala"
+    },
+    {
+      "campo": "corpo.comprimentoSemCauda",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 1,50 × 1,0338 = 1,551 . Antes: o valor de `insumos-d132.json`, sem texto de estimativa; a faixa derivada da espécie inteira é 1,3 a 2,0 m (total menos cauda de 0,21 a 0,38, ADW). A cauda é fina e não conta (D-155). Não se escala: está dentro da faixa da espécie inteira, e não é medida do macho"
+    },
+    {
+      "campo": "corpo.largura",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 0,40 × 1,0338 = 0,414 . Antes: estimativa do Arquiteto, sem dizer de qual sexo; não se escala; 0,41 m na ficha atual. Base da revisão anterior: 0,40 m, estimada pelo Arquiteto, sem fonte; o Alvo sai da silhueta de lado (D-147, D-174)."
+    }
+  ]
+}

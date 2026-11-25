@@ -1,0 +1,425 @@
+{
+  "id": "babau",
+  "idAntigo": "mon-babau",
+  "nome": "Babau",
+  "nomeIngles": "Demon, Babau",
+  "categoria": "corruptor",
+  "papel": "elite",
+  "ameaca": 4,
+  "centelha": 4,
+  "corpo": {
+    "postura": "bípede, de pé, ereto",
+    "apoio": "bipede",
+    "altura": 1.8,
+    "largura": 0.45,
+    "profundidade": 0.23,
+    "comprimento": null,
+    "massa": 80,
+    "area": 0.72,
+    "posturaDoTamanho": "silhueta de frente, de pé"
+  },
+  "couraca": 2,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 6,
+    "destreza": 3,
+    "vigor": 6,
+    "percepcao": 3,
+    "inteligencia": 4,
+    "raciocinio": 4,
+    "influencia": 5,
+    "perspicacia": 4,
+    "compostura": 4
+  },
+  "habilidades": {
+    "briga": 5,
+    "armas": 4,
+    "bloqueio": 2,
+    "esquiva": 1,
+    "atletismo": 2,
+    "furtividade": 4,
+    "integridade": 4,
+    "prontidao": 1,
+    "resistencia": 3,
+    "empatia": 2,
+    "manha": 2,
+    "sociabilidade": 1,
+    "ocultismo": 2
+  },
+  "habilidadesSec": {
+    "intimidacao": 2,
+    "escalada": 2,
+    "musculatura": 2
+  },
+  "especialidades": {
+    "furtividade": [
+      {
+        "foco": "emboscada",
+        "valor": 2,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 5,
+    "compaixao": 1,
+    "conviccao": 5,
+    "temperanca": 4
+  },
+  "vontade": 9,
+  "aparencia": 1,
+  "deslocamento": {
+    "terra": {
+      "batalha": 3,
+      "arranque": 5,
+      "corrida": 7
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Lança",
+      "arma": "lanca",
+      "justificativa": "A arma do livro (`armas.json`, `lanca`): Haste média, duas mãos, Velocidade 6, Acerto +1, Defesa +2, Perfuração N1, alcance. Duas mãos: Força × 2 (`armas-e-armaduras.md`). A Centelha soma inteira. Jogada: Força 6 + Briga 5 + 2 × o menor entre Centelha 4 e Briga 5 (8)"
+    },
+    {
+      "nome": "Garras",
+      "parte": "mao-de-garras",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "corte",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "O \"Golpe planar\" do site (1 dado, corte): a garra que rasga com o braço e o corpo atrás, Média (`regra-construcao.md` §7). Duas por ação pela Rajada (Manobras). Jogada: Força 6 + Briga 5 + 2 × o menor entre Centelha 4 e Briga 5 (8)"
+    },
+    {
+      "nome": "Mordida",
+      "parte": "presas",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "\"Garras e presas\" (site): a mordida de boca cheia de dentes, com a cabeça atrás, Média. Jogada: Força 6 + Briga 5 + 2 × o menor entre Centelha 4 e Briga 5 (8)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Duas garras",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Garras",
+      "categoria": "inato",
+      "regra": "rajada",
+      "texto": "Até dois golpes por ação"
+    },
+    {
+      "nome": "Limo protetor",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contato da arma de metal com o limo",
+      "duracao": "até conserto",
+      "alcance": "contato",
+      "area": "a peça atingida",
+      "efeito": "a baba ácida da pele queima quem o acerta de perto A peça perde um grau de Integridade por exposição que vencer sua resistência: inteira, avariada, quebrada. O conserto recupera um grau por trabalho",
+      "dano": "1d6 de ácido em quem o acerta com golpe desarmado ou arma natural",
+      "resistencia": "a resistência da peça contra a exposição",
+      "limiteDeUso": "uma vez por golpe recebido. Sem custo"
+    },
+    {
+      "nome": "arma corroída",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contato da arma de metal com o limo",
+      "duracao": "até conserto",
+      "alcance": "contato",
+      "area": "a peça atingida",
+      "efeito": "A peça perde um grau de Integridade por exposição que vencer sua resistência: inteira, avariada, quebrada. O conserto recupera um grau por trabalho",
+      "dano": "nenhum",
+      "resistencia": "a resistência da peça contra a exposição",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "Ver o invisível",
+      "formas": "todas",
+      "classe": "livro",
+      "tecnica": {
+        "id": "visao-verdadeira",
+        "nivel": 4
+      },
+      "categoria": "inato"
+    },
+    {
+      "nome": "visão verdadeira sempre ativa",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "18 m",
+      "area": "o campo de visão",
+      "efeito": "Percebe disfarces, ilusões e seres invisíveis. Paredes bloqueiam a visão e a Furtividade comum continua válida",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "Escuridão",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "sobrenatural",
+      "ativacao": "uma ação, Velocidade 6",
+      "duracao": "até o fim da cena, ou até ele desfazer",
+      "alcance": "18 m",
+      "area": "esfera de 6 m",
+      "efeito": "uma escuridão que a luz comum não acende; quem está dentro fica Na escuridão, e o babau vê dentro dela",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "anular magia",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "protecao",
+        "nivel": 5,
+        "efeito": "dissipar"
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 7",
+      "duracao": "instantânea",
+      "alcance": "9 m",
+      "area": "um alvo",
+      "efeito": "Pelo Dissipar de Proteção 5, desfaz uma magia de até grau 5 e enfraquece uma de grau maior. Uma Salvaguarda que cubra o grau do poder absorve o efeito uma vez e se gasta",
+      "dano": "nenhum",
+      "resistencia": "Dificuldade igual ao maior grau investido × 5. Contra outro feiticeiro, compare o maior grau investido de cada lado",
+      "limiteDeUso": "1 uso grátis por cena. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "teleporte",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "conjuracao",
+        "nivel": 4,
+        "efeito": "fresta"
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 8",
+      "duracao": "instantânea",
+      "alcance": "36 m",
+      "area": "o próprio usuário",
+      "efeito": "Reaparece num ponto que vê ou conhece bem no mesmo plano, levando o que carrega. Pode sair de um agarrão. Outros viajantes só seguem dentro do limite declarado, voluntários e em contato",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "1 uso grátis por cena. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "imune a veneno",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "o veneno não pega no corpo de demônio. O ferimento do golpe continua",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "Contínuo, sem custo"
+    },
+    {
+      "nome": "pele coriácea",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "ao receber o golpe",
+      "duracao": "enquanto a condição se aplica",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Contra ferro abençoado ou arma do bem, aplique a Absorção inteira e cobre todo o dano restante. Contra as demais armas, reduza à metade o dano que passou pela Absorção",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "Multiataque",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "uma ação de Rajada",
+      "duracao": "uma ação",
+      "alcance": "o de cada parte",
+      "area": "os alvos da Rajada",
+      "efeito": "Golpeia nesta ordem: garra esquerda, garra direita, mordida. Cada golpe extra acumula −1d6 e conta para Guarda sob pressão. Não acumula com a Rajada comum",
+      "dano": "o de cada ataque que acertar",
+      "resistencia": "a Defesa de cada golpe",
+      "limiteDeUso": "até 3 golpes por ação, sem Energia. O uso repetido causa esforço e pode levar ao cansaço"
+    },
+    {
+      "nome": "Golpe na brecha",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "o primeiro golpe da ação que fere um alvo Surpreso ou Flanqueado",
+      "duracao": "instantânea",
+      "alcance": "o do golpe",
+      "area": "o alvo atingido",
+      "efeito": "Explora o ponto vital. Quem ignora dano extra de ponto vital ignora esse acréscimo",
+      "dano": "+1d6 no dano do golpe",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "uma vez por ação, sem custo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "assassino paciente",
+      "formas": "todas",
+      "texto": "espera em emboscada, abre a luta com a lança contra o alvo Surpreso e termina com garras e presas; deixa sempre uma marca sinistra na vítima e some pelo teleporte quando a luta vira."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão no escuro",
+      "descricao": "enxerga no escuro absoluto",
+      "formas": "todas"
+    },
+    {
+      "nome": "visão verdadeira",
+      "descricao": "Até 18 m, distingue disfarce, ilusão e invisibilidade. Paredes e Furtividade comum limitam a percepção. Sem custo",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "camuflagem": "nas sombras, com a Furtividade",
+    "mente": "inteligente, demoníaca, paciente",
+    "tracos": "demônio magro e escuro, de pele coriácea que escorre baba ácida, chifre curvo para trás e olhos fundos e brilhantes"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "sozinho",
+    "atividade": "qualquer hora; prefere a noite da emboscada",
+    "dieta": "carne",
+    "caca": "emboscada paciente",
+    "dianteDeGente": "mata por encomenda ou por prazer"
+  },
+  "ecologia": {
+    "terreno": [
+      "qualquer"
+    ],
+    "clima": [
+      "extraplanar"
+    ]
+  },
+  "descricao": "Assassino do Abismo, magro e coberto de baba ácida, capaz de esperar décadas em emboscada por uma única morte perfeita. Prefere abrir a luta com a lança comprida, mas gosta mesmo é de rasgar com garras e presas, e deixa sempre uma marca sinistra nas vítimas.",
+  "lore": [
+    {
+      "titulo": "Assassino do Abismo",
+      "texto": "Paciente e metódico, pode esperar décadas em emboscada por um único assassinato perfeito, deixando sempre uma assinatura sinistra em suas vítimas."
+    },
+    {
+      "titulo": "Lâmina Longa",
+      "texto": "Prefere lutar com lança comprida quando pode escolher a distância, mas encontra prazer verdadeiro em rasgar inimigos com garras e presas."
+    }
+  ],
+  "imagens": [
+    "bestiario/babau_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [
+      {
+        "tipo": "luz",
+        "formas": "todas"
+      },
+      {
+        "tipo": "sagrado",
+        "formas": "todas"
+      }
+    ],
+    "resistencias": [
+      {
+        "tipo": "fogo",
+        "formas": "todas"
+      },
+      {
+        "tipo": "gelo",
+        "formas": "todas"
+      },
+      {
+        "tipo": "acido",
+        "formas": "todas"
+      }
+    ],
+    "imunidades": [
+      {
+        "tipo": "raio",
+        "formas": "todas"
+      }
+    ]
+  },
+  "revisao": [
+    {
+      "campo": "habilidades.armas",
+      "motivo": "A lança comprida que ele prefere (site). O site não dava a Habilidade"
+    },
+    {
+      "campo": "habilidades.furtividade",
+      "motivo": "Assassino que espera em emboscada (site)"
+    },
+    {
+      "campo": "couraca",
+      "motivo": "Cobertura do corpo pela R49; metades arredondadas para cima. Absorção natural do livro (`combate.md`). Couraça 2: a pele coriácea que absorve parte do golpe (site), entre o cavalo (1) e o elefante (2 a 3) .; 2, pela pele coriácea; a redução de dano contra arma comum do site ficou sem regra ainda"
+    },
+    {
+      "campo": "habilidadesEspeciais.Escuridão",
+      "motivo": "R1 e D-197. Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. O limite preserva o primeiro uso e reserva repetição para esforço adicional. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "habilidadesEspeciais.anular magia",
+      "motivo": "R1 e D-197. 1 uso grátis por cena. Cada uso extra custa 1 de Energia. Um uso de abertura até a definição do efeito. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "habilidadesEspeciais.teleporte",
+      "motivo": "R1 e D-197. 1 uso grátis por cena. Cada uso extra custa 1 de Energia. Um uso de abertura até a definição do efeito. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "virtudes.temperanca",
+      "motivo": "4, e não o 1 do site, pelo assassino \"paciente e metódico\" do texto; a `compaixão` 0 do site sobe a 1, o piso da régua"
+    },
+    {
+      "campo": "equipamento",
+      "motivo": "a lança e a Habilidade Armas 4 entraram pelo texto do site, que não as tinha na ficha; sem a lança, ele luta com as garras"
+    },
+    {
+      "campo": "ataques",
+      "motivo": "o site gravava um \"Golpe planar\" de 1 dado e 5 Ticks, de corte. A D-241 levou a Pesado só o golpe de cinco planares; aqui a classe sai do gesto: as garras e a mordida ficam Médias (o golpe com o corpo atrás), e a Lança é a do livro"
+    }
+  ]
+}

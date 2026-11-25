@@ -1,0 +1,240 @@
+{
+  "id": "guepardo",
+  "idAntigo": "mon-cheetah",
+  "nome": "Guepardo",
+  "nomeIngles": "Cheetah",
+  "categoria": "animal",
+  "papel": "fera",
+  "ameaca": 2,
+  "centelha": 0,
+  "corpo": {
+    "postura": "quatro patas",
+    "apoio": "quadrupede",
+    "altura": 0.79,
+    "largura": 0.31,
+    "profundidade": null,
+    "comprimento": 2.05,
+    "comprimentoSemCauda": 1.31,
+    "caudaGrossa": false,
+    "massa": 58,
+    "area": 0.4,
+    "posturaDoTamanho": "de lado"
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 3,
+    "destreza": 5,
+    "vigor": 3,
+    "percepcao": 3,
+    "inteligencia": 1,
+    "raciocinio": 3,
+    "influencia": 1,
+    "perspicacia": 1,
+    "compostura": 1
+  },
+  "habilidades": {
+    "briga": 3,
+    "bloqueio": 0,
+    "esquiva": 4,
+    "atletismo": 4,
+    "furtividade": 3,
+    "integridade": 1,
+    "prontidao": 3,
+    "resistencia": 3,
+    "empatia": 0,
+    "sobrevivencia": 2
+  },
+  "habilidadesSec": {
+    "equilibrio": 0,
+    "escalada": 1,
+    "natacao": 0,
+    "voo": 0,
+    "corrida": 6,
+    "musculatura": 0
+  },
+  "especialidades": {
+    "briga": [
+      {
+        "foco": "derrubar a presa em corrida",
+        "valor": 1,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 1,
+    "compaixao": 1,
+    "conviccao": 1,
+    "temperanca": 1
+  },
+  "vontade": 3,
+  "aparencia": 7,
+  "deslocamento": {
+    "terra": {
+      "batalha": 9,
+      "arranque": 15,
+      "corrida": 26
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Mordida",
+      "parte": "mordida",
+      "classe": "leve",
+      "pgr": [
+        1,
+        1,
+        3
+      ],
+      "dado": "1d6-2",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 1,
+      "bloqueiaComoArma": null,
+      "justificativa": "Fecha os caninos em torno da garganta da presa."
+    },
+    {
+      "nome": "Patada com o ergot",
+      "parte": "garra",
+      "classe": "leve",
+      "pgr": [
+        1,
+        1,
+        3
+      ],
+      "dado": "1d6-2",
+      "multiplicadorForca": 1,
+      "tipoDano": "corte",
+      "nivelPerfuracao": null,
+      "acerto": 1,
+      "bloqueiaComoArma": null,
+      "justificativa": "A unha curva do polegar ajuda a derrubar a presa em corrida."
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "derrubar",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "regra": "derrubar",
+      "texto": "a pata na perna da presa em corrida"
+    },
+    {
+      "nome": "agarrar",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "regra": "agarrar",
+      "texto": "na garganta"
+    },
+    {
+      "nome": "arrastar",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "ataque": "Mordida",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "enquanto a condição se aplica",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Ao manter o agarrão, desloca-se com a presa a metade da Batalha, até o peso que arrasta. O movimento integra a manutenção",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "disparada",
+      "formas": "todas",
+      "texto": "uma vez por caça, a arrancada mais rápida de todas (a Corrida do Desloc.)."
+    },
+    {
+      "nome": "camuflagem no capim",
+      "formas": "todas",
+      "texto": "esconde-se no capim alto antes de atacar (Furtividade)."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão",
+      "descricao": "texto, sem Especialidade. Vê a presa a 70 a 100 m e fêmeas se observam a até 2 km (ADW); acuidade sem número",
+      "formas": "todas"
+    },
+    {
+      "nome": "faro",
+      "descricao": "passagens nasais grandes em comparação com outros felinos (ADW); sem Especialidade",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "camuflagem": "savana e campo aberto (pelo malhado, ADW; o filhote tem crina cinza no dorso que parece servir de camuflagem)",
+    "mente": "animal",
+    "tracos": "garras não retráteis, curtas e rombudas, que servem de cravo para tração (ADW; Wilson et al. 2013); fôlego curto: a velocidade máxima dura 1 a 2 s, e a corrida média é de 173 m (Wilson et al. 2013)"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitário",
+    "atividade": "catemeral",
+    "dieta": "carnívoro",
+    "caca": "perseguição"
+  },
+  "ecologia": {
+    "terreno": [
+      "planície"
+    ],
+    "clima": [
+      "tropical"
+    ]
+  },
+  "descricao": "Espreita de perto e dispara numa arrancada de poucos segundos; se não pega, desiste. Cede a presa a qualquer predador maior que chegue.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Predador veloz e mortal, capaz de se mover com uma rapidez incrível que lhe permite alcançar presas desavisadas a centenas de passos de distância."
+    },
+    {
+      "titulo": "Caçada",
+      "texto": "Evita áreas de mata fechada e emaranhada, preferindo campos abertos, mas é mestre em se esconder entre o capim alto antes de atacar."
+    }
+  ],
+  "imagens": [
+    "bestiario/guepardo_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "corpo.altura",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 0,77 × 1,0305 = 0,793 . Antes: cerca de 77 cm (Smithsonian; faixa 0,63 a 0,94); ADW: 0,67 a 0,94"
+    },
+    {
+      "campo": "corpo.comprimento",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 1,99 × 1,0305 = 2,051 . Antes: o corpo mais a cauda de 0,60 a 0,84 m (ponto médio 0,72)"
+    },
+    {
+      "campo": "corpo.comprimentoSemCauda",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 1,27 × 1,0305 = 1,309 . Antes: ponto médio de 1,12 a 1,42 m (Smithsonian); ADW: 1,12 a 1,50; San Diego Zoo: 1,0 a 1,4. A cauda é fina e não conta (D-155)"
+    },
+    {
+      "campo": "corpo.largura",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 0,30 × 1,0305 = 0,309 . Antes: estimativa do Arquiteto; 0,31 m na ficha atual. Base da revisão anterior: 0,30 m, estimada pelo Arquiteto, sem fonte; o comprimento total de 1,99 m soma o corpo e o ponto médio da cauda (D-174)"
+    }
+  ]
+}

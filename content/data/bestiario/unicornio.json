@@ -1,0 +1,325 @@
+{
+  "id": "unicornio",
+  "idAntigo": "mon-unicornio",
+  "nome": "Unicórnio",
+  "nomeIngles": "Unicorn",
+  "categoria": "besta-magica",
+  "papel": "fera",
+  "ameaca": 3,
+  "centelha": 4,
+  "corpo": {
+    "postura": "quatro patas",
+    "apoio": "quadrupede",
+    "altura": 1.7,
+    "largura": 0.61,
+    "profundidade": null,
+    "comprimento": 2.67,
+    "massa": 550,
+    "area": 2.22,
+    "posturaDoTamanho": "silhueta vista de lado"
+  },
+  "couraca": 1,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 7,
+    "destreza": 5,
+    "vigor": 6,
+    "percepcao": 6,
+    "inteligencia": 2,
+    "raciocinio": 5,
+    "influencia": 7,
+    "perspicacia": 5,
+    "compostura": 7
+  },
+  "habilidades": {
+    "briga": 4,
+    "bloqueio": 1,
+    "esquiva": 1,
+    "atletismo": 3,
+    "furtividade": 1,
+    "integridade": 7,
+    "prontidao": 3,
+    "resistencia": 3,
+    "empatia": 4,
+    "sociabilidade": 0,
+    "sobrevivencia": 4
+  },
+  "habilidadesSec": {
+    "cura": 2,
+    "musculatura": 2
+  },
+  "especialidades": {
+    "prontidao": [
+      {
+        "foco": "sentidos aguçados",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 3,
+    "conviccao": 3,
+    "temperanca": 2
+  },
+  "vontade": 9,
+  "aparencia": 10,
+  "deslocamento": {
+    "terra": {
+      "batalha": 6,
+      "arranque": 10,
+      "corrida": 14
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Chifre",
+      "parte": "chifre",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 1,
+      "acerto": 0,
+      "bloqueiaComoArma": 1,
+      "justificativa": "O chifre em espiral com o pescoço atrás: Média, como a chifrada do auroque; bloqueia como arma (D-100). Jogada: Força 7 + Briga 4 + 2 × o menor entre Centelha 4 e Briga 4 (8)"
+    },
+    {
+      "nome": "Coice",
+      "parte": "casco",
+      "classe": "pesada",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": "2d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "impacto",
+      "nivelPerfuracao": null,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "O coice com o corpo virado, Pesada, como o coice do cavalo do molde; Força × 1, golpe de membro (`regra-construcao.md` §7). Jogada: Força 7 + Briga 4 + 2 × o menor entre Centelha 4 e Briga 4 (8)"
+    },
+    {
+      "nome": "Chifre em investida",
+      "parte": "chifre-e-corpo",
+      "classe": "pesada",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": "2d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 1,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Golpe Pesado, com Força × 1 no golpe comum (D-266); na ação de Investida, soma mais uma Força, sem +1d6 (P20-b). Jogada: Força 7 + Briga 4 + 2 × o menor entre Centelha 4 e Briga 4 (8)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "chifre perfurante",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Chifre em investida",
+      "categoria": "inato",
+      "regra": "investida",
+      "texto": "só depois de correr ao menos 6 m em linha reta"
+    },
+    {
+      "nome": "Toque curativo do chifre",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "cura",
+        "nivel": 3
+      },
+      "categoria": "sobrenatural",
+      "ativacao": "uma ação, Velocidade 5, tocando o ferido com o chifre",
+      "duracao": "instantânea",
+      "alcance": "toque",
+      "area": "um alvo",
+      "efeito": "fecha feridas e tira do corpo um veneno ou uma doença; ou desfaz uma condição de corpo (Envenenado, Doente, Sangrando)",
+      "dano": "nenhum; cura 3d6 PV",
+      "resistencia": "nenhum",
+      "limiteDeUso": "1 uso grátis por cena, sem repetir o alvo. Repetir o alvo ou fazer outro uso custa 1 de Energia"
+    },
+    {
+      "nome": "Passo de luz",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "conjuracao",
+        "nivel": 3,
+        "efeito": "fresta"
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 8",
+      "duracao": "instantânea",
+      "alcance": "até 12 m, a um lugar que ele vê",
+      "area": "o próprio corpo",
+      "efeito": "Reaparece num ponto que vê ou conhece bem no mesmo plano, levando o que carrega. Pode sair de um agarrão. Outros viajantes só seguem dentro do limite declarado, voluntários e em contato",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "1 uso grátis por cena. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "Presença pura",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "nenhuma, está sempre ligada",
+      "duracao": "contínua",
+      "alcance": "3 m",
+      "area": "esfera de 3 m em volta dele",
+      "efeito": "a criatura de má índole que falha não consegue chegar mais perto dele por vontade própria",
+      "dano": "nenhum",
+      "resistencia": "Influência + Empatia da criatura contra a Defesa Mental do alvo, com o Resistir do livro. quem passa se aproxima normalmente pela cena",
+      "limiteDeUso": "à vontade. Sem custo"
+    },
+    {
+      "nome": "Imunidade",
+      "formas": "todas",
+      "classe": "livro",
+      "tecnica": {
+        "id": "imunidade",
+        "nivel": 4
+      },
+      "categoria": "inato"
+    },
+    {
+      "nome": "imune a veneno e encanto",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Ignora veneno e domínio por encantamento. O ferimento do golpe continua. Dano físico de Arte e conversa comum seguem as regras normais",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "Contínuo, sem custo"
+    },
+    {
+      "nome": "Multiataque",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "uma ação de Rajada",
+      "duracao": "uma ação",
+      "alcance": "o de cada parte",
+      "area": "os alvos da Rajada",
+      "efeito": "Golpeia nesta ordem: chifre, casco esquerdo, casco direito. Cada golpe extra acumula −1d6 e conta para Guarda sob pressão. Não acumula com a Rajada comum",
+      "dano": "o de cada ataque que acertar",
+      "resistencia": "a Defesa de cada golpe",
+      "limiteDeUso": "até 3 golpes por ação, sem Energia. O uso repetido causa esforço e pode levar ao cansaço"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "guardião da floresta",
+      "formas": "todas",
+      "texto": "foge ao primeiro sinal de corrupção ou mentira, mas defende com fúria quem está sob seu cuidado: corre, chifra e some num passo de luz."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "sentidos aguçados",
+      "descricao": "Prontidão +2",
+      "formas": "todas"
+    },
+    {
+      "nome": "julga o coração",
+      "descricao": "lê a intenção de quem se aproxima pela Empatia",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "prendeRespiracao": "não",
+    "camuflagem": "nenhuma; o branco brilha na mata",
+    "mente": "inteligente; entende a fala",
+    "tracos": "cavalo branco de 1,7 m de cernelha, crina longa e um chifre em espiral na testa"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitário",
+    "atividade": "qualquer hora",
+    "dieta": "herbívoro: ervas raras e água de nascente pura",
+    "caca": "pasta nas clareiras",
+    "dianteDeGente": "foge da corrupção e da mentira; protege quem está sob seu cuidado"
+  },
+  "ecologia": {
+    "terreno": [
+      "floresta"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Cavalo branco de um chifre que guarda sozinho as florestas intocadas e foge ao mínimo sinal de corrupção ou mentira. Defende com fúria quem está sob seu cuidado, e o toque do chifre purifica o veneno e cura a doença.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Guarda sozinho florestas intocadas, fugindo ao mínimo sinal de corrupção ou mentira, mas defende com fúria total quem estiver sob seu cuidado."
+    },
+    {
+      "titulo": "Ecologia",
+      "texto": "Alimenta-se de ervas raras e água de nascentes puras; seu chifre, ao toque, purifica veneno e cura doença."
+    },
+    {
+      "titulo": "Personalidade",
+      "texto": "Sereno e incorruptível, julga o coração de quem se aproxima antes de qualquer palavra ser dita."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "Encarna a pureza rara de uma Centelha alta; em Syl é quase reverenciado como um kami, e para as igrejas supressoras de Calin é uma prova incômoda de que nem toda magia é ameaça, prova que muitas vezes preferem esconder do povo."
+    }
+  ],
+  "imagens": [
+    "bestiario/unicornio_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "atributos.forca",
+      "motivo": "Degrau 7: For 18 no Pathfinder. Teste de ordem: igual ao cavalo do molde (7, 500 kg), que é mais leve, como o pesadelo (7, 800 kg, também For 18). O site tinha 6; 6 para 7, pelo teste de ordem com o cavalo do molde (7 com 500 kg), como o pesadelo"
+    },
+    {
+      "campo": "habilidadesEspeciais.Toque curativo do chifre",
+      "motivo": "R1 e D-197. 1 uso grátis por cena, sem repetir o alvo. Repetir o alvo ou fazer outro uso custa 1 de Energia. O limite preserva o primeiro uso e reserva repetição para esforço adicional. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Passo de luz",
+      "motivo": "R1 e D-197. Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação uma ação, Velocidade 6 -> uma ação, Velocidade 5. O efeito sai no Tick do Golpe. Pela régua da Arte de base. valor de molde, para a bancada (uso extra de 1 de Energia).; o \"teleporte\" do site, poder natural com base Conjuração 3 (Passo Brusco, o teletransporte curto do livro); o site dava a Arte Conjuração 2, que não teleporta"
+    },
+    {
+      "campo": "ataques",
+      "motivo": "o site gravava um ataque só, \"Garras e presas\" (`inimigos.json`: \"2d6 +10 perfurante\", 6 Ticks, dano médio 17). O unicórnio não tem garra: a ficha usa o chifre, o coice e o chifre em investida do site. Dano médio: 17 antes; depois, chifre 14,5, coice 18,0, chifre em investida 25,0 (só depois de 6 m de corrida)"
+    }
+  ]
+}

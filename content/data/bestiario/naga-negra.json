@@ -1,0 +1,305 @@
+{
+  "id": "naga-negra",
+  "idAntigo": "mon-dark-naga",
+  "nome": "Naga Negra",
+  "nomeIngles": "Dark Naga",
+  "categoria": "aberracao",
+  "papel": "chefe",
+  "ameaca": 5,
+  "centelha": 4,
+  "corpo": {
+    "postura": "serpente; luta erguida",
+    "apoio": "outro",
+    "altura": 0.28,
+    "largura": 0.28,
+    "profundidade": null,
+    "comprimento": 3.6,
+    "massa": 136,
+    "area": 0.76,
+    "posturaDoTamanho": "erguida",
+    "segundoTamanho": {
+      "area": 0.27,
+      "posturaDoTamanho": "enrolada"
+    }
+  },
+  "couraca": 1,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 5,
+    "destreza": 6,
+    "vigor": 6,
+    "percepcao": 4,
+    "inteligencia": 5,
+    "raciocinio": 5,
+    "influencia": 5,
+    "perspicacia": 5,
+    "compostura": 5
+  },
+  "habilidades": {
+    "briga": 5,
+    "bloqueio": 0,
+    "esquiva": 2,
+    "atletismo": 1,
+    "furtividade": 2,
+    "prontidao": 2,
+    "integridade": 5,
+    "ocultismo": 3,
+    "empatia": 3,
+    "persuasao": 3,
+    "sociabilidade": 2
+  },
+  "habilidadesSec": {
+    "labia": 3,
+    "acerto-arcano": 4,
+    "musculatura": 1
+  },
+  "especialidades": {
+    "persuasao": [
+      {
+        "foco": "com o que leu na mente",
+        "valor": 1,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 4,
+    "compaixao": 1,
+    "conviccao": 3,
+    "temperanca": 1
+  },
+  "vontade": 9,
+  "aparencia": 4,
+  "deslocamento": {
+    "terra": {
+      "batalha": 4,
+      "arranque": 6,
+      "corrida": 9
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {
+    "raio": 4,
+    "forcas": 3,
+    "fascinacao": 3
+  },
+  "ataques": [
+    {
+      "nome": "Ferrão",
+      "parte": "ferrao-da-cauda",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "O site dava \"Garras e presas\" de 2 dados e 6 Ticks, perfurante, e o \"Ferrão peçonhento\" nas habilidades: a cauda chicoteia com o corpo atrás, Média (`regra-construcao.md` §7), com os 6 Ticks do site. Passa o veneno (Veneno e doença). Jogada: Destreza 6 + Briga 5 + 2 × o menor entre Centelha 4 e Briga 5 (8)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Posturas de combate",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Médio: erguida. Pequeno: enrolada. Vale o Tamanho da postura atual. Cada troca entre essas posturas custa 1 Tick e vale até ser desfeita",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "Ferrão peçonhento",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "ataque": "Ferrão",
+      "categoria": "substancia",
+      "ativacao": "Ferrão ao causar ao menos 1 PV depois da Absorção",
+      "duracao": "até o fim do efeito do veneno",
+      "alcance": "toque",
+      "area": "um alvo",
+      "efeito": "Peçonha de naga. Aplicar os parâmetros de Veneno e doença",
+      "dano": "apenas o pool do veneno",
+      "resistencia": "Vigor + Resistência pelo relógio do veneno",
+      "limiteDeUso": "O corpo guarda 3 doses e produz 1 dose em 4 horas. Cada uso gasta 1 dose"
+    },
+    {
+      "nome": "Leitura de pensamentos",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "adivinhacao",
+        "nivel": 2
+      },
+      "categoria": "inato",
+      "ativacao": "nenhuma; sempre ativa",
+      "duracao": "permanente",
+      "alcance": "18 m",
+      "area": "quem ela escolher ao alcance",
+      "efeito": "ouve os pensamentos de superfície do alvo: o que ele pensa agora, não as lembranças",
+      "dano": "nenhum",
+      "resistencia": "Perspicácia 5 + Empatia 3 + 2 × o menor entre Centelha 4 e Empatia 3 (6) = 14 mais a rolagem da criatura contra a Defesa Mental do alvo, com o Resistir do livro. quem passa fica fechado para ela até o fim da cena, e a mente protegida por Arte não se lê",
+      "limiteDeUso": "um alvo por vez. Sem custo"
+    },
+    {
+      "nome": "Mente blindada",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "nenhuma; sempre ativa",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "não se aplica",
+      "efeito": "soma +2 na Defesa Mental contra encanto e domínio",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "nenhum. Sem custo"
+    },
+    {
+      "nome": "Imune a leitura da mente",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Ignora leitura de mente. Outras influências mentais encontram a Defesa Mental normal. Dano físico de Arte e conversa comum seguem as regras normais",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "Contínuo, sem custo"
+    },
+    {
+      "nome": "Imune a veneno",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "nenhum veneno a afeta. O ferimento do golpe continua",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "Contínuo, sem custo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "língua bifurcada",
+      "formas": "todas",
+      "texto": "lê o que o outro pensa, mente com o que leu e encanta quem pode servir; quem resiste leva a Corrente e o ferrão. Odeia as outras nagas."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "sentidos",
+      "descricao": "leitura de pensamentos (Manobras); visão e audição de uma serpente grande",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "prendeRespiracao": "a de uma serpente grande",
+    "camuflagem": "no escuro das ruínas",
+    "mente": "inteligente, cobiçosa, mentirosa",
+    "tracos": "serpente de escamas negras e brilhantes, cabeça de traços humanos, ferrão curvo na ponta da cauda"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "sozinha; odeia as da própria espécie",
+    "atividade": "qualquer hora",
+    "dieta": "carnívora",
+    "caca": "atrás de tesouros e joias mórbidas",
+    "dianteDeGente": "manipula quem não subjuga; destrói quem resiste"
+  },
+  "ecologia": {
+    "terreno": [
+      "subterrâneo",
+      "ruínas"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Serpente de escamas negras e brilhantes que desliza por ruínas atrás de tesouros e joias mórbidas. Lê os pensamentos de quem está perto, manipula com mentiras quem não consegue subjugar e destrói com veneno e raios quem resiste.",
+  "lore": [
+    {
+      "titulo": "Serpente cobiçosa",
+      "texto": "De escamas negras e brilhantes, desliza por terras esquecidas e ruínas abandonadas atrás de tesouros e joias mórbidas."
+    },
+    {
+      "titulo": "Língua bifurcada, só mentiras",
+      "texto": "Manipula quem não consegue subjugar, e destrói com veneno e magia quem resiste; odeia sobretudo as de sua própria espécie."
+    },
+    {
+      "titulo": "Veneno e doença",
+      "texto": "Veneno no jogo: Peçonha de naga · Potência 16 · 1 Tick (sangue) · a cada 1 minuto · pool 4 (Vigor) · Desgaste 1 · pelo Ferrão. Os números do \"Ferrão de gigante\" dos moldes, com o Vigor do site; o mesmo veneno das outras nagas do lote."
+    }
+  ],
+  "imagens": [],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "habilidadesSec.musculatura",
+      "motivo": ""
+    },
+    {
+      "campo": "corpo.altura",
+      "motivo": "O diâmetro que dá a massa do site (linha Massa). Erguida, levanta um terço do corpo"
+    },
+    {
+      "campo": "aparencia",
+      "motivo": "Degrau 4. O site tinha 1; a Aparência mede a beleza (D-205), e o site descreve \"escamas negras e brilhantes\". As Aberrações do site vieram todas com 1, valor de importação; 4; o site tinha 1 (D-205)"
+    },
+    {
+      "campo": "couraca",
+      "motivo": "Cobertura do corpo pela R49; metades arredondadas para cima. Absorção natural do livro (`combate.md`). Escamas de serpente ;; nível 1"
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": ""
+    },
+    {
+      "campo": "comportamento.dieta",
+      "motivo": ""
+    },
+    {
+      "campo": "habilidadesEspeciais",
+      "motivo": "Antes: Potência 16, pool 4 de Vigor  O pool atinge Vigor. Aplica-se o desfecho letal do veneno."
+    },
+    {
+      "campo": "artes",
+      "motivo": "Raio 4, Forças 3 e Fascinação 3, escolhidas pelo texto; o site não grava Arte"
+    },
+    {
+      "campo": "virtudes.temperanca",
+      "motivo": "1; o site tinha 2"
+    },
+    {
+      "campo": "ataques",
+      "motivo": "Ferrão Médio no lugar das \"Garras e presas\""
+    }
+  ]
+}

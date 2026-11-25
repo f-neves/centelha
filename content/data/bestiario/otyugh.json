@@ -1,0 +1,296 @@
+{
+  "id": "otyugh",
+  "idAntigo": "mon-otyugh",
+  "nome": "Otyugh",
+  "nomeIngles": "Otyugh",
+  "categoria": "aberracao",
+  "papel": "soldado",
+  "ameaca": 3,
+  "centelha": 2,
+  "corpo": {
+    "postura": "de pé sobre três pernas",
+    "apoio": "bipede",
+    "altura": 2.4,
+    "largura": 1.2,
+    "profundidade": null,
+    "comprimento": null,
+    "massa": 500,
+    "area": 1.87,
+    "posturaDoTamanho": "de frente, tentáculos erguidos"
+  },
+  "couraca": 2,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 6,
+    "destreza": 2,
+    "vigor": 4,
+    "percepcao": 3,
+    "inteligencia": 1,
+    "raciocinio": 2,
+    "influencia": 1,
+    "perspicacia": 1,
+    "compostura": 2
+  },
+  "habilidades": {
+    "briga": 4,
+    "bloqueio": 1,
+    "esquiva": 0,
+    "atletismo": 1,
+    "furtividade": 1,
+    "prontidao": 1,
+    "resistencia": 4,
+    "integridade": 2,
+    "sobrevivencia": 2
+  },
+  "habilidadesSec": {
+    "musculatura": 2
+  },
+  "especialidades": {
+    "briga": [
+      {
+        "foco": "Agarrão",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ],
+    "furtividade": [
+      {
+        "foco": "enterrado no próprio lixo",
+        "valor": 3,
+        "origem": "natural"
+      }
+    ],
+    "prontidao": [
+      {
+        "foco": "faro",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ],
+    "resistencia": [
+      {
+        "foco": "doenças",
+        "valor": 3,
+        "origem": "natural"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 1,
+    "conviccao": 3,
+    "temperanca": 1
+  },
+  "vontade": 7,
+  "aparencia": 1,
+  "deslocamento": {
+    "terra": {
+      "batalha": 2,
+      "arranque": 3,
+      "corrida": 5
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Mordida",
+      "parte": "boca-larga-de-dentes",
+      "classe": "pesada",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": "2d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 1,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "O site dava 2 dados e 6 Ticks; o golpe de 2 dados é o Pesado da tabela (regra-construcao §7), a boca que fecha e torce, com Velocidade 7. Golpe de boca: Força × 1. N1 pela boca de um corpo de 500 kg (proposta da regra-construcao). A Centelha soma inteira. Jogada: Força 6 + Briga 4 + 2 × o menor entre Centelha 2 e Briga 4 (4)"
+    },
+    {
+      "nome": "Tentáculo",
+      "parte": "tentaculo-de-ponta-dura",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "impacto",
+      "nivelPerfuracao": null,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "O golpe de chicote que pede o corpo atrás (Média), com os 6 Ticks do site; alcança 4,5 m (site). Prende quem acerta (Manobras). Jogada: Força 6 + Briga 4 + 2 × o menor entre Centelha 2 e Briga 4 (4)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Tentáculos que agarram",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "ataque": "Tentáculo",
+      "categoria": "inato",
+      "ativacao": "o Tentáculo que acerta, se ele quiser",
+      "duracao": "até o alvo se soltar ou ele soltar",
+      "alcance": "4,5 m",
+      "area": "um alvo por tentáculo",
+      "efeito": "Se o golpe causar ao menos 1 PV depois da Absorção, resolve Agarrar normalmente, com as travas de massa e sem uma ação separada. Manutenção e saída seguem o agarrão do livro",
+      "dano": "o do Tentáculo",
+      "resistencia": "pela manobra Agarrar",
+      "limiteDeUso": "dois alvos agarrados, um em cada tentáculo. Sem custo"
+    },
+    {
+      "nome": "Esmagar",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "ataque": "Tentáculo",
+      "categoria": "inato",
+      "ativacao": "a cada 6 Ticks em que mantém o agarrão",
+      "duracao": "enquanto agarra",
+      "alcance": "4,5 m",
+      "area": "quem está agarrado",
+      "efeito": "aperta e esmaga sem nova jogada de ataque",
+      "dano": "1d6 + Força, Impacto",
+      "resistencia": "nenhum; quem se solta para de sofrer",
+      "limiteDeUso": "um por alvo agarrado. Sem custo"
+    },
+    {
+      "nome": "Mordida contaminada",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "ataque": "Mordida",
+      "categoria": "inato",
+      "ativacao": "a Mordida que fere (1 de dano ou mais depois da Absorção)",
+      "duracao": "a da doença",
+      "alcance": "o do corpo a corpo",
+      "area": "um alvo",
+      "efeito": "passa a febre do lixo (Veneno e doença)",
+      "dano": "nenhum além da Mordida",
+      "resistencia": "corpo, pela jogada da doença",
+      "limiteDeUso": "uma jogada de doença por Mordida que fere. Sem custo"
+    },
+    {
+      "nome": "Imune a doenças",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "doença não pega nele. Pode carregar o agente e expor outros, a critério do Mestre",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "Contínuo, sem custo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "fossa guardada",
+      "formas": "todas",
+      "texto": "espera enterrado no lixo do covil, agarra quem chega com os tentáculos, puxa para a boca e morde; não sai de perto do covil e aceita trégua de quem traz comida."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão no escuro",
+      "descricao": "enxerga no escuro como de dia",
+      "formas": "todas"
+    },
+    {
+      "nome": "faro",
+      "descricao": "localiza presa e imundície pelo cheiro; Prontidão (faro) +2",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "camuflagem": "some no próprio lixo; Furtividade (enterrado no próprio lixo) +3",
+    "mente": "simples; guarda o covil e faz acordo com quem o alimenta",
+    "tracos": "corpo redondo de couro rugoso coberto de crosta de lodo, três pernas curtas, talo com os olhos, dois tentáculos de ponta dura e uma boca larga cheia de dentes"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "sozinho",
+    "atividade": "qualquer hora",
+    "dieta": "dejetos, carniça e carne crua",
+    "caca": "come o lixo do covil; agarra quem chega perto",
+    "dianteDeGente": "ataca o intruso; deixa em paz quem traz comida"
+  },
+  "ecologia": {
+    "terreno": [
+      "subterrâneo",
+      "pântano",
+      "urbano"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Massa redonda sobre três pernas que vive enterrada no lixo de fossas e esgotos. Agarra com dois tentáculos longos, puxa para a boca e passa uma febre imunda pela mordida; quem o alimenta pode ganhar um guardião.",
+  "lore": [
+    {
+      "titulo": "Devoradora de imundície",
+      "texto": "Vive em cloacas, fossas e pântanos tóxicos; quanto mais imundo o lugar, mais atrai a criatura para se instalar."
+    },
+    {
+      "titulo": "Aliança de conveniência",
+      "texto": "Certos povos subterrâneos alimentam otyughs com refugo e carne crua em troca de que a criatura os deixe em paz, às vezes até agindo como guardiã."
+    },
+    {
+      "titulo": "Veneno e doença",
+      "texto": "Doença no jogo: Febre do lixo · Virulência 10 · dia · pela Mordida que fere: o alvo rola uma vez, Vigor + Resistência contra a Virulência; na falha, começa em Incubação"
+    }
+  ],
+  "imagens": [
+    "bestiario/otyugh_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "habilidades.bloqueio",
+      "motivo": "Os tentáculos desviam o golpe às vezes: \"«Quase não bloqueia» é 1, e não 0\" (D-110); 1, pelos tentáculos; o site não gravava Bloqueio"
+    },
+    {
+      "campo": "corpo.area",
+      "motivo": "Corpo, elipse de 1,2 × 1,0 m = 0,94 m²; duas pernas à vista, 0,7 × 0,2 m cada = 0,28 m²; dois tentáculos erguidos, 2,0 m à vista com 0,15 m de grossura média = 0,60 m²; talo dos olhos, 0,6 × 0,08 m = 0,05 m²  nas medidas das partes; 1,87 m² com os tentáculos erguidos; as medidas das partes são estimadas, e sem os tentáculos ele seria Médio"
+    },
+    {
+      "campo": "couraca",
+      "motivo": "Cobertura do corpo pela R49; metades arredondadas para cima. Absorção natural do livro (`combate.md`). Couro grosso e rugoso, coberto de crosta de lodo seco: entre o porco com escudo e o búfalo da escala (tamanho-decisoes-5, item 2); nível 2 pelo couro rugoso"
+    },
+    {
+      "campo": "comportamento.social",
+      "motivo": "site"
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": "site"
+    },
+    {
+      "campo": "ataques",
+      "motivo": "Mordida Pesada e Tentáculo Médio no lugar das \"Garras e presas\" de 2 dados e 6 Ticks"
+    },
+    {
+      "campo": "habilidadesEspeciais",
+      "motivo": "Virulência 10, a da febre dos pântanos do livro; o site dizia que a febre \"drena Vigor\", e no livro a doença anda por estágios e Desgaste"
+    }
+  ]
+}

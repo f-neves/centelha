@@ -1,0 +1,209 @@
+{
+  "id": "duelista",
+  "nome": "Duelista",
+  "nomeIngles": "Duelist",
+  "categoria": "humanoide",
+  "papel": "elite",
+  "ameaca": 4,
+  "centelha": 3,
+  "corpo": {
+    "postura": "bípede, de pé",
+    "apoio": "bipede",
+    "altura": 1.75,
+    "largura": 0.43,
+    "profundidade": 0.22,
+    "comprimento": null,
+    "massa": 70,
+    "area": 0.67,
+    "posturaDoTamanho": "de frente"
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 3,
+    "destreza": 5,
+    "vigor": 3,
+    "percepcao": 2,
+    "inteligencia": 2,
+    "raciocinio": 2,
+    "influencia": 2,
+    "perspicacia": 2,
+    "compostura": 2
+  },
+  "habilidades": {
+    "armas": 5,
+    "esquiva": 4,
+    "prontidao": 4,
+    "integridade": 5,
+    "bloqueio": 4,
+    "briga": 1,
+    "atletismo": 3
+  },
+  "habilidadesSec": {
+    "etiqueta": 2,
+    "musculatura": 0
+  },
+  "especialidades": {
+    "armas": [
+      {
+        "foco": "duelo",
+        "valor": 2,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 2,
+    "conviccao": 4,
+    "temperanca": 2
+  },
+  "vontade": 6,
+  "aparencia": 4,
+  "deslocamento": {
+    "terra": {
+      "batalha": 3,
+      "arranque": 5,
+      "corrida": 7
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": [
+      {
+        "base": "couro",
+        "vestida": true
+      }
+    ]
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Florete",
+      "arma": "florete",
+      "justificativa": "Estoca com a ponta do florete. Jogada: Destreza 5 + Armas 5 + 2 × o menor entre Centelha 3 e Armas 5 (6)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Postura Fluida",
+      "formas": "todas",
+      "classe": "livro",
+      "tecnica": {
+        "id": "postura-fluida",
+        "nivel": 1
+      },
+      "categoria": "inato"
+    },
+    {
+      "nome": "Aparar",
+      "formas": "todas",
+      "classe": "livro",
+      "tecnica": {
+        "id": "aparar",
+        "nivel": 1
+      },
+      "categoria": "inato"
+    },
+    {
+      "nome": "Finta",
+      "formas": "todas",
+      "classe": "livro",
+      "tecnica": {
+        "id": "finta",
+        "nivel": 1
+      },
+      "categoria": "inato"
+    },
+    {
+      "nome": "Riposte",
+      "formas": "todas",
+      "classe": "livro",
+      "tecnica": {
+        "id": "riposte",
+        "nivel": 3
+      },
+      "categoria": "inato"
+    },
+    {
+      "nome": "Sem inimizades naturais",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "texto": "Relação inicial do Humano: +1 com Elfo e Meio-Elfo, −1 com Orc e Meio-Orc, Neutro com os demais. A relação vale do Humano para o outro povo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "a espada como conversa",
+      "formas": "todas",
+      "texto": "um adversário por vez; apara, finta para abrir espaço e responde com a ripose; recusa luta suja e desafia o melhor do grupo."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão, audição, olfato",
+      "descricao": "humanos",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "prendeRespiracao": "pela regra do personagem",
+    "mente": "humana; orgulhosa",
+    "tracos": "roupa elegante sobre gibão de couro, lâmina leve, luva de esgrima, pose de academia"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "sozinho",
+    "atividade": "diurno",
+    "dieta": "onívoro",
+    "caca": "não se aplica",
+    "dianteDeGente": "desafia, duela, respeita quem luta limpo"
+  },
+  "ecologia": {
+    "terreno": [
+      "urbano"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Esgrimista exímio dos salões de Calin, que apara, finta e responde com a ripose. Trata a espada como conversa e despreza quem luta sujo.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Vive do duelo: para golpes com precisão, finta para abrir espaço e responde com a ripose certeira, tratando a espada como conversa e não como açougue."
+    },
+    {
+      "titulo": "Personalidade",
+      "texto": "Orgulhoso da própria técnica, valoriza a honra do embate mais do que o resultado bruto; despreza quem luta sujo."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "Figura comum nos salões e academias de esgrima das cidades de Calin, onde o duelo formal ainda é visto como arte civilizada, longe do tabu que recai sobre a magia."
+    }
+  ],
+  "imagens": [
+    "bestiario/duelista_pdm.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "habilidades.bloqueio",
+      "motivo": "\"Vive do duelo: apara\" (site); as Técnicas Postura Fluida e Aparar são de quem apara; 4; o site não gravava Bloqueio"
+    },
+    {
+      "campo": "virtudes.conviccao",
+      "motivo": "4; o site tinha 3"
+    }
+  ]
+}

@@ -1,0 +1,289 @@
+{
+  "id": "gorgona-touro-de-ferro",
+  "idAntigo": "mon-gorgona-touro-de-ferro",
+  "nome": "Górgona (touro de ferro)",
+  "nomeIngles": "Gorgon",
+  "categoria": "besta-magica",
+  "papel": "chefe",
+  "ameaca": 5,
+  "centelha": 3,
+  "corpo": {
+    "postura": "quatro patas",
+    "apoio": "quadrupede",
+    "altura": 1.8,
+    "largura": 0.88,
+    "profundidade": null,
+    "comprimento": 3.5,
+    "massa": 1800,
+    "area": 2.16,
+    "posturaDoTamanho": "silhueta vista de lado"
+  },
+  "couraca": 9,
+  "perfilCouraca": "rigida",
+  "atributos": {
+    "forca": 8,
+    "destreza": 2,
+    "vigor": 8,
+    "percepcao": 5,
+    "inteligencia": 1,
+    "raciocinio": 2,
+    "influencia": 2,
+    "perspicacia": 1,
+    "compostura": 3
+  },
+  "habilidades": {
+    "briga": 5,
+    "bloqueio": 1,
+    "esquiva": 0,
+    "atletismo": 3,
+    "atirador": 2,
+    "furtividade": 1,
+    "integridade": 3,
+    "prontidao": 4,
+    "resistencia": 4,
+    "sociabilidade": 0,
+    "sobrevivencia": 3
+  },
+  "habilidadesSec": {
+    "musculatura": 3
+  },
+  "especialidades": {},
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 4,
+    "compaixao": 1,
+    "conviccao": 3,
+    "temperanca": 2
+  },
+  "vontade": 8,
+  "aparencia": 3,
+  "deslocamento": {
+    "terra": {
+      "batalha": 3,
+      "arranque": 5,
+      "corrida": 7
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Chifrada",
+      "parte": "chifre",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 1,
+      "acerto": 0,
+      "bloqueiaComoArma": 1,
+      "justificativa": "A chifrada de touro com o pescoço atrás: Média, como a do auroque; bloqueia como arma (D-100). Jogada: Força 8 + Briga 5 + 2 × o menor entre Centelha 3 e Briga 5 (6)"
+    },
+    {
+      "nome": "Investida (marrada)",
+      "parte": "corpo",
+      "classe": "pesada",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": "2d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "impacto",
+      "nivelPerfuracao": null,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Golpe Pesado, com Força × 1 no golpe comum (D-266); na ação de Investida, soma mais uma Força, sem +1d6 (P20-b). Jogada: Força 8 + Briga 5 + 2 × o menor entre Centelha 3 e Briga 5 (6)"
+    },
+    {
+      "nome": "Sopro petrificante",
+      "parte": "boca",
+      "classe": "distancia",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": null,
+      "multiplicadorForca": 0,
+      "tipoDano": "nao-se-aplica",
+      "nivelPerfuracao": null,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Ataque natural a distância, Classe Distância, sem dano: o efeito vai na linha do sopro nas Manobras. Sem jogada de ataque."
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "investida de chifre",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Investida (marrada)",
+      "categoria": "inato",
+      "regra": "investida"
+    },
+    {
+      "nome": "derrubar",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Investida (marrada)",
+      "categoria": "inato",
+      "regra": "derrubar"
+    },
+    {
+      "nome": "Sopro petrificante",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "ataque": "Sopro petrificante",
+      "categoria": "substancia",
+      "ativacao": "uma ação, Velocidade 7",
+      "duracao": "até acumular 3 sucessos ou chegar a Vigor 0, com novo teste a cada 6 Ticks",
+      "alcance": "9 m",
+      "area": "quem estiver no cone de 9 m à frente da górgona",
+      "efeito": "A primeira falha deixa a vítima Petrificando. A cada 6 Ticks, repita o teste. Cada nova falha petrifica uma região e tira 1 de Vigor temporário, sem recalcular PV nem Absorção. Comece pelas extremidades. Em corpos com muitas patas, avance pata por pata. Em serpentes, avance da cauda por segmentos. Se faltarem membros, avance por trechos sucessivos do corpo. Tronco e cabeça petrificam por último, quando o Vigor chega a 0. Com Vigor 1, a primeira falha no novo teste completa a estátua. Três sucessos acumulados interrompem a progressão",
+      "dano": "nenhum adicional",
+      "resistencia": "Saída de área pelo livro. Quem ficar exposto testa Vigor + Resistência contra Dificuldade 20",
+      "limiteDeUso": "O corpo guarda 2 doses e produz 1 dose a cada 12 horas. Cada uso gasta 1 dose. Nada acelera a produção"
+    },
+    {
+      "nome": "corpo metálico",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "veneno e doença não pegam no corpo de metal. O ferimento do golpe continua. Pode carregar o agente e expor outros, a critério do Mestre",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "Contínuo, sem custo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "carga",
+      "formas": "todas",
+      "texto": "pasta como um touro até ser provocada; então carrega em linha reta, sopra o bafo que vira pedra e passa por cima de quem cai."
+    },
+    {
+      "nome": "Projétil natural",
+      "formas": "todas",
+      "texto": "Contra um alvo, use o maior entre Vigor, Destreza e Percepção + Atirador. Ao cobrir uma área, só os alvos fazem a jogada de saída."
+    },
+    {
+      "nome": "Atropelar",
+      "formas": "todas",
+      "texto": "Corre sobre os alvos do trajeto. Resolva a ação e o dano pelo Atropelar do livro."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "guardiã atenta",
+      "descricao": "Prontidão 4",
+      "formas": "todas"
+    },
+    {
+      "nome": "faro",
+      "descricao": "de touro, sem nada além do comum",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "mente": "animal (fera de Inteligência 1)",
+    "tracos": "touro de 1,8 m de cernelha coberto de placas que parecem metal vivo, chifres de ferro e um bafo verde que sai das narinas"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "sozinha ou em casal",
+    "atividade": "diurna",
+    "dieta": "herbívora: pasta como um touro",
+    "caca": "pasta em charnecas e campos abertos",
+    "dianteDeGente": "ignora até ser provocada; então nada a detém"
+  },
+  "ecologia": {
+    "terreno": [
+      "planície",
+      "montanha"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Touro couraçado de placas que parecem metal vivo, que pasta em charnecas como um touro comum até ser provocado. Então carrega em linha reta contra qualquer ameaça e usa um bafo que solidifica os pulmões da presa, deixando estátuas cinzentas atrás de si.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Touro couraçado de placas que parecem metal vivo, carrega em linha reta contra qualquer ameaça e usa o bafo que solidifica os pulmões da presa como arma tão certeira quanto os chifres."
+    },
+    {
+      "titulo": "Ecologia",
+      "texto": "Pasta em charnecas e campos abertos como um touro comum até ser provocado; então nada o detém, e sua passagem deixa vítimas transformadas em estátuas cinzentas atrás de si."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "Muitos acreditam que a górgona nasceu de um touro comum tocado pelos experimentos da Grande Guerra, quando magia e engenho de metal se misturavam sem controle; hoje é citada como aviso vivo do que a Supressão jurou nunca mais permitir."
+    }
+  ],
+  "imagens": [
+    "bestiario/gorgona-touro-de-ferro_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [
+      {
+        "tipo": "corte",
+        "formas": "todas"
+      },
+      {
+        "tipo": "perfuracao",
+        "formas": "todas"
+      }
+    ],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "comportamento.social",
+      "motivo": ""
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": ""
+    },
+    {
+      "campo": "ataques.Sopro petrificante",
+      "motivo": "Antes: jogada de ataque na tabela. R36: Sem jogada de ataque, pois o efeito ocupa a área descrita nas Manobras. Cada alvo resolve a defesa de área.; R1/R4, D-197. Dois sopros prontos permitem alternar sopro e golpes. Sugestão de 2 doses e 12 h por dose para repor fora da luta. R3. Ativação sem Velocidade escrita -> uma ação, Velocidade 7 Pela referência corporal ou de deslocamento do poder. R2 e D-197. Alcance sugerido de 9 m para uma manifestação dirigida a curta distância. P2. Dificuldade 20 sugerida porque o sopro de ameaça 5 expõe vários alvos próximos. valor de molde, para a bancada (2 doses e produz 1 dose a cada 12 horas)."
+    },
+    {
+      "campo": "corpo",
+      "motivo": "na zona de transição, ficou na faixa de baixo (62, o do site), porque o peso a mais é ferro; subindo seria 75"
+    },
+    {
+      "campo": "atributos.vigor",
+      "motivo": "na zona de transição, ficou na faixa de baixo (62, o do site), porque o peso a mais é ferro; subindo seria 75"
+    },
+    {
+      "campo": "ataques",
+      "motivo": "o site gravava um ataque só, \"Garras e presas\" (`inimigos.json`: \"2d6 +11 perfurante\", 6 Ticks, dano médio 18). A ficha separa os golpes pelo gesto, um por ação (D-097). Dano médio: 18 antes; depois, chifrada 14,5, investida 26,0 (só na carga corrida)"
+    },
+    {
+      "campo": "couraca",
+      "motivo": "9, e a resistência a Corte e Perfuração pela linha Elementos, como a pele do cão yeth. Quando a Couraça tiver regra, a resistência pode ficar dobrada com ela"
+    }
+  ]
+}

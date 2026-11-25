@@ -1,0 +1,386 @@
+{
+  "id": "vrock",
+  "idAntigo": "mon-vrock",
+  "nome": "Vrock",
+  "nomeIngles": "Demon, Vrock",
+  "categoria": "corruptor",
+  "papel": "chefe",
+  "ameaca": 5,
+  "centelha": 5,
+  "corpo": {
+    "postura": "bípede, curvado; voa",
+    "apoio": "bipede",
+    "altura": 2.4,
+    "largura": 0.72,
+    "profundidade": 0.34,
+    "comprimento": null,
+    "massa": 230,
+    "area": 1.54,
+    "posturaDoTamanho": "silhueta de frente, de pé"
+  },
+  "couraca": 2,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 7,
+    "destreza": 4,
+    "vigor": 9,
+    "percepcao": 5,
+    "inteligencia": 4,
+    "raciocinio": 4,
+    "influencia": 5,
+    "perspicacia": 4,
+    "compostura": 5
+  },
+  "habilidades": {
+    "briga": 5,
+    "bloqueio": 0,
+    "esquiva": 1,
+    "atletismo": 3,
+    "furtividade": 0,
+    "integridade": 5,
+    "prontidao": 4,
+    "resistencia": 5,
+    "empatia": 1,
+    "sociabilidade": 1,
+    "sobrevivencia": 2,
+    "ocultismo": 2
+  },
+  "habilidadesSec": {
+    "intimidacao": 3,
+    "danca": 3,
+    "voo": 4,
+    "musculatura": 3
+  },
+  "especialidades": {
+    "resistencia": [
+      {
+        "foco": "doença e podridão",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 6,
+    "compaixao": 1,
+    "conviccao": 5,
+    "temperanca": 1
+  },
+  "vontade": 10,
+  "aparencia": 0,
+  "deslocamento": {
+    "terra": {
+      "batalha": 3,
+      "arranque": 5,
+      "corrida": 7
+    },
+    "voo": {
+      "batalha": 5
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Garras",
+      "parte": "mao-de-garras",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "corte",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "O \"Golpe planar\" do site (2 dados, corte): a garra que rasga com o braço e o corpo atrás, Média (`regra-construcao.md` §7). Duas por ação pela Rajada (Manobras). Jogada: Força 7 + Briga 5 + 2 × o menor entre Centelha 5 e Briga 5 (10)"
+    },
+    {
+      "nome": "Bico",
+      "parte": "bico-de-abutre",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 1,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "\"Garras e bico\" (site): o bico curvo de abutre, com a cabeça e o pescoço atrás, Média. N1, bico córneo que fura couro . Jogada: Força 7 + Briga 5 + 2 × o menor entre Centelha 5 e Briga 5 (10)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Duas garras",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Garras",
+      "categoria": "inato",
+      "regra": "rajada",
+      "texto": "Até dois golpes por ação"
+    },
+    {
+      "nome": "Esporos",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "morte",
+        "nivel": 3
+      },
+      "categoria": "substancia",
+      "ativacao": "uma ação, Velocidade 5, ou sozinho, quando ele fica Morrendo",
+      "duracao": "até a doença regredir ou o agente ser retirado",
+      "alcance": "6 m",
+      "area": "esfera de 6 m em volta dele",
+      "efeito": "Esporose do vrock. Exposição: os esporos lançados alcançam a carne de quem falha na resistência à nuvem. Incubação: 10 minutos. Virulência 14. Após a incubação, teste Vigor + Resistência uma vez por dia, com os estágios da doença do livro. Cura ou cirurgia adequada remove o agente e interrompe a progressão. A exposição conserva o Abalado da descarga inicial",
+      "dano": "pela progressão da doença",
+      "resistencia": "Vigor + Resistência contra Virulência 14",
+      "limiteDeUso": "O corpo guarda 3 doses e produz 1 dose a cada 4 horas. Cada uso gasta 1 dose. Nada acelera a produção"
+    },
+    {
+      "nome": "Dança da ruína",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "sobrenatural",
+      "ativacao": "dois ou mais vrocks dançam juntos por 18 Ticks seguidos, sem fazer outra coisa",
+      "duracao": "instantânea",
+      "alcance": "30 m",
+      "area": "esfera de 30 m em volta dos dançarinos",
+      "efeito": "a dança solta uma explosão de energia que arrasa a área",
+      "dano": "5d6 + Centelha, raio",
+      "resistencia": "esquiva; quem passa leva metade",
+      "limiteDeUso": "Usos grátis: 1 por dia. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "Convocar demônios",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "espirito",
+        "nivel": 4,
+        "efeito": "invocar"
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 6",
+      "duracao": "até o fim da cena",
+      "alcance": "o lugar onde ele está",
+      "area": "um aliado",
+      "efeito": "Convoca Dretch até o fim da cena. A origem aguarda o lore dos planos",
+      "dano": "o dos que chegam",
+      "resistencia": "nenhum",
+      "limiteDeUso": "1 uso grátis por cena. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "Grito ensurdecedor",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 5",
+      "duracao": "6 Ticks",
+      "alcance": "até onde ouve",
+      "area": "um alvo",
+      "efeito": "O grito deixa surdo quem falha na resistência",
+      "dano": "nenhum",
+      "resistencia": "Influência + Ocultismo contra Defesa Mental com o Resistir do livro",
+      "limiteDeUso": "1 uso grátis por cena. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "Imagem espelhada",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "sobrenatural",
+      "ativacao": "uma ação, Velocidade 6",
+      "duracao": "até o fim da cena, ou até as cópias acabarem",
+      "alcance": "o próprio corpo",
+      "area": "não se aplica",
+      "efeito": "duas cópias ilusórias dele confundem quem ataca; cada golpe que o acerta desfaz uma cópia em vez de feri-lo, até as duas acabarem",
+      "dano": "nenhum",
+      "resistencia": "nenhum; quem tem visão verdadeira ignora as cópias",
+      "limiteDeUso": "Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "medonho",
+      "formas": "todas",
+      "classe": "sem regra ainda",
+      "categoria": "inato",
+      "efeito": "quem vê o vrock pela primeira vez sente o cheiro de carniça e o pavor do abutre do tamanho de um homem; o corpo quer recuar"
+    },
+    {
+      "nome": "atordoamento do grito",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "sobrenatural",
+      "ativacao": "uma ação, Velocidade 6",
+      "duracao": "até a próxima ação começar, com o adiamento de Atordoado",
+      "alcance": "até onde ouve",
+      "area": "a vítima descrita pelo poder",
+      "efeito": "O grito atordoa com Margem 1 ou mais. Aplicar Atordoado do livro",
+      "dano": "nenhum adicional",
+      "resistencia": "Vigor + Resistência contra 10 + 5 × Margem, até 40",
+      "limiteDeUso": "Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "Multiataque",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "uma ação de Rajada",
+      "duracao": "uma ação",
+      "alcance": "o de cada parte",
+      "area": "os alvos da Rajada",
+      "efeito": "Golpeia nesta ordem: garra esquerda, garra direita, bico. Cada golpe extra acumula −1d6 e conta para Guarda sob pressão. Não acumula com a Rajada comum",
+      "dano": "o de cada ataque que acertar",
+      "resistencia": "a Defesa de cada golpe",
+      "limiteDeUso": "até 3 golpes por ação, sem Energia. O uso repetido causa esforço e pode levar ao cansaço"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "abutres de guerra",
+      "formas": "todas",
+      "texto": "atacam em bando, gritam para chamar mais demônios e, quando cercados, dançam a ruína; mandados à frente para desgastar o inimigo antes dos demônios de comando."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão no escuro",
+      "descricao": "enxerga no escuro absoluto",
+      "formas": "todas"
+    },
+    {
+      "nome": "visão de abutre",
+      "descricao": "acha carniça e campo de batalha de longe, sem nada além do que a Percepção 5 e a Prontidão 4 dão",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "mente": "inteligente, demoníaca",
+    "tracos": "corpo de homem magro e musculoso coberto de penas sujas, cabeça e asas de abutre, pescoço comprido e garras; cheira a carniça"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "bando de vrocks, nas legiões",
+    "atividade": "qualquer hora",
+    "dieta": "carniça e carne",
+    "caca": "caça carniça em campos de batalha e ruínas",
+    "dianteDeGente": "ataca em bando"
+  },
+  "ecologia": {
+    "terreno": [
+      "qualquer"
+    ],
+    "clima": [
+      "extraplanar"
+    ]
+  },
+  "descricao": "Demônio abutre, tropa de choque descartável das legiões do Abismo, mandada à frente para desgastar o inimigo. Ataca em bando, grita para chamar mais demônios e, quando cercado, dança um ritual frenético que espalha esporos e solta uma explosão de ruína.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Ataca em bando como abutres de guerra, gritando um chamado que atrai mais demônios e, quando cercado, dança um ritual frenético que espalha esporos venenosos sobre aliados e inimigos."
+    },
+    {
+      "titulo": "Hábitat",
+      "texto": "Prefere campos de batalha e ruínas cobertas de cadáveres, onde caça carniça tanto quanto combate."
+    },
+    {
+      "titulo": "Sociedade",
+      "texto": "Serve como tropa de choque descartável nas legiões do Abismo, mandado à frente para desgastar o inimigo antes que os demônios de comando entrem em ação."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "Quando exércitos antigos entram em colapso perto da Fenda, dizem os veteranos, os corpos empilhados atraem algo com asas negras e cheiro de carniça: sinal de que os abutres do Abismo encontraram seu banquete."
+    }
+  ],
+  "imagens": [
+    "bestiario/vrock_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [
+      {
+        "tipo": "luz",
+        "formas": "todas"
+      },
+      {
+        "tipo": "sagrado",
+        "formas": "todas"
+      }
+    ],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "habilidades.prontidao",
+      "motivo": "A nota do site (\"Prontidão 4\"); o campo dizia 2; 4 pela nota do site, e não o 2 do campo"
+    },
+    {
+      "campo": "couraca",
+      "motivo": "Cobertura do corpo pela R49; metades arredondadas para cima. Absorção natural do livro (`combate.md`). Couraça 2: penas duras e pele grossa de ave grande .; 2"
+    },
+    {
+      "campo": "ataques.Bico.nivelPerfuracao",
+      "motivo": "\"Garras e bico\" (site): o bico curvo de abutre, com a cabeça e o pescoço atrás, Média. N1, bico córneo que fura couro . Jogada: Força 7 + Briga 5 + 2 × o menor entre Centelha 5 e Briga 5 (10)"
+    },
+    {
+      "campo": "habilidadesEspeciais.Esporos",
+      "motivo": "R1/R4, D-197. Três doses preservam a reserva para mais de uma presa. Sugestão de 3 doses e 4 h por dose para repor fora da luta. valor de molde, para a bancada (3 doses e produz 1 dose a cada 4 horas).; o site trazia duas versões (explosão de 6 m ao ficar Agonizante, e esporos em quem está colado, uma vez por dia); a ficha juntou as duas numa linha, com o \"Agonizante\" lido como Morrendo e o \"Enfraquecido\" como Abalado"
+    },
+    {
+      "campo": "habilidadesEspeciais.Dança da ruína",
+      "motivo": "R1 e D-197. Usos grátis: 1 por dia. Cada uso extra custa 1 de Energia. O limite preserva o primeiro uso e reserva repetição para esforço adicional. valor de molde, para a bancada (uso extra de 1 de Energia).; o site dizia \"dois ou mais vrocks\" numa linha e \"exige 3 vrocks\" na outra; ficaram dois. O tipo raio é escolha da ficha, porque o site só diz \"dano alto\""
+    },
+    {
+      "campo": "habilidadesEspeciais.Convocar demônios",
+      "motivo": "R1 e D-197. Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação uma ação, Velocidade 6, um grito -> uma ação, Velocidade 6, um grito. O efeito sai no Tick do Golpe. Pela régua da Arte de base. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Grito ensurdecedor",
+      "motivo": "R1 e D-197. Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. O limite preserva o primeiro uso e reserva repetição para esforço adicional. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Imagem espelhada",
+      "motivo": "R1 e D-197. Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. O limite preserva o primeiro uso e reserva repetição para esforço adicional. valor de molde, para a bancada (uso extra de 1 de Energia).; números da ficha (D-197)"
+    },
+    {
+      "campo": "habilidadesEspeciais.atordoamento do grito",
+      "motivo": "R1 e D-197. Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação sem Velocidade escrita -> uma ação, Velocidade 6 Pela referência corporal ou de deslocamento do poder. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "corpo.massa",
+      "motivo": "230 kg, na zona de transição; robusto, fica na linha de 220 kg a 1,8 t (66 PV), e não na de baixo (52)"
+    },
+    {
+      "campo": "corpo",
+      "motivo": "230 kg, na zona de transição; robusto, fica na linha de 220 kg a 1,8 t (66 PV), e não na de baixo (52)"
+    },
+    {
+      "campo": "atributos.vigor",
+      "motivo": "230 kg, na zona de transição; robusto, fica na linha de 220 kg a 1,8 t (66 PV), e não na de baixo (52)"
+    },
+    {
+      "campo": "ataques",
+      "motivo": "o site gravava um \"Golpe planar\" de 2 dados e 6 Ticks, de corte. A D-241 levou a Pesado só o golpe de cinco planares; aqui a classe sai do gesto: garras e bico Médios"
+    },
+    {
+      "campo": "habilidadesEspeciais",
+      "motivo": "números da ficha (D-197); números da ficha (D-197)"
+    }
+  ]
+}

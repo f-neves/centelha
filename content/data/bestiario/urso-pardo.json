@@ -1,0 +1,253 @@
+{
+  "id": "urso-pardo",
+  "idAntigo": "mon-urso-pardo",
+  "nome": "Urso-pardo",
+  "nomeIngles": "Brown Bear",
+  "categoria": "animal",
+  "papel": "fera",
+  "ameaca": 3,
+  "centelha": 0,
+  "corpo": {
+    "postura": "quatro patas",
+    "apoio": "quadrupede",
+    "altura": 1.15,
+    "largura": 0.76,
+    "profundidade": null,
+    "comprimento": 2,
+    "comprimentoSemCauda": 1.91,
+    "caudaGrossa": false,
+    "massa": 200,
+    "area": 1.08,
+    "posturaDoTamanho": "de lado",
+    "linhaPV": "acima",
+    "linhaPVMotivo": "gordura e pelo grossos"
+  },
+  "couraca": 2,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 7,
+    "destreza": 3,
+    "vigor": 5,
+    "percepcao": 3,
+    "inteligencia": 1,
+    "raciocinio": 2,
+    "influencia": 1,
+    "perspicacia": 1,
+    "compostura": 1
+  },
+  "habilidades": {
+    "briga": 4,
+    "bloqueio": 2,
+    "esquiva": 1,
+    "atletismo": 2,
+    "furtividade": 2,
+    "integridade": 3,
+    "prontidao": 2,
+    "resistencia": 4,
+    "empatia": 0,
+    "sobrevivencia": 3
+  },
+  "habilidadesSec": {
+    "equilibrio": 0,
+    "escalada": 0,
+    "natacao": 0,
+    "voo": 0,
+    "corrida": 0,
+    "musculatura": 4
+  },
+  "especialidades": {
+    "prontidao": [
+      {
+        "foco": "faro",
+        "valor": 3,
+        "origem": "natural"
+      }
+    ],
+    "resistencia": [
+      {
+        "foco": "fome",
+        "valor": 3,
+        "origem": "natural"
+      }
+    ],
+    "sobrevivencia": [
+      {
+        "foco": "pescar salmão",
+        "valor": 1,
+        "origem": "natural"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 1,
+    "conviccao": 1,
+    "temperanca": 1
+  },
+  "vontade": 4,
+  "aparencia": 6,
+  "deslocamento": {
+    "terra": {
+      "batalha": 7,
+      "arranque": 12,
+      "corrida": 16
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Patada",
+      "parte": "garra",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "corte",
+      "nivelPerfuracao": null,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "O golpe com o ombro atrás: Média. Garra é Cortante (`regra-construcao.md` §7). Garras de média 45 mm, até 150 mm (NPS). Era 1d6 + 8, média 11,5."
+    },
+    {
+      "nome": "Mordida",
+      "parte": "mordida",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "751 a 1.627 N no canino (Wroe 2005; Różycka 2024, crânio seco), abaixo de 4.000 N: N0. Opção, não segundo golpe (D-097). Era 1d6 + 8, média 11,5."
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "agarrar (o \"abraço\")",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "regra": "agarrar"
+    },
+    {
+      "nome": "fúria ferida",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "quando sofre ferimento grave",
+      "duracao": "até um dos lados cair ou o combate acabar",
+      "alcance": "o próprio corpo",
+      "area": "a própria criatura",
+      "efeito": "Fica Enfurecido. +2 nas ações físicas exceto tiro, −2 em Esquiva e Bloqueio, só ações físicas. Não pode ser convencido. Sofre as penalidades de ferimento",
+      "dano": "nenhum adicional",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "A cada exposição ao gatilho, sem custo"
+    }
+  ],
+  "comoLuta": [],
+  "sentidos": [
+    {
+      "nome": "faro",
+      "descricao": "Prontidão (faro) +3 ; carcaça a mais de 3,2 km",
+      "formas": "todas"
+    },
+    {
+      "nome": "audição",
+      "descricao": "nada que passe do humano",
+      "formas": "todas"
+    },
+    {
+      "nome": "visão",
+      "descricao": "nada que passe do humano; as fontes divergem",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "mente": "animal",
+    "tracos": "hiberna; a massa varia com a estação, ganhando antes da hibernação e perdendo durante. É o fato da Resistência (fome) +3"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitário (áreas de vida que se sobrepõem muito)",
+    "atividade": "crepuscular (forrageia de manhã e ao entardecer, descansa no mato de dia)",
+    "dieta": "onívoro (capim, raízes, frutas, insetos, peixe, carniça e caça)",
+    "caca": "forrageio; caça filhotes de alce, caribu e wapiti (um urso pegou 5 filhotes de wapiti em 15 minutos)",
+    "dianteDeGente": "foge (80% saíram do lugar quando perceberam gente, nenhum agrediu); defende a cria (a fêmea com filhotes)"
+  },
+  "ecologia": {
+    "terreno": [
+      "floresta",
+      "montanha"
+    ],
+    "clima": [
+      "temperado",
+      "frio"
+    ]
+  },
+  "descricao": "Solitário e onívoro, que foge de gente na maior parte das vezes. Ataca sobretudo a fêmea defendendo filhotes (47%), no encontro de surpresa (20%) ou quando é atacado (10%); 14,3% dos 664 ataques de 2000 a 2015 foram fatais.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Solitário e territorial, hiberna no inverno e defende ferozmente qualquer filhote ou pedaço de território que considere seu."
+    },
+    {
+      "titulo": "Ecologia",
+      "texto": "Onívoro oportunista, pesca, forrageia e caça conforme a estação e o que a terra oferece."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "Habita as florestas e montanhas de Syl e o interior denso de Mére, temido por caçadores apesar de não carregar nenhuma marca de magia, só a força bruta da natureza."
+    },
+    {
+      "titulo": "Veneno e doença",
+      "texto": "Doença no jogo (ao comer): Triquinose · Virulência 7 · dia · quem come a carne mal cozida rola uma vez"
+    }
+  ],
+  "imagens": [],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "corpo.altura",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 1,11 × 1,0319 = 1,145 . Antes: Era 1,20 m, o ponto médio de 0,90 a 1,50 (ADW, a espécie inteira), tomado para o macho de 230 kg da massa de trabalho. Escalado pelo cubo da massa: 1,20 × (182 ÷ 230)^(1/3) = 1,110. Em pé, até 2,4 m. O alto da cabeça não foi achado; no urso a cabeça anda na altura do ombro ou abaixo dele. `dimensoes.md`."
+    },
+    {
+      "campo": "corpo.comprimento",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 1,94 × 1,0319 = 2,002 . Antes: Era 2,10 m: o corpo estimado (2,0) mais a cauda de cerca de 0,1 m, sem fonte (`regua-d139.md` §2). Escalado pelo cubo da massa: 2,10 × (182 ÷ 230)^(1/3) = 1,942."
+    },
+    {
+      "campo": "corpo.comprimentoSemCauda",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 1,85 × 1,0319 = 1,909 . Antes: Era 2,00 m, o corpo do macho do interior, no meio da faixa da espécie (1,0 a 2,8 m, ADW), porque a fonte só dá a faixa da espécie inteira, muito aberta; estimativa do Arquiteto (`insumos-d132.json`). Escalado pelo cubo da massa: 2,00 × (182 ÷ 230)^(1/3) = 1,850."
+    },
+    {
+      "campo": "corpo.largura",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 0,74 × 1,0319 = 0,764 . Antes: Era 0,80 m, estimada pelo Arquiteto (`porte-area-forca.md` §1.2); a pesquisa não mediu largura. Escalada pelo cubo da massa: 0,80 × (182 ÷ 230)^(1/3) = 0,740."
+    },
+    {
+      "campo": "habilidadesEspeciais.fúria ferida",
+      "motivo": "R9. O ferimento dispara o Frenesi da criatura. O término segue o combate entre os dois lados. A ficha não concedia imunidade a penalidade de ferimento."
+    }
+  ]
+}

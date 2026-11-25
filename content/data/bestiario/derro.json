@@ -1,0 +1,315 @@
+{
+  "id": "derro",
+  "idAntigo": "mon-derro",
+  "nome": "Derro",
+  "nomeIngles": "Derro",
+  "categoria": "humanoide",
+  "papel": "soldado",
+  "ameaca": 3,
+  "centelha": 2,
+  "corpo": {
+    "postura": "bípede, de pé, curvado",
+    "apoio": "bipede",
+    "altura": 1.2,
+    "largura": 0.37,
+    "profundidade": 0.19,
+    "comprimento": null,
+    "massa": 36,
+    "area": 0.39,
+    "posturaDoTamanho": "de frente"
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 2,
+    "destreza": 4,
+    "vigor": 5,
+    "percepcao": 1,
+    "inteligencia": 2,
+    "raciocinio": 2,
+    "influencia": 5,
+    "perspicacia": 3,
+    "compostura": 2
+  },
+  "habilidades": {
+    "armas": 4,
+    "briga": 1,
+    "bloqueio": 1,
+    "esquiva": 1,
+    "atletismo": 1,
+    "furtividade": 3,
+    "prontidao": 0,
+    "integridade": 2,
+    "ocultismo": 2,
+    "manha": 2
+  },
+  "habilidadesSec": {
+    "alquimia": 2,
+    "intimidacao": 2,
+    "musculatura": 0
+  },
+  "especialidades": {
+    "armas": [
+      {
+        "foco": "alvo desprevenido",
+        "valor": 1,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 1,
+    "conviccao": 3,
+    "temperanca": 1
+  },
+  "vontade": 7,
+  "aparencia": 4,
+  "deslocamento": {
+    "terra": {
+      "batalha": 2,
+      "arranque": 3,
+      "corrida": 5
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Espada curta",
+      "arma": "espada-curta",
+      "justificativa": "A arma do livro (`armas.json`, `espada-curta`): Leve, Velocidade 5, Acerto +2, Defesa +1, ★C · P(N1). Envenenada (Veneno e doença). A Centelha soma inteira. Jogada: Destreza 4 + Armas 4 + 2 × o menor entre Centelha 2 e Armas 4 (4)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Resistência à magia",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "sempre ativa",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a própria criatura",
+      "efeito": "Resistência à magia de grau 1. Soma +2 às Defesas e à jogada de resistir contra Artes e efeitos similares à magia, até o teto comum de +6",
+      "dano": "nenhum adicional",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo. Sem custo"
+    },
+    {
+      "nome": "Vulnerabilidade ao sol",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "cada hora inteira à luz do sol",
+      "duracao": "enquanto estiver ao sol",
+      "alcance": "o próprio corpo",
+      "area": "não se aplica",
+      "efeito": "o sol queima a pele e enfraquece o corpo",
+      "dano": "1d6 por hora, que a Absorção não segura",
+      "resistencia": "nenhum",
+      "limiteDeUso": "nenhum. Sem custo"
+    },
+    {
+      "nome": "Loucura inata",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Ignora efeitos que instalam insanidade ou a condição Confuso. Outras famílias mentais, dano físico de Arte e conversa comum seguem suas regras",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "Contínuo, sem custo"
+    },
+    {
+      "nome": "Uso de veneno",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "texto": "a Peçonha de aranha gigante na espada (Veneno e doença); aplica sem risco de se envenenar"
+    },
+    {
+      "nome": "atordoamento dos poderes menores",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "sobrenatural",
+      "ativacao": "uma ação, Velocidade 6",
+      "duracao": "até a próxima ação começar, com o adiamento de Atordoado",
+      "alcance": "9 m",
+      "area": "a vítima descrita pelo poder",
+      "efeito": "Os truques mentais e o estrondo atordoa com Margem 1 ou mais. Aplicar Atordoado do livro",
+      "dano": "nenhum adicional",
+      "resistencia": "Vigor + Resistência contra 10 + 5 × Margem, até 40",
+      "limiteDeUso": "Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "Golpe na brecha",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "o primeiro golpe da ação que fere um alvo Surpreso ou Flanqueado",
+      "duracao": "instantânea",
+      "alcance": "o do golpe",
+      "area": "o alvo atingido",
+      "efeito": "Explora o ponto vital. Quem ignora dano extra de ponto vital ignora esse acréscimo",
+      "dano": "+1d6 no dano do golpe",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "uma vez por ação, sem custo"
+    },
+    {
+      "nome": "Trevas",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "sombra",
+        "nivel": 1,
+        "efeito": "manto-de-treva"
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 5",
+      "duracao": "até o fim da cena ou desfazer",
+      "alcance": "18 m",
+      "area": "esfera de 6 m",
+      "efeito": "Apaga a luz comum na esfera. A criatura enxerga dentro dela",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "Usos grátis: 3 por dia. Cada uso extra custa 1 de Energia. As opções compartilham os usos grátis"
+    },
+    {
+      "nome": "Sons ilusórios",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "ofuscacao",
+        "nivel": 1
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 5",
+      "duracao": "até o fim da cena ou desfazer",
+      "alcance": "18 m",
+      "area": "um ponto visível",
+      "efeito": "Imita sons para enganar quem os ouve",
+      "dano": "nenhum",
+      "resistencia": "quem duvida testa para perceber a ilusão",
+      "limiteDeUso": "Usos grátis: 3 por dia. Cada uso extra custa 1 de Energia. As opções compartilham os usos grátis"
+    },
+    {
+      "nome": "Estrondo",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "vento",
+        "nivel": 1
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 5",
+      "duracao": "instantânea",
+      "alcance": "18 m",
+      "area": "esfera de 3 m",
+      "efeito": "Produz a vibração e aplica o Atordoado descrito no poder do derro",
+      "dano": "1d6 + Centelha de Impacto",
+      "resistencia": "saída de área do livro",
+      "limiteDeUso": "Usos grátis: 3 por dia. Cada uso extra custa 1 de Energia. As opções compartilham os usos grátis"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "caçador da superfície",
+      "formas": "todas",
+      "texto": "sobe à noite, atordoa e envenena um alvo isolado e o arrasta para baixo; foge do sol e da luz."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão no escuro",
+      "descricao": "enxerga no escuro das profundezas",
+      "formas": "todas"
+    },
+    {
+      "nome": "audição e olfato",
+      "descricao": "os de um humano",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "prendeRespiracao": "pela regra do personagem",
+    "mente": "humanoide; louca e cruel",
+    "tracos": "corpo pequeno e atarracado, pele pálida azulada, olhos brancos sem pupila, cabelo ralo, espada curta envenenada"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "em bando, típico 3 a 8",
+    "atividade": "noturno; o sol o queima",
+    "dieta": "onívoro",
+    "caca": "sequestra gente da superfície",
+    "dianteDeGente": "atordoa, envenena e leva para os experimentos"
+  },
+  "ecologia": {
+    "terreno": [
+      "subterrâneo"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Humanoide pequeno e louco das profundezas, que o sol queima e que sequestra gente da superfície para experimentos cruéis. Atordoa e cria trevas com poderes menores e golpeia com a espada envenenada.",
+  "lore": [
+    {
+      "titulo": "Loucura Ancestral",
+      "texto": "Descendentes de fadas esquecidas que um dia se refugiaram nas profundezas, cobiçam os confortos da superfície, mas a luz do sol queima e mata os de sua raça."
+    },
+    {
+      "titulo": "Experimentos Cruéis",
+      "texto": "Sequestram moradores da superfície para experimentos macabros na eterna e fútil busca por entender o que protege os outros da morte solar, condenados sempre ao fracasso por sua própria insanidade."
+    },
+    {
+      "titulo": "Veneno e doença",
+      "texto": "Veneno no jogo: Peçonha de aranha gigante · Potência 18 · Tick (sangue) · a cada 1 minuto · pool 4 (Destreza) · Desgaste 1 · pela Espada curta"
+    }
+  ],
+  "imagens": [
+    "bestiario/derro_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "comportamento.social",
+      "motivo": ""
+    },
+    {
+      "campo": "comportamento.dieta",
+      "motivo": ""
+    },
+    {
+      "campo": "habilidadesEspeciais.Resistência à magia",
+      "motivo": "R7. SR 14 da fonte passa a grau 1 (+2)."
+    },
+    {
+      "campo": "habilidadesEspeciais.atordoamento dos poderes menores",
+      "motivo": "R1 e D-197. Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação sem Velocidade escrita -> uma ação, Velocidade 6 Pela referência corporal ou de deslocamento do poder. R2 e D-197. Alcance sugerido de 9 m para uma manifestação dirigida a curta distância. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "equipamento",
+      "motivo": "espada curta do livro"
+    },
+    {
+      "campo": "virtudes",
+      "motivo": "Compaixão 1 e Temperança 1; o site tinha 2 e 2"
+    }
+  ]
+}

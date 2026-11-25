@@ -1,0 +1,264 @@
+{
+  "id": "aasimar",
+  "idAntigo": "mon-aasimar",
+  "nome": "Aasimar",
+  "nomeIngles": "Aasimar",
+  "categoria": "outsider",
+  "papel": "capanga",
+  "ameaca": 1,
+  "centelha": 1,
+  "corpo": {
+    "postura": "bípede, de pé",
+    "apoio": "bipede",
+    "altura": 1.75,
+    "largura": 0.43,
+    "profundidade": 0.22,
+    "comprimento": null,
+    "massa": 70,
+    "area": 0.67,
+    "posturaDoTamanho": "de frente"
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 2,
+    "destreza": 2,
+    "vigor": 4,
+    "percepcao": 5,
+    "inteligencia": 3,
+    "raciocinio": 4,
+    "influencia": 4,
+    "perspicacia": 4,
+    "compostura": 5
+  },
+  "habilidades": {
+    "armas": 2,
+    "briga": 1,
+    "bloqueio": 1,
+    "esquiva": 0,
+    "prontidao": 2,
+    "integridade": 5,
+    "empatia": 3,
+    "persuasao": 2,
+    "sociabilidade": 1
+  },
+  "habilidadesSec": {
+    "cura": 2,
+    "religiao": 2,
+    "musculatura": 0
+  },
+  "especialidades": {
+    "integridade": [
+      {
+        "foco": "contra o mal",
+        "valor": 2,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 4,
+    "compaixao": 2,
+    "conviccao": 4,
+    "temperanca": 3
+  },
+  "vontade": 6,
+  "aparencia": 6,
+  "deslocamento": {
+    "terra": {
+      "batalha": 3,
+      "arranque": 5,
+      "corrida": 7
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Espada longa",
+      "arma": "espada-longa",
+      "justificativa": "A arma do livro (`armas.json`, `espada-longa`): Média, Versátil, Velocidade 6, Acerto +1, Defesa +1, ★C · P(N1). A Centelha soma inteira. Jogada: Destreza 2 + Armas 2 + 2 × o menor entre Centelha 1 e Armas 2 (2)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Canalizar luz",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "luz",
+        "nivel": 2
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 5. O efeito sai no Tick do Golpe",
+      "duracao": "instantânea",
+      "alcance": "9 m",
+      "area": "esfera de 9 m em volta dele",
+      "efeito": "à escolha: cura os aliados vivos na área, ou queima os mortos-vivos",
+      "dano": "aos mortos-vivos, 2d6 + Centelha, sagrado; a cura devolve 2d6 + Centelha PV a cada aliado",
+      "resistencia": "esquiva, só para os mortos-vivos; quem passa leva metade",
+      "limiteDeUso": "Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. Pode gastar 1 de Energia para ampliar em +1d6 a cura ou o dano deste uso"
+    },
+    {
+      "nome": "Repúdio da morte",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "cura",
+        "nivel": 1
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 5, tocando um aliado moribundo. O efeito sai no Tick do Golpe",
+      "duracao": "instantânea",
+      "alcance": "toque",
+      "area": "um aliado",
+      "efeito": "estabiliza o aliado (para o Sangramento e a queda) e devolve 1d6 PV",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "Usos grátis: 3 por cena. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "Toque do bem",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "protecao",
+        "nivel": 1
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 5, tocando um aliado. O efeito sai no Tick do Golpe",
+      "duracao": "até a próxima jogada importante do aliado, ou o fim da cena",
+      "alcance": "toque",
+      "area": "um aliado",
+      "efeito": "fortalece a resolução: o aliado soma +1d6 na próxima jogada importante",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "Luz do dia",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "luz",
+        "nivel": 2,
+        "efeito": "dia"
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 5. O efeito sai no Tick do Golpe",
+      "duracao": "até o fim da cena",
+      "alcance": "o próprio corpo, ou um objeto que ele toca",
+      "area": "esfera de 18 m de luz forte",
+      "efeito": "ilumina como o dia; quem é sensível à luz fica Ofuscado na área. Ofuscado dá −2 nas ações de visão, inclusive ataques, sem alterar as Defesas. Cego prevalece",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "servo da causa",
+      "formas": "todas",
+      "texto": "protege os aliados, ilumina a área contra as criaturas da escuridão, cura quem cai e queima os mortos-vivos."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão no escuro",
+      "descricao": "enxerga no escuro como se fosse dia",
+      "formas": "todas"
+    },
+    {
+      "nome": "audição e olfato",
+      "descricao": "os de um humano",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "camuflagem": "nenhuma; passa por humano",
+    "mente": "humana",
+    "tracos": "humano comum, de cabelo com brilho metálico, olhos incomuns ou leve auréola dourada"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "sozinho, ou numa ordem devotada ao bem",
+    "atividade": "diurno",
+    "dieta": "onívoro",
+    "caca": "não se aplica",
+    "dianteDeGente": "ajuda; às vezes esconde a origem"
+  },
+  "ecologia": {
+    "terreno": [
+      "qualquer"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Humano com sangue celestial distante na linhagem, quase indistinguível dos outros, a não ser por um brilho no cabelo, nos olhos ou uma leve auréola. Cura aliados, ilumina o escuro e queima mortos-vivos.",
+  "lore": [
+    {
+      "titulo": "Origem",
+      "texto": "Aasimares carregam, sem saber, o sangue distante de um ser celestial em sua linhagem. Essa herança pode ficar adormecida por gerações até se manifestar de repente no filho de pais comuns."
+    },
+    {
+      "titulo": "Aparência",
+      "texto": "Fora um detalhe sutil (cabelo com brilho metálico, olhos incomuns, ou uma leve auréola dourada), um aasimar é indistinguível de um humano. Comunidades costumam interpretar seu nascimento como um bom presságio."
+    },
+    {
+      "titulo": "Temperamento",
+      "texto": "Nem todo aasimar é virtuoso, mas a maioria sente atração natural por causas justas e organizações devotadas ao bem, ainda que muitos escondam sua origem por medo ou modéstia."
+    }
+  ],
+  "imagens": [
+    "bestiario/aasimar_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [
+      {
+        "tipo": "gelo",
+        "formas": "todas"
+      },
+      {
+        "tipo": "raio",
+        "formas": "todas"
+      },
+      {
+        "tipo": "acido",
+        "formas": "todas"
+      }
+    ],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "habilidadesEspeciais.Canalizar luz",
+      "motivo": "R1 e D-197. Ampliação sugerida de +1d6 por 1 de Energia para aumentar a intensidade sem aumentar a área. R1 e D-197. Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. Pode gastar 1 de Energia para ampliar em +1d6 a cura ou o dano deste uso. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação uma ação, Velocidade 7 -> uma ação, Velocidade 5. O efeito sai no Tick do Golpe. Pela régua da Arte de base. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Repúdio da morte",
+      "motivo": "R1 e D-197. Usos grátis: 3 por cena. Cada uso extra custa 1 de Energia. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação uma ação, Velocidade 6, tocando um aliado moribundo -> uma ação, Velocidade 5, tocando um aliado moribundo. O efeito sai no Tick do Golpe. Pela régua da Arte de base. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Toque do bem",
+      "motivo": "R1 e D-197. Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação uma ação, Velocidade 5, tocando um aliado -> uma ação, Velocidade 5, tocando um aliado. O efeito sai no Tick do Golpe. Pela régua da Arte de base. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Luz do dia",
+      "motivo": "R1 e D-197. Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação uma ação, Velocidade 6 -> uma ação, Velocidade 5. O efeito sai no Tick do Golpe. Pela régua da Arte de base. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "equipamento",
+      "motivo": "espada longa do livro"
+    }
+  ]
+}

@@ -1,0 +1,380 @@
+{
+  "id": "barghest-maior",
+  "idAntigo": "mon-greater-barghest",
+  "nome": "Barghest Maior",
+  "nomeIngles": "Greater Barghest",
+  "categoria": "corruptor",
+  "papel": "elite",
+  "ameaca": 4,
+  "centelha": 4,
+  "formaPrincipal": {
+    "id": "verdadeira",
+    "nome": "forma verdadeira"
+  },
+  "corpo": {
+    "postura": "bípede, de pé, curvado para a frente",
+    "apoio": "bipede",
+    "altura": 2.7,
+    "largura": 0.77,
+    "profundidade": 0.39,
+    "comprimento": null,
+    "massa": 350,
+    "area": 1.85,
+    "posturaDoTamanho": "silhueta de frente, de pé"
+  },
+  "couraca": 2,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 8,
+    "destreza": 4,
+    "vigor": 6,
+    "percepcao": 5,
+    "inteligencia": 5,
+    "raciocinio": 5,
+    "influencia": 5,
+    "perspicacia": 5,
+    "compostura": 5
+  },
+  "habilidades": {
+    "briga": 5,
+    "bloqueio": 1,
+    "esquiva": 1,
+    "atletismo": 3,
+    "furtividade": 1,
+    "integridade": 5,
+    "prontidao": 2,
+    "resistencia": 3,
+    "empatia": 2,
+    "sociabilidade": 0,
+    "manha": 3,
+    "sobrevivencia": 2,
+    "ocultismo": 3
+  },
+  "habilidadesSec": {
+    "intimidacao": 4,
+    "musculatura": 3
+  },
+  "especialidades": {
+    "prontidao": [
+      {
+        "foco": "faro",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 5,
+    "compaixao": 1,
+    "conviccao": 5,
+    "temperanca": 1
+  },
+  "vontade": 9,
+  "aparencia": 1,
+  "deslocamento": {
+    "terra": {
+      "batalha": 4,
+      "arranque": 6,
+      "corrida": 9
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Garras",
+      "parte": "maos-de-garra",
+      "classe": "leve",
+      "pgr": [
+        1,
+        1,
+        3
+      ],
+      "dado": "1d6-2",
+      "multiplicadorForca": 1,
+      "tipoDano": "corte",
+      "nivelPerfuracao": 0,
+      "acerto": 1,
+      "bloqueiaComoArma": null,
+      "justificativa": "As garras da forma verdadeira, golpe rápido de membro, Leve (`regra-construcao.md` §7); as duas mãos fazem par (Manobras). Jogada: Força 8 + Briga 5 + 2 × o menor entre Centelha 4 e Briga 5 (8)"
+    },
+    {
+      "nome": "Mordida",
+      "parte": "mandibula-de-lobo",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "O \"Golpe planar\" do site (2 dados, 6 Ticks, corte): a mordida de lobo com o pescoço atrás, Média, como a do lobo do molde. Jogada: Força 8 + Briga 5 + 2 × o menor entre Centelha 4 e Briga 5 (8)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Garras",
+      "formas": [
+        "verdadeira"
+      ],
+      "classe": "livro",
+      "categoria": "inato",
+      "ataque": "Garras",
+      "regra": "empunhadura-dupla"
+    },
+    {
+      "nome": "Mudar de forma",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "uma ação, Velocidade 8",
+      "duracao": "até ele voltar à forma verdadeira",
+      "alcance": "o próprio corpo",
+      "area": "não se aplica",
+      "efeito": "vira um goblin ou um lobo enorme (as formas em Variantes), ou volta à forma verdadeira; a mente e os números ficam os dele. Use o perfil da forma. O restante é herdado. O equipamento só acompanha quando indicado",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "à vontade. Usar repetidamente causa esforço e pode levar ao cansaço. Sem custo"
+    },
+    {
+      "nome": "arma enfeitiçada fere inteira",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "ao receber o golpe",
+      "duracao": "enquanto a condição se aplica",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Contra arma encantada, aplique a Absorção inteira e cobre todo o dano restante. Contra as demais armas, reduza à metade o dano que passou pela Absorção. A arma enfeitiçada também fere incorpóreo sem a resistência a dano físico",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "devorar almas",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "ao consumir a alma de uma vítima inocente ao devorar seu corpo",
+      "duracao": "até gastar as cargas",
+      "alcance": "toque",
+      "area": "um alvo",
+      "efeito": "Cada alma elegível fornece uma carga uma única vez. Ao gastar uma carga, some +1d6 a uma jogada ou recupere 1d6 PV",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "até três cargas guardadas, sem custo de Energia"
+    },
+    {
+      "nome": "Multiataque",
+      "formas": [
+        "verdadeira"
+      ],
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "uma ação de Rajada",
+      "duracao": "uma ação",
+      "alcance": "o de cada parte",
+      "area": "os alvos da Rajada",
+      "efeito": "Golpeia nesta ordem: garra esquerda, garra direita, mordida. Cada golpe extra acumula −1d6 e conta para Guarda sob pressão. Não acumula com a Rajada comum",
+      "dano": "o de cada ataque que acertar",
+      "resistencia": "a Defesa de cada golpe",
+      "limiteDeUso": "até 3 golpes por ação, sem Energia. O uso repetido causa esforço e pode levar ao cansaço"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "truques sombrios",
+      "formas": "todas",
+      "texto": "os do barghest (pisca entre as sombras, levita, confunde onde está, encanta, espalha desespero, salta para perto), e mais: fica invisível por um tempo e fortalece ou faz crescer os aliados por perto. Os efeitos disponíveis em jogo são os poderes individuais descritos na ficha."
+    },
+    {
+      "nome": "tirano da tribo",
+      "formas": "todas",
+      "texto": "deixa os goblins gastarem o inimigo, fortalece os seus, entra no fim com as garras e a mordida e some invisível se a luta vira."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão no escuro",
+      "descricao": "enxerga no escuro absoluto",
+      "formas": "todas"
+    },
+    {
+      "nome": "faro",
+      "descricao": "de lobo; Prontidão (faro) +2",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "camuflagem": "entre goblins, na forma de goblin",
+    "mente": "inteligente, tirânica, faminta",
+    "tracos": "corpo de 2,7 m meio lobo, meio goblin, maciço, de pelo escuro, cabeça de lobo com presas grandes, mãos de garra e olhos que brilham"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "à frente de uma tribo de goblins ou criaturas parecidas",
+    "atividade": "noturno",
+    "dieta": "carnívoro",
+    "caca": "caça e devora vítimas inocentes",
+    "dianteDeGente": "devora; governa os goblinoides pelo medo e pela força"
+  },
+  "ecologia": {
+    "terreno": [
+      "qualquer",
+      "montanha"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "O barghest que trocou de pele tantas vezes, depois de anos de devoração, que virou algo maior e mais terrível. Governa uma tribo de goblins como um tirano vindo de fora, pelo medo e pela força bruta, e ainda anda entre eles como goblin ou como lobo.",
+  "lore": [
+    {
+      "titulo": "Ascensão",
+      "texto": "O barghest maior é o resultado de fartos anos de devoração: uma criatura que trocou de pele tantas vezes que se tornou algo maior e mais terrível, perdendo o antigo corpo para sempre."
+    },
+    {
+      "titulo": "Liderança",
+      "texto": "Costuma assumir o comando de uma tribo de goblins ou criaturas afins, governando-as pelo medo e pela força bruta como um tirano vindo de fora."
+    }
+  ],
+  "imagens": [
+    "bestiario/barghest-maior_criatura.webp"
+  ],
+  "formas": [
+    {
+      "id": "goblin",
+      "nome": "forma de goblin",
+      "aparencia": 4,
+      "corpo": {
+        "altura": 0.95,
+        "area": 0.25
+      },
+      "fisiologia": {
+        "camuflagem": "passa por um goblin da tribo",
+        "tracos": "goblin grande, de olhos que brilham no escuro"
+      }
+    },
+    {
+      "id": "lobo",
+      "nome": "forma de lobo",
+      "aparencia": 4,
+      "corpo": {
+        "postura": "quadrúpede",
+        "apoio": "quadrupede",
+        "altura": 1.56,
+        "comprimento": 3.47,
+        "comprimentoSemCauda": 2.21,
+        "largura": 0.57,
+        "profundidade": null,
+        "area": 1.37,
+        "posturaDoTamanho": "de lado"
+      },
+      "fisiologia": {
+        "camuflagem": "nenhuma, lobo grande demais para passar por comum",
+        "tracos": "lobo enorme de pelo escuro e olhos que brilham"
+      },
+      "ataques": [
+        {
+          "nome": "Mordida",
+          "parte": "mandibula-de-lobo",
+          "classe": "media",
+          "pgr": [
+            2,
+            1,
+            3
+          ],
+          "dado": "1d6",
+          "multiplicadorForca": 1,
+          "tipoDano": "perfuracao",
+          "nivelPerfuracao": 0,
+          "acerto": 0,
+          "bloqueiaComoArma": null
+        }
+      ]
+    }
+  ],
+  "elementos": {
+    "fraquezas": [
+      {
+        "tipo": "luz",
+        "formas": "todas"
+      },
+      {
+        "tipo": "sagrado",
+        "formas": "todas"
+      }
+    ],
+    "resistencias": [
+      {
+        "tipo": "corte",
+        "formas": "todas"
+      },
+      {
+        "tipo": "perfuracao",
+        "formas": "todas"
+      },
+      {
+        "tipo": "impacto",
+        "formas": "todas"
+      }
+    ],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "couraca",
+      "motivo": "Cobertura do corpo pela R49; metades arredondadas para cima. Absorção natural do livro (`combate.md`). Couraça 2: a pele nova, mais grossa que a do barghest (1), como a do elefante (2 a 3) .; resistência a Corte, Perfuração e Impacto, e Couraça 2 pelo \"ainda mais\""
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": ""
+    },
+    {
+      "campo": "comportamento.dieta",
+      "motivo": ""
+    },
+    {
+      "campo": "formas.goblin",
+      "motivo": "Como a do barghest: a altura, a área e a Aparência do goblin do livro (ficha `goblin`); a massa, os números e a mente ficam os dele"
+    },
+    {
+      "campo": "formas.lobo",
+      "motivo": "O lobo do molde (55 kg) levado aos 350 kg dele: × (350 ÷ 55)^(1/3) = 1,853 nas medidas e × 3,43 na área: 0,40 × 3,43 = 1,37 m², 5,5% abaixo do corte do Grande, fora da borda de 5% . Força, Vigor, PV e peso erguido ficam os da forma verdadeira, que tem a mesma massa"
+    },
+    {
+      "campo": "habilidadesEspeciais.Mudar de forma",
+      "motivo": "R3. Ativação uma ação, Velocidade 6 -> uma ação, Velocidade 8 Pela referência corporal ou de deslocamento do poder."
+    },
+    {
+      "campo": "habilidadesEspeciais.arma enfeitiçada fere inteira",
+      "motivo": "R1 e D-197. 1 uso grátis por cena. Cada uso extra custa 1 de Energia. Um uso de abertura até a definição do efeito. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "habilidadesEspeciais.devorar almas",
+      "motivo": "R1 e D-197. 1 uso grátis por cena. Cada uso extra custa 1 de Energia. Um uso de abertura até a definição do efeito. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "ataques",
+      "motivo": "o site gravava um \"Golpe planar\" de 2 dados e 6 Ticks, de corte (`inimigos.json`: \"2d6 +12 corte\", dano médio 19). A D-241 levou a Pesado só o golpe de cinco planares; aqui a classe sai do gesto: a mordida fica Média, como a do lobo, e as garras Leves, em par. Dano médio: 19 antes; depois, a mordida 15,5, as garras 13,5 cada"
+    },
+    {
+      "campo": "formas",
+      "motivo": "verdadeira, goblin e lobo (D-201), como no barghest; a forma de lobo, com 350 kg, fica Média por 5,5%"
+    }
+  ]
+}

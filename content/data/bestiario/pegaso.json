@@ -1,0 +1,280 @@
+{
+  "id": "pegaso",
+  "idAntigo": "mon-pegaso",
+  "nome": "Pégaso",
+  "nomeIngles": "Pegasus",
+  "categoria": "besta-magica",
+  "papel": "fera",
+  "ameaca": 3,
+  "centelha": 4,
+  "corpo": {
+    "postura": "quatro patas; voador",
+    "apoio": "quadrupede",
+    "altura": 1.81,
+    "largura": 0.59,
+    "profundidade": null,
+    "comprimento": 2.7,
+    "envergadura": 9,
+    "massa": 450,
+    "area": 1.92,
+    "posturaDoTamanho": "de lado, asas fechadas, no chão",
+    "segundoTamanho": {
+      "area": 17,
+      "posturaDoTamanho": "de baixo, asas abertas, em voo"
+    }
+  },
+  "couraca": 1,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 6,
+    "destreza": 4,
+    "vigor": 6,
+    "percepcao": 3,
+    "inteligencia": 2,
+    "raciocinio": 3,
+    "influencia": 3,
+    "perspicacia": 3,
+    "compostura": 3
+  },
+  "habilidades": {
+    "briga": 4,
+    "bloqueio": 0,
+    "esquiva": 1,
+    "atletismo": 2,
+    "furtividade": 1,
+    "integridade": 3,
+    "prontidao": 3,
+    "resistencia": 3,
+    "empatia": 3,
+    "sociabilidade": 0,
+    "sobrevivencia": 2
+  },
+  "habilidadesSec": {
+    "voo": 4,
+    "musculatura": 2
+  },
+  "especialidades": {
+    "prontidao": [
+      {
+        "foco": "sentidos aguçados",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 1,
+    "conviccao": 3,
+    "temperanca": 2
+  },
+  "vontade": 9,
+  "aparencia": 9,
+  "deslocamento": {
+    "terra": {
+      "batalha": 6,
+      "arranque": 10,
+      "corrida": 14
+    },
+    "voo": {
+      "batalha": 12
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Coice",
+      "parte": "casco",
+      "classe": "pesada",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": "2d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "impacto",
+      "nivelPerfuracao": null,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "O \"coice poderoso\" do site: o coice com o corpo virado, Pesada, como o coice do cavalo do molde; Força × 1, golpe de membro (`regra-construcao.md` §7). Jogada: Força 6 + Briga 4 + 2 × o menor entre Centelha 4 e Briga 4 (8)"
+    },
+    {
+      "nome": "Mordida",
+      "parte": "mordida",
+      "classe": "leve",
+      "pgr": [
+        1,
+        1,
+        3
+      ],
+      "dado": "1d6-2",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 1,
+      "bloqueiaComoArma": null,
+      "justificativa": "A mordida de cavalo, Leve, como a do cavalo do molde. Jogada: Força 6 + Briga 4 + 2 × o menor entre Centelha 4 e Briga 4 (8)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Posturas de combate",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Grande: de lado, asas fechadas, no chão. Enorme: de baixo, asas abertas, em voo. Vale o Tamanho da postura atual. Abrir as asas ao voar e fechá-las ao pousar faz parte do movimento, sem custo adicional",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "Sentir o bem e o mal",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "adivinhacao",
+        "nivel": 1
+      },
+      "categoria": "inato",
+      "ativacao": "nenhuma, está sempre ligado",
+      "duracao": "contínua",
+      "alcance": "18 m",
+      "area": "esfera de 18 m em volta dele",
+      "efeito": "sente se quem está perto tem intenção boa ou má",
+      "dano": "nenhum",
+      "resistencia": "Percepção + Empatia da criatura contra a Defesa Mental do alvo, com o Resistir do livro. quem passa esconde a intenção",
+      "limiteDeUso": "à vontade. Sem custo"
+    },
+    {
+      "nome": "coração nobre",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Ignora medo imposto por presença, Arte ou poder de criatura. O Abalado de golpe social ou corporal continua valendo",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "Contínuo, sem custo"
+    },
+    {
+      "nome": "Multiataque",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "uma ação de Rajada",
+      "duracao": "uma ação",
+      "alcance": "o de cada parte",
+      "area": "os alvos da Rajada",
+      "efeito": "Golpeia nesta ordem: coice esquerdo, coice direito, mordida. Cada golpe extra acumula −1d6 e conta para Guarda sob pressão. Não acumula com a Rajada comum",
+      "dano": "o de cada ataque que acertar",
+      "resistencia": "a Defesa de cada golpe",
+      "limiteDeUso": "até 3 golpes por ação, sem Energia. O uso repetido causa esforço e pode levar ao cansaço"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "só o puro cavalga",
+      "formas": "todas",
+      "texto": "só aceita cavaleiro de intenção boa, provada ao longo de anos; o resto, derruba e escoiceia."
+    },
+    {
+      "nome": "manada",
+      "formas": "todas",
+      "texto": "foge pelos céus altos, mas defende o potro com ferocidade absoluta."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "sentidos aguçados",
+      "descricao": "Prontidão +2; dificilmente é pego de surpresa",
+      "formas": "todas"
+    },
+    {
+      "nome": "sentir o bem e o mal",
+      "descricao": "sente a intenção de quem está a até 18 m (Manobras)",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "prendeRespiracao": "não",
+    "mente": "inteligente; entende a fala, não fala",
+    "tracos": "cavalo branco de 2,7 m com asas de penas brancas de 9 m de ponta a ponta"
+  },
+  "aptidoes": {
+    "montaria": true,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "manada solta, com um garanhão ou égua mais velha à frente",
+    "atividade": "diurno",
+    "dieta": "herbívoro",
+    "caca": "pasta nos planaltos",
+    "dianteDeGente": "evita; só aceita o cavaleiro puro"
+  },
+  "ecologia": {
+    "terreno": [
+      "céu",
+      "planície",
+      "montanha"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Cavalo alado de penas brancas que voa livre em manadas pelos céus altos, longe de estradas e cidades. Só se deixa montar por quem prova, ao longo de anos, um coração puro; leal a quem conquista sua confiança e implacável com a traição.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Voa livre em bandos pelos céus altos, evitando toda civilização, e só se deixa montar por quem prova, ao longo de anos, um coração puro."
+    },
+    {
+      "titulo": "Sociedade",
+      "texto": "Vive em manadas soltas lideradas por um garanhão ou égua mais velha, defendendo os potros com ferocidade absoluta."
+    },
+    {
+      "titulo": "Hábitat",
+      "texto": "Ocupa planaltos altos e picos isolados, bem longe de estradas e cidades."
+    },
+    {
+      "titulo": "Personalidade",
+      "texto": "Nobre e altivo, leal a quem conquista sua confiança, e implacável com qualquer traição."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "Relíquia viva de um mundo mais mágico, cultuada por alguns como sinal do Sol; camponeses que nunca viram Centelha tão alta a encaram com o mesmo temor supersticioso reservado a dragões."
+    }
+  ],
+  "imagens": [
+    "bestiario/pegaso_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "corpo.area",
+      "motivo": "Enorme em voo, de asas abertas (17,0 m²), pelo método do grifo"
+    },
+    {
+      "campo": "ataques",
+      "motivo": "o site gravava um ataque só, \"Garras e presas\" (`inimigos.json`: \"2d6 +10 perfurante\", 6 Ticks, dano médio 17). O pégaso não tem garra: a ficha usa o coice do site, Pesado, e a mordida, Leve, como no cavalo do molde. Dano médio: 17 antes; depois, coice 17,0 (sem mudança), mordida 11,5"
+    }
+  ]
+}

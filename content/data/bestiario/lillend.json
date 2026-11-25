@@ -1,0 +1,290 @@
+{
+  "id": "lillend",
+  "idAntigo": "mon-lillend",
+  "nome": "Lillend",
+  "nomeIngles": "Lillend",
+  "categoria": "celestial",
+  "papel": "elite",
+  "ameaca": 4,
+  "centelha": 4,
+  "corpo": {
+    "postura": "cauda enrolada, torso erguido",
+    "apoio": "outro",
+    "altura": 2.5,
+    "largura": 2.5,
+    "profundidade": 2.5,
+    "comprimento": 6,
+    "massa": 1700,
+    "area": 4.6,
+    "posturaDoTamanho": "cauda enrolada, torso erguido",
+    "segundoTamanho": {
+      "area": 8.6,
+      "posturaDoTamanho": "asas abertas"
+    }
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 7,
+    "destreza": 5,
+    "vigor": 7,
+    "percepcao": 5,
+    "inteligencia": 4,
+    "raciocinio": 4,
+    "influencia": 5,
+    "perspicacia": 5,
+    "compostura": 5
+  },
+  "habilidades": {
+    "briga": 4,
+    "bloqueio": 2,
+    "esquiva": 1,
+    "prontidao": 3,
+    "integridade": 5,
+    "sobrevivencia": 3,
+    "sociabilidade": 3,
+    "armas": 4,
+    "empatia": 3
+  },
+  "habilidadesSec": {
+    "tocar-instrumento": 4,
+    "musculatura": 2
+  },
+  "especialidades": {},
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 4,
+    "compaixao": 5,
+    "conviccao": 5,
+    "temperanca": 4
+  },
+  "vontade": 9,
+  "aparencia": 10,
+  "deslocamento": {
+    "terra": {
+      "batalha": 3,
+      "arranque": 5,
+      "corrida": 7
+    },
+    "voo": {
+      "batalha": 7
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {
+    "fascinacao": 3,
+    "cura": 3,
+    "luz": 1
+  },
+  "ataques": [
+    {
+      "nome": "Espada longa",
+      "arma": "espada-longa",
+      "justificativa": "Catálogo, uma mão; jogada 20 com Armas"
+    },
+    {
+      "nome": "Cauda",
+      "parte": "cauda",
+      "classe": "pesada",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": "2d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "impacto",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Golpe de toda a cauda muscular; jogada 19 com Briga"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Posturas de combate",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Grande: cauda enrolada, torso erguido. Enorme: asas abertas. Vale o Tamanho da postura atual. Abrir as asas ao voar e fechá-las ao pousar faz parte do movimento, sem custo adicional",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "Constrição",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Cauda",
+      "categoria": "inato",
+      "regra": "agarrar",
+      "texto": "envolve o adversário nas espiras"
+    },
+    {
+      "nome": "Canto encantado",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "fascinacao",
+        "nivel": 3
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 5",
+      "duracao": "enquanto mantém o canto",
+      "alcance": "até onde ouve",
+      "area": "um alvo",
+      "efeito": "Fascina quem ouve o canto e prende sua atenção enquanto a canção durar",
+      "dano": "nenhum",
+      "resistencia": "Influência + Ocultismo contra Defesa Mental com o Resistir do livro",
+      "limiteDeUso": "1 uso grátis por cena. Cada uso extra custa 1 de Mana"
+    },
+    {
+      "nome": "Conversar com animais e plantas",
+      "formas": "todas",
+      "classe": "sem regra ainda",
+      "categoria": "inato",
+      "efeito": "faz-se entender por animais e vegetação"
+    },
+    {
+      "nome": "Imunidade a veneno e petrificação",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "toxinas e transformações em pedra não a afetam. O ferimento do golpe continua",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "Contínuo, sem custo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "Magias da musa",
+      "formas": "todas",
+      "texto": "usa Fascinação para acalmar e distrair, Cura para socorrer e Luz para iluminar ou escurecer."
+    },
+    {
+      "nome": "Defesa da arte",
+      "formas": "todas",
+      "texto": "mantém a cauda enrolada ao lutar no chão; voa para interceptar ameaças e retorna ao alcance da espada."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão",
+      "descricao": "enxerga no escuro e sob luz fraca",
+      "formas": "todas"
+    },
+    {
+      "nome": "audição",
+      "descricao": "distingue melodias e vozes",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "mente": "inteligente",
+    "tracos": "Musa alada de torso humanoide e cauda serpentina espessa"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitário",
+    "atividade": "qualquer hora",
+    "dieta": "não precisa comer",
+    "caca": "não se aplica",
+    "dianteDeGente": "conversa e ampara artistas; enfrenta quem os ameaça"
+  },
+  "ecologia": {
+    "terreno": [
+      "floresta",
+      "qualquer"
+    ],
+    "clima": [
+      "extraplanar"
+    ]
+  },
+  "descricao": "Guardiã de artistas e canções, mantém a harpa ao alcance das mãos. Enrola a cauda ao redor de quem ameaça seus protegidos.",
+  "lore": [
+    {
+      "titulo": "Papel",
+      "texto": "Entre os espíritos do bem, as lillends são as contadoras de histórias, reunindo lendas e registrando-as em poemas e canções épicas."
+    },
+    {
+      "titulo": "Temperamento",
+      "texto": "Geralmente pacíficas, tornam-se ferozes na defesa de uma obra de arte rara ou de um artista talentoso sob sua proteção."
+    },
+    {
+      "titulo": "Devoção",
+      "texto": "Não precisam de alimento mortal, mas se alimentam simbolicamente da alegria da música e da performance, visitando o mundo material para zelar por suas obras e artistas favoritos."
+    }
+  ],
+  "imagens": [
+    "bestiario/lillend_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [
+      {
+        "tipo": "fogo",
+        "formas": "todas"
+      },
+      {
+        "tipo": "gelo",
+        "formas": "todas"
+      }
+    ],
+    "imunidades": [
+      {
+        "tipo": "raio",
+        "formas": "todas"
+      }
+    ]
+  },
+  "revisao": [
+    {
+      "campo": "habilidadesSec.musculatura",
+      "motivo": "Cauda muscular capaz de constrição, sem hipertrofia extrema"
+    },
+    {
+      "campo": "corpo.altura",
+      "motivo": "Comprimento publicado de 6 m; altura e espiras estimadas pelo torso e cauda"
+    },
+    {
+      "campo": "corpo.comprimento",
+      "motivo": "Comprimento publicado de 6 m; altura e espiras estimadas pelo torso e cauda"
+    },
+    {
+      "campo": "corpo.largura",
+      "motivo": "Comprimento publicado de 6 m; altura e espiras estimadas pelo torso e cauda"
+    },
+    {
+      "campo": "corpo.area",
+      "motivo": "Torso 1,0 m² + espiras visíveis 3,6 m² = 4,6; asas expostas acrescentam 4,0 m²"
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": "Comportamento"
+    },
+    {
+      "campo": "habilidadesEspeciais.Canto encantado",
+      "motivo": "R1 e D-197. 1 uso grátis por cena. Cada uso extra custa 1 de Mana. Um uso de abertura até a definição do efeito. valor de molde, para a bancada (uso extra de 1 de Mana). Uso extra: falta grau de Alcance e Duração (piso 0 pela T7, RT-134.6)."
+    },
+    {
+      "campo": "habilidadesSec.tocar-instrumento",
+      "motivo": "Música 4 passa a Tocar Instrumento 4, Habilidade do catálogo que cobre a execução musical por instrumentos; nível conservado, pela D-231. a conferir."
+    }
+  ]
+}

@@ -1,0 +1,245 @@
+{
+  "id": "trepadeira-de-almiscar-amarelo",
+  "idAntigo": "mon-yellow-musk-creeper",
+  "nome": "Trepadeira de Almíscar Amarelo",
+  "nomeIngles": "Yellow Musk Creeper",
+  "categoria": "planta",
+  "papel": "soldado",
+  "ameaca": 2,
+  "centelha": 0,
+  "corpo": {
+    "postura": "ramos espalhados no chão, apoio outro",
+    "apoio": "outro",
+    "altura": 0.6,
+    "largura": 3,
+    "profundidade": 3,
+    "comprimento": 3,
+    "massa": 100,
+    "area": 2.4,
+    "posturaDoTamanho": "ramos espalhados no chão"
+  },
+  "couraca": 1,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 5,
+    "destreza": 4,
+    "vigor": 5,
+    "percepcao": 2,
+    "inteligencia": 0,
+    "raciocinio": 2,
+    "influencia": 1,
+    "perspicacia": 1,
+    "compostura": 1
+  },
+  "habilidades": {
+    "briga": 2,
+    "bloqueio": 0,
+    "esquiva": 1,
+    "prontidao": 1,
+    "integridade": 0,
+    "sobrevivencia": 0,
+    "sociabilidade": 0
+  },
+  "habilidadesSec": {
+    "musculatura": 2
+  },
+  "especialidades": {},
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 5,
+    "compaixao": 1,
+    "conviccao": 1,
+    "temperanca": 1
+  },
+  "vontade": 3,
+  "aparencia": 3,
+  "deslocamento": {
+    "terra": {
+      "batalha": 1,
+      "arranque": 2,
+      "corrida": 2
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Tendrilho",
+      "parte": "ramo-ou-membro-natural",
+      "classe": "leve",
+      "pgr": [
+        1,
+        1,
+        3
+      ],
+      "dado": "1d6-2",
+      "multiplicadorForca": 1,
+      "tipoDano": "impacto",
+      "nivelPerfuracao": 0,
+      "acerto": 1,
+      "bloqueiaComoArma": null,
+      "justificativa": "Classe pelo gesto, sem usar Destreza no dano; jogada 8 com Briga"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Névoa de pólen",
+      "formas": "todas",
+      "classe": "sem regra ainda",
+      "categoria": "substancia",
+      "efeito": "sopra pólen sobre a vítima, que fica atraída pelas flores e se aproxima sem se defender. O corpo guarda 2 doses e produz 1 dose em 6 horas"
+    },
+    {
+      "nome": "Criação de zumbi de almíscar",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "morte",
+        "nivel": 4
+      },
+      "categoria": "magia",
+      "ativacao": "ritual sobre o cadáver",
+      "duracao": "pelo ritual",
+      "alcance": "toque",
+      "area": "um alvo",
+      "efeito": "Ergue o cadáver como zumbi de almíscar pelo poder equivalente a Morte 4",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "1 uso grátis por cena"
+    },
+    {
+      "nome": "Imunidades vegetais",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Ignora veneno, sono e domínio. O ferimento do golpe continua. Dano físico de Arte e conversa comum seguem as regras normais",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "Contínuo, sem custo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "Tendrilhos longos",
+      "formas": "todas",
+      "texto": "alcança até 3 m do caule central; aguarda a presa perto das flores antes de golpeá-la."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "vibrações",
+      "descricao": "detecta aproximações pelo solo",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "trocas gasosas pela superfície",
+    "camuflagem": "parece vegetação imóvel",
+    "mente": "sem mente",
+    "tracos": "Trepadeira de flores amarelas e longos tendrilhos"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitário",
+    "atividade": "qualquer hora",
+    "dieta": "animais e nutrientes do solo",
+    "caca": "não se aplica",
+    "dianteDeGente": "ataca quem se aproxima"
+  },
+  "ecologia": {
+    "terreno": [
+      "floresta",
+      "subterrâneo"
+    ],
+    "clima": [
+      "temperado",
+      "tropical"
+    ]
+  },
+  "descricao": "Trepadeira de flores amarelas e longos tendrilhos",
+  "lore": [
+    {
+      "titulo": "Jardim de cadáveres",
+      "texto": "Cresce em cemitérios assombrados, campos de batalha e outros lugares onde a morte impregna o solo."
+    },
+    {
+      "titulo": "Procriação macabra",
+      "texto": "Mata os vivos, infesta seus corpos com sementes e pólen, e os anima como zumbis para espalhar sua prole."
+    },
+    {
+      "titulo": "Guardas descartáveis",
+      "texto": "Os zumbis-de-almíscar protegem a planta por alguns dias; quando surgem novos servos, os antigos vagueiam e se decompõem, semeando novas trepadeiras."
+    }
+  ],
+  "imagens": [
+    "bestiario/trepadeira-de-almiscar-amarelo_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [
+      {
+        "tipo": "fogo",
+        "formas": "todas"
+      }
+    ],
+    "resistencias": [
+      {
+        "tipo": "perfuracao",
+        "formas": "todas"
+      }
+    ],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "habilidadesSec.musculatura",
+      "motivo": "Fibras móveis capazes de prender e deslocar presas"
+    },
+    {
+      "campo": "corpo.altura",
+      "motivo": "Dimensão principal publicada; largura e profundidade estimadas pelo corpo"
+    },
+    {
+      "campo": "corpo.comprimento",
+      "motivo": "Dimensão principal publicada; largura e profundidade estimadas pelo corpo"
+    },
+    {
+      "campo": "corpo.largura",
+      "motivo": "Dimensão principal publicada; largura e profundidade estimadas pelo corpo"
+    },
+    {
+      "campo": "corpo.area",
+      "motivo": "Silhueta útil estimada em 2,4 m², descontando vazios entre os ramos; o retângulo externo não é todo preenchido"
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": "Comportamento"
+    },
+    {
+      "campo": "habilidadesEspeciais.Névoa de pólen",
+      "motivo": "R1 e D-197. Estoque sugerido de 2 doses e 6 horas por dose para permitir duas exposições próximas e recuperação fora da luta. O efeito pendente continua para o autor. valor de molde, para a bancada (2 doses e produz 1 dose em 6 horas)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Criação de zumbi de almíscar",
+      "motivo": "R1 e D-197. 1 uso grátis por cena. Somente os usos grátis estão disponíveis. Um uso de abertura até a definição do efeito."
+    },
+    {
+      "campo": "corpo",
+      "motivo": "apoio outro explicitado na Anatomia e na Postura; esfera, hexápode ou planta não usam o apoio bípede nem quadrúpede. a conferir."
+    },
+    {
+      "campo": "ataques.Tendrilho",
+      "motivo": "Antes: ataque genérico perfurante, Acerto 0; agora golpe de impacto, Acerto +1, pelo gesto."
+    }
+  ]
+}

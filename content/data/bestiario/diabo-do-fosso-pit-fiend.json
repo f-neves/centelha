@@ -1,0 +1,484 @@
+{
+  "id": "diabo-do-fosso-pit-fiend",
+  "idAntigo": "mon-diabo-do-fosso-pit-fiend",
+  "nome": "Diabo do Fosso (Pit Fiend)",
+  "nomeIngles": "Pit Fiend",
+  "categoria": "corruptor",
+  "papel": "chefe",
+  "ameaca": 6,
+  "centelha": 9,
+  "corpo": {
+    "postura": "bípede, de pé, ereto; voa",
+    "apoio": "bipede",
+    "altura": 2.7,
+    "largura": 0.81,
+    "profundidade": 0.38,
+    "comprimento": null,
+    "massa": 360,
+    "area": 1.94,
+    "posturaDoTamanho": "silhueta de frente, de pé"
+  },
+  "couraca": 4,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 12,
+    "destreza": 9,
+    "vigor": 11,
+    "percepcao": 9,
+    "inteligencia": 8,
+    "raciocinio": 9,
+    "influencia": 8,
+    "perspicacia": 8,
+    "compostura": 9
+  },
+  "habilidades": {
+    "briga": 5,
+    "bloqueio": 0,
+    "esquiva": 3,
+    "atletismo": 4,
+    "furtividade": 0,
+    "integridade": 8,
+    "prontidao": 5,
+    "resistencia": 6,
+    "empatia": 4,
+    "persuasao": 5,
+    "manha": 4,
+    "sociabilidade": 3,
+    "politica": 4,
+    "ocultismo": 5
+  },
+  "habilidadesSec": {
+    "lideranca": 5,
+    "direito": 4,
+    "estrategia": 5,
+    "intimidacao": 5,
+    "voo": 3,
+    "musculatura": 4
+  },
+  "especialidades": {
+    "persuasao": [
+      {
+        "foco": "pacto",
+        "valor": 2,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {
+    "lideranca": [
+      {
+        "foco": "legiões infernais",
+        "valor": 2,
+        "origem": "livro"
+      }
+    ]
+  },
+  "virtudes": {
+    "bravura": 6,
+    "compaixao": 1,
+    "conviccao": 5,
+    "temperanca": 4
+  },
+  "vontade": 12,
+  "aparencia": 0,
+  "deslocamento": {
+    "terra": {
+      "batalha": 4,
+      "arranque": 6,
+      "corrida": 9
+    },
+    "voo": {
+      "batalha": 6
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Garras",
+      "parte": "mao-de-garras",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "corte",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "O \"Golpe planar\" do site (2 dados, corte): a garra com o braço e o corpo atrás, Média (`regra-construcao.md` §7). Duas por ação pela Rajada (Manobras). Jogada: Força 12 + Briga 5 + 2 × o menor entre Centelha 9 e Briga 5 (10)"
+    },
+    {
+      "nome": "Mordida",
+      "parte": "presas",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "\"Mordida com doença infernal\" (site): a mordida com a cabeça atrás, Média. Leva a doença (Manobras). Jogada: Força 12 + Briga 5 + 2 × o menor entre Centelha 9 e Briga 5 (10)"
+    },
+    {
+      "nome": "Cauda",
+      "parte": "cauda-de-ferrao",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "\"Ferrão de cauda venenoso\" (site): a cauda que pica com o quadril atrás, Média. Leva o veneno (Veneno e doença). Jogada: Força 12 + Briga 5 + 2 × o menor entre Centelha 9 e Briga 5 (10)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Duas garras",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Garras",
+      "categoria": "inato",
+      "regra": "rajada",
+      "texto": "Até dois golpes por ação"
+    },
+    {
+      "nome": "Ferrão venenoso",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "ataque": "Cauda",
+      "categoria": "substancia",
+      "ativacao": "o golpe da Cauda que causa ao menos 1 PV depois da Absorção",
+      "duracao": "a do veneno",
+      "alcance": "o da cauda",
+      "area": "um alvo",
+      "efeito": "o alvo fica Envenenado pelo veneno do diabo do fosso (Veneno e doença)",
+      "dano": "o do veneno",
+      "resistencia": "corpo, pelo veneno",
+      "limiteDeUso": "O corpo guarda 3 doses e produz 1 dose a cada 4 horas. Cada uso gasta 1 dose. Nada acelera a produção"
+    },
+    {
+      "nome": "Doença infernal",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "morte",
+        "nivel": 3,
+        "efeito": "praga"
+      },
+      "categoria": "inato",
+      "ativacao": "a Mordida que fere",
+      "duracao": "até ser tratada (Cura) ou curada por Arte",
+      "alcance": "toque",
+      "area": "um alvo",
+      "efeito": "o alvo fica Doente e vai perdendo Vigor: a cada dia sem tratamento, um degrau de Desgaste. Se o Vigor chegar a 0, a vítima morre",
+      "dano": "nenhum além da mordida",
+      "resistencia": "corpo, contra a jogada da mordida; quem passa não adoece daquele golpe",
+      "limiteDeUso": "um por golpe. Sem custo"
+    },
+    {
+      "nome": "Aura de medo",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "morte",
+        "nivel": 3,
+        "efeito": "mortalha"
+      },
+      "categoria": "inato",
+      "ativacao": "nenhuma; sempre ativa",
+      "duracao": "para Abalado, até o fim da cena ou até Recompor",
+      "alcance": "12 m",
+      "area": "esfera de 12 m em volta dele",
+      "efeito": "puro terror; quem entra e falha fica Abalado só de estar perto. Abalado dá −2 nas jogadas até o fim da cena ou até Recompor, ação de Velocidade 5 sem teste",
+      "dano": "nenhum",
+      "resistencia": "Influência + Ocultismo da criatura contra a Defesa Mental do alvo, com o Resistir do livro. quem passa fica imune à aura até o fim da cena",
+      "limiteDeUso": "nenhum. Sem custo"
+    },
+    {
+      "nome": "Labareda",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "fogo",
+        "nivel": 6,
+        "efeito": "projetil-conjurado"
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 7. O efeito sai no Tick do Golpe",
+      "duracao": "instantânea",
+      "alcance": "60 m",
+      "area": "esfera de 6 m",
+      "efeito": "arremessa uma bola de fogo que explode no ponto escolhido",
+      "dano": "6d6 + Centelha, fogo",
+      "resistencia": "esquiva; quem passa leva metade",
+      "limiteDeUso": "Usos grátis: 3 por dia. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "Convocar diabos",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "espirito",
+        "nivel": 4,
+        "efeito": "invocar"
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 6",
+      "duracao": "até o fim da cena",
+      "alcance": "9 m",
+      "area": "um aliado",
+      "efeito": "Convoca Diabrete (Imp) até o fim da cena. A origem aguarda o lore dos planos",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "1 uso grátis por cena. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "Feitiços supremos",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "fortuna",
+        "nivel": 6
+      },
+      "categoria": "milagre",
+      "ativacao": "Um mortal pede uma Arte específica e assina um pacto que nomeia o serviço que deverá ao diabo. O diabo precisa traçar o selo e ler o pacto em voz alta sem interrupção. Depois de lacrá-lo, invoca a Arte com uma ação de Velocidade 7",
+      "duracao": "a do efeito reproduzido",
+      "alcance": "o do efeito reproduzido",
+      "area": "a do efeito reproduzido",
+      "efeito": "reproduz o efeito de qualquer Arte, de qualquer nível, uma única vez",
+      "dano": "o do efeito reproduzido",
+      "resistencia": "a do efeito reproduzido",
+      "limiteDeUso": "uma vez por história. Limite fixo, sem uso extra nem ampliação"
+    },
+    {
+      "nome": "Regeneração 5",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "fraqueza": {
+        "forma": "naoRegenera",
+        "tipos": [
+          "arma abençoada",
+          "prata"
+        ]
+      },
+      "texto": "Origem sobrenatural. O dano de arma abençoada ou prata só fecha com outras curas, como Arte, Cura ou descanso. As demais feridas se regeneram normalmente. Recupera 5 PV por minuto, até o máximo de PV. Em combate, recupera 0,5 PV a cada 6 Ticks, contados a partir do Tick do primeiro dano"
+    },
+    {
+      "nome": "Ver o invisível",
+      "formas": "todas",
+      "classe": "livro",
+      "tecnica": {
+        "id": "visao-verdadeira",
+        "nivel": 4
+      },
+      "categoria": "inato"
+    },
+    {
+      "nome": "visão verdadeira sempre ativa",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "18 m",
+      "area": "o campo de visão",
+      "efeito": "Percebe disfarces, ilusões e seres invisíveis. Paredes bloqueiam a visão e a Furtividade comum continua válida",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "imune a veneno",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "o veneno não pega no corpo de diabo. O ferimento do golpe continua",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "Contínuo, sem custo"
+    },
+    {
+      "nome": "medonho",
+      "formas": "todas",
+      "classe": "sem regra ainda",
+      "categoria": "inato",
+      "efeito": "o senhor do Fosso, de asas, presas e ferrão; diabos menores obedecem sem hesitar só de vê-lo"
+    },
+    {
+      "nome": "Multiataque",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "uma ação de Rajada",
+      "duracao": "uma ação",
+      "alcance": "o de cada parte",
+      "area": "os alvos da Rajada",
+      "efeito": "Golpeia nesta ordem: garra, mordida, ferrão da cauda. Cada golpe extra acumula −1d6 e conta para Guarda sob pressão. Não acumula com a Rajada comum",
+      "dano": "o de cada ataque que acertar",
+      "resistencia": "a Defesa de cada golpe",
+      "limiteDeUso": "até 3 golpes por ação, sem Energia. O uso repetido causa esforço e pode levar ao cansaço"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "general absoluto",
+      "formas": "todas",
+      "texto": "raramente luta primeiro; chama diabos menores, joga a labareda no grupo e só então entra com garras, presas e ferrão; usa contratos e juramentos como arma tanto quanto o fogo."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão no escuro",
+      "descricao": "enxerga no escuro absoluto",
+      "formas": "todas"
+    },
+    {
+      "nome": "visão verdadeira",
+      "descricao": "Até 18 m, distingue disfarce, ilusão e invisibilidade. Paredes e Furtividade comum limitam a percepção. Sem custo",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "mente": "inteligente, calculista, paciente",
+    "tracos": "diabo de 2,7 m, pele vermelho-escura de escamas, chifres, presas, asas de morcego de 4 m e cauda de ferrão"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "comanda legiões inteiras",
+    "atividade": "qualquer hora",
+    "dieta": "não precisa comer",
+    "caca": "corrompe almas por contrato",
+    "dianteDeGente": "oferece pactos; cruza ao mundo só quando um pacto o convoca"
+  },
+  "ecologia": {
+    "terreno": [
+      "qualquer"
+    ],
+    "clima": [
+      "extraplanar"
+    ]
+  },
+  "descricao": "General absoluto do Inferno, logo abaixo dos Arquiduques, que comanda legiões com disciplina fria e usa contratos e juramentos como arma tanto quanto garras e fogo. Calculista e paciente, trata a corrupção de uma alma como obra de longo prazo, quase artesanal.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "General absoluto, comanda legiões inteiras do Inferno com disciplina fria, usando contratos e juramentos como arma tanto quanto garras e fogo."
+    },
+    {
+      "titulo": "Sociedade",
+      "texto": "Ocupa o topo da hierarquia infernal, logo abaixo dos Arquiduques; diabos menores o temem e obedecem sem hesitar."
+    },
+    {
+      "titulo": "Personalidade",
+      "texto": "Calculista e paciente, cruel por princípio e não por impulso; encara a corrupção de uma alma como obra de longo prazo, quase artesanal."
+    },
+    {
+      "titulo": "Hábitat",
+      "texto": "Governa a partir de fortalezas do Inferno, só cruzando ao mundo material quando um pacto o convoca ou um culto abre a porta certa."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "Pactos com diabos são o pesadelo que as igrejas supressoras mais pregam contra: cada contrato assinado em desespero, seja por dívida, guerra ou fome, é uma fresta que nem a Supressão fecha. Muitos clérigos suspeitam que a própria Fenda tenha atraído a atenção de senhores do Inferno como este."
+    }
+  ],
+  "imagens": [
+    "bestiario/diabo-do-fosso-pit-fiend_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [
+      {
+        "tipo": "luz",
+        "formas": "todas"
+      },
+      {
+        "tipo": "sagrado",
+        "formas": "todas"
+      }
+    ],
+    "resistencias": [],
+    "imunidades": [
+      {
+        "tipo": "fogo",
+        "formas": "todas"
+      }
+    ]
+  },
+  "revisao": [
+    {
+      "campo": "habilidades.prontidao",
+      "motivo": "A nota do site (\"Prontidão 5\"); o campo dizia 4; 5 pela nota do site, e não o 4 do campo"
+    },
+    {
+      "campo": "couraca",
+      "motivo": "Cobertura do corpo pela R49; metades arredondadas para cima. Absorção natural do livro (`combate.md`). Couraça 4: a pele de diabo maior, como a do balor e do hezrou .; 4, como o balor"
+    },
+    {
+      "campo": "comportamento.dieta",
+      "motivo": ""
+    },
+    {
+      "campo": "habilidadesEspeciais.Ferrão venenoso",
+      "motivo": "R1/R4, D-197. Três doses preservam a reserva para mais de uma presa. Sugestão de 3 doses e 4 h por dose para repor fora da luta. valor de molde, para a bancada (3 doses e produz 1 dose a cada 4 horas)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Aura de medo",
+      "motivo": "R5 e D-197. Jogada sugerida de Influência + Ocultismo para a imposição mental deste poder."
+    },
+    {
+      "campo": "habilidadesEspeciais.Labareda",
+      "motivo": "R1 e D-197. Usos grátis: 3 por dia. Cada uso extra custa 1 de Energia. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação uma ação, Velocidade 7 -> uma ação, Velocidade 7. O efeito sai no Tick do Golpe. Pela régua da Arte de base. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Convocar diabos",
+      "motivo": "R1 e D-197. Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. Limite diário dos usos grátis: 1. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação uma ação, Velocidade 8 -> uma ação, Velocidade 6. O efeito sai no Tick do Golpe. Pela régua da Arte de base. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Feitiços supremos",
+      "motivo": "R1 e D-197. Proponho um pedido mortal, uma dívida de serviço nomeada e o preparo do selo com leitura do pacto. A dívida dá um preço concreto ao uso por história."
+    },
+    {
+      "campo": "virtudes.temperanca",
+      "motivo": "4, e não 1, pelo texto do site (\"calculista e paciente\"); `compaixao` 0 sobe a 1, o piso da régua"
+    },
+    {
+      "campo": "aparencia",
+      "motivo": "0, e não o −1 do site, fora da régua; o efeito em quem olha foi para a linha medonho (D-181)"
+    },
+    {
+      "campo": "ataques",
+      "motivo": "o site gravava um \"Golpe planar\" de 2 dados e 6 Ticks, de corte (`inimigos.json`: \"2d6 +21 corte\", dano médio 28). A D-241 levou a Pesado só o golpe de cinco planares; aqui a classe sai do gesto: garras, mordida e cauda ficam Médias (o golpe com o corpo atrás). Dano médio: 28 antes; depois, 24,5"
+    },
+    {
+      "campo": "habilidadesEspeciais",
+      "motivo": "sem id no catálogo; os números são provisórios"
+    }
+  ]
+}

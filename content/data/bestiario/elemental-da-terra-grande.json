@@ -1,0 +1,264 @@
+{
+  "id": "elemental-da-terra-grande",
+  "idAntigo": "mon-elemental-da-terra-grande",
+  "nome": "Elemental da Terra (Grande)",
+  "nomeIngles": "Elemental, Large Earth",
+  "categoria": "elemental",
+  "papel": "elite",
+  "ameaca": 4,
+  "centelha": 3,
+  "corpo": {
+    "postura": "de pé, de ombros largos",
+    "apoio": "bipede",
+    "altura": 3,
+    "largura": 0.94,
+    "profundidade": 0.38,
+    "comprimento": null,
+    "massa": 1234,
+    "area": 2.5,
+    "posturaDoTamanho": "de frente"
+  },
+  "couraca": 9,
+  "perfilCouraca": "rigida",
+  "atributos": {
+    "forca": 10,
+    "destreza": 2,
+    "vigor": 7,
+    "percepcao": 2,
+    "inteligencia": 1,
+    "raciocinio": 2,
+    "influencia": 2,
+    "perspicacia": 2,
+    "compostura": 2
+  },
+  "habilidades": {
+    "briga": 5,
+    "bloqueio": 2,
+    "esquiva": 0,
+    "atletismo": 2,
+    "integridade": 2,
+    "prontidao": 1,
+    "sobrevivencia": 1,
+    "resistencia": 0
+  },
+  "habilidadesSec": {
+    "musculatura": 3
+  },
+  "especialidades": {
+    "briga": [
+      {
+        "foco": "empurrar",
+        "valor": 2,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 1,
+    "conviccao": 3,
+    "temperanca": 2
+  },
+  "vontade": 8,
+  "aparencia": 5,
+  "deslocamento": {
+    "terra": {
+      "batalha": 3,
+      "arranque": 5,
+      "corrida": 7
+    },
+    "escavacao": {
+      "batalha": 2
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Pancada de pedra",
+      "parte": "braco-de-pedra",
+      "classe": "pesada",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": "2d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "impacto",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": 1,
+      "justificativa": "O \"Golpe planar\" do site (2 dados, corte, 6 Ticks) é o braço de pedra de 3 m que bate com o corpo atrás: Pesada, Velocidade 7 (`regra-construcao.md` §7), golpe de membro, Força × 1, o mesmo caminho dos golens e dos gigantes (D-241); os 2 dados ficam. O tipo passa a Impacto, porque é pedra que bate, e não lâmina. Bloqueia como arma: corpo de pedra (D-066), Defesa +1 . Jogada: Força 10 + Briga 5 + 2 × o menor entre Centelha 3 e Briga 5 (6)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Deslizar na pedra",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "terra",
+        "nivel": 2
+      },
+      "categoria": "inato",
+      "ativacao": "parte do movimento dele",
+      "duracao": "enquanto se move",
+      "alcance": "o próprio corpo",
+      "area": "não se aplica",
+      "efeito": "nada pela rocha sólida como se fosse água, à velocidade da Escavação, sem deixar rastro nem precisar de passagem aberta; dentro da pedra, quem está fora não o vê nem o ataca",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "à vontade. Sem custo"
+    },
+    {
+      "nome": "Empurrão",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "ataque": "Pancada de pedra",
+      "categoria": "inato",
+      "ativacao": "a Pancada de pedra que acerta",
+      "duracao": "instantânea",
+      "alcance": "o do corpo a corpo",
+      "area": "um alvo",
+      "efeito": "o alvo é jogado 3 m para trás ou cai (Caído), à escolha do elemental; quem está duas faixas de massa ou mais acima dele não sai do lugar",
+      "dano": "o da Pancada",
+      "resistencia": "corpo, contra a jogada da Pancada; quem passa fica de pé e no lugar",
+      "limiteDeUso": "um por golpe. Sem custo"
+    },
+    {
+      "nome": "Pele de Pedra",
+      "formas": "todas",
+      "classe": "livro",
+      "tecnica": {
+        "id": "pele-de-pedra",
+        "nivel": 3
+      },
+      "categoria": "inato"
+    },
+    {
+      "nome": "feito de pedra viva",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Não se cansa. Ignora veneno e doença. Demais efeitos que peçam teste de corpo usam o teste normal. Gás inalado não o atinge",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "Contínuo, sem custo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "força bruta da terra",
+      "formas": "todas",
+      "texto": "avança em linha reta esmagando o que encontra; sai da pedra ao lado do alvo, empurra e derruba, e volta para dentro da rocha."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão e audição",
+      "descricao": "as de um humano",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "camuflagem": "parado, passa por um rochedo; dentro da rocha, não se vê",
+    "mente": "simples; não envelhece, e existe enquanto o propósito da invocação o sustenta",
+    "tracos": "pedra cinzenta e rachada na forma de um homem de 3 m e ombros largos, com terra e cascalho caindo das juntas",
+    "tipoCorpo": "elemental"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "sozinho, ou com quem o conjurou",
+    "atividade": "qualquer hora",
+    "caca": "não caça",
+    "dianteDeGente": "avança em linha reta, sem malícia nem hesitação"
+  },
+  "ecologia": {
+    "terreno": [
+      "subterrâneo",
+      "montanha"
+    ],
+    "clima": [
+      "extraplanar"
+    ]
+  },
+  "descricao": "Bloco de pedra viva de 3 m: nada pela rocha como se fosse água, sai ao lado do alvo, bate com um braço de pedra que joga longe ou derruba e volta para dentro da montanha.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Força bruta da terra viva, avança em linha reta esmagando o que encontra, sem malícia nem hesitação."
+    },
+    {
+      "titulo": "Ecologia",
+      "texto": "Não come, não dorme, não envelhece; existe apenas enquanto o propósito de sua invocação ou a vontade do seu plano o sustentam."
+    },
+    {
+      "titulo": "Hábitat",
+      "texto": "Nasce das profundezas rochosas do plano elemental da terra, movendo-se pela pedra sólida como se fosse água."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "Raramente visto fora de rituais antigos ou minas profundas do White Wall, um elemental da terra desperto é tomado pelo povo comum como sinal de que a montanha acordou zangada, mais um argumento das igrejas supressoras contra quem ainda ousa invocar tais forças."
+    }
+  ],
+  "imagens": [
+    "bestiario/elemental-da-terra-grande_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [
+      {
+        "tipo": "fogo",
+        "formas": "todas"
+      },
+      {
+        "tipo": "corte",
+        "formas": "todas"
+      },
+      {
+        "tipo": "perfuracao",
+        "formas": "todas"
+      }
+    ],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "atributos.forca",
+      "motivo": "O site tinha 9 (For 26 no Pathfinder). Sobe para 10 pelo teste de ordem (manual, Passo 6): com 9, a pedra de 1,2 t ficaria abaixo do golem de pedra de 900 kg (10), mais leve e do mesmo material. Com 10, fica igual ao golem e ao elefante do molde (6 t), acima do rinoceronte (8) e de todo animal da Faixa 4. A Força passa de 6 pela física (D-143); 10 pelo teste de ordem; o site tinha 9. Com 9, o dano médio seria 19 e o peso erguido 1.137,73 kg"
+    },
+    {
+      "campo": "habilidades.bloqueio",
+      "motivo": "Apara com os antebraços de pedra, que bloqueiam sem tomar dano (D-066), como o golem de pedra (2); 2, como o golem de pedra; o site não gravava Bloqueio"
+    },
+    {
+      "campo": "comportamento.social",
+      "motivo": "site"
+    },
+    {
+      "campo": "ataques.Pancada de pedra",
+      "motivo": "O \"Golpe planar\" do site (2 dados, corte, 6 Ticks) é o braço de pedra de 3 m que bate com o corpo atrás: Pesada, Velocidade 7 (`regra-construcao.md` §7), golpe de membro, Força × 1, o mesmo caminho dos golens e dos gigantes (D-241); os 2 dados ficam. O tipo passa a Impacto, porque é pedra que bate, e não lâmina. Bloqueia como arma: corpo de pedra (D-066), Defesa +1 . Jogada: Força 10 + Briga 5 + 2 × o menor entre Centelha 3 e Briga 5 (6)"
+    },
+    {
+      "campo": "ataques",
+      "motivo": "o \"Golpe planar\" de 2 dados e corte vira a Pancada de pedra Pesada, de 2 dados (D-241), e de Impacto pelo gesto"
+    },
+    {
+      "campo": "couraca",
+      "motivo": "nível 9, pedra maciça, como o golem de pedra"
+    }
+  ]
+}

@@ -1,0 +1,431 @@
+{
+  "id": "glabrezu",
+  "idAntigo": "mon-glabrezu",
+  "nome": "Glabrezu",
+  "nomeIngles": "Demon, Glabrezu",
+  "categoria": "corruptor",
+  "papel": "chefe",
+  "ameaca": 5,
+  "centelha": 6,
+  "corpo": {
+    "postura": "bípede, de pé, curvado",
+    "apoio": "bipede",
+    "altura": 3.7,
+    "largura": 1.48,
+    "profundidade": 0.66,
+    "comprimento": null,
+    "massa": 1556,
+    "area": 4.87,
+    "posturaDoTamanho": "silhueta de frente, de pé"
+  },
+  "couraca": 4,
+  "perfilCouraca": "rigida",
+  "atributos": {
+    "forca": 12,
+    "destreza": 4,
+    "vigor": 10,
+    "percepcao": 6,
+    "inteligencia": 5,
+    "raciocinio": 5,
+    "influencia": 6,
+    "perspicacia": 5,
+    "compostura": 6
+  },
+  "habilidades": {
+    "briga": 5,
+    "bloqueio": 2,
+    "esquiva": 1,
+    "atletismo": 3,
+    "furtividade": 0,
+    "integridade": 6,
+    "prontidao": 4,
+    "resistencia": 5,
+    "empatia": 4,
+    "persuasao": 4,
+    "manha": 4,
+    "sociabilidade": 3,
+    "ocultismo": 4
+  },
+  "habilidadesSec": {
+    "negociacao": 5,
+    "musculatura": 4
+  },
+  "especialidades": {
+    "persuasao": [
+      {
+        "foco": "pactos",
+        "valor": 2,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 6,
+    "compaixao": 1,
+    "conviccao": 5,
+    "temperanca": 4
+  },
+  "vontade": 11,
+  "aparencia": 0,
+  "deslocamento": {
+    "terra": {
+      "batalha": 4,
+      "arranque": 6,
+      "corrida": 9
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Pinças",
+      "parte": "pinca",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "impacto",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "\"Duas pinças esmagam\" (site): a pinça que fecha com o braço inteiro atrás, Média (`regra-construcao.md` §7). Duas por ação pela Rajada (Manobras). Jogada: Força 12 + Briga 5 + 2 × o menor entre Centelha 6 e Briga 5 (10)"
+    },
+    {
+      "nome": "Garras",
+      "parte": "mao-menor-de-garras",
+      "classe": "leve",
+      "pgr": [
+        1,
+        1,
+        3
+      ],
+      "dado": "1d6-2",
+      "multiplicadorForca": 1,
+      "tipoDano": "corte",
+      "nivelPerfuracao": 0,
+      "acerto": 1,
+      "bloqueiaComoArma": null,
+      "justificativa": "\"Duas garras cortam\" (site): os braços menores, gesto rápido de membro, Leve. Jogada: Força 12 + Briga 5 + 2 × o menor entre Centelha 6 e Briga 5 (10)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Duas pinças",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Pinças",
+      "categoria": "inato",
+      "regra": "rajada",
+      "texto": "Até dois golpes por ação"
+    },
+    {
+      "nome": "Duas garras",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Garras",
+      "categoria": "inato",
+      "regra": "rajada",
+      "texto": "Até dois golpes por ação"
+    },
+    {
+      "nome": "agarrar",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Pinças",
+      "categoria": "inato",
+      "regra": "agarrar"
+    },
+    {
+      "nome": "Desejo traiçoeiro",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "fortuna",
+        "nivel": 6
+      },
+      "categoria": "milagre",
+      "ativacao": "uma ação, a pedido de um mortal que aceita o trato. Um mortal enuncia o pedido e aceita o pacto. A negociação e a aceitação do pacto são o preparo",
+      "duracao": "até o pedido se cumprir",
+      "alcance": "quem fala com ele",
+      "area": "um alvo",
+      "efeito": "realiza o pedido ao pé da letra, com uma cláusula escondida que prejudica quem pediu depois. O limite é uma Arte até nível 6 que o concedente possa descrever. Preço e alvo são declarados antes do acordo. O desejo não altera o passado, não cria outro desejo e só traz mortos até onde a Cura permite",
+      "dano": "nenhum",
+      "resistencia": "nenhum; quem aceita, aceita o preço",
+      "limiteDeUso": "uma vez por história. Limite fixo, sem uso extra nem ampliação"
+    },
+    {
+      "nome": "Confusão",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "fascinacao",
+        "nivel": 5
+      },
+      "categoria": "sobrenatural",
+      "ativacao": "uma ação, Velocidade 7",
+      "duracao": "12 Ticks",
+      "alcance": "18 m, à vista",
+      "area": "um alvo",
+      "efeito": "embaralha a mente do alvo, que fica Confuso. Enquanto Confuso, declara a ação e rola 1d6. Com 1 a 3, faz o declarado. Com 4 ou 5, o Mestre escolhe ação e alvo. Com 6, perde a ação",
+      "dano": "nenhum",
+      "resistencia": "Influência + Ocultismo da criatura contra a Defesa Mental do alvo, com o Resistir do livro. quem passa fica imune até o fim da cena",
+      "limiteDeUso": "1 uso grátis por cena, sem repetir o alvo. Repetir o alvo ou fazer outro uso custa 1 de Energia"
+    },
+    {
+      "nome": "Imagem espelhada",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "protecao",
+        "nivel": 5
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 7. O efeito sai no Tick do Golpe",
+      "duracao": "até o fim da cena, ou até as cópias acabarem",
+      "alcance": "o próprio corpo",
+      "area": "não se aplica",
+      "efeito": "três cópias ilusórias dele confundem quem ataca; cada golpe que o acerta desfaz uma cópia em vez de feri-lo, até as três acabarem",
+      "dano": "nenhum",
+      "resistencia": "nenhum; quem tem visão verdadeira ignora as cópias",
+      "limiteDeUso": "Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "teleporte",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "conjuracao",
+        "nivel": 4,
+        "efeito": "fresta"
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 8",
+      "duracao": "instantânea",
+      "alcance": "300 m",
+      "area": "até seis aliados",
+      "efeito": "Reaparece num ponto que vê ou conhece bem no mesmo plano, levando o que carrega. Pode sair de um agarrão. Outros viajantes só seguem dentro do limite declarado, voluntários e em contato",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "1 uso grátis por cena. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "Ver o invisível",
+      "formas": "todas",
+      "classe": "livro",
+      "tecnica": {
+        "id": "visao-verdadeira",
+        "nivel": 4
+      },
+      "categoria": "inato"
+    },
+    {
+      "nome": "visão verdadeira sempre ativa",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "18 m",
+      "area": "o campo de visão",
+      "efeito": "Percebe disfarces, ilusões e seres invisíveis. Paredes bloqueiam a visão e a Furtividade comum continua válida",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "telepatia",
+      "formas": "todas",
+      "classe": "sem regra ainda",
+      "categoria": "inato",
+      "efeito": "fala com a mente de qualquer criatura a até 30 m, sem língua em comum"
+    },
+    {
+      "nome": "imune a veneno",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "o veneno não pega no corpo de demônio. O ferimento do golpe continua",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "Contínuo, sem custo"
+    },
+    {
+      "nome": "medonho",
+      "formas": "todas",
+      "classe": "sem regra ainda",
+      "categoria": "inato",
+      "efeito": "quem vê o glabrezu pela primeira vez sente o pavor das pinças e da cara de cão; o corpo quer recuar, mesmo quando a voz dele é cortês"
+    },
+    {
+      "nome": "Multiataque",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "uma ação de Rajada",
+      "duracao": "uma ação",
+      "alcance": "o de cada parte",
+      "area": "os alvos da Rajada",
+      "efeito": "Golpeia nesta ordem: pinça esquerda, pinça direita, garra. Cada golpe extra acumula −1d6 e conta para Guarda sob pressão. Não acumula com a Rajada comum",
+      "dano": "o de cada ataque que acertar",
+      "resistencia": "a Defesa de cada golpe",
+      "limiteDeUso": "até 3 golpes por ação, sem Energia. O uso repetido causa esforço e pode levar ao cansaço"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "feitiços de área",
+      "formas": "todas",
+      "texto": "lança efeitos de área como conjurador experiente. Os efeitos disponíveis em jogo são os poderes individuais descritos na ficha."
+    },
+    {
+      "nome": "tentador",
+      "formas": "todas",
+      "texto": "conversa antes de lutar e oferece um trato; luta só quando precisa, confunde o mais perigoso, esmaga com as pinças e some pelo teleporte com os aliados quando a luta não vale o preço."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão no escuro",
+      "descricao": "enxerga no escuro absoluto",
+      "formas": "todas"
+    },
+    {
+      "nome": "visão verdadeira",
+      "descricao": "Até 18 m, distingue disfarce, ilusão e invisibilidade. Paredes e Furtividade comum limitam a percepção. Sem custo",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "mente": "inteligente, demoníaca, fria e lógica",
+    "tracos": "demônio de 3,7 m, cabeça de cão com chifres, dois braços grandes com pinças e dois menores com garras no peito; fala com cortesia fria"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "sozinho; conselheiro de outros demônios",
+    "atividade": "qualquer hora",
+    "dieta": "não precisa comer",
+    "caca": "tenta mortais desesperados com pactos",
+    "dianteDeGente": "negocia; luta só quando precisa"
+  },
+  "ecologia": {
+    "terreno": [
+      "qualquer"
+    ],
+    "clima": [
+      "extraplanar"
+    ]
+  },
+  "descricao": "Demônio de pinças e cara de cão que prefere negociar a lutar: aparece a quem está desesperado e oferece poder, riqueza ou saber em troca de um preço que corrói a alma. Cumpre cada barganha à risca, sempre na letra mais cruel possível.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Astuto e paciente, prefere negociar a lutar: aparece diante de mortais desesperados e oferece poder, riqueza ou conhecimento em troca de um preço que corrói a alma de quem aceita."
+    },
+    {
+      "titulo": "Personalidade",
+      "texto": "Fala com cortesia fria e lógica impecável, escondendo prazer sádico por trás de cada barganha cumprida à risca, mas sempre na letra mais cruel possível."
+    },
+    {
+      "titulo": "Sociedade",
+      "texto": "Ocupa posição de prestígio entre os demônios por sua inteligência, agindo como tentador e conselheiro de outros demônios tanto quanto de mortais."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "As ortodoxias de Calin usam sua lenda para justificar a Supressão: todo pacto mágico tentador, dizem os padres, tem um glabrezu sorrindo do outro lado, esperando a assinatura."
+    }
+  ],
+  "imagens": [
+    "bestiario/glabrezu_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [
+      {
+        "tipo": "luz",
+        "formas": "todas"
+      },
+      {
+        "tipo": "sagrado",
+        "formas": "todas"
+      }
+    ],
+    "resistencias": [
+      {
+        "tipo": "fogo",
+        "formas": "todas"
+      },
+      {
+        "tipo": "gelo",
+        "formas": "todas"
+      }
+    ],
+    "imunidades": [
+      {
+        "tipo": "raio",
+        "formas": "todas"
+      }
+    ]
+  },
+  "revisao": [
+    {
+      "campo": "habilidades.prontidao",
+      "motivo": "A nota do site (\"Prontidão 4\"); o campo dizia 3; 4 pela nota do site, e não o 3 do campo"
+    },
+    {
+      "campo": "corpo.massa",
+      "motivo": "O corpo de base escalado pelo cubo da altura (× 8,68) dá 0,686 m³; com o tronco de quatro braços 60% mais largo e 40% mais fundo (× 2,24), 1,537 m³, e com a densidade de carne e osso (1.010 kg/m³), 1.556 kg. O site dizia 1,8 t, em cima do corte das Faixas e dentro da zona de transição do PV (1,62 a 1,98 t). Fica a calculada (D-187): ela cai fora da zona, na Faixa 4, sem pedir escolha de robusto ou frágil; os 1,8 t do site dariam a mesma Faixa e o mesmo PV, e só o Peso erguido muda; 1.556 kg pelo corpo de base alargado (60% e 40%), contra os 1,8 t do site, no corte das Faixas; a Faixa e o PV não mudam, só o Peso erguido"
+    },
+    {
+      "campo": "couraca",
+      "motivo": "Cobertura do corpo pela R49; metades arredondadas para cima. Absorção natural do livro (`combate.md`). Couraça 4: a pele de demônio maior, como a do hezrou .; 4, como o hezrou"
+    },
+    {
+      "campo": "comportamento.dieta",
+      "motivo": ""
+    },
+    {
+      "campo": "habilidadesEspeciais.Confusão",
+      "motivo": "R1 e D-197. 1 uso grátis por cena, sem repetir o alvo. Repetir o alvo ou fazer outro uso custa 1 de Energia. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação uma ação, Velocidade 8 -> uma ação, Velocidade 6 Pela referência corporal ou de deslocamento do poder. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Imagem espelhada",
+      "motivo": "R1 e D-197. Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação uma ação, Velocidade 6 -> uma ação, Velocidade 7. O efeito sai no Tick do Golpe. Pela régua da Arte de base. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "habilidadesEspeciais.teleporte",
+      "motivo": "R1 e D-197. 1 uso grátis por cena. Cada uso extra custa 1 de Energia. Um uso de abertura até a definição do efeito. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "corpo.area",
+      "motivo": "Grande pela área; o site dava Enorme, pela régua antiga"
+    },
+    {
+      "campo": "virtudes.temperanca",
+      "motivo": "4, e não 1, pelo texto do site; `compaixao` 0 sobe a 1, o piso da régua"
+    },
+    {
+      "campo": "ataques",
+      "motivo": "o site gravava um \"Golpe planar\" de 3 dados e 7 Ticks, de corte. A D-241 levou a Pesado só o golpe de cinco planares; aqui a classe sai do gesto: as pinças ficam Médias e as garras dos braços menores, Leves; perde dano em relação ao site"
+    },
+    {
+      "campo": "artes",
+      "motivo": "Fortuna 6 (desejo), Fascinação 5 (confusão) e Proteção 5 (imagem espelhada) viraram bases (C-037); Forças 6 ficou sem poder próprio, e o teleporte, sem Arte de base no site, ficou sem regra ainda"
+    }
+  ]
+}

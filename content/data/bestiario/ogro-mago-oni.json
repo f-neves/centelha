@@ -1,0 +1,375 @@
+{
+  "id": "ogro-mago-oni",
+  "idAntigo": "mon-ogro-mago-oni",
+  "nome": "Ogro Mago (Oni)",
+  "nomeIngles": "Ogre Mage",
+  "categoria": "gigante",
+  "papel": "chefe",
+  "ameaca": 5,
+  "centelha": 5,
+  "formaPrincipal": {
+    "id": "verdadeira",
+    "nome": "forma verdadeira"
+  },
+  "corpo": {
+    "postura": "bípede, de pé; voador",
+    "apoio": "bipede",
+    "altura": 2.7,
+    "largura": 0.68,
+    "profundidade": 0.35,
+    "comprimento": null,
+    "massa": 269,
+    "area": 1.62,
+    "posturaDoTamanho": "de frente"
+  },
+  "couraca": 1,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 7,
+    "destreza": 4,
+    "vigor": 6,
+    "percepcao": 4,
+    "inteligencia": 4,
+    "raciocinio": 4,
+    "influencia": 5,
+    "perspicacia": 5,
+    "compostura": 5
+  },
+  "habilidades": {
+    "briga": 5,
+    "arremesso": 2,
+    "bloqueio": 0,
+    "esquiva": 1,
+    "integridade": 5,
+    "prontidao": 2,
+    "manha": 3,
+    "persuasao": 3,
+    "sociabilidade": 2,
+    "ocultismo": 3
+  },
+  "habilidadesSec": {
+    "labia": 3,
+    "voo": 2,
+    "musculatura": 3
+  },
+  "especialidades": {},
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 6,
+    "compaixao": 1,
+    "conviccao": 5,
+    "temperanca": 1
+  },
+  "vontade": 10,
+  "aparencia": 4,
+  "deslocamento": {
+    "terra": {
+      "batalha": 4,
+      "arranque": 6,
+      "corrida": 9
+    },
+    "voo": {
+      "batalha": 6
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Punho de ogro",
+      "parte": "punho",
+      "classe": "pesada",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": "2d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "impacto",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "O \"Golpe planar\" do site (2 dados, corte, 6 Ticks): o punho de um ogro de 2,7 m com o corpo atrás. Pesada, Velocidade 7, golpe de membro, Força × 1 (`regra-construcao.md` §7), o mesmo caminho dos golens, dos gigantes e dos planares (D-241); os 2 dados ficam. O tipo passa a Impacto, porque é punho, e não lâmina, como nos gênios. Jogada: Força 7 + Briga 5 + 2 × o menor entre Centelha 5 e Briga 5 (10)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Regeneração 5",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "fraqueza": {
+        "forma": "naoRegenera",
+        "tipos": [
+          "fogo",
+          "ácido"
+        ]
+      },
+      "texto": "Origem sobrenatural. O dano de fogo ou ácido só fecha com outras curas, como Arte, Cura ou descanso. As demais feridas se regeneram normalmente. Recupera 5 PV por minuto, até o máximo de PV. Em combate, recupera 0,5 PV a cada 6 Ticks, contados a partir do Tick do primeiro dano"
+    },
+    {
+      "nome": "Forma gasosa",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "materia",
+        "nivel": 3
+      },
+      "categoria": "inato",
+      "ativacao": "uma ação, Velocidade 5",
+      "duracao": "6 Ticks",
+      "alcance": "o próprio corpo",
+      "area": "não se aplica",
+      "efeito": "o corpo vira névoa: Impacto, Corte e Perfuração não o ferem, passa por frestas e flutua devagar; não ataca nem usa outro poder enquanto dura. Use o perfil da forma. O restante é herdado. O equipamento só acompanha quando indicado. Em forma gasosa não ataca nem conjura",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "uma vez por cena. Usar repetidamente causa esforço e pode levar ao cansaço. Sem custo"
+    },
+    {
+      "nome": "Invisibilidade",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "ofuscacao",
+        "nivel": 3,
+        "efeito": "ausencia"
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 5. O efeito sai no Tick do Golpe",
+      "duracao": "até atacar ou desfazer",
+      "alcance": "o próprio corpo",
+      "area": "não se aplica",
+      "efeito": "Fica Invisível. Som, cheiro e rastro continuam perceptíveis. Ao atacar, Furtividade contra Percepção Passiva determina se o alvo percebe o ataque",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "Cone de frio",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "gelo",
+        "nivel": 2,
+        "efeito": "sopro-do-norte"
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 5. O efeito sai no Tick do Golpe",
+      "duracao": "instantânea",
+      "alcance": "9 m à frente",
+      "area": "cone de 9 m",
+      "efeito": "um sopro de frio que queima a pele e cobre o chão de gelo fino",
+      "dano": "3d6 + Centelha, gelo (o site diz \"dano alto\", sem número)",
+      "resistencia": "sair da área, pela regra do livro (Combate, \"Contra área, a saída é sair\"): contra o sopro não há Esquiva nem Bloqueio; rola Destreza + Esquiva contra 5 + 5 × os metros que faltam para ficar fora, para sofrer metade; contra o dobro disso, não sofre nada. Livre, sai no próprio Deslocamento ou Arranque; fora da vez, paga 1 Tick por metro, com pelo menos 1 metro e a penalidade da escada no teste",
+      "limiteDeUso": "Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "Sono",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "fascinacao",
+        "nivel": 1
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 5, à vista do alvo. O efeito sai no Tick do Golpe",
+      "duracao": "até o fim da cena",
+      "alcance": "9 m",
+      "area": "um alvo",
+      "efeito": "o alvo fica Dormindo, dormindo. O sono leva a Dormindo, com Defesas 0. Qualquer dano acorda a vítima, assim como uma ação de Velocidade 5 de um aliado para sacudi-la",
+      "dano": "nenhum",
+      "resistencia": "Influência + Ocultismo da criatura contra a Defesa Mental do alvo, com o Resistir do livro. quem passa fica acordado",
+      "limiteDeUso": "Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "Mudar de forma",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "metamorfose",
+        "nivel": 3
+      },
+      "categoria": "inato",
+      "ativacao": "uma ação, Velocidade 5",
+      "duracao": "até ele desfazer",
+      "alcance": "o próprio corpo",
+      "area": "não se aplica",
+      "efeito": "assume a forma de um humano, sedutor ou nobre elegante (a Variante \"disfarce\"), e volta à forma verdadeira quando quer; a mente e os números ficam os dele. Use o perfil da forma. O restante é herdado. O equipamento só acompanha quando indicado",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "à vontade. Usar repetidamente causa esforço e pode levar ao cansaço. Sem custo"
+    },
+    {
+      "nome": "Rosto humano",
+      "formas": [
+        "disfarce"
+      ],
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "nenhuma; vale enquanto está disfarçado",
+      "duracao": "a do disfarce",
+      "alcance": "o próprio corpo",
+      "area": "não se aplica",
+      "efeito": "+2d6 em Manha para se passar por humano",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "nenhum. Sem custo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "senhor do bando",
+      "formas": [
+        "verdadeira"
+      ],
+      "texto": "manda os ogros e goblins na frente, voa por cima, abre com o cone de frio, põe para dormir quem é perigoso e esmaga com o punho quem sobra; ferido, fica invisível ou vira névoa e se refaz longe."
+    },
+    {
+      "nome": "nobre de mentira",
+      "formas": [
+        "disfarce"
+      ],
+      "texto": "evita a luta e prefere enganar; descoberto, põe para dormir quem o acusa e volta à forma verdadeira."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão e audição",
+      "descricao": "as de um humano",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "mente": "inteligente; cruel, orgulhosa da própria astúcia e paciente nos esquemas",
+    "tracos": "ogro de 2,7 m de pele azul, chifres curtos, presas e cabelo escuro, vestido como senhor"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": true,
+    "tracao": true
+  },
+  "comportamento": {
+    "social": "sozinho, ou senhor de um bando de ogros e goblins",
+    "atividade": "qualquer hora",
+    "dieta": "onívoro; come gente",
+    "caca": "não caça: engana, junta riqueza e favores",
+    "dianteDeGente": "disfarçado, seduz e engana; na forma verdadeira, domina"
+  },
+  "ecologia": {
+    "terreno": [
+      "montanha",
+      "subterrâneo"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Ogro de outro plano, de pele azul e chifres, que se passa por humano sedutor ou nobre elegante e engana vilas inteiras por anos. Voa, fica invisível, vira névoa, sopra frio e põe gente para dormir; as feridas fecham, a não ser as do fogo e do ácido. Despreza a força bruta, mas bate como um ogro.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Usa metamorfose e invisibilidade para se passar por humano sedutor ou nobre elegante, iludindo vilas inteiras antes de revelar sua verdadeira forma monstruosa."
+    },
+    {
+      "titulo": "Sociedade",
+      "texto": "Prefere agir sozinho ou como senhor de um bando de ogros e goblins menores, tratando-os como servos descartáveis."
+    },
+    {
+      "titulo": "Hábitos",
+      "texto": "Arma esquemas de engano que levam anos para florescer, acumulando riqueza e favores como quem tece uma teia paciente."
+    },
+    {
+      "titulo": "Personalidade",
+      "texto": "Cruel e orgulhoso da própria astúcia, despreza a força bruta como recurso de último caso."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "Nativo de um plano distante, contido em teoria pela Lei que impede os deuses de agir direto, mas ele próprio escapa a essa contenção; sussurra-se que atravessa por rasgos como a Fenda, ou por portais mais antigos e esquecidos nas selvas de Mére."
+    },
+    {
+      "titulo": "Aptidões",
+      "texto": "montaria não · carga sim · tração sim"
+    }
+  ],
+  "imagens": [
+    "bestiario/ogro-mago-oni_criatura.webp"
+  ],
+  "formas": [
+    {
+      "id": "disfarce",
+      "nome": "disfarce",
+      "aparencia": 8,
+      "corpo": {
+        "area": 0.64
+      },
+      "fisiologia": {
+        "camuflagem": "passa por humano",
+        "tracos": "homem ou mulher bonito e bem vestido, de modos de nobre"
+      }
+    }
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "aparencia",
+      "motivo": "Degrau 4, \"Feio\": na forma verdadeira, um ogro de pele azul, chifres e presas, de rosto de gigante, feio como o ogro (4), mas não disforme. O site tinha 0, o \"Monstruoso\" de quem não tem forma de gente (como o hezrou); a Aparência mede a beleza, e não o quanto assusta (D-205). No disfarce, 8 (Variantes); 4; o site tinha 0, e a Aparência mede a beleza (D-205)"
+    },
+    {
+      "campo": "couraca",
+      "motivo": "Cobertura do corpo pela R49; metades arredondadas para cima. Absorção natural do livro (`combate.md`). Couraça 1: pele grossa de ogro, como a do ogro (1) .; 1, pele grossa de ogro"
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": "site"
+    },
+    {
+      "campo": "comportamento.dieta",
+      "motivo": "site"
+    },
+    {
+      "campo": "formas.disfarce",
+      "motivo": "Mudar de forma (site): \"humano sedutor ou nobre elegante\". A mente e os números ficam os dele, como no disfarce do rakshasa e do marid"
+    },
+    {
+      "campo": "habilidadesEspeciais.Forma gasosa",
+      "motivo": "R3. Ativação uma ação, Velocidade 6 -> uma ação, Velocidade 8 Pela referência corporal ou de deslocamento do poder."
+    },
+    {
+      "campo": "habilidadesEspeciais.Invisibilidade",
+      "motivo": "R1 e D-197. Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação uma ação, Velocidade 6 -> uma ação, Velocidade 5. O efeito sai no Tick do Golpe. Pela régua da Arte de base. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Cone de frio",
+      "motivo": "R1 e D-197. Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação uma ação, Velocidade 7 -> uma ação, Velocidade 5. O efeito sai no Tick do Golpe. Pela régua da Arte de base. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Sono",
+      "motivo": "R1 e D-197. Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação uma ação, Velocidade 6, à vista do alvo -> uma ação, Velocidade 5, à vista do alvo. O efeito sai no Tick do Golpe. Pela régua da Arte de base. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Mudar de forma",
+      "motivo": "R3. Ativação uma ação, Velocidade 6 -> uma ação, Velocidade 8 Pela referência corporal ou de deslocamento do poder."
+    },
+    {
+      "campo": "ataques",
+      "motivo": "o \"Golpe planar\" de 2 dados e corte vira o Punho de ogro Pesado, de 2 dados (D-241), e de Impacto pelo gesto"
+    },
+    {
+      "campo": "formas",
+      "motivo": "forma verdadeira e disfarce (D-201), como no rakshasa e no marid; todas as Manobras e os Sentidos em todas as formas, menos o Rosto humano (só no disfarce), o alvo grande (só na forma verdadeira) e o \"como luta\", em duas linhas. Aptidões iguais e nenhuma Arte nas duas"
+    },
+    {
+      "campo": "habilidadesSec.voo",
+      "motivo": "6, o congelado; a habilidade do site dizia 12 m"
+    }
+  ]
+}

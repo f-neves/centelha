@@ -1,0 +1,472 @@
+{
+  "id": "dragao-dourado-adulto",
+  "idAntigo": "mon-dragao-dourado-adulto",
+  "nome": "Dragão Dourado Adulto",
+  "nomeIngles": "Dragon, Adult Gold",
+  "categoria": "dragao",
+  "papel": "chefe",
+  "ameaca": 6,
+  "centelha": 7,
+  "formaPrincipal": {
+    "id": "verdadeira",
+    "nome": "forma verdadeira"
+  },
+  "corpo": {
+    "postura": "quatro patas; voador",
+    "apoio": "quadrupede",
+    "altura": 3.05,
+    "largura": 2.11,
+    "profundidade": null,
+    "comprimento": 9.5,
+    "comprimentoSemCauda": 5.39,
+    "caudaGrossa": true,
+    "envergadura": 21,
+    "massa": 9000,
+    "area": 93,
+    "posturaDoTamanho": "de baixo, asas abertas",
+    "segundoTamanho": {
+      "area": 13.94,
+      "posturaDoTamanho": "de lado, pousado, asas fechadas"
+    }
+  },
+  "couraca": 9,
+  "perfilCouraca": "rigida",
+  "atributos": {
+    "forca": 12,
+    "destreza": 2,
+    "vigor": 10,
+    "percepcao": 6,
+    "inteligencia": 7,
+    "raciocinio": 7,
+    "influencia": 7,
+    "perspicacia": 7,
+    "compostura": 7
+  },
+  "habilidades": {
+    "briga": 5,
+    "bloqueio": 0,
+    "esquiva": 0,
+    "atletismo": 2,
+    "furtividade": 1,
+    "integridade": 7,
+    "prontidao": 5,
+    "sociabilidade": 3,
+    "ocultismo": 5,
+    "persuasao": 5,
+    "conhecimentos": 5,
+    "empatia": 3,
+    "atirador": 4
+  },
+  "habilidadesSec": {
+    "natacao": 3,
+    "intimidacao": 3,
+    "voo": 4,
+    "acerto-arcano": 5,
+    "musculatura": 3
+  },
+  "especialidades": {
+    "empatia": [
+      {
+        "foco": "mentiras",
+        "valor": 1,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 6,
+    "compaixao": 4,
+    "conviccao": 5,
+    "temperanca": 3
+  },
+  "vontade": 12,
+  "aparencia": 9,
+  "deslocamento": {
+    "terra": {
+      "batalha": 4,
+      "arranque": 6,
+      "corrida": 9
+    },
+    "voo": {
+      "batalha": 25
+    },
+    "nado": {
+      "batalha": 6
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {
+    "protecao": 3,
+    "fortuna": 3,
+    "cura": 2,
+    "luz": 2
+  },
+  "ataques": [
+    {
+      "nome": "Mordida",
+      "parte": "boca",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 3,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Mordida de predador grande (`regra-construcao.md` §7), como no branco jovem. Golpe de boca: Força × 1. N3, um acima do branco jovem (N2), para a mordida dos adultos e anciões . Jogada: Força 12 + Briga 5 + 2 × o menor entre Centelha 7 e Briga 5 (10)"
+    },
+    {
+      "nome": "Garras",
+      "parte": "pata-dianteira",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "corte",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Patada de predador grande, Média (§7), como no branco jovem; garra Cortante. Bloqueia como a mão nua (D-100). Jogada: Força 12 + Briga 5 + 2 × o menor entre Centelha 7 e Briga 5 (10)"
+    },
+    {
+      "nome": "Sopro de fogo",
+      "parte": "boca",
+      "classe": "distancia",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": "9d6",
+      "multiplicadorForca": 0,
+      "tipoDano": "fogo",
+      "nivelPerfuracao": null,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Ataque natural a distância, Classe Distância (manual, Passo 10), como no branco jovem. \"Cone de 12 m; 9d6 de dano\" (site). Os números são sugestão da ficha (D-197), descritos na linha do sopro nas Manobras. Sem jogada de ataque."
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Posturas de combate",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Imenso: de baixo, asas abertas. Enorme: de lado, pousado, asas fechadas. Vale o Tamanho da postura atual. Abrir as asas ao voar e fechá-las ao pousar faz parte do movimento, sem custo adicional",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "Sopro de fogo",
+      "formas": [
+        "verdadeira"
+      ],
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "fogo",
+        "nivel": 4
+      },
+      "ataque": "Sopro de fogo",
+      "categoria": "substancia",
+      "ativacao": "uma ação, Velocidade 6",
+      "duracao": "instantânea",
+      "alcance": "12 m à frente",
+      "area": "cone de 12 m",
+      "efeito": "o fogo queima tudo no cone. Após a área, só há dano residual quando um efeito da ficha o declara",
+      "dano": "9d6 + Centelha, fogo",
+      "resistencia": "sem jogada de ataque. Cada alvo resolve a saída de área pelo livro",
+      "limiteDeUso": "O corpo guarda 2 doses e produz 1 dose a cada 12 horas. Cada uso gasta 1 dose. Nada acelera a produção"
+    },
+    {
+      "nome": "garras em sequência",
+      "formas": [
+        "verdadeira"
+      ],
+      "classe": "livro",
+      "ataque": "Garras",
+      "categoria": "inato",
+      "regra": "rajada"
+    },
+    {
+      "nome": "Multiataque",
+      "formas": [
+        "verdadeira"
+      ],
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "uma ação de Rajada",
+      "duracao": "uma ação",
+      "alcance": "o de cada parte",
+      "area": "os alvos da Rajada",
+      "efeito": "Golpeia nesta ordem: garra esquerda, garra direita, mordida. Cada golpe extra acumula −1d6 e conta para Guarda sob pressão. Não acumula com a Rajada comum",
+      "dano": "o de cada ataque que acertar",
+      "resistencia": "a Defesa de cada golpe",
+      "limiteDeUso": "até 3 golpes por ação, sem Energia. O uso repetido causa esforço e pode levar ao cansaço"
+    },
+    {
+      "nome": "Presença",
+      "formas": [
+        "verdadeira"
+      ],
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "morte",
+        "nivel": 3
+      },
+      "categoria": "inato",
+      "ativacao": "a primeira vez na cena em que ele ruge, ataca ou desce do céu",
+      "duracao": "para Abalado, até o fim da cena ou até Recompor",
+      "alcance": "18 m",
+      "area": "esfera de 18 m em volta dele",
+      "efeito": "quem falha fica Abalado. Abalado dá −2 nas jogadas até o fim da cena ou até Recompor, ação de Velocidade 5 sem teste",
+      "dano": "nenhum",
+      "resistencia": "Influência 7 + Intimidação 3 + 2 × o menor entre Centelha 7 e Intimidação 3 (6) = 16 mais a rolagem da criatura contra a Defesa Mental do alvo, com o Resistir do livro. quem passa fica imune até o fim da cena",
+      "limiteDeUso": "Contínuo, sem custo. A imunidade individual segue a resistência deste poder"
+    },
+    {
+      "nome": "Sopro debilitante",
+      "formas": [
+        "verdadeira"
+      ],
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "fascinacao",
+        "nivel": 3
+      },
+      "categoria": "substancia",
+      "ativacao": "uma ação, Velocidade 5",
+      "duracao": "até o fim da próxima ação do alvo",
+      "alcance": "12 m à frente",
+      "area": "cone de 12 m",
+      "efeito": "O gás tira temporariamente 1 ponto de Força de quem falha. Não recalcula PV nem Absorção. Após a área, só há dano residual quando um efeito da ficha o declara",
+      "dano": "nenhum",
+      "resistencia": "sem jogada de ataque. Cada alvo resolve a saída de área pelo livro",
+      "limiteDeUso": "O corpo guarda 2 doses e produz 1 dose a cada 12 horas. Cada uso gasta 1 dose. Nada acelera a produção"
+    },
+    {
+      "nome": "Mudar de forma",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "materia",
+        "nivel": 3
+      },
+      "categoria": "inato",
+      "ativacao": "uma ação, Velocidade 5",
+      "duracao": "até ele desfazer",
+      "alcance": "o próprio corpo",
+      "area": "não se aplica",
+      "efeito": "assume a forma humana ou de um animal pequeno (a Variante); a mente, as Artes e os números ficam os dele, com parte dos sentidos de dragão. Use o perfil da forma. O restante é herdado. O equipamento só acompanha quando indicado",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "à vontade. Usar repetidamente causa esforço e pode levar ao cansaço. Sem custo"
+    },
+    {
+      "nome": "Firme contra o medo",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Antes da presença que impõe medo, compare a Centelha. Se a da fonte for menor, a presença não o deixa Abalado. Centelha igual não basta. Golpe social ou corporal ainda pode deixá-lo Abalado",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "Contínuo, sem custo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "Voo dominante",
+      "formas": [
+        "verdadeira"
+      ],
+      "texto": "domina os céus com grande manobra."
+    },
+    {
+      "nome": "guardião nobre",
+      "formas": [
+        "verdadeira"
+      ],
+      "texto": "avisa antes de atacar, protege e cura os aliados, enfraquece com o sopro de gás quem pode ser poupado e queima quem não pode."
+    },
+    {
+      "nome": "viajante disfarçado",
+      "formas": [
+        "humana"
+      ],
+      "texto": "evita lutar e observa; protege e cura com as Artes, e volta à forma verdadeira quando a luta pede."
+    },
+    {
+      "nome": "Projétil natural",
+      "formas": "todas",
+      "texto": "Contra um alvo, use o maior entre Vigor, Destreza e Percepção + Atirador. Ao cobrir uma área, só os alvos fazem a jogada de saída."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão no escuro",
+      "descricao": "vê sem luz",
+      "formas": "todas"
+    },
+    {
+      "nome": "faro",
+      "descricao": "apurado",
+      "formas": [
+        "verdadeira"
+      ]
+    },
+    {
+      "nome": "sabedoria dracônica",
+      "descricao": "detecta mentiras (Empatia (mentiras) +1) e ignora ilusões simples",
+      "formas": "todas",
+      "classe": "sem regra ainda"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "prendeRespiracao": "a de um bicho grande; quanto tempo, o Mestre decide",
+    "mente": "inteligente, sábia, justa e paciente",
+    "tracos": "escamas douradas, chifres lisos, bigodes longos, asas de couro dourado"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitário, ou entre as pessoas em forma humana",
+    "atividade": "qualquer hora",
+    "dieta": "onívoro; diz-se que come pérolas e pedras preciosas",
+    "caca": "não caça gente; protege",
+    "dianteDeGente": "ajuda quem merece; castiga a injustiça"
+  },
+  "ecologia": {
+    "terreno": [
+      "montanha",
+      "planície"
+    ],
+    "clima": [
+      "temperado",
+      "tropical"
+    ]
+  },
+  "descricao": "Dragão dourado adulto de 9,5 m, o mais nobre dos dragões. Anda entre as pessoas em forma humana, cura e protege os aliados, enfraquece com um sopro de gás quem pode ser poupado e queima com fogo quem não pode.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Ao contrário dos parentes cromáticos, o dragão dourado adulto raramente impõe medo por escolha: prefere assumir forma mortal e caminhar disfarçado entre vilas e cidades, testando o caráter das pessoas antes de revelar quem realmente é."
+    },
+    {
+      "titulo": "Personalidade",
+      "texto": "Sábio, paciente e movido por senso de justiça, aprecia enigmas, música e atos de bondade genuína, e não hesita em confrontar tiranos, inclusive dragões cromáticos, quando a ocasião exige."
+    },
+    {
+      "titulo": "Sociedade",
+      "texto": "Costuma agir sozinho ou em segredo, evitando reconhecimento, e prefere guiar mortais com pequenos gestos a governar abertamente qualquer território."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "Mesmo sendo uma força do bem, o dragão dourado não escapa do preconceito da Supressão: para as igrejas de Calin, magia é magia, e um sábio disfarçado de mendigo ou de mercador generoso corre o risco de ser denunciado e caçado só por existir, ironia amarga com a qual aprendeu a conviver havia séculos."
+    }
+  ],
+  "imagens": [
+    "bestiario/dragao-dourado-adulto_criatura.webp"
+  ],
+  "formas": [
+    {
+      "id": "humana",
+      "nome": "forma humana",
+      "outraForma": "um animal pequeno",
+      "corpo": {
+        "altura": 1.78,
+        "largura": 0.48,
+        "profundidade": 0.3,
+        "area": 0.64
+      },
+      "fisiologia": {
+        "prendeRespiracao": "a de um humano",
+        "camuflagem": "passa por um humano"
+      },
+      "ataques": []
+    }
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": [
+      {
+        "tipo": "fogo",
+        "formas": "todas"
+      }
+    ]
+  },
+  "revisao": [
+    {
+      "campo": "sentidos.sabedoria dracônica",
+      "motivo": "sem regra ainda no livro"
+    },
+    {
+      "campo": "corpo.altura",
+      "motivo": "A do dragão branco jovem (1,3 m, 700 kg) escalada pela massa: × (massa ÷ 700)^(1/3) = × 2,343"
+    },
+    {
+      "campo": "corpo.comprimentoSemCauda",
+      "motivo": "2,3 m do branco jovem × 2,343; a cauda tem o resto do comprimento do site, 4,11 m"
+    },
+    {
+      "campo": "corpo.largura",
+      "motivo": "0,9 m do branco jovem × 2,343"
+    },
+    {
+      "campo": "couraca",
+      "motivo": "Cobertura do corpo pela R49; metades arredondadas para cima. Absorção natural do livro (`combate.md`). Escama de dragão: os níveis 9 a 12 ficam para os adultos e anciões (o texto do branco jovem) . As \"Escamas douradas\" do site (Absorção +4d6) são esta Couraça.; nível 9"
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": ""
+    },
+    {
+      "campo": "ataques.Mordida.nivelPerfuracao",
+      "motivo": "Mordida de predador grande (`regra-construcao.md` §7), como no branco jovem. Golpe de boca: Força × 1. N3, um acima do branco jovem (N2), para a mordida dos adultos e anciões . Jogada: Força 12 + Briga 5 + 2 × o menor entre Centelha 7 e Briga 5 (10)"
+    },
+    {
+      "campo": "formas.humana",
+      "motivo": "Mudar de forma (site) muda o corpo; a mente, as Artes e os números ficam os dele, como no disfarce da couatl"
+    },
+    {
+      "campo": "ataques.Sopro de fogo",
+      "motivo": "Antes: jogada de ataque na tabela. R36: Sem jogada de ataque, pois o efeito ocupa a área descrita nas Manobras. Cada alvo resolve a defesa de área.; R1/R4, D-197. Dois sopros prontos permitem alternar sopro e golpes. Sugestão de 2 doses e 12 h por dose para repor fora da luta. valor de molde, para a bancada (2 doses e produz 1 dose a cada 12 horas)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Sopro debilitante",
+      "motivo": "R1/R4, D-197. Dois sopros prontos permitem alternar sopro e golpes. Sugestão de 2 doses e 12 h por dose para repor fora da luta. R18 e D-197. Sugestão de 1 ponto de Força, no lugar de Desgaste 1, pelo enfraquecimento corporal do gás. valor de molde, para a bancada (2 doses e produz 1 dose a cada 12 horas).; Desgaste 1 no lugar do \"Enfraquecido\" do site"
+    },
+    {
+      "campo": "virtudes.compaixao",
+      "motivo": "4; o site tinha 2"
+    },
+    {
+      "campo": "ataques",
+      "motivo": "9d6 + Centelha, cone de 12 m, uma vez a cada 24 Ticks, pela sugestão da ficha (D-197)"
+    }
+  ]
+}

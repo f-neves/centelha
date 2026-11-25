@@ -1,0 +1,184 @@
+---
+ordem: 27
+numeral: "XVIII"
+titulo: "Criação de Personagem"
+resumo: "Montar um herói gastando XP a partir de pisos, com a ficha auto-calculável."
+---
+
+Um personagem é construído gastando **Experiência** (XP) a partir de valores-piso. Não há pacotes por categoria: você recebe um bolo de XP e o investe onde a sua história pede.
+
+<div class="callout regra"><span class="lbl">Atalho</span>A <a href="/centelha-rpg/ficha">Ficha de Personagem</a> faz toda esta conta ao vivo: gaste pontos e veja o XP e os derivados se atualizarem.</div>
+
+## Passo a passo da criação
+
+Se é a sua primeira vez, siga esta ordem: os detalhes de cada passo estão nas seções abaixo, e a [Ficha](/ficha) faz as contas por você.
+
+1. **Conceito.** Quem é o herói? Uma frase basta ("batedora silenciosa", "capitão que inspira tropas"), ela guia todas as escolhas seguintes.
+2. **Orçamento.** Combine com o Mestre: **1500** (iniciante), **2000** (veterano) ou **2600** (especialista). Todo o resto sai desse bolo de XP.
+3. **[Raça](/regras/racas).** Escolha o povo do seu herói e **pague o custo em XP** dele (o Humano custa **0**; os outros vão de 20 a 50). Ela vem antes dos Atributos porque é ela que **move os tetos**: um `+1 de teto` deixa aquele Atributo chegar mais alto do que chegaria, e um `−1` o trava mais baixo. Escolher a raça depois seria escolher com a régua do passo seguinte já usada.
+4. **Atributos.** Suba do piso 1. Na criação não há teto próprio: vale o máximo normal da ficha, **6**, e depois o ajuste da raça (o Atributo com `+1` racial vai até **7**, e o com `−1` não passa de **5**).
+5. **Habilidades e Especialidades.** Vale o máximo normal da ficha, **6**. Secundárias são mais baratas e cobrem nichos; cada Especialidade afia um escopo estreito de uma Habilidade.
+6. **Virtudes.** As quatro, de 1 a 6.
+7. **Força de Vontade e Aparência.** Suba a Força de Vontade do piso 0 (um herói costuma levá-la a 5+); escolha a Aparência (0–12, normal no nível 6).
+8. **Centelha.** Ela **não custa XP**: o tier (o degrau da Centelha) é definido com o Mestre e define o que você alcança. O Mestre e o grupo combinam pela campanha: **Centelha 0** numa campanha mortal; de **1 a 3** numa campanha heroica (3 é o Herói, para quem quer um herói de saga).
+9. **Proezas, Técnicas e Artes.** Gaste o restante em poder: as Técnicas que a Centelha destrava e, se for feiticeiro, os níveis de Arte (até Centelha + 2) e os Efeitos Especiais.
+10. **Derivados.** PV, Defesas, Energia/Mana (as reservas das Técnicas e das Artes) e Iniciativa saem de fórmulas: confira na tabela mais abaixo, ou deixe a Ficha calcular.
+
+<p class="muted">Não há ordem obrigatória de <em>compra</em>: esta é só a sequência mais fácil de raciocinar.</p>
+
+## Pisos e princípios
+
+Tudo começa no mínimo e é comprado dali: **Atributos 1** · **Habilidades 0** · **Virtudes 1** · **Força de Vontade 0** · **Aparência 0** · **Centelha 0** · nenhuma **Técnica**.
+
+A **Centelha 0** é o mortal comum, cerca de 95% das pessoas, sem acesso a Técnicas (as Artes ele pode estudar e conjurar, até o nível 2, com a Mana, que nele é uma reserva própria com o valor da Força de Vontade).
+
+Alcançar **Centelha 1** é o que torna alguém especial, e isso se conquista na história, não na planilha. Por isso a Centelha inicial também não se compra: na criação, o Mestre e o grupo a combinam pela campanha (0 numa campanha mortal; de 1 a 3 numa heroica, com referência 1), e dali em diante ela sobe em jogo. Orçamento inicial padrão: **1500 XP** (iniciante), **2000** (veterano) ou **2600** (especialista).
+
+> **Modelo de custo (fechado).** O preço de um nível é **base + (multiplicador × nível)**. A escada dos níveis altos é suave, e o topo da régua é alcançável em jogo. **Força de Vontade e Aparência têm piso 0** (você compra o nível 1) e a **Centelha não custa XP**. Duas trilhas não acumulam, a Técnica de Proeza e o Efeito Especial: paga-se só o preço do nível da Técnica ou do Efeito comprado.
+>
+> **Pendente.** Os orçamentos de 1500 / 2000 / 2600 foram calibrados na economia antiga, quando as Proezas comiam cerca de 40% do bolo. Com a curva nova elas se acumulam ao longo da campanha em vez de saírem da criação, e um personagem inicial típico fecha perto de **1050 XP**. Os três exemplos abaixo estão **recusteados pela função de custo real**, mas os orçamentos ainda serão reajustados.
+
+## Custos de XP
+
+O custo é para subir ao próximo ponto, em função do *novo* valor.
+
+| Traço | Custo do próximo ponto | Exemplos |
+|---|---|---|
+| Atributo | 5 + (novo × 5) | 1→2 = 15 · 2→3 = 20 · 3→4 = 25 · 5→6 = 35 |
+| Habilidade primária | 4 + (novo × 2) | 0→1 = 6 · 2→3 = 10 · 5→6 = 16 |
+| Habilidade secundária | 2 + (novo × 1) | metade exata da primária: 3 · 4 · 5 · 6 · 7 · 8 |
+| Especialidade (prim. / sec.) | 8 + (nível × 4) / 4 + (nível × 2) | acumulativo por escopo nomeado (prim. 12 · 16 · 20 ; sec. 6 · 8 · 10). Até [nível da Habilidade ÷ 2] níveis de Especialidade por Habilidade |
+| Virtude | 4 + (novo × 2) | 1→2 = 8 · 2→3 = 10 · 5→6 = 16 |
+| Força de Vontade | novo × 2 | piso 0 · 0→1 = 2 · 5→6 = 12 · 11→12 = 24 |
+| Aparência | novo × 2 | piso 0 · mesma trilha da Vontade |
+| Antecedente | novo × 3 | 0→1 = 3 · 2→3 = 9 · 5→6 = 18 |
+| Centelha | **grátis** | o tier vem do Mestre, não do XP |
+| Técnica de Proeza | 5 + (nível × 5) | 10 · 15 · 20 · 25 · 30 · 35 · **não acumula** |
+| Nível de Arte (Arcano) | 10 + (nível × 5) | 0→1 = 15 · 2→3 = 25 · 5→6 = 40 |
+| Efeito Especial de Arte | nível × 4 | 4 · 8 · 12 · 16 · 20 · 24 · **não acumula** |
+
+<p class="muted">Duas trilhas <strong>não acumulam</strong>: a Técnica de Proeza e o Efeito Especial. Cada Técnica custa o preço do nível dela (5 + 5 × nível) e se compra uma a uma: uma Técnica de nível <em>N</em> custa o preço do nível <em>N</em>, e não a soma dos de baixo. Comprar uma Técnica de nível maior não substitui as de nível menor que ela exige (o Requer): elas continuam na ficha, cada uma pelo preço do seu nível. Quando uma Técnica de nível maior dá o mesmo bônus de uma de nível menor, o texto dela diz se aumenta ou substitui. Se não substitui, valem as duas. Se substitui, vale a de nível maior. A Técnica não acumula como Atributo e Habilidade porque o personagem compra muitas Técnicas, e não sobe uma trilha só.</p>
+
+<p class="muted">Do mesmo jeito, você paga o preço cheio do nível do Efeito que está comprando, e não a soma dos de baixo: um Efeito de nível 2 custa 8 e não exige ter pago o de nível 1. Nas demais trilhas o custo é cumulativo: você paga cada degrau até chegar lá.</p>
+
+<p class="muted">Técnica de nível <em>N</em> exige Centelha ≥ N, e é esse portão que limita a profundidade da Proeza; Arte não exige Centelha para começar: o mortal (Centelha 0) também aprende e conjura, com a Mana, uma reserva própria com o valor da Força de Vontade. O nível máximo de cada Arte é <strong>Centelha + 2</strong>, até 6 (Centelha 0 → 2; 1 → 3; 2 → 4; 3 → 5; 4, 5 ou 6 → 6). O teto de Proeza continua igual à Centelha.</p>
+
+<div class="callout"><span class="lbl">O portão da Centelha</span>A Centelha <strong>não custa XP</strong>. Ela sobe só com <strong>permissão do Mestre</strong>, num marco de história ou feito maior: o salto de tier, de herói a semideus, é uma conquista narrativa e não uma transação de balcão. Cobrar XP por ela criava a situação estranha de o Mestre conceder o marco e o jogador responder que não tinha guardado o suficiente.</div>
+
+**Centelha inicial.** A Centelha não se compra com XP: o Mestre e o grupo a combinam antes da criação. Se ninguém definir, a referência de uma campanha heroica é **Centelha 1**.
+
+## Limites na criação
+
+Na criação não existe limite próprio: valem os máximos normais da ficha. Quase tudo vai até **6**, e alguns traços vão até **12** (Força de Vontade, Aparência). Depois entram os ajustes raciais, para cima ou para baixo: o Atributo com `+1` racial chega a **7**, e o com `−1` fica em **5**. O que segura o personagem novo é o orçamento de XP.
+
+A ficha básica não tem restrição de criação, e isso vale também para a Centelha: quem informa aos jogadores as restrições da campanha é o Mestre. O nível de cada Arte respeita o teto da Centelha (Centelha + 2). Os tiers maiores da Centelha vêm com o jogo.
+
+## Traços derivados
+
+| Traço | Fórmula |
+|---|---|
+| Pontos de Vida | 25 + (Vigor × 3); Pequenos (gnomo, halfling) 20 + (Vigor × 2); orc e meio-orc + Vigor |
+| Defesa | (Destreza + Habilidade) × 2 + Especialidade + 2 × mín(Centelha, Habilidade) |
+| Defesa Mental | Integridade + Raciocínio + Vontade + 2 × mín(Centelha, Integridade) + Especialidade |
+| Defesa Social | (Compostura + Sociabilidade) × 2 + Especialidade + 2 × mín(Centelha, Sociabilidade) |
+| Energia | (Vigor + Compostura + Raciocínio + Vontade) ÷ 2 [arredonda p/ baixo] + Centelha × 2 |
+| Mana | (Centelha × 2) + Força de Vontade |
+| Iniciativa | 1d6 + Raciocínio + Prontidão (sem Centelha, Especialidade nem penalidade) |
+
+Nas fórmulas, a Força de Vontade é sempre a **máxima**, e não a que sobrou: gastar pontos não baixa a Defesa Mental, a Energia nem a Mana.
+
+<p class="muted"><strong>Energia</strong> é o combustível das <a href="/centelha-rpg/caminhos">Técnicas de Proeza</a>; <strong>Mana</strong> é o do <a href="/centelha-rpg/arcano">Arcano</a>, uma reserva própria que não se mistura com a Força de Vontade.</p>
+
+## Três exemplos, um por orçamento
+
+Os três personagens abaixo mostram o que cada patamar entrega: **Kael** no iniciante, **Sora** no veterano e **Veil** no especialista. Repare onde o XP vai: boa parte do bolo se converte em **largura** (mais Proezas, Técnicas, Habilidades e Especialidades). É essa caixa de ferramentas que carrega a profundidade.
+
+<p class="muted">As quatro Virtudes das fichas abaixo (Bravura, Convicção, Temperança, Compaixão) e o modificador entre parênteses da Aparência (a régua de −6 a +6) estão detalhados no capítulo <a href="/centelha-rpg/regras/aparencia-virtudes-vontade">Aparência, Virtudes &amp; Força de Vontade</a>.</p>
+
+### Kael, o Batedor · Iniciante (Centelha 3)
+
+Olhos sobre-humanos e passos que não fazem som; bate o terreno à frente do grupo e abre a luta de longe.
+
+| Compra | Detalhe | XP |
+|---|---|:---:|
+| Raça | Humano (a régua: nenhum teto movido, nenhum traço racial) | 0 |
+| Atributos | Percepção 6 · Destreza, Vigor 4 · Força, Raciocínio 3 · Inteligência, Influência, Perspicácia, Compostura 2 | 375 |
+| Habilidades | Furtividade 5 · Atirador, Prontidão, Esquiva, Atletismo, Sobrevivência 3 · Investigação, Briga 2 · Cura 1 (secundária) | 201 |
+| Secundárias | quatro em 2 (Rastreio, Escalada, Falcoaria, Armadilhas) | 28 |
+| Especialidades | Furtividade, Atirador, Sobrevivência | 36 |
+| Virtudes | Bravura 4 · Convicção 3 · Temperança 2 · Compaixão 2 | 64 |
+| Força de Vontade | 0 → 7 | 56 |
+| Aparência | 0 → 4 (feio, −2) | 20 |
+| Centelha | 0 → 3 (Herói) | grátis |
+| Técnicas | 29, de Olho de Águia, Sombra e Vento (níveis 1 a 3, já com o [Desperto](/regras/centelha), o degrau 2 da Centelha) | 450 |
+| **Total** | | **1230** |
+
+<p class="muted">Derivados: PV 37 · Defesa 20 · Def. Mental 10 · Def. Social 4 · Energia 14 · Mana 13 · Iniciativa 1d6+6. Fecha no orçamento. Mira firme à distância e some na sombra entre os tiros; guarda social baixa, porque não é o forte dele.</p>
+
+### Sora, a Capitã · Veterana (Centelha 3)
+
+| Compra | Detalhe | XP |
+|---|---|:---:|
+| Raça | Humano (a régua: nenhum teto movido, nenhum traço racial) | 0 |
+| Atributos | Destreza 6 · Força, Vigor, Influência 4 · Percepção, Raciocínio, Perspicácia, Compostura 3 · Inteligência 2 | 460 |
+| Habilidades | Armas 5 · oito em 3 (Esquiva, Prontidão, Atletismo, Integridade, Política, Manha, Resistência, Sociabilidade) · duas em 2 · uma em 1 | 276 |
+| Secundárias | sete (duas em 3, cinco em 2: Estratégia, Cavalgar, Jogos de Guerra…) | 59 |
+| Especialidades | cinco (Armas, Integridade, Política…) | 60 |
+| Virtudes | Bravura 4 · Convicção 4 · Temperança 3 · Compaixão 3 | 96 |
+| Força de Vontade | 0 → 8 | 72 |
+| Aparência | 0 → 5 (sem graça, −1) | 30 |
+| Centelha | 0 → 3 (Herói) | grátis |
+| Técnicas | 35, de Comando, Pele de Pedra e Dança da Lâmina (níveis 1 a 3) | 590 |
+| **Total** | | **1643** |
+
+<p class="muted">Derivados: PV 37 · Defesa 24 · Def. Mental 20 · Def. Social 18 · Energia 15 · Mana 14 · Iniciativa 1d6+6. Fecha no orçamento. Uma líder de tropa que combina posturas defensivas, golpes precisos e uma guarda social sólida.</p>
+
+### Veil, o Feiticeiro-guerreiro · Especialista (Centelha 4)
+
+<p class="muted"><strong>Exceção declarada:</strong> o teto de criação é Centelha 3; Veil sobe a 4 porque a Centelha não se compra com XP, é concedida pelo Mestre num marco de história, e o orçamento Especialista é o único que já supõe esse marco alcançado. Não é o número padrão de um personagem recém-criado: pela faixa padrão (0 numa campanha mortal; de 1 a 3 numa heroica), Veil é de uma campanha heroica que o Mestre abre acima dela.</p>
+
+| Compra | Detalhe | XP |
+|---|---|:---:|
+| Raça | Humano (a régua: nenhum teto movido, nenhum traço racial) | 0 |
+| Atributos | Inteligência 6 · Força, Destreza, Vigor 4 · Percepção, Raciocínio, Influência, Perspicácia, Compostura 3 | 480 |
+| Habilidades | Ocultismo 5 · oito em 3 (Esquiva, Prontidão, Integridade, Conhecimentos…) · três em 2 | 284 |
+| Secundárias | seis (três em 3, três em 2) | 57 |
+| Especialidades | cinco (Ocultismo, Integridade…) | 60 |
+| Virtudes | Convicção 4 · Temperança 4 · Bravura 3 · Compaixão 3 | 96 |
+| Força de Vontade | 0 → 8 | 72 |
+| Aparência | 0 → 4 (feio, −2) | 20 |
+| Centelha | 0 → 4 (Campeão) | grátis |
+| Artes | seis: Fogo e Forças no nível 4 · Cura, Raio, Proteção e Fortuna no 3 | 420 |
+| Técnicas | 34, de Mente Afiada, Reflexo Mental e Punho de Ferro (níveis 1 a 4) | 615 |
+| **Total** | | **2104** |
+
+<p class="muted">Derivados: PV 37 · Defesa 20 · Def. Mental 20 · Def. Social 18 (pendente: supõe Sociabilidade 3, que a ficha acima ainda não nomeia) · Energia 17 · Mana 16 · Iniciativa 1d6+6. Fecha no orçamento. Tece Feitiço e lâmina no mesmo lance; com o XP investido poderia ter mergulhado numa Arte de nível 5, mas preferiu largura a profundidade.</p>
+
+## O mortal-tocado: magia como estudo, não como tier
+
+Os três acima sobem a Centelha junto com a magia, como manda a intuição. Mas a regra de Arcano **separa as duas coisas**: para aprender e conjurar uma Arte **não é preciso Centelha**: o mortal conjura com a Mana, uma reserva separada da Força de Vontade e do mesmo valor dela, e a Centelha engorda essa reserva e segura o nível de cada Arte (o teto é Centelha + 2: Centelha 0 chega ao nível 2, Centelha 1 ao 3).
+
+Isso abre um arquétipo que os exemplos anteriores escondem: o feiticeiro **mortal-tocado**, que se destaca pela **amplitude** (muitas Artes, rituais, preparo para cada ocasião), e não pela profundidade.
+
+### Bram, o Erudito-tocado · Veterano (Centelha 1)
+
+Passou a vida entre grimórios; a fagulha que carrega é mínima, mas o que sabe fazer com ela humilha conjuradores de tier maior. Conjura Artes de **nível 5** com Centelha **1**: a mesma profundidade que Veil, um Campeão de Centelha 4, alcança, porque a profundidade vem do estudo (ele conjura com **Ocultismo 5**), não da Centelha. O que os separa é o combustível.
+
+| Compra | Detalhe | XP |
+|---|---|:---:|
+| Raça | Humano (a régua: nenhum teto movido, nenhum traço racial) | 0 |
+| Atributos | Inteligência 6 · Influência, Percepção 4 · Raciocínio, Vigor, Destreza, Perspicácia 3 · Força, Compostura 2 | 496 |
+| Habilidades | Ocultismo 5 · Conhecimentos, Investigação, Esquiva, Prontidão 3 · Cura, Resistência, Furtividade, Sociabilidade, Ciências 2 · Persuasão 1 | 220 |
+| Secundárias | oito (Astronomia, Alquimia, Caligrafia, História, Herbologia, Genealogia…) | 66 |
+| Especialidades | seis (Ocultismo: invocação · Adivinhação · Conhecimentos…) | 48 |
+| Virtudes | Convicção 4 · Temperança 3 · Compaixão 3 · Bravura 2 | 63 |
+| Força de Vontade | 0 → 9 | 90 |
+| Aparência | 0 → 4 (feio, −2) | 20 |
+| Centelha | 0 → 1 (Tocado) | grátis |
+| Artes | sete: Adivinhação, Forças, Proteção, Cura e Fogo no **nível 5** · Fascinação e Conjuração no 3 | 745 |
+| Técnicas | 12, de Mente Afiada e Erudito (nível 1) | 120 |
+| **Total** | | **1868** |
+
+<p class="muted">O total deste exemplo ainda não se confere, e o dos outros três também não: a linha de Técnicas de Kael, Sora, Veil e Bram dá a contagem e as Proezas, e não a lista, então o preço delas não sai do catálogo.</p>
+
+<p class="muted">Derivados: PV 34 · Defesa 14 · Def. Mental 12 · Def. Social 10 · Energia 10 · <strong>Mana 11</strong> · Iniciativa 1d6+6. Fecha no orçamento. Repare no preço da fagulha mínima: com Centelha 1, sua <strong>Mana é só 11</strong>: ele conhece magia tão funda quanto Veil, mas o tanque o obriga a poucos Feitiços por cena. Largura de conhecimento, estreiteza de combustível: o feiticeiro de torre, não o de campo.</p>

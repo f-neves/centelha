@@ -1,0 +1,253 @@
+{
+  "id": "cao-infernal",
+  "idAntigo": "mon-hell-hound",
+  "nome": "Cão Infernal",
+  "nomeIngles": "Hell Hound",
+  "categoria": "corruptor",
+  "papel": "soldado",
+  "ameaca": 3,
+  "centelha": 2,
+  "corpo": {
+    "postura": "quatro patas",
+    "apoio": "quadrupede",
+    "altura": 0.83,
+    "largura": 0.31,
+    "profundidade": null,
+    "comprimento": 1.86,
+    "comprimentoSemCauda": 1.18,
+    "caudaGrossa": false,
+    "massa": 54,
+    "area": 0.4,
+    "posturaDoTamanho": "silhueta vista de lado"
+  },
+  "couraca": 1,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 3,
+    "destreza": 3,
+    "vigor": 4,
+    "percepcao": 2,
+    "inteligencia": 1,
+    "raciocinio": 2,
+    "influencia": 1,
+    "perspicacia": 1,
+    "compostura": 2
+  },
+  "habilidades": {
+    "briga": 4,
+    "bloqueio": 0,
+    "esquiva": 1,
+    "atletismo": 3,
+    "atirador": 2,
+    "furtividade": 1,
+    "integridade": 2,
+    "prontidao": 1,
+    "resistencia": 3,
+    "sociabilidade": 0,
+    "sobrevivencia": 3
+  },
+  "habilidadesSec": {
+    "musculatura": 2
+  },
+  "especialidades": {
+    "prontidao": [
+      {
+        "foco": "faro",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 5,
+    "compaixao": 1,
+    "conviccao": 5,
+    "temperanca": 1
+  },
+  "vontade": 7,
+  "aparencia": 1,
+  "deslocamento": {
+    "terra": {
+      "batalha": 4,
+      "arranque": 6,
+      "corrida": 9
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Mordida",
+      "parte": "mandibula",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "O \"Golpe planar\" do site (1 dado, 5 Ticks, corte): a mordida de cão, que morde, segura e sacode, Média, como a do lobo do molde. Jogada: Força 3 + Briga 4 + 2 × o menor entre Centelha 2 e Briga 4 (4)"
+    },
+    {
+      "nome": "Sopro de fogo",
+      "parte": "boca",
+      "classe": "distancia",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": "2d6",
+      "multiplicadorForca": 0,
+      "tipoDano": "fogo",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Ataque natural a distância, Classe Distância, como o sopro do filhote de dragão vermelho. Os números são da ficha, descritos na linha do sopro nas Manobras. Sem jogada de ataque."
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Sopro de fogo",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "fogo",
+        "nivel": 3
+      },
+      "ataque": "Sopro de fogo",
+      "categoria": "substancia",
+      "ativacao": "uma ação, Velocidade 5",
+      "duracao": "instantânea",
+      "alcance": "3 m à frente",
+      "area": "cone de 3 m",
+      "efeito": "o cão cospe um leque de chamas. Após a área, só há dano residual quando um efeito da ficha o declara",
+      "dano": "2d6 + Centelha, fogo",
+      "resistencia": "sem jogada de ataque. Cada alvo resolve a saída de área pelo livro",
+      "limiteDeUso": "O corpo guarda 2 doses e produz 1 dose a cada 12 horas. Cada uso gasta 1 dose. Nada acelera a produção"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "caçador em matilha",
+      "formas": "todas",
+      "texto": "a matilha cerca a presa em silêncio, cada cão sopra fogo de um lado e morde quem tenta furar o cerco."
+    },
+    {
+      "nome": "servo do gigante do fogo",
+      "formas": "todas",
+      "texto": "guarda a fortaleza de quem o cria e ataca o intruso sem aviso."
+    },
+    {
+      "nome": "Projétil natural",
+      "formas": "todas",
+      "texto": "Contra um alvo, use o maior entre Vigor, Destreza e Percepção + Atirador. Ao cobrir uma área, só os alvos fazem a jogada de saída."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão no escuro",
+      "descricao": "enxerga no escuro absoluto",
+      "formas": "todas"
+    },
+    {
+      "nome": "faro",
+      "descricao": "de cão; Prontidão (faro) +2; segue a presa pelo cheiro",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "camuflagem": "nenhuma; a pelagem brilha como brasa",
+    "mente": "inteligência de cão, cruel",
+    "tracos": "cão do porte de um lobo, de pelagem vermelho-escura que brilha como brasa, olhos de fogo e fumaça escapando da boca"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "matilha",
+    "atividade": "qualquer hora",
+    "dieta": "carnívoro",
+    "caca": "caça em matilha, cercando a presa",
+    "dianteDeGente": "ataca o intruso; guarda o dono"
+  },
+  "ecologia": {
+    "terreno": [
+      "qualquer"
+    ],
+    "clima": [
+      "extraplanar"
+    ]
+  },
+  "descricao": "Cão de pelagem em brasa que caça em matilha, cerca a presa em silêncio e ataca com fogo e presas. Gigantes do fogo o criam como guardião, e ele divide com eles o gosto pela crueldade com intrusos.",
+  "lore": [
+    {
+      "titulo": "Matilha infernal",
+      "texto": "Cães de pelagem em brasa que caçam em bando, cercando a presa em silêncio antes de atacar com fogo e presas afiadas."
+    },
+    {
+      "titulo": "Servos leais",
+      "texto": "Gigantes do fogo os criam como guardiões, compartilhando o mesmo gosto pela crueldade com intrusos."
+    }
+  ],
+  "imagens": [
+    "bestiario/cao-infernal_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [
+      {
+        "tipo": "gelo",
+        "formas": "todas"
+      },
+      {
+        "tipo": "luz",
+        "formas": "todas"
+      },
+      {
+        "tipo": "sagrado",
+        "formas": "todas"
+      }
+    ],
+    "resistencias": [],
+    "imunidades": [
+      {
+        "tipo": "fogo",
+        "formas": "todas"
+      }
+    ]
+  },
+  "revisao": [
+    {
+      "campo": "couraca",
+      "motivo": "Cobertura do corpo pela R49; metades arredondadas para cima. Absorção natural do livro (`combate.md`). Couraça 1: couro de cão sob a pelagem em brasa, um acima do lobo (0) pela pele de exterior ."
+    },
+    {
+      "campo": "comportamento.dieta",
+      "motivo": ""
+    },
+    {
+      "campo": "ataques.Sopro de fogo",
+      "motivo": "Antes: jogada de ataque na tabela. R36: Sem jogada de ataque, pois o efeito ocupa a área descrita nas Manobras. Cada alvo resolve a defesa de área.; R1/R4, D-197. Dois sopros prontos permitem alternar sopro e golpes. Sugestão de 2 doses e 12 h por dose para repor fora da luta. valor de molde, para a bancada (2 doses e produz 1 dose a cada 12 horas).; poder natural com números da ficha (D-197), base Fogo 3 (o leque de 2d6 da Labareda); o site não dava os números"
+    },
+    {
+      "campo": "corpo.area",
+      "motivo": "Médio para Pequeno, pela área do lobo de 54 kg (0,40 m²), como o lobo (55 kg) e o cachorro de guarda (85 kg). Em jogo: o atirador humano perde 3 contra ele, e ele ganha +3 no corpo a corpo contra o humano"
+    },
+    {
+      "campo": "ataques",
+      "motivo": "o site gravava um \"Golpe planar\" de 1 dado e 5 Ticks, de corte (`inimigos.json`: \"1d6 +5 corte\", dano médio 8,5). A D-241 levou a Pesado só o golpe de cinco planares; aqui a classe sai do gesto: a mordida fica Média, como a do lobo. Dano médio: 8,5 antes; depois, 8,5 (sem mudança)"
+    }
+  ]
+}

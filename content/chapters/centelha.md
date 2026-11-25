@@ -1,0 +1,109 @@
+---
+ordem: 7
+numeral: "V"
+titulo: "Centelha"
+resumo: "A fagulha de poder que separa o mortal do herói: o eixo de tudo que é extraordinário, do tocado ao semideus."
+---
+
+O que separa um mestre-de-armas mortal de um herói de lenda é a **Centelha**, o nível de poder pessoal. As [Virtudes e a Força de Vontade](/regras/aparencia-virtudes-vontade) movem a alma de qualquer um; a Centelha é o que faz a alma poder o **impossível**.
+
+## A Centelha, o coração do sistema
+
+A Centelha é a **fagulha de poder** que mora (ou não) em alguém. É o eixo central deste jogo: tudo que é extraordinário, as **Proezas** (as árvores de Técnicas sobre-humanas) e a estatura que vai do mortal ao semideus, pende dela. A feitiçaria do **Arcano** o mortal também alcança, e a Centelha engorda a Mana (a reserva que paga as Artes) de quem conjura.
+
+A esmagadora maioria das pessoas tem Centelha **0** e vive uma vida inteira sem nunca tocar o sobrenatural. Acender uma Centelha é o que torna alguém especial.
+
+A régua vai de **0 a 12**, e a **faixa do jogador é de 0 a 6**: os seis degraus de cima são do bestiário, e a tabela abaixo é a parte jogável. Cada degrau não é "um pouco mais forte": é um **salto de tier**, uma mudança de natureza.
+
+| Nível | Estatura | Raridade (quem chega a este nível ou mais) | O que abre |
+|:---:|---|---|---|
+| **0** | Mortal | ~95% das pessoas ficam aqui | Nenhuma Proeza; Artes até o nível 2, com a Mana, uma reserva própria com o valor da Força de Vontade |
+| **1** | Tocado | ~1 em 20 chega a este nível ou mais | Proezas de **nível 1**; Artes até o nível 3; a Energia que todo mortal já tem passa a servir (às Proezas), e a Mana cresce |
+| **2** | Desperto | raro | Proezas até o **nível 2**; Artes até o nível 4 |
+| **3** | Herói | mais raro | Proezas até o **nível 3**; Artes até o nível 5 |
+| **4** | Campeão | ~1 em 250 chega a este nível ou mais | Proezas até o **nível 4**; Artes até o nível 6 |
+| **5** | Lendário | quase-mito | Proezas até o **nível 5**; Artes até o nível 6 |
+| **6** | Semideus | um punhado no mundo | Proezas até o **nível 6** (o teto); Artes até o nível 6 |
+
+Os percentuais contam quem chega ao nível ou além: os 5% de Centelha 1 ou mais incluem os raros que passam disso.
+
+<div class="callout regra"><span class="lbl">O teto do jogador é 6, e a régua vai até 12</span>A tabela acima é a <strong>faixa jogável</strong>. A régua da Centelha continua depois dela, até <strong>12</strong>, e os degraus de <strong>7 a 12</strong> pertencem ao bestiário e à ficção: anjos maiores, senhores demoníacos, dragões ancestrais, o Tarrasque, divindades. <strong>Nenhum personagem chega lá</strong>, e a razão é mecânica, não de gosto: acima de 6 a Centelha <strong>não destrava Proeza nenhuma</strong>, porque o nível máximo de Proeza é 6 e o portão é <em>o nível N exige Centelha ≥ N</em>. Do 7 para cima ela só engorda ataque, as Defesas, Energia e Mana, que é o que convém a um deus e não a um herói. <strong>Os nomes dos seis degraus divinos ainda não foram escolhidos</strong>, e por isso a régua os exibe como <em>Divino · a nomear</em>.</div>
+
+**0 · Mortal.** A imensa maioria das pessoas, cerca de **95% do mundo**, é Centelha 0. Não há fagulha, e por isso não há Proeza: o mortal tem Energia (a reserva das Proezas), mas não a usa. Magia ele pode estudar e conjurar, com a Mana, que nele é uma reserva própria com o valor da Força de Vontade, e volta 1 por dia, ou 2 por dia descansando. Fora isso, o personagem vive inteiramente daquilo que treinou.
+
+Isso está longe de torná-lo inútil. Um general genial, um assassino frio, um sábio de barba branca podem ser mortais formidáveis, mas são mortais do começo ao fim. Seus Atributos param no teto humano (6), salvo o primeiro ponto acima, que a herança racial pode dar a um Atributo ([Cap. VI](/regras/racas)). Seus saltos são saltos de atleta, sua força é força de gente forte, e sua lábia convence pela razão, não por encanto. Quando um Centelha 0 cai, cai como qualquer um.
+
+**1 · Tocado.** A fagulha acendeu, e isso é raro: mais ou menos uma pessoa em vinte.
+
+O Tocado ainda não faz milagres. O que ele tem é refino sobre-humano: é mais ágil, mais carismático, mais perspicaz e mais resistente do que qualquer pessoa comum jamais será, mas tudo que ele faz ainda cabe dentro do que o mundo aceita como possível. É o melhor espadachim da região, a negociadora que lê qualquer sala num relance, o batedor que nunca perde um rastro. É aqui que a **Energia** passa a servir (ela serve às Proezas), a **Mana** cresce, e chegam as primeiras **Proezas**, até o **nível 1**: vantagens sutis e lapidações, nunca prodígios. Um humano excepcional, não uma maravilha.
+
+**2 · Desperto.** A fagulha, que no Tocado era um lampejo, agora se firma como força consciente. O Desperto está um degrau acima: suas reservas de **Energia e Mana** crescem e suas **Proezas chegam ao nível 2**. Ainda vive no limiar do herói, o extraordinário já não é só refino e começa a esbarrar no impossível, mas o salto pleno ao sobre-humano vem no degrau seguinte. É o talento que amadureceu e está prestes a transbordar.
+
+**3 · Herói.** Agora os feitos assombram quem assiste. O Herói faz o sobre-humano de verdade: salta distâncias impossíveis para qualquer pessoa, ergue pesos inacreditáveis, segura sozinho uma ponte contra um pelotão inteiro (é o patamar em que um lutador aguenta cerca de **vinte capangas comuns** antes de correr risco, veja a [Regra de Horda](/regras/combate#regra-de-horda)), vira uma multidão com um discurso, desperta um sentimento com um simples toque. Seus Atributos começam a ultrapassar o teto mortal e suas **Proezas chegam ao nível 3**. É o degrau do protagonista de saga, gente sobre quem se compõem canções.
+
+**4 · Campeão.** Seus feitos já são conhecidos em muitos lugares, e ele começa a quebrar as leis da física. As técnicas viram coisa indecifrável para quem olha de fora. Ele enfrenta dezenas de inimigos ao mesmo tempo sem ser tragado pela maré, e alcança patamares de intelecto e percepção que beiram o sobrenatural. Suas **Proezas chegam ao nível 4.** É raro a ponto de talvez existir um em cada 250, o tipo de figura cujo nome cruza reinos e cujas histórias já começam a virar lenda.
+
+**5 · Lendário.** Sobre essas pessoas há lendas. Elas mudaram o rumo de nações: foram grandes reis, viraram o destino de guerras e povos, e seus poderes mal são compreendidos por quem os testemunha. Podem flutuar, nadar como peixes por horas sem respirar, beber veneno como quem bebe água, derrubar uma muralha com um soco. Suas **Proezas chegam ao nível 5.** Surgem poucas por era, e seus nomes ficam nos livros de história muito depois de mortas.
+
+**6 · Semideus.** Aqui mora o que vira fábula e conto infantil. São seres que lutaram contra criaturas que não existem mais, que voam livremente, que se movem rápido a ponto de serem só um borrão nos olhos de quem tenta enxergá-los, e que são venerados como divindades por povos inteiros. Suas **Proezas chegam ao nível 6**, que é o teto das Proezas e o teto do jogador. A régua da Centelha segue até 12, mas do 7 para cima nenhuma Proeza nova se abre. Existe um punhado deles no mundo todo, e a passagem de cada um deixa marca na própria paisagem.
+
+## O que a Centelha faz
+
+1. **Pesa nos dois lados do conflito, com um teto.** Numa jogada de **Atributo + Habilidade** (o caso comum), no Valor Passivo e em cada Defesa (o ataque, a Física por Esquiva ou Bloqueio, a Mental, a Social e a [Defesa parada](/regras/relacoes-sociais) da Influência Estendida), a Centelha soma **2 × o menor entre a Centelha e a Habilidade** daquela jogada.
+
+   É sempre o menor, e **Habilidade 0 dá bônus 0**: Centelha 1 e Habilidade 5 dão +2; Centelha 5 e Habilidade 3, +6; Centelha 6 e Habilidade 1, +2; Centelha 1 e Habilidade 6, +2; Centelha 0 e Habilidade 6, 0; Centelha 0 e Habilidade 0, 0. Como o teto é o mesmo dos dois lados, entre Centelhas iguais (e Habilidade que alcance) o efeito se cancela e o duelo joga limpo; contra quem tem menos Centelha, a diferença vira vantagem líquida no acerto e na guarda.
+
+   Quando o **Mestre pede só o Atributo** (raro: "role Destreza"), a jogada é de **Atributo puro**, e a Centelha soma **inteira, sem teto**. O Mestre pede uma jogada de Atributo puro só quando nenhuma Habilidade do livro cobre a ação. É sempre o Mestre quem decide, e não o jogador. Se existe Habilidade que cubra, ela é pedida, e quem não a tem leva bônus 0. O que conta é o tipo de jogada pedida, e não o personagem que tem Habilidade 0: com Destreza 3 e Centelha 3, "role Destreza" dá 1d6 + 2 + 3 = **1d6 + 5**; "role Destreza + Atletismo" com Atletismo 0 dá **1d6 + 2**, e com Atletismo 2, 2d6 + 2 + 4 = **2d6 + 6**.
+
+   No **dano**, a conta muda: a Centelha do atacante soma **inteira, sem teto**, a cada golpe de arma, cada Arte e cada pulso de dano contínuo, então um tier acima dói mais fundo mesmo quando o acerto empata.
+
+   A Iniciativa, a física e a social, não é jogada de Atributo + Habilidade nem de Atributo puro: é 1d6 mais uma soma fixa, e não leva Centelha, nem Especialidade, nem penalidade (de ferimento, de Desgaste, nem o −1d6 do feitiço guardado). O que muda o próprio Atributo entra na conta, como o Raciocínio rebaixado de quem guarda um feitiço. Um bônus que uma Proeza dá à Iniciativa pelo nome (Reflexos Premonitórios, Mente Rápida) soma, e a faixa de 2 a 18 é a de quem não tem esses bônus.
+2. **Dimensiona os pools de poder.** A Centelha é o motor das reservas: **Energia = (Vigor + Compostura + Raciocínio + Vontade) ÷ 2 [arredonda p/ baixo] + Centelha × 2** (Vontade máxima) e **Mana = Centelha × 2 + Vontade** (Vontade máxima). Mais Centelha, mais combustível para gastar numa cena.
+3. **Autoriza o sobre-humano (no personagem).** A Centelha é também o que permite ao personagem **Atributos acima de 6** (o pico mortal): cada salto de tier abre teto além do humano, liberado pelo Mestre junto com o avanço. *(A tabela exata de quanto cada nível libera ainda está em calibração.)* A herança racial abre uma única exceção: o primeiro ponto acima de 6 (o 7) num Atributo, sem Centelha. Do 8 em diante, só a Centelha.
+4. **Abre a profundidade das Artes.** O nível máximo de cada Arte é Centelha + 2, até 6 (Centelha 0 → 2; 1 → 3; 2 → 4; 3 → 5; 4, 5 ou 6 → 6). A Proeza é outra conta: o nível N exige Centelha ≥ N.
+
+## Os seis níveis das Proezas
+
+As Técnicas (as habilidades individuais que compõem uma Proeza) sobem por **seis níveis de poder**, do mais brando (nível 1) ao mais terrível (nível 6). O nível mede o quanto um efeito é extraordinário e casa direto com o tier de Centelha: **o nível N exige Centelha ≥ N.**
+
+| Nível | Tier | Quem alcança |
+|:---:|---|:---:|
+| 1 | Tocado | Centelha 1+ |
+| 2 | Desperto | Centelha 2+ |
+| 3 | Herói | Centelha 3+ |
+| 4 | Campeão | Centelha 4+ |
+| 5 | Lendário | Centelha 5+ |
+| 6 | Semideus | Centelha 6 |
+
+Uma Técnica de nível 3 só está ao alcance de um Herói (Centelha 3) ou acima, enquanto o nível 1 já serve ao Tocado. O sobre-humano de verdade mora nos níveis médios; o que dobra as leis do mundo, nos altos.
+
+### O bônus de nível
+
+Quando uma Técnica melhora uma **tarefa** (esquivar, agarrar, mirar, resistir a ser movido), ela soma um **bônus que cresce com o nível**: **+3** no nível 1, subindo até **+15** no nível 6, pela trilha abaixo.
+
+Como numa disputa o bônus do outro lado se subtrai, o nível baixo é modesto (um +3 tende a vencer o igual, mas cede ao bem mais forte) e o alto é quase perfeito (um +15 só é contestado por outro semideus ou um abismo de atributo). Esse bônus é **por cima** do 2 × mín(Centelha, Habilidade) que já pesa em ataque e nas defesas.
+
+Mas nem toda melhora é um bônus de rolagem. Erguer peso não é o mesmo que mirar melhor, e pular longe não é o mesmo que resistir a veneno. Por isso cada **tipo** de efeito tem sua própria escala por nível:
+
+O nível 2 (Desperto) é o meio-degrau entre o Tocado (1) e o Herói (3): os valores interpolam entre os dois. Onde a trilha é discreta (dados de dano, tamanho), o Desperto repete o valor do Tocado e a Técnica carrega um efeito extra como degrau (um golpe do Desperto soma +1d6 mais um [raspão](/regras/quase-acerto)).
+
+| Trilha | O que cresce | N1 | N2 | N3 | N4 | N5 | N6 |
+|---|---|:---:|:---:|:---:|:---:|:---:|:---:|
+| **Bônus** | + à rolagem/disputa | +3 | +4 | +6 | +9 | +12 | +15 |
+| **Absorção** | + Absorção | +2 | +3 | +4 | +6 | +9 | +12 |
+| **Dano** | + dados de dano | +1d6 | +1d6 | +2d6 | +3d6 | +4d6 | +6d6 |
+| **Penetração** | Absorção ignorada | 2 | 3 | 4 | 6 | toda a armadura | armadura + natural |
+| **Carga** | × peso que ergue | ×2 | ×3 | ×4 | ×10 | ×30 | ×100 |
+| **Salto** | × distância do salto | ×2 | ×3 | ×4 | ×8 | ×20 | ×50 |
+| **Velocidade** | × deslocamento | ×1,5 | ×1,75 | ×2 | ×3 | ×5 | ×10 |
+| **Tamanho** | tamanho que afeta | igual | igual | +1 | +2 | +3 | qualquer |
+
+A **maioria** das Técnicas, porém, não tem número nenhum: são **estados e capacidades** (ver no escuro, ficar invisível, imune a veneno, voar, controlar uma besta). O nível dessas é a régua de quão absoluto o efeito é: em disputa, só cede a quem traz poder efetivamente maior. Alcance, área, número de alvos e duração são **parâmetros** que uma Técnica pode esticar por cima do efeito principal, na mesma lógica do improviso do Arcano.
+
+**A régua de Duração.** Quando o texto de uma Técnica diz quanto o efeito dura, a duração cai num destes seis degraus, do menor ao maior: **1 ação**, **6 Ticks**, **1 cena**, **várias cenas**, **horas**, **1 dia ou mais**. Ela não é uma coluna da tabela acima, porque o degrau não vem do nível: o texto de cada Técnica diz o dela, e é o texto que vale.
+
+Onde o texto só diz "por um tempo" ou não diz nada, o Mestre escolhe o degrau que a descrição pede. "Um grau a menos" é o degrau anterior da fila (por exemplo, no Resistir contra efeito mental, em As Três Defesas); na Técnica que já está em 1 ação não há degrau anterior, e o efeito é anulado.
+
+Esta régua não é a escada de intervalo do Cap. VIII (Estação a Tick), que mede quanto uma tarefa demora, nem a régua de Duração das Artes (Breve e Longa).
+
+<div class="callout regra"><span class="lbl">O Portão da Centelha</span>A Centelha sobe <strong>só com permissão do Mestre</strong>, num marco de história ou feito maior. Na criação, o Mestre escolhe a Centelha inicial pela campanha: <strong>0</strong> numa campanha mortal; de <strong>1 a 3</strong> numa campanha heroica. Ela <strong>não custa XP</strong>, e o <strong>salto de tier é narrativo</strong>: poder não se compra em massa, conquista-se na história.</div>

@@ -1,0 +1,212 @@
+{
+  "id": "bugbear",
+  "idAntigo": "mon-bugbear",
+  "nome": "Bugbear",
+  "nomeIngles": "Bugbear",
+  "categoria": "humanoide",
+  "papel": "soldado",
+  "ameaca": 2,
+  "centelha": 0,
+  "corpo": {
+    "postura": "bípede, de pé",
+    "apoio": "bipede",
+    "altura": 2.15,
+    "largura": 0.49,
+    "profundidade": 0.25,
+    "comprimento": null,
+    "massa": 113,
+    "area": 0.93,
+    "posturaDoTamanho": "de frente"
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 5,
+    "destreza": 3,
+    "vigor": 3,
+    "percepcao": 2,
+    "inteligencia": 2,
+    "raciocinio": 2,
+    "influencia": 2,
+    "perspicacia": 2,
+    "compostura": 2
+  },
+  "habilidades": {
+    "armas": 3,
+    "briga": 2,
+    "bloqueio": 1,
+    "esquiva": 1,
+    "atletismo": 2,
+    "furtividade": 3,
+    "prontidao": 2,
+    "integridade": 2,
+    "sobrevivencia": 2
+  },
+  "habilidadesSec": {
+    "intimidacao": 2,
+    "musculatura": 0
+  },
+  "especialidades": {
+    "furtividade": [
+      {
+        "foco": "passo leve",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ],
+    "armas": [
+      {
+        "foco": "alvo desprevenido",
+        "valor": 1,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 2,
+    "conviccao": 3,
+    "temperanca": 2
+  },
+  "vontade": 5,
+  "aparencia": 4,
+  "deslocamento": {
+    "terra": {
+      "batalha": 3,
+      "arranque": 5,
+      "corrida": 7
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Machado",
+      "arma": "machado",
+      "justificativa": "A arma do livro (`armas.json`, `machado`): Média, Velocidade 6, Acerto +1, Defesa 0, ★C · I. Jogada: Força 5 + Armas 3"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Golpe na brecha",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "o primeiro golpe da ação que fere um alvo Surpreso ou Flanqueado",
+      "duracao": "instantânea",
+      "alcance": "o do golpe",
+      "area": "o alvo atingido",
+      "efeito": "Explora o ponto vital. Quem ignora dano extra de ponto vital ignora esse acréscimo",
+      "dano": "+1d6 no dano do golpe",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "uma vez por ação, sem custo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "caçador de emboscada",
+      "formas": "todas",
+      "texto": "segue a presa em silêncio, ataca primeiro de surpresa e bate no mais fraco; foge se a emboscada falha."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão no escuro",
+      "descricao": "enxerga sem luz",
+      "formas": "todas"
+    },
+    {
+      "nome": "audição e olfato",
+      "descricao": "os de um humano",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "prendeRespiracao": "pela regra do personagem",
+    "camuflagem": "passo leve; Especialidade natural",
+    "mente": "humanoide; paciente na emboscada",
+    "tracos": "corpo alto coberto de pelo pardo, focinho achatado, orelhas largas, braços compridos"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "sozinho ou em grupo pequeno, típico 2 a 4",
+    "atividade": "noturno",
+    "dieta": "carnívoro",
+    "caca": "emboscada",
+    "dianteDeGente": "embosca quem passa sozinho"
+  },
+  "ecologia": {
+    "terreno": [
+      "subterrâneo",
+      "floresta"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "O maior dos goblinoides, peludo e de braços compridos, que anda em silêncio apesar dos 2 m e bate forte em quem não o viu chegar.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Predadores furtivos apesar do tamanho avantajado, preferem emboscar na escuridão a enfrentar qualquer inimigo de frente."
+    },
+    {
+      "titulo": "Hábitos",
+      "texto": "Movem-se com um silêncio antinatural para o porte que têm e escondem seus covis perto de rotas usadas por viajantes."
+    },
+    {
+      "titulo": "Sociedade",
+      "texto": "Convivem em pequenos bandos junto a goblins e hobgoblins, impondo-se pela força sempre que querem a melhor parte da presa."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "Mais um ramo dos povos ásperos saídos da forja incompleta dos anões, os bugbears cresceram grandes e sorrateiros o bastante para aterrorizar sozinhos vilarejos isolados nas bordas de Mére e do The Neck."
+    }
+  ],
+  "imagens": [
+    "bestiario/bugbear_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "habilidades.armas",
+      "motivo": "O site gravava `briga` 2 para a \"Arma\"; no livro a arma branca é Armas (manual 3.5); 3; o site gravava `briga` 2 para a arma"
+    },
+    {
+      "campo": "couraca",
+      "motivo": "Absorção natural do livro (`combate.md`). Pele com pelo grosso, sem couro: nível 0"
+    },
+    {
+      "campo": "comportamento.social",
+      "motivo": ""
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": "site (visão no escuro)"
+    },
+    {
+      "campo": "comportamento.dieta",
+      "motivo": ""
+    },
+    {
+      "campo": "equipamento",
+      "motivo": "machado do livro, sem armadura"
+    },
+    {
+      "campo": "habilidades.furtividade",
+      "motivo": "Especialidade natural +2 pelo passo leve"
+    }
+  ]
+}

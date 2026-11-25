@@ -1,0 +1,161 @@
+{
+  "id": "ra-venenosa",
+  "idAntigo": "mon-poison-frog",
+  "nome": "Rã-dourada-venenosa",
+  "nomeIngles": "Golden poison frog",
+  "categoria": "animal",
+  "papel": "fera",
+  "ameaca": 1,
+  "centelha": 0,
+  "corpo": {
+    "postura": "quatro patas (sentada)",
+    "apoio": "quadrupede",
+    "altura": 0.022,
+    "largura": 0.022,
+    "profundidade": null,
+    "comprimento": 0.042,
+    "massa": 0.0085,
+    "area": 0.0009,
+    "posturaDoTamanho": "vista de cima, agachada"
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 0,
+    "destreza": 2,
+    "vigor": 2,
+    "percepcao": 3,
+    "inteligencia": 1,
+    "raciocinio": 2,
+    "influencia": 1,
+    "perspicacia": 1,
+    "compostura": 1
+  },
+  "habilidades": {
+    "briga": 1,
+    "bloqueio": 0,
+    "esquiva": 3,
+    "atletismo": 1,
+    "furtividade": 0,
+    "integridade": 1,
+    "prontidao": 2,
+    "resistencia": 2,
+    "empatia": 0,
+    "sobrevivencia": 1
+  },
+  "habilidadesSec": {
+    "equilibrio": 0,
+    "escalada": 0,
+    "natacao": 0,
+    "voo": 0,
+    "musculatura": 2
+  },
+  "especialidades": {},
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 1,
+    "compaixao": 1,
+    "conviccao": 1,
+    "temperanca": 1
+  },
+  "vontade": 3,
+  "aparencia": 7,
+  "deslocamento": {
+    "terra": {
+      "batalha": 1,
+      "arranque": 1,
+      "corrida": 2
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Batracotoxina",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "substancia",
+      "ativacao": "quem ingere a secreção ou toca a pele da rã",
+      "duracao": "até o fim do efeito do veneno",
+      "alcance": "toque",
+      "area": "um alvo",
+      "efeito": "Batracotoxina. Aplicar os parâmetros de Veneno e doença",
+      "dano": "apenas o pool do veneno",
+      "resistencia": "Vigor + Resistência pelo relógio do veneno",
+      "limiteDeUso": "O corpo guarda 3 doses e produz 1 dose em 4 horas. Cada uso gasta 1 dose"
+    }
+  ],
+  "comoLuta": [],
+  "sentidos": [
+    {
+      "nome": "sentidos",
+      "descricao": "nada achado",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar e pele (anfíbio)",
+    "camuflagem": "nenhuma; cor de aviso",
+    "mente": "animal",
+    "tracos": "veneno na pele, que vem da dieta (some em cativeiro); precisa de mata úmida e quente"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitário",
+    "atividade": "diurno",
+    "dieta": "insetívoro (artrópodes, de onde vem a toxina)",
+    "caca": "forrageio ativo",
+    "dianteDeGente": "indiferente; não foge nem ataca"
+  },
+  "ecologia": {
+    "terreno": [
+      "pântano",
+      "aquático"
+    ],
+    "clima": [
+      "tropical"
+    ]
+  },
+  "descricao": "Anda de dia pelo chão úmido da mata, à vista, pegando formigas. Ninguém a come: o adulto quase não tem predador, e quem a toca com a mão ferida pode morrer.",
+  "lore": [
+    {
+      "titulo": "Veneno de guerra",
+      "texto": "Tribos do brejo colhem a secreção de sua pele para untar flechas e dardos de caça."
+    },
+    {
+      "titulo": "Beleza que mata",
+      "texto": "As cores vibrantes da pele já seduziram muitos incautos a pegá-la com as mãos nuas, um erro raramente repetido."
+    },
+    {
+      "titulo": "Veneno e doença",
+      "texto": "Veneno no jogo: Batracotoxina · Potência 20 · minuto (ingerido ou toque) · a cada 1 minuto · pool 3 (Vigor) · Desgaste 1 · passivo: quem a come, morde ou toca (ingerido ou toque)"
+    }
+  ],
+  "imagens": [],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "corpo.comprimento",
+      "motivo": "0,042 m na ficha atual. Base da revisão anterior: 0,04215 m, a média simples de machos e fêmeas (Myers e colegas 1978); era 0,047 pela ADW (13/10) e 0,06 pela Wikipédia; o Alvo não muda"
+    },
+    {
+      "campo": "corpo.altura",
+      "motivo": "0,022 m na ficha atual. Base da revisão anterior: 0,0224 m, estimadas sem fonte para 47 mm (0,025) e escaladas a 42,15 mm (D-147, D-174)"
+    },
+    {
+      "campo": "corpo.largura",
+      "motivo": "0,022 m na ficha atual. Base da revisão anterior: 0,0224 m, estimadas sem fonte para 47 mm (0,025) e escaladas a 42,15 mm (D-147, D-174)"
+    }
+  ]
+}

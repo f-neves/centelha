@@ -1,0 +1,254 @@
+{
+  "id": "cubo-gelatinoso",
+  "idAntigo": "mon-cubo-gelatinoso",
+  "nome": "Cubo Gelatinoso",
+  "nomeIngles": "Gelatinous Cube",
+  "categoria": "limo",
+  "papel": "soldado",
+  "ameaca": 3,
+  "centelha": 1,
+  "corpo": {
+    "postura": "cubo que desliza",
+    "apoio": "outro",
+    "altura": 3,
+    "largura": 3,
+    "profundidade": null,
+    "comprimento": 3,
+    "massa": 27300,
+    "area": 9,
+    "posturaDoTamanho": "de frente"
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 3,
+    "destreza": 1,
+    "vigor": 9,
+    "percepcao": 1,
+    "inteligencia": 0,
+    "raciocinio": 1,
+    "influencia": 1,
+    "perspicacia": 1,
+    "compostura": 1
+  },
+  "habilidades": {
+    "briga": 4,
+    "bloqueio": 0,
+    "esquiva": 0,
+    "integridade": 0,
+    "prontidao": 0,
+    "furtividade": 2,
+    "resistencia": 0
+  },
+  "habilidadesSec": {
+    "musculatura": 2
+  },
+  "especialidades": {
+    "furtividade": [
+      {
+        "foco": "parado",
+        "valor": 3,
+        "origem": "natural"
+      }
+    ],
+    "briga": [
+      {
+        "foco": "Agarrão",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 6,
+    "compaixao": 1,
+    "conviccao": 1,
+    "temperanca": 1
+  },
+  "vontade": 3,
+  "aparencia": 1,
+  "deslocamento": {
+    "terra": {
+      "batalha": 2,
+      "arranque": 3,
+      "corrida": 5
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Pseudópode",
+      "parte": "pseudopode",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "impacto",
+      "nivelPerfuracao": null,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "O ataque do site (2 dados, 6 Ticks, impacto): o braço de gelatina que bate com a massa atrás, Média (`regra-construcao.md` §7). Paralisa quem fere (Manobras). Jogada: Força 3 + Briga 4 + 2 × o menor entre Centelha 1 e Briga 4 (2)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Paralisia ao toque",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "sobrenatural",
+      "ativacao": "quando o ataque descrito atinge a vítima",
+      "duracao": "6 Ticks",
+      "alcance": "toque, pelo ataque descrito",
+      "area": "a vítima descrita pelo poder",
+      "efeito": "o toque entorpece e paralisa a vítima. A vítima fica Paralisada. Defesas Físicas 0, mente livre",
+      "dano": "nenhum adicional",
+      "resistencia": "Vigor + Resistência contra Dificuldade 15",
+      "limiteDeUso": "Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "Engolfar",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "ação de Velocidade 7 contra vítima menor já Agarrada que cabe na boca",
+      "duracao": "até sair",
+      "alcance": "toque",
+      "area": "a vítima engolida",
+      "efeito": "Dentro, fica Imobilizada para o corpo, pode atacar com arma curta e sofre sufocamento pelo livro. Uma ferida interna de 10 PV abre a saída, por dentro ou com ajuda de fora. Também pode escapar pela garganta como no agarrão. Se a criatura morre, a vítima sai com uma ação",
+      "dano": "2d6 de ácido uma vez a cada 6 Ticks. A armadura vestida não protege contra o ácido",
+      "resistencia": "escape do agarrão pela garganta",
+      "limiteDeUso": "sem custo. Usar repetidamente causa esforço e pode levar ao cansaço"
+    },
+    {
+      "nome": "Ácido corrosivo",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "substancia",
+      "ativacao": "estar dentro do cubo",
+      "duracao": "enquanto estiver dentro",
+      "alcance": "dentro",
+      "area": "quem está dentro",
+      "efeito": "dissolve carne e o que for orgânico",
+      "dano": "1d6 + Centelha, ácido, a cada 6 Ticks",
+      "resistencia": "nenhum",
+      "limiteDeUso": "O corpo guarda 3 doses e produz 1 dose a cada 4 horas. Cada uso gasta 1 dose. Nada acelera a produção"
+    },
+    {
+      "nome": "corrói equipamento",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "o equipamento exposto entra no ácido",
+      "duracao": "até conserto",
+      "alcance": "contato",
+      "area": "a peça atingida",
+      "efeito": "A peça perde um grau de Integridade por exposição que vencer sua resistência: inteira, avariada, quebrada. O conserto recupera um grau por trabalho",
+      "dano": "nenhum",
+      "resistencia": "a resistência da peça contra a exposição",
+      "limiteDeUso": "contínuo, sem custo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "Preenche o corredor",
+      "formas": "todas",
+      "texto": "ocupa a passagem inteira; não dá para contornar, só recuar ou atravessar. Não persegue: avança e engole o que está no caminho."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "sentidos",
+      "descricao": "percebe pelo toque e pela vibração o que encosta nele ou passa perto",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "absorve o ar pela superfície",
+    "prendeRespiracao": "o Mestre decide",
+    "camuflagem": "transparente; Furtividade (parado) +3",
+    "mente": "nenhuma",
+    "tracos": "cubo de gelatina transparente que enche o corredor, com moedas, ossos e fivelas boiando dentro"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitário",
+    "atividade": "qualquer hora",
+    "dieta": "tudo o que é orgânico",
+    "caca": "avança e engole o que está no caminho",
+    "dianteDeGente": "engole"
+  },
+  "ecologia": {
+    "terreno": [
+      "subterrâneo"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Massa transparente e quase invisível que desliza por corredores e câmaras subterrâneas, dissolvendo devagar tudo o que toca. Não persegue: avança e engole. Dentro dele ficam moedas, ossos e fivelas de todos que morreram ali.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Massa transparente e quase invisível que desliza por corredores e câmaras subterrâneas, dissolvendo lentamente tudo que toca; não persegue, apenas avança e engole o que estiver em seu caminho."
+    },
+    {
+      "titulo": "Ecologia",
+      "texto": "Limpa dungeons e ruínas por acidente, carregando dentro de si moedas, ossos e fivelas de metal que sobrevivem à digestão lenta, um arquivo grotesco de todos que morreram ali antes."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "Exploradores de ruínas da Grande Guerra o temem mais pela surpresa que pelo perigo: é fácil de evitar se visto a tempo, e quase sempre fatal para quem não percebe a diferença entre corredor vazio e gelatina viva."
+    }
+  ],
+  "imagens": [
+    "bestiario/cubo-gelatinoso_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": [
+      {
+        "tipo": "raio",
+        "formas": "todas"
+      }
+    ]
+  },
+  "revisao": [
+    {
+      "campo": "corpo.massa",
+      "motivo": "O cubo de 3 m tem 27 m³; a gelatina, quase toda água, tem a densidade da carne (1.010 kg/m³, manual 4.2): 27,3 t. O site diz \"14 t (massa gelatinosa densa)\", mas 14 t em 27 m³ dariam metade da densidade da água, o contrário de densa. A ficha guarda o lado de 3 m, que é o que enche o corredor (D-187). Com 14 t, o lado seria 2,4 m; 27,3 t pelo cubo de 3 m; o site dava 14 t. Com 14 t, lado de 2,4 m, 5,76 m² (Grande pelo corte, ou Enorme pelos 5%) e 80 ou 85 PV"
+    },
+    {
+      "campo": "comportamento.social",
+      "motivo": ""
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": ""
+    },
+    {
+      "campo": "habilidadesEspeciais.Paralisia ao toque",
+      "motivo": "R10 e D-197. Dificuldade sugerida 15 para resistir à imobilidade imposta pelo poder. R10 e D-197. Duração sugerida de 6 Ticks para abrir uma janela de combate com o corpo paralisado. R1 e D-197. Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. O limite preserva o primeiro uso e reserva repetição para esforço adicional. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Engolfar",
+      "motivo": "R4. Retirada a espera entre ativações."
+    },
+    {
+      "campo": "habilidadesEspeciais.Ácido corrosivo",
+      "motivo": "R1/R4, D-197. Três doses preservam a reserva para mais de uma presa. Sugestão de 3 doses e 4 h por dose para repor fora da luta. valor de molde, para a bancada (3 doses e produz 1 dose a cada 4 horas)."
+    }
+  ]
+}

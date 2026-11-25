@@ -1,0 +1,271 @@
+{
+  "id": "verme-purpura",
+  "idAntigo": "mon-verme-purpura",
+  "nome": "Verme Púrpura",
+  "nomeIngles": "Purple Worm",
+  "categoria": "besta-magica",
+  "papel": "chefe",
+  "ameaca": 5,
+  "centelha": 1,
+  "corpo": {
+    "postura": "rasteja; ergue a frente para morder",
+    "apoio": "outro",
+    "altura": 1.37,
+    "largura": 1.37,
+    "profundidade": null,
+    "comprimento": 24,
+    "massa": 36000,
+    "area": 29.6,
+    "posturaDoTamanho": "silhueta vista de lado"
+  },
+  "couraca": 5,
+  "perfilCouraca": "mole",
+  "atributos": {
+    "forca": 13,
+    "destreza": 2,
+    "vigor": 11,
+    "percepcao": 2,
+    "inteligencia": 1,
+    "raciocinio": 1,
+    "influencia": 2,
+    "perspicacia": 1,
+    "compostura": 2
+  },
+  "habilidades": {
+    "briga": 5,
+    "bloqueio": 0,
+    "esquiva": 0,
+    "atletismo": 2,
+    "furtividade": 1,
+    "integridade": 2,
+    "prontidao": 1,
+    "resistencia": 4,
+    "sociabilidade": 0,
+    "sobrevivencia": 3
+  },
+  "habilidadesSec": {
+    "musculatura": 2
+  },
+  "especialidades": {},
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 4,
+    "compaixao": 1,
+    "conviccao": 3,
+    "temperanca": 2
+  },
+  "vontade": 6,
+  "aparencia": 2,
+  "deslocamento": {
+    "terra": {
+      "batalha": 2,
+      "arranque": 3,
+      "corrida": 5
+    },
+    "nado": {
+      "batalha": 1
+    },
+    "escavacao": {
+      "batalha": 2
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Mordida",
+      "parte": "boca",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "A boca redonda com o corpo atrás, Média. Jogada: Força 13 + Briga 5 + 2 × o menor entre Centelha 1 e Briga 5 (2)"
+    },
+    {
+      "nome": "Ferrão de cauda",
+      "parte": "ferrao",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 1,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "O ferrão na ponta da cauda, Média; o veneno vai em Veneno e doença. Jogada: Força 13 + Briga 5 + 2 × o menor entre Centelha 1 e Briga 5 (2)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Peçonha do verme púrpura",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "ataque": "Ferrão de cauda",
+      "categoria": "substancia",
+      "ativacao": "Ferrão de cauda ao causar ao menos 1 PV depois da Absorção",
+      "duracao": "até o fim do efeito do veneno",
+      "alcance": "toque",
+      "area": "um alvo",
+      "efeito": "Peçonha de víbora (referência provisória do catálogo para Verme Púrpura). Aplicar os parâmetros de Veneno e doença",
+      "dano": "apenas o pool do veneno",
+      "resistencia": "Vigor + Resistência pelo relógio do veneno",
+      "limiteDeUso": "O corpo guarda 2 doses e produz 1 dose em 6 horas. Cada uso gasta 1 dose"
+    },
+    {
+      "nome": "agarrar",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Mordida",
+      "categoria": "inato",
+      "regra": "agarrar"
+    },
+    {
+      "nome": "engolir inteiro",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "ação de Velocidade 7 contra vítima menor já Agarrada que cabe na boca",
+      "duracao": "até sair",
+      "alcance": "toque",
+      "area": "a vítima engolida",
+      "efeito": "Dentro, fica Imobilizada para o corpo, pode atacar com arma curta e sofre sufocamento pelo livro. Uma ferida interna de 15 PV abre a saída, por dentro ou com ajuda de fora. Também pode escapar pela garganta como no agarrão. Se a criatura morre, a vítima sai com uma ação",
+      "dano": "3d6 de ácido uma vez a cada 6 Ticks. A armadura vestida não protege contra o ácido",
+      "resistencia": "escape do agarrão pela garganta",
+      "limiteDeUso": "sem custo. Usar repetidamente causa esforço e pode levar ao cansaço"
+    },
+    {
+      "nome": "mordida colossal",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "enquanto a condição se aplica",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Este golpe ignora até 2 pontos de Absorção natural. A proteção de armadura vestida continua",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "emergir sob o alvo",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "enquanto a condição se aplica",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Na entrada da cena, recebe +2 na Iniciativa quando embosca a presa. O avanço na ordem não concede ação extra",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "Multiataque",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "uma ação de Rajada",
+      "duracao": "uma ação",
+      "alcance": "o de cada parte",
+      "area": "os alvos da Rajada",
+      "efeito": "Golpeia nesta ordem: mordida, ferrão da cauda. Cada golpe extra acumula −1d6 e conta para Guarda sob pressão. Não acumula com a Rajada comum",
+      "dano": "o de cada ataque que acertar",
+      "resistencia": "a Defesa de cada golpe",
+      "limiteDeUso": "até 2 golpes por ação, sem Energia. O uso repetido causa esforço e pode levar ao cansaço"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "desastre que escava",
+      "formas": "todas",
+      "texto": "abre túneis com a boca, engole o que encontra e pica com o ferrão o que escapa; a passagem dele desaba minas."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "sentido de tremor",
+      "descricao": "sente pelo chão quem se move a até 18 m, sem ver. Ignora invisibilidade e escuridão nesse alcance",
+      "formas": "todas"
+    },
+    {
+      "nome": "cego",
+      "descricao": "Localiza corpos em contato com seu meio até 9 m, mesmo Cego. Paredes e rupturas do meio bloqueiam a percepção",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "mente": "animal (fera de Inteligência 1)",
+    "tracos": "verme púrpura de 24 m e anéis grossos, boca redonda de dentes e ferrão na ponta da cauda; não tem olhos"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitário",
+    "atividade": "qualquer hora",
+    "dieta": "engole o que encontra",
+    "caca": "escava novas galerias quando a comida escasseia",
+    "dianteDeGente": "um desastre: a defesa é sair da rota"
+  },
+  "ecologia": {
+    "terreno": [
+      "subterrâneo"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Verme titânico das profundezas que escava túneis inteiros com a boca, engole o que encontra e usa o ferrão da cauda contra o que escapa. A passagem dele desaba minas, e os mineradores a contam como desastre natural, e não como caçada.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Verme titânico que escava túneis inteiros com a boca, engolindo o que encontra pela frente e usando o ferrão da cauda contra o que escapa da mordida."
+    },
+    {
+      "titulo": "Ecologia",
+      "texto": "Vive nas profundezas do subsolo, longe da luz, cavando novas galerias sempre que a comida escasseia; sua passagem pode desabar minas inteiras sem que ele perceba o dano feito acima."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "É um dos poucos monstros grandes o bastante para assustar até os anões do White Wall, e mineradores contam sua chegada como um desastre natural, não como uma caçada: quando um verme púrpura escava perto, a única defesa é fugir da rota."
+    }
+  ],
+  "imagens": [
+    "bestiario/verme-purpura_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "couraca",
+      "motivo": "Cobertura do corpo pela R49; metades arredondadas para cima. Absorção natural do livro (`combate.md`). Couraça 5: a \"carapaça anelada\" do site, de anéis grossos ."
+    },
+    {
+      "campo": "ataques",
+      "motivo": "o site gravava um ataque só, \"Garras e presas\" (`inimigos.json`: \"3d6 +14 perfurante\", 7 Ticks, dano médio 24,5). A ficha separa os golpes pelo gesto, um por ação (D-097). Dano médio: 24,5 antes; depois, mordida 17,5, ferrão 17,5"
+    }
+  ]
+}

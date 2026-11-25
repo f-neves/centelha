@@ -1,0 +1,259 @@
+{
+  "id": "arconte-trombeta",
+  "idAntigo": "mon-trumpet-archon",
+  "nome": "Arconte Trombeta",
+  "nomeIngles": "Archon, Trumpet",
+  "categoria": "celestial",
+  "papel": "chefe",
+  "ameaca": 6,
+  "centelha": 6,
+  "corpo": {
+    "postura": "de pé, em combate",
+    "apoio": "bipede",
+    "altura": 2,
+    "largura": 0.5,
+    "profundidade": 0.26,
+    "comprimento": null,
+    "massa": 110,
+    "area": 0.89,
+    "posturaDoTamanho": "de pé"
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 6,
+    "destreza": 5,
+    "vigor": 8,
+    "percepcao": 6,
+    "inteligencia": 5,
+    "raciocinio": 5,
+    "influencia": 5,
+    "perspicacia": 5,
+    "compostura": 5
+  },
+  "habilidades": {
+    "briga": 0,
+    "bloqueio": 3,
+    "esquiva": 1,
+    "prontidao": 3,
+    "integridade": 5,
+    "sobrevivencia": 0,
+    "sociabilidade": 4,
+    "armas": 5,
+    "ocultismo": 0
+  },
+  "habilidadesSec": {
+    "musculatura": 0,
+    "religiao": 4
+  },
+  "especialidades": {},
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 5,
+    "compaixao": 5,
+    "conviccao": 5,
+    "temperanca": 4
+  },
+  "vontade": 11,
+  "aparencia": 12,
+  "deslocamento": {
+    "terra": {
+      "batalha": 4,
+      "arranque": 6,
+      "corrida": 9
+    },
+    "voo": {
+      "batalha": 9
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": [
+      {
+        "base": "malha",
+        "vestida": true
+      }
+    ]
+  },
+  "artes": {
+    "cura": 4,
+    "protecao": 4
+  },
+  "ataques": [
+    {
+      "nome": "Montante",
+      "arma": "montante",
+      "justificativa": "Arma do catálogo, montante; jogada maior entre Força e Destreza + Armas 5 + 2 × o menor entre Centelha 6 e Armas 5; um ataque por ação; Penalidade −2 da malha nas ações físicas, inclusive ataque"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Trombeta paralisante",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "sobrenatural",
+      "ativacao": "uma ação de Velocidade 6 para soar a trombeta",
+      "duracao": "6 Ticks",
+      "alcance": "até onde se ouve a trombeta",
+      "area": "os ouvintes, exceto os aliados celestiais",
+      "efeito": "o toque da trombeta paralisa os que a ouvem, poupando os aliados celestiais. A vítima fica Paralisada. Defesas Físicas 0, mente livre",
+      "dano": "nenhum adicional",
+      "resistencia": "Vigor + Resistência contra Dificuldade 15",
+      "limiteDeUso": "Usos grátis: 1 por cena. Cada uso extra custa 1 de Mana"
+    },
+    {
+      "nome": "Trombeta e espada",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "materia",
+        "nivel": 2
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 5. O efeito sai no Tick do Golpe",
+      "duracao": "até a próxima transformação",
+      "alcance": "o objeto que segura",
+      "area": "a própria trombeta",
+      "efeito": "a trombeta toma a forma do montante ou retorna ao instrumento; os números da arma são os do catálogo",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "Usos grátis: 1 por cena. Cada uso extra custa 1 de Mana"
+    },
+    {
+      "nome": "Círculo contra o mal",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "protecao",
+        "nivel": 3,
+        "efeito": "circulo"
+      },
+      "categoria": "inato",
+      "ativacao": "nenhuma; sempre ativo",
+      "duracao": "permanente",
+      "alcance": "3 m",
+      "area": "o próprio arconte e os aliados no raio",
+      "efeito": "os protegidos somam +2 em Esquiva, Bloqueio e Defesa Mental contra ataques ou efeitos de criaturas malignas",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "nenhum. Sem custo"
+    },
+    {
+      "nome": "Defesa contra possessão",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "enquanto a condição se aplica",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Contra uma possessão, o protegido usa sua Defesa Mental com a proteção do círculo e o Resistir do livro",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "Resistência à magia",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "sempre ativa",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a própria criatura",
+      "efeito": "Resistência à magia de grau 2. Soma +4 às Defesas e à jogada de resistir contra Artes e efeitos similares à magia, até o teto comum de +6",
+      "dano": "nenhum adicional",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo. Sem custo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "Magias sagradas",
+      "formas": "todas",
+      "texto": "usa as Artes de Cura e Proteção para apoiar aliados e afastar ameaças."
+    },
+    {
+      "nome": "guarda celestial",
+      "formas": "todas",
+      "texto": "lidera a linha, protege aliados com as Artes e usa o montante quando o inimigo se aproxima."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão e audição",
+      "descricao": "observa e ouve o campo de batalha",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "mente": "inteligente, comprometida com seus protegidos",
+    "tracos": "pele cor de mármore, olhos sem pupila, trombeta com brasão e malha"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "sozinho ou com companheiros",
+    "atividade": "qualquer hora",
+    "caca": "não se aplica",
+    "dianteDeGente": "socorre e protege"
+  },
+  "ecologia": {
+    "terreno": [
+      "céu",
+      "qualquer"
+    ],
+    "clima": [
+      "extraplanar"
+    ]
+  },
+  "descricao": "Arauto de voz cristalina e pele de mármore, que lidera os celestiais com uma trombeta capaz de virar espada.",
+  "lore": [
+    {
+      "titulo": "Papel",
+      "texto": "Mensageiros das divindades do bem, os arautos-trombeta lideram exércitos celestiais e servem como intermediários quando um deus precisa falar diretamente com mortais."
+    },
+    {
+      "titulo": "Aparência",
+      "texto": "Têm pele da cor do mármore, olhos brancos sem pupila e vozes cristalinas, quase musicais."
+    },
+    {
+      "titulo": "Símbolo",
+      "texto": "Todo arauto-trombeta carrega um chifre ou trombeta encantada, adornada com o brasão de seu senhor, usada tanto para comunicação quanto como arma."
+    }
+  ],
+  "imagens": [
+    "bestiario/arconte-trombeta_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [
+      {
+        "tipo": "profano",
+        "formas": "todas"
+      }
+    ],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "comportamento.atividade",
+      "motivo": ""
+    },
+    {
+      "campo": "habilidadesEspeciais.Trombeta paralisante",
+      "motivo": "R10 e D-197. Dificuldade sugerida 15 para resistir à imobilidade imposta pelo poder. R10 e D-197. Duração sugerida de 6 Ticks para abrir uma janela de combate com o corpo paralisado. R1 e D-197. Usos grátis: 1 por cena. Cada uso extra custa 1 de Mana. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Velocidade sugerida 6, pela referência de ativação com o corpo. valor de molde, para a bancada (uso extra de 1 de Mana). Uso extra: sem Efeito na base (poder da ficha sem base; a conta da T7 não parte de nada)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Trombeta e espada",
+      "motivo": "R1 e D-197. Usos grátis: 1 por cena. Cada uso extra custa 1 de Mana. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação uma ação, Velocidade 6 -> uma ação, Velocidade 5. O efeito sai no Tick do Golpe. Pela régua da Arte de base. valor de molde, para a bancada (uso extra de 1 de Mana). Uso extra: falta grau de Alcance e Duração (piso 0 pela T7, RT-134.6)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Resistência à magia",
+      "motivo": "R7. SR 25 da fonte passa a grau 2 (+4)."
+    }
+  ]
+}

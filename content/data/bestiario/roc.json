@@ -1,0 +1,353 @@
+{
+  "id": "roc",
+  "idAntigo": "mon-roc",
+  "nome": "Roc",
+  "nomeIngles": "Roc",
+  "categoria": "animal",
+  "papel": "fera",
+  "ameaca": 5,
+  "centelha": 0,
+  "corpo": {
+    "postura": "voador",
+    "apoio": "outro",
+    "altura": 7.5,
+    "largura": 2.7,
+    "profundidade": null,
+    "comprimento": 6.9,
+    "caudaGrossa": false,
+    "envergadura": 18,
+    "massa": 750,
+    "area": 67.73,
+    "posturaDoTamanho": "de baixo, asas abertas"
+  },
+  "couraca": 1,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 7,
+    "destreza": 3,
+    "vigor": 4,
+    "percepcao": 3,
+    "inteligencia": 1,
+    "raciocinio": 3,
+    "influencia": 1,
+    "perspicacia": 1,
+    "compostura": 1
+  },
+  "habilidades": {
+    "briga": 4,
+    "bloqueio": 0,
+    "esquiva": 1,
+    "atletismo": 2,
+    "furtividade": 2,
+    "integridade": 3,
+    "prontidao": 3,
+    "resistencia": 3,
+    "empatia": 0,
+    "sobrevivencia": 3
+  },
+  "habilidadesSec": {
+    "equilibrio": 1,
+    "escalada": 0,
+    "natacao": 0,
+    "voo": 3,
+    "musculatura": 3
+  },
+  "especialidades": {
+    "prontidao": [
+      {
+        "foco": "visão",
+        "valor": 3,
+        "origem": "natural"
+      }
+    ],
+    "briga": [
+      {
+        "foco": "mergulho sobre a presa",
+        "valor": 1,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 1,
+    "conviccao": 1,
+    "temperanca": 1
+  },
+  "vontade": 4,
+  "aparencia": 7,
+  "deslocamento": {
+    "terra": {
+      "batalha": 2,
+      "arranque": 3,
+      "corrida": 4
+    },
+    "voo": {
+      "batalha": 5
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Garras (talões)",
+      "parte": "garra",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "corte",
+      "nivelPerfuracao": 1,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Na escala do roc, o golpe da garra pede o corpo atrás: Média (seção 7). Garra do hálux da águia de 4,5 a 6,34 cm × 9: cerca de 50 cm; garra grande em N1 (seção 7) . Era 1d6 + 14, média 17,5"
+    },
+    {
+      "nome": "Bico",
+      "parte": "bico",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 1,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Bico em gancho, como a águia. Era 1d6 + 14, média 17,5"
+    },
+    {
+      "nome": "Garras em mergulho",
+      "parte": "garra",
+      "classe": "pesada",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": "2d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "corte",
+      "nivelPerfuracao": 1,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Golpe Pesado, com Força × 1 no golpe comum (D-266); na ação de Investida, soma mais uma Força, sem +1d6 (P20-b)."
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Posturas de combate",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Imenso: de baixo, asas abertas. Imenso: pousado, asas fechadas. Vale o Tamanho da postura atual. Abrir as asas ao voar e fechá-las ao pousar faz parte do movimento, sem custo adicional",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "agarrar",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "regra": "agarrar",
+      "texto": "talões"
+    },
+    {
+      "nome": "mergulho sobre a presa",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Garras em mergulho",
+      "categoria": "inato",
+      "regra": "investida",
+      "texto": "só descendo"
+    },
+    {
+      "nome": "erguer e largar",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "ataque": "Garras (talões)",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "enquanto a condição se aplica",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Pode decolar com a presa agarrada até metade do peso que ergue. Com a presa, voa a metade da Batalha",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "grito ensurdecedor",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "vento",
+        "nivel": 3
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 5",
+      "duracao": "6 Ticks",
+      "alcance": "até onde ouve",
+      "area": "um alvo",
+      "efeito": "O grito deixa surdo quem falha na resistência",
+      "dano": "nenhum",
+      "resistencia": "Vigor + Resistência contra Dificuldade 10",
+      "limiteDeUso": "1 uso grátis por cena"
+    }
+  ],
+  "comoLuta": [],
+  "sentidos": [
+    {
+      "nome": "visão",
+      "descricao": "Prontidão (visão) +3 , com luz, herdado da águia . Com pouca luz não vale",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "mente": "animal",
+    "tracos": "corpo de águia na escala de 9 vezes; o voo é sobrenatural, pois o músculo não sustentaria este corpo"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitário",
+    "atividade": "diurno",
+    "dieta": "carnívoro",
+    "caca": "caça mergulhando",
+    "dianteDeGente": "ataca o que parecer comestível e for Médio ou maior"
+  },
+  "ecologia": {
+    "terreno": [
+      "montanha",
+      "céu"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Ninho em picos isolados; leva a presa nas garras e a larga de grande altura. O mito vem de Marco Polo e de Simbad, e talvez dos ovos do Aepyornis de Madagascar.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Predador solitário de força descomunal, capaz de erguer um boi nas garras e levá-lo pelos ares; caça o que encontra nos ares e no chão, até o peso que consegue erguer. Dizem os pastores que já levou elefantes."
+    },
+    {
+      "titulo": "Hábitat",
+      "texto": "Faz ninho em picos isolados e inacessíveis, longe de qualquer povoado, quase sempre nas cordilheiras mais remotas de Mére ou do White Wall."
+    },
+    {
+      "titulo": "Ecologia",
+      "texto": "Não tem predadores naturais adultos; sua raridade e o tamanho do território que exige mantêm poucos exemplares espalhados pelo continente."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "É relíquia viva de um mundo mais mágico do que o de hoje; quando um roc sobrevoa uma vila, a Supressão faz o povo rezar antes de correr, certo de ter visto um presságio dos deuses."
+    }
+  ],
+  "imagens": [
+    "bestiario/roc_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "atributos.forca",
+      "motivo": "Fixada em `valores.mjs` (D-158). Refeita para 750 kg (a 14 era do roc de 5 t): a Força de referência de 750 kg é 8,2, mas a ave tem osso oco e asa de planador, como o quetzalcoatlo (5 com 230 kg). Cinco acima da águia (2), a versão maior com mais Força (D-176). Fica no 7 do cavalo e do urso-pardo, abaixo do topo das âncoras (tigre 8). Era 14"
+    },
+    {
+      "campo": "atributos.destreza",
+      "motivo": "A águia tem 4; o gigante perde a precisão fina na escala, e a garra que acerta presa em fuga o segura no 3"
+    },
+    {
+      "campo": "atributos.raciocinio",
+      "motivo": "Como a águia (3): ajusta o mergulho à presa"
+    },
+    {
+      "campo": "habilidades.briga",
+      "motivo": "O predador de presa grande, que mata do próprio tamanho para cima: a águia já mata presa de oito vezes a massa dela (cervo-sika de 40 a 45 kg, Kerley e Slaght 2013); o roc do mito leva elefantes"
+    },
+    {
+      "campo": "habilidades.integridade",
+      "motivo": "Nada o caça; não recua"
+    },
+    {
+      "campo": "habilidades.resistencia",
+      "motivo": "Etapa 2 (20/10/2026): Decisão 3 de 19/10/2026: a Resistência mede o quanto a criatura aguenta veneno, doença, ferimentos, falta de fôlego e ficar muito tempo na mesma posição. Decisão 4 de 19/10/2026: a versão maior tende a ter mais Resistência que a comum. Um acima da águia-real (2), como o Vigor (4 contra 2) ; o roc não voaria por músculo, e o corpo é dado de fantasia (D-105). Antes: Régua: 2 é o normal da espécie, [comparação] com a águia, que não tem feito de fome, frio ou ferida acima disso. O planeio dos planadores grandes (Argentavis dependia de térmicas, Chatterjee 2007; o condor bate a asa 1% do tempo, PNAS 2020) fica na nota de pesquisa (jornada), e não sustenta Resistência (diretriz 2). Não tinha linha (0)"
+    },
+    {
+      "campo": "habilidadesSec.equilibrio",
+      "motivo": "Como a águia: pousa em pico e penhasco . Não tinha"
+    },
+    {
+      "campo": "corpo.altura",
+      "motivo": "0,83 m da águia × 9. Era 8,3 m (× 10)"
+    },
+    {
+      "campo": "corpo.comprimento",
+      "motivo": "0,77 m da águia × 9. Era 7,7 m"
+    },
+    {
+      "campo": "corpo.largura",
+      "motivo": "0,30 m da águia (estimativa do Arquiteto) × 9. Era 3,0 m"
+    },
+    {
+      "campo": "corpo.envergadura",
+      "motivo": "decisão do autor; a mesma da ficha `mon-roc` de hoje. Era 20 m"
+    },
+    {
+      "campo": "corpo.massa",
+      "motivo": "Valor de referência: 750 kg, decisão do autor (fica). As três contas a partir da fêmea de águia-real de 5 kg e 2 m, com k = 9 (18 m): pelo cubo, 5 × 9³ = 3.645 kg; regra do roc (expoente 2,28), 5 × 9^2,28 = 750 kg, que é a própria decisão; reta dos voadores reais do bestiário (0,533 × envergadura^2,61, `tamanho-fichas-v2`), 0,533 × 18^2,61 = 1.007 kg. Faixa: 750 a 1.007 kg entre as duas contas de referência (a fêmea de 3,9 a 6,1 kg pela regra do roc daria 585 a 915 kg). Sexos: não se aplica (a águia de base tem fêmea cerca de 35% maior, ADW). . Fonte: decisão do autor na `tamanho-fichas-v2`; ADW para a águia. Era 5.000 kg (a águia × 10³); a faixa, o PV e o peso erguido já foram refeitos para os 750 kg na v3. O corte de 35 kg (decisão 22) não toca nesta faixa. Fica abaixo das 3,6 t do D&D e da 1,2 t da ficha atual (ver notas)"
+    },
+    {
+      "campo": "vontade",
+      "motivo": "D-108: de 3 a 6; um acima da maioria, porque não recua diante de nada vivo"
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": "como a águia"
+    },
+    {
+      "campo": "comportamento.dieta",
+      "motivo": "presa grande, até o tamanho de um boi; elefantes no mito"
+    },
+    {
+      "campo": "comportamento.caca",
+      "motivo": "D-137, como a águia"
+    },
+    {
+      "campo": "comportamento.dianteDeGente",
+      "motivo": "o mito (Mil e Uma Noites, via Wikipédia)"
+    },
+    {
+      "campo": "ataques.Garras (talões).nivelPerfuracao",
+      "motivo": "Na escala do roc, o golpe da garra pede o corpo atrás: Média (seção 7). Garra do hálux da águia de 4,5 a 6,34 cm × 9: cerca de 50 cm; garra grande em N1 (seção 7) . Era 1d6 + 14, média 17,5"
+    },
+    {
+      "campo": "habilidadesEspeciais.grito ensurdecedor",
+      "motivo": "R1 e D-197. 1 uso grátis por cena. Somente os usos grátis estão disponíveis. Um uso de abertura até a definição do efeito."
+    }
+  ]
+}

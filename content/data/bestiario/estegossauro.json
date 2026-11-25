@@ -1,0 +1,222 @@
+{
+  "id": "estegossauro",
+  "idAntigo": "mon-stegosaurus",
+  "nome": "Estegossauro",
+  "nomeIngles": "Stegosaurus",
+  "categoria": "animal",
+  "papel": "fera",
+  "ameaca": 4,
+  "centelha": 0,
+  "corpo": {
+    "postura": "quatro patas",
+    "apoio": "quadrupede",
+    "altura": 2.97,
+    "largura": 1.64,
+    "profundidade": null,
+    "comprimento": 7.18,
+    "comprimentoSemCauda": 4.31,
+    "caudaGrossa": true,
+    "massa": 4100,
+    "area": 8.71,
+    "posturaDoTamanho": "vista de lado"
+  },
+  "couraca": 4,
+  "perfilCouraca": "rigida",
+  "atributos": {
+    "forca": 11,
+    "destreza": 1,
+    "vigor": 10,
+    "percepcao": 2,
+    "inteligencia": 1,
+    "raciocinio": 1,
+    "influencia": 1,
+    "perspicacia": 1,
+    "compostura": 1
+  },
+  "habilidades": {
+    "briga": 3,
+    "bloqueio": 3,
+    "esquiva": 1,
+    "atletismo": 4,
+    "furtividade": 0,
+    "integridade": 1,
+    "prontidao": 1,
+    "resistencia": 4,
+    "empatia": 0,
+    "sobrevivencia": 2
+  },
+  "habilidadesSec": {
+    "equilibrio": 0,
+    "escalada": 0,
+    "natacao": 0,
+    "voo": 0,
+    "corrida": 0,
+    "musculatura": 2
+  },
+  "especialidades": {},
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 1,
+    "conviccao": 1,
+    "temperanca": 1
+  },
+  "vontade": 3,
+  "aparencia": 6,
+  "deslocamento": {
+    "terra": {
+      "batalha": 3,
+      "arranque": 5,
+      "corrida": 6
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Cauda de espinhos (thagomizer)",
+      "parte": "cauda",
+      "classe": "pesada",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": "2d6",
+      "multiplicadorForca": 2,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 1,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Era 2d6 + 30, média 37. 7 + 22. Golpe de cauda do corpo inteiro: Pesada e × 2 (seção 7). Perfuração e não Impacto: são quatro espinhos de 60 a 90 cm que furam, e o dano achado é furo em osso (Carpenter 2005). N1 é o do próprio espinho (seção 7: \"garra e chifre ficam em N0 ou N1, pelo tamanho\"), e não do porte; força em N não achada."
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "derrubar",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "regra": "derrubar"
+    },
+    {
+      "nome": "Atropelar",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "texto": "Atropelar"
+    }
+  ],
+  "comoLuta": [],
+  "sentidos": [
+    {
+      "nome": "sentidos",
+      "descricao": "nada com número ; cabeça baixa, no máximo cerca de 1 m do chão (Carpenter 1998, via Wikipédia)",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "mente": "animal",
+    "tracos": "de 17 a 22 placas e espinhos achatados no dorso, em duas fileiras alternadas, as maiores sobre o quadril com mais de 60 cm de largura e 100 cm de altura, osteodermos sem ligação ao esqueleto (Wikipédia; Gilmore 1914); cobertura de queratina nas placas, no parente Hesperosaurus (Christiansen e Tschopp 2010); ossículos na pele da garganta; cérebro de cerca de 80 g (Wikipédia)"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "manada",
+    "dieta": "herbívoro",
+    "caca": "forrageio",
+    "dianteDeGente": "ameaça"
+  },
+  "ecologia": {
+    "terreno": [
+      "planície"
+    ],
+    "clima": [
+      "tropical"
+    ]
+  },
+  "descricao": "Presa provável do Allosaurus, e reage com a cauda. Talvez preferisse ambientes mais secos que os saurópodes da mesma região (Dodson 1980, ).",
+  "lore": [
+    {
+      "titulo": "Placas e espinhos",
+      "texto": "Duas fileiras de placas ósseas ao longo do dorso e uma cauda repleta de espinhos bastam para fazer qualquer predador pensar duas vezes."
+    },
+    {
+      "titulo": "Herbívoro imponente",
+      "texto": "Vive em manadas nas planícies quentes, pastando tranquilo até ser provocado."
+    }
+  ],
+  "imagens": [
+    "bestiario/estegossauro_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "atributos.percepcao",
+      "motivo": "Seção 13: 2 para os grandes herbívoros e os extintos . Sentidos com número: não achado"
+    },
+    {
+      "campo": "atributos.influencia",
+      "motivo": "Era 2 (pela exibição das placas). Não é espécie social (diretriz 1): a vida em grupo é só leitura de pegadas ; ver desvios. A exibição das placas fica no texto"
+    },
+    {
+      "campo": "atributos.perspicacia",
+      "motivo": "Era 2. Não é espécie social (diretriz 1); as pegadas de grupos de várias idades (Mossbrucker, Smithsonian Magazine 2008) são ; ver desvios"
+    },
+    {
+      "campo": "habilidades.esquiva",
+      "motivo": "Etapa 2 (20/10/2026): Resposta do autor às dúvidas dos lotes 2 a 5 (20/10/2026, seção 13): a Esquiva dos colossos é caso a caso, pelo comportamento, sem corte de massa; vai a 0 quem não desvia (o anquilossauro, que se protege pela couraça; o braquiossauro), e fica com 1 ou mais quem se esquiva ou investe (o tricerátops, que carrega de frente). O estegossauro fica 1: defende-se girando o corpo para pôr a cauda de espinhos contra o predador (a vértebra de alossauro furada por espinho, Carpenter e colegas 2005), e esse giro também o tira da frente do golpe. Não é o caso do anquilossauro, que fica parado na couraça . Antes: Corpo pesado. Degrau 1"
+    },
+    {
+      "campo": "habilidades.furtividade",
+      "motivo": "Era sem linha (0). O levantamento: nenhum fato; vira a cauda contra o predador, não se esconde. Régua: 1, não se esconde"
+    },
+    {
+      "campo": "habilidades.integridade",
+      "motivo": "Não foge: vira a cauda contra o predador, e os traumas curados mostram que o confronto se repetia. Degrau 3"
+    },
+    {
+      "campo": "habilidades.resistencia",
+      "motivo": "Era sem linha (0). Régua: 2 é o normal da espécie no próprio meio. Aguenta ferida (9,8% dos espinhos com trauma, McWhinney 2001) , e talvez preferisse ambientes mais secos que os saurópodes da região (Dodson 1980, ). Nada de duração, frio ou jejum"
+    },
+    {
+      "campo": "corpo.altura",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 2,90 × 1,0257 = 2,974 . Antes: Maidment e colegas 2015 (`dimensoes.md`); a fonte não diz se os 2,9 m são do topo das placas ou do quadril (não conferido). Placas de até 1 m sobre o quadril"
+    },
+    {
+      "campo": "corpo.comprimento",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 7,00 × 1,0257 = 7,180 . Antes: ponto médio (S. stenops até 6,5 m, S. ungulatus até 7, grandes de 7,5 a 9; Paul 2016 e Foster 2020 via Wikipédia; `dimensoes.md`)"
+    },
+    {
+      "campo": "corpo.comprimentoSemCauda",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 4,20 × 1,0257 = 4,308 . Antes: do Arquiteto: \"corpo sem cauda (cerca de 60% de 7 m)\""
+    },
+    {
+      "campo": "corpo.largura",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 1,60 × 1,0257 = 1,641 . Antes: estimativa do Arquiteto (`porte-area.mjs`); a pesquisa não mediu largura"
+    },
+    {
+      "campo": "aparencia",
+      "motivo": "D-107.  A pele e a cor não se conhecem; fica na maioria."
+    },
+    {
+      "campo": "comportamento.social",
+      "motivo": "pegadas de grupos de várias idades (Mossbrucker, Smithsonian Magazine 2008); a ficha trata a espécie como não social (diretriz 1), por ser só leitura de pegadas"
+    },
+    {
+      "campo": "comportamento.dianteDeGente",
+      "motivo": "extinto, sem gente; diante do predador não foge e vira a cauda contra ele (Integridade 3; Carpenter 2005)"
+    }
+  ]
+}

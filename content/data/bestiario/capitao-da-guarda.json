@@ -1,0 +1,199 @@
+{
+  "id": "capitao-da-guarda",
+  "nome": "Capitão da Guarda",
+  "nomeIngles": "Captain of the Guard",
+  "categoria": "humanoide",
+  "papel": "elite",
+  "ameaca": 4,
+  "centelha": 1,
+  "corpo": {
+    "postura": "bípede, de pé",
+    "apoio": "bipede",
+    "altura": 1.8,
+    "largura": 0.46,
+    "profundidade": 0.24,
+    "comprimento": null,
+    "massa": 85,
+    "area": 0.74,
+    "posturaDoTamanho": "de frente"
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 3,
+    "destreza": 4,
+    "vigor": 4,
+    "percepcao": 2,
+    "inteligencia": 2,
+    "raciocinio": 2,
+    "influencia": 3,
+    "perspicacia": 2,
+    "compostura": 2
+  },
+  "habilidades": {
+    "armas": 4,
+    "esquiva": 3,
+    "bloqueio": 3,
+    "prontidao": 4,
+    "oratoria": 3,
+    "integridade": 6,
+    "briga": 2,
+    "atletismo": 2,
+    "resistencia": 3,
+    "sociabilidade": 2
+  },
+  "habilidadesSec": {
+    "estrategia": 3,
+    "lideranca": 3,
+    "musculatura": 0
+  },
+  "especialidades": {
+    "armas": [
+      {
+        "foco": "espada longa",
+        "valor": 1,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 2,
+    "conviccao": 3,
+    "temperanca": 3
+  },
+  "vontade": 7,
+  "aparencia": 4,
+  "deslocamento": {
+    "terra": {
+      "batalha": 3,
+      "arranque": 5,
+      "corrida": 7
+    }
+  },
+  "equipamento": {
+    "arsenal": [
+      {
+        "ref": "e:heater"
+      }
+    ],
+    "armaduras": [
+      {
+        "base": "placa-completa",
+        "vestida": true
+      }
+    ]
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Espada longa",
+      "arma": "espada-longa",
+      "justificativa": "A arma do livro (`armas.json`, `espada-longa`): Média, Versátil, Velocidade 6, Acerto +1, Defesa +1, ★C · P(N1). Com o escudo, uma mão: Força × 1. A Centelha soma inteira. Jogada: Destreza 4 + Armas 4 + 2 × o menor entre Centelha 1 e Armas 4 (2)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Comando de tropa",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "uma ação, Velocidade 3, dando a ordem em voz alta",
+      "duracao": "até a próxima ação dele",
+      "alcance": "18 m, onde o ouvem",
+      "area": "até seis subordinados que o ouvem",
+      "efeito": "à escolha dele, os subordinados somam +1 no ataque ou +1 na Defesa",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "uma ordem por ação dele"
+    },
+    {
+      "nome": "Sem inimizades naturais",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "texto": "Relação inicial do Humano: +1 com Elfo e Meio-Elfo, −1 com Orc e Meio-Orc, Neutro com os demais. A relação vale do Humano para o outro povo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "segura a linha",
+      "formas": "todas",
+      "texto": "distribui os guardas, fecha a linha com o escudo e decide quando chamar reforço ou dar o alarme; evita o duelo pessoal."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão, audição, olfato",
+      "descricao": "humanos",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "prendeRespiracao": "pela regra do personagem",
+    "mente": "humana; disciplinada",
+    "tracos": "armadura de placas com o brasão da cidade, escudo heater, espada longa, cicatrizes de serviço"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "à frente de guardas, típico 4 a 12",
+    "atividade": "diurno e noturno, por turnos",
+    "dieta": "onívoro",
+    "caca": "não se aplica",
+    "dianteDeGente": "impõe a ordem; decide quando dar o alarme"
+  },
+  "ecologia": {
+    "terreno": [
+      "urbano"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Comandante de placa e escudo que distribui os guardas, segura a linha sob pressão e prefere vencer pela disciplina do grupo a arriscar um duelo pessoal.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Coordena subordinados, distribui posições e mantém a linha mesmo sob pressão; prefere vencer pela disciplina do grupo a arriscar um duelo pessoal."
+    },
+    {
+      "titulo": "Sociedade",
+      "texto": "Responde a um magistrado, senhor ou às ortodoxias supressoras, e carrega a autoridade de decidir quando chamar reforços ou declarar um alarme."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "Encarna o comando mortal das cidades de Calin: sem faísca divina, apenas competência, experiência e a confiança de quem já segurou a linha antes."
+    }
+  ],
+  "imagens": [
+    "bestiario/capitao-da-guarda_pdm.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "habilidadesSec.estrategia",
+      "motivo": "O site tinha `tatica` 3, que não existe no livro; a secundária mais perto é Estratégia (manual 3.5, D-190); o `tatica` do site não existe no livro (manual 3.5, D-190)"
+    },
+    {
+      "campo": "comportamento.social",
+      "motivo": "site"
+    },
+    {
+      "campo": "equipamento.arsenal",
+      "motivo": "o heater do livro, sempre carregado, para o \"bônus adicional ao Bloqueio\" do site"
+    },
+    {
+      "campo": "virtudes.temperanca",
+      "motivo": "3; o site tinha 2"
+    }
+  ]
+}

@@ -1,0 +1,225 @@
+{
+  "id": "mago-de-batalha",
+  "nome": "Mago de Batalha",
+  "nomeIngles": "War Mage",
+  "categoria": "humanoide",
+  "papel": "chefe",
+  "ameaca": 6,
+  "centelha": 3,
+  "corpo": {
+    "postura": "bípede, de pé",
+    "apoio": "bipede",
+    "altura": 1.75,
+    "largura": 0.45,
+    "profundidade": 0.23,
+    "comprimento": null,
+    "massa": 75,
+    "area": 0.7,
+    "posturaDoTamanho": "de frente"
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 2,
+    "destreza": 3,
+    "vigor": 3,
+    "percepcao": 5,
+    "inteligencia": 5,
+    "raciocinio": 2,
+    "influencia": 2,
+    "perspicacia": 2,
+    "compostura": 2
+  },
+  "habilidades": {
+    "ocultismo": 5,
+    "esquiva": 3,
+    "prontidao": 3,
+    "conhecimentos": 3,
+    "integridade": 5,
+    "briga": 0,
+    "bloqueio": 0
+  },
+  "habilidadesSec": {
+    "acerto-arcano": 5,
+    "concentracao": 3,
+    "musculatura": 0
+  },
+  "especialidades": {
+    "ocultismo": [
+      {
+        "foco": "magia de guerra",
+        "valor": 2,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 4,
+    "compaixao": 1,
+    "conviccao": 3,
+    "temperanca": 3
+  },
+  "vontade": 8,
+  "aparencia": 4,
+  "deslocamento": {
+    "terra": {
+      "batalha": 3,
+      "arranque": 5,
+      "corrida": 7
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {
+    "fogo": 4,
+    "forcas": 2
+  },
+  "ataques": [
+    {
+      "nome": "Soco",
+      "parte": "mao",
+      "classe": "leve",
+      "pgr": [
+        1,
+        1,
+        3
+      ],
+      "dado": "1d6-2",
+      "multiplicadorForca": 1,
+      "tipoDano": "impacto",
+      "nivelPerfuracao": null,
+      "acerto": 1,
+      "bloqueiaComoArma": null,
+      "justificativa": "A mão nua de quem não briga (`regra-construcao.md` §7, a classe Leve). A Centelha soma inteira. Jogada: Destreza 3 + Briga 0. A Bola de Fogo e o dardo de fogo são Arte e não entram nesta tabela (D-196)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Bola de fogo",
+      "formas": "todas",
+      "classe": "livro",
+      "arte": {
+        "id": "fogo",
+        "nivel": 4
+      },
+      "categoria": "magia"
+    },
+    {
+      "nome": "Raio de energia",
+      "formas": "todas",
+      "classe": "livro",
+      "arte": {
+        "id": "fogo",
+        "nivel": 1
+      },
+      "categoria": "magia",
+      "texto": "O raio ignora o bônus da cobertura parcial"
+    },
+    {
+      "nome": "Labareda",
+      "formas": "todas",
+      "classe": "livro",
+      "arte": {
+        "id": "fogo",
+        "nivel": 3
+      },
+      "categoria": "magia"
+    },
+    {
+      "nome": "Escudo de força",
+      "formas": "todas",
+      "classe": "livro",
+      "arte": {
+        "id": "forcas",
+        "nivel": 2
+      },
+      "categoria": "magia"
+    },
+    {
+      "nome": "Sem inimizades naturais",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "texto": "Relação inicial do Humano: +1 com Elfo e Meio-Elfo, −1 com Orc e Meio-Orc, Neutro com os demais. A relação vale do Humano para o outro povo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "mantém distância",
+      "formas": "todas",
+      "texto": "usa o terreno e a tropa como escudo, abre com a Bola de Fogo nos que vêm juntos, se cobre com o Anteparo e repele quem chega perto."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão, audição, olfato",
+      "descricao": "humanos",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "prendeRespiracao": "pela regra do personagem",
+    "mente": "humana; fria e calculista",
+    "tracos": "túnica de viagem, grimórios e focos no cinto, mãos marcadas de queimadura"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "sozinho, ou com tropa a servir de escudo",
+    "atividade": "diurno",
+    "dieta": "onívoro",
+    "caca": "não se aplica",
+    "dianteDeGente": "longe das igrejas; usa os outros como escudo"
+  },
+  "ecologia": {
+    "terreno": [
+      "urbano"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Mago de guerra frio e calculista que abre o combate com fogo em área, se cobre com escudo de força e trata a tropa comum como escudo descartável. Perigoso a qualquer distância; frágil de perto.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Mantém distância do combate corpo a corpo, usa o terreno a seu favor e abre o confronto com rajadas de fogo e força para quebrar formações antes de qualquer aproximação."
+    },
+    {
+      "titulo": "Hábitos",
+      "texto": "Carrega grimórios e focos raros como bens mais preciosos que a própria armadura, e trata cada magia preparada como recurso escasso a ser gasto com cálculo."
+    },
+    {
+      "titulo": "Personalidade",
+      "texto": "Frio e calculista, vê tropas comuns como escudo descartável e tem orgulho quase arrogante do próprio dom arcano."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "A Supressão tornou a arte arcana tabu e temida em Calin e no The Neck, então um mago de guerra deste calibre só floresce longe da vista das igrejas supressoras, formado nas escolas escondidas de Mére ou a soldo de um senhor de guerra disposto a arriscar a fúria do povo em troca de vantagem no campo de batalha."
+    }
+  ],
+  "imagens": [
+    "bestiario/mago-de-batalha_pdm.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "artes",
+      "motivo": "Fogo 4, um acima do site, para a Bola de Fogo que o site já dava"
+    },
+    {
+      "campo": "virtudes",
+      "motivo": "Compaixão 1 e Temperança 3; o site tinha 2 e 2"
+    }
+  ]
+}

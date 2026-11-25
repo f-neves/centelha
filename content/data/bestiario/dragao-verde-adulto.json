@@ -1,0 +1,383 @@
+{
+  "id": "dragao-verde-adulto",
+  "idAntigo": "mon-dragao-verde-adulto",
+  "nome": "Dragão Verde Adulto",
+  "nomeIngles": "Dragon, Adult Green",
+  "categoria": "dragao",
+  "papel": "chefe",
+  "ameaca": 5,
+  "centelha": 6,
+  "corpo": {
+    "postura": "quatro patas; voador",
+    "apoio": "quadrupede",
+    "altura": 2.8,
+    "largura": 1.94,
+    "profundidade": null,
+    "comprimento": 9,
+    "comprimentoSemCauda": 4.96,
+    "caudaGrossa": true,
+    "envergadura": 19.4,
+    "massa": 7000,
+    "area": 11.79,
+    "posturaDoTamanho": "de lado, pousado, asas fechadas",
+    "segundoTamanho": {
+      "area": 78.7,
+      "posturaDoTamanho": "de baixo, asas abertas"
+    }
+  },
+  "couraca": 9,
+  "perfilCouraca": "rigida",
+  "atributos": {
+    "forca": 10,
+    "destreza": 3,
+    "vigor": 8,
+    "percepcao": 5,
+    "inteligencia": 5,
+    "raciocinio": 5,
+    "influencia": 5,
+    "perspicacia": 5,
+    "compostura": 5
+  },
+  "habilidades": {
+    "briga": 5,
+    "bloqueio": 0,
+    "esquiva": 1,
+    "atletismo": 2,
+    "furtividade": 3,
+    "integridade": 5,
+    "prontidao": 2,
+    "sociabilidade": 2,
+    "persuasao": 4,
+    "manha": 4,
+    "empatia": 2,
+    "atirador": 4
+  },
+  "habilidadesSec": {
+    "natacao": 3,
+    "intimidacao": 4,
+    "voo": 3,
+    "acerto-arcano": 4,
+    "musculatura": 3
+  },
+  "especialidades": {
+    "furtividade": [
+      {
+        "foco": "na mata e no pântano",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ],
+    "manha": [
+      {
+        "foco": "enganar",
+        "valor": 2,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 6,
+    "compaixao": 2,
+    "conviccao": 5,
+    "temperanca": 3
+  },
+  "vontade": 11,
+  "aparencia": 9,
+  "deslocamento": {
+    "terra": {
+      "batalha": 4,
+      "arranque": 6,
+      "corrida": 9
+    },
+    "voo": {
+      "batalha": 20
+    },
+    "nado": {
+      "batalha": 4
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {
+    "agua": 3,
+    "vida": 2
+  },
+  "ataques": [
+    {
+      "nome": "Mordida",
+      "parte": "boca",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 3,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Mordida de predador grande (`regra-construcao.md` §7), como no branco jovem. Golpe de boca: Força × 1. N3, um acima do branco jovem (N2), para a mordida dos adultos e anciões . Jogada: Força 10 + Briga 5 + 2 × o menor entre Centelha 6 e Briga 5 (10)"
+    },
+    {
+      "nome": "Garras",
+      "parte": "pata-dianteira",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "corte",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Patada de predador grande, Média (§7), como no branco jovem; garra Cortante. Bloqueia como a mão nua (D-100). Jogada: Força 10 + Briga 5 + 2 × o menor entre Centelha 6 e Briga 5 (10)"
+    },
+    {
+      "nome": "Sopro ácido",
+      "parte": "boca",
+      "classe": "distancia",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": "9d6",
+      "multiplicadorForca": 0,
+      "tipoDano": "acido",
+      "nivelPerfuracao": null,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Ataque natural a distância, Classe Distância (manual, Passo 10), como no branco jovem. \"Cone de 12 m; dano de ácido\" (site); 9d6, o dos outros adultos. Os números são sugestão da ficha (D-197), descritos na linha do sopro nas Manobras. Sem jogada de ataque."
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Posturas de combate",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Enorme: de lado, pousado, asas fechadas. Imenso: de baixo, asas abertas. Vale o Tamanho da postura atual. Abrir as asas ao voar e fechá-las ao pousar faz parte do movimento, sem custo adicional",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "Sopro ácido",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "agua",
+        "nivel": 3
+      },
+      "ataque": "Sopro ácido",
+      "categoria": "substancia",
+      "ativacao": "uma ação, Velocidade 5",
+      "duracao": "instantânea",
+      "alcance": "12 m à frente",
+      "area": "cone de 12 m",
+      "efeito": "o gás ácido corrói quem está no cone. Após a área, só há dano residual quando um efeito da ficha o declara",
+      "dano": "9d6 + Centelha, ácido",
+      "resistencia": "sem jogada de ataque. Cada alvo resolve a saída de área pelo livro",
+      "limiteDeUso": "O corpo guarda 2 doses e produz 1 dose a cada 12 horas. Cada uso gasta 1 dose. Nada acelera a produção"
+    },
+    {
+      "nome": "garras em sequência",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Garras",
+      "categoria": "inato",
+      "regra": "rajada"
+    },
+    {
+      "nome": "Multiataque",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "uma ação de Rajada",
+      "duracao": "uma ação",
+      "alcance": "o de cada parte",
+      "area": "os alvos da Rajada",
+      "efeito": "Golpeia nesta ordem: garra esquerda, garra direita, mordida. Cada golpe extra acumula −1d6 e conta para Guarda sob pressão. Não acumula com a Rajada comum",
+      "dano": "o de cada ataque que acertar",
+      "resistencia": "a Defesa de cada golpe",
+      "limiteDeUso": "até 3 golpes por ação, sem Energia. O uso repetido causa esforço e pode levar ao cansaço"
+    },
+    {
+      "nome": "Presença",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "morte",
+        "nivel": 3
+      },
+      "categoria": "inato",
+      "ativacao": "a primeira vez na cena em que ele ruge, ataca ou desce do céu",
+      "duracao": "para Abalado, até o fim da cena ou até Recompor",
+      "alcance": "18 m",
+      "area": "esfera de 18 m em volta dele",
+      "efeito": "quem falha fica Abalado. Abalado dá −2 nas jogadas até o fim da cena ou até Recompor, ação de Velocidade 5 sem teste",
+      "dano": "nenhum",
+      "resistencia": "Influência 5 + Intimidação 4 + 2 × o menor entre Centelha 6 e Intimidação 4 (8) = 17 mais a rolagem da criatura contra a Defesa Mental do alvo, com o Resistir do livro. quem passa fica imune até o fim da cena",
+      "limiteDeUso": "Contínuo, sem custo. A imunidade individual segue a resistência deste poder"
+    },
+    {
+      "nome": "Enredar",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "vida",
+        "nivel": 2,
+        "efeito": "prisao"
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 5. O efeito sai no Tick do Golpe",
+      "duracao": "até o fim da cena",
+      "alcance": "36 m",
+      "area": "círculo de 6 m",
+      "efeito": "vinhas e raízes prendem quem está na área: fica Preso, como Preso pela Rede (não se desloca, mas age, com −2 na Esquiva e no Bloqueio)",
+      "dano": "nenhum",
+      "resistencia": "esquiva, contra Influência 5 + Persuasão 4 + 2 × o menor entre Centelha 6 e Persuasão 4 (8) = 17 mais a rolagem; para se soltar, Força + Atletismo contra o mesmo total, uma tentativa por ação",
+      "limiteDeUso": "Usos grátis: 1 por cena. Cada uso extra custa 1 de Mana"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "Voo em emboscada",
+      "formas": "todas",
+      "texto": "mergulha por entre as copas para atacar de surpresa."
+    },
+    {
+      "nome": "serpente das palavras",
+      "formas": "todas",
+      "texto": "manipula antes de lutar; se luta, prende com as vinhas, sopra ácido e morde quem ficou preso."
+    },
+    {
+      "nome": "Projétil natural",
+      "formas": "todas",
+      "texto": "Contra um alvo, use o maior entre Vigor, Destreza e Percepção + Atirador. Ao cobrir uma área, só os alvos fazem a jogada de saída."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão no escuro",
+      "descricao": "vê sem luz",
+      "formas": "todas"
+    },
+    {
+      "nome": "faro",
+      "descricao": "apurado",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "prendeRespiracao": "a de um bicho grande; quanto tempo, o Mestre decide",
+    "camuflagem": "escama verde na mata; Furtividade (na mata e no pântano) +2",
+    "mente": "inteligente, ardilosa e mentirosa",
+    "tracos": "escamas verdes, crista ao longo do dorso, asas de couro; cheiro de ácido em volta"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitário",
+    "atividade": "qualquer hora",
+    "dieta": "carnívoro",
+    "caca": "emboscada nas copas e manipulação",
+    "dianteDeGente": "manipula e engana; ataca quem não se dobra"
+  },
+  "ecologia": {
+    "terreno": [
+      "floresta",
+      "selva"
+    ],
+    "clima": [
+      "temperado",
+      "tropical"
+    ]
+  },
+  "descricao": "Dragão verde adulto de 9 m, manipulador das florestas. Engana e manobra antes de lutar; se luta, prende com vinhas, sopra ácido em cone de 12 m e morde quem ficou preso.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Sutil e paciente, o dragão verde adulto prefere manipular a atacar de frente, usando conversas envenenadas, mentiras plantadas e o próprio sopro tóxico como ferramentas de um jogo de longo prazo."
+    },
+    {
+      "titulo": "Sociedade",
+      "texto": "Gosta de se infiltrar na política de comunidades próximas, cultivando espiões, informantes e rivalidades que servem a seus interesses sem que ninguém perceba a mão por trás."
+    },
+    {
+      "titulo": "Hábitat",
+      "texto": "Vive em florestas densas e pântanos sombrios que corrompe lentamente com seu veneno, transformando o próprio território num reflexo de sua natureza traiçoeira."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "Nas matas selvagens à beira de Syl, onde espíritos da natureza são reverenciados em cada árvore, um dragão verde que se instala numa floresta corrompe não só o solo mas a relação do povo com os próprios kami locais, um insulto que os xamãs raramente perdoam."
+    }
+  ],
+  "imagens": [
+    "bestiario/dragao-verde-adulto_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": [
+      {
+        "tipo": "acido",
+        "formas": "todas"
+      }
+    ]
+  },
+  "revisao": [
+    {
+      "campo": "corpo.altura",
+      "motivo": "A do dragão branco jovem (1,3 m, 700 kg) escalada pela massa: × (massa ÷ 700)^(1/3) = × 2,154"
+    },
+    {
+      "campo": "corpo.comprimentoSemCauda",
+      "motivo": "2,3 m do branco jovem × 2,154; a cauda tem o resto do comprimento do site, 4,04 m"
+    },
+    {
+      "campo": "corpo.largura",
+      "motivo": "0,9 m do branco jovem × 2,154"
+    },
+    {
+      "campo": "couraca",
+      "motivo": "Cobertura do corpo pela R49; metades arredondadas para cima. Absorção natural do livro (`combate.md`). Escama de dragão: os níveis 9 a 12 ficam para os adultos e anciões (o texto do branco jovem) . As \"Escamas verdes\" do site (Absorção +3d6) são esta Couraça.; nível 9"
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": ""
+    },
+    {
+      "campo": "ataques.Mordida.nivelPerfuracao",
+      "motivo": "Mordida de predador grande (`regra-construcao.md` §7), como no branco jovem. Golpe de boca: Força × 1. N3, um acima do branco jovem (N2), para a mordida dos adultos e anciões . Jogada: Força 10 + Briga 5 + 2 × o menor entre Centelha 6 e Briga 5 (10)"
+    },
+    {
+      "campo": "ataques.Sopro ácido",
+      "motivo": "Antes: jogada de ataque na tabela. R36: Sem jogada de ataque, pois o efeito ocupa a área descrita nas Manobras. Cada alvo resolve a defesa de área.; R1/R4, D-197. Dois sopros prontos permitem alternar sopro e golpes. Sugestão de 2 doses e 12 h por dose para repor fora da luta. valor de molde, para a bancada (2 doses e produz 1 dose a cada 12 horas)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Enredar",
+      "motivo": "R1 e D-197. Usos grátis: 1 por cena. Cada uso extra custa 1 de Mana. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação uma ação, Velocidade 6 -> uma ação, Velocidade 5. O efeito sai no Tick do Golpe. Pela régua da Arte de base. valor de molde, para a bancada (uso extra de 1 de Mana). Uso extra: falta grau de Alcance, Alvos e Duração (piso 0 pela T7, RT-134.6)."
+    },
+    {
+      "campo": "ataques",
+      "motivo": "9d6 + Centelha, cone de 12 m, uma vez a cada 24 Ticks, pela sugestão da ficha (D-197)"
+    }
+  ]
+}

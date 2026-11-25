@@ -1,0 +1,241 @@
+{
+  "id": "serpente-marinha",
+  "idAntigo": "mon-sea-serpent",
+  "nome": "Serpente Marinha",
+  "nomeIngles": "Sea Serpent",
+  "categoria": "besta-magica",
+  "papel": "chefe",
+  "ameaca": 5,
+  "centelha": 5,
+  "corpo": {
+    "postura": "nada; ergue a cabeça e o pescoço sobre a água",
+    "apoio": "outro",
+    "altura": 1.01,
+    "largura": 1.01,
+    "profundidade": null,
+    "comprimento": 18,
+    "massa": 14500,
+    "area": 16.4,
+    "posturaDoTamanho": "silhueta vista de lado"
+  },
+  "couraca": 3,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 13,
+    "destreza": 4,
+    "vigor": 11,
+    "percepcao": 2,
+    "inteligencia": 1,
+    "raciocinio": 1,
+    "influencia": 2,
+    "perspicacia": 1,
+    "compostura": 2
+  },
+  "habilidades": {
+    "briga": 5,
+    "bloqueio": 0,
+    "esquiva": 1,
+    "atletismo": 3,
+    "furtividade": 3,
+    "integridade": 2,
+    "prontidao": 1,
+    "resistencia": 4,
+    "sociabilidade": 0,
+    "sobrevivencia": 3
+  },
+  "habilidadesSec": {
+    "natacao": 4,
+    "musculatura": 3
+  },
+  "especialidades": {},
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 4,
+    "compaixao": 1,
+    "conviccao": 3,
+    "temperanca": 2
+  },
+  "vontade": 10,
+  "aparencia": 4,
+  "deslocamento": {
+    "terra": {
+      "batalha": 2,
+      "arranque": 3,
+      "corrida": 5
+    },
+    "nado": {
+      "batalha": 6
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Mordida",
+      "parte": "boca",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "A mordida com o pescoço atrás, Média, como a do crocodilo. Jogada: Força 13 + Briga 5 + 2 × o menor entre Centelha 5 e Briga 5 (10)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "constrição",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Mordida",
+      "categoria": "inato",
+      "regra": "agarrar"
+    },
+    {
+      "nome": "engolir inteiro",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "ação de Velocidade 7 contra vítima menor já Agarrada que cabe na boca",
+      "duracao": "até sair",
+      "alcance": "toque",
+      "area": "a vítima engolida",
+      "efeito": "Dentro, fica Imobilizada para o corpo, pode atacar com arma curta e sofre sufocamento pelo livro. Uma ferida interna de 10 PV abre a saída, por dentro ou com ajuda de fora. Também pode escapar pela garganta como no agarrão. Se a criatura morre, a vítima sai com uma ação",
+      "dano": "2d6 de Impacto uma vez a cada 6 Ticks",
+      "resistencia": "escape do agarrão pela garganta",
+      "limiteDeUso": "sem custo. Usar repetidamente causa esforço e pode levar ao cansaço"
+    },
+    {
+      "nome": "capotar embarcações",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "enquanto a condição se aplica",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Cada golpe atinge uma seção do barco, com PV e Absorção declarados pelo Mestre. Para virá-lo, role Força + Briga contra a resistência declarada para a embarcação",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "elusiva no mar",
+      "formas": "todas",
+      "classe": "sem regra ainda",
+      "categoria": "inato",
+      "efeito": "nada sem deixar rastro, e é muito difícil de rastrear ou cercar"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "terror das embarcações",
+      "formas": "todas",
+      "texto": "some no mar, investe contra o casco, vira o navio e caça na água quem caiu."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão no escuro",
+      "descricao": "enxerga no escuro absoluto",
+      "formas": "todas"
+    },
+    {
+      "nome": "visão na penumbra",
+      "descricao": "enxerga com pouca luz, mesmo nas profundezas",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "prendeRespiracao": ", por muito tempo",
+    "camuflagem": "no mar",
+    "mente": "animal (fera de Inteligência 1)",
+    "tracos": "serpente de 18 m, escamas verde-azuladas e crista de barbatanas"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitária",
+    "atividade": "qualquer hora",
+    "dieta": "carnívora, de apetite insaciável",
+    "caca": "caça no mar aberto; vira navios",
+    "dianteDeGente": "ataca o navio"
+  },
+  "ecologia": {
+    "terreno": [
+      "aquático"
+    ],
+    "clima": [
+      "temperado",
+      "tropical"
+    ]
+  },
+  "descricao": "Serpente gigante dos mares, lenda de todo navegador, que desliza pelas águas sem deixar rastro quando não quer ser encontrada. Vira um navio inteiro com uma única investida, e é tão temida pela força quanto pelo apetite.",
+  "lore": [
+    {
+      "titulo": "Lenda que os marinheiros temem contar",
+      "texto": "Histórias de serpentes marinhas colorem os relatos de todo navegador desde a primeira vela içada, embora poucos vivam para confirmar o que viram."
+    },
+    {
+      "titulo": "Mestra da invisibilidade",
+      "texto": "Quando não quer ser encontrada, a serpente desliza pelas águas sem deixar rastro algum, tornando-se praticamente um mito mesmo para quem a persegue de perto."
+    },
+    {
+      "titulo": "Terror das embarcações",
+      "texto": "Capaz de virar um navio inteiro com uma única investida, é tão temida por sua força quanto por seu apetite insaciável."
+    }
+  ],
+  "imagens": [
+    "bestiario/serpente-marinha_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [
+      {
+        "tipo": "fogo",
+        "formas": "todas"
+      }
+    ],
+    "imunidades": [
+      {
+        "tipo": "gelo",
+        "formas": "todas"
+      }
+    ]
+  },
+  "revisao": [
+    {
+      "campo": "couraca",
+      "motivo": "Cobertura do corpo pela R49; metades arredondadas para cima. Absorção natural do livro (`combate.md`). Couraça 3: escamas de serpente grande, um abaixo do crocodilo (5) ."
+    },
+    {
+      "campo": "corpo.area",
+      "motivo": "Imenso para Enorme (16,4 m²). Em jogo: o humano ganha +6, e não +9, contra ela"
+    },
+    {
+      "campo": "corpo",
+      "motivo": "na zona de transição, ficou na faixa de cima (robusta), a do site. Descendo seria 90"
+    },
+    {
+      "campo": "atributos.vigor",
+      "motivo": "na zona de transição, ficou na faixa de cima (robusta), a do site. Descendo seria 90"
+    },
+    {
+      "campo": "ataques",
+      "motivo": "o site gravava um ataque só, \"Garras e presas\" (`inimigos.json`: \"3d6 +18 perfurante\", 7 Ticks, dano médio 28,5). A ficha fica com a mordida, Média, pelo gesto. Dano médio: 28,5 antes; depois, mordida 21,5"
+    }
+  ]
+}

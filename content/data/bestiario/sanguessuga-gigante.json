@@ -1,0 +1,248 @@
+{
+  "id": "sanguessuga-gigante",
+  "idAntigo": "mon-giant-leech",
+  "nome": "Sanguessuga-gigante",
+  "nomeIngles": "Giant leech",
+  "categoria": "animal",
+  "papel": "fera",
+  "ameaca": 2,
+  "centelha": 0,
+  "corpo": {
+    "postura": "serpente (verme achatado)",
+    "apoio": "outro",
+    "altura": 0.06,
+    "largura": 0.67,
+    "profundidade": null,
+    "comprimento": 3,
+    "massa": 23.1,
+    "area": 1.58,
+    "posturaDoTamanho": "de cima"
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 2,
+    "destreza": 2,
+    "vigor": 4,
+    "percepcao": 2,
+    "inteligencia": 1,
+    "raciocinio": 1,
+    "influencia": 1,
+    "perspicacia": 1,
+    "compostura": 1
+  },
+  "habilidades": {
+    "briga": 2,
+    "bloqueio": 0,
+    "esquiva": 1,
+    "atletismo": 0,
+    "furtividade": 1,
+    "integridade": 0,
+    "prontidao": 2,
+    "resistencia": 2,
+    "empatia": 0,
+    "sobrevivencia": 2
+  },
+  "habilidadesSec": {
+    "equilibrio": 0,
+    "escalada": 0,
+    "natacao": 0,
+    "voo": 0,
+    "corrida": 0,
+    "musculatura": 2
+  },
+  "especialidades": {
+    "resistencia": [
+      {
+        "foco": "fome",
+        "valor": 3,
+        "origem": "natural"
+      }
+    ],
+    "prontidao": [
+      {
+        "foco": "calor e vibração",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 2,
+    "compaixao": 1,
+    "conviccao": 1,
+    "temperanca": 1
+  },
+  "vontade": 3,
+  "aparencia": 6,
+  "deslocamento": {
+    "terra": {
+      "batalha": 0,
+      "arranque": 1,
+      "corrida": 1
+    },
+    "nado": {
+      "batalha": 1
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Mordida",
+      "parte": "mordida",
+      "classe": "leve",
+      "pgr": [
+        1,
+        1,
+        3
+      ],
+      "dado": "1d6-2",
+      "multiplicadorForca": 1,
+      "tipoDano": "corte",
+      "nivelPerfuracao": 0,
+      "acerto": 1,
+      "bloqueiaComoArma": null,
+      "justificativa": "Sem mudança: a Força segue 2 (era 1d6 − 2 + 2, média 3,5). Boca de ventosa: Leve. Corte: as 3 mandíbulas com cerca de 100 bordas cortantes da Hirudo fazem incisão em Y (Wikipédia); a Haementeria usa probóscide de até 10 cm (Wikipédia). N0. Força × 1 (boca). O que pesa é ficar presa e sugar (Manobras). Um ataque por ação (D-097)."
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "fixar = agarrar",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "regra": "agarrar"
+    },
+    {
+      "nome": "sugar",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "ataque": "Mordida",
+      "categoria": "inato",
+      "ativacao": "ao manter o agarrão",
+      "duracao": "enquanto a condição se aplica",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Só suga enquanto mantém o agarrão, retirando 1 PV a cada 6 Ticks. Ignora a Absorção da armadura. Soltar a presa encerra a sucção",
+      "dano": "1 PV a cada 6 Ticks, ignorando a Absorção da armadura",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "enquanto mantiver o agarrão"
+    },
+    {
+      "nome": "sangramento",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "ataque": "Mordida",
+      "categoria": "inato",
+      "ativacao": "quando a sanguessuga solta a vítima depois de feri-la",
+      "duracao": "até estancar",
+      "alcance": "o do golpe",
+      "area": "a vítima ferida",
+      "efeito": "Aplica o Sangramento comum. A ferida não fecha sozinha. Para estancar, é preciso vencer um teste de Raciocínio + Cura. Estabilizar com o cuidado simples não basta",
+      "dano": "nenhum adicional",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "a cada ferida que provoca Sangramento, sem custo"
+    },
+    {
+      "nome": "sal",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "enquanto a condição se aplica",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Enquanto estiver em contato com sal, sofre Desgaste 1 a cada 6 Ticks. Aplicar por contato exige uma ação",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "contrair-se",
+      "formas": "todas",
+      "texto": "tocada, vira quase uma bola."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "calor e vibração",
+      "descricao": "Especialidade natural Prontidão (calor e vibração) +2; vai para o calor de 37 a 40 °C (Dickinson e Lent 1984) e percebe vibração e movimento (Wikipédia \"Leech\"). Alcance",
+      "formas": "todas"
+    },
+    {
+      "nome": "visão",
+      "descricao": "olhos simples (5 pares na Hirudo, ADW); só luz e sombra; sem Especialidade",
+      "formas": "todas"
+    },
+    {
+      "nome": "química",
+      "descricao": "percebe química (Wikipédia \"Leech\"); CO2",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "água (pela pele); sai da água para pôr casulos no barranco (Naturalis)",
+    "mente": "animal, de mente simples: imune à influência social (não entende a influência) e vulnerável a medo e a magia mental (decisão 7 de 19/10/2026 e resposta do autor ao lote 1, 20/10/2026). A imunidade a efeitos mentais do livro publicado sai (Mente Vazia: \"Imune a qualquer efeito que dependa de pensamento ou vontade, por não possuir intelecto algum\")",
+    "tracos": "duas ventosas; 34 segmentos (Haementeria, Wikipédia); a Haementeria cuida da prole (Wikipédia); ativa a partir de 20 °C (Naturalis)"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitário",
+    "dieta": "sangue",
+    "caca": "espera e vai ao calor",
+    "dianteDeGente": "ataca"
+  },
+  "ecologia": {
+    "terreno": [
+      "pântano",
+      "aquático"
+    ],
+    "clima": [
+      "temperado",
+      "tropical"
+    ]
+  },
+  "descricao": "Espera no fundo de lama; quando alguém entra quente na água, vem ondulando e fixa a ventosa.",
+  "lore": [
+    {
+      "titulo": "Águas Paradas",
+      "texto": "Vive à espreita em pântanos estagnados e rios lentos, imóvel até sentir o calor de uma presa se aproximando."
+    },
+    {
+      "titulo": "Parente Monstruosa",
+      "texto": "Prima gigantesca das sanguessugas comuns, cresceu o bastante para arrastar um homem para debaixo d'água."
+    },
+    {
+      "titulo": "Remédio de Viajante",
+      "texto": "Quem cruza pântanos sempre carrega um saquinho de sal, sabendo ser a defesa mais simples contra essa mordida pegajosa."
+    },
+    {
+      "titulo": "Veneno e doença",
+      "texto": "Doença no jogo: Infecção por Aeromonas · Virulência 4 · dia · contágio por ferida: quem levou dano que passou da Absorção rola uma vez por cena, Vigor + Resistência contra a Virulência inteira"
+    }
+  ],
+  "imagens": [
+    "bestiario/sanguessuga-gigante_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "corpo.largura",
+      "motivo": "proporção da Haementeria, cerca de 4,5 para 1 (Wikipédia)"
+    }
+  ]
+}

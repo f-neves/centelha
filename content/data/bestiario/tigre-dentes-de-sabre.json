@@ -1,0 +1,230 @@
+{
+  "id": "tigre-dentes-de-sabre",
+  "nome": "Tigre-dentes-de-sabre",
+  "nomeIngles": "Smilodon",
+  "categoria": "animal",
+  "papel": "fera",
+  "ameaca": 4,
+  "centelha": 0,
+  "corpo": {
+    "postura": "quatro patas",
+    "apoio": "quadrupede",
+    "altura": 1.24,
+    "largura": 0.62,
+    "profundidade": null,
+    "comprimento": 2.27,
+    "comprimentoSemCauda": 2.07,
+    "caudaGrossa": false,
+    "massa": 320,
+    "area": 1.14,
+    "posturaDoTamanho": "de lado"
+  },
+  "couraca": 1,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 8,
+    "destreza": 3,
+    "vigor": 5,
+    "percepcao": 2,
+    "inteligencia": 1,
+    "raciocinio": 3,
+    "influencia": 1,
+    "perspicacia": 1,
+    "compostura": 1
+  },
+  "habilidades": {
+    "briga": 4,
+    "bloqueio": 2,
+    "esquiva": 2,
+    "atletismo": 0,
+    "furtividade": 3,
+    "integridade": 3,
+    "prontidao": 2,
+    "resistencia": 4,
+    "empatia": 0,
+    "sobrevivencia": 2
+  },
+  "habilidadesSec": {
+    "equilibrio": 0,
+    "escalada": 0,
+    "natacao": 0,
+    "voo": 0,
+    "corrida": 0,
+    "musculatura": 4
+  },
+  "especialidades": {
+    "briga": [
+      {
+        "foco": "segurar com os antebraços",
+        "valor": 1,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 1,
+    "conviccao": 1,
+    "temperanca": 1
+  },
+  "vontade": 3,
+  "aparencia": 6,
+  "deslocamento": {
+    "terra": {
+      "batalha": 6,
+      "arranque": 11,
+      "corrida": 14
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Mordida de sabre",
+      "parte": "mordida",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Caninos de quase 18 cm no S. fatalis (San Diego Zoo) e de cerca de 28 cm de dente total no S. populator (Wikipédia simples, fonte fraca), cravados no pescoço com o pescoço e os antebraços (PMC4182664; Meachen, via resumo). Média: pede o corpo atrás. N0: 976 a 2.000 N, abaixo de 4.000 N. Era 1d6 + 9, média 12,5."
+    },
+    {
+      "nome": "Patada",
+      "parte": "garra",
+      "classe": "leve",
+      "pgr": [
+        1,
+        1,
+        3
+      ],
+      "dado": "1d6-2",
+      "multiplicadorForca": 1,
+      "tipoDano": "corte",
+      "nivelPerfuracao": null,
+      "acerto": 1,
+      "bloqueiaComoArma": null,
+      "justificativa": "Membros anteriores muito fortes, que agarram e derrubam. Era 1d6 − 2 + 9, média 10,5. Opção (D-097)."
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "agarrar",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "regra": "agarrar",
+      "texto": "os antebraços seguram a presa"
+    },
+    {
+      "nome": "derrubar",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "regra": "derrubar"
+    }
+  ],
+  "comoLuta": [],
+  "sentidos": [],
+  "fisiologia": {
+    "respiracao": "ar",
+    "camuflagem": "(pelagem e cor não achadas)",
+    "mente": "animal",
+    "tracos": "abertura da boca perto de 130°, o dobro dos grandes felinos atuais (cerca de 65°) (SDZG)"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitário: a vida em grupo está em debate (PMC2657756; Science News; o Florida Museum não conclui)",
+    "dieta": "carnívoro (presas grandes)",
+    "caca": "emboscada dos autores (as lesões na linha média do corpo)"
+  },
+  "ecologia": {
+    "terreno": [
+      "planície",
+      "floresta"
+    ],
+    "clima": [
+      "tropical",
+      "temperado"
+    ]
+  },
+  "descricao": "Felino de emboscada, de caninos longos como facas. Agarra a presa grande com os antebraços e só então crava os dentes no pescoço.",
+  "lore": [],
+  "imagens": [
+    "bestiario/tigre-dentes-de-sabre_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "atributos.forca",
+      "motivo": "Etapa 2 (20/10/2026): revista pela decisão de 20/10/2026 sobre a Força dos grandes (o 8 fica para os mais fortes da categoria, e quem é menos forte desce): fica 8. Com 320 kg tem quase a massa do urso-polar (380 kg) e o braço mais forte entre os felinos (Musculatura 4); a mordida fraca não decide a Força, que vem do corpo que agarra e derruba. Fica um acima do tigre (7) e do leão-das-cavernas (7). Antes: Era 9. Topo das âncoras do autor (\"tigre com Força 5 ou mais\", decisão 9), igual ao tigre e um acima do leão (7). A mordida é fraca para o tamanho, 976 N no S. fatalis de 199,6 kg contra 1.768 N no leão de 294,6 kg (Wroe 2005)  (crânio fóssil); cerca de 1.000 N, chegando a cerca de 2.000 N com os músculos do pescoço (McHenry et al. 2007, notícia da UNSW e resumo). A força estava no corpo, no pescoço e nos membros anteriores, que agarravam e derrubavam presa grande (revisão em PLoS ONE 2014, PMC4182664). A Força mede esse corpo, e não a mordida; o que ele tinha a mais que o tigre vai na Musculatura."
+    },
+    {
+      "campo": "atributos.percepcao",
+      "motivo": "Teste de ordem: 2 para os extintos . Sentidos: não achados."
+    },
+    {
+      "campo": "habilidades.esquiva",
+      "motivo": "Felino de corpo robusto e pesado, de luta e não de fuga.  da Bestiarista-3, pela anatomia."
+    },
+    {
+      "campo": "habilidades.furtividade",
+      "motivo": "A de hoje. Emboscador: as lesões dos esqueletos se concentram na linha média do corpo, o que apoia emboscar e se agarrar com a presa (Science News, via resumo) . Régua: 3 é emboscada habitual."
+    },
+    {
+      "campo": "habilidades.integridade",
+      "motivo": "Agarra e luta corpo a corpo com presa grande (as lesões).  dos autores citados."
+    },
+    {
+      "campo": "habilidades.prontidao",
+      "motivo": "Predador que caça. ."
+    },
+    {
+      "campo": "habilidades.resistencia",
+      "motivo": "Etapa 2 (20/10/2026): Decisão 3 de 19/10/2026: os maiores tendem a 3 ou 4. Fica com os grandes felinos que o autor pôs em 4 (leão, leopardo), o tigre e o leão-das-cavernas (4): predador de 320 kg que agarra e luta corpo a corpo com presa grande.  Antes: Era sem linha (0). O normal da espécie : animal extinto, sem dado de fome, frio, sede ou doença. A ferida curada vai no Vigor, e a doença óssea aguentada é uma só observação por resumo; nenhuma das duas sobe a Resistência acima do normal."
+    },
+    {
+      "campo": "corpo.altura",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 1,20 × 1,0334 = 1,240 . Antes: Ombro do S. populator, 120 cm (Wikipédia \"Smilodon\", lida em 11/10). O alto da cabeça não foi achado; o ombro é o piso (esquema §2)."
+    },
+    {
+      "campo": "corpo.comprimento",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 2,20 × 1,0334 = 2,273 . Antes: O corpo estimado (2,0) mais uma cauda curta de cerca de 0,2 m, sem fonte (`regua-d139.md` §2)."
+    },
+    {
+      "campo": "corpo.comprimentoSemCauda",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 2,00 × 1,0334 = 2,067 . Antes: Do Arquiteto: o 1,75 m do S. fatalis (SDZG, \"do focinho à garupa\") na escala do ombro (1,20 contra 1,00), arredondado para baixo."
+    },
+    {
+      "campo": "corpo.largura",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 0,60 × 1,0334 = 0,620 . Antes: Estimada pelo Arquiteto (`porte-area-forca.md` §1.2); a pesquisa não mediu largura."
+    },
+    {
+      "campo": "aparencia",
+      "motivo": "D-107: \"A maioria fica no 6 (comum), alguns acima ou abaixo pela pelagem, pele, penas e cuidado. A faixa vai de 4 (Feio) a 8 (Atraente)\".  A pele e a cor não se conhecem; fica na maioria."
+    },
+    {
+      "campo": "comportamento.caca",
+      "motivo": "Science News, via resumo"
+    }
+  ]
+}

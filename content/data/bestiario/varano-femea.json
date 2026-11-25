@@ -1,0 +1,226 @@
+{
+  "id": "varano-femea",
+  "nome": "Dragão-de-komodo, fêmea",
+  "nomeIngles": "Komodo dragon",
+  "categoria": "animal",
+  "papel": "fera",
+  "ameaca": 2,
+  "centelha": 0,
+  "corpo": {
+    "postura": "corpo baixo",
+    "apoio": "quadrupede",
+    "altura": 0.28,
+    "largura": 0.24,
+    "profundidade": null,
+    "comprimento": 1.81,
+    "comprimentoSemCauda": 0.9,
+    "caudaGrossa": true,
+    "massa": 27,
+    "area": 0.27,
+    "posturaDoTamanho": "vista de lado"
+  },
+  "couraca": 4,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 5,
+    "destreza": 2,
+    "vigor": 3,
+    "percepcao": 3,
+    "inteligencia": 1,
+    "raciocinio": 3,
+    "influencia": 1,
+    "perspicacia": 1,
+    "compostura": 1
+  },
+  "habilidades": {
+    "briga": 4,
+    "bloqueio": 0,
+    "esquiva": 1,
+    "atletismo": 1,
+    "furtividade": 3,
+    "integridade": 1,
+    "prontidao": 2,
+    "resistencia": 3,
+    "empatia": 0,
+    "sobrevivencia": 2
+  },
+  "habilidadesSec": {
+    "equilibrio": 0,
+    "escalada": 0,
+    "natacao": 1,
+    "voo": 0,
+    "corrida": 0,
+    "musculatura": 2
+  },
+  "especialidades": {
+    "prontidao": [
+      {
+        "foco": "faro",
+        "valor": 3,
+        "origem": "natural"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 1,
+    "conviccao": 1,
+    "temperanca": 1
+  },
+  "vontade": 3,
+  "aparencia": 6,
+  "deslocamento": {
+    "terra": {
+      "batalha": 2,
+      "arranque": 3,
+      "corrida": 4
+    },
+    "nado": {
+      "batalha": 4
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Mordida (morde e rasga)",
+      "parte": "mordida",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Os dentes serrilhados perfuram e rasgam a carne quando o varano puxa a cabeça."
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Anticoagulante de varano",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "ataque": "Mordida (morde e rasga)",
+      "categoria": "substancia",
+      "ativacao": "Mordida (morde e rasga) ao causar ao menos 1 PV depois da Absorção",
+      "duracao": "até o fim do efeito do veneno",
+      "alcance": "toque",
+      "area": "um alvo",
+      "efeito": "Anticoagulante de varano. Aplicar os parâmetros de Veneno e doença",
+      "dano": "apenas o pool do veneno",
+      "resistencia": "Vigor + Resistência pelo relógio do veneno",
+      "limiteDeUso": "O corpo guarda 3 doses e produz 1 dose em 4 horas. Cada uso gasta 1 dose"
+    },
+    {
+      "nome": "derrubar",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "regra": "derrubar"
+    },
+    {
+      "nome": "fisgar com a boca",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "regra": "agarrar"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "rasgar puxando",
+      "formas": "todas",
+      "texto": "morde e puxa para rasgar; o veneno entra pela mordida que rasga."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "faro",
+      "descricao": "Prontidão (faro) +3, Especialidade natural ; carniça a 4 a 9,5 km (Wikipédia), \"até 11 km\" (San Diego Zoo, ficha da espécie)",
+      "formas": "todas"
+    },
+    {
+      "nome": "visão",
+      "descricao": "vê a 300 m (Wikipédia; ADW): texto, sem Especialidade",
+      "formas": "todas"
+    },
+    {
+      "nome": "audição",
+      "descricao": "de 400 a 2.000 Hz, pior que o humano (Wikipédia): texto",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "prendeRespiracao": "(mergulha até 4,5 m)",
+    "mente": "animal",
+    "tracos": "come até 80% da própria massa numa refeição; fica de pé nas patas de trás, apoiado na cauda, para pegar presa (Wikipédia); peptídeo antibacteriano no sangue (VK25)"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitário; hierarquia por tamanho na carcaça",
+    "atividade": "diurno; passa a noite na toca",
+    "dieta": "carnívoro (porcos, cervos, carniça)",
+    "caca": "furtividade e arrancada",
+    "dianteDeGente": "ataca, raro"
+  },
+  "ecologia": {
+    "terreno": [
+      "floresta",
+      "planície"
+    ],
+    "clima": [
+      "tropical"
+    ]
+  },
+  "descricao": "Anda o dia pela área de vida seguindo o cheiro de carniça e de presa; chega perto sem ser visto, joga a presa no chão e rasga com os dentes serrilhados. O veneno faz o sangue não coagular. Os grandes comem primeiro.",
+  "lore": [
+    {
+      "titulo": "Veneno e doença",
+      "texto": "Veneno no jogo: Anticoagulante de varano · Potência 12 · minuto (sangue) · a cada 1 hora · pool 12 (PV) · Desgaste 1 · pela Mordida"
+    }
+  ],
+  "imagens": [
+    "bestiario/varano-femea_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "corpo.altura",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 0,27 × 1,0260 = 0,277 . Antes: Principal: 0,34 m. Nenhuma fonte dá a altura da fêmea; escalada da principal pelo cubo da massa: 0,34 × (25 ÷ 47,5)^(1/3) = 0,34 × 0,807 = 0,27. A medida de origem é \"pode erguer a cabeça até 40 cm acima do chão\" (San Diego Zoo Wildlife Alliance, ficha da espécie), sem dizer o tamanho do animal"
+    },
+    {
+      "campo": "corpo.comprimento",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 1,76 × 1,0260 = 1,806 . Antes: Principal: 2,18 m. Escalado da principal pelo cubo da massa: 2,18 × 0,807 = 1,76. Não há comprimento típico da fêmea que case com os 25 kg: Wood 1983 dá 2,29 m à fêmea, mas com 68 a 73 kg (população e método diferentes, que a pesagem de campo de Laver não confirma); Laver e colegas 2012 só dizem que a fêmea não passa de 117 cm de comprimento rostro-cloacal, um teto e não a média; o San Diego Zoo dá \"de 2 a 2,5 m\" à fêmea, sem massa nem média. Por isso o cubo, e não a medida"
+    },
+    {
+      "campo": "corpo.comprimentoSemCauda",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 0,88 × 1,0260 = 0,903 . Antes: Principal: 1,09 m. Escalado pelo cubo da massa: 1,09 × 0,807 = 0,88. Fica abaixo do teto de 117 cm rostro-cloacal da fêmea (Laver e colegas 2012)"
+    },
+    {
+      "campo": "corpo.largura",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 0,23 × 1,0260 = 0,236 . Antes: Principal: 0,29 m, estimada (não achada). Escalada pelo cubo da massa: 0,29 × 0,807 = 0,23"
+    },
+    {
+      "campo": "ataques.Mordida (morde e rasga)",
+      "motivo": "Perfuração pela regra do dente; o serrilhado que rasga pode pedir Corte. N0 pela mordida de 39 N, que é de modelo do crânio e não de animal vivo (Fry 2009) (D-174)"
+    }
+  ]
+}

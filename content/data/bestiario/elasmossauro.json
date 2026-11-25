@@ -1,0 +1,209 @@
+{
+  "id": "elasmossauro",
+  "idAntigo": "mon-elasmosaurus",
+  "nome": "Elasmossauro",
+  "nomeIngles": "Elasmosaurus",
+  "categoria": "animal",
+  "papel": "fera",
+  "ameaca": 4,
+  "centelha": 0,
+  "corpo": {
+    "postura": "nadador",
+    "apoio": "outro",
+    "altura": 0.9,
+    "largura": 1.2,
+    "profundidade": null,
+    "comprimento": 10.3,
+    "comprimentoSemCauda": 8.8,
+    "caudaGrossa": true,
+    "massa": 2100,
+    "area": 8.45,
+    "posturaDoTamanho": "de cima"
+  },
+  "couraca": 1,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 9,
+    "destreza": 2,
+    "vigor": 7,
+    "percepcao": 2,
+    "inteligencia": 1,
+    "raciocinio": 2,
+    "influencia": 1,
+    "perspicacia": 1,
+    "compostura": 1
+  },
+  "habilidades": {
+    "briga": 2,
+    "bloqueio": 0,
+    "esquiva": 2,
+    "atletismo": 4,
+    "furtividade": 2,
+    "integridade": 1,
+    "prontidao": 2,
+    "resistencia": 4,
+    "empatia": 0,
+    "sobrevivencia": 2
+  },
+  "habilidadesSec": {
+    "equilibrio": 0,
+    "escalada": 0,
+    "natacao": 3,
+    "voo": 0,
+    "musculatura": 2
+  },
+  "especialidades": {
+    "prontidao": [
+      {
+        "foco": "visão",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 2,
+    "compaixao": 1,
+    "conviccao": 1,
+    "temperanca": 1
+  },
+  "vontade": 3,
+  "aparencia": 6,
+  "deslocamento": {
+    "nado": {
+      "batalha": 4
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Mordida",
+      "parte": "mordida",
+      "classe": "leve",
+      "pgr": [
+        1,
+        1,
+        3
+      ],
+      "dado": "1d6-2",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 1,
+      "bloqueiaComoArma": null,
+      "justificativa": "1,5 + 7; era 1d6 − 2 + 9, média 10,5. Seção 7: Leve é o gesto rápido de boca pequena, como no plesiossauro. Dentes de agarrar, não de rasgar, de 17 a 19 na mandíbula; engolia a presa inteira (Wikipédia). Força × 1. N0 ."
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "bote de pescoço longo",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "ataque": "Mordida",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "enquanto a condição se aplica",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "A parte alcança até 3 m medidos da borda do corpo",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    }
+  ],
+  "comoLuta": [],
+  "sentidos": [
+    {
+      "nome": "visão",
+      "descricao": "Prontidão (visão) +2, Especialidade natural (era Especialidade comum, com o mesmo valor); via diretamente para cima (Wikipédia, \"Plesiosaur\")",
+      "formas": "todas"
+    },
+    {
+      "nome": "faro",
+      "descricao": "",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar (réptil marinho)",
+    "prendeRespiracao": "(apneia não achada; é o dado que esta ficha mais pede)",
+    "mente": "animal",
+    "tracos": "não sai da água (nadadeiras, como o plesiossauro); provavelmente vivíparo (Wikipédia); gastrólitos comuns na família, raros no próprio Elasmosaurus (Wikipédia)"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "dieta": "piscívoro",
+    "caca": "emboscada",
+    "dianteDeGente": "não se aplica"
+  },
+  "ecologia": {
+    "terreno": [
+      "aquático"
+    ],
+    "clima": [
+      "tropical"
+    ]
+  },
+  "descricao": "O monstro de pescoço comprido das histórias: um corpo do tamanho de um barco pequeno, um pescoço de 7 m e uma cabeça pequena que pega peixe. Não erguia o pescoço como um cisne.",
+  "lore": [
+    {
+      "titulo": "Réptil das profundezas",
+      "texto": "Pescoço longo e corpo esguio permitem deslizar pelas águas com uma ferocidade traiçoeira, escondida sob a superfície calma."
+    },
+    {
+      "titulo": "Não é um dinossauro verdadeiro",
+      "texto": "Convive com dinossauros em lagos e mares quentes, mas pertence a uma linhagem distinta de répteis aquáticos."
+    }
+  ],
+  "imagens": [
+    "bestiario/elasmossauro_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "atributos.forca",
+      "motivo": "Etapa 2 (20/10/2026): A Força 9 é edição do autor (19/10/2026). Com a resposta do autor de 20/10/2026 (seção 13), o tubarão-branco também vai a 9: o elasmossauro fica igual a ele, e não abaixo, como dizia a razão de antes, feita para a Força 7. Antes: Era 9.  Proposta do Arquiteto pela análise da v2 (D-158): na faixa das âncoras de 7 a 8, abaixo do topo. Corpo de 1,9 t, compacto, em barril (Wikipédia), mas o crânio é pequeno e não cinético, de dentes de agarrar e não de rasgar, que engole a presa pequena inteira (Wikipédia): a força não está na boca, e o pescoço longo de pegar peixe não tem o corpo de empurrar do rinoceronte (8). Acima do plesiossauro (5, 130 kg), abaixo do tubarão-branco (8, 1,15 t), que é predador de presa grande."
+    },
+    {
+      "campo": "atributos.vigor",
+      "motivo": "Era 3.  Proposta do Arquiteto (v2): quase quatro vezes a massa do plesiossauro (3), um a mais (D-143); réptil (decisão 10), abaixo do mamífero do mesmo peso. A pesquisa dá o corpo de 1,9 t e as marcas de mordida de tubarão lamniforme (Cretoxyrhina) nas nadadeiras (Wikipédia), sem dizer se curaram. O nado sustentado, se de sangue quente, não entra no Vigor (diretriz 2)."
+    },
+    {
+      "campo": "atributos.percepcao",
+      "motivo": "Seção 13: 2 para os extintos. A visão vai na Especialidade natural."
+    },
+    {
+      "campo": "habilidades.furtividade",
+      "motivo": "Não tinha linha. O levantamento : hipóteses de caça no fundo, no meio da água com o pescoço recolhido, ou varrendo de lado (Wikipédia). Régua: 2, usa a cobertura como hábito."
+    },
+    {
+      "campo": "corpo.altura",
+      "motivo": "da Bestiarista-5; nenhuma fonte mediu"
+    },
+    {
+      "campo": "corpo.comprimentoSemCauda",
+      "motivo": "da Bestiarista-5; o comprimento da cauda não foi achado (18 vértebras preservadas)"
+    },
+    {
+      "campo": "aparencia",
+      "motivo": "D-107.  A pele não se conhece."
+    },
+    {
+      "campo": "comportamento.caca",
+      "motivo": "no fundo, com o pescoço recolhido, ou varrendo de lado (hipóteses citadas na Wikipédia)"
+    }
+  ]
+}

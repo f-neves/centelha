@@ -1,0 +1,240 @@
+[
+  {
+    "id": "ticks",
+    "termo": "Ticks",
+    "aliases": [
+      "velocidade",
+      "tempo de ação",
+      "linha do tempo"
+    ],
+    "definicao": "Unidade de tempo do combate. Cada ação custa um número de Ticks (a Velocidade); depois de agir, você só joga de novo quando eles passam."
+  },
+  {
+    "id": "iniciativa",
+    "termo": "Iniciativa",
+    "aliases": [
+      "ordem de ação"
+    ],
+    "definicao": "1d6 + Raciocínio + Prontidão no início do combate; define a ordem e a distância em Ticks até cada um agir."
+  },
+  {
+    "id": "pool",
+    "termo": "Pool",
+    "aliases": [
+      "dados",
+      "pool de dados"
+    ],
+    "definicao": "O punhado de d6 que você rola: [(Atributo + Habilidade) ÷ 2] dados, +2 fixo se a soma for ímpar."
+  },
+  {
+    "id": "margem",
+    "termo": "Margem",
+    "aliases": [
+      "graus de sucesso"
+    ],
+    "definicao": "Cada 6 pontos acima do alvo é uma Margem: em combate vira +1d6 de dano; fora dele, um efeito melhor."
+  },
+  {
+    "id": "dificuldade",
+    "termo": "Dificuldade",
+    "aliases": [
+      "dif"
+    ],
+    "definicao": "O alvo de uma tarefa, na mesma régua de Atributo + Habilidade (5 fácil, 10 média, 15 difícil, 20 limite humano, 25 excepcional, 30 sobre-humano; acima, 35 lendário, 40 mítico e 45 semidivino, além do teto do jogador)."
+  },
+  {
+    "id": "soak",
+    "termo": "Absorção",
+    "aliases": [
+      "soak",
+      "redução de dano"
+    ],
+    "definicao": "Absorção de dano. A armadura tem três Absorções: Impacto, Corte e Perfuração (o dano Perfurante usa a de Perfuração). Absorção total = natural (Vigor + Centelha no Impacto; só a Centelha em Cortante/Perfurante) + a absorção da armadura na categoria."
+  },
+  {
+    "id": "modos-de-dano",
+    "termo": "Modos de dano",
+    "aliases": [
+      "cortante",
+      "corte",
+      "perfurante",
+      "projétil",
+      "perfuração concentrada",
+      "impacto",
+      "modo de ataque"
+    ],
+    "definicao": "Os três modos de um golpe: Cortante, Perfurante e Impacto. O Perfurante funde projétil e estocada (não há distinção). Cada arma tem um modo principal (sem custo) e, às vezes, secundários (−2 acerto e −1d6 de dano). A armadura tem três Absorções: Impacto, Corte e Perfuração (o dano Perfurante usa a de Perfuração)."
+  },
+  {
+    "id": "perfuracao",
+    "termo": "Nível de Perfuração",
+    "aliases": [
+      "resistência à perfuração",
+      "r.perf",
+      "gate"
+    ],
+    "definicao": "Nível de Perfuração da arma (0–3) vs Resistência à Perfuração da armadura. Só vale para o modo Perfurante: se a Perfuração da arma for menor que a Resistência, o golpe resvala (dano 0); se for igual ou maior, o gate abre e rola-se o dano menos a absorção. Cortante e Impacto não passam pelo gate. Não confundir com a Penetração, que é efeito de Técnica."
+  },
+  {
+    "id": "penetracao",
+    "termo": "Penetração",
+    "aliases": [
+      "pen"
+    ],
+    "definicao": "Efeito de Técnica que ignora parte da Absorção do alvo: 2, 3, 4 e 6 pontos nos níveis 1 a 4, toda a armadura no 5, armadura mais Absorção natural no 6 (a tabela do bônus de nível, no capítulo A Centelha). Não é o gate de Perfuração da arma contra a armadura."
+  },
+  {
+    "id": "defesa",
+    "termo": "Defesa",
+    "aliases": [
+      "esquiva",
+      "bloqueio"
+    ],
+    "definicao": "Valor fixo e passivo que o atacante precisa superar: (Destreza + Habilidade) × 2 + 2 × mín(Centelha, Habilidade), mais a Especialidade quando o escopo nomeado dela se aplicar (ela não é parcela fixa: o portão dela é a situação). Vem por Esquiva ou por Bloqueio (arma, escudo ou, sem nada nas mãos, o corpo: ver Luta desarmada, no Cap. XIII). Contra projéteis rápidos (flecha, virote, bala de funda, Shuriken, Mini-faca, Kunai, Adaga de Arremesso) não se bloqueia com arma nem com a mão: só Esquiva, ou Bloqueio com escudo hábil (cobre ≥30% do corpo, médio+ para um usuário Médio) estando apto a manejá-lo. Arremessos lentos (lança, machado, pedra grande) bloqueiam normalmente."
+  },
+  {
+    "id": "defesa-de-agarrao",
+    "termo": "Defesa de agarrão",
+    "aliases": [
+      "grapple"
+    ],
+    "definicao": "Valor fixo e passivo contra o agarrão: (Força ou Destreza + Briga ou Atletismo) × 2 + 2 × mín(Centelha, Habilidade usada), sempre o maior de cada par. Ver Manobras, em Combate Físico."
+  },
+  {
+    "id": "defesa-mental",
+    "termo": "Defesa Mental",
+    "aliases": [
+      "resistência mental"
+    ],
+    "definicao": "Muro passivo contra o medo imposto, a ordem, a leitura da mente e os outros poderes mentais: Integridade + Raciocínio + Vontade (Vontade máxima) + 2 × mín(Centelha, Integridade), mais a Especialidade quando o escopo nomeado dela se aplicar."
+  },
+  {
+    "id": "defesa-social",
+    "termo": "Defesa Social",
+    "aliases": [
+      "resistência social"
+    ],
+    "definicao": "Muro passivo contra a influência e a leitura social: (Compostura + Sociabilidade) × 2 + 2 × mín(Centelha, Sociabilidade), mais a Especialidade quando o escopo nomeado dela se aplicar. O termo de história da Régua de Relação NÃO entra nesse número: ele é por relação (contra quem se fala) e a mesa soma por cima, no lance, somando ou subtraindo o nível conforme o ataque aquece ou esfria o vínculo."
+  },
+  {
+    "id": "centelha",
+    "termo": "Centelha",
+    "aliases": [
+      "essência",
+      "spark"
+    ],
+    "definicao": "O nível de poder pessoal (0 a 6 para o jogador, até 12 no bestiário), do mortal ao semideus. Destrava os níveis das Proezas, limita o nível das Artes (Centelha + 2) e dimensiona Energia e Mana."
+  },
+  {
+    "id": "vontade",
+    "termo": "Força de Vontade",
+    "aliases": [
+      "willpower",
+      "vontade"
+    ],
+    "definicao": "Força de Vontade: reserva (piso 0) gasta para melhorar ações, resistir a efeitos mentais, ignorar penalidades e conjurar."
+  },
+  {
+    "id": "energia",
+    "termo": "Energia",
+    "aliases": [
+      "reserva de técnicas"
+    ],
+    "definicao": "Combustível das Proezas mundanas: (Vigor + Compostura + Raciocínio + Vontade (Vontade máxima)) ÷ 2 [arredonda p/ baixo] + Centelha × 2."
+  },
+  {
+    "id": "mana",
+    "termo": "Mana",
+    "aliases": [
+      "reserva mágica"
+    ],
+    "definicao": "Combustível do Arcano: (Centelha × 2) + Vontade (Vontade máxima), em reserva própria que não se mistura com a Força de Vontade. Conjurar custa Mana = nível do Efeito mais a soma dos níveis dos parâmetros escolhidos, menos a Centelha."
+  },
+  {
+    "id": "integridade",
+    "termo": "Integridade",
+    "aliases": [],
+    "definicao": "Habilidade de firmeza moral: não ceder ao medo imposto, à ordem e aos outros poderes mentais. Sustenta a Defesa Mental."
+  },
+  {
+    "id": "especialidade",
+    "termo": "Especialidade",
+    "aliases": [
+      "especialização"
+    ],
+    "definicao": "Treino focado num escopo estreito e NOMEADO de uma Habilidade (ex.: 'espada longa', 'nas sombras'). Cada Habilidade abre até [nível ÷ 2] níveis de Especialidade no total (um quadrado por nível; Habilidade 5: 2; Habilidade 1: nenhuma), que você distribui em especialidades diferentes ou concentra num nome só. Vale só quando o escopo se aplica (o Mestre julga), não em toda rolagem: por nível com aquele nome, role +1d6 e descarte o menor; em valores fixos (como uma Defesa), +1 por nível; na ação Longa, que usa a média e não rola, +2 por nível. Custa 12·16·20 XP por nível na primária, 6·8·10 na secundária."
+  },
+  {
+    "id": "banda",
+    "termo": "Nível",
+    "aliases": [
+      "faixa de poder",
+      "banda"
+    ],
+    "definicao": "Faixa de poder de uma Técnica, de 1 a 6. O nível N exige Centelha ≥ N e mede a escala do efeito."
+  },
+  {
+    "id": "caminho",
+    "termo": "Proeza",
+    "aliases": [
+      "subcaminho",
+      "trilha de técnicas"
+    ],
+    "definicao": "Árvore temática de Técnicas ancorada num atributo, do mundano ao divino."
+  },
+  {
+    "id": "tecnica",
+    "termo": "Técnica",
+    "aliases": [
+      "poder",
+      "charm"
+    ],
+    "definicao": "Cada nó de uma Proeza: um dom ou poder comprado com XP, com nível, tipo, custo e pré-requisitos."
+  },
+  {
+    "id": "arte",
+    "termo": "Arte",
+    "aliases": [
+      "feitiçaria",
+      "magia",
+      "path"
+    ],
+    "definicao": "Linha de feitiçaria do Arcano, comprada e evoluída em separado, em 6 níveis."
+  },
+  {
+    "id": "virtude",
+    "termo": "Virtude",
+    "aliases": [
+      "virtudes"
+    ],
+    "definicao": "Compaixão, Convicção, Temperança, Bravura (1–6): movem a alma e alimentam resistências e façanhas."
+  },
+  {
+    "id": "firula",
+    "termo": "Firula",
+    "aliases": [
+      "stunt",
+      "manobra",
+      "manobra criativa",
+      "firula infeliz"
+    ],
+    "definicao": "Bônus daquele lance, por descrever a ação com criatividade e uso do cenário: +2 fixo, +1d6 ou +2d6. Não se compra nem se aprende, vale para qualquer personagem e serve a qualquer ação relevante e desafiadora, dentro ou fora do combate. Além do bônus ela DEVOLVE reserva, e o jogador escolhe uma das três: nível 1 dá 1 de Energia; nível 2 dá 2 de Energia, 1 de Mana ou 1 de Força de Vontade; nível 3 dá 5 de Energia, 3 de Mana ou 3 de Força de Vontade, mais XP. Não há teto por cena. Nas Relações Sociais é o gesto certeiro e soma +1/+2/+4; o gesto que desagrada é uma Firula Infeliz e subtrai igual."
+  },
+  {
+    "id": "valor-passivo",
+    "termo": "Valor Passivo",
+    "aliases": [
+      "passiva",
+      "percepção passiva"
+    ],
+    "definicao": "Quando só um lado rola: (Atributo + Habilidade) × 2 + 2 × mín(Centelha, Habilidade) do outro serve de alvo. A Especialidade NÃO entra no número parado, porque o portão dela é a situação e um valor passivo é calculado sem saber quem vem nem como; ela é somada por cima no instante em que o escopo nomeado se aplica. Como a Centelha é rara, na prática a maioria é só (Atributo + Habilidade) × 2."
+  },
+  {
+    "id": "porte",
+    "termo": "Tamanho",
+    "aliases": [
+      "categoria de tamanho"
+    ],
+    "definicao": "Categoria de tamanho da criatura (Minúsculo, Miúdo, Pequeno, Médio, Grande, Enorme, Imenso, Colossal). Na jogada de acerto de ataques físicos, cada categoria de diferença soma +3, sem teto, só no acerto. No corpo a corpo só o menor ganha (o maior ataca o menor sem penalidade); à distância é relativo nos dois sentidos (alvo maior +3 por categoria, alvo menor −3). O Tamanho não decide a Couraça, as Manobras nem a trava do Bloqueio, nem a Vida da criatura: a Vida da criatura, as Manobras e a trava vêm da massa, e a Couraça vem da pele. A Vida do personagem sai do Tamanho da raça."
+  }
+]

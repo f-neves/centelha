@@ -1,0 +1,242 @@
+{
+  "id": "limo-cinzento",
+  "idAntigo": "mon-gray-ooze",
+  "nome": "Limo Cinzento",
+  "nomeIngles": "Gray Ooze",
+  "categoria": "limo",
+  "papel": "soldado",
+  "ameaca": 3,
+  "centelha": 1,
+  "corpo": {
+    "postura": "poça no chão",
+    "apoio": "outro",
+    "altura": 0.19,
+    "largura": 1,
+    "profundidade": null,
+    "comprimento": 1,
+    "massa": 150,
+    "area": 0.79,
+    "posturaDoTamanho": "de cima"
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 5,
+    "destreza": 1,
+    "vigor": 8,
+    "percepcao": 1,
+    "inteligencia": 0,
+    "raciocinio": 1,
+    "influencia": 1,
+    "perspicacia": 1,
+    "compostura": 1
+  },
+  "habilidades": {
+    "briga": 4,
+    "bloqueio": 0,
+    "esquiva": 0,
+    "integridade": 0,
+    "prontidao": 0,
+    "furtividade": 2,
+    "resistencia": 0
+  },
+  "habilidadesSec": {
+    "musculatura": 1
+  },
+  "especialidades": {
+    "furtividade": [
+      {
+        "foco": "como poça d'água ou lama",
+        "valor": 3,
+        "origem": "natural"
+      }
+    ],
+    "briga": [
+      {
+        "foco": "Agarrão",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 6,
+    "compaixao": 1,
+    "conviccao": 1,
+    "temperanca": 1
+  },
+  "vontade": 3,
+  "aparencia": 1,
+  "deslocamento": {
+    "terra": {
+      "batalha": 1,
+      "arranque": 2,
+      "corrida": 2
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Pseudópode",
+      "parte": "pseudopode",
+      "classe": "leve",
+      "pgr": [
+        1,
+        1,
+        3
+      ],
+      "dado": "1d6-2",
+      "multiplicadorForca": 1,
+      "tipoDano": "acido",
+      "nivelPerfuracao": null,
+      "acerto": 1,
+      "bloqueiaComoArma": null,
+      "justificativa": "O ataque do site (1 dado, 5 Ticks): o braço de limo que salta da poça, Leve (`regra-construcao.md` §7). Tipo ácido: o que fere é o ácido (site: \"seu toque banha metal e matéria orgânica em ácido\"), como na geleia ocre. O site tinha tipo impacto. Jogada: Força 5 + Briga 4 + 2 × o menor entre Centelha 1 e Briga 4 (2)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "agarrar",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Pseudópode",
+      "categoria": "inato",
+      "regra": "agarrar"
+    },
+    {
+      "nome": "Ácido corrosivo",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "ataque": "Pseudópode",
+      "categoria": "substancia",
+      "ativacao": "o Pseudópode que fere",
+      "duracao": "12 Ticks, ou até alguém gastar uma ação para lavar o ácido",
+      "alcance": "toque",
+      "area": "um alvo",
+      "efeito": "o ácido segue corroendo (\"cada golpe causa dano contínuo adicional\", site)",
+      "dano": "1d6, ácido, a cada 6 Ticks",
+      "resistencia": "nenhum",
+      "limiteDeUso": "O corpo guarda 3 doses e produz 1 dose a cada 4 horas. Cada uso gasta 1 dose. Nada acelera a produção"
+    },
+    {
+      "nome": "corrói arma e armadura",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "a arma ou armadura toca o limo",
+      "duracao": "até conserto",
+      "alcance": "contato",
+      "area": "a peça atingida",
+      "efeito": "A peça perde um grau de Integridade por exposição que vencer sua resistência: inteira, avariada, quebrada. O conserto recupera um grau por trabalho",
+      "dano": "nenhum",
+      "resistencia": "a resistência da peça contra a exposição",
+      "limiteDeUso": "contínuo, sem custo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "Presa transparente",
+      "formas": "todas",
+      "texto": "parece uma poça d'água; quem a pisa sem perceber leva o Pseudópode de surpresa e pode ser agarrado."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "sentido cego",
+      "descricao": "Localiza corpos em contato com seu meio até 9 m, mesmo Cego. Paredes e rupturas do meio bloqueiam a percepção",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "absorve o ar pela superfície",
+    "prendeRespiracao": "o Mestre decide",
+    "camuflagem": "parece água ou lama; Furtividade (como poça d'água ou lama) +3",
+    "mente": "nenhuma",
+    "tracos": "poça cinzenta e baça de 1 m, de superfície lisa como água parada"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitário",
+    "atividade": "qualquer hora",
+    "dieta": "matéria orgânica",
+    "caca": "espera ser pisada",
+    "dianteDeGente": "ataca quem a pisa"
+  },
+  "ecologia": {
+    "terreno": [
+      "pântano",
+      "subterrâneo"
+    ],
+    "clima": [
+      "frio",
+      "temperado"
+    ]
+  },
+  "descricao": "Gosma cinzenta que desliza por pântanos gelados e masmorras úmidas e se confunde com poças d'água e lama, à espera de que algo a pise. Agarra e corrói com ácido carne, metal e madeira.",
+  "lore": [
+    {
+      "titulo": "Poça enganosa",
+      "texto": "Deslizando por pântanos gelados e masmorras úmidas, a gosma cinzenta se confunde com poças d'água e lama, à espera de que algo incauto a pise."
+    },
+    {
+      "titulo": "Origem incerta",
+      "texto": "Sábios discordam se ela nasce de experimentos alquímicos fracassados ou de um poço de detritos mágicos que ganhou vida própria."
+    }
+  ],
+  "imagens": [
+    "bestiario/limo-cinzento_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [
+      {
+        "tipo": "corte",
+        "formas": "todas"
+      },
+      {
+        "tipo": "perfuracao",
+        "formas": "todas"
+      }
+    ],
+    "imunidades": [
+      {
+        "tipo": "fogo",
+        "formas": "todas"
+      },
+      {
+        "tipo": "gelo",
+        "formas": "todas"
+      }
+    ]
+  },
+  "revisao": [
+    {
+      "campo": "habilidadesSec.musculatura",
+      "motivo": "Corpo sem músculo, julgado pelo material e pela forma (manual 3.5): massa baixa e mole; 1"
+    },
+    {
+      "campo": "comportamento.social",
+      "motivo": ""
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": ""
+    },
+    {
+      "campo": "habilidadesEspeciais.Ácido corrosivo",
+      "motivo": "R1/R4, D-197. Três doses preservam a reserva para mais de uma presa. Sugestão de 3 doses e 4 h por dose para repor fora da luta. valor de molde, para a bancada (3 doses e produz 1 dose a cada 4 horas)."
+    },
+    {
+      "campo": "ataques",
+      "motivo": "Pseudópode Leve de ácido; o site tinha tipo impacto"
+    }
+  ]
+}

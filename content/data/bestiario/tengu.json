@@ -1,0 +1,215 @@
+{
+  "id": "tengu",
+  "idAntigo": "mon-tengu",
+  "nome": "Tengu",
+  "nomeIngles": "Tengu",
+  "categoria": "humanoide",
+  "papel": "capanga",
+  "ameaca": 1,
+  "centelha": 1,
+  "corpo": {
+    "postura": "bípede, de pé",
+    "apoio": "bipede",
+    "altura": 1.75,
+    "largura": 0.38,
+    "profundidade": 0.19,
+    "comprimento": null,
+    "massa": 55,
+    "area": 0.59,
+    "posturaDoTamanho": "de frente"
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 3,
+    "destreza": 5,
+    "vigor": 3,
+    "percepcao": 4,
+    "inteligencia": 2,
+    "raciocinio": 3,
+    "influencia": 2,
+    "perspicacia": 2,
+    "compostura": 3
+  },
+  "habilidades": {
+    "armas": 3,
+    "briga": 2,
+    "bloqueio": 1,
+    "esquiva": 1,
+    "atletismo": 2,
+    "furtividade": 2,
+    "prontidao": 2,
+    "integridade": 3,
+    "prestidigitacao": 1
+  },
+  "habilidadesSec": {
+    "musculatura": 0
+  },
+  "especialidades": {
+    "prontidao": [
+      {
+        "foco": "visão de corvo",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ],
+    "armas": [
+      {
+        "foco": "espadas",
+        "valor": 1,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 2,
+    "conviccao": 3,
+    "temperanca": 2
+  },
+  "vontade": 6,
+  "aparencia": 4,
+  "deslocamento": {
+    "terra": {
+      "batalha": 3,
+      "arranque": 5,
+      "corrida": 7
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Espada longa",
+      "arma": "espada-longa",
+      "justificativa": "A arma do livro (`armas.json`, `espada-longa`): Média, Versátil, Velocidade 6, Acerto +1, Defesa +1, ★C · P(N1). A Centelha soma inteira. Jogada: Destreza 5 + Armas 3 + 2 × o menor entre Centelha 1 e Armas 3 (2)"
+    },
+    {
+      "nome": "Bico",
+      "parte": "bico-de-corvo",
+      "classe": "leve",
+      "pgr": [
+        1,
+        1,
+        3
+      ],
+      "dado": "1d6-2",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 1,
+      "bloqueiaComoArma": null,
+      "justificativa": "\"Bico afiado\" (site): bicada rápida, Leve, como o bico de ave do molde (`regra-construcao.md` §7). Jogada: Destreza 5 + Armas 3 + 2 × o menor entre Centelha 1 e Armas 3 (2)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Bico afiado",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "texto": "o Bico da tabela, no lugar do golpe de espada (um ataque por ação)"
+    },
+    {
+      "nome": "Golpe na brecha",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "o primeiro golpe da ação que fere um alvo Surpreso ou Flanqueado",
+      "duracao": "instantânea",
+      "alcance": "o do golpe",
+      "area": "o alvo atingido",
+      "efeito": "Explora o ponto vital. Quem ignora dano extra de ponto vital ignora esse acréscimo",
+      "dano": "+1d6 no dano do golpe",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "uma vez por ação, sem custo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "Dom para línguas",
+      "formas": "todas",
+      "texto": "Aprende idiomas com rapidez. O Mestre julga o tempo conforme o contato com os falantes."
+    },
+    {
+      "nome": "poleiro na cidade",
+      "formas": "todas",
+      "texto": "ataca do alto, golpeia rápido quem está distraído e some pelos telhados."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão de corvo",
+      "descricao": "enxerga bem em pouca luz e percebe detalhes; Prontidão (visão de corvo) +2",
+      "formas": "todas"
+    },
+    {
+      "nome": "audição e olfato",
+      "descricao": "os de um humano",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "prendeRespiracao": "pela regra do personagem",
+    "mente": "humanoide; reservada",
+    "tracos": "cabeça de corvo, bico preto, penas pretas no corpo, mãos de dedos finos, espada longa"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "em ninho urbano, típico 3 a 8",
+    "atividade": "diurno e noturno",
+    "dieta": "onívoro",
+    "caca": "não se aplica",
+    "dianteDeGente": "vive entre outros povos, mas guarda os seus costumes"
+  },
+  "ecologia": {
+    "terreno": [
+      "montanha",
+      "urbano"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Humanoide de cabeça de corvo, ágil e de olhos atentos, que nasce com talento para espadas e vive em ninhos nos prédios abandonados das cidades. Golpeia rápido quem se distrai, com a espada ou com o bico.",
+  "lore": [
+    {
+      "titulo": "Sociedade fechada",
+      "texto": "Vivem entre outros povos nas cidades, mas guardam seus costumes e assuntos internos longe de olhos estranhos."
+    },
+    {
+      "titulo": "Ninhos urbanos",
+      "texto": "Armazéns abandonados e prédios condenados viram poleiros e esconderijos, muitas vezes confundidos com covis de ladrões, e a confusão nem sempre é infundada."
+    }
+  ],
+  "imagens": [
+    "bestiario/tengu_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "habilidades.armas",
+      "motivo": "O site gravava `briga` 2 para a \"Arma\"; no livro a arma branca é Armas (manual 3.5), e o \"Talento com espadas\" (site) a sobe um degrau; 3, um acima da Briga 2 do site, pelo \"Talento com espadas\""
+    },
+    {
+      "campo": "comportamento.social",
+      "motivo": "site"
+    },
+    {
+      "campo": "equipamento",
+      "motivo": "espada longa do livro"
+    }
+  ]
+}

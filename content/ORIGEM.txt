@@ -1,0 +1,19 @@
+Origem do conteúdo desta pasta (gerado por `cargo xtask sync-content`; não editar à mão).
+
+commit: 055dccd94617f8593445793876e545b8e33dfc44
+data do commit: 2026-11-25T13:06:45-03:00
+arquivos: 703 (20.8 MB)
+imagens com metadado removido: 0
+
+- src/content/chapters -> content/chapters: 28 arquivos, 509 KB
+- src/data -> content/data: 359 arquivos, 10.4 MB
+- public/bestiario -> content/public/bestiario: 288 arquivos, 9.8 MB
+- public/icones-bestiario -> content/public/icones-bestiario: 20 arquivos, 73 KB
+- public/favicon.ico -> content/public/favicon.ico: 1 arquivos, 6 KB
+- public/favicon.svg -> content/public/favicon.svg: 1 arquivos, 1 KB
+- public/favicon-16.png -> content/public/favicon-16.png: 1 arquivos, 1 KB
+- public/favicon-32.png -> content/public/favicon-32.png: 1 arquivos, 2 KB
+- public/icon-192-v2.png -> content/public/icon-192-v2.png: 1 arquivos, 7 KB
+- public/icon-512-v2.png -> content/public/icon-512-v2.png: 1 arquivos, 20 KB
+- public/icon-maskable-512-v2.png -> content/public/icon-maskable-512-v2.png: 1 arquivos, 14 KB
+- public/manifest.webmanifest -> content/public/manifest.webmanifest: 1 arquivos, 1 KB

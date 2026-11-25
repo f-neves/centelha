@@ -1,0 +1,247 @@
+{
+  "id": "alce",
+  "nome": "Alce",
+  "nomeIngles": "Moose",
+  "categoria": "animal",
+  "papel": "fera",
+  "ameaca": 3,
+  "centelha": 0,
+  "corpo": {
+    "postura": "quatro patas",
+    "apoio": "quadrupede",
+    "altura": 1.8,
+    "largura": 0.72,
+    "profundidade": null,
+    "comprimento": 2.92,
+    "comprimentoSemCauda": 2.82,
+    "caudaGrossa": false,
+    "massa": 440,
+    "area": 1.86,
+    "posturaDoTamanho": "vista de lado"
+  },
+  "couraca": 1,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 7,
+    "destreza": 2,
+    "vigor": 5,
+    "percepcao": 3,
+    "inteligencia": 1,
+    "raciocinio": 2,
+    "influencia": 1,
+    "perspicacia": 1,
+    "compostura": 1
+  },
+  "habilidades": {
+    "briga": 3,
+    "bloqueio": 3,
+    "esquiva": 2,
+    "atletismo": 2,
+    "furtividade": 1,
+    "integridade": 2,
+    "prontidao": 2,
+    "resistencia": 4,
+    "empatia": 0,
+    "sobrevivencia": 2
+  },
+  "habilidadesSec": {
+    "equilibrio": 0,
+    "escalada": 0,
+    "natacao": 2,
+    "voo": 0,
+    "corrida": 0,
+    "musculatura": 2
+  },
+  "especialidades": {
+    "prontidao": [
+      {
+        "foco": "faro",
+        "valor": 2,
+        "origem": "natural"
+      },
+      {
+        "foco": "audição",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ],
+    "resistencia": [
+      {
+        "foco": "frio",
+        "valor": 1,
+        "origem": "natural"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 2,
+    "compaixao": 1,
+    "conviccao": 1,
+    "temperanca": 1
+  },
+  "vontade": 3,
+  "aparencia": 6,
+  "deslocamento": {
+    "terra": {
+      "batalha": 7,
+      "arranque": 12,
+      "corrida": 16
+    },
+    "nado": {
+      "batalha": 2
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Coice (pata dianteira)",
+      "parte": "casco",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "impacto",
+      "nivelPerfuracao": null,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Era 1d6 + 8, média 11,5. A arma principal contra predador e gente (ADF&G 2020): golpe de membro, × 1."
+    },
+    {
+      "nome": "Pisão (ergue-se e pisoteia)",
+      "parte": "casco",
+      "classe": "pesada",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": "2d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "impacto",
+      "nivelPerfuracao": null,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Golpe Pesado, com Força × 1 no golpe comum (D-266); na ação de Investida, soma mais uma Força, sem +1d6 (P20-b)."
+    },
+    {
+      "nome": "Galhada (só macho)",
+      "parte": "galhada",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": 2,
+      "justificativa": "Era 1d6 + 8, média 11,5. Chifrada de galhada como no Pathfinder; uso da galhada em luta . Opção, não golpe somado (D-097)."
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "derrubar",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "regra": "derrubar"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "Pisar num alvo",
+      "formas": "todas",
+      "texto": "O Pisoteio é um ataque físico normal contra um alvo, com o golpe Coice (pata dianteira)."
+    },
+    {
+      "nome": "Atropelar",
+      "formas": "todas",
+      "texto": "Corre sobre os alvos do trajeto. Resolva a ação e o dano pelo Atropelar do livro."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "faro",
+      "descricao": "Prontidão (faro) +2, natural; olfato \"excepcional\"",
+      "formas": "todas"
+    },
+    {
+      "nome": "audição",
+      "descricao": "Prontidão (audição) +2, natural; orelhas que giram de forma independente",
+      "formas": "todas"
+    },
+    {
+      "nome": "visão",
+      "descricao": "fraca, sem número",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "prendeRespiracao": "até 50 s submerso, comendo plantas aquáticas",
+    "mente": "animal",
+    "tracos": "galhada só nos machos, renovada todo ano, de até 35 kg e 2,048 m de envergadura; pelagem de dourado a quase preto, conforme a estação e a idade"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitário (o cervídeo menos social; fora do cio)",
+    "atividade": "crepuscular",
+    "dieta": "herbívoro (galho de salgueiro, bétula e álamo no inverno; ervas e plantas de lagoa rasa no verão)",
+    "caca": "forrageio",
+    "dianteDeGente": "defende a cria (e ataca quando acossado)"
+  },
+  "ecologia": {
+    "terreno": [
+      "floresta",
+      "pântano"
+    ],
+    "clima": [
+      "frio",
+      "temperado"
+    ]
+  },
+  "descricao": "O maior cervo, solitário nas florestas frias. Ataca quem fica entre a mãe e o filhote, e o macho acossado no inverno, com fome e cansado da neve funda, investe e pisoteia.",
+  "lore": [],
+  "imagens": [
+    "bestiario/alce_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "corpo.altura",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 1,75 × 1,0259 = 1,795 . Antes: Ponto médio de 1,4 a 2,1 m (Wikipédia \"Moose\", lida em 11/10). Divergência de fonte: a ADW dá até 2,3 m e o ADF&G até cerca de 1,8 m (`dimensoes.md`). A galhada fica fora."
+    },
+    {
+      "campo": "corpo.comprimento",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 2,85 × 1,0259 = 2,924 . Antes: O corpo mais a cauda vestigial de 0,05 a 0,12 m (derivado, `dimensoes.md`)."
+    },
+    {
+      "campo": "corpo.comprimentoSemCauda",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 2,75 × 1,0259 = 2,821 . Antes: Ponto médio de 2,4 a 3,1 m, cabeça e corpo (Wikipédia)."
+    },
+    {
+      "campo": "corpo.largura",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 0,70 × 1,0259 = 0,718 . Antes: Estimada pelo Arquiteto (`porte-area-forca.md` §1.2); a pesquisa não mediu largura. A galhada (até 2,048 m, ADW) não entra."
+    }
+  ]
+}

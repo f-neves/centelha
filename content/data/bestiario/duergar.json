@@ -1,0 +1,268 @@
+{
+  "id": "duergar",
+  "idAntigo": "mon-duergar",
+  "nome": "Duergar",
+  "nomeIngles": "Duergar",
+  "categoria": "humanoide",
+  "papel": "capanga",
+  "ameaca": 1,
+  "centelha": 1,
+  "corpo": {
+    "postura": "bípede, de pé",
+    "apoio": "bipede",
+    "altura": 1.2,
+    "largura": 0.46,
+    "profundidade": 0.23,
+    "comprimento": null,
+    "massa": 55,
+    "area": 0.49,
+    "posturaDoTamanho": "de frente"
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 3,
+    "destreza": 2,
+    "vigor": 4,
+    "percepcao": 3,
+    "inteligencia": 2,
+    "raciocinio": 3,
+    "influencia": 1,
+    "perspicacia": 1,
+    "compostura": 2
+  },
+  "habilidades": {
+    "armas": 2,
+    "briga": 1,
+    "bloqueio": 1,
+    "esquiva": 0,
+    "atletismo": 1,
+    "furtividade": 1,
+    "prontidao": 1,
+    "resistencia": 3,
+    "integridade": 2,
+    "oficios-gerais": 2
+  },
+  "habilidadesSec": {
+    "intimidacao": 1,
+    "musculatura": 0
+  },
+  "especialidades": {
+    "atletismo": [
+      {
+        "foco": "ficar de pé em solo firme",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ],
+    "armas": [
+      {
+        "foco": "machado",
+        "valor": 1,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 1,
+    "conviccao": 3,
+    "temperanca": 2
+  },
+  "vontade": 6,
+  "aparencia": 4,
+  "deslocamento": {
+    "terra": {
+      "batalha": 2,
+      "arranque": 3,
+      "corrida": 5
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Machado",
+      "arma": "machado",
+      "justificativa": "A arma do livro (`armas.json`, `machado`): Média, Velocidade 6, Acerto +1, Defesa 0, ★C · I. A Centelha soma inteira. Jogada: Força 3 + Armas 2 + 2 × o menor entre Centelha 1 e Armas 2 (2)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Crescer",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "metamorfose",
+        "nivel": 2
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 5. O efeito sai no Tick do Golpe",
+      "duracao": "até o fim da cena, ou até ele desfazer",
+      "alcance": "o próprio corpo",
+      "area": "não se aplica",
+      "efeito": "o corpo e o que ele veste dobram de altura (Tamanho Grande); soma +1 na Força e perde 2 na Esquiva enquanto durar. Por grau, multiplique a área por 4 e a massa por 8. Recalcule Tamanho e alcance. Atributos e Couraça só mudam quando o poder expressamente os altera",
+      "dano": "o dos golpes, com a Força maior",
+      "resistencia": "nenhum",
+      "limiteDeUso": "Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. O uso grátis é compartilhado com o Sumir"
+    },
+    {
+      "nome": "Sumir",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "ofuscacao",
+        "nivel": 2,
+        "efeito": "ausencia"
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 5. O efeito sai no Tick do Golpe",
+      "duracao": "12 Ticks, ou até ele atacar",
+      "alcance": "o próprio corpo",
+      "area": "não se aplica",
+      "efeito": "fica Invisível. O efeito termina ao atacar ou desfazer. Som, cheiro e rastro continuam perceptíveis. Ao atacar, Furtividade contra Percepção Passiva determina se o alvo percebe o ataque",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. O uso grátis é compartilhado com o Crescer"
+    },
+    {
+      "nome": "Sensibilidade à luz",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "luz forte (sol, Arte de Luz, lanterna de perto)",
+      "duracao": "enquanto durar a exposição",
+      "alcance": "o próprio corpo",
+      "area": "não se aplica",
+      "efeito": "Fica Ofuscado sob sol forte. Sofre −2 nas ações que dependem da visão, inclusive ataques",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "nenhum. Sem custo"
+    },
+    {
+      "nome": "Resiste a ilusões",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "uma ilusão o tem como alvo",
+      "duracao": "a da ilusão",
+      "alcance": "o próprio corpo",
+      "area": "não se aplica",
+      "efeito": "a ilusão pega menos nele",
+      "dano": "nenhum",
+      "resistencia": "ilusão da criatura contra a Defesa Mental do alvo, com o Resistir do livro",
+      "limiteDeUso": "nenhum. Sem custo"
+    },
+    {
+      "nome": "Imune a paralisia e venenos",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "veneno e paralisia não pegam nele (o Anão parente tem só +1d6 contra veneno; o duergar é imune). O ferimento do golpe continua",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "Contínuo, sem custo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "senhor de escravos",
+      "formas": "todas",
+      "texto": "luta em grupo, cresce para esmagar o primeiro, some para cercar o fraco e captura em vez de matar; foge da luz."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão no escuro",
+      "descricao": "enxerga no escuro até 36 m, em caverna sem luz nenhuma, como o Anão parente",
+      "formas": "todas"
+    },
+    {
+      "nome": "audição e olfato",
+      "descricao": "os de um humano",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "prendeRespiracao": "pela regra do personagem",
+    "mente": "humanoide; amarga e cruel",
+    "tracos": "anão de pele cinzenta, careca, barba rala e grisalha, olhos frios, machado"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "em clã, típico 4 a 12",
+    "atividade": "qualquer hora, no escuro",
+    "dieta": "onívoro",
+    "caca": "captura forasteiros para o trabalho forçado",
+    "dianteDeGente": "captura; mata anões"
+  },
+  "ecologia": {
+    "terreno": [
+      "subterrâneo"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Anão cinzento das profundezas, amargo e cruel, que vive em clãs senhores de escravos. Cresce até o dobro do tamanho ou some da vista por um instante, e não sente veneno nem paralisia, mas a luz forte o ofusca.",
+  "lore": [
+    {
+      "titulo": "Primos amargos",
+      "texto": "Duergar descendem dos anões, mas séculos no fundo da terra os tornaram cinzentos, ressentidos e cruéis até com os próprios parentes de superfície."
+    },
+    {
+      "titulo": "Senhores de escravos",
+      "texto": "Vivem em clãs que capturam forasteiros para o trabalho forçado; prisioneiros anões raramente sobrevivem ao primeiro dia de cativeiro."
+    }
+  ],
+  "imagens": [
+    "bestiario/duergar_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "comportamento.social",
+      "motivo": "site (Senhores de escravos)"
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": ""
+    },
+    {
+      "campo": "habilidadesEspeciais.Crescer",
+      "motivo": "R1 e D-197. Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. O uso grátis é compartilhado com o Sumir. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação uma ação, Velocidade 6 -> uma ação, Velocidade 5. O efeito sai no Tick do Golpe. Pela régua da Arte de base. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Sumir",
+      "motivo": "R1 e D-197. Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. O uso grátis é compartilhado com o Crescer. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação uma ação, Velocidade 6 -> uma ação, Velocidade 5. O efeito sai no Tick do Golpe. Pela régua da Arte de base. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "equipamento",
+      "motivo": "machado do livro"
+    },
+    {
+      "campo": "virtudes.compaixao",
+      "motivo": "1; o site tinha 2"
+    },
+    {
+      "campo": "habilidadesEspeciais",
+      "motivo": "Especialidade natural +2 em Atletismo"
+    }
+  ]
+}

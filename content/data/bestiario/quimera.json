@@ -1,0 +1,304 @@
+{
+  "id": "quimera",
+  "idAntigo": "mon-quimera",
+  "nome": "Quimera",
+  "nomeIngles": "Chimera",
+  "categoria": "besta-magica",
+  "papel": "fera",
+  "ameaca": 4,
+  "centelha": 3,
+  "corpo": {
+    "postura": "quatro patas; voadora",
+    "apoio": "quadrupede",
+    "altura": 1.8,
+    "largura": 1.13,
+    "profundidade": null,
+    "comprimento": 4.5,
+    "comprimentoSemCauda": 3.6,
+    "caudaGrossa": false,
+    "envergadura": 6,
+    "massa": 600,
+    "area": 2.36,
+    "posturaDoTamanho": "silhueta vista de lado, asas fechadas, no chão",
+    "segundoTamanho": {
+      "area": 7.56,
+      "posturaDoTamanho": "de baixo, asas abertas, em voo"
+    }
+  },
+  "couraca": 2,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 8,
+    "destreza": 3,
+    "vigor": 6,
+    "percepcao": 3,
+    "inteligencia": 1,
+    "raciocinio": 2,
+    "influencia": 2,
+    "perspicacia": 1,
+    "compostura": 3
+  },
+  "habilidades": {
+    "briga": 5,
+    "bloqueio": 1,
+    "esquiva": 1,
+    "atletismo": 2,
+    "atirador": 2,
+    "furtividade": 1,
+    "integridade": 3,
+    "prontidao": 3,
+    "resistencia": 3,
+    "sociabilidade": 0,
+    "sobrevivencia": 3
+  },
+  "habilidadesSec": {
+    "voo": 2,
+    "musculatura": 3
+  },
+  "especialidades": {},
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 1,
+    "conviccao": 3,
+    "temperanca": 2
+  },
+  "vontade": 8,
+  "aparencia": 2,
+  "deslocamento": {
+    "terra": {
+      "batalha": 3,
+      "arranque": 5,
+      "corrida": 7
+    },
+    "voo": {
+      "batalha": 5
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Mordida de leão",
+      "parte": "cabeca-de-leao",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "A mordida de felino grande, Média, como a do leão. Jogada: Força 8 + Briga 5 + 2 × o menor entre Centelha 3 e Briga 5 (6)"
+    },
+    {
+      "nome": "Chifrada de cabra",
+      "parte": "cabeca-de-cabra",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "impacto",
+      "nivelPerfuracao": null,
+      "acerto": 0,
+      "bloqueiaComoArma": 1,
+      "justificativa": "A marrada de chifre com o pescoço atrás, Média, como a chifrada do auroque; o chifre bloqueia como arma (D-100). Jogada: Força 8 + Briga 5 + 2 × o menor entre Centelha 3 e Briga 5 (6)"
+    },
+    {
+      "nome": "Mordida de dragão",
+      "parte": "cabeca-de-dragao",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "A mordida de cabeça de dragão, Média, como a do filhote de dragão vermelho. Jogada: Força 8 + Briga 5 + 2 × o menor entre Centelha 3 e Briga 5 (6)"
+    },
+    {
+      "nome": "Sopro dracônico",
+      "parte": "cabeca-de-dragao",
+      "classe": "distancia",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": "2d6",
+      "multiplicadorForca": 0,
+      "tipoDano": "fogo",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Ataque natural a distância, Classe Distância, como o sopro do cão infernal. Os números são da ficha, descritos na linha do sopro nas Manobras. Sem jogada de ataque."
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Posturas de combate",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Grande: silhueta vista de lado, asas fechadas, no chão. Enorme: de baixo, asas abertas, em voo. Vale o Tamanho da postura atual. Abrir as asas ao voar e fechá-las ao pousar faz parte do movimento, sem custo adicional",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "derrubar",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Chifrada de cabra",
+      "categoria": "inato",
+      "regra": "derrubar"
+    },
+    {
+      "nome": "Sopro dracônico",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "fogo",
+        "nivel": 3
+      },
+      "ataque": "Sopro dracônico",
+      "categoria": "substancia",
+      "ativacao": "uma ação, Velocidade 5",
+      "duracao": "instantânea",
+      "alcance": "9 m à frente",
+      "area": "cone de 9 m",
+      "efeito": "a cabeça de dragão cospe um leque de fogo. Após a área, só há dano residual quando um efeito da ficha o declara",
+      "dano": "2d6 + Centelha, fogo",
+      "resistencia": "sem jogada de ataque. Cada alvo resolve a saída de área pelo livro",
+      "limiteDeUso": "O corpo guarda 2 doses e produz 1 dose a cada 12 horas. Cada uso gasta 1 dose. Nada acelera a produção"
+    },
+    {
+      "nome": "Multiataque",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "uma ação de Rajada",
+      "duracao": "uma ação",
+      "alcance": "o de cada parte",
+      "area": "os alvos da Rajada",
+      "efeito": "Golpeia nesta ordem: mordida de leão, chifrada de cabra, mordida de dragão. Cada golpe extra acumula −1d6 e conta para Guarda sob pressão. Não acumula com a Rajada comum",
+      "dano": "o de cada ataque que acertar",
+      "resistencia": "a Defesa de cada golpe",
+      "limiteDeUso": "até 3 golpes por ação, sem Energia. O uso repetido causa esforço e pode levar ao cansaço"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "três vontades",
+      "formas": "todas",
+      "texto": "o leão comanda o corpo, a cabra teima, o dragão cospe o sopro que decide a caçada; ruge, bale e queima quase ao mesmo tempo, e é imprevisível. Arrasta a presa para o ninho."
+    },
+    {
+      "nome": "Projétil natural",
+      "formas": "todas",
+      "texto": "Contra um alvo, use o maior entre Vigor, Destreza e Percepção + Atirador. Ao cobrir uma área, só os alvos fazem a jogada de saída."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "sentidos triplos",
+      "descricao": "Prontidão 3; quase ninguém a embosca",
+      "formas": "todas"
+    },
+    {
+      "nome": "visão",
+      "descricao": "três pares de olhos, sem nada além do comum",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "mente": "animal (fera de Inteligência 1), de três temperamentos",
+    "tracos": "corpo de leão de 4,5 m com cabeças de leão, cabra e dragão, e asas de dragão de 6 m"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitária",
+    "atividade": "qualquer hora",
+    "dieta": "carnívora",
+    "caca": "caça rebanhos e viajantes e arrasta a presa para o ninho",
+    "dianteDeGente": "ataca"
+  },
+  "ecologia": {
+    "terreno": [
+      "montanha"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Fera de três cabeças, leão, cabra e dragão, cada uma com vontade própria: o leão comanda a fúria, a cabra teima e o dragão cospe o fogo que decide a caçada. Vive em picos e desfiladeiros, disputa território com grifos e mantícoras e caça rebanhos e viajantes solitários.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Três cabeças, três vontades: o leão comanda o corpo e a fúria, a cabra teima e desconfia, o dragão cospe o sopro que decide as caçadas. A criatura ruge, bale e queima quase ao mesmo tempo, e essa desarmonia interna a torna imprevisível até para quem a estuda de longe."
+    },
+    {
+      "titulo": "Ecologia",
+      "texto": "Vive em picos e desfiladeiros isolados, onde disputa território com grifos e mantícoras. Caça rebanhos e viajantes solitários, arrastando a presa para o ninho antes que as outras cabeças brigem pela parte maior."
+    },
+    {
+      "titulo": "Personalidade",
+      "texto": "Não há um só temperamento, há três presos ao mesmo fôlego: a soberba do leão, a obstinação da cabra, o apetite frio do dragão. Isso a torna cruel sem ser exatamente astuta, perigosa por impulso e não por plano."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "Para o povo comum é prova viva de que a era anterior à Supressão gerava monstros que ninguém hoje sabe explicar; camponeses erguem capelas nas encostas onde uma foi avistada, pedindo à Verdejante que mantenha a fera longe do rebanho."
+    }
+  ],
+  "imagens": [
+    "bestiario/quimera_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "atributos.forca",
+      "motivo": "Acima do teto humano (For 19 no Pathfinder). Teste de ordem: como o tigre-dentes-de-sabre (8, 320 kg), acima do leão-das-cavernas (7, 235 kg); com 600 kg, não fica abaixo deles. O site tinha 6; 6 para 8, pelo teste de ordem com o tigre-dentes-de-sabre (8 com 320 kg) e o leão-das-cavernas (7 com 235 kg)"
+    },
+    {
+      "campo": "couraca",
+      "motivo": "Cobertura do corpo pela R49; metades arredondadas para cima. Absorção natural do livro (`combate.md`). Couraça 2: couro de leão na frente e escamas de dragão no flanco, um acima do leão (1) ."
+    },
+    {
+      "campo": "ataques.Sopro dracônico",
+      "motivo": "Antes: jogada de ataque na tabela. R36: Sem jogada de ataque, pois o efeito ocupa a área descrita nas Manobras. Cada alvo resolve a defesa de área.; R1/R4, D-197. Dois sopros prontos permitem alternar sopro e golpes. Sugestão de 2 doses e 12 h por dose para repor fora da luta. valor de molde, para a bancada (2 doses e produz 1 dose a cada 12 horas).; poder natural com números da ficha (D-197), base Fogo 3 (a Labareda, o leque de 2d6), que é o nível do cone; o site dava a Arte Fogo 2 e a base Fogo 2 ao sopro"
+    },
+    {
+      "campo": "ataques",
+      "motivo": "o site gravava um ataque só, \"Garras e presas\" (`inimigos.json`: \"2d6 +9 perfurante\", 6 Ticks, dano médio 16). A ficha separa os golpes pelo gesto, um por ação (D-097). Dano médio: 16 antes; depois, cada cabeça 14,5 (uma por ação), sopro 10,0"
+    }
+  ]
+}

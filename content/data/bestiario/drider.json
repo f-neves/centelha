@@ -1,0 +1,325 @@
+{
+  "id": "drider",
+  "idAntigo": "mon-drider",
+  "nome": "Drider",
+  "nomeIngles": "Drider",
+  "categoria": "aberracao",
+  "papel": "elite",
+  "ameaca": 4,
+  "centelha": 4,
+  "corpo": {
+    "postura": "oito patas, tronco de drow erguido na frente",
+    "apoio": "outro",
+    "altura": 1.5,
+    "largura": 0.55,
+    "profundidade": null,
+    "comprimento": 1.22,
+    "massa": 180,
+    "area": 2.07,
+    "posturaDoTamanho": "de cima"
+  },
+  "couraca": 1,
+  "perfilCouraca": "rigida",
+  "atributos": {
+    "forca": 5,
+    "destreza": 4,
+    "vigor": 6,
+    "percepcao": 5,
+    "inteligencia": 4,
+    "raciocinio": 5,
+    "influencia": 5,
+    "perspicacia": 5,
+    "compostura": 5
+  },
+  "habilidades": {
+    "briga": 5,
+    "bloqueio": 1,
+    "esquiva": 1,
+    "atletismo": 2,
+    "furtividade": 3,
+    "prontidao": 2,
+    "integridade": 5,
+    "ocultismo": 2,
+    "atirador": 3
+  },
+  "habilidadesSec": {
+    "escalada": 3,
+    "musculatura": 1
+  },
+  "especialidades": {
+    "furtividade": [
+      {
+        "foco": "na teia",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 1,
+    "conviccao": 3,
+    "temperanca": 2
+  },
+  "vontade": 9,
+  "aparencia": 1,
+  "deslocamento": {
+    "terra": {
+      "batalha": 3,
+      "arranque": 5,
+      "corrida": 7
+    },
+    "escalada": {
+      "batalha": 2
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Mordida",
+      "parte": "queliceras-da-aranha",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "O site dava \"Garras e presas\" de 2 dados e 6 Ticks, perfurante; a aranha de 145 kg morde com o corpo atrás (Média), com os 6 Ticks do site. Presa, Perfuração. A Centelha soma inteira. Passa o veneno (Veneno e doença). Jogada: Força 5 + Briga 5 + 2 × o menor entre Centelha 4 e Briga 5 (8)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "teia",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "substancia",
+      "ativacao": "uma ação, Velocidade 6; dispara pelas fieiras com o maior entre Vigor, Destreza e Percepção + Atirador",
+      "duracao": "até o alvo se soltar",
+      "alcance": "6 m",
+      "area": "um alvo",
+      "efeito": "o acerto deixa Preso pela Rede do livro; a teia serve para prender, não para sustentar a aranha",
+      "dano": "nenhum",
+      "resistencia": "nenhum teste adicional; para sair, a regra da Rede contra o total do disparo",
+      "limiteDeUso": "O corpo guarda 3 doses e produz 1 dose a cada 1 hora. Cada uso gasta 1 dose. Nada acelera a produção"
+    },
+    {
+      "nome": "Mordida venenosa",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "ataque": "Mordida",
+      "categoria": "substancia",
+      "ativacao": "Mordida ao causar ao menos 1 PV depois da Absorção",
+      "duracao": "até o fim do efeito do veneno",
+      "alcance": "toque",
+      "area": "um alvo",
+      "efeito": "Peçonha de drider. Aplicar os parâmetros de Veneno e doença",
+      "dano": "apenas o pool do veneno",
+      "resistencia": "Vigor + Resistência pelo relógio do veneno",
+      "limiteDeUso": "O corpo guarda 3 doses e produz 1 dose em 4 horas. Cada uso gasta 1 dose"
+    },
+    {
+      "nome": "Resistência à magia",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "sempre ativa",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a própria criatura",
+      "efeito": "Resistência à magia de grau 2. Soma +4 às Defesas e à jogada de resistir contra Artes e efeitos similares à magia, até o teto comum de +6",
+      "dano": "nenhum adicional",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo. Sem custo"
+    },
+    {
+      "nome": "Imune ao sono",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Ignora sono induzido por Arte, poder ou veneno. Os demais efeitos da mesma fonte continuam valendo. O ferimento do golpe continua",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "Contínuo, sem custo"
+    },
+    {
+      "nome": "Trevas",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "sombra",
+        "nivel": 1,
+        "efeito": "manto-de-treva"
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 5",
+      "duracao": "até o fim da cena ou desfazer",
+      "alcance": "18 m",
+      "area": "esfera de 6 m",
+      "efeito": "Apaga a luz comum na esfera. A criatura enxerga dentro dela",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. Cada opção tem seu próprio uso grátis"
+    },
+    {
+      "nome": "Luzes dançantes",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "luz",
+        "nivel": 1
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 5",
+      "duracao": "até o fim da cena ou desfazer",
+      "alcance": "18 m",
+      "area": "um ponto visível",
+      "efeito": "Cria luzes móveis para iluminar ou enganar",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. Cada opção tem seu próprio uso grátis"
+    },
+    {
+      "nome": "Fogo feérico",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "luz",
+        "nivel": 1
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 5",
+      "duracao": "até o fim da cena ou desfazer",
+      "alcance": "18 m",
+      "area": "um alvo",
+      "efeito": "Contorna o alvo de luz e revela a sua posição enquanto durar",
+      "dano": "nenhum",
+      "resistencia": "esquiva, contra Influência + Ocultismo dela",
+      "limiteDeUso": "Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. Cada opção tem seu próprio uso grátis"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "tecelã dos túneis",
+      "formas": "todas",
+      "texto": "estende teia no túnel escuro, apaga a luz com as trevas, prende de longe com a teia e desce pela parede para morder quem ficou preso."
+    },
+    {
+      "nome": "Projétil natural",
+      "formas": "todas",
+      "texto": "Contra um alvo, use o maior entre Vigor, Destreza e Percepção + Atirador. Ao cobrir uma área, só os alvos fazem a jogada de saída."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão no escuro",
+      "descricao": "\"Enxerga no escuro absoluto a uma distância considerável\"",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "camuflagem": "no escuro, ao lado da teia; Furtividade (na teia) +2",
+    "mente": "inteligente; amarga pela punição",
+    "tracos": "tronco de drow de pele negra e cabelo branco sobre um corpo de aranha negra de patas longas"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "sozinha, exilada dos drow",
+    "atividade": "qualquer hora, no escuro",
+    "dieta": "carnívora",
+    "caca": "emboscada nos túneis, com teia",
+    "dianteDeGente": "embosca viajantes"
+  },
+  "ecologia": {
+    "terreno": [
+      "subterrâneo"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "O que resta de um drow punido pelos deuses aracnídeos: o tronco fundido ao corpo de uma aranha gigante. Embosca nos túneis, prende de longe com teia, morde com um veneno que tira a força e ainda apaga a luz com a feitiçaria de antes.",
+  "lore": [
+    {
+      "titulo": "Maldição da teia negra",
+      "texto": "É o que resta de um drow punido por seus deuses aracnídeos: um corpo fundido ao de uma aranha gigante, metade humanoide, metade monstro."
+    },
+    {
+      "titulo": "Caçadora nas profundezas",
+      "texto": "Emboscar viajantes nos túneis é sua forma preferida de caça, envolvendo a presa em teias antes de se aproximar."
+    },
+    {
+      "titulo": "Veneno e doença",
+      "texto": "Veneno no jogo: Peçonha de drider · Potência 16 · 1 Tick (sangue) · a cada 1 minuto · pool 4 (Força) · Desgaste 1 · pela Mordida. Os números do \"Ferrão de gigante\" dos moldes (escorpião-gigante, formiga-gigante), com a Força do site"
+    }
+  ],
+  "imagens": [
+    "bestiario/drider_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "habilidades.bloqueio",
+      "motivo": "Os braços e as patas da frente desviam às vezes: \"«Quase não bloqueia» é 1, e não 0\" (D-110); 1; o site não gravava Bloqueio"
+    },
+    {
+      "campo": "habilidadesSec.musculatura",
+      "motivo": "Meio drow, meio aranha"
+    },
+    {
+      "campo": "couraca",
+      "motivo": "Cobertura do corpo pela R49; metades arredondadas para cima. Absorção natural do livro (`combate.md`). Cutícula de aranha no corpo e pele de drow no tronco ;; nível 1"
+    },
+    {
+      "campo": "comportamento.social",
+      "motivo": ""
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": ""
+    },
+    {
+      "campo": "comportamento.dieta",
+      "motivo": ""
+    },
+    {
+      "campo": "habilidadesEspeciais.teia",
+      "motivo": "R1/R4, D-197. Três doses preservam a reserva para mais de uma presa. Sugestão de 3 doses e 1 h por dose para repor fora da luta. valor de molde, para a bancada (3 doses e produz 1 dose a cada 1 hora)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Resistência à magia",
+      "motivo": "R7. SR 18 da fonte passa a grau 2 (+4)."
+    },
+    {
+      "campo": "ataques",
+      "motivo": "Mordida Média no lugar das \"Garras e presas\""
+    },
+    {
+      "campo": "habilidadesEspeciais",
+      "motivo": "Potência 16, pool 4 de Força"
+    }
+  ]
+}

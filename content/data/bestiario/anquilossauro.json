@@ -1,0 +1,246 @@
+{
+  "id": "anquilossauro",
+  "idAntigo": "mon-ankylosaurus",
+  "nome": "Anquilossauro",
+  "nomeIngles": "Ankylosaurus",
+  "categoria": "animal",
+  "papel": "fera",
+  "ameaca": 4,
+  "centelha": 0,
+  "corpo": {
+    "postura": "quatro patas (corpo baixo)",
+    "apoio": "quadrupede",
+    "altura": 1.59,
+    "largura": 1.75,
+    "profundidade": null,
+    "comprimento": 7.2,
+    "comprimentoSemCauda": 4.63,
+    "caudaGrossa": true,
+    "massa": 5200,
+    "area": 7.82,
+    "posturaDoTamanho": "vista de cima"
+  },
+  "couraca": 8,
+  "perfilCouraca": "rigida",
+  "atributos": {
+    "forca": 11,
+    "destreza": 1,
+    "vigor": 10,
+    "percepcao": 2,
+    "inteligencia": 1,
+    "raciocinio": 1,
+    "influencia": 1,
+    "perspicacia": 1,
+    "compostura": 1
+  },
+  "habilidades": {
+    "briga": 3,
+    "bloqueio": 3,
+    "esquiva": 0,
+    "atletismo": 0,
+    "furtividade": 0,
+    "integridade": 3,
+    "prontidao": 1,
+    "resistencia": 3,
+    "empatia": 0,
+    "sobrevivencia": 2
+  },
+  "habilidadesSec": {
+    "equilibrio": 0,
+    "escalada": 0,
+    "natacao": 0,
+    "voo": 0,
+    "corrida": 0,
+    "musculatura": 3
+  },
+  "especialidades": {
+    "prontidao": [
+      {
+        "foco": "faro",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 1,
+    "conviccao": 1,
+    "temperanca": 1
+  },
+  "vontade": 3,
+  "aparencia": 6,
+  "deslocamento": {
+    "terra": {
+      "batalha": 3,
+      "arranque": 5,
+      "corrida": 6
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Clava da cauda",
+      "parte": "cauda",
+      "classe": "pesada",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": "2d6",
+      "multiplicadorForca": 2,
+      "tipoDano": "impacto",
+      "nivelPerfuracao": null,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Era 2d6 + 30, média 37. 7 + 22. \"Cauda, clava\" é Impacto na seção 7; golpe do corpo inteiro, × 2. Modelo em outros gêneros (Arbour 2009): clava média de 962 a 2.014 N, talvez quebra osso; grande de 7.281 a 14.360 N, muito provavelmente quebra. A clava conhecida do Ankylosaurus (49 cm de largura) fica no topo da média, e a do maior espécime (cerca de 57 cm) entra na grande (Arbour e Mallon 2017)."
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "derrubar",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "regra": "derrubar"
+    },
+    {
+      "nome": "atordoar",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "ataque": "Clava da cauda",
+      "categoria": "inato",
+      "ativacao": "quando o golpe indicado atinge",
+      "duracao": "até a próxima ação começar, com o adiamento de Atordoado",
+      "alcance": "o do golpe",
+      "area": "a vítima descrita pelo poder",
+      "efeito": "O golpe certeiro da cauda atordoa com Margem 1 ou mais. Aplicar Atordoado do livro",
+      "dano": "nenhum adicional",
+      "resistencia": "Vigor + Resistência contra 10 + 5 × Margem, até 40",
+      "limiteDeUso": "Quando o golpe indicado atinge com a Margem exigida, sem custo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "teimosia",
+      "formas": "todas",
+      "texto": "raramente foge; planta-se no lugar e usa a cauda até vencer ou cair."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "faro",
+      "descricao": "Prontidão (faro) +2, Especialidade natural ; região olfatória ampliada; as narinas muito separadas talvez dessem olfato direcional ()",
+      "formas": "todas"
+    },
+    {
+      "nome": "audição",
+      "descricao": "de baixa frequência, texto (ouvido de Euoplocephalus, Miyashita 2011, )",
+      "formas": "todas"
+    },
+    {
+      "nome": "visão",
+      "descricao": "órbitas sugerem alguma visão estereoscópica (Carpenter 2004); nada que passe do humano",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "mente": "animal",
+    "tracos": "osteodermos de 1 a 35,5 cm, finos e ocos por baixo, com quilha baixa (Carpenter 2004; Arbour e Mallon 2017); dois semianéis ósseos no pescoço (Arbour e Currie 2015); pálpebra óssea; narinas voltadas para baixo e cobertas por placas; quatro chifres no crânio; sem espinhos laterais. Passagens nasais em laço, talvez câmara de ressonância para sons graves e para trocar calor e água (Miyashita 2011, )"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "dieta": "herbívoro",
+    "caca": "pastagem",
+    "dianteDeGente": "ameaça"
+  },
+  "ecologia": {
+    "terreno": [
+      "floresta",
+      "planície"
+    ],
+    "clima": [
+      "tropical"
+    ]
+  },
+  "descricao": "Raro; talvez vivesse nas terras altas, longe da costa (Carpenter, ). Luta entre si com a clava (Zuul, Arbour 2022).",
+  "lore": [
+    {
+      "titulo": "Fortaleza Viva",
+      "texto": "Esse dinossauro atarracado e couraçado prefere plantar-se no lugar e golpear com a cauda a fugir, deixando muitos predadores atordoados o suficiente para que ele escape se quiser."
+    },
+    {
+      "titulo": "Gigante das Planícies Quentes",
+      "texto": "Vive em manadas por florestas e planícies de clima quente, usando o peso e a armadura natural para dissuadir qualquer coisa disposta a caçá-lo."
+    }
+  ],
+  "imagens": [
+    "bestiario/anquilossauro_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "atributos.percepcao",
+      "motivo": "Seção 13: 2 para os grandes herbívoros e os extintos . O faro vai na Especialidade natural"
+    },
+    {
+      "campo": "habilidades.bloqueio",
+      "motivo": "D-100: \"Chifre, galhada e carapaça bloqueiam como arma\". Encolhe e oferece as placas. Degrau 2"
+    },
+    {
+      "campo": "habilidades.furtividade",
+      "motivo": "Etapa 2 (20/10/2026): Decisão 8 de 19/10/2026: a Furtividade sai do comportamento, sem padrão por tamanho, e quem nunca tenta se esconder fica com 0. A penalidade do Alvo (R8) soma por cima. Nenhum fato de esconder-se no levantamento; confia na armadura. O autor pôs o estegossauro e o braquiossauro em 0. Antes: Era sem linha (0). O levantamento: nenhum fato de esconder-se; herbívoro blindado que confia na couraça e na clava. Régua: 1, não se esconde"
+    },
+    {
+      "campo": "habilidades.integridade",
+      "motivo": "Não foge: fica e bate com a clava. Degrau 3"
+    },
+    {
+      "campo": "corpo.altura",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 1,55 × 1,0285 = 1,594 . Antes: ponto médio de 1,4 a 1,7 m (Carpenter 2004, via Wikipédia). A fonte dá o quadril, e não o alto da cabeça"
+    },
+    {
+      "campo": "corpo.comprimento",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 7,00 × 1,0285 = 7,199 . Antes: ponto médio de 6 a 8 m (Arbour e Mallon 2017); Carpenter 2004 dá 5,4 a 6,25 m, e a divergência entre as duas fontes está em `dimensoes.md`"
+    },
+    {
+      "campo": "corpo.comprimentoSemCauda",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 4,50 × 1,0285 = 4,628 . Antes: do Arquiteto: \"corpo sem cauda (cerca de 65% de 7 m)\""
+    },
+    {
+      "campo": "corpo.largura",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 1,70 × 1,0285 = 1,748 . Antes: estimativa do Arquiteto (`porte-area.mjs`); a pesquisa não mediu largura"
+    },
+    {
+      "campo": "corpo.massa",
+      "motivo": "Etapa 2 (20/10/2026): Decisão 5 de 19/10/2026: a ficha principal usa uma versão um pouco acima da média da espécie, dentro da faixa real. 4.780 kg mais 9% = 5.200 kg , dentro da faixa real (4,78 a 7,95 t, Arbour e Mallon 2017). Faixa de manobra 5, como antes. Antes: Era 6.000 kg. Estimativa escolhida: Arbour e Mallon 2017 (FACETS 2: 764-794, lido no PDF): *Ankylosaurus magniventris*, AMNH 5214 (adulto, o menor conhecido), 4,78 ± 1,22 t, pela equação de Campione e Evans 2012 sobre a circunferência do úmero (315 mm) e do fêmur (363 mm), no pacote MASSTIMATE. Por que esta: é o único número tirado dos ossos medidos do próprio animal, e dois trabalhos chegam a ele de forma independente: o Dataset S1 de Benson e colegas 2014 dá ao mesmo AMNH 5214 4.780,7 kg, por circunferências medidas, com o espécime marcado \"mature\". A alternativa é o CMN 8880, o maior crânio, 7,95 ± 2,04 t, \"primeira aproximação\" por escala isométrica dos ossos do AMNH 5214 pela largura entre os supraorbitais, que os próprios autores dizem que \"deve ser vista com dúvida\" (Arbour e Mallon 2017) . Faixa das estimativas: 4,78 a 7,95 t. A faixa, o PV, o peso erguido e a Carga saem dos 4.780 kg (sexta rodada, `calc6.mjs`): Faixa 5 (até 14 t), a mesma de antes. Sexos: diferença não achada . Faixa de categoria: D-141, com o corte de 35 kg no lugar do de 25 kg (decisão 22); a faixa decide só o PV"
+    },
+    {
+      "campo": "aparencia",
+      "motivo": "D-107.  A pele e a cor não se conhecem; fica na maioria."
+    },
+    {
+      "campo": "comportamento.dieta",
+      "motivo": "samambaias e arbustos; talvez frutos, raízes e invertebrados (onívoro possível, ; Carpenter 2004 e Arbour e Mallon 2017)"
+    },
+    {
+      "campo": "comportamento.dianteDeGente",
+      "motivo": "extinto, sem gente; diante do predador fica e bate com a clava (Integridade 3)"
+    }
+  ]
+}

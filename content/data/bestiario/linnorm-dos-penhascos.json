@@ -1,0 +1,410 @@
+{
+  "id": "linnorm-dos-penhascos",
+  "idAntigo": "mon-crag-linnorm",
+  "nome": "Linnorm dos Penhascos",
+  "nomeIngles": "Crag Linnorm",
+  "categoria": "dragao",
+  "papel": "chefe",
+  "ameaca": 6,
+  "centelha": 6,
+  "corpo": {
+    "postura": "serpente com duas patas dianteiras; sem asas; voa",
+    "apoio": "outro",
+    "altura": 0.79,
+    "largura": 0.79,
+    "profundidade": null,
+    "comprimento": 18,
+    "massa": 5400,
+    "area": 10.7,
+    "posturaDoTamanho": "de lado, esticado ou com a frente erguida",
+    "segundoTamanho": {
+      "area": 3.86,
+      "posturaDoTamanho": "enrolado"
+    }
+  },
+  "couraca": 9,
+  "perfilCouraca": "rigida",
+  "atributos": {
+    "forca": 11,
+    "destreza": 5,
+    "vigor": 11,
+    "percepcao": 5,
+    "inteligencia": 1,
+    "raciocinio": 3,
+    "influencia": 6,
+    "perspicacia": 3,
+    "compostura": 6
+  },
+  "habilidades": {
+    "briga": 5,
+    "bloqueio": 0,
+    "esquiva": 1,
+    "atletismo": 2,
+    "integridade": 6,
+    "prontidao": 2,
+    "atirador": 4
+  },
+  "habilidadesSec": {
+    "natacao": 3,
+    "musculatura": 3
+  },
+  "especialidades": {},
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 6,
+    "compaixao": 2,
+    "conviccao": 5,
+    "temperanca": 3
+  },
+  "vontade": 11,
+  "aparencia": 9,
+  "deslocamento": {
+    "terra": {
+      "batalha": 4,
+      "arranque": 6,
+      "corrida": 9
+    },
+    "voo": {
+      "batalha": 10
+    },
+    "nado": {
+      "batalha": 6
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Mordida",
+      "parte": "boca",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 3,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Mordida de predador grande (`regra-construcao.md` §7), N3 como a dos dragões adultos. Golpe de boca: Força × 1. Inocula o veneno (Veneno e doença) . Jogada: Força 11 + Briga 5 + 2 × o menor entre Centelha 6 e Briga 5 (10)"
+    },
+    {
+      "nome": "Garras",
+      "parte": "pata-dianteira",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "corte",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Patada de predador grande, Média (§7), como nos dragões. Bloqueia como a mão nua (D-100). Jogada: Força 11 + Briga 5 + 2 × o menor entre Centelha 6 e Briga 5 (10)"
+    },
+    {
+      "nome": "Sopro de magma",
+      "parte": "boca",
+      "classe": "distancia",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": "9d6",
+      "multiplicadorForca": 0,
+      "tipoDano": "fogo",
+      "nivelPerfuracao": null,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Ataque natural a distância, Classe Distância (manual, Passo 10), como nos dragões. O site não dá dados; 9d6 é o degrau da Centelha 6 na escada do lote 23 (D-197), descrito na linha do sopro nas Manobras. Sem jogada de ataque."
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Posturas de combate",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Enorme: de lado, esticado ou com a frente erguida. Grande: enrolado. Vale o Tamanho da postura atual. Cada troca entre essas posturas custa 1 Tick e vale até ser desfeita",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "Peçonha de linnorm dos penhascos",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "ataque": "Mordida",
+      "categoria": "substancia",
+      "ativacao": "Mordida ao causar ao menos 1 PV depois da Absorção",
+      "duracao": "até o fim do efeito do veneno",
+      "alcance": "toque",
+      "area": "um alvo",
+      "efeito": "A peçonha drena apenas o pool de Vigor. A imunidade ao elemento não protege contra a peçonha. Se o Vigor chegar a 0, a vítima morre",
+      "dano": "pool de Vigor do veneno",
+      "resistencia": "Vigor + Resistência pelo relógio do veneno",
+      "limiteDeUso": "O corpo guarda 2 doses e produz 1 dose em 12 horas. Cada uso gasta 1 dose"
+    },
+    {
+      "nome": "Sopro de magma",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "fogo",
+        "nivel": 4
+      },
+      "ataque": "Sopro de magma",
+      "categoria": "substancia",
+      "ativacao": "uma ação, Velocidade 6",
+      "duracao": "instantânea",
+      "alcance": "18 m à frente",
+      "area": "linha de 18 m",
+      "efeito": "a lava queima tudo na linha. Após a área, só há dano residual quando um efeito da ficha o declara",
+      "dano": "9d6 + Centelha, fogo",
+      "resistencia": "sem jogada de ataque. Cada alvo resolve a saída de área pelo livro",
+      "limiteDeUso": "O corpo guarda 2 doses e produz 1 dose a cada 12 horas. Cada uso gasta 1 dose. Nada acelera a produção"
+    },
+    {
+      "nome": "rastro de lava",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "ao entrar em contato com o resíduo do sopro",
+      "duracao": "até o fim do Tick seguinte",
+      "alcance": "o do sopro",
+      "area": "o trecho atingido pelo sopro",
+      "efeito": "A lava fere quem toca o rastro ainda quente",
+      "dano": "1d6 de fogo",
+      "resistencia": "saída de área pelo livro",
+      "limiteDeUso": "uma exposição por alvo por dose de sopro, sem custo adicional"
+    },
+    {
+      "nome": "garras em sequência",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Garras",
+      "categoria": "inato",
+      "regra": "rajada"
+    },
+    {
+      "nome": "Resistência à magia",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "sempre ativa",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a própria criatura",
+      "efeito": "Resistência à magia de grau 2. Soma +4 às Defesas e à jogada de resistir contra Artes e efeitos similares à magia, até o teto comum de +6",
+      "dano": "nenhum adicional",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo. Sem custo"
+    },
+    {
+      "nome": "Liberdade de movimento",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Nada de fora o deixa Agarrado, Preso ou Imobilizado. Paredes barram a passagem. Paralisado e Atordoado continuam valendo",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "Contínuo, sem custo"
+    },
+    {
+      "nome": "Regeneração 10",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "fraqueza": {
+        "forma": "naoRegenera",
+        "tipos": [
+          "ferro frio"
+        ]
+      },
+      "texto": "Origem sobrenatural. O dano de ferro frio só fecha com outras curas, como Arte, Cura ou descanso. As demais feridas se regeneram normalmente. Recupera 10 PV por minuto, até o máximo de PV. Em combate, recupera 1 PV a cada 6 Ticks, contados a partir do Tick do primeiro dano"
+    },
+    {
+      "nome": "Maldição da morte",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "ao morrer",
+      "duracao": "até Proteção 5 ou cura apropriada",
+      "alcance": "quem deu o golpe final",
+      "area": "o responsável pelo golpe final",
+      "efeito": "quem o mata passa a arder por dentro e fica vulnerável ao fogo para sempre. Se falhar, a maldição só sai com Proteção 5 ou a cura apropriada",
+      "dano": "nenhum",
+      "resistencia": "Vigor + Resistência contra Dificuldade 15",
+      "limiteDeUso": "uma vez, na morte, sem custo"
+    },
+    {
+      "nome": "Imune a veneno, sono, paralisia e maldições comuns",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Ignora veneno, sono, paralisia e efeitos que instalam maldição comum. Recebe dano comum e morre pela perda de Vida como de costume. O ferimento do golpe continua",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "Contínuo, sem custo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "fera do norte",
+      "formas": "todas",
+      "texto": "cospe lava sobre quem se aproxima, desce sobre o mais forte com mordida e garras, e não recua: as feridas fecham sozinhas."
+    },
+    {
+      "nome": "Projétil natural",
+      "formas": "todas",
+      "texto": "Contra um alvo, use o maior entre Vigor, Destreza e Percepção + Atirador. Ao cobrir uma área, só os alvos fazem a jogada de saída."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão verdadeira",
+      "descricao": "Até 18 m, distingue disfarce, ilusão e invisibilidade. Paredes e Furtividade comum limitam a percepção. Sem custo",
+      "formas": "todas"
+    },
+    {
+      "nome": "visão no escuro",
+      "descricao": "vê sem luz",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "prendeRespiracao": "a de um bicho grande; quanto tempo, o Mestre decide",
+    "camuflagem": "escamas escuras contra a rocha",
+    "mente": "Inteligência 1; fera primeva",
+    "tracos": "escamas escuras, calor vulcânico sob a pele; por onde se arrasta, a terra racha e fumega"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitário",
+    "atividade": "qualquer hora",
+    "dieta": "carnívoro",
+    "caca": "reina sobre as colinas geladas e caça o que entra nelas",
+    "dianteDeGente": "ataca quem se estabelece no território"
+  },
+  "ecologia": {
+    "terreno": [
+      "montanha"
+    ],
+    "clima": [
+      "frio"
+    ]
+  },
+  "descricao": "O menor dos linnorms, serpente-dragão sem asas de 18 m e sangue vulcânico. Cospe lava, morde com veneno que arde por dentro e fecha as próprias feridas; quem o mata carrega a maldição do fogo.",
+  "lore": [
+    {
+      "titulo": "Fera Primeva do Norte",
+      "texto": "Mais fraco entre os linormes, ainda assim reina sobre colinas geladas onde poucos ousam se estabelecer."
+    },
+    {
+      "titulo": "Sangue de Fogo",
+      "texto": "Sob suas escamas escuras corre um calor vulcânico, e por onde se arrasta a terra racha e fumega."
+    },
+    {
+      "titulo": "Maldição Viva",
+      "texto": "Lendas dizem que quem mata um linorme carrega para sempre uma centelha de sua fúria ardente, lembrete do preço daquela morte."
+    },
+    {
+      "titulo": "Veneno e doença",
+      "texto": "Veneno no jogo: Peçonha de linnorm dos penhascos · Potência 16 · 1 Tick (sangue) · a cada 1 minuto · pool 4 (Vigor) · Desgaste 1 · pela Mordida. Os números do \"Ferrão de gigante\" dos moldes, com o Vigor do site; o fogo que arde por dentro fica descrito, sem número (sem regra ainda)."
+    }
+  ],
+  "imagens": [
+    "bestiario/linnorm-dos-penhascos_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": [
+      {
+        "tipo": "fogo",
+        "formas": "todas"
+      }
+    ]
+  },
+  "revisao": [
+    {
+      "campo": "atributos.forca",
+      "motivo": "O site tinha 13. Desce para 11 pelo teste de ordem (manual, Passo 7), o mesmo método que o autor mandou aplicar ao neothelid (pedido do autor de 24/10/2026 (ponto de coerência 2, sem número no registro)): com 13, a serpente de 5,4 t passava os dragões adultos, mais pesados (o verde de 7 t, 10; o vermelho e o azul, 11), e o neothelid de 6 t (11). Não fica abaixo do anquilossauro de 5,2 t (11), mais leve. O mamute de 5 t do molde tem 13, mas a Força dele vem da tromba e do corpo de elefante; \"corpo de serpente, todo músculo\" já está na Musculatura e não resiste ao teste contra os dragões. Perto da Força de referência da massa (11,44, manual 3.9); 11, pelo teste de ordem; o site tinha 13 (o mesmo método do neothelid, pedido do autor de 24/10/2026 (ponto de coerência 2, sem número no registro))"
+    },
+    {
+      "campo": "corpo.altura",
+      "motivo": "O diâmetro que dá a massa do site (linha Massa). Erguida, levanta um quinto do corpo"
+    },
+    {
+      "campo": "couraca",
+      "motivo": "Cobertura do corpo pela R49; metades arredondadas para cima. Absorção natural do livro (`combate.md`). \"Escamas grossas absorvem grande parte do dano físico\" (site): a Couraça dos dragões adultos (9), para o mais fraco dos linnorms .; nível 9"
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": ""
+    },
+    {
+      "campo": "ataques.Mordida",
+      "motivo": "Mordida de predador grande (`regra-construcao.md` §7), N3 como a dos dragões adultos. Golpe de boca: Força × 1. Inocula o veneno (Veneno e doença) . Jogada: Força 11 + Briga 5 + 2 × o menor entre Centelha 6 e Briga 5 (10)"
+    },
+    {
+      "campo": "ataques.Sopro de magma",
+      "motivo": "Antes: jogada de ataque na tabela. R36: Sem jogada de ataque, pois o efeito ocupa a área descrita nas Manobras. Cada alvo resolve a defesa de área.; R1/R4, D-197. Dois sopros prontos permitem alternar sopro e golpes. Sugestão de 2 doses e 12 h por dose para repor fora da luta. valor de molde, para a bancada (2 doses e produz 1 dose a cada 12 horas)."
+    },
+    {
+      "campo": "habilidadesEspeciais",
+      "motivo": "Antes: pelo padrão do \"Ferrão de gigante\"  O pool atinge Vigor. Aplica-se o desfecho letal do veneno."
+    },
+    {
+      "campo": "habilidadesEspeciais.Resistência à magia",
+      "motivo": "R7. SR 25 da fonte passa a grau 2 (+4)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Maldição da morte",
+      "motivo": "R1 e D-197. 1 uso grátis por cena. Cada uso extra custa 1 de Energia. Um uso de abertura até a definição do efeito. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "corpo.area",
+      "motivo": "Enorme esticado, Grande enrolado, pela área do corpo de serpente; o site dizia Imenso"
+    },
+    {
+      "campo": "corpo",
+      "motivo": "nenhuma, pela fonte"
+    },
+    {
+      "campo": "ataques",
+      "motivo": "9d6 + Centelha, linha de 18 m, pela escada de Centelha do lote 23 (D-197)"
+    },
+    {
+      "campo": "habilidadesEspeciais.Regeneração 10",
+      "motivo": "Antes: sem regra e sem nível. N 10 pela referência Crag Linnorm (Archives of Nethys)."
+    }
+  ]
+}

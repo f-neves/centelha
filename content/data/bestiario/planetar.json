@@ -1,0 +1,336 @@
+{
+  "id": "planetar",
+  "idAntigo": "mon-planetar",
+  "nome": "Planetar",
+  "nomeIngles": "Angel, Planetar",
+  "categoria": "celestial",
+  "papel": "chefe",
+  "ameaca": 6,
+  "centelha": 7,
+  "corpo": {
+    "postura": "de pé, asas recolhidas",
+    "apoio": "bipede",
+    "altura": 2.7,
+    "largura": 0.675,
+    "profundidade": 0.345,
+    "comprimento": null,
+    "massa": 225,
+    "area": 1.9,
+    "posturaDoTamanho": "de pé, asas recolhidas",
+    "segundoTamanho": {
+      "area": 7,
+      "posturaDoTamanho": "asas abertas"
+    }
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 9,
+    "destreza": 5,
+    "vigor": 8,
+    "percepcao": 8,
+    "inteligencia": 7,
+    "raciocinio": 7,
+    "influencia": 7,
+    "perspicacia": 7,
+    "compostura": 8
+  },
+  "habilidades": {
+    "briga": 3,
+    "bloqueio": 3,
+    "esquiva": 1,
+    "prontidao": 5,
+    "integridade": 8,
+    "sobrevivencia": 0,
+    "sociabilidade": 4,
+    "armas": 5,
+    "ocultismo": 5,
+    "empatia": 4
+  },
+  "habilidadesSec": {
+    "musculatura": 1
+  },
+  "especialidades": {},
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 5,
+    "compaixao": 5,
+    "conviccao": 5,
+    "temperanca": 4
+  },
+  "vontade": 12,
+  "aparencia": 11,
+  "deslocamento": {
+    "terra": {
+      "batalha": 3,
+      "arranque": 5,
+      "corrida": 7
+    },
+    "voo": {
+      "batalha": 9
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {
+    "cura": 6,
+    "fogo": 5,
+    "terra": 4,
+    "protecao": 5,
+    "fascinacao": 5
+  },
+  "ataques": [
+    {
+      "nome": "Montante",
+      "arma": "montante",
+      "justificativa": "Montante do catálogo com duas mãos; jogada 24 com Armas"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Posturas de combate",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Grande: de pé, asas recolhidas. Enorme: asas abertas. Vale o Tamanho da postura atual. Abrir as asas ao voar e fechá-las ao pousar faz parte do movimento, sem custo adicional",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "Aura protetora",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "protecao",
+        "nivel": 4,
+        "efeito": "barreira"
+      },
+      "categoria": "inato",
+      "ativacao": "nenhuma; sempre ativa",
+      "duracao": "permanente",
+      "alcance": "9 m",
+      "area": "a criatura e seus aliados no raio",
+      "efeito": "a criatura e seus aliados somam +4 em Esquiva, Bloqueio e Defesa Mental contra ataques e efeitos malignos",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "nenhum. Sem custo"
+    },
+    {
+      "nome": "Regeneração 10",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "fraqueza": {
+        "forma": "interrompe",
+        "tipos": [
+          "maligno"
+        ],
+        "duracao": "6 Ticks"
+      },
+      "texto": "Origem sobrenatural. O dano de uma arma maligna ou de um efeito maligno interrompe toda a regeneração por 6 Ticks. Recupera 10 PV por minuto, até o máximo de PV. Em combate, recupera 1 PV a cada 6 Ticks, contados a partir do Tick do primeiro dano"
+    },
+    {
+      "nome": "Resistência à magia",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "sempre ativa",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a própria criatura",
+      "efeito": "Resistência à magia de grau 3. Soma +6 às Defesas e à jogada de resistir contra Artes e efeitos similares à magia, até o teto comum de +6",
+      "dano": "nenhum adicional",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo. Sem custo"
+    },
+    {
+      "nome": "Verbo verdadeiro",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "enquanto a condição se aplica",
+      "alcance": "até onde ouve e pode ser ouvido",
+      "area": "a criatura",
+      "efeito": "Compreende e fala qualquer idioma falado. Escrita, códigos e pensamentos exigem outros meios. Entender o pedido não obriga a obedecer",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "Imunidades celestes",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "não adoece, não é envenenado e resiste à transformação em pedra",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "Contínuo, sem custo"
+    },
+    {
+      "nome": "Espada de luz cegante",
+      "formas": "todas",
+      "classe": "sem regra ainda",
+      "categoria": "inato",
+      "efeito": "um golpe forte pode cegar o adversário"
+    },
+    {
+      "nome": "Teleporte instantâneo",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "conjuracao",
+        "nivel": 4,
+        "efeito": "fresta"
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 8",
+      "duracao": "instantânea",
+      "alcance": "36 m",
+      "area": "o próprio usuário",
+      "efeito": "Reaparece num ponto que vê ou conhece bem no mesmo plano, levando o que carrega. Pode sair de um agarrão. Outros viajantes só seguem dentro do limite declarado, voluntários e em contato",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "1 uso grátis por cena. Cada uso extra custa 1 de Mana"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "Feitiços sagrados",
+      "formas": "todas",
+      "texto": "usa as Artes para curar, proteger e enfrentar ameaças sobrenaturais."
+    },
+    {
+      "nome": "Guerreiro alado",
+      "formas": "todas",
+      "texto": "abre o combate voando e pousa para pressionar com a espada; volta ao ar para proteger aliados distantes."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão",
+      "descricao": "enxerga no escuro e sob luz fraca",
+      "formas": "todas"
+    },
+    {
+      "nome": "visão verdadeira · sem regra ainda",
+      "descricao": "Até 18 m, distingue disfarce, ilusão e invisibilidade. Paredes e Furtividade comum limitam a percepção. Sem custo",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "mente": "inteligente",
+    "tracos": "Guerreiro celeste de pele verde e dois pares de asas brancas"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitário",
+    "atividade": "qualquer hora",
+    "dieta": "não precisa comer",
+    "caca": "não se aplica",
+    "dianteDeGente": "enfrenta ameaças ao mundo e protege os mortais"
+  },
+  "ecologia": {
+    "terreno": [
+      "qualquer"
+    ],
+    "clima": [
+      "extraplanar"
+    ]
+  },
+  "descricao": "Guerreiro celeste de pele verde e dois pares de asas brancas",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Soldado de elite da guerra eterna contra o mal, age com determinação sombria e reserva a compaixão para depois da batalha."
+    },
+    {
+      "titulo": "Sociedade",
+      "texto": "Comanda hostes de archons e devas em campanhas específicas, sempre sob ordens de potências maiores."
+    },
+    {
+      "titulo": "Personalidade",
+      "texto": "Grave, quase taciturno, carrega o peso de eras de conflito e não se ilude sobre o custo real da guerra."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "Um planetar só pisa em Uldun quando um mal antigo desperta, seja um horror vindo da Fenda ou um culto que rasga a Supressão; sua presença costuma ser o primeiro sinal de que a crise é grave demais para mortais resolverem sozinhos."
+    }
+  ],
+  "imagens": [
+    "bestiario/planetar_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [
+      {
+        "tipo": "profano",
+        "formas": "todas"
+      }
+    ],
+    "resistencias": [
+      {
+        "tipo": "fogo",
+        "formas": "todas"
+      },
+      {
+        "tipo": "raio",
+        "formas": "todas"
+      }
+    ],
+    "imunidades": [
+      {
+        "tipo": "acido",
+        "formas": "todas"
+      },
+      {
+        "tipo": "gelo",
+        "formas": "todas"
+      }
+    ]
+  },
+  "revisao": [
+    {
+      "campo": "habilidadesSec.musculatura",
+      "motivo": "Corpo de guerreiro, força sobrenatural além do músculo"
+    },
+    {
+      "campo": "corpo.area",
+      "motivo": "Corpo: 0,72 × (2,7 ÷ 1,8)²; asas recolhidas completam 1,9 m². Asas abertas estimadas em 7,0 m²"
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": "Comportamento"
+    },
+    {
+      "campo": "habilidadesEspeciais.Regeneração 10",
+      "motivo": "Fraqueza da fonte: \"regeneration 10 (evil weapons and effects)\" (Pathfinder RPG Bestiary, p. 11). Antes: 1 hora. Proponho 6 Ticks: a interrupção custa um pulso de 1 PV e permite que a regeneração volte durante a luta. Valor de molde, para a bancada.  [Archives of Nethys](https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Planetar)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Resistência à magia",
+      "motivo": "R7. SR 27 da fonte passa a grau 3 (+6)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Verbo verdadeiro",
+      "motivo": "R1 e D-197. 1 uso grátis por cena. Cada uso extra custa 1 de Mana. Um uso de abertura até a definição do efeito. valor de molde, para a bancada (uso extra de 1 de Mana)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Teleporte instantâneo",
+      "motivo": "R1 e D-197. 1 uso grátis por cena. Cada uso extra custa 1 de Mana. Um uso de abertura até a definição do efeito. valor de molde, para a bancada (uso extra de 1 de Mana). Uso extra: falta grau de Alcance e Alvos (piso 0 pela T7, RT-134.6)."
+    }
+  ]
+}

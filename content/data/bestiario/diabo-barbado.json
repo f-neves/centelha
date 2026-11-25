@@ -1,0 +1,343 @@
+{
+  "id": "diabo-barbado",
+  "idAntigo": "mon-diabo-barbado",
+  "nome": "Diabo Barbado",
+  "nomeIngles": "Devil, Bearded",
+  "categoria": "corruptor",
+  "papel": "elite",
+  "ameaca": 4,
+  "centelha": 4,
+  "corpo": {
+    "postura": "bípede, de pé, ereto",
+    "apoio": "bipede",
+    "altura": 2.1,
+    "largura": 0.45,
+    "profundidade": 0.22,
+    "comprimento": null,
+    "massa": 90,
+    "area": 0.83,
+    "posturaDoTamanho": "silhueta de frente, de pé"
+  },
+  "couraca": 1,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 4,
+    "destreza": 4,
+    "vigor": 5,
+    "percepcao": 3,
+    "inteligencia": 1,
+    "raciocinio": 2,
+    "influencia": 2,
+    "perspicacia": 2,
+    "compostura": 2
+  },
+  "habilidades": {
+    "briga": 5,
+    "armas": 3,
+    "bloqueio": 2,
+    "esquiva": 1,
+    "atletismo": 2,
+    "furtividade": 1,
+    "integridade": 2,
+    "prontidao": 3,
+    "resistencia": 3,
+    "sociabilidade": 1
+  },
+  "habilidadesSec": {
+    "intimidacao": 2,
+    "musculatura": 2
+  },
+  "especialidades": {
+    "armas": [
+      {
+        "foco": "glaive",
+        "valor": 1,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 4,
+    "compaixao": 1,
+    "conviccao": 5,
+    "temperanca": 5
+  },
+  "vontade": 9,
+  "aparencia": 1,
+  "deslocamento": {
+    "terra": {
+      "batalha": 4,
+      "arranque": 6,
+      "corrida": 9
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Glaive serrilhada",
+      "parte": "glaive",
+      "classe": "haste",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": "1d6+2",
+      "multiplicadorForca": 2,
+      "tipoDano": "corte",
+      "nivelPerfuracao": null,
+      "acerto": -1,
+      "bloqueiaComoArma": null,
+      "justificativa": "A glaive serrilhada do diabo: haste de guerra de duas mãos, Velocidade 7, 1d6 + 2, Acerto −1, alcance. Duas mãos: Força × 2. A serrilha dá o Sangramento e cobra o −1 de Acerto. Jogada: Força 4 + Briga 5 + 2 × o menor entre Centelha 4 e Briga 5 (8)"
+    },
+    {
+      "nome": "Mordida",
+      "parte": "boca-de-dentes-finos-sob-a-barba",
+      "classe": "leve",
+      "pgr": [
+        1,
+        1,
+        3
+      ],
+      "dado": "1d6-2",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 1,
+      "bloqueiaComoArma": null,
+      "justificativa": "\"Mordida com doença infernal\" (site): a mordida de boca humana, gesto rápido de boca pequena, Leve (`regra-construcao.md` §7). Leva a doença (Manobras). Jogada: Força 4 + Briga 5 + 2 × o menor entre Centelha 4 e Briga 5 (8)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "lâmina serrilhada",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Glaive serrilhada",
+      "categoria": "inato",
+      "texto": "a tag Sangramento"
+    },
+    {
+      "nome": "Trava a ferida",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "nenhuma; vale para quem a glaive ou a barba feriu",
+      "duracao": "até o fim da cena",
+      "alcance": "o alvo ferido",
+      "area": "um alvo",
+      "efeito": "a ferida aberta pelo diabo não fecha sozinha: o alvo não estabiliza o Sangrando sem ajuda e recupera só metade do que uma cura lhe daria",
+      "dano": "nenhum além do golpe",
+      "resistencia": "nenhum",
+      "limiteDeUso": "nenhum. Sem custo"
+    },
+    {
+      "nome": "Doença infernal",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "morte",
+        "nivel": 2,
+        "efeito": "praga"
+      },
+      "categoria": "inato",
+      "ativacao": "a Mordida que fere",
+      "duracao": "até ser tratada (Cura) ou curada por Arte",
+      "alcance": "toque",
+      "area": "um alvo",
+      "efeito": "o alvo adoece e vai perdendo força: fica Doente, e a cada dia sem tratamento soma um degrau de Desgaste",
+      "dano": "nenhum além da mordida",
+      "resistencia": "corpo, contra a jogada da mordida; quem passa não adoece daquele golpe",
+      "limiteDeUso": "um por golpe. Sem custo"
+    },
+    {
+      "nome": "Barba viva",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "reação, quando alguém o ataca corpo a corpo",
+      "duracao": "até o alvo escapar",
+      "alcance": "o do corpo a corpo",
+      "area": "um alvo",
+      "efeito": "Se o golpe causar ao menos 1 PV depois da Absorção, resolve Agarrar normalmente, com as travas de massa e sem uma ação separada. Manutenção e saída seguem o agarrão do livro",
+      "dano": "nenhum",
+      "resistencia": "pela manobra Agarrar",
+      "limiteDeUso": "A cada ativação descrita. Usar repetidamente causa esforço e pode levar ao cansaço. Sem custo"
+    },
+    {
+      "nome": "Teleporte",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "conjuracao",
+        "nivel": 3,
+        "efeito": "fresta"
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 8",
+      "duracao": "instantânea",
+      "alcance": "60 m, até um ponto que ele veja ou conheça",
+      "area": "o próprio diabo",
+      "efeito": "Reaparece num ponto que vê ou conhece bem no mesmo plano, levando o que carrega. Pode sair de um agarrão. Outros viajantes só seguem dentro do limite declarado, voluntários e em contato",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "1 uso grátis por cena. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "Regeneração 5",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "fraqueza": {
+        "forma": "naoRegenera",
+        "tipos": [
+          "arma abençoada",
+          "prata"
+        ]
+      },
+      "texto": "Origem sobrenatural. O dano de arma abençoada ou prata só fecha com outras curas, como Arte, Cura ou descanso. As demais feridas se regeneram normalmente. Recupera 5 PV por minuto, até o máximo de PV. Em combate, recupera 0,5 PV a cada 6 Ticks, contados a partir do Tick do primeiro dano"
+    },
+    {
+      "nome": "imune a veneno",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "o veneno não pega no corpo de diabo. O ferimento do golpe continua",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "Contínuo, sem custo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "soldado de linha",
+      "formas": "todas",
+      "texto": "avança em formação, mantém o inimigo na ponta da glaive e prende com a barba quem chega perto; obedece ao diabo maior e quer provar valor para subir na hierarquia."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão no escuro",
+      "descricao": "enxerga no escuro absoluto",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "mente": "inteligente, disciplinada, invejosa",
+    "tracos": "diabo magro de 2,1 m, pele escamosa, orelhas pontudas, cauda fina e uma barba de tentáculos que se mexe sozinha"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "tropa em formação, sob um diabo maior",
+    "atividade": "qualquer hora",
+    "dieta": "não precisa comer",
+    "caca": "combate em linha",
+    "dianteDeGente": "ataca na linha de frente"
+  },
+  "ecologia": {
+    "terreno": [
+      "qualquer"
+    ],
+    "clima": [
+      "extraplanar"
+    ]
+  },
+  "descricao": "Soldado de linha do Inferno, de barba viva que infecta feridas e glaive serrilhada nas mãos. Avança em formação disciplinada, e não em horda, e vive para provar valor e subir na hierarquia rígida dos diabos.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Ataca na linha de frente com uma glaive brutal e uma barba viva que infecta feridas, avançando em formação disciplinada como soldado experiente."
+    },
+    {
+      "titulo": "Sociedade",
+      "texto": "Ocupa a base da tropa de combate infernal, invejoso dos diabos superiores e sempre em busca de provar valor suficiente para subir na hierarquia rígida do Inferno."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "Quando exércitos vindos da Fenda avançam em formação e não em horda, os veteranos sabem: não é o caos do Abismo que chegou, é a disciplina fria do Inferno."
+    }
+  ],
+  "imagens": [
+    "bestiario/diabo-barbado_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [
+      {
+        "tipo": "luz",
+        "formas": "todas"
+      },
+      {
+        "tipo": "sagrado",
+        "formas": "todas"
+      }
+    ],
+    "resistencias": [
+      {
+        "tipo": "gelo",
+        "formas": "todas"
+      },
+      {
+        "tipo": "acido",
+        "formas": "todas"
+      }
+    ],
+    "imunidades": [
+      {
+        "tipo": "fogo",
+        "formas": "todas"
+      }
+    ]
+  },
+  "revisao": [
+    {
+      "campo": "habilidades.prontidao",
+      "motivo": "A nota do site (\"Prontidão 3\"); o campo dizia 1; 3 pela nota do site, e não o 1 do campo"
+    },
+    {
+      "campo": "couraca",
+      "motivo": "Cobertura do corpo pela R49; metades arredondadas para cima. Absorção natural do livro (`combate.md`). Couraça 1: pele escamosa e dura, como a do cavalo (1) .; 1, pela pele escamosa"
+    },
+    {
+      "campo": "comportamento.dieta",
+      "motivo": ""
+    },
+    {
+      "campo": "habilidadesEspeciais.Barba viva",
+      "motivo": "R4. Retirada a espera entre ativações.; números da ficha, com as bases do site quando havia (D-197)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Teleporte",
+      "motivo": "R1 e D-197. Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. Limite diário dos usos grátis: 3. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação uma ação, Velocidade 8 -> uma ação, Velocidade 5. O efeito sai no Tick do Golpe. Pela régua da Arte de base. valor de molde, para a bancada (uso extra de 1 de Energia).; números da ficha, com as bases do site quando havia (D-197)."
+    },
+    {
+      "campo": "ataques",
+      "motivo": "o site gravava um \"Golpe planar\" de 1 dado e 5 Ticks, de corte (`inimigos.json`: \"1d6 +8 corte\", dano médio 11,5). A D-241 levou a Pesado só o golpe de cinco planares; aqui a classe sai do gesto: a glaive é a Haste de Guerra do livro, de duas mãos (Força × 2), e a Mordida é Leve. Dano médio: 11,5 antes; depois, 17,5 (a glaive)"
+    },
+    {
+      "campo": "habilidadesEspeciais.Trava a ferida",
+      "motivo": "números da ficha, com as bases do site quando havia (D-197)."
+    },
+    {
+      "campo": "habilidadesEspeciais.Doença infernal",
+      "motivo": "números da ficha, com as bases do site quando havia (D-197)."
+    },
+    {
+      "campo": "ataques.Glaive serrilhada",
+      "motivo": "12/11/2026, I2 do autor: o item do catálogo virou a Glaive lisa (sem Sangramento, Acerto +0), e a glaive serrilhada do diabo passa a ataque da própria ficha, com os mesmos números (Velocidade 7, 1d6 + 2, Acerto −1, duas mãos, Força × 2, alcance) e o Sangramento escrito na ficha. Dano médio 17,5 preservado."
+    }
+  ]
+}

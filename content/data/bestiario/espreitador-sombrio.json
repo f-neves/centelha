@@ -1,0 +1,227 @@
+{
+  "id": "espreitador-sombrio",
+  "idAntigo": "mon-dark-stalker",
+  "nome": "Espreitador Sombrio",
+  "nomeIngles": "Dark Stalker",
+  "categoria": "humanoide",
+  "papel": "soldado",
+  "ameaca": 3,
+  "centelha": 2,
+  "corpo": {
+    "postura": "bípede, de pé",
+    "apoio": "bipede",
+    "altura": 1.8,
+    "largura": 0.34,
+    "profundidade": 0.17,
+    "comprimento": null,
+    "massa": 45,
+    "area": 0.54,
+    "posturaDoTamanho": "de frente"
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 4,
+    "destreza": 5,
+    "vigor": 4,
+    "percepcao": 2,
+    "inteligencia": 2,
+    "raciocinio": 2,
+    "influencia": 3,
+    "perspicacia": 2,
+    "compostura": 3
+  },
+  "habilidades": {
+    "armas": 4,
+    "briga": 2,
+    "bloqueio": 2,
+    "esquiva": 1,
+    "atletismo": 2,
+    "furtividade": 3,
+    "prontidao": 1,
+    "integridade": 3,
+    "sociabilidade": 1
+  },
+  "habilidadesSec": {
+    "lideranca": 2,
+    "intimidacao": 2,
+    "musculatura": 0
+  },
+  "especialidades": {
+    "armas": [
+      {
+        "foco": "duas espadas curtas",
+        "valor": 1,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 2,
+    "conviccao": 3,
+    "temperanca": 3
+  },
+  "vontade": 7,
+  "aparencia": 4,
+  "deslocamento": {
+    "terra": {
+      "batalha": 3,
+      "arranque": 5,
+      "corrida": 7
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Espada curta",
+      "arma": "espada-curta",
+      "justificativa": "A arma do livro (`armas.json`, `espada-curta`): Leve, Velocidade 5, Acerto +2, Defesa +1, ★C · P(N1). Uma em cada mão: a empunhadura dupla (Manobras). A Centelha soma inteira. Jogada: Destreza 5 + Armas 4 + 2 × o menor entre Centelha 2 e Armas 4 (4)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Duas lâminas",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "texto": "Ignora a penalidade da mão inábil. Paga os custos normais de empunhadura dupla"
+    },
+    {
+      "nome": "Explosão de chamas",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "ele morre",
+      "duracao": "instantânea",
+      "alcance": "3 m",
+      "area": "esfera de 3 m em volta do corpo",
+      "efeito": "o corpo estoura numa bola de fogo branco-quente",
+      "dano": "3d6, fogo",
+      "resistencia": "esquiva, contra Dificuldade 15; quem passa leva metade",
+      "limiteDeUso": "uma vez, ao morrer. Sem custo"
+    },
+    {
+      "nome": "Cegueira pela luz",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "luz forte (sol, Arte de Luz, lanterna de perto)",
+      "duracao": "enquanto durar a exposição",
+      "alcance": "o próprio corpo",
+      "area": "não se aplica",
+      "efeito": "Fica Ofuscado sob sol forte. Sofre −2 nas ações que dependem da visão, inclusive ataques",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "nenhum. Sem custo"
+    },
+    {
+      "nome": "Uso de veneno",
+      "formas": "todas",
+      "classe": "sem regra ainda",
+      "categoria": "inato",
+      "efeito": "aplica veneno nas lâminas sem nunca se envenenar ao aplicar. O veneno é o que ele tiver (o Mestre escolhe do catálogo)"
+    },
+    {
+      "nome": "Golpe na brecha",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "o primeiro golpe da ação que fere um alvo Surpreso ou Flanqueado",
+      "duracao": "instantânea",
+      "alcance": "o do golpe",
+      "area": "o alvo atingido",
+      "efeito": "Explora o ponto vital. Quem ignora dano extra de ponto vital ignora esse acréscimo",
+      "dano": "+1d6 no dano do golpe",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "uma vez por ação, sem custo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "senhor das trevas",
+      "formas": "todas",
+      "texto": "deixa os rastejadores na frente, ataca de surpresa no escuro com as duas lâminas e foge da luz; ao cair, a explosão pega quem está perto."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão no escuro",
+      "descricao": "enxerga com clareza em qualquer escuridão, inclusive a criada por magia",
+      "formas": "todas"
+    },
+    {
+      "nome": "audição e olfato",
+      "descricao": "os de um humano",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "prendeRespiracao": "pela regra do personagem",
+    "mente": "humanoide; senhorial e fria",
+    "tracos": "corpo alto e descarnado, pele pálida, roupa escura e couro limpos, duas espadas curtas"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "senhor de um bando de rastejadores, típico 1 com 4 a 12 servos",
+    "atividade": "noturno",
+    "dieta": "onívoro",
+    "caca": "manda os servos roubar; caça de surpresa no escuro",
+    "dianteDeGente": "ataca de surpresa ou manda os servos"
+  },
+  "ecologia": {
+    "terreno": [
+      "subterrâneo",
+      "urbano"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Senhor esguio dos povos das trevas, de roupa escura sempre limpa e uma espada curta em cada mão. Golpeia de surpresa no escuro, foge da luz e, ao morrer, explode numa bola de fogo branco.",
+  "lore": [
+    {
+      "titulo": "Senhores das Profundezas",
+      "texto": "Lideram a sociedade dos povos das trevas a partir de vilarejos escondidos em cavernas remotas, onde são servidos e reverenciados por seus súditos menores."
+    },
+    {
+      "titulo": "Vestes Impecáveis",
+      "texto": "Ao contrário de seus servos maltrapilhos, vestem panos escuros e couro sempre limpos, carregando um par de espadas curtas que preferem a qualquer outra arma."
+    }
+  ],
+  "imagens": [
+    "bestiario/espreitador-sombrio_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "habilidades.bloqueio",
+      "motivo": "Apara com as duas lâminas; 2; o site não gravava Bloqueio"
+    },
+    {
+      "campo": "comportamento.social",
+      "motivo": "site"
+    },
+    {
+      "campo": "comportamento.dieta",
+      "motivo": ""
+    },
+    {
+      "campo": "virtudes.temperanca",
+      "motivo": "3; o site tinha 2"
+    }
+  ]
+}

@@ -1,0 +1,245 @@
+{
+  "id": "boggard",
+  "idAntigo": "mon-boggard",
+  "nome": "Boggard",
+  "nomeIngles": "Boggard",
+  "categoria": "humanoide",
+  "papel": "soldado",
+  "ameaca": 2,
+  "centelha": 2,
+  "corpo": {
+    "postura": "bípede, de pé, agachado",
+    "apoio": "bipede",
+    "altura": 1.5,
+    "largura": 0.46,
+    "profundidade": 0.24,
+    "comprimento": null,
+    "massa": 70,
+    "area": 0.61,
+    "posturaDoTamanho": "de frente"
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 4,
+    "destreza": 2,
+    "vigor": 4,
+    "percepcao": 2,
+    "inteligencia": 2,
+    "raciocinio": 2,
+    "influencia": 2,
+    "perspicacia": 2,
+    "compostura": 2
+  },
+  "habilidades": {
+    "armas": 2,
+    "briga": 3,
+    "bloqueio": 1,
+    "esquiva": 0,
+    "atletismo": 2,
+    "prontidao": 1,
+    "integridade": 2,
+    "sobrevivencia": 2
+  },
+  "habilidadesSec": {
+    "natacao": 3,
+    "intimidacao": 2,
+    "musculatura": 0
+  },
+  "especialidades": {
+    "resistencia": [
+      {
+        "foco": "prender a respiração",
+        "valor": 3,
+        "origem": "natural"
+      }
+    ],
+    "briga": [
+      {
+        "foco": "Agarrão",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ],
+    "armas": [
+      {
+        "foco": "maça",
+        "valor": 1,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 2,
+    "conviccao": 3,
+    "temperanca": 2
+  },
+  "vontade": 7,
+  "aparencia": 4,
+  "deslocamento": {
+    "terra": {
+      "batalha": 2,
+      "arranque": 3,
+      "corrida": 5
+    },
+    "nado": {
+      "batalha": 3
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Maça estrela",
+      "arma": "maca-estrela",
+      "justificativa": "A arma do livro (`armas.json`, `maca-estrela`): Média, Velocidade 6, Acerto +1, Defesa +1, ★I · P(N1). A Centelha soma inteira. Jogada: Força 4 + Briga 3 + 2 × o menor entre Centelha 2 e Briga 3 (4)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Língua grudenta",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "uma ação, Velocidade 5, a jogada de Agarrar do livro com a língua (Força + Briga, mais a Centelha, contra a Defesa de agarrão do alvo)",
+      "duracao": "até a língua ser arrancada ou cortada, ou ele soltar",
+      "alcance": "3 m",
+      "area": "um alvo",
+      "efeito": "o alvo fica Agarrado pela língua e não se afasta mais que 3 m dele; para soltar, escapa pela regra do Agarrar ou corta a língua (um golpe de arma de corte que fira 3 ou mais)",
+      "dano": "nenhum",
+      "resistencia": "corpo, pela regra do Agarrar, com o Agarrão +2 dele",
+      "limiteDeUso": "um alvo por vez. Usar repetidamente causa esforço e pode levar ao cansaço. Sem custo"
+    },
+    {
+      "nome": "Grito aterrorizante",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "sobrenatural",
+      "ativacao": "uma ação, Velocidade 6, um coaxar alto e horrível",
+      "duracao": "Amedrontado até o fim da próxima ação de cada alvo",
+      "alcance": "9 m",
+      "area": "esfera de 9 m em volta dele",
+      "efeito": "quem não é boggard e falha fica Amedrontado (não avança na direção dele, −2 em tudo enquanto ele estiver à vista)",
+      "dano": "nenhum",
+      "resistencia": "Influência + Intimidação da criatura contra a Defesa Mental do alvo, com o Resistir do livro. quem passa fica imune ao grito até o fim da cena",
+      "limiteDeUso": "Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "Andar do pântano",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "nenhuma; sempre ativo",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "não se aplica",
+      "efeito": "a lama, a água rasa e a vegetação do pântano não são terreno difícil para ele",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "nenhum. Sem custo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "emboscada do brejo",
+      "formas": "todas",
+      "texto": "espera dentro da água, prende o alvo com a língua, coaxa para apavorar o grupo e bate com a maça; recua para o fundo se a luta vira."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão no escuro",
+      "descricao": "enxerga no escuro e na penumbra",
+      "formas": "todas"
+    },
+    {
+      "nome": "audição e olfato",
+      "descricao": "os de um humano",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar; fica muito tempo submerso",
+    "prendeRespiracao": "Vigor + Resistência, com a Especialidade natural +3",
+    "mente": "humanoide; tribal",
+    "tracos": "pele verde e úmida, olhos enormes, boca larga, mãos e pés palmados, língua longa e pegajosa"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "em clã, numa aldeia de lama, típico 4 a 12",
+    "atividade": "qualquer hora",
+    "dieta": "carnívoro: peixe, rã e o que cai na água",
+    "caca": "emboscada na água",
+    "dianteDeGente": "defende a aldeia; ataca quem entra no pântano"
+  },
+  "ecologia": {
+    "terreno": [
+      "pântano",
+      "aquático"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Homem-rã dos pântanos, de boca larga e olhos enormes, que vive em aldeias de lama. Prende a presa com a língua grudenta, apavora com um coaxar horrível e fica muito tempo debaixo d'água.",
+  "lore": [
+    {
+      "titulo": "Aparência",
+      "texto": "Lembram sapos ou rãs andando eretos, com mãos e pés palmados, olhos enormes e bocas largas demais; vivem perto de grandes rios ou nas profundezas de pântanos."
+    },
+    {
+      "titulo": "Sociedade",
+      "texto": "Erguem pequenas aldeias de montículos de lama nas margens; começam a vida como girinos em lagoas de reprodução, crescendo até um metro antes de ganhar braços e pernas e se tornarem capazes de viver em terra firme."
+    },
+    {
+      "titulo": "Comportamento",
+      "texto": "A aceitação de um jovem no clã depende de como ele se desenvolve durante essa transformação, tornando a chegada à vida adulta um verdadeiro rito de passagem."
+    }
+  ],
+  "imagens": [
+    "bestiario/boggard_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "habilidades.armas",
+      "motivo": "O site gravava `briga` 3 para a \"Arma\"; no livro a arma branca é Armas (manual 3.5)"
+    },
+    {
+      "campo": "comportamento.social",
+      "motivo": "site (Sociedade)"
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": ""
+    },
+    {
+      "campo": "comportamento.dieta",
+      "motivo": ""
+    },
+    {
+      "campo": "comportamento.dianteDeGente",
+      "motivo": ""
+    },
+    {
+      "campo": "habilidadesEspeciais.Grito aterrorizante",
+      "motivo": "R1 e D-197. Usos grátis: 1 por cena. Cada uso extra custa 1 de Energia. O limite preserva o primeiro uso e reserva repetição para esforço adicional. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "equipamento",
+      "motivo": "maça estrela do livro, sem armadura"
+    }
+  ]
+}

@@ -1,0 +1,270 @@
+{
+  "id": "cao-de-guerra-nessiano",
+  "idAntigo": "mon-nessian-warhound",
+  "nome": "Cão de Guerra Nessiano",
+  "nomeIngles": "Nessian Warhound",
+  "categoria": "corruptor",
+  "papel": "chefe",
+  "ameaca": 5,
+  "centelha": 5,
+  "corpo": {
+    "postura": "quatro patas",
+    "apoio": "quadrupede",
+    "altura": 1.34,
+    "largura": 0.65,
+    "profundidade": null,
+    "comprimento": 2.98,
+    "comprimentoSemCauda": 2.1,
+    "caudaGrossa": false,
+    "massa": 450,
+    "area": 1.15,
+    "posturaDoTamanho": "silhueta vista de lado"
+  },
+  "couraca": 2,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 9,
+    "destreza": 4,
+    "vigor": 7,
+    "percepcao": 3,
+    "inteligencia": 1,
+    "raciocinio": 2,
+    "influencia": 1,
+    "perspicacia": 1,
+    "compostura": 2
+  },
+  "habilidades": {
+    "briga": 5,
+    "bloqueio": 0,
+    "esquiva": 1,
+    "atletismo": 3,
+    "atirador": 3,
+    "furtividade": 0,
+    "integridade": 2,
+    "prontidao": 1,
+    "resistencia": 4,
+    "sociabilidade": 0,
+    "sobrevivencia": 3
+  },
+  "habilidadesSec": {
+    "musculatura": 3
+  },
+  "especialidades": {
+    "prontidao": [
+      {
+        "foco": "faro",
+        "valor": 3,
+        "origem": "natural"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 6,
+    "compaixao": 1,
+    "conviccao": 5,
+    "temperanca": 1
+  },
+  "vontade": 10,
+  "aparencia": 0,
+  "deslocamento": {
+    "terra": {
+      "batalha": 4,
+      "arranque": 6,
+      "corrida": 9
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Mordida",
+      "parte": "mandibula-de-mastim",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "O \"Golpe planar\" do site (2 dados, 6 Ticks, corte): a mordida de cão, que morde, segura e sacode, Média, como a do lobo e a do cachorro de guarda. Jogada: Força 9 + Briga 5 + 2 × o menor entre Centelha 5 e Briga 5 (10)"
+    },
+    {
+      "nome": "Sopro de fogo",
+      "parte": "boca",
+      "classe": "distancia",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": "3d6",
+      "multiplicadorForca": 0,
+      "tipoDano": "fogo",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Ataque natural a distância, Classe Distância, como o sopro do filhote de dragão vermelho. Os números são da ficha, descritos na linha do sopro nas Manobras. Sem jogada de ataque."
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Sopro de fogo",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "fogo",
+        "nivel": 4
+      },
+      "ataque": "Sopro de fogo",
+      "categoria": "substancia",
+      "ativacao": "uma ação, Velocidade 6",
+      "duracao": "instantânea",
+      "alcance": "6 m à frente",
+      "area": "cone de 6 m",
+      "efeito": "o cão expele um cone de fogo devastador. Após a área, só há dano residual quando um efeito da ficha o declara",
+      "dano": "3d6 + Centelha, fogo",
+      "resistencia": "sem jogada de ataque. Cada alvo resolve a saída de área pelo livro",
+      "limiteDeUso": "O corpo guarda 2 doses e produz 1 dose a cada 12 horas. Cada uso gasta 1 dose. Nada acelera a produção"
+    },
+    {
+      "nome": "couraça chamuscada",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "enquanto a condição se aplica",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "A peça usa os números da armadura equivalente do catálogo e só serve a esta anatomia. O preço dobra por faixa de massa acima da humana. Use a placa de metal ajustada para quadrúpede",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "mordida crítica",
+      "formas": "todas",
+      "texto": "A mordida rasga a carne profundamente. O Mestre decide a consequência na cena."
+    },
+    {
+      "nome": "caçador de Asmodeus",
+      "formas": "todas",
+      "texto": "persegue o alvo do senhor sem parar, abre com o sopro e morde até completar a missão ou morrer."
+    },
+    {
+      "nome": "Projétil natural",
+      "formas": "todas",
+      "texto": "Contra um alvo, use o maior entre Vigor, Destreza e Percepção + Atirador. Ao cobrir uma área, só os alvos fazem a jogada de saída."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão no escuro",
+      "descricao": "enxerga no escuro absoluto",
+      "formas": "todas"
+    },
+    {
+      "nome": "faro",
+      "descricao": "de cão; Prontidão (faro) +3; não perde o rastro",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "mente": "inteligência de cão, obediente ao senhor",
+    "tracos": "mastim de 2,1 m de corpo e 1,34 m de cernelha, de pele escura e chamuscada, olhos de brasa, numa couraça de metal enegrecido"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "matilha, nos canis do senhor",
+    "atividade": "qualquer hora",
+    "dieta": "carnívoro",
+    "caca": "caça os inimigos do senhor",
+    "dianteDeGente": "ataca quem o senhor manda"
+  },
+  "ecologia": {
+    "terreno": [
+      "qualquer"
+    ],
+    "clima": [
+      "extraplanar"
+    ]
+  },
+  "descricao": "Mastim infernal do tamanho de um pônei, guardado nos canis do Príncipe das Trevas sob o palácio de Nessus. Veste couraça chamuscada, obedece cegamente e persegue os inimigos do senhor até os confins do Inferno e além.",
+  "lore": [
+    {
+      "titulo": "Matilha de Asmodeus",
+      "texto": "Guardados nos canis do Príncipe das Trevas sob seu palácio em Nessus, esses cães vestem couraças chamuscadas e obedecem cegamente ao mestre."
+    },
+    {
+      "titulo": "Caçadores implacáveis",
+      "texto": "Perseguem os inimigos de Asmodeus até os confins do Inferno e além, sem parar até completar a missão ou morrer tentando."
+    }
+  ],
+  "imagens": [
+    "bestiario/cao-de-guerra-nessiano_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [
+      {
+        "tipo": "gelo",
+        "formas": "todas"
+      },
+      {
+        "tipo": "luz",
+        "formas": "todas"
+      },
+      {
+        "tipo": "sagrado",
+        "formas": "todas"
+      }
+    ],
+    "resistencias": [],
+    "imunidades": [
+      {
+        "tipo": "fogo",
+        "formas": "todas"
+      }
+    ]
+  },
+  "revisao": [
+    {
+      "campo": "couraca",
+      "motivo": "Cobertura do corpo pela R49; metades arredondadas para cima. Absorção natural do livro (`combate.md`). Couraça 2: couro grosso de mastim crescido a 450 kg, como o elefante (2 a 3), sem contar a couraça vestida ."
+    },
+    {
+      "campo": "comportamento.dieta",
+      "motivo": ""
+    },
+    {
+      "campo": "ataques.Sopro de fogo",
+      "motivo": "Antes: jogada de ataque na tabela. R36: Sem jogada de ataque, pois o efeito ocupa a área descrita nas Manobras. Cada alvo resolve a defesa de área.; R1/R4, D-197. Dois sopros prontos permitem alternar sopro e golpes. Sugestão de 2 doses e 12 h por dose para repor fora da luta. valor de molde, para a bancada (2 doses e produz 1 dose a cada 12 horas).; poder natural com números da ficha (D-197), base Fogo 4 (3d6, a Bola de Fogo); o site não dava os números"
+    },
+    {
+      "campo": "corpo.area",
+      "motivo": "Grande para Médio, pela silhueta do mastim com 2,1 m de corpo (1,15 m², 21% abaixo do corte). Em jogo: o humano perde o +3 que tinha contra ele no corpo a corpo, e o atirador humano deixa de ganhar 3"
+    },
+    {
+      "campo": "ataques",
+      "motivo": "o site gravava um \"Golpe planar\" de 2 dados e 6 Ticks, de corte (`inimigos.json`: \"2d6 +14 corte\", dano médio 21). A D-241 levou a Pesado só o golpe de cinco planares; aqui a classe sai do gesto: a mordida fica Média, como a do lobo e a do cachorro de guarda. Dano médio: 21 antes; depois, 17,5"
+    },
+    {
+      "campo": "habilidadesEspeciais.couraça chamuscada",
+      "motivo": "sem regra ainda; o caso da armadura em corpo de criatura é o do gigante do fogo, em aberto no `PERGUNTAS.md` (2a)"
+    }
+  ]
+}

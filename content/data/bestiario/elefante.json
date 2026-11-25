@@ -1,0 +1,281 @@
+{
+  "id": "elefante",
+  "idAntigo": "mon-elefante",
+  "nome": "Elefante-asiático",
+  "nomeIngles": "Asian elephant",
+  "categoria": "animal",
+  "papel": "fera",
+  "ameaca": 4,
+  "centelha": 0,
+  "corpo": {
+    "postura": "quatro patas",
+    "apoio": "quadrupede",
+    "altura": 2.65,
+    "largura": 1.44,
+    "profundidade": null,
+    "comprimento": 5.8,
+    "comprimentoSemCauda": 4.54,
+    "caudaGrossa": false,
+    "massa": 3600,
+    "area": 6.65,
+    "posturaDoTamanho": "vista de lado",
+    "cargaMedida": 540
+  },
+  "couraca": 3,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 10,
+    "destreza": 1,
+    "vigor": 9,
+    "percepcao": 2,
+    "inteligencia": 2,
+    "raciocinio": 2,
+    "influencia": 3,
+    "perspicacia": 2,
+    "compostura": 2
+  },
+  "habilidades": {
+    "briga": 3,
+    "bloqueio": 2,
+    "esquiva": 1,
+    "atletismo": 0,
+    "furtividade": 0,
+    "integridade": 2,
+    "prontidao": 1,
+    "resistencia": 5,
+    "empatia": 2,
+    "sobrevivencia": 2
+  },
+  "habilidadesSec": {
+    "equilibrio": 0,
+    "escalada": 0,
+    "natacao": 0,
+    "voo": 0,
+    "corrida": 0,
+    "musculatura": 3
+  },
+  "especialidades": {
+    "prontidao": [
+      {
+        "foco": "faro",
+        "valor": 3,
+        "origem": "natural"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 1,
+    "conviccao": 1,
+    "temperanca": 1
+  },
+  "vontade": 3,
+  "aparencia": 6,
+  "deslocamento": {
+    "terra": {
+      "batalha": 3,
+      "arranque": 5,
+      "corrida": 7
+    },
+    "nado": {
+      "batalha": 3
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Presada (só o macho com presa)",
+      "parte": "presa",
+      "classe": "pesada",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": "2d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 1,
+      "acerto": 0,
+      "bloqueiaComoArma": 1,
+      "justificativa": "Era 2d6 + 14, média 21. 7 + 10. Presa de até 2,4 m e 41 a 45 kg (Wikipédia): golpe da cabeça inteira, lento, Pesado; de cabeça, × 1. N1 é o da própria presa (\"chifre fica em N0 ou N1, pelo tamanho\"), e não do porte"
+    },
+    {
+      "nome": "Pisão (ou investida)",
+      "parte": "corpo",
+      "classe": "pesada",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": "2d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "impacto",
+      "nivelPerfuracao": null,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Golpe Pesado, com Força × 1 no golpe comum (D-266); na ação de Investida, soma mais uma Força, sem +1d6 (P20-b)."
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "agarrar",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "regra": "agarrar"
+    },
+    {
+      "nome": "empurrar",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "regra": "empurrar"
+    },
+    {
+      "nome": "arremessar o que agarrou",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "enquanto a condição se aplica",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Arremessa a presa agarrada como carga pela tabela de Arremesso. Resolva a queda ou colisão pelo livro, uma única vez",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "investida que empurra",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Pisão (ou investida)",
+      "categoria": "inato",
+      "regra": "investida"
+    },
+    {
+      "nome": "corpo enorme",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "enquanto a condição se aplica",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "A anatomia firme soma +4 à Defesa contra Derrubar e Empurrar. Aplicam-se as travas de massa",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "Atropelar",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "texto": "Atropelar"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "Pisar num alvo",
+      "formas": "todas",
+      "texto": "O Pisoteio é um ataque físico normal contra um alvo, com o golpe Pisão (ou investida)."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "faro",
+      "descricao": "Prontidão (faro) +3, Especialidade natural",
+      "formas": "todas"
+    },
+    {
+      "nome": "audição",
+      "descricao": "texto; ouve e se comunica por infrassom e pela vibração do chão a longa distância. Números: não achados",
+      "formas": "todas"
+    },
+    {
+      "nome": "visão",
+      "descricao": "texto; enxerga bem na penumbra e mal na luz forte",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar (nada com a tromba de fora)",
+    "mente": "animal",
+    "tracos": "tromba sem osso, de até 150.000 feixes de músculo; presas só nos machos; pele de 18 a 30 mm; dorme 3 a 4 horas por dia; come até 150 kg de planta por dia"
+  },
+  "aptidoes": {
+    "montaria": true,
+    "carga": true,
+    "tracao": true
+  },
+  "comportamento": {
+    "social": "grupos de fêmeas e filhotes; machos sós ou em grupos de solteiros",
+    "dieta": "herbívoro (até 150 kg por dia)",
+    "caca": "pastagem e ramagem",
+    "dianteDeGente": "ameaça e ataca quando acuado, com cria, ou em musth"
+  },
+  "ecologia": {
+    "terreno": [
+      "planície",
+      "selva"
+    ],
+    "clima": [
+      "tropical"
+    ]
+  },
+  "descricao": "Domesticado há séculos para o transporte, a madeira e a guerra; um macho de trabalho arrasta toneladas de tora por dia. Vive 60 anos ou mais.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Vive em manadas matriarcais, com forte laço social entre fêmeas e crias e uma memória apurada para rotas e perigos."
+    },
+    {
+      "titulo": "Ecologia",
+      "texto": "Herbívoro que migra por longas distâncias em busca de água e pasto, moldando a paisagem por onde passa."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "As manadas cruzam as savanas e florestas de Mére, tratadas por alguns povos locais como animais quase sagrados pela sabedoria aparente e a longevidade, sem qualquer laço real com magia."
+    },
+    {
+      "titulo": "Aptidões",
+      "texto": "montaria: sim (turismo e trabalho na Tailândia). carga: sim (elefantes de bagagem de Mianmar). tração: sim (arrasto de tora)."
+    }
+  ],
+  "imagens": [],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "habilidades.furtividade",
+      "motivo": "Era sem linha (0). O levantamento: nenhum fato de esconder-se ou de andar em silêncio na pesquisa. Régua: 1, não se esconde"
+    },
+    {
+      "campo": "corpo.altura",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 2,59 × 1,0243 = 2,653 . Antes: Era 2,75 m, o ombro médio do macho (Larramendi 2016; Wikipédia). Escalado pelo cubo da massa: 2,75 × (3.350 ÷ 4.000)^(1/3) = 2,75 × 0,943 = 2,59 m; o meio entre o macho (2,75) e a fêmea (2,40) seria 2,575 m, quase o mesmo. A fonte dá o ombro, como a do mamute"
+    },
+    {
+      "campo": "corpo.comprimento",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 5,66 × 1,0243 = 5,797 . Antes: Era 6,0 m, o meio de \"5,5 a 6,5 m\" da tromba à cauda (Wikipédia), lido como do macho da ficha; escalado pelo cubo da massa: 6,0 × (3.350 ÷ 4.000)^(1/3) = 5,66 m"
+    },
+    {
+      "campo": "corpo.comprimentoSemCauda",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 4,43 × 1,0243 = 4,538 . Antes: Era 4,7 m, o total de 6,0 m menos a cauda média de 1,3 m (1,2 a 1,5 m, Wikipédia), sem medida direta; escalado pelo cubo da massa: 4,7 × (3.350 ÷ 4.000)^(1/3) = 4,43 m"
+    },
+    {
+      "campo": "corpo.largura",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 1,41 × 1,0243 = 1,444 . Antes: Era 1,5 m, estimada para o macho de 4 t (o asiático tem o corpo compacto e a pelve larga, Larramendi), sem medida; escalado pelo cubo da massa: 1,5 × (3.350 ÷ 4.000)^(1/3) = 1,41 m"
+    }
+  ]
+}

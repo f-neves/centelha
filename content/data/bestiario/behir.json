@@ -1,0 +1,252 @@
+{
+  "id": "behir",
+  "idAntigo": "mon-behir",
+  "nome": "Behir",
+  "nomeIngles": "Behir",
+  "categoria": "besta-magica",
+  "papel": "chefe",
+  "ameaca": 5,
+  "centelha": 1,
+  "corpo": {
+    "postura": "doze patas, rente ao chão; enrosca-se",
+    "apoio": "outro",
+    "altura": 1.17,
+    "largura": 1.95,
+    "profundidade": null,
+    "comprimento": 9,
+    "comprimentoSemCauda": 4.71,
+    "caudaGrossa": true,
+    "massa": 3600,
+    "area": 11.3,
+    "posturaDoTamanho": "vista de cima"
+  },
+  "couraca": 5,
+  "perfilCouraca": "rigida",
+  "atributos": {
+    "forca": 10,
+    "destreza": 3,
+    "vigor": 8,
+    "percepcao": 4,
+    "inteligencia": 1,
+    "raciocinio": 2,
+    "influencia": 3,
+    "perspicacia": 2,
+    "compostura": 3
+  },
+  "habilidades": {
+    "briga": 5,
+    "bloqueio": 0,
+    "esquiva": 1,
+    "atletismo": 3,
+    "atirador": 2,
+    "furtividade": 3,
+    "integridade": 3,
+    "prontidao": 3,
+    "resistencia": 4,
+    "sociabilidade": 0,
+    "sobrevivencia": 3
+  },
+  "habilidadesSec": {
+    "escalada": 3,
+    "musculatura": 3
+  },
+  "especialidades": {
+    "prontidao": [
+      {
+        "foco": "em caverna",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 4,
+    "compaixao": 1,
+    "conviccao": 3,
+    "temperanca": 2
+  },
+  "vontade": 6,
+  "aparencia": 3,
+  "deslocamento": {
+    "terra": {
+      "batalha": 4,
+      "arranque": 6,
+      "corrida": 9
+    },
+    "escalada": {
+      "batalha": 2
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Mordida",
+      "parte": "mandibula",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "A mordida de réptil grande com o pescoço atrás, Média, como a do crocodilo. Jogada: Força 10 + Briga 5 + 2 × o menor entre Centelha 1 e Briga 5 (2)"
+    },
+    {
+      "nome": "Sopro elétrico",
+      "parte": "boca",
+      "classe": "distancia",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": "2d6",
+      "multiplicadorForca": 0,
+      "tipoDano": "raio",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Ataque natural a distância, Classe Distância, como o sopro do cão infernal. Os números são da ficha, descritos na linha do sopro nas Manobras. Sem jogada de ataque."
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "enroscar",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Mordida",
+      "categoria": "inato",
+      "regra": "agarrar"
+    },
+    {
+      "nome": "Sopro elétrico",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "raio",
+        "nivel": 3
+      },
+      "ataque": "Sopro elétrico",
+      "categoria": "substancia",
+      "ativacao": "uma ação, Velocidade 5",
+      "duracao": "instantânea",
+      "alcance": "18 m à frente",
+      "area": "linha de 18 m",
+      "efeito": "um relâmpago sai da boca em linha reta. Após a área, só há dano residual quando um efeito da ficha o declara",
+      "dano": "2d6 + Centelha, raio",
+      "resistencia": "sem jogada de ataque. Cada alvo resolve a saída de área pelo livro",
+      "limiteDeUso": "O corpo guarda 2 doses e produz 1 dose a cada 12 horas. Cada uso gasta 1 dose. Nada acelera a produção"
+    },
+    {
+      "nome": "engolir inteiro",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "ação de Velocidade 7 contra vítima menor já Agarrada que cabe na boca",
+      "duracao": "até sair",
+      "alcance": "toque",
+      "area": "a vítima engolida",
+      "efeito": "Dentro, fica Imobilizada para o corpo, pode atacar com arma curta e sofre sufocamento pelo livro. Uma ferida interna de 10 PV abre a saída, por dentro ou com ajuda de fora. Também pode escapar pela garganta como no agarrão. Se a criatura morre, a vítima sai com uma ação",
+      "dano": "2d6 de Impacto uma vez a cada 6 Ticks",
+      "resistencia": "escape do agarrão pela garganta",
+      "limiteDeUso": "sem custo. Usar repetidamente causa esforço e pode levar ao cansaço"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "emboscada",
+      "formas": "todas",
+      "texto": "espera em passagem estreita, enrosca o corpo na presa para esmagar e cospe raio em quem tenta fugir; disputa covil com dragões azuis e nunca cede terreno."
+    },
+    {
+      "nome": "Projétil natural",
+      "formas": "todas",
+      "texto": "Contra um alvo, use o maior entre Vigor, Destreza e Percepção + Atirador. Ao cobrir uma área, só os alvos fazem a jogada de saída."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "sentidos aguçados",
+      "descricao": "Prontidão (em caverna) +2",
+      "formas": "todas"
+    },
+    {
+      "nome": "visão",
+      "descricao": "enxerga no escuro das cavernas",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "mente": "animal (fera de Inteligência 1)",
+    "tracos": "réptil serpentino de 9 m, de escamas azuis, doze patas e um chifre curvo na cabeça"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitário e ferozmente territorial",
+    "atividade": "qualquer hora",
+    "dieta": "carnívoro",
+    "caca": "emboscada em passagens estreitas",
+    "dianteDeGente": "ataca"
+  },
+  "ecologia": {
+    "terreno": [
+      "montanha",
+      "subterrâneo"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Réptil serpentino de doze patas que embosca em passagens estreitas, enrosca o corpo para esmagar a presa e a criva de raio se ela tenta fugir. Predador solitário de cavernas e desfiladeiros, disputa caça e covil com dragões azuis.",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Emboscada em passagens estreitas, enrosca o corpo serpentino para esmagar a presa e crivá-la de raio caso tente fugir."
+    },
+    {
+      "titulo": "Hábitat",
+      "texto": "Habita cavernas profundas, desfiladeiros rochosos e tocas escavadas nas montanhas."
+    },
+    {
+      "titulo": "Ecologia",
+      "texto": "Predador solitário e ferozmente territorial, disputa caça e covis com dragões azuis quando os encontra, sem nunca ceder terreno de bom grado."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "Fera das profundezas que ainda vive nos ermos onde nem os anões se aventuram mais, mais um motivo para o povo comum temer o que se move sob a terra desde que a Fenda se abriu."
+    }
+  ],
+  "imagens": [
+    "bestiario/behir_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "ataques.Sopro elétrico",
+      "motivo": "Antes: jogada de ataque na tabela. R36: Sem jogada de ataque, pois o efeito ocupa a área descrita nas Manobras. Cada alvo resolve a defesa de área.; R1/R4, D-197. Dois sopros prontos permitem alternar sopro e golpes. Sugestão de 2 doses e 12 h por dose para repor fora da luta. valor de molde, para a bancada (2 doses e produz 1 dose a cada 12 horas).; poder natural com a base e os usos do site (Raio 3, a cada 24 Ticks) e números da ficha (D-197): o Relâmpago do livro dá 2d6"
+    },
+    {
+      "campo": "ataques",
+      "motivo": "o site gravava um ataque só, \"Garras e presas\" (`inimigos.json`: \"3d6 +11 perfurante\", 7 Ticks, dano médio 21,5). A ficha fica com a mordida, Média, pelo gesto; a D-241 levou a Pesado de 2 dados só cinco planares. Dano médio: 21,5 antes; depois, mordida 14,5, sopro 8,0"
+    }
+  ]
+}

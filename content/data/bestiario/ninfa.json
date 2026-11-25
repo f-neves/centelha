@@ -1,0 +1,276 @@
+{
+  "id": "ninfa",
+  "idAntigo": "mon-ninfa",
+  "nome": "Ninfa",
+  "nomeIngles": "Nymph",
+  "categoria": "fada",
+  "papel": "elite",
+  "ameaca": 4,
+  "centelha": 5,
+  "corpo": {
+    "postura": "bípede, de pé",
+    "apoio": "bipede",
+    "altura": 1.7,
+    "largura": 0.39,
+    "profundidade": 0.21,
+    "comprimento": null,
+    "massa": 55,
+    "area": 0.58,
+    "posturaDoTamanho": "bípede, de pé"
+  },
+  "couraca": 0,
+  "atributos": {
+    "forca": 2,
+    "destreza": 6,
+    "vigor": 3,
+    "percepcao": 5,
+    "inteligencia": 5,
+    "raciocinio": 5,
+    "influencia": 5,
+    "perspicacia": 5,
+    "compostura": 5
+  },
+  "habilidades": {
+    "briga": 2,
+    "bloqueio": 0,
+    "esquiva": 2,
+    "prontidao": 4,
+    "integridade": 5,
+    "sociabilidade": 3,
+    "sobrevivencia": 3,
+    "furtividade": 4,
+    "persuasao": 3,
+    "empatia": 4,
+    "ocultismo": 3
+  },
+  "habilidadesSec": {
+    "cura": 2,
+    "natacao": 4,
+    "musculatura": 0
+  },
+  "especialidades": {},
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 3,
+    "conviccao": 3,
+    "temperanca": 2
+  },
+  "vontade": 10,
+  "aparencia": 8,
+  "deslocamento": {
+    "terra": {
+      "batalha": 3,
+      "arranque": 5,
+      "corrida": 7
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {
+    "agua": 4,
+    "natureza": 4,
+    "vida": 3,
+    "raio": 3,
+    "cura": 2
+  },
+  "ataques": [
+    {
+      "nome": "Golpe desarmado",
+      "parte": "mao",
+      "classe": "leve",
+      "pgr": [
+        1,
+        1,
+        3
+      ],
+      "dado": "1d6-2",
+      "multiplicadorForca": 1,
+      "tipoDano": "impacto",
+      "nivelPerfuracao": 0,
+      "acerto": 1,
+      "bloqueiaComoArma": null,
+      "justificativa": "Golpe rápido para se afastar do agressor; jogada 13 com Briga"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Graça sobrenatural",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "nenhuma; sempre ativa",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "não se aplica",
+      "efeito": "soma Influência 5 à Defesa Física (Esquiva e Bloqueio) e à Defesa Mental; não altera Defesa Social nem Absorção",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "nenhum. Sem custo"
+    },
+    {
+      "nome": "Beleza cegante",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "fascinacao",
+        "nivel": 4
+      },
+      "categoria": "inato",
+      "ativacao": "cruzar o olhar, sem ação adicional da ninfa",
+      "duracao": "até o fim da cena",
+      "alcance": "9 m",
+      "area": "quem cruza seu olhar",
+      "efeito": "quem cruza seu olhar fica Cego; desviar o rosto evita o efeito, mas impõe −4 ao ataque. Cego aplica −1d6 nas ações de visão. Se souber do ataque, Esquiva −4 e Bloqueio −8. Se não souber, Surpreso, com Defesas 0",
+      "dano": "nenhum",
+      "resistencia": "Influência + Ocultismo da criatura contra a Defesa Mental do alvo, com o Resistir do livro. quem passa não fica Cego",
+      "limiteDeUso": "Contínuo, sem custo"
+    },
+    {
+      "nome": "Fascínio",
+      "formas": "todas",
+      "classe": "livro",
+      "tecnica": {
+        "id": "beleza-inebriante",
+        "nivel": 4
+      },
+      "categoria": "inato"
+    },
+    {
+      "nome": "Paralisia de espanto",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "sobrenatural",
+      "ativacao": "uma ação, Velocidade 6",
+      "duracao": "6 Ticks",
+      "alcance": "até onde vê",
+      "area": "a vítima descrita pelo poder",
+      "efeito": "sua beleza pode deixar quem a contempla incapaz de reagir. A vítima fica Paralisada. Defesas Físicas 0, mente livre",
+      "dano": "nenhum adicional",
+      "resistencia": "Vigor + Resistência contra Dificuldade 15",
+      "limiteDeUso": "Usos grátis: 1 por cena. Cada uso extra custa 1 de Mana"
+    },
+    {
+      "nome": "Afinidade com água",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "metamorfose",
+        "nivel": 2
+      },
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Respira tanto ar quanto água, sem limite de tempo, pela regra de respiração",
+      "dano": "nenhum adicional",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "Feitiços druídicos",
+      "formas": "todas",
+      "texto": "usa as Artes para proteger a nascente, tratar ferimentos e controlar água e plantas."
+    },
+    {
+      "nome": "Furtividade natural",
+      "formas": "todas",
+      "texto": "esconde o corpo entre folhagens e reflexos da água."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão",
+      "descricao": "distingue movimentos sob a luz fraca do bosque",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar e água",
+    "mente": "inteligente",
+    "tracos": "Guardiã feérica de nascentes e quedas de água"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "solitária",
+    "atividade": "qualquer hora",
+    "dieta": "frutos, água e alimentos do bosque",
+    "caca": "não se aplica",
+    "dianteDeGente": "acolhe visitantes respeitosos e pune invasores de seu refúgio"
+  },
+  "ecologia": {
+    "terreno": [
+      "floresta",
+      "aquático"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Guardiã feérica de nascentes e quedas de água",
+  "lore": [
+    {
+      "titulo": "Comportamento",
+      "texto": "Guarda um recanto isolado (uma nascente, uma cachoeira, um bosque intocado) e reage à intrusão com humor imprevisível: pode acolher o viajante com graça ou desvelar sua beleza terrível até cegá-lo ou paralisá-lo de espanto."
+    },
+    {
+      "titulo": "Hábitat",
+      "texto": "Vive em clareiras, poças de água limpa e quedas d'água afastadas de qualquer caminho batido, lugares que ninguém mais visita há gerações."
+    },
+    {
+      "titulo": "Personalidade",
+      "texto": "Vaidosa e caprichosa, oscila entre a generosidade de uma protetora da natureza e a crueldade fria de quem não reconhece limites morais mortais."
+    },
+    {
+      "titulo": "Sociedade",
+      "texto": "Solitária por natureza, quando muito divide seu retiro com sátiros e dríades, cercada por poucos admiradores encantados que nunca mais partem."
+    },
+    {
+      "titulo": "No mundo de Centelha",
+      "texto": "É eco vivo do véu de espíritos ligado à origem feérica dos elfos; em Syl é venerada como um kami das águas, enquanto as igrejas supressoras de Calin a tratam como tentação perigosa de um mundo mais mágico que devia ter ficado no passado."
+    }
+  ],
+  "imagens": [
+    "bestiario/ninfa_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "habilidadesSec.musculatura",
+      "motivo": "Compleição física, sem treino de levantar peso"
+    },
+    {
+      "campo": "corpo.massa",
+      "motivo": "Corpo esguio: 80 × (1,7/1,8)³ × 0,82, arredondado à massa publicada; fator da compleição"
+    },
+    {
+      "campo": "corpo.area",
+      "motivo": "0,72 × (1,7/1,8)², ajustado à compleição: 0,58 m²; largura e profundidade acompanham o corpo"
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": "Comportamento"
+    },
+    {
+      "campo": "habilidadesEspeciais.Paralisia de espanto",
+      "motivo": "R10 e D-197. Dificuldade sugerida 15 para resistir à imobilidade imposta pelo poder. R10 e D-197. Duração sugerida de 6 Ticks para abrir uma janela de combate com o corpo paralisado. R1 e D-197. Usos grátis: 1 por cena. Cada uso extra custa 1 de Mana. O limite preserva o primeiro uso e reserva repetição para esforço adicional. R3. Ativação sem Velocidade escrita -> uma ação, Velocidade 6 Pela referência corporal ou de deslocamento do poder. valor de molde, para a bancada (uso extra de 1 de Mana). Uso extra: sem Efeito na base (poder da ficha sem base; a conta da T7 não parte de nada)."
+    },
+    {
+      "campo": "ataques.Golpe desarmado",
+      "motivo": "Antes: ataque genérico perfurante 1d6 + 2 + 5, média 10,5; agora Impacto 1d6 − 2 + 2 + 5, média 8,5, Acerto 0 para +1."
+    }
+  ]
+}

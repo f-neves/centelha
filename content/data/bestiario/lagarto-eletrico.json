@@ -1,0 +1,268 @@
+{
+  "id": "lagarto-eletrico",
+  "idAntigo": "mon-shocker-lizard",
+  "nome": "Lagarto Elétrico",
+  "nomeIngles": "Shocker Lizard",
+  "categoria": "besta-magica",
+  "papel": "fera",
+  "ameaca": 2,
+  "centelha": 2,
+  "corpo": {
+    "postura": "quatro patas, rente ao chão",
+    "apoio": "quadrupede",
+    "altura": 0.21,
+    "largura": 0.18,
+    "profundidade": null,
+    "comprimento": 1.34,
+    "comprimentoSemCauda": 0.67,
+    "caudaGrossa": false,
+    "massa": 11,
+    "area": 0.15,
+    "posturaDoTamanho": "silhueta vista de lado"
+  },
+  "couraca": 1,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 2,
+    "destreza": 4,
+    "vigor": 3,
+    "percepcao": 3,
+    "inteligencia": 1,
+    "raciocinio": 2,
+    "influencia": 1,
+    "perspicacia": 1,
+    "compostura": 2
+  },
+  "habilidades": {
+    "briga": 3,
+    "bloqueio": 0,
+    "esquiva": 1,
+    "atletismo": 1,
+    "atirador": 2,
+    "furtividade": 2,
+    "integridade": 2,
+    "prontidao": 1,
+    "resistencia": 2,
+    "sociabilidade": 0,
+    "sobrevivencia": 2
+  },
+  "habilidadesSec": {
+    "escalada": 2,
+    "natacao": 2,
+    "musculatura": 2
+  },
+  "especialidades": {},
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 1,
+    "conviccao": 3,
+    "temperanca": 2
+  },
+  "vontade": 7,
+  "aparencia": 3,
+  "deslocamento": {
+    "terra": {
+      "batalha": 3,
+      "arranque": 5,
+      "corrida": 7
+    },
+    "nado": {
+      "batalha": 2
+    },
+    "escalada": {
+      "batalha": 2
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Mordida",
+      "parte": "mandibula",
+      "classe": "leve",
+      "pgr": [
+        1,
+        1,
+        3
+      ],
+      "dado": "1d6-2",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 1,
+      "bloqueiaComoArma": null,
+      "justificativa": "A mordida de lagarto pequeno, Leve. A jogada vai pela Destreza, maior que a Força (D-208); o dano, pela Força (D-209). Jogada: Destreza 4 + Briga 3 + 2 × o menor entre Centelha 2 e Briga 3 (4)"
+    },
+    {
+      "nome": "Choque",
+      "parte": "corpo",
+      "habilidade": "atirador",
+      "classe": "distancia",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 0,
+      "tipoDano": "raio",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Ataque natural a distância, Classe Distância. Os números são da ficha, descritos na linha do choque nas Manobras. Jogada: o maior entre Vigor, Destreza e Percepção + Atirador + 2 × o menor entre Centelha 2 e Atirador 2 (4)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Choque elétrico",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "raio",
+        "nivel": 1
+      },
+      "categoria": "substancia",
+      "ativacao": "uma ação, Velocidade 5, o ataque natural a distância da tabela (o maior entre Vigor, Destreza e Percepção + Atirador)",
+      "duracao": "instantânea",
+      "alcance": "3 m",
+      "area": "um alvo",
+      "efeito": "descarrega a eletricidade do corpo num alvo perto A descarga nunca reduz a vítima abaixo de 0 PV. Ao chegar a 0, fica Incapacitada e Inconsciente, sem risco de morte",
+      "dano": "1d6 + Centelha, raio",
+      "resistencia": "esquiva, contra a jogada do choque",
+      "limiteDeUso": "O corpo guarda 2 cargas e produz 1 carga a cada 1 hora. Cada uso gasta 1 carga. Nada acelera a produção"
+    },
+    {
+      "nome": "choque da colônia",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "três ou mais lagartos juntos descarregam no mesmo instante",
+      "duracao": "instantânea",
+      "alcance": "ao redor dos participantes",
+      "area": "raio de 3 m em torno do grupo",
+      "efeito": "A descarga nunca reduz a vítima abaixo de 0 PV. Ao chegar a 0, fica Incapacitada e Inconsciente, sem risco de morte",
+      "dano": "o dano de um Choque elétrico",
+      "resistencia": "saída de área do livro, apenas os alvos rolam",
+      "limiteDeUso": "cada participante gasta uma carga do próprio Choque elétrico"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "choque que não mata",
+      "formas": "todas",
+      "texto": "A descarga nunca reduz a vítima abaixo de 0 PV. Ao chegar a 0, fica Incapacitada e Inconsciente, sem risco de morte."
+    },
+    {
+      "nome": "colônia",
+      "formas": "todas",
+      "texto": "sozinho, dá um choque e foge; em colônia, cerca o intruso e descarrega junto."
+    },
+    {
+      "nome": "Projétil natural",
+      "formas": "todas",
+      "texto": "Contra um alvo, use o maior entre Vigor, Destreza e Percepção + Atirador. Ao cobrir uma área, só os alvos fazem a jogada de saída."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão no escuro",
+      "descricao": "enxerga no escuro absoluto",
+      "formas": "todas"
+    },
+    {
+      "nome": "visão na penumbra",
+      "descricao": "enxerga com pouca luz",
+      "formas": "todas"
+    },
+    {
+      "nome": "sentido elétrico",
+      "descricao": "nota qualquer descarga elétrica num raio grande, até a de outro lagarto",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "camuflagem": "entre pedras e água",
+    "mente": "animal (fera de Inteligência 1)",
+    "tracos": "lagarto de 1,3 m, de escamas azuladas e cabeça grande, que estala quando se carrega"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "colônia; isolado, definha",
+    "atividade": "diurno",
+    "dieta": "carnívoro",
+    "caca": "caça em colônia perto da água",
+    "dianteDeGente": "defende o território da colônia"
+  },
+  "ecologia": {
+    "terreno": [
+      "pântano"
+    ],
+    "clima": [
+      "tropical",
+      "temperado"
+    ]
+  },
+  "descricao": "Lagarto que descarrega eletricidade: sozinho é tímido e foge depois do choque, mas em colônia eletrocuta presas muito maiores. Vive sempre perto da água, defende o território com ferocidade e, isolado da colônia, definha e morre.",
+  "lore": [
+    {
+      "titulo": "Poder que cresce em grupo",
+      "texto": "Sozinho, um lagarto-choque é tímido e foge após descarregar sua eletricidade, mas em colônia se tornam capazes de eletrocutar presas muito maiores que eles."
+    },
+    {
+      "titulo": "Territoriais junto às águas",
+      "texto": "Estabelecem colônias sempre perto de fontes de água, defendendo ferozmente seu território contra qualquer intruso que se aproxime demais."
+    },
+    {
+      "titulo": "Difíceis de domesticar",
+      "texto": "Poucos conseguem manter um lagarto-choque em cativeiro, pois isolado da companhia de outros de sua espécie ele definha e morre com facilidade."
+    }
+  ],
+  "imagens": [
+    "bestiario/lagarto-eletrico_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": [
+      {
+        "tipo": "raio",
+        "formas": "todas"
+      }
+    ]
+  },
+  "revisao": [
+    {
+      "campo": "couraca",
+      "motivo": "Cobertura do corpo pela R49; metades arredondadas para cima. Absorção natural do livro (`combate.md`). Couraça 1: escamas finas de lagarto pequeno, abaixo do varano (4) ."
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": ""
+    },
+    {
+      "campo": "comportamento.dieta",
+      "motivo": ""
+    },
+    {
+      "campo": "ataques.Choque",
+      "motivo": "R36: projétil dirigido a um alvo, com o maior entre Vigor, Destreza e Percepção + Atirador. Antes: o bônus de Centelha ainda citava Disparo. Corrigida a referência para Atirador."
+    },
+    {
+      "campo": "habilidadesEspeciais.Choque elétrico",
+      "motivo": "R1/R4, D-197. Duas descargas permitem reagir à aproximação. Sugestão de 2 doses e 1 h por dose para repor fora da luta. valor de molde, para a bancada (2 cargas e produz 1 carga a cada 1 hora).; poder natural com números da ficha (D-197), base Raio 1 (o Estalo, 1d6); o site não dava base"
+    },
+    {
+      "campo": "ataques",
+      "motivo": "o site gravava um ataque só, \"Garras e presas\", a mordida (`inimigos.json`: \"1d6 +4 perfurante\", 5 Ticks, dano médio 7,5). A ficha separa os golpes pelo gesto, um por ação (D-097). Dano médio: 7,5 antes; depois, mordida 5,5, choque 5,5"
+    }
+  ]
+}

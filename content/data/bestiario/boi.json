@@ -1,0 +1,256 @@
+{
+  "id": "boi",
+  "nome": "Boi de tração",
+  "nomeIngles": "Ox",
+  "categoria": "animal",
+  "papel": "fera",
+  "ameaca": 2,
+  "centelha": 0,
+  "corpo": {
+    "postura": "quatro patas",
+    "apoio": "quadrupede",
+    "altura": 1.59,
+    "largura": 0.84,
+    "profundidade": null,
+    "comprimento": 3.49,
+    "comprimentoSemCauda": 2.75,
+    "caudaGrossa": false,
+    "massa": 830,
+    "area": 1.89,
+    "posturaDoTamanho": "vista de lado"
+  },
+  "couraca": 1,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 7,
+    "destreza": 1,
+    "vigor": 6,
+    "percepcao": 2,
+    "inteligencia": 1,
+    "raciocinio": 1,
+    "influencia": 1,
+    "perspicacia": 2,
+    "compostura": 1
+  },
+  "habilidades": {
+    "briga": 2,
+    "bloqueio": 2,
+    "esquiva": 1,
+    "atletismo": 2,
+    "furtividade": 0,
+    "integridade": 1,
+    "prontidao": 2,
+    "resistencia": 4,
+    "empatia": 1,
+    "sobrevivencia": 2
+  },
+  "habilidadesSec": {
+    "equilibrio": 0,
+    "escalada": 0,
+    "natacao": 0,
+    "voo": 0,
+    "corrida": 0,
+    "musculatura": 3
+  },
+  "especialidades": {
+    "prontidao": [
+      {
+        "foco": "visão",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 1,
+    "compaixao": 1,
+    "conviccao": 1,
+    "temperanca": 1
+  },
+  "vontade": 3,
+  "aparencia": 6,
+  "deslocamento": {
+    "terra": {
+      "batalha": 5,
+      "arranque": 10,
+      "corrida": 11
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Chifrada",
+      "parte": "chifre",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": 1,
+      "justificativa": "Era 1d6 + 10, média 13,5. Golpe de cabeça com o corpo atrás. Chifre de ponta: Perfuração; sem força medida: N0. Dois chifres ocos (ADW)."
+    },
+    {
+      "nome": "Investida (marrada)",
+      "parte": "corpo",
+      "classe": "pesada",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": "2d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "impacto",
+      "nivelPerfuracao": null,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "Golpe Pesado, com Força × 1 no golpe comum (D-266); na ação de Investida, soma mais uma Força, sem +1d6 (P20-b)."
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Investida",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Investida (marrada)",
+      "categoria": "inato",
+      "regra": "investida"
+    },
+    {
+      "nome": "derrubar",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "regra": "derrubar"
+    },
+    {
+      "nome": "empurrar",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "regra": "empurrar"
+    },
+    {
+      "nome": "esmagar contra a cerca",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "ataque": "Investida (marrada)",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "enquanto a condição se aplica",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Ao Empurrar contra um obstáculo que não cede, causa +1d6 de Impacto uma vez por ação. Para manter alguém prensado, deve manter o agarrão",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "Atropelar",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "texto": "Atropelar"
+    }
+  ],
+  "comoLuta": [],
+  "sentidos": [
+    {
+      "nome": "visão",
+      "descricao": "campo de 300°, Prontidão (visão) +2, natural (notar o que vem pelo lado e por trás); ponto cego pequeno logo atrás",
+      "formas": "todas"
+    },
+    {
+      "nome": "audição",
+      "descricao": "mais sensível que a humana a sons agudos; gritos e batida de porteira aumentam o batimento e a movimentação. Faixa em Hz: Texto",
+      "formas": "todas"
+    },
+    {
+      "nome": "faro",
+      "descricao": "evita lugares e objetos marcados com urina de vaca estressada. Texto",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "mente": "animal",
+    "tracos": "dois chifres ocos; sem dentes da frente em cima (almofada dental), a mordida não é arma; pelo curto"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": true,
+    "tracao": true
+  },
+  "comportamento": {
+    "social": "manada",
+    "atividade": "diurno",
+    "dieta": "herbívoro",
+    "caca": "pastagem",
+    "dianteDeGente": "foge (o boi castrado); o touro ataca e a vaca com bezerro defende a cria"
+  },
+  "ecologia": {
+    "terreno": [
+      "planície"
+    ],
+    "clima": [
+      "temperado",
+      "tropical"
+    ]
+  },
+  "descricao": "Animal de tração e de carga das fazendas. O boi castrado foge do susto; o touro ataca, e a vaca com bezerro defende a cria. Grito e batida de porteira o agitam.",
+  "lore": [
+    {
+      "titulo": "Aptidões",
+      "texto": "montaria: não (não achado em fonte). carga: sim (regra legal indiana). tração: sim (arado e carroça; regra legal indiana)."
+    }
+  ],
+  "imagens": [
+    "bestiario/boi_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "habilidades.empatia",
+      "motivo": "Não tinha linha. Manada com hierarquia, em que cada um cede aos de cima (ADW), e que evita o lugar marcado com urina de vaca estressada (Penn State): lê o medo e a posição do outro da manada. O boi de canga trabalha sob a voz do boieiro, mas a pesquisa não diz quanto ele lê o humano. Degrau 1, abaixo do cavalo (2), sem número ."
+    },
+    {
+      "campo": "corpo.altura",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 1,56 × 1,0175 = 1,587 . Antes: Era 1,5 m, a estimativa para o boi de 700 kg; escalado pelo cubo da massa: 1,5 × (788 ÷ 700)^(1/3) = 1,5 × 1,040 = 1,56 m. A estimativa de origem, do Arquiteto: \"boi de tração de 700 kg: a ADW dá 1,28 m para a espécie inteira, baixo para as raças grandes; cernelha e corpo pelo zebu e pelo boi de canga, sem fonte conferida\". A única altura com fonte é a da espécie: 1,24 a 1,32 m (ADW, \"49 a 52 polegadas\", sem dizer se é cernelha; `dimensoes.md`). A cabeça erguida passa da cernelha"
+    },
+    {
+      "campo": "corpo.comprimento",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 3,43 × 1,0175 = 3,490 . Antes: Era 3,3 m; escalado pelo cubo da massa: 3,3 × (788 ÷ 700)^(1/3) = 3,43 m. O 3,3 é número da conta do Arquiteto (`porte-area.mjs`); a ADW não traz nenhum comprimento (`dimensoes.md`). Com a cauda fina, o total entra só no espaço"
+    },
+    {
+      "campo": "corpo.comprimentoSemCauda",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 2,70 × 1,0175 = 2,747 . Antes: Era 2,6 m, do Arquiteto, pela mesma estimativa da altura; escalado pelo cubo da massa: 2,6 × (788 ÷ 700)^(1/3) = 2,70 m"
+    },
+    {
+      "campo": "corpo.largura",
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 0,83 × 1,0175 = 0,844 . Antes: Era 0,8 m; escalado pelo cubo da massa: 0,8 × (788 ÷ 700)^(1/3) = 0,83 m. O 0,8 é estimativa do Arquiteto (`porte-area.mjs`); a pesquisa não mediu largura"
+    },
+    {
+      "campo": "corpo.massa",
+      "motivo": "Etapa 2 (20/10/2026): Decisão 5 de 19/10/2026: a ficha principal usa uma versão um pouco acima da média da espécie, dentro da faixa real. 788 kg mais 5% = 830 kg , dentro da faixa real das raças de tração (450 a 1.360 kg, Rural Heritage; a espécie vai até 1.363 kg, ADW). Faixa de manobra 4, como antes. Antes: Era 700 kg (o boi castrado, escolha sem fonte que desse 700 como média). Referência: o adulto típico do bovino de tração, os dois sexos juntos, sem média publicada; a conta, passo a passo, pelas quatro raças que a ficha e a pesquisa citam (Rural Heritage, \"Ox Breeds\", massas de adulto por raça, em libras): (1) boi (castrado): Dexter 1.000, Dutch Belted 2.000, Charolais 2.300, Chianina 3.000 lb; média das quatro, 2.075 lb (941 kg); (2) vaca: Dexter 800, Dutch Belted 1.050 (meio da faixa de 1.000 a 1.100), Charolais 1.650, Chianina 2.100 (meio da faixa de 2.000 a 2.200) lb; média das quatro, 1.400 lb (635 kg); (3) média simples dos dois sexos, (2.075 + 1.400) ÷ 2 = 1.737,5 lb × 0,4536 = 788,1 kg, arredondado a 788 kg. É  porque as quatro raças são uma amostra de raças, e não uma população pesada: sem o Dexter, a mesma conta daria cerca de 915 kg. O boi castrado e não o touro, porque o castrado é o animal de tração (os touros da mesma fonte: Dexter 1.000, Dutch Belted 1.800, Charolais 2.200, Chianina 3.000 lb). Bois de trabalho pesados em estudo: a parelha de exemplo da Tillers International, 1.630 kg (cerca de 815 kg por boi); parelhas de mestiços de Jersey no Zimbábue, 646 e 879 kg (323 e 440 kg por boi; Nengomasha, Pearson e Smith 1999). Espécie inteira: 147 a 1.363 kg (ADW). Sexos (diferença de mais de 20%, por raça, Rural Heritage): Charolais, boi 1.040 kg e vaca 750 kg; Chianina, boi 1.360 kg e vaca 910 a 1.000 kg; Dutch Belted, boi 900 kg e vaca 450 a 500 kg. A faixa de massa segue a D-141, com o corte de 35 kg no lugar do de 25 kg (decisão 22 da terceira rodada; `calc.mjs`). A faixa decide o PV; não é o Alvo"
+    },
+    {
+      "campo": "comportamento.dianteDeGente",
+      "motivo": "\"animal de presa, sempre atento a perigo\" (Penn State); 21 mortes em quatro estados dos EUA de 2003 a 2008, 10 por touro, 3 de vaca protegendo bezerro (CDC)"
+    }
+  ]
+}

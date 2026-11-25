@@ -1,0 +1,242 @@
+{
+  "id": "centauro",
+  "idAntigo": "mon-centaur",
+  "nome": "Centauro",
+  "nomeIngles": "Centaur",
+  "categoria": "humanoide-monstruoso",
+  "papel": "soldado",
+  "ameaca": 3,
+  "centelha": 2,
+  "corpo": {
+    "postura": "quatro patas, torso ereto",
+    "apoio": "quadrupede",
+    "altura": 2.1,
+    "largura": 0.74,
+    "profundidade": null,
+    "comprimento": 2.9,
+    "massa": 900,
+    "area": 3.13,
+    "posturaDoTamanho": "vista de lado"
+  },
+  "couraca": 1,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 7,
+    "destreza": 4,
+    "vigor": 6,
+    "percepcao": 4,
+    "inteligencia": 2,
+    "raciocinio": 3,
+    "influencia": 3,
+    "perspicacia": 3,
+    "compostura": 3
+  },
+  "habilidades": {
+    "armas": 4,
+    "arremesso": 3,
+    "briga": 3,
+    "bloqueio": 1,
+    "esquiva": 1,
+    "atletismo": 3,
+    "prontidao": 2,
+    "integridade": 3,
+    "sobrevivencia": 3,
+    "resistencia": 3,
+    "sociabilidade": 1
+  },
+  "habilidadesSec": {
+    "musculatura": 2
+  },
+  "especialidades": {
+    "sobrevivencia": [
+      {
+        "foco": "rastrear",
+        "valor": 1,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 3,
+    "compaixao": 2,
+    "conviccao": 3,
+    "temperanca": 2
+  },
+  "vontade": 7,
+  "aparencia": 4,
+  "deslocamento": {
+    "terra": {
+      "batalha": 5,
+      "arranque": 8,
+      "corrida": 12
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Espada longa",
+      "arma": "espada-longa",
+      "justificativa": "A arma do livro (`armas.json`, `espada-longa`): Média, Versátil, Velocidade 6, Acerto +1, Defesa +1, ★C · P(N1). A Centelha soma inteira. Jogada: Força 7 + Armas 4 + 2 × o menor entre Centelha 2 e Armas 4 (4)"
+    },
+    {
+      "nome": "Azagaia",
+      "arma": "azagaia",
+      "justificativa": "A arma do livro (`armas.json`, `azagaia`): Arremesso, Velocidade 6, Acerto +1, ★P(N1), efetiva 16 m, máximo 40 m. Pode usar Força ou Destreza. Jogada: Força 7 + Arremesso 3 + 2 × o menor entre Centelha 2 e Arremesso 3 (4)"
+    },
+    {
+      "nome": "Coice",
+      "parte": "cascos-traseiros",
+      "classe": "pesada",
+      "pgr": [
+        3,
+        1,
+        3
+      ],
+      "dado": "2d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "impacto",
+      "nivelPerfuracao": null,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "O coice do cavalo do molde: Pesado, preparado e lento, golpe de membro, Força × 1 (erro 7.6). Jogada: Força 7 + Armas 4 + 2 × o menor entre Centelha 2 e Armas 4 (4)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Ataque duplo",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "uma ação, Velocidade 7",
+      "duracao": "instantânea",
+      "alcance": "o do corpo a corpo",
+      "area": "um alvo, ou dois, um na frente e um atrás",
+      "efeito": "um golpe de espada e um Coice na mesma ação, os dois a −1d6, cada um com o próprio acerto e dano (a conta da empunhadura dupla do livro). Quando combina arma empunhada e parte do corpo, usa o custo e as penalidades da empunhadura dupla",
+      "dano": "o de cada golpe",
+      "resistencia": "nenhum",
+      "limiteDeUso": "a cada ação"
+    },
+    {
+      "nome": "Investida",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "regra": "investida"
+    },
+    {
+      "nome": "Armas de porte humano",
+      "formas": "todas",
+      "classe": "livro",
+      "categoria": "inato",
+      "texto": "usa as armas do livro feitas para gente, sem perda"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "tribo da fronteira",
+      "formas": "todas",
+      "texto": "atira azagaias a galope, investe com a espada e escoiceia quem passa por trás; recua para a mata se a luta vira."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão no escuro",
+      "descricao": "enxerga mesmo na escuridão total",
+      "formas": "todas"
+    },
+    {
+      "nome": "audição e olfato",
+      "descricao": "os de um cavalo",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "prendeRespiracao": "a de um cavalo",
+    "mente": "humanoide; desconfiada e altiva",
+    "tracos": "torso de homem forte sobre corpo de cavalo grande, cabelo e crina longos, espada e feixe de azagaias"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": true,
+    "tracao": true
+  },
+  "comportamento": {
+    "social": "em tribo, típico 4 a 12",
+    "atividade": "diurno",
+    "dieta": "onívoro",
+    "caca": "caça a galope com azagaias",
+    "dianteDeGente": "distante; às vezes negocia ou se alia"
+  },
+  "ecologia": {
+    "terreno": [
+      "floresta",
+      "planície"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Metade homem, metade cavalo: caçador lendário das fronteiras, que atira azagaias a galope, golpeia com a espada e escoiceia na mesma investida. Povo antigo e distante, que só aos poucos aceita o mundo de fora.",
+  "lore": [
+    {
+      "titulo": "Sociedade",
+      "texto": "Caçadores lendários e guerreiros habilidosos, os centauros são metade homem, metade cavalo; costumam viver nas fronteiras da civilização, em tribos que vagam por vastas planícies ou pelas margens de florestas ancestrais."
+    },
+    {
+      "titulo": "Comportamento",
+      "texto": "Distantes das outras raças e até mesmo entre si, são um povo antigo que só lentamente aceita o mundo moderno; alguns abandonam o isolamento ancestral para viver nas cidades mais cosmopolitas, tornando-se muitas vezes párias entre a própria tribo."
+    },
+    {
+      "titulo": "Natureza",
+      "texto": "Em raros casos, tribos inteiras sob líderes progressistas chegam a negociar ou firmar alianças com outros povos, sobretudo elfos, e mais raramente gnomos, humanos ou anões; vivem em média sessenta anos."
+    },
+    {
+      "titulo": "Aptidões",
+      "texto": "montaria não · carga sim · tração sim"
+    }
+  ],
+  "imagens": [
+    "bestiario/centauro_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [],
+    "resistencias": [],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "atributos.forca",
+      "motivo": "Acima de 6 pela física (D-143): o corpo de cavalo de 900 kg empurra e coiceia como o cavalo do molde (Força 7, com 500 kg), e não fica abaixo dele; abaixo da Força de referência da massa (8,48). O site tinha 5 (a For 15 do Pathfinder, a dos braços); 7 e 6, pelo cavalo do molde; o site tinha 5 e 5"
+    },
+    {
+      "campo": "atributos.vigor",
+      "motivo": "Degrau 6: o corpo de cavalo grande, como o cavalo do molde (6). O site tinha 5; 7 e 6, pelo cavalo do molde; o site tinha 5 e 5"
+    },
+    {
+      "campo": "comportamento.social",
+      "motivo": "site (Sociedade)"
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": ""
+    },
+    {
+      "campo": "comportamento.dieta",
+      "motivo": ""
+    },
+    {
+      "campo": "equipamento",
+      "motivo": "espada longa e azagaia do livro"
+    },
+    {
+      "campo": "aptidoes.carga",
+      "motivo": "20% da massa, a fração do cavalo"
+    }
+  ]
+}

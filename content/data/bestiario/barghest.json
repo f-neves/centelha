@@ -1,0 +1,380 @@
+{
+  "id": "barghest",
+  "idAntigo": "mon-barghest",
+  "nome": "Barghest",
+  "nomeIngles": "Barghest",
+  "categoria": "corruptor",
+  "papel": "soldado",
+  "ameaca": 3,
+  "centelha": 2,
+  "formaPrincipal": {
+    "id": "verdadeira",
+    "nome": "forma verdadeira"
+  },
+  "corpo": {
+    "postura": "bípede, de pé, curvado para a frente",
+    "apoio": "bipede",
+    "altura": 1.8,
+    "largura": 0.48,
+    "profundidade": 0.24,
+    "comprimento": null,
+    "massa": 90,
+    "area": 0.76,
+    "posturaDoTamanho": "silhueta de frente, de pé"
+  },
+  "couraca": 1,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 5,
+    "destreza": 4,
+    "vigor": 4,
+    "percepcao": 4,
+    "inteligencia": 4,
+    "raciocinio": 4,
+    "influencia": 4,
+    "perspicacia": 4,
+    "compostura": 4
+  },
+  "habilidades": {
+    "briga": 4,
+    "bloqueio": 1,
+    "esquiva": 1,
+    "atletismo": 3,
+    "furtividade": 2,
+    "integridade": 4,
+    "prontidao": 2,
+    "resistencia": 2,
+    "empatia": 2,
+    "sociabilidade": 0,
+    "manha": 2,
+    "sobrevivencia": 2,
+    "ocultismo": 2
+  },
+  "habilidadesSec": {
+    "intimidacao": 3,
+    "musculatura": 2
+  },
+  "especialidades": {
+    "prontidao": [
+      {
+        "foco": "faro",
+        "valor": 2,
+        "origem": "natural"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 5,
+    "compaixao": 1,
+    "conviccao": 5,
+    "temperanca": 1
+  },
+  "vontade": 7,
+  "aparencia": 1,
+  "deslocamento": {
+    "terra": {
+      "batalha": 3,
+      "arranque": 5,
+      "corrida": 7
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Garras",
+      "parte": "maos-de-garra",
+      "classe": "leve",
+      "pgr": [
+        1,
+        1,
+        3
+      ],
+      "dado": "1d6-2",
+      "multiplicadorForca": 1,
+      "tipoDano": "corte",
+      "nivelPerfuracao": 0,
+      "acerto": 1,
+      "bloqueiaComoArma": null,
+      "justificativa": "As garras da forma verdadeira, golpe rápido de membro, Leve (`regra-construcao.md` §7); as duas mãos fazem par (Manobras). Jogada: Força 5 + Briga 4 + 2 × o menor entre Centelha 2 e Briga 4 (4)"
+    },
+    {
+      "nome": "Mordida",
+      "parte": "mandibula-de-lobo",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "O \"Golpe planar\" do site (1 dado, 5 Ticks, corte): a mordida de lobo, que morde, segura e sacode com o pescoço atrás, Média, como a do lobo do molde. Jogada: Força 5 + Briga 4 + 2 × o menor entre Centelha 2 e Briga 4 (4)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Garras",
+      "formas": [
+        "verdadeira"
+      ],
+      "classe": "livro",
+      "categoria": "inato",
+      "ataque": "Garras",
+      "regra": "empunhadura-dupla"
+    },
+    {
+      "nome": "Mudar de forma",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "uma ação, Velocidade 8",
+      "duracao": "até ele voltar à forma verdadeira",
+      "alcance": "o próprio corpo",
+      "area": "não se aplica",
+      "efeito": "vira um goblin ou um lobo grande (as formas em Variantes), ou volta à forma verdadeira; a mente e os números ficam os dele. Use o perfil da forma. O restante é herdado. O equipamento só acompanha quando indicado",
+      "dano": "nenhum",
+      "resistencia": "nenhum",
+      "limiteDeUso": "à vontade. Usar repetidamente causa esforço e pode levar ao cansaço. Sem custo"
+    },
+    {
+      "nome": "arma enfeitiçada fere inteira",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "ao receber o golpe",
+      "duracao": "enquanto a condição se aplica",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Contra arma encantada, aplique a Absorção inteira e cobre todo o dano restante. Contra as demais armas, reduza à metade o dano que passou pela Absorção. A arma enfeitiçada também fere incorpóreo sem a resistência a dano físico",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "devorar almas",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "ao consumir a alma de uma vítima inocente ao devorar seu corpo",
+      "duracao": "até gastar as cargas",
+      "alcance": "toque",
+      "area": "um alvo",
+      "efeito": "Cada alma elegível fornece uma carga uma única vez. Ao gastar uma carga, some +1d6 a uma jogada ou recupere 1d6 PV",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "até três cargas guardadas, sem custo de Energia"
+    },
+    {
+      "nome": "Multiataque",
+      "formas": [
+        "verdadeira"
+      ],
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "uma ação de Rajada",
+      "duracao": "uma ação",
+      "alcance": "o de cada parte",
+      "area": "os alvos da Rajada",
+      "efeito": "Golpeia nesta ordem: garra esquerda, garra direita, mordida. Cada golpe extra acumula −1d6 e conta para Guarda sob pressão. Não acumula com a Rajada comum",
+      "dano": "o de cada ataque que acertar",
+      "resistencia": "a Defesa de cada golpe",
+      "limiteDeUso": "até 3 golpes por ação, sem Energia. O uso repetido causa esforço e pode levar ao cansaço"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "truques sombrios",
+      "formas": "todas",
+      "texto": "pisca entre as sombras, levita, confunde onde está de verdade e, de vez em quando, encanta um inimigo, espalha desespero ou salta para perto como num teleporte. Os efeitos disponíveis em jogo são os poderes individuais descritos na ficha."
+    },
+    {
+      "nome": "tirano dos goblins",
+      "formas": "todas",
+      "texto": "manda a tribo na frente, entra disfarçado de goblin ou de lobo, rasga com as garras e a mordida e some nas sombras quando a luta vira."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão no escuro",
+      "descricao": "enxerga no escuro absoluto",
+      "formas": "todas"
+    },
+    {
+      "nome": "faro",
+      "descricao": "de lobo; Prontidão (faro) +2",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "camuflagem": "entre goblins ou lobos, numa das outras formas",
+    "mente": "inteligente, cruel, faminta",
+    "tracos": "corpo de 1,8 m meio lobo, meio goblin, de pelo escuro, cabeça de lobo com presas, mãos de garra e olhos que brilham"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "sozinho, à frente de uma tribo de goblins ou criaturas parecidas",
+    "atividade": "noturno",
+    "dieta": "carnívoro",
+    "caca": "caça e devora vítimas inocentes",
+    "dianteDeGente": "devora; governa os goblinoides pelo medo"
+  },
+  "ecologia": {
+    "terreno": [
+      "qualquer",
+      "montanha"
+    ],
+    "clima": [
+      "temperado"
+    ]
+  },
+  "descricao": "Parente demoníaco dos povos goblinoides, que vem ao mundo material para devorar inocentes e cresce a cada vítima. Anda como goblin ou como lobo entre as tribos que governa e, com fome bastante, troca de pele e vira um barghest maior.",
+  "lore": [
+    {
+      "titulo": "Origem",
+      "texto": "Ditos parentes demoníacos dos povos goblinoides, os barghests vêm ao mundo material para se alimentar, ganhando poder a cada vítima inocente devorada."
+    },
+    {
+      "titulo": "Destino",
+      "texto": "Ao acumular crescimento suficiente, o barghest troca de pele e se torna um barghest maior, geralmente assumindo o comando de uma tribo de goblins ou criaturas semelhantes."
+    }
+  ],
+  "imagens": [
+    "bestiario/barghest_criatura.webp"
+  ],
+  "formas": [
+    {
+      "id": "goblin",
+      "nome": "forma de goblin",
+      "aparencia": 4,
+      "corpo": {
+        "altura": 0.95,
+        "area": 0.25
+      },
+      "fisiologia": {
+        "camuflagem": "passa por um goblin da tribo",
+        "tracos": "goblin grande, de olhos que brilham no escuro"
+      }
+    },
+    {
+      "id": "lobo",
+      "nome": "forma de lobo",
+      "aparencia": 6,
+      "corpo": {
+        "postura": "quadrúpede",
+        "apoio": "quadrupede",
+        "altura": 0.99,
+        "comprimento": 2.2,
+        "comprimentoSemCauda": 1.4,
+        "largura": 0.37,
+        "profundidade": null,
+        "area": 0.56,
+        "posturaDoTamanho": "de lado"
+      },
+      "fisiologia": {
+        "camuflagem": "passa por um lobo grande",
+        "tracos": "lobo grande de pelo escuro e olhos que brilham"
+      },
+      "ataques": [
+        {
+          "nome": "Mordida",
+          "parte": "mandibula-de-lobo",
+          "classe": "media",
+          "pgr": [
+            2,
+            1,
+            3
+          ],
+          "dado": "1d6",
+          "multiplicadorForca": 1,
+          "tipoDano": "perfuracao",
+          "nivelPerfuracao": 0,
+          "acerto": 0,
+          "bloqueiaComoArma": null
+        }
+      ]
+    }
+  ],
+  "elementos": {
+    "fraquezas": [
+      {
+        "tipo": "luz",
+        "formas": "todas"
+      },
+      {
+        "tipo": "sagrado",
+        "formas": "todas"
+      }
+    ],
+    "resistencias": [
+      {
+        "tipo": "corte",
+        "formas": "todas"
+      },
+      {
+        "tipo": "perfuracao",
+        "formas": "todas"
+      },
+      {
+        "tipo": "impacto",
+        "formas": "todas"
+      }
+    ],
+    "imunidades": []
+  },
+  "revisao": [
+    {
+      "campo": "couraca",
+      "motivo": "Cobertura do corpo pela R49; metades arredondadas para cima. Absorção natural do livro (`combate.md`). Couraça 1: couro grosso sob o pelo, como o cavalo (1) .; resistência a Corte, Perfuração e Impacto, como a pele do súcubo e do kyton; a exceção da arma encantada ficou sem regra ainda"
+    },
+    {
+      "campo": "comportamento.atividade",
+      "motivo": ""
+    },
+    {
+      "campo": "comportamento.dieta",
+      "motivo": ""
+    },
+    {
+      "campo": "formas.goblin",
+      "motivo": "A forma que ele usa entre os goblins que governa (site). A altura, a área e a Aparência são as do goblin do livro (ficha `goblin`); a massa, os números e a mente ficam os dele, como no disfarce do doppelganger"
+    },
+    {
+      "campo": "formas.lobo",
+      "motivo": "Um lobo comum (site), com a massa dele: o corpo do lobo do molde (55 kg) levado a 90 kg, as medidas pela raiz cúbica da massa, × (90 ÷ 55)^(1/3) = 1,178, e a área pelo quadrado desse fator, 0,40 × 1,388 = 0,56 m², como a forma de lobo do lobisomem . Força, Vigor, PV e peso erguido ficam os da forma verdadeira, que tem a mesma massa"
+    },
+    {
+      "campo": "habilidadesEspeciais.Mudar de forma",
+      "motivo": "R3. Ativação uma ação, Velocidade 6 -> uma ação, Velocidade 8 Pela referência corporal ou de deslocamento do poder."
+    },
+    {
+      "campo": "habilidadesEspeciais.arma enfeitiçada fere inteira",
+      "motivo": "R1 e D-197. 1 uso grátis por cena. Cada uso extra custa 1 de Energia. Um uso de abertura até a definição do efeito. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "habilidadesEspeciais.devorar almas",
+      "motivo": "R1 e D-197. 1 uso grátis por cena. Cada uso extra custa 1 de Energia. Um uso de abertura até a definição do efeito. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "ataques",
+      "motivo": "o site gravava um \"Golpe planar\" de 1 dado e 5 Ticks, de corte (`inimigos.json`: \"1d6 +7 corte\", dano médio 10,5). A D-241 levou a Pesado só o golpe de cinco planares; aqui a classe sai do gesto: a mordida fica Média, como a do lobo, e as garras Leves, em par. Dano médio: 10,5 antes; depois, a mordida 10,5, as garras 8,5 cada"
+    },
+    {
+      "campo": "formas",
+      "motivo": "verdadeira, goblin e lobo (D-201); a forma de lobo é o lobo do molde levado à massa dele, como a do lobisomem; a de goblin guarda a massa e os números dele"
+    }
+  ]
+}

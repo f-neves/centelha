@@ -1,0 +1,391 @@
+{
+  "id": "nalfeshnee",
+  "idAntigo": "mon-nalfeshnee",
+  "nome": "Nalfeshnee",
+  "nomeIngles": "Demon, Nalfeshnee",
+  "categoria": "corruptor",
+  "papel": "chefe",
+  "ameaca": 6,
+  "centelha": 6,
+  "corpo": {
+    "postura": "bípede, curvado; voa pouco",
+    "apoio": "bipede",
+    "altura": 6,
+    "largura": 1.8,
+    "profundidade": 0.84,
+    "comprimento": null,
+    "massa": 3600,
+    "area": 9.6,
+    "posturaDoTamanho": "silhueta de frente, de pé"
+  },
+  "couraca": 4,
+  "perfilCouraca": "couro",
+  "atributos": {
+    "forca": 12,
+    "destreza": 3,
+    "vigor": 11,
+    "percepcao": 7,
+    "inteligencia": 7,
+    "raciocinio": 7,
+    "influencia": 6,
+    "perspicacia": 7,
+    "compostura": 6
+  },
+  "habilidades": {
+    "briga": 5,
+    "bloqueio": 0,
+    "esquiva": 1,
+    "atletismo": 3,
+    "furtividade": 0,
+    "integridade": 6,
+    "prontidao": 3,
+    "resistencia": 6,
+    "empatia": 3,
+    "persuasao": 4,
+    "manha": 4,
+    "sociabilidade": 3,
+    "politica": 4,
+    "ocultismo": 6,
+    "burocracia": 4
+  },
+  "habilidadesSec": {
+    "voo": 1,
+    "musculatura": 3
+  },
+  "especialidades": {
+    "ocultismo": [
+      {
+        "foco": "o Abismo",
+        "valor": 3,
+        "origem": "livro"
+      }
+    ]
+  },
+  "especialidadesSec": {},
+  "virtudes": {
+    "bravura": 6,
+    "compaixao": 1,
+    "conviccao": 5,
+    "temperanca": 1
+  },
+  "vontade": 11,
+  "aparencia": 0,
+  "deslocamento": {
+    "terra": {
+      "batalha": 3,
+      "arranque": 5,
+      "corrida": 7
+    },
+    "voo": {
+      "batalha": 4
+    }
+  },
+  "equipamento": {
+    "arsenal": [],
+    "armaduras": []
+  },
+  "artes": {},
+  "ataques": [
+    {
+      "nome": "Garras",
+      "parte": "mao-de-garras",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "corte",
+      "nivelPerfuracao": 0,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "O \"Golpe planar\" do site (3 dados, corte): a garra que rasga com o braço e o corpo atrás, Média (`regra-construcao.md` §7). Jogada: Força 12 + Briga 5 + 2 × o menor entre Centelha 6 e Briga 5 (10)"
+    },
+    {
+      "nome": "Mordida",
+      "parte": "presas-de-javali",
+      "classe": "media",
+      "pgr": [
+        2,
+        1,
+        3
+      ],
+      "dado": "1d6",
+      "multiplicadorForca": 1,
+      "tipoDano": "perfuracao",
+      "nivelPerfuracao": 1,
+      "acerto": 0,
+      "bloqueiaComoArma": null,
+      "justificativa": "A cabeça de javali com presas, a mordida com a cabeça atrás, Média. N1 pelas presas . Jogada: Força 12 + Briga 5 + 2 × o menor entre Centelha 6 e Briga 5 (10)"
+    }
+  ],
+  "habilidadesEspeciais": [
+    {
+      "nome": "Duas garras",
+      "formas": "todas",
+      "classe": "livro",
+      "ataque": "Garras",
+      "categoria": "inato",
+      "regra": "rajada",
+      "texto": "Até dois golpes por ação"
+    },
+    {
+      "nome": "Nimbo profano",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "uma ação, Velocidade 8; as luzes brilham em volta dele e explodem 6 Ticks depois",
+      "duracao": "12 Ticks",
+      "alcance": "18 m",
+      "area": "esfera de 18 m em volta dele",
+      "efeito": "luzes nauseantes trazem visões de loucura; quem não é demônio e falha fica Confuso. Enquanto Confuso, declara a ação e rola 1d6. Com 1 a 3, faz o declarado. Com 4 ou 5, o Mestre escolhe ação e alvo. Com 6, perde a ação",
+      "dano": "nenhum",
+      "resistencia": "Influência + Ocultismo da criatura contra a Defesa Mental do alvo, com o Resistir do livro. quem passa fica imune até o fim da cena",
+      "limiteDeUso": "três vezes por dia. Usar repetidamente causa esforço e pode levar ao cansaço. Sem custo"
+    },
+    {
+      "nome": "aura profana",
+      "formas": "todas",
+      "classe": "sem regra ainda",
+      "categoria": "inato",
+      "efeito": "uma presença profana em volta dele enfraquece e perturba as criaturas do bem que chegam perto"
+    },
+    {
+      "nome": "Retardar",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "uma ação, Velocidade 8",
+      "duracao": "12 Ticks",
+      "alcance": "18 m, à vista",
+      "area": "um alvo",
+      "efeito": "o tempo do alvo arrasta, e ele fica Retardado. A Recuperação aumenta 1 Tick. Os opostos se anulam e aplicações iguais não somam",
+      "dano": "nenhum",
+      "resistencia": "Influência + Ocultismo da criatura contra a Defesa Mental do alvo, com o Resistir do livro. quem passa fica imune até o fim da cena",
+      "limiteDeUso": "uma vez por cena para cada alvo. Usar repetidamente causa esforço e pode levar ao cansaço. Sem custo"
+    },
+    {
+      "nome": "teleporte",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "base": {
+        "arte": "conjuracao",
+        "nivel": 4,
+        "efeito": "fresta"
+      },
+      "categoria": "magia",
+      "ativacao": "uma ação, Velocidade 8",
+      "duracao": "instantânea",
+      "alcance": "36 m",
+      "area": "o próprio usuário",
+      "efeito": "Reaparece num ponto que vê ou conhece bem no mesmo plano, levando o que carrega. Pode sair de um agarrão. Outros viajantes só seguem dentro do limite declarado, voluntários e em contato",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "1 uso grátis por cena. Cada uso extra custa 1 de Energia"
+    },
+    {
+      "nome": "Ver o invisível",
+      "formas": "todas",
+      "classe": "livro",
+      "tecnica": {
+        "id": "visao-verdadeira",
+        "nivel": 4
+      },
+      "categoria": "inato"
+    },
+    {
+      "nome": "visão verdadeira sempre ativa",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "18 m",
+      "area": "o campo de visão",
+      "efeito": "Percebe disfarces, ilusões e seres invisíveis. Paredes bloqueiam a visão e a Furtividade comum continua válida",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "imune a veneno",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "contínua",
+      "duracao": "permanente",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "o veneno não pega no corpo de demônio. O ferimento do golpe continua",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "Contínuo, sem custo"
+    },
+    {
+      "nome": "proteção profana",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "ao receber o golpe",
+      "duracao": "enquanto a condição se aplica",
+      "alcance": "o próprio corpo",
+      "area": "a criatura",
+      "efeito": "Contra arma abençoada, aplique a Absorção inteira e cobre todo o dano restante. Contra as demais armas, reduza à metade o dano que passou pela Absorção",
+      "dano": "nenhum",
+      "resistencia": "nenhuma",
+      "limiteDeUso": "contínuo, sem custo"
+    },
+    {
+      "nome": "medonho",
+      "formas": "todas",
+      "classe": "sem regra ainda",
+      "categoria": "inato",
+      "efeito": "quem vê o nalfeshnee pela primeira vez sente a repulsa de um javali-símio de 6 m; o corpo quer recuar antes de qualquer golpe"
+    },
+    {
+      "nome": "Multiataque",
+      "formas": "todas",
+      "classe": "regra da ficha",
+      "categoria": "inato",
+      "ativacao": "uma ação de Rajada",
+      "duracao": "uma ação",
+      "alcance": "o de cada parte",
+      "area": "os alvos da Rajada",
+      "efeito": "Golpeia nesta ordem: garra esquerda, garra direita, mordida. Cada golpe extra acumula −1d6 e conta para Guarda sob pressão. Não acumula com a Rajada comum",
+      "dano": "o de cada ataque que acertar",
+      "resistencia": "a Defesa de cada golpe",
+      "limiteDeUso": "até 3 golpes por ação, sem Energia. O uso repetido causa esforço e pode levar ao cansaço"
+    }
+  ],
+  "comoLuta": [
+    {
+      "nome": "poderes arcanos",
+      "formas": "todas",
+      "texto": "invoca relâmpagos, embota a mente de um inimigo e anula magias. Os efeitos disponíveis em jogo são os poderes individuais descritos na ficha."
+    },
+    {
+      "nome": "administrador",
+      "formas": "todas",
+      "texto": "manda os servos à frente e enlouquece os inimigos com o nimbo; luta com garras e presas só quando precisa e some pelo teleporte quando a luta não vale a pena."
+    }
+  ],
+  "sentidos": [
+    {
+      "nome": "visão no escuro",
+      "descricao": "enxerga no escuro absoluto",
+      "formas": "todas"
+    },
+    {
+      "nome": "visão verdadeira",
+      "descricao": "Até 18 m, distingue disfarce, ilusão e invisibilidade. Paredes e Furtividade comum limitam a percepção. Sem custo",
+      "formas": "todas"
+    }
+  ],
+  "fisiologia": {
+    "respiracao": "ar",
+    "mente": "inteligente, demoníaca, vasta e perturbada",
+    "tracos": "demônio de 6 m de corpo de símio obeso, cabeça de javali com presas, mãos de garras e um par de asas pequenas demais para o corpo"
+  },
+  "aptidoes": {
+    "montaria": false,
+    "carga": false,
+    "tracao": false
+  },
+  "comportamento": {
+    "social": "governa domínios do Abismo, com servos",
+    "atividade": "qualquer hora",
+    "dieta": "não precisa comer",
+    "caca": "trata com invocadores mortais e vigia lugares secretos",
+    "dianteDeGente": "negocia, com preço escondido"
+  },
+  "ecologia": {
+    "terreno": [
+      "qualquer"
+    ],
+    "clima": [
+      "extraplanar"
+    ]
+  },
+  "descricao": "Demônio de corpo de símio e cabeça de javali que conhece o funcionamento íntimo do Abismo como poucos e governa domínios inteiros. Invocadores o buscam pelo saber vasto e perturbado, mas todo trato com ele esconde consequências que servem ao Abismo.",
+  "lore": [
+    {
+      "titulo": "Administrador do Caos",
+      "texto": "Poucos demônios compreendem o funcionamento íntimo do Abismo como ele, que muitas vezes governa domínios inteiros ou vigia locais de importância secreta no plano."
+    },
+    {
+      "titulo": "Intelecto Cobiçado",
+      "texto": "Invocadores mortais o buscam por sua inteligência vasta e perturbada, embora todo trato com ele esconda sempre consequências ocultas que servem aos desígnios do Abismo."
+    }
+  ],
+  "imagens": [
+    "bestiario/nalfeshnee_criatura.webp"
+  ],
+  "elementos": {
+    "fraquezas": [
+      {
+        "tipo": "luz",
+        "formas": "todas"
+      },
+      {
+        "tipo": "sagrado",
+        "formas": "todas"
+      }
+    ],
+    "resistencias": [
+      {
+        "tipo": "fogo",
+        "formas": "todas"
+      },
+      {
+        "tipo": "gelo",
+        "formas": "todas"
+      },
+      {
+        "tipo": "acido",
+        "formas": "todas"
+      }
+    ],
+    "imunidades": [
+      {
+        "tipo": "raio",
+        "formas": "todas"
+      }
+    ]
+  },
+  "revisao": [
+    {
+      "campo": "couraca",
+      "motivo": "Cobertura do corpo pela R49; metades arredondadas para cima. Absorção natural do livro (`combate.md`). Couraça 4: a pele de demônio maior, como a do hezrou .; 4, como o hezrou"
+    },
+    {
+      "campo": "comportamento.dieta",
+      "motivo": ""
+    },
+    {
+      "campo": "ataques.Mordida.nivelPerfuracao",
+      "motivo": "A cabeça de javali com presas, a mordida com a cabeça atrás, Média. N1 pelas presas . Jogada: Força 12 + Briga 5 + 2 × o menor entre Centelha 6 e Briga 5 (10)"
+    },
+    {
+      "campo": "habilidadesEspeciais.teleporte",
+      "motivo": "R1 e D-197. 1 uso grátis por cena. Cada uso extra custa 1 de Energia. Um uso de abertura até a definição do efeito. valor de molde, para a bancada (uso extra de 1 de Energia)."
+    },
+    {
+      "campo": "aparencia",
+      "motivo": "0, e não o −1 do site, fora da régua"
+    },
+    {
+      "campo": "ataques",
+      "motivo": "o site gravava um \"Golpe planar\" de 3 dados e 7 Ticks, de corte. A D-241 levou a Pesado só o golpe de cinco planares; aqui a classe sai do gesto: garras e mordida Médias; perde dano em relação ao site"
+    },
+    {
+      "campo": "habilidadesEspeciais.Nimbo profano",
+      "motivo": "números da ficha (D-197); o site não dá Arte de base. O \"atordoadas por visões de loucura\" virou Confuso"
+    },
+    {
+      "campo": "habilidadesEspeciais.Retardar",
+      "motivo": "números da ficha (D-197); o site não dá Arte de base. O \"atordoadas por visões de loucura\" virou Confuso"
+    }
+  ]
+}

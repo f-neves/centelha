@@ -1,0 +1,12 @@
+[package]
+name = "centelha-data"
+description = "Leitura e validação do conteúdo e dos dados de content/."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+
+[dependencies]
+
+[lints]
+workspace = true
