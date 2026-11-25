@@ -149,4 +149,4 @@ Regras (`regras.json`): `size_accuracy` (`porteAcerto`), `derived` (`derivados`)
 
 Catálogos: `stats` (o bloco `arma`/`armadura`/`escudo`), `skill` (`pericia`), `damage_bonus`, `hands` (`maos`), `strength_cap`, `strength_min`, `melee_block` (`bloqCaC`), `vs_fast_projectile` (`vsProjetilRapido`), `blocks`.
 
-Habilidades Secundárias de criatura (`musculatura`, `corrida`, `voo`, `halterofilismo`, `natacao`, `escalada`, `equilibrio` e outras) e a Habilidade de tiro `disparo` continuam texto: são chaves do mapa de Habilidades, não viram identificador. Quando uma delas aparecer como parâmetro de função, o nome em inglês é a tradução literal (`musculature`, `weightlifting`).
+Habilidades Secundárias de criatura (`musculatura`, `corrida`, `voo`, `halterofilismo`, `natacao`, `escalada`, `equilibrio` e outras) e as Habilidades de tiro do ataque natural (`disparo`, `atirador`, `arremesso`, ver `RANGED_SKILLS`) continuam texto: são chaves do mapa de Habilidades, não viram identificador. Quando uma delas aparecer como parâmetro de função, o nome em inglês é a tradução literal (`musculature`, `weightlifting`).

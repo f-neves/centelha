@@ -33,16 +33,17 @@ xtask              (sozinho; não é dependência de ninguém)
 
 **Faz:** lê e valida o conteúdo de `content/` (capítulos e JSON). Os tipos espelham o schema dos dados do site atual (o schema dos capítulos e a validação dos dados de lá).
 
-**Expõe (primeira versão, a fase 1 completa):**
+**Expõe (o que já existe no `main`):**
 
-- Tipos dos dados, um módulo por arquivo de dados: `bestiary` (criaturas), `attributes`, `skills`, `virtues`, `techniques`, `paths`, `arts`, `effects`, `weapons`, `armor`, `shields`, `conditions`, `glossary`, `rules`.
+- Módulos: `bestiary`, `rules`, `weapons`, `armor`, `shields`. Os outros arquivos de dados (atributos, Habilidades, Virtudes, Técnicas, Caminhos, Artes, Efeitos, condições, glossário, raças) entram como módulo quando o Backend propuser a API e o Arquiteto aprovar.
+- Na raiz do crate: `Creature`, `Rules`, `Weapon`, `Armor`, `Shield`, `DataError`, os `parse_*` e os `load_*`. O resto mora no módulo de cada um (por exemplo `bestiary::Size`).
 - `Creature`: uma criatura do bestiário, com `id: String` e os campos usados pelo motor.
 - Leitura a partir de texto: `fn parse_creature(json: &str) -> Result<Creature, DataError>` e equivalentes. Funciona em WebAssembly (sem arquivo).
 - Leitura a partir de pasta, só no nativo (`cfg(not(target_arch = "wasm32"))`): `fn load_bestiary(content_dir: &Path) -> Result<Vec<Creature>, DataError>`.
 - `DataError`: `enum` com `Io`, `Json` e `Invalid`; métodos `file()`, `path()` (caminho dentro do JSON, como `atributos.forca`) e `reason()`.
 - Regras e catálogos (o que os derivados da criatura leem): `rules::{Rules, parse_rules}`, `weapons::{Weapon, parse_weapons}`, `armor::{Armor, parse_armors}`, `shields::{Shield, parse_shields}`, e no nativo `load_rules`, `load_weapons`, `load_armors`, `load_shields` (recebem `content_dir`). `Weapon`, `Armor` e `Shield` têm `stats: Option<...>` (o bloco de números pode ser `null` na fonte).
-- Listas fechadas do bestiário como `enum`, com os nomes do `GLOSSARY.md`: `Size` (com `Size::ALL` em ordem e `id()`), `CarapaceProfile`, `HpLine`, `AttackClass`, `Category`. A Velocidade do ataque é o campo `timing: Option<Timing>` (`windup`, `blow`, `recovery`), lido de `pgr`. `Attributes::get(key)` pela chave dos dados.
-- Tipos auxiliares públicos do bestiário: `Attributes`, `Body`, `Attack`, `Form` (e as versões parciais das formas). As Habilidades continuam texto (chave do mapa de Habilidades); `RANGED_SKILLS` lista as de tiro aceitas no ataque natural.
+- Listas do bestiário como `enum` em `bestiary::`, com os nomes do `GLOSSARY.md`: `Size` (com `Size::ALL` em ordem e `id()`), `CarapaceProfile`, `HpLine`, `AttackClass`, `Category`. A Velocidade do ataque é o campo `timing: Option<Timing>` (`windup`, `blow`, `recovery`), lido de `pgr`. `Attributes::get(key)` pela chave dos dados.
+- Tipos auxiliares públicos em `bestiary::`: `Attributes`, `Body`, `Attack`, `Timing`, `Form`, `MainForm`, `Swarm`, `SecondSize`, `Equipment`, `ArsenalItem`, `WornArmor` e as versões parciais das formas (`BodyPatch`, `AttributesPatch`, `EquipmentPatch`). As Habilidades continuam texto (chave do mapa de Habilidades); `RANGED_SKILLS` lista as de tiro aceitas no ataque natural.
 - `serde_json` com `float_roundtrip` (a leitura de `f64` tem de ser exata para a paridade).
 
 **Consome:** `content/` (nada mais).
@@ -57,15 +58,15 @@ xtask              (sozinho; não é dependência de ninguém)
 - `rng::Mulberry32`: o gerador aleatório. `Mulberry32::new(seed: u32)`, `next_u32(&mut self) -> u32`, `next_f64(&mut self) -> f64` (no intervalo [0, 1), igual ao TypeScript bit a bit). Nenhum outro gerador aleatório no motor.
 - `js::round` (`Math.round`, inclusive o `-0`), `js::log10` e `js::pow` (pela `libm`, ADR 0002).
 - `creature`: os derivados da criatura (port de `criatura()` e `comForma()`).
-  - `Tables::new(rules, weapons, armors, shields)`: regras e catálogos já lidos; busca como o TypeScript (arma pela primeira peça com o id; armadura e escudo só com bloco de números, id repetido fica com o último).
+  - Tudo em `creature::`. `Tables::new(rules, weapons, armors, shields)` e `Tables::rules()`: regras e catálogos já lidos; busca como o TypeScript (arma pela primeira peça com o id; armadura e escudo só com bloco de números, id repetido fica com o último).
   - `derive(&Tables, &Creature) -> CreatureDerived` e `with_form(&Creature, &Form) -> Creature` (devolve `id` e `name` da forma, como o `comForma()`).
-  - `CreatureDerived` com `swarm`, `hp`, `lifted_weight`, `mass_band`, `size`, `second_size`, `dodge`, `block`, `mental_defense` e `social_defense` (`Defense::Value(f64)` ou `Defense::Immune`), `initiative`, `energy`, `mana`, `soak` (`Soak { impact, cut, pierce }`), `attacks: Vec<AttackDerived>`, `with_equipment`. Números de saída em `f64`, como no TypeScript.
+  - `CreatureDerived` com `swarm`, `hp`, `lifted_weight`, `mass_band`, `size`, `second_size`, `dodge`, `block`, `mental_defense` e `social_defense` (`Defense::Value(f64)` ou `Defense::Immune`), `initiative`, `energy`, `mana`, `soak` (`Soak { impact, cut, pierce }`), `attacks: Vec<AttackDerived>`, `with_equipment: Option<WithEquipment>`. Tipos públicos: `CreatureDerived`, `Defense`, `Soak`, `SwarmState`, `AttackDerived`, `WithEquipment`. Números de saída em `f64`, como no TypeScript.
   - Contas pequenas públicas (a ficha e a mesa vão usar): `spark_in_roll`, `size_from_area`, `mass_band`, `hp_from_mass`, `hp_from_size`, `lifted_weight`, `average_damage`, `carapace_soak`.
 - Daqui em diante, por fase: derivados da ficha e das criaturas (fase 1), combate e tempo em Ticks, Artes, lógica do Grid (fase 3). Cada módulo entra no contrato quando o Backend propõe a API e o Arquiteto aprova.
 
 **Aritmética:** os números do TypeScript são `f64`. O port usa `f64` onde o TypeScript faz conta com fração e reproduz `Math.round` (o .5 sobe, inclusive nos negativos: `Math.round(-2.5) == -2`), `Math.floor` e `Math.trunc` exatamente.
 
-**Consome:** tipos de `centelha-data`.
+**Consome:** tipos de `centelha-data` e a `libm` (com `default-features = false`, ADR 0002). Nenhuma outra dependência normal.
 
 ## centelha-supabase
 
