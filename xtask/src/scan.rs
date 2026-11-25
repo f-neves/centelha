@@ -200,10 +200,7 @@ mod tests {
     fn finds_terms_ignoring_case() {
         let msg = format!("Ajuste\n\n{}: Fulano", concat!("Co-Authored", "-By"));
         assert_eq!(scan_text("m", &msg).len(), 1);
-        assert_eq!(
-            scan_text("m", &concat!("feito com Cha", "tGPT").to_string()).len(),
-            1
-        );
+        assert_eq!(scan_text("m", concat!("feito com Cha", "tGPT")).len(), 1);
     }
 
     #[test]
