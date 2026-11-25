@@ -200,6 +200,8 @@ mod tests {
             (b"VP8 ", b"pixels!"),
             (b"EXIF", b"camera"),
             (b"XMP ", b"<x:xmpmeta/>"),
+            // O tag montado byte a byte não vira achado da própria varredura.
+            #[allow(clippy::byte_char_slices)]
             (&[b'C', b'2', b'P', b'A'], b"manifest"),
         ]);
         let clean = strip(Kind::Webp, &original).unwrap();

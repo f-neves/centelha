@@ -112,3 +112,31 @@ Estado: **proposta da fase 0, em aprovação.** A coluna "nome próprio" marca o
 ## Nomes próprios
 
 Nomes de Caminhos, Técnicas, Artes, criaturas e lugares são texto do jogo: ficam em português, nos dados, e não viram identificador. No código eles aparecem só como `id` (a string do JSON, como `punho-de-ferro`).
+
+## Criaturas e ataques (acréscimo de 25/11, pedido do Backend)
+
+| Português | Inglês | Português | Inglês |
+|---|---|---|---|
+| corpo | `body` | classe (do ataque) | `class` (`attack_class`) |
+| enxame | `swarm` | dado | `dice` |
+| forma (de criatura) | `form` | multiplicador de Força | `strength_multiplier` |
+| forma principal | `main_form` | tipo de dano | `damage_type` |
+| ataque | `attack` | bloqueia como arma | `blocks_as_weapon` |
+| acerto | `accuracy` | arsenal | `arsenal` |
+| PV (pontos de vida) | `hp` | vestida | `worn` |
+| bônus de PV | `hp_bonus` | veneno | `poison` |
+| linha de PV | `hp_line` | indivíduos por quadrado | `individuals_per_square` |
+| massa | `mass` | Tamanho equivalente | `equivalent_size` |
+| sem massa | `massless` | Tamanho escolhido | `chosen_size` |
+| não ergue | `cannot_lift` | segundo Tamanho | `second_size` |
+| categoria | `category` | | |
+
+**P/G/R** (as três parcelas da Velocidade, `pgr`): o campo vira `timing`, com `windup` (Preparo), `blow` (Golpe) e `recovery` (Recuperação). Na leitura, `#[serde(rename = "pgr")]`.
+
+**Tamanhos:** `minusculo` `Minuscule`, `miudo` `Tiny`, `pequeno` `Small`, `medio` `Medium`, `grande` `Large`, `enorme` `Huge`, `imenso` `Immense`, `colossal` `Colossal`.
+
+**Perfis de Couraça:** `rigida` `Rigid`, `couro` `Leather`, `mole` `Soft`. **Linha de PV:** `acima` `Above`, `abaixo` `Below`.
+
+**Classes do ataque:** `leve` `Light`, `media` `Medium`, `pesada` `Heavy`, `haste` `Polearm`, `haste-media` `MediumPolearm`, `haste-guerra` `WarPolearm`, `distancia` `Ranged`, `arremesso` `Thrown`.
+
+**Categorias de criatura:** `aberracao` `Aberration`, `animal` `Animal`, `besta-magica` `MagicalBeast`, `celestial` `Celestial`, `construto` `Construct`, `corruptor` `Corruptor`, `dragao` `Dragon`, `elemental` `Elemental`, `fada` `Fey`, `gigante` `Giant`, `humanoide` `Humanoid`, `humanoide-monstruoso` `MonstrousHumanoid`, `limo` `Ooze`, `morto-vivo` `Undead`, `outsider` `Outsider`, `planta` `Plant`.

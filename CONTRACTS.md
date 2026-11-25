@@ -39,7 +39,9 @@ xtask              (sozinho; não é dependência de ninguém)
 - `Creature`: uma criatura do bestiário, com `id: String` e os campos usados pelo motor.
 - Leitura a partir de texto: `fn parse_creature(json: &str) -> Result<Creature, DataError>` e equivalentes. Funciona em WebAssembly (sem arquivo).
 - Leitura a partir de pasta, só no nativo (`cfg(not(target_arch = "wasm32"))`): `fn load_bestiary(content_dir: &Path) -> Result<Vec<Creature>, DataError>`.
-- `DataError`: arquivo, caminho dentro do JSON e motivo.
+- `DataError`: `enum` com `Io`, `Json` e `Invalid`; métodos `file()`, `path()` (caminho dentro do JSON, como `atributos.forca`) e `reason()`.
+- Tipos auxiliares públicos do bestiário: `Attributes`, `Body`, `Attack`, `Form` (e as versões parciais das formas). As listas fechadas (Tamanhos, perfis de Couraça, classes do ataque, Habilidades de tiro) viram `enum` com os nomes do `GLOSSARY.md`; enquanto forem `String` validada, as constantes `SIZES`, `CARAPACE_PROFILES`, `ATTACK_CLASSES` e `RANGED_SKILLS` ficam públicas.
+- `serde_json` com `float_roundtrip` (a leitura de `f64` tem de ser exata para a paridade).
 
 **Consome:** `content/` (nada mais).
 
@@ -49,6 +51,7 @@ xtask              (sozinho; não é dependência de ninguém)
 
 **Expõe (primeira versão):**
 
+- `js::to_uint32(f64) -> u32`: o `>>> 0` do JavaScript (conversão da semente).
 - `rng::Mulberry32`: o gerador aleatório. `Mulberry32::new(seed: u32)`, `next_u32(&mut self) -> u32`, `next_f64(&mut self) -> f64` (no intervalo [0, 1), igual ao TypeScript bit a bit). Nenhum outro gerador aleatório no motor.
 - Daqui em diante, por fase: derivados da ficha e das criaturas (fase 1), combate e tempo em Ticks, Artes, lógica do Grid (fase 3). Cada módulo entra no contrato quando o Backend propõe a API e o Arquiteto aprova.
 
