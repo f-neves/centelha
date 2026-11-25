@@ -143,7 +143,9 @@ write('creatures.json', {
 // `f64` são as primeiras F64_STEPS saídas como o JavaScript as devolve (a
 // divisão por 2^32 é exata, então o resto se confere pelo `u32`).
 const SEEDS = [0, 1, 2, 10, 42, 12345, 2 ** 31 - 1, 2 ** 31, 2 ** 32 - 1, 2 ** 32, 2 ** 32 + 5,
-  -1, -2, -12345, -(2 ** 31), -(2 ** 32) + 1, 3.7, -3.7, 0x6d2b79f5];
+  -1, -2, -12345, -(2 ** 31), -(2 ** 32) + 1, 3.7, -3.7, 0x6d2b79f5,
+  // as sementes que os testes e a bancada da fonte usam
+  1234, 771107, 20260902, 20260903];
 const STEPS = 1000;
 const F64_STEPS = 50;
 const sequences = SEEDS.map((seed) => {
