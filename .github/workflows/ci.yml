@@ -60,12 +60,15 @@ jobs:
       # enquanto o teste ainda não existe.
       - name: Paridade
         shell: bash
+        # Todos os alvos `tests/parity_*.rs` do workspace. Sem nenhum, falha:
+        # o cargo já recusa um padrão que não casa com alvo algum, e a
+        # conferência abaixo deixa a mensagem clara.
         run: |
-          if ls crates/*/tests/parity.rs >/dev/null 2>&1; then
-            cargo test --workspace --test parity
-          else
-            echo "::notice::teste de paridade ainda não existe (crates/*/tests/parity.rs)"
+          if ! ls crates/*/tests/parity_*.rs >/dev/null 2>&1; then
+            echo "::error::nenhum teste de paridade (crates/*/tests/parity_*.rs)"
+            exit 1
           fi
+          cargo test --workspace --test 'parity_*'
 
       - name: Build para WebAssembly
         run: cargo build -p centelha-engine -p centelha-data --target wasm32-unknown-unknown
