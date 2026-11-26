@@ -27,7 +27,7 @@ pub struct Roll {
     pub total: f64,
 }
 
-/// `String(expr).replace(/[−–—]/g, '-').replace(/\([^)]*\)/g, ' ')`.
+/// `String(expr).replace(/[\u2212\u2013\u2014]/g, '-').replace(/\([^)]*\)/g, ' ')`.
 fn clean(expr: &str) -> Vec<char> {
     let dashed: Vec<char> = expr
         .chars()

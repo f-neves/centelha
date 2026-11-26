@@ -53,7 +53,7 @@ export function buildStrikes({ combat, fixtureText }) {
 
   const exprs = new Set();
   for (const f of fixed) { exprs.add(f.entrada.atacante.ataque); exprs.add(f.entrada.atacante.dano); }
-  for (const e of ['', '0d6', 'd6', 'D6', '2D6+1', '3d6+2 +5', '1d6 −2 (I)', '2d6 – 1', '1d6 — 3', '(2d6) +4', '1d6 (+9', '+ 7',
+  for (const e of ['', '0d6', 'd6', 'D6', '2D6+1', '3d6+2 +5', '1d6 \u22122 (I)', '2d6 \u2013 1', '1d6 \u2014 3', '(2d6) +4', '1d6 (+9', '+ 7',
     '- 2', '10d6', '2d6-1d6', 'x', '1d66', '12d6+3-2', '+-3', '1d6 + 2 (P) + 1']) exprs.add(e);
   combat.semear(counted(ROLLS_SEED));
   const rolls = [];

@@ -202,6 +202,12 @@ fn gate_and_graze_floor() {
     assert_eq!((hit.gross, hit.absorbed, hit.net), (6.0, 5.0, 3.0));
     let hit = blow_damage(Some(AttackOutcome::Hit), 12.0, 3.0, 5.0, false);
     assert_eq!((hit.gross, hit.absorbed, hit.net), (12.0, 5.0, 7.0));
+    // rolado negativo no acerto: o bruto fica em 0 (e não em -0), o piso vale
+    let hit = blow_damage(Some(AttackOutcome::Hit), -4.0, 3.0, 5.0, false);
+    assert_eq!((hit.gross, hit.absorbed, hit.net), (0.0, 0.0, 3.0));
+    assert!(hit.gross.is_sign_positive() && hit.absorbed.is_sign_positive());
+    let hit = blow_damage(Some(AttackOutcome::Hit), -4.0, 0.0, 5.0, false);
+    assert_eq!((hit.gross, hit.absorbed, hit.net), (0.0, 0.0, 0.0));
     let graze = blow_damage(Some(AttackOutcome::Graze), 12.0, 3.0, 5.0, false);
     assert_eq!((graze.gross, graze.absorbed, graze.net), (3.0, 0.0, 3.0));
     let miss = blow_damage(Some(AttackOutcome::Miss), 12.0, 3.0, 5.0, false);
