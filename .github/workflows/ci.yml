@@ -17,7 +17,9 @@ permissions:
 
 concurrency:
   group: ci-${{ github.ref }}
-  cancel-in-progress: true
+  # Em PR, um push novo cancela a verificação anterior. No main, não: cada
+  # commit que entra fica com a sua verificação.
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 env:
   CARGO_TERM_COLOR: always
@@ -56,13 +58,9 @@ jobs:
         run: cargo test --workspace
 
       # A paridade já roda dentro de "Testes"; este passo a repete com nome
-      # próprio para o resultado aparecer separado. Fica verde e avisa
-      # enquanto o teste ainda não existe.
+      # próprio. Falha se não houver nenhum `tests/parity_*.rs`.
       - name: Paridade
         shell: bash
-        # Todos os alvos `tests/parity_*.rs` do workspace. Sem nenhum, falha:
-        # o cargo já recusa um padrão que não casa com alvo algum, e a
-        # conferência abaixo deixa a mensagem clara.
         run: |
           if ! ls crates/*/tests/parity_*.rs >/dev/null 2>&1; then
             echo "::error::nenhum teste de paridade (crates/*/tests/parity_*.rs)"
