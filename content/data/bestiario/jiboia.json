@@ -238,7 +238,7 @@
   "revisao": [
     {
       "campo": "corpo.altura",
-      "motivo": "Recalculado na Etapa 2 (20/10/2026): Resposta do autor às dúvidas dos lotes 2 a 5 (20/10/2026, seção 13): o comprimento da serpente acompanha a massa pelo cubo. O diâmetro acompanha o comprimento: 0,075 × (27 ÷ 9,97)^(1/3) = 0,105 m . Antes: Era 0,08 m, o diâmetro da fêmea (cilindro de 12 kg em 2,5 m, estimativa do Arquiteto, `dimensoes.md`). Escalado pelo cubo da massa: 0,08 × (9,97 ÷ 12)^(1/3) = 0,08 × 0,940 = 0,075 m"
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Resposta do autor às dúvidas dos lotes 2 a 5 (20/10/2026, seção 13): o comprimento da serpente acompanha a massa pelo cubo. O diâmetro acompanha o comprimento: 0,075 × (27 ÷ 9,97)^(1/3) = 0,105 m . Antes: Era 0,08 m, o diâmetro da fêmea (cilindro de 12 kg em 2,5 m, estimativa da revisão, `dimensoes.md`). Escalado pelo cubo da massa: 0,08 × (9,97 ÷ 12)^(1/3) = 0,08 × 0,940 = 0,075 m"
     },
     {
       "campo": "corpo.comprimento",
@@ -246,7 +246,7 @@
     },
     {
       "campo": "corpo.largura",
-      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa: 0,094 × 1,394 = 0,131 m . Antes: Era 0,10 m (a fêmea, estimativa do Arquiteto), escalado pelo cubo da massa: 0,10 × 0,940; 0,131 m na ficha atual. Base da revisão anterior: 0,094 m, a estimativa do Arquiteto para a fêmea (0,10 m), sem fonte, escalada pelo cubo da massa; a altura de 0,075 m (o diâmetro) também é estimativa, escalada do mesmo jeito"
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa: 0,094 × 1,394 = 0,131 m . Antes: Era 0,10 m (a fêmea, estimativa da revisão), escalado pelo cubo da massa: 0,10 × 0,940; 0,131 m na ficha atual. Base da revisão anterior: 0,094 m, a estimativa da revisão para a fêmea (0,10 m), sem fonte, escalada pelo cubo da massa; a altura de 0,075 m (o diâmetro) também é estimativa, escalada do mesmo jeito"
     }
   ]
 }

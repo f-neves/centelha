@@ -1,8 +1,8 @@
 # Glossário · português para inglês
 
-Fonte única dos nomes dos termos do jogo no código (R8): o identificador em inglês sai daqui. Os dados continuam em português; a tradução fica na leitura (`serde(rename)`). Termo que não está aqui: pedir ao Arquiteto antes de inventar.
+Fonte única dos nomes dos termos do jogo no código (R8): o identificador em inglês sai daqui. Os dados continuam em português; a tradução fica na leitura (`serde(rename)`). Termo que não está aqui: pedir a inclusão antes de inventar.
 
-Estado: **aprovado em 25/11/2026; é regra.** Identificador de termo do jogo sai desta tabela; nome fora dela, só depois de entrar aqui (pedido ao Arquiteto-RS). Os acréscimos das seções de criaturas e derivados seguem a mesma regra. A coluna "nome próprio" marca o que NÃO se traduz.
+Estado: **aprovado em 25/11/2026; é regra.** Identificador de termo do jogo sai desta tabela; nome fora dela, só depois de entrar aqui. Os acréscimos das seções de criaturas e derivados seguem a mesma regra. A coluna "nome próprio" marca o que NÃO se traduz.
 
 `gm_compendium_entry` é provisório até se decidir o nome da tabela do banco (fase 3). `melee` (Armas) foi conferido no livro: a Habilidade Armas não cobre lançar a arma, que é Arremesso (`throwing`).
 
@@ -167,3 +167,45 @@ Regras (`regras.json`): `size_accuracy` (`porteAcerto`), `derived` (`derivados`)
 Catálogos: `stats` (o bloco `arma`/`armadura`/`escudo`), `skill` (`pericia`), `damage_bonus`, `hands` (`maos`), `strength_cap`, `strength_min`, `melee_block` (`bloqCaC`), `vs_fast_projectile` (`vsProjetilRapido`), `blocks`.
 
 Habilidades Secundárias de criatura (`musculatura`, `corrida`, `voo`, `halterofilismo`, `natacao`, `escalada`, `equilibrio` e outras) e as Habilidades de tiro do ataque natural (`disparo`, `atirador`, `arremesso`, ver `RANGED_SKILLS`) continuam texto: são chaves do mapa de Habilidades, não viram identificador. Quando uma delas aparecer como parâmetro de função, o nome em inglês é a tradução literal (`musculature`, `weightlifting`).
+
+## Ficha do jogador (acréscimo de 26/11, tarefa 003 do Backend)
+
+| Português | Inglês | Português | Inglês |
+|---|---|---|---|
+| Deslocamento | `movement` | conjunto (de armas nas mãos) | `hand_set` |
+| passo (de Batalha) | `step`, campo `battle` | mão hábil / inábil | `main_hand` / `off_hand` |
+| Arranque | `dash` | empunhadura dupla | `dual_wield` (`DualWield`) |
+| Corrida | `run` | peça personalizada | `custom` |
+| Natação | `swim` | armaduras vestidas | `worn_armor` |
+| salto vertical / parado / com corrida | `vertical_jump` / `standing_jump` / `running_jump` | Defesa das mãos (soma) | `hands_defense` |
+| Investida | `charge` | Força que falta (requisito) | `strength_missing` |
+| Força a mais da Investida | `charge_strength` | arma do ataque | `attack_weapon` |
+| Proezas (`tech` na ficha de leitura) | `feats` | Perfuração da arma | `weapon_pierce` |
+| Aparência | `appearance` | Valor Passivo (o tipo) | `Passive` |
+| Vigor somado aos PV (pela Raça) | `vitality` | | |
+
+O passo de Batalha é `battle` em todo lugar: na saída da ficha (`Movement.battle`, `Step.battle`) e nas regras lidas (`rules::MovementRules.battle`, lido da chave `derivados.deslocamento.normal`). A soma de Defesa das mãos é `hands_defense`.
+
+## Glossário do livro (acréscimo de 26/11, tarefa 003 do Frontend)
+
+| Português | Inglês |
+|---|---|
+| verbete do glossário | `glossary_entry` (`GlossaryEntry`) |
+| termo | `term` (`termo`) |
+| sinônimo | `alias` (`aliases`) |
+| definição | `definition` (`definicao`) |
+
+## Personagem, XP e Quase-Acerto (acréscimo de 26/11, tarefa 004 do Backend)
+
+| Português | Inglês | Português | Inglês |
+|---|---|---|---|
+| raspão | `graze` | piso de XP | `xp_floor` |
+| errou por | `missed_by` | preço do nível | `level_price` |
+| saída do ataque | `attack_outcome` (`Hit`, `Graze`, `Miss`) | trilha de XP / tipo da trilha | `XpTrack` / `XpKind` (`acum` `Accumulated`, `flat` `Flat`, `gratis` `Free`) |
+| limite da morte | `death_limit` | custo da Proeza (chave `tecnica`) | `feat_cost` |
+| passou do limite | `past_death_limit` | levantamento (da Arte de força) | `lifting`, `art_lifting` |
+| modo de ataque | `DamageMode` (`Cut`, `Pierce`, `Impact`) | jogada da manobra | `maneuver_roll` |
+| Absorção natural | `natural_soak` | curva | `curve` |
+| portão da Perfuração | `pierce_gate` | reforma (por categoria) | `reform`, `per_category` |
+
+`DamageMode` segue o `pierce` da Absorção por tipo: a variante é `Pierce`. O código ainda tem `Piercing`; a troca entra na próxima tarefa do Backend.

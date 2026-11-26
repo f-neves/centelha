@@ -175,11 +175,11 @@
   "revisao": [
     {
       "campo": "atributos.forca",
-      "motivo": "Etapa 2 (20/10/2026): A Força 9 é edição do autor (19/10/2026). Com a resposta do autor de 20/10/2026 (seção 13), o tubarão-branco também vai a 9: o elasmossauro fica igual a ele, e não abaixo, como dizia a razão de antes, feita para a Força 7. Antes: Era 9.  Proposta do Arquiteto pela análise da v2 (D-158): na faixa das âncoras de 7 a 8, abaixo do topo. Corpo de 1,9 t, compacto, em barril (Wikipédia), mas o crânio é pequeno e não cinético, de dentes de agarrar e não de rasgar, que engole a presa pequena inteira (Wikipédia): a força não está na boca, e o pescoço longo de pegar peixe não tem o corpo de empurrar do rinoceronte (8). Acima do plesiossauro (5, 130 kg), abaixo do tubarão-branco (8, 1,15 t), que é predador de presa grande."
+      "motivo": "Etapa 2 (20/10/2026): A Força 9 é edição do autor (19/10/2026). Com a resposta do autor de 20/10/2026 (seção 13), o tubarão-branco também vai a 9: o elasmossauro fica igual a ele, e não abaixo, como dizia a razão de antes, feita para a Força 7. Antes: Era 9.  Proposta da revisão pela análise da v2 (D-158): na faixa das âncoras de 7 a 8, abaixo do topo. Corpo de 1,9 t, compacto, em barril (Wikipédia), mas o crânio é pequeno e não cinético, de dentes de agarrar e não de rasgar, que engole a presa pequena inteira (Wikipédia): a força não está na boca, e o pescoço longo de pegar peixe não tem o corpo de empurrar do rinoceronte (8). Acima do plesiossauro (5, 130 kg), abaixo do tubarão-branco (8, 1,15 t), que é predador de presa grande."
     },
     {
       "campo": "atributos.vigor",
-      "motivo": "Era 3.  Proposta do Arquiteto (v2): quase quatro vezes a massa do plesiossauro (3), um a mais (D-143); réptil (decisão 10), abaixo do mamífero do mesmo peso. A pesquisa dá o corpo de 1,9 t e as marcas de mordida de tubarão lamniforme (Cretoxyrhina) nas nadadeiras (Wikipédia), sem dizer se curaram. O nado sustentado, se de sangue quente, não entra no Vigor (diretriz 2)."
+      "motivo": "Era 3.  Proposta da revisão (v2): quase quatro vezes a massa do plesiossauro (3), um a mais (D-143); réptil (decisão 10), abaixo do mamífero do mesmo peso. A pesquisa dá o corpo de 1,9 t e as marcas de mordida de tubarão lamniforme (Cretoxyrhina) nas nadadeiras (Wikipédia), sem dizer se curaram. O nado sustentado, se de sangue quente, não entra no Vigor (diretriz 2)."
     },
     {
       "campo": "atributos.percepcao",
@@ -191,11 +191,11 @@
     },
     {
       "campo": "corpo.altura",
-      "motivo": "da Bestiarista-5; nenhuma fonte mediu"
+      "motivo": "da revisão; nenhuma fonte mediu"
     },
     {
       "campo": "corpo.comprimentoSemCauda",
-      "motivo": "da Bestiarista-5; o comprimento da cauda não foi achado (18 vértebras preservadas)"
+      "motivo": "da revisão; o comprimento da cauda não foi achado (18 vértebras preservadas)"
     },
     {
       "campo": "aparencia",

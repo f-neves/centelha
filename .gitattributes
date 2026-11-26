@@ -8,3 +8,6 @@
 *.ico  binary
 *.wasm binary
 *.woff2 binary
+
+# Referências de paridade: geradas por tools/parity, não se editam à mão.
+tests/parity/*.json linguist-generated

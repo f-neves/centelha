@@ -4,8 +4,9 @@
 //! Port de `equip.ts` e `ficha-formato.ts` (um módulo só: no TypeScript os
 //! dois se importam), do miolo de `motor.ts` que serve ao personagem
 //! (`numerosPersonagem`, `conjuntoPersonagem`, `combatePersonagem`) e de
-//! `resumoFicha`/`resumoParaBanco` (`mesa-ficha.ts`). A parte do Quase-Acerto
-//! que a ficha usa (`qaDaPeca`) vem junto.
+//! `resumoFicha`/`resumoParaBanco` (`mesa-ficha.ts`). O Quase-Acerto
+//! inteiro (`quase-acerto.ts`), os textos curtos do equipamento e a troca de
+//! ids de arma da ficha gravada (`migrarRefsDeArma`) vêm junto.
 //!
 //! A ficha entra como `serde_json::Value`, como o TypeScript a trata: é dado
 //! do jogador, gravado no banco em formas de várias épocas, com chaves que o
@@ -17,7 +18,10 @@
 
 mod equip;
 mod format;
+mod migrate;
+mod near_miss;
 mod numbers;
+mod text;
 mod value;
 
 use std::collections::HashMap;
@@ -27,12 +31,19 @@ use serde_json::Value;
 
 pub use equip::{Catalog, ItemKind, PieceKind, flatten_item, piece_kind};
 pub use format::{for_reading, for_saving, is_saved_form};
+pub use migrate::{WEAPON_RENAMES, migrate_weapon_refs};
+pub use near_miss::{
+    ArmorNearMiss, AttackOutcome, Graze, NearMissAttacker, NearMissOutcome, NearMissTarget,
+    WeaponNearMiss, attack_outcome, encounter_near_miss, grazes, missed_by,
+};
 pub use numbers::{
     ArmorStack, ArtLevel, CombatSummary, DamageVersion, DbSummary, DualWield, HandItem, HandKind,
     HandSet, Initiative, Movement, NearMiss, Passive, SheetNumbers, SheetSummary, Step,
     active_hand_set, average_damage_of_expr, combat_summary, db_summary, hand_item, hand_set,
-    movement, player_mass, sheet_numbers, sheet_summary, stack_armor,
+    movement, player_mass, sheet_numbers, sheet_numbers_read, sheet_summary, sheet_summary_read,
+    stack_armor,
 };
+pub use text::{armor_stats, damage_text, shield_stats, signed_number, weapon_stats};
 
 /// Erro ao montar as tabelas da ficha.
 #[derive(Debug, Clone, PartialEq)]

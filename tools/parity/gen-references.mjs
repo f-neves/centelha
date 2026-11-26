@@ -18,6 +18,7 @@
 //   tests/parity/creatures.json   os derivados de cada criatura e das formas
 //   tests/parity/mulberry32.json  sequências do gerador aleatório por semente
 //   tests/parity/sheets.json      fichas de jogador e as saídas do motor (sheets.mjs)
+//   tests/parity/character.json   as contas pequenas do personagem, função a função (character.mjs)
 //
 // O JSON não guarda -0 (o JSON.stringify escreve 0). Para a referência não
 // esconder um -0, todo -0 das saídas é gravado como o texto "-0", e o teste do
@@ -30,6 +31,7 @@ import { createRequire } from 'node:module';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { buildSheetInputs, sheetOutputs } from './sheets.mjs';
+import { buildCharacterCases } from './character.mjs';
 
 const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 const OUT = path.join(REPO, 'tests', 'parity');
@@ -82,6 +84,9 @@ const motor = await loadTs('src/lib/motor.ts');
 const acaso = await loadTs('src/lib/acaso.ts');
 const formato = await loadTs('src/lib/ficha-formato.ts');
 const mesa = await loadTs('src/lib/mesa-ficha.ts');
+const quase = await loadTs('src/lib/quase-acerto.ts');
+const equip = await loadTs('src/lib/equip.ts');
+const migra = await loadTs('src/lib/ficha-migra.ts');
 
 const source = {
   commit,
@@ -199,6 +204,16 @@ for (const s of sheets) {
   sheetIds.add(s.id);
 }
 
+// ----- contas pequenas do personagem -----
+const characterCases = buildCharacterCases({
+  motor, quase, equip, migra, regras: readData('regras.json'), weapons: readData('armas.json'),
+});
+const characterCounts = {};
+for (const c of characterCases) {
+  scanNumbers(c.out, `${c.fn}(${JSON.stringify(c.args)})`);
+  characterCounts[c.fn] = (characterCounts[c.fn] || 0) + 1;
+}
+
 if (negativeZeros.length) console.log(`${negativeZeros.length} -0 nas saídas, gravados como "-0"`);
 if (badNumbers.length) {
   for (const b of badNumbers) console.error(`erro: número não finito em ${b}`);
@@ -248,6 +263,15 @@ write('sheets.json', {
   groups,
   sheets,
 }, 'sheets');
+write('character.json', {
+  source,
+  note: 'Cada caso: fn (a função do TypeScript), args e out. null num parâmetro opcional quer dizer não passado. '
+    + 'O lote é montado por tools/parity/character.mjs. -0 gravado como "-0".',
+  count: characterCases.length,
+  counts: characterCounts,
+  cases: characterCases,
+}, 'cases');
+console.log(`${characterCases.length} casos das contas pequenas em ${Object.keys(characterCounts).length} funções`);
 console.log(`${sheets.length} fichas: ${Object.entries(groups).map(([g, n]) => `${g} ${n}`).join(', ')}`);
 
 console.log(`${ids.length} criaturas, ${formCount} formas, ${attackCount} ataques; ${SEEDS.length} sementes × ${STEPS}`);

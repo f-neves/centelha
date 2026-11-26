@@ -224,11 +224,11 @@
     },
     {
       "campo": "corpo.comprimentoSemCauda",
-      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 2,18 × 1,0240 = 2,232 . Antes: Principal: 1,85 m (a estimativa do Arquiteto para o macho do interior, escalada). Escalado pelo cubo da massa: 1,850 × 1,1786 = 2,180, dentro da faixa da espécie (1,0 a 2,8 m, ADW)."
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 2,18 × 1,0240 = 2,232 . Antes: Principal: 1,85 m (a estimativa da revisão para o macho do interior, escalada). Escalado pelo cubo da massa: 1,850 × 1,1786 = 2,180, dentro da faixa da espécie (1,0 a 2,8 m, ADW)."
     },
     {
       "campo": "corpo.largura",
-      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 0,87 × 1,0240 = 0,891 . Antes: Principal: 0,74 m (estimada pelo Arquiteto, sem fonte). Escalada pelo cubo da massa: 0,740 × 1,1786 = 0,872."
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 0,87 × 1,0240 = 0,891 . Antes: Principal: 0,74 m (estimada pela revisão, sem fonte). Escalada pelo cubo da massa: 0,740 × 1,1786 = 0,872."
     },
     {
       "campo": "habilidadesEspeciais.fúria ferida",

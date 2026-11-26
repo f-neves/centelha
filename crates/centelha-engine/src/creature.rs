@@ -150,9 +150,11 @@ const RANGED: [&str; 3] = ["disparo", "atirador", "arremesso"];
 
 // ----- as contas pequenas -----
 
-/// 2 × o menor entre a Centelha e a Habilidade (nunca negativo).
+/// `centelhaNaJogada`: 2 × o menor entre a Centelha e a Habilidade (nunca
+/// negativo). Com o `Math.max`/`Math.min` do JavaScript: `NaN` dá `NaN`, e
+/// `-0` conta como menor que `0`. Serve à criatura e à ficha.
 pub fn spark_in_roll(spark: f64, skill: f64) -> f64 {
-    2.0 * spark.max(0.0).min(skill.max(0.0))
+    2.0 * js::min(js::max(0.0, spark), js::max(0.0, skill))
 }
 
 fn skill_of(c: &Creature, id: &str) -> f64 {
@@ -245,27 +247,13 @@ pub fn lifted_weight(
     } else {
         p.strength_ref + p.strength_ref_slope * js::log10(kg / p.strength_ref_above_kg)
     };
-    let f_ref = js_max(0.0, f_ref);
+    let f_ref = js::max(0.0, f_ref);
     let e = (p.e_strength * strength
         + p.e_weightlifting * weightlifting
         + p.e_musculature * musculature)
         / p.e_divisor;
     let e_ref = (p.e_ref_strength * f_ref + p.e_ref_sum) / p.e_divisor;
-    js::round(js_max(curve, p.floor * kg) * js::pow(p.base, e - e_ref) * 100.0) / 100.0
-}
-
-/// `Math.max` de dois números (com `NaN`, dá `NaN`, como o JavaScript).
-fn js_max(a: f64, b: f64) -> f64 {
-    if a.is_nan() || b.is_nan() {
-        f64::NAN
-    } else if a == b {
-        // Math.max(-0, 0) é 0
-        if a.is_sign_negative() { b } else { a }
-    } else if a > b {
-        a
-    } else {
-        b
-    }
+    js::round(js::max(curve, p.floor * kg) * js::pow(p.base, e - e_ref) * 100.0) / 100.0
 }
 
 /// A média do dano: cada d6 vale `porDado`, mais o bônus do dado, a Força ×
@@ -740,7 +728,7 @@ pub fn derive(t: &Tables, c: &Creature) -> CreatureDerived {
         let against_shots = esc
             .and_then(|s| s.vs_fast_projectile)
             .filter(|v| v.blocks == Some(true))
-            .map(|v| js_max(dodge2, block2 + v.bonus.unwrap_or(0.0)));
+            .map(|v| js::max(dodge2, block2 + v.bonus.unwrap_or(0.0)));
         WithEquipment {
             dodge: dodge2,
             block: block2,
