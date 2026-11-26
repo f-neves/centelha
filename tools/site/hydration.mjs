@@ -226,7 +226,7 @@ for (const rel of pages) {
   // 4g. O cartão das formas, o voltar ao topo e o painel dos fixados.
   problems.push(...(await checkShapes(page)));
   problems.push(...(await checkBackToTop(page)));
-  problems.push(...(await checkBookmarks(page)));
+  problems.push(...(await checkBookmarks(page, rel)));
 
   // 4h. As Artes: o filtro e o marcador do catálogo; as abas, a âncora e a
   // troca de largura dos Efeitos.
@@ -603,7 +603,7 @@ async function checkBackToTop(page) {
   return problems;
 }
 
-async function checkBookmarks(page) {
+async function checkBookmarks(page, rel) {
   const problems = [];
   if (!(await page.eval("!!document.querySelector('main .ref')"))) return problems;
   await page.eval("window.scrollTo({ top: 0, behavior: 'instant' })");
@@ -639,6 +639,32 @@ async function checkBookmarks(page) {
   await new Promise((ok) => setTimeout(ok, 200));
   const after = await page.eval("({ panel: !!document.getElementById('consulta'), stored: sessionStorage.getItem('centelha:consulta') })");
   if (after.panel || after.stored !== '[]') problems.push(`o ✕ não tirou o termo do painel: ${JSON.stringify(after)}`);
+  // Num capítulo só (é lento): o download que falha tenta de novo no próximo
+  // fixado, e a página aberta já com um fixado na sessão mostra o painel.
+  if (rel !== 'regras/combate/') return problems;
+  const id = await page.eval("document.querySelector('main .ref').dataset.ref");
+  const pin = (list) => page.eval(`(() => { sessionStorage.setItem('centelha:consulta', '${JSON.stringify(list)}'); dispatchEvent(new Event('rs:consulta')); return true; })()`);
+  const cards = () => page.eval("document.querySelectorAll('#consulta .cs-card').length");
+  const waitCards = async (n) => {
+    for (let i = 0; i < 30 && (await cards()) !== n; i++) await new Promise((ok) => setTimeout(ok, 100));
+    return cards();
+  };
+  await page.send('Network.enable');
+  await page.send('Network.setBlockedURLs', { urls: ['*ref-index.json'] });
+  await page.eval("location.reload()");
+  await page.waitFor("document.documentElement.dataset.islands === 'hydrated'", 30000);
+  await pin([`termo:${id}`]);
+  await new Promise((ok) => setTimeout(ok, 500));
+  if ((await cards()) !== 0) problems.push('o painel apareceu sem o índice');
+  await page.send('Network.setBlockedURLs', { urls: [] });
+  await pin([`termo:${id}`]);
+  if ((await waitCards(1)) !== 1) problems.push('depois de uma falha, o painel não baixou o índice de novo');
+  // Abrir a página já com o fixado na sessão.
+  await page.eval("location.reload()");
+  await page.waitFor("document.documentElement.dataset.islands === 'hydrated'", 30000);
+  if ((await waitCards(1)) !== 1) problems.push('a página aberta com um fixado na sessão não mostrou o painel');
+  await pin([]);
+  if ((await waitCards(0)) !== 0) problems.push('o painel não sumiu ao esvaziar a lista');
   return problems;
 }
 
