@@ -14,6 +14,7 @@ use centelha_data::{Art, Effect, Technique};
 use serde_json::{Map, Value, json};
 
 use super::SheetTables;
+use super::numbers::Movement;
 use super::value::{self as jv, num, truthy};
 use crate::character::{art_cost, effect_cost, feat_cost, specialty_cost, xp_cost, xp_floor};
 use crate::js;
@@ -524,4 +525,44 @@ pub fn effects_in_reach<'a>(t: &'a EditorTables, sheet: &Value) -> Vec<&'a Effec
             .then_with(|| crate::collate::compare(&a.name, &b.name))
     });
     list
+}
+
+// ------------------------------------------------------------ o deslocamento
+
+/// A metade da penalidade física (armadura e escudo) que o deslocamento
+/// paga, arredondada para baixo.
+pub fn half_movement_penalty(physical_penalty: f64) -> f64 {
+    (physical_penalty / 2.0).floor()
+}
+
+/// O deslocamento da ficha com a penalidade: cada medida perde a metade da
+/// penalidade física (o salto vertical, em centímetros, perde dez vezes isso),
+/// sem ficar abaixo de zero; a natação não perde nada.
+#[derive(Debug, Clone, Copy, PartialEq)]
+pub struct PenalizedMovement {
+    pub half_penalty: f64,
+    pub battle: f64,
+    pub dash: f64,
+    pub run: f64,
+    pub swim: f64,
+    pub vertical_jump: f64,
+    pub standing_jump: f64,
+    pub running_jump: f64,
+}
+
+/// As medidas do `renderDerived` (e a Vel. de Corrida da seção de força): a
+/// conta é uma só, sobre o [`Movement`] e a penalidade física.
+pub fn penalized_movement(m: &Movement, physical_penalty: f64) -> PenalizedMovement {
+    let half = half_movement_penalty(physical_penalty);
+    let mp = |v: f64| js::max(0.0, v - half);
+    PenalizedMovement {
+        half_penalty: half,
+        battle: mp(m.battle),
+        dash: mp(m.dash),
+        run: mp(m.run),
+        swim: m.swim,
+        vertical_jump: js::max(0.0, m.vertical_jump - half * 10.0),
+        standing_jump: mp(m.standing_jump),
+        running_jump: mp(m.running_jump),
+    }
 }

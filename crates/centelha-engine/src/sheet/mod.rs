@@ -22,6 +22,8 @@ mod format;
 mod migrate;
 mod near_miss;
 mod numbers;
+mod pgr;
+mod strength;
 mod text;
 pub(crate) mod value;
 
@@ -31,9 +33,10 @@ use centelha_data::{Ancestry, Rules};
 use serde_json::Value;
 
 pub use editor::{
-    EditorCatalogs, EditorTables, FREE_SECONDARY, FRESH_BUDGET, Specialty, SpentXp,
-    TechniqueStatus, attribute_floor, change_ancestry, clamp_specialties, effects_in_reach,
-    fresh_sheet, mass_chosen, specialty_cap, spent_xp, technique_status, trait_cap,
+    EditorCatalogs, EditorTables, FREE_SECONDARY, FRESH_BUDGET, PenalizedMovement, Specialty,
+    SpentXp, TechniqueStatus, attribute_floor, change_ancestry, clamp_specialties,
+    effects_in_reach, fresh_sheet, half_movement_penalty, mass_chosen, penalized_movement,
+    specialty_cap, spent_xp, technique_status, trait_cap,
 };
 pub use equip::{Catalog, ItemKind, PieceKind, flatten_item, piece_kind};
 pub use format::{for_reading, for_saving, is_saved_form};
@@ -49,6 +52,8 @@ pub use numbers::{
     movement, player_mass, sheet_numbers, sheet_numbers_read, sheet_summary, sheet_summary_read,
     stack_armor,
 };
+pub use pgr::{ExtraLine, extra_lines, sheet_anatomy, sheet_flurry_cap};
+pub use strength::throw_range;
 pub use text::{armor_stats, damage_text, shield_stats, signed_number, weapon_stats};
 
 /// Erro ao montar as tabelas da ficha.

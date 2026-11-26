@@ -37,10 +37,18 @@ const HOOK = `
     getS: () => S, setS: (v) => { S = v; }, massaEscolhida: () => massaEscolhida,
     capFor: (k, key) => capFor(k, key), pisoAttr: (k) => pisoAttr(k),
     clampSpecs: (a, s) => clampSpecs(a, s), renderCaminhos: () => renderCaminhos(),
-    efeitosAoAlcance: () => efeitosAoAlcance(),
+    efeitosAoAlcance: () => efeitosAoAlcance(), renderDerived: () => renderDerived(),
   };`;
 const TOTAL_AT = 'const total = xa + xs + xsp + xv + xw + xap + xc + x2 + xt + xar + xef + xan + xr;';
 const TOTAL = `${TOTAL_AT}\n    globalThis.__xp = { xa, xs, xsp, xv, xw, xap, xc, x2, xt, xar, xef, xan, xr, total };`;
+// No renderDerived, depois das duas contas do deslocamento com a penalidade: a
+// penalidade física, o deslocamento sem ela e cada medida que o card escreve,
+// pelas próprias `mp` e `cmp` da fonte (as mesmas linhas da tabela).
+const MOVE_AT = 'const cmp = (v: number) => Math.max(0, v - penMov * 10);';
+const MOVE = `${MOVE_AT}
+        globalThis.__mov = { penFisica, dz: { ...dz }, out: { batalha: mp(dz.normal), arranque: mp(dz.arranque),
+          corrida: mp(dz.corrida), natacao: dz.natacao, saltoVertical: cmp(dz.saltoVertical),
+          saltoHorizontalParado: mp(dz.saltoHorizontalParado), saltoHorizontalCorrendo: mp(dz.saltoHorizontalCorrendo) } };`;
 
 function patch(text, at, by) {
   if (text.split(at).length !== 2) throw new Error(`ficha-engine.ts: o trecho do remendo não está lá uma vez só: ${at}`);
@@ -81,7 +89,7 @@ function fakeDom() {
 
 export async function loadSheetEditor({ build, SRC }) {
   const file = path.join(SRC, 'src', 'lib', 'ficha-engine.ts');
-  const text = patch(patch(fs.readFileSync(file, 'utf8'), HOOK_AT, HOOK_AT + HOOK), TOTAL_AT, TOTAL);
+  const text = patch(patch(patch(fs.readFileSync(file, 'utf8'), HOOK_AT, HOOK_AT + HOOK), TOTAL_AT, TOTAL), MOVE_AT, MOVE);
   const outfile = path.join(os.tmpdir(), `parity-ficha-engine-${process.pid}.mjs`);
   await build({
     entryPoints: [file], outfile, bundle: true, format: 'esm', platform: 'node', logLevel: 'error',
@@ -136,7 +144,7 @@ function techniquesFromHtml(html) {
   return out;
 }
 
-export function buildSheetEditorCases({ editor, sheets, races, attributes, techniques, arts, effects }) {
+export function buildSheetEditorCases({ editor, sheets, races, attributes, techniques, arts, effects, pgr, tempo, forca, weapons, regras }) {
   const { hook, dom } = editor;
   const cases = [];
   const add = (fn, args, out) => cases.push({ fn, args, out: out === undefined ? null : out });
@@ -249,5 +257,43 @@ export function buildSheetEditorCases({ editor, sheets, races, attributes, techn
     }
     add('efeitosAoAlcance', [x.id], hook.efeitosAoAlcance().map((e) => e.id));
   }
+  // o deslocamento com a penalidade (o renderDerived de cada ficha, inteira:
+  // a penalidade vem da armadura e do escudo, que a entrada recortada não leva)
+  for (const x of inputs) {
+    x.prepare();
+    globalThis.__mov = null;
+    hook.renderDerived();
+    const m = globalThis.__mov;
+    if (m) add('deslocamento', [m.penFisica, m.dz], m.out);
+  }
+  // a linha Preparo, Golpe e Recuperação de cada arma (o item como a ficha o
+  // guarda: o do catálogo achatado, e variantes)
+  const items = [];
+  for (const w of weapons) {
+    items.push(w);
+    items.push({ ...w, ticks: (w.ticks ?? 5) + 1 });
+    const { classe, ...semClasse } = w; void classe;
+    items.push(semClasse);
+    const { id, ...semId } = w;
+    items.push({ ...semId, origem: id });
+  }
+  for (const t of [null, 3, 4, 5, 6, 7, 8, 9]) items.push(t === null ? { nome: 'Garras' } : { nome: 'Garras', ticks: t });
+  items.push({}, { id: 'azagaia' }, { id: 'azagaia', ticks: 8 }, { nome: 'Azagaia', ticks: 6 });
+  for (const w of items) {
+    add('anatomiaDaFicha', [w], pgr.anatomiaDaFicha(structuredClone(w), regras));
+    add('linhasComExtra', [w], pgr.linhasComExtra(structuredClone(w), regras));
+    const cls = tempo.classeDeTempo(w?.id || w?.nome, w?.ticks, w?.classe);
+    add('tetoDaRajada', [w], tempo.tetoDaRajada(cls));
+  }
+
+  // o alcance do arremesso
+  for (const faa of [0, 1, 2, 5, 10, 20, 40]) {
+    for (const max of [0, 20, 60, 150, 400]) {
+      for (const kg of [-1, 0, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 14, 15, 20, 30, 50, 80, 100]) {
+        add('alcanceArremesso', [faa, kg, max], forca.alcanceArremesso(faa, kg, max, regras.forca));
+      }
+    }
+  }
+
   return { inputs: Object.fromEntries(inputs.map((x) => [x.id, { ficha: x.s, massaEscolhida: x.chosen }])), cases };
 }

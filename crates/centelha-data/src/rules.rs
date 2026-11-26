@@ -206,6 +206,29 @@ pub struct PierceGate {
 pub struct StrengthRules {
     #[serde(rename = "levantamento")]
     pub lifting: BTreeMap<String, f64>,
+    /// O alcance do arremesso (`arremessoConst`, `arremessoExpFaa`...).
+    #[serde(flatten)]
+    pub throw: ThrowRules,
+}
+
+/// As chaves do arremesso em `forca`: o alcance é C × FAA^a ÷ peso^b, com o
+/// ápice, o teto e a queda até o teto.
+#[derive(Debug, Clone, Copy, PartialEq, Deserialize)]
+pub struct ThrowRules {
+    #[serde(rename = "arremessoConst", default)]
+    pub constant: Option<f64>,
+    #[serde(rename = "arremessoExpFaa", default)]
+    pub reserve_exponent: Option<f64>,
+    #[serde(rename = "arremessoExpMassa", default)]
+    pub mass_exponent: Option<f64>,
+    #[serde(rename = "arremessoApice", default)]
+    pub apex_kg: Option<f64>,
+    #[serde(rename = "arremessoExpLeve", default)]
+    pub light_exponent: Option<f64>,
+    #[serde(rename = "arremessoTeto", default)]
+    pub cap_fraction: Option<f64>,
+    #[serde(rename = "arremessoQueda", default)]
+    pub drop_fraction: Option<f64>,
 }
 
 /// `criatura`: as tabelas da criatura.
@@ -581,6 +604,40 @@ pub struct PgrRules {
     /// `preparo`: o Preparo por classe (o id da classe, `leve`, `arte`...).
     #[serde(rename = "preparo", default)]
     pub windup: Option<BTreeMap<String, WindupRule>>,
+    /// `reforma`: a tabela "Preparo, Golpe e Recuperação" do livro, que a
+    /// ficha mostra.
+    #[serde(rename = "reforma", default)]
+    pub reform: Option<PgrReform>,
+}
+
+/// `combate.pgr.reforma`: as linhas do livro, corpo a corpo e tiro.
+#[derive(Debug, Clone, PartialEq, Deserialize)]
+pub struct PgrReform {
+    #[serde(rename = "corpoACorpo", default)]
+    pub melee: Vec<PgrRow>,
+    #[serde(rename = "tiro", default)]
+    pub shot: Vec<PgrRow>,
+}
+
+/// Uma linha da tabela do livro: a Velocidade repartida e as armas dela.
+#[derive(Debug, Clone, PartialEq, Deserialize)]
+pub struct PgrRow {
+    pub id: String,
+    #[serde(rename = "nome", default)]
+    pub name: Option<String>,
+    #[serde(rename = "velocidade")]
+    pub speed: f64,
+    #[serde(rename = "preparo")]
+    pub windup: f64,
+    #[serde(rename = "golpe")]
+    pub blow: f64,
+    #[serde(rename = "recuperacao")]
+    pub recovery: f64,
+    #[serde(rename = "armas", default)]
+    pub weapons: Vec<String>,
+    /// `extra`: o item extra que dá esta linha (o atlatl).
+    #[serde(default)]
+    pub extra: Option<String>,
 }
 
 /// Uma linha de `combate.pgr.preparo`: um Preparo fixo, ou a Velocidade mais

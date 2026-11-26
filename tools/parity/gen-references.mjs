@@ -282,6 +282,8 @@ const editor = await loadSheetEditor({ build, SRC });
 const sheetEditor = buildSheetEditorCases({
   editor, sheets, races: readData('racas.json'), attributes: readData('atributos.json'),
   techniques: readData('tecnicas.json'), arts: readData('artes.json'), effects: readData('efeitos.json'),
+  pgr: await loadTs('src/lib/ficha-pgr.ts'), tempo: await loadTs('src/lib/combate-tempo.ts'),
+  forca: await loadTs('src/lib/forca-empurrao.ts'), weapons: Object.values(equip.ARMA), regras: readData('regras.json'),
 });
 editor.restore();
 const sheetEditorCounts = {};
@@ -408,7 +410,9 @@ write('sheet-editor.json', {
   note: 'As contas de src/lib/ficha-engine.ts, rodadas pelas funções internas do montarFicha num DOM falso '
     + '(tools/parity/sheet-editor.mjs). inputs: as fichas depois do normalize da fonte, por id, com o massaEscolhida; '
     + 'cada caso cita o id. fresh, xpGasto (as parcelas do recompute), capFor, pisoAttr, trocaDeRaca (o ouvinte de '
-    + '#raca-sel), clampSpecs, tecnicas (as pílulas que o renderCaminhos marca) e efeitosAoAlcance.',
+    + '#raca-sel), clampSpecs, tecnicas (as pílulas que o renderCaminhos marca), efeitosAoAlcance e deslocamento (o '
+    + 'renderDerived: a penalidade física, o deslocamento e as medidas com a penalidade); anatomiaDaFicha e linhasComExtra '
+    + '(src/lib/ficha-pgr.ts), tetoDaRajada da classe do item, e alcanceArremesso (src/lib/forca-empurrao.ts).',
   count: sheetEditor.cases.length,
   counts: sheetEditorCounts,
   inputs: sheetEditor.inputs,

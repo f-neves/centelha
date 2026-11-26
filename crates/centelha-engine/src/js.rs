@@ -53,9 +53,108 @@ pub fn log10(x: f64) -> f64 {
     libm::log10(x)
 }
 
-/// `a ** b` do JavaScript (`Math.pow`), pela `libm`.
+/// `a ** b` do JavaScript (`Math.pow`), arredondado para o `f64` mais perto.
+///
+/// O `pow` da `libm` (o do fdlibm) erra o último bit em alguns casos, e o
+/// `Math.pow` do V8 que gera as referências não erra (por exemplo, `20 ** 0.4`).
+/// Com base positiva e finita e expoente finito, a conta vai em precisão dupla
+/// dobrada (uns 106 bits: o logaritmo por um passo de Newton sobre o `log` da
+/// `libm`, a exponencial pela série de Taylor), e só o resultado final é
+/// arredondado. Os casos de borda (base zero, negativa ou infinita, expoente
+/// zero ou infinito, resultado fora da faixa normal) seguem pela `libm`.
 pub fn pow(a: f64, b: f64) -> f64 {
-    libm::pow(a, b)
+    if !(a > 0.0 && a.is_finite() && b.is_finite()) || b == 0.0 || a == 1.0 {
+        return libm::pow(a, b);
+    }
+    let t = dd::mul_f(dd::ln(a), b);
+    if !(t.0 > -700.0 && t.0 < 709.0) {
+        return libm::pow(a, b);
+    }
+    let r = dd::exp(t);
+    r.0 + r.1
+}
+
+/// A aritmética de precisão dupla dobrada (um número como a soma de dois
+/// `f64`, o alto e o baixo), só o que o [`pow`] usa.
+mod dd {
+    /// `(alto, baixo)`.
+    #[derive(Clone, Copy)]
+    pub struct Dd(pub f64, pub f64);
+
+    fn two_sum(a: f64, b: f64) -> Dd {
+        let s = a + b;
+        let bb = s - a;
+        Dd(s, (a - (s - bb)) + (b - bb))
+    }
+
+    fn quick(a: f64, b: f64) -> Dd {
+        let s = a + b;
+        Dd(s, b - (s - a))
+    }
+
+    fn two_prod(a: f64, b: f64) -> Dd {
+        let p = a * b;
+        Dd(p, libm::fma(a, b, -p))
+    }
+
+    pub fn add(a: Dd, b: Dd) -> Dd {
+        let s = two_sum(a.0, b.0);
+        quick(s.0, s.1 + a.1 + b.1)
+    }
+
+    fn neg(a: Dd) -> Dd {
+        Dd(-a.0, -a.1)
+    }
+
+    pub fn mul(a: Dd, b: Dd) -> Dd {
+        let p = two_prod(a.0, b.0);
+        quick(p.0, p.1 + a.0 * b.1 + a.1 * b.0)
+    }
+
+    pub fn mul_f(a: Dd, b: f64) -> Dd {
+        let p = two_prod(a.0, b);
+        quick(p.0, p.1 + a.1 * b)
+    }
+
+    fn div_f(a: Dd, b: f64) -> Dd {
+        let q = a.0 / b;
+        let r = add(a, neg(two_prod(q, b)));
+        quick(q, r.0 / b)
+    }
+
+    /// `ln 2` em precisão dupla dobrada.
+    const LN2: Dd = Dd(std::f64::consts::LN_2, 2.319_046_813_846_299_6e-17);
+
+    /// `e^a`, com `|a.0|` até uns 709: `a = k ln 2 + r`, e a série de Taylor em
+    /// `r / 2^8`, elevada ao quadrado oito vezes.
+    pub fn exp(a: Dd) -> Dd {
+        let k = (a.0 / LN2.0).round();
+        let r = add(a, neg(mul_f(LN2, k)));
+        let r = Dd(r.0 / 256.0, r.1 / 256.0);
+        let mut sum = Dd(1.0, 0.0);
+        let mut term = Dd(1.0, 0.0);
+        for n in 1..=20 {
+            term = div_f(mul(term, r), f64::from(n));
+            sum = add(sum, term);
+            if term.0.abs() < 1e-36 {
+                break;
+            }
+        }
+        for _ in 0..8 {
+            sum = mul(sum, sum);
+        }
+        let e = k as i32;
+        Dd(libm::scalbn(sum.0, e), libm::scalbn(sum.1, e))
+    }
+
+    /// `ln x` para `x` positivo e finito: o `log` da `libm` e um passo de
+    /// Newton com a exponencial acima.
+    pub fn ln(x: f64) -> Dd {
+        let l0 = libm::log(x);
+        let e = exp(Dd(l0, 0.0));
+        let diff = add(Dd(x, 0.0), neg(e));
+        add(Dd(l0, 0.0), Dd(diff.0 / e.0, 0.0))
+    }
 }
 
 /// `Math.max(a, b)`: `NaN` contamina, e `max(-0, 0)` é `0`.
@@ -110,7 +209,7 @@ pub fn number_to_string(x: f64) -> String {
 
 #[cfg(test)]
 mod tests {
-    use super::{max, min, number_to_string, round, to_uint32};
+    use super::{max, min, number_to_string, pow, round, to_uint32};
 
     #[test]
     fn numbers_as_text_like_javascript() {
@@ -140,6 +239,27 @@ mod tests {
         assert!(min(0.0, -0.0).is_sign_negative());
         assert!(max(1.0, f64::NAN).is_nan());
         assert_eq!(min(2.0, 3.0), 2.0);
+    }
+
+    /// O `Math.pow` do Node, bit a bit (o `pow` da `libm` erra o último bit
+    /// no primeiro).
+    #[test]
+    fn pow_like_javascript() {
+        for (a, b, want) in [
+            (20.0, 0.4, 3.3144540173399872),
+            (2.0, 0.5, std::f64::consts::SQRT_2),
+            (10.0, -0.7, 0.19952623149688797),
+            (0.1, 0.15, 0.7079457843841379),
+            (1.5, 2.5, 2.7556759606310752),
+            (7.0, 0.7, 3.9045287771227217),
+            (2.0, 10.0, 1024.0),
+            (3.0, -2.0, 0.1111111111111111),
+            (0.0, 0.5, 0.0),
+            (-8.0, 2.0, 64.0),
+        ] {
+            assert_eq!(pow(a, b).to_bits(), f64::to_bits(want), "{a} ** {b}");
+        }
+        assert!(pow(-8.0, 0.5).is_nan());
     }
 
     #[test]
