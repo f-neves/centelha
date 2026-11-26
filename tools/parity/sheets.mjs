@@ -12,7 +12,9 @@
 //                 `enq`, as três Secundárias livres, `virtues.valor`, a peça
 //                 personalizada (`c`, `ce` e a armadura `c`), conjunto sem
 //                 nenhum ativo, ficha sem conjuntos (o `equip.arma` antigo), o
-//                 item inteiro editado, a massa escrita e o peso por extenso
+//                 item inteiro editado, a massa escrita e o peso por extenso,
+//                 o arsenal não vazio, a ficha de leitura com img e enq, e o
+//                 item guardado com arma.folego
 //   raca          a mesma ficha em cada raça de racas.json
 //   arma          cada arma da lista do jogador na mão hábil, com a mão inábil
 //                 girando entre nada, punho, escudos e outra arma, e a Força
@@ -154,6 +156,39 @@ export function buildSheetInputs({ kael, formato, acaso, weapons, shields, armor
     g.corpo = { altura: 1.7 };
     g.raca = 'gnomo';
     add('formato', 'gravada-sem-massa-gnomo', g);
+  }
+
+  {
+    // o arsenal não vazio: do catálogo, com ajuste antigo, personalizada e o
+    // id que saiu do catálogo
+    const f = clone(base);
+    f.arsenal = [{ ref: 'a:adaga' }, { ref: 'e:broquel', mod: { bloqCaC: 2 } }, { ref: 'c', nome: 'Bengala', dado: 1 },
+      { ref: 'a:dardos' }, { ref: 'a:arco-longo', img: 'arco.webp' }];
+    add('formato', 'arsenal', f);
+    add('formato', 'arsenal-gravada', formato.fichaParaGravar(clone(f)));
+  }
+  {
+    // a ficha de leitura com img e enq nas peças: a ida para a gravada leva o
+    // enquadramento
+    const f = clone(base);
+    f.conjuntos[0].habil = { ref: 'a:espada-longa', img: 'espada.webp', enq: { z: 1.2, px: 5, py: -3 } };
+    f.conjuntos[0].inabil = { ref: 'e:broquel', enq: { z: 2, px: 0, py: 0 } };
+    f.equip.armaduras[0] = { ...f.equip.armaduras[0], img: 'gambeson.webp', enq: { z: 1, px: -2, py: 8 } };
+    add('formato', 'leitura-img-enq', f);
+    add('formato', 'leitura-img-enq-gravada', formato.fichaParaGravar(clone(f)));
+  }
+  {
+    // o item já guardado com arma.folego: o Fôlego sai da ficha
+    const w = weapons.find((x) => x.id === 'espada-longa');
+    const { id, ...env } = clone(w);
+    const item = { ...env, origem: id, arma: { ...env.arma, folego: 3 } };
+    const f = clone(base);
+    f.conjuntos[0].habil = { ref: 'a:espada-longa', item };
+    f.arsenal = [{ ref: 'a:espada-longa', item: clone(item) }];
+    add('formato', 'item-com-folego', f);
+    const g = formato.fichaParaGravar(clone(base));
+    g.equipamento.conjuntos[0].maoHabil = { ref: 'a:espada-longa', item: clone(item) };
+    add('formato', 'item-com-folego-gravada', g);
   }
 
   // ----- raca -----

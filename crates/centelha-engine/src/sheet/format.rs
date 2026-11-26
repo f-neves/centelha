@@ -385,7 +385,39 @@ pub fn for_reading(cat: &Catalog, input: &Value) -> Value {
     }
     let mut out = Value::Object(out);
     cat.freeze_items(&mut out, false);
+    breath_in_leftovers(&mut out);
     out
+}
+
+/// No TypeScript, o `equip` da leitura é `{ ...equipamento }`: o `arsenal` e
+/// os `conjuntos` gravados ficam lá dentro, e a peça deles divide o objeto
+/// `item` com a peça lida (a cópia de `pecaVelha` é rasa). O `semFolego` da
+/// leitura apaga o Fôlego do item da peça lida e, pelo mesmo objeto, do item
+/// que ficou no `equip`. Aqui as cópias são separadas, e esta função faz a
+/// mesma remoção nas que ficaram.
+fn breath_in_leftovers(out: &mut Value) {
+    let Some(Value::Object(equip)) = out.get_mut("equip") else {
+        return;
+    };
+    let fix = |p: &mut Value| {
+        if let Value::Object(m) = p
+            && let Some(item @ Value::Object(_)) = m.get_mut("item")
+        {
+            super::equip::without_breath(item);
+        }
+    };
+    if let Some(Value::Array(list)) = equip.get_mut("arsenal") {
+        list.iter_mut().for_each(fix);
+    }
+    if let Some(Value::Array(sets)) = equip.get_mut("conjuntos") {
+        for cj in sets.iter_mut() {
+            for hand in ["maoHabil", "maoInabil"] {
+                if let Some(p) = cj.get_mut(hand) {
+                    fix(p);
+                }
+            }
+        }
+    }
 }
 
 /// `fichaParaGravar`: a ficha na forma gravada (a do banco), com o item

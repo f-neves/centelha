@@ -5,7 +5,9 @@
 //! (`numerosPersonagem`), o resumo de combate (`combatePersonagem`), o resumo
 //! da mesa (`resumoFicha`) e o recorte do banco (`resumoParaBanco`). A saída
 //! tipada do Rust é escrita na forma do objeto do TypeScript e comparada folha
-//! por folha, como nas criaturas.
+//! por folha, como nas criaturas. Os números e o resumo saem também das
+//! variantes que recebem a ficha já lida (`sheet_numbers_read`,
+//! `sheet_summary_read`), comparados com a mesma referência.
 
 mod common;
 
@@ -13,7 +15,7 @@ use centelha_engine::creature::Soak;
 use centelha_engine::sheet::{
     ArmorStack, Catalog, CombatSummary, DbSummary, HandItem, HandKind, HandSet, NearMiss,
     SheetNumbers, SheetSummary, SheetTables, combat_summary, db_summary, for_reading, for_saving,
-    sheet_numbers, sheet_summary,
+    sheet_numbers, sheet_numbers_read, sheet_summary, sheet_summary_read,
 };
 use common::{compare, num, opt, repo};
 use serde_json::{Map, Value, json};
@@ -65,7 +67,7 @@ fn hand_set(a: &HandSet) -> Value {
         "habil": hand(&a.main_hand), "inabil": hand(&a.off_hand), "atk": a.attack_weapon,
         "dados": num(a.dice), "bonus": num(a.roll_bonus), "flat": num(a.flat), "dist": a.ranged,
         "versoes": a.versions.iter().map(|v| json!({ "rot": v.label, "ap": num(v.bonus) })).collect::<Vec<_>>(),
-        "reqForca": num(a.strength_missing), "dupla": dual, "defSum": num(a.block),
+        "reqForca": num(a.strength_missing), "dupla": dual, "defSum": num(a.hands_defense),
         "penSum": num(a.penalty), "armorPen": num(a.armor_penalty), "forcaInvestida": num(a.charge_strength),
     })
 }
@@ -168,6 +170,8 @@ fn sheets_match_typescript() {
         let id = s["id"].as_str().unwrap();
         let input = &s["ficha"];
         let r = sheet_summary(&t, input);
+        // as variantes da ficha já lida dão o mesmo que as da ficha crua
+        let read = for_reading(t.catalog(), input);
         let outputs = [
             ("leitura", for_reading(t.catalog(), input)),
             ("gravar", for_saving(t.catalog(), input)),
@@ -175,13 +179,15 @@ fn sheets_match_typescript() {
             ("combate", combat(&combat_summary(&t, input))),
             ("banco", db(&db_summary(&r))),
             ("resumo", summary(&r)),
+            ("numeros", numbers(&sheet_numbers_read(&t, &read))),
+            ("resumo", summary(&sheet_summary_read(&t, &read))),
         ];
         for (k, got) in outputs {
             fields += compare(&format!("{id}:{k}"), &got, &s[k], &mut diffs);
         }
     }
     println!(
-        "fichas: {} fichas, 6 saídas cada, {fields} campos comparados, {} diferenças",
+        "fichas: {} fichas, 6 saídas cada (e as duas da ficha já lida), {fields} campos comparados, {} diferenças",
         sheets.len(),
         diffs.len()
     );

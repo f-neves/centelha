@@ -13,6 +13,8 @@ libm = { version = "0.2.16", default-features = false }
 # a ficha do jogador entra como JSON (dado do jogador, em formas de várias
 # épocas); preserve_order guarda a ordem das chaves, que o TypeScript usa
 serde_json = { version = "1.0.154", features = ["float_roundtrip", "preserve_order"] }
+# o NFD do porteDeRotulo (minúsculas, sem acento)
+unicode-normalization = "0.1.26"
 
 [dev-dependencies]
 # Só para ler as referências de paridade nos testes.
