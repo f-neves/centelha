@@ -201,7 +201,7 @@ O passo de Batalha é `battle` em todo lugar: na saída da ficha (`Movement.batt
 |---|---|---|---|
 | raspão | `graze` | piso de XP | `xp_floor` |
 | errou por | `missed_by` | preço do nível | `level_price` |
-| saída do ataque | `attack_outcome` (`Hit`, `Graze`, `Miss`) | trilha de XP | `XpTrack` (`acum` `Accumulated`, `flat` `Flat`, `gratis` `Free`) |
+| saída do ataque | `attack_outcome` (`Hit`, `Graze`, `Miss`) | trilha de XP / tipo da trilha | `XpTrack` / `XpKind` (`acum` `Accumulated`, `flat` `Flat`, `gratis` `Free`) |
 | limite da morte | `death_limit` | custo da Proeza (chave `tecnica`) | `feat_cost` |
 | passou do limite | `past_death_limit` | levantamento (da Arte de força) | `lifting`, `art_lifting` |
 | modo de ataque | `DamageMode` (`Cut`, `Pierce`, `Impact`) | jogada da manobra | `maneuver_roll` |
