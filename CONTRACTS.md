@@ -99,6 +99,8 @@ xtask              (sozinho; não é dependência de ninguém)
 
 **Consome:** a URL e a chave anon por configuração (nunca no código). Chave de serviço nunca.
 
+**Admin (R22):** admin é só quem a função `eh_admin` do banco aprova. Nenhum e-mail, id de usuário ou lista de admins no código, em constante, teste, comentário ou configuração do repositório. A conferência devolve sim ou não, e qualquer falha (rede, erro do banco, sessão vencida ou ausente) é não. Sem cache que mantenha alguém admin depois de a sessão cair: a resposta vale para a sessão em que foi pedida e some com ela. Toda ação de admin que grava é barrada no próprio banco (RLS ou função que confere `eh_admin`); o cliente não é proteção.
+
 ## centelha-web
 
 Framework e versões: ADR 0003 (Leptos com ilhas; site estático gerado por nós).
@@ -115,6 +117,8 @@ Framework e versões: ADR 0003 (Leptos com ilhas; site estático gerado por nós
 - Fontes (R13): Cinzel e EB Garamond servidas pelo próprio site, em `crates/centelha-web/fonts/` com o `OFL.txt` de cada família; só `woff2`, subconjunto latino, só os pesos usados, `font-display: swap` e `unicode-range`; pré-carga só da fonte do texto corrido. Nada de serviço externo de fontes.
 
 **Consome:** `centelha-data` (leitura de `content/`, no gerador), `centelha-engine` (toda conta que uma página mostra), `leptos`, `leptos_meta`, `wasm-bindgen`, `web-sys`, `js-sys`, `serde`, e só na feature `ssr` o `pulldown-cmark` (Markdown) e o que a chave dos diagramas pedir (SHA-1). Versões no ADR 0003. Depois, `centelha-grid` e `centelha-supabase`.
+
+**Admin na tela (R22):** esconder um controle de admin é conveniência, não proteção. A tela pergunta ao `centelha-supabase` (que pergunta à `eh_admin`) e mostra o controle só com um sim; enquanto não há resposta, ou com falha, mostra como não admin. Nada de e-mail fixo nem lista de admins no site. Ação de admin que grava só existe se o banco a barra por conta própria; uma ação do site atual protegida só no navegador vira aviso ao Coordenador-RS antes do port.
 
 **Não faz:** conta de regra (pede ao `centelha-engine`), mudança no texto do livro (o que está em `content/` sai como está), corte ou recodificação de imagem.
 
