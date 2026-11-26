@@ -13,11 +13,36 @@
 //! com `numeric: true` e `sensitivity: 'base'` (a ordem das tabelas do site:
 //! uma sequência de algarismos vale pelo número, `2` antes de `10`).
 //!
-//! As letras cobertas são as latinas (ASCII, Latim-1 e Latim estendido A), sem
-//! as tabelas de caixa do Unicode inteiro, que pesam no WebAssembly. A prova é
-//! a comparação com o `localeCompare` do Node (`tests/parity/collate.json`).
+//! **O que está coberto** ([`covers`]): o ASCII imprimível, o espaço, e as
+//! letras acentuadas que se decompõem numa letra ASCII com acento (as de
+//! [`fold`]: as do português e do espanhol, e as de Latim-1 e Latim estendido A
+//! que são letra de base mais um sinal), nas duas caixas. É o que os nomes do
+//! livro usam hoje. A prova é a comparação com o `localeCompare` do Node
+//! (`tests/parity/collate.json`), e um teste falha quando um nome de um
+//! catálogo de `content/` trouxer caractere fora disso.
+//!
+//! **Fora da cobertura, a ordem pode diferir do ICU:**
+//! - as letras latinas que o ICU lê como outra base ou expande (`ð đ ħ ł ŀ ø ſ`,
+//!   `ß æ œ þ ĳ ŉ ŋ ŧ ĸ ı`) e as maiúsculas sem par aqui (`Ÿ İ`) entram pelo
+//!   ponto de código, depois do `z`;
+//! - as letras de outros alfabetos (grego, cirílico...) entram pelo ponto de
+//!   código e sem dobrar a caixa (`Α` e `α` não empatam);
+//! - os símbolos e a pontuação fora do ASCII (`×`, `−`, `·`, aspas curvas)
+//!   entram pelo ponto de código, depois da pontuação ASCII.
+//!
+//! As tabelas de caixa e de decomposição do Unicode inteiro ficaram de fora
+//! porque pesam no WebAssembly.
 
 use std::cmp::Ordering;
+
+/// O caractere está na cobertura da colação (ver o cabeçalho): ASCII
+/// imprimível, espaço, ou letra que [`fold`] leva a uma letra de base ASCII.
+pub fn covers(c: char) -> bool {
+    (' '..='~').contains(&c) || c.is_whitespace() || {
+        let b = fold(c);
+        b != lowercase(c) && b.is_ascii_lowercase()
+    }
+}
 
 /// A minúscula das letras latinas (ASCII, Latim-1 e Latim estendido A). As
 /// outras passam como estão.

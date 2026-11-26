@@ -355,6 +355,11 @@ pub fn trait_cap(t: &EditorTables, sheet: &Value, kind: &str, key: Option<&str>)
 /// A massa foi escrita pelo jogador? (`massaEscolhida`, a conta do
 /// `normalize` ao abrir a ficha: `corpo.massa` é número, ou a identidade tem
 /// peso.) É o `mass_chosen` de [`change_ancestry`].
+///
+/// A ficha tem de estar na forma de leitura (a do [`super::for_reading`]): o
+/// `normalize` roda o `fichaParaLeitura` antes desta conta, e a leitura passa
+/// o `id.peso` numérico para `corpo.massa` (`ficha-formato.ts:94-97`). Numa
+/// ficha gravada, a mesma massa pode estar só no `id.peso`.
 pub fn mass_chosen(sheet: &Value) -> bool {
     jv::get(sheet.get("corpo"), "massa").is_some_and(Value::is_number)
         || truthy(jv::get(sheet.get("id"), "peso"))

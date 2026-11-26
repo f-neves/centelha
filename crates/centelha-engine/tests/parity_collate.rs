@@ -5,7 +5,7 @@ mod common;
 
 use std::cmp::Ordering;
 
-use centelha_engine::collate::{compare, compare_base, compare_numeric_base};
+use centelha_engine::collate::{compare, compare_base, compare_numeric_base, covers};
 use serde_json::Value;
 
 fn sign(o: Ordering) -> i64 {
@@ -60,4 +60,53 @@ fn the_reference_has_the_book_names() {
             .iter()
             .all(|p| matches!(p, Value::Array(a) if a.len() == 5))
     );
+}
+
+/// Os nomes dos catálogos de `content/` ficam dentro da cobertura da colação:
+/// um nome novo com letra que ela não trata (`ø`, `ß`, grego...) faz este teste
+/// falhar, com o nome e a letra.
+#[test]
+fn book_names_stay_inside_the_coverage() {
+    let data = common::repo().join("content/data");
+    let read = |f: &str| -> Value {
+        serde_json::from_str(&std::fs::read_to_string(data.join(f)).unwrap()).unwrap()
+    };
+    let mut out = Vec::new();
+    let mut seen = 0;
+    for (file, key) in [
+        ("efeitos.json", "nome"),
+        ("tecnicas.json", "nome"),
+        ("artes.json", "nome"),
+        ("caminhos.json", "nome"),
+        ("habilidades-secundarias.json", "nome"),
+        ("monsters.json", "nome"),
+        ("glossario.json", "termo"),
+    ] {
+        for item in read(file).as_array().unwrap() {
+            let name = item[key].as_str().unwrap();
+            seen += 1;
+            for c in name.chars().filter(|c| !covers(*c)) {
+                out.push(format!("{file}: {name:?} tem {c:?} (U+{:04X})", c as u32));
+            }
+        }
+    }
+    assert!(seen > 1000, "{seen}");
+    assert!(
+        out.is_empty(),
+        "letras fora da cobertura da colação:\n{}",
+        out.join("\n")
+    );
+}
+
+/// O que fica fora da cobertura, para o teste acima ter o que acusar.
+#[test]
+fn the_coverage_leaves_out_what_it_does_not_order() {
+    for c in ['a', 'Z', '0', ' ', '-', 'á', 'Ç', 'ã', 'Õ', 'ü', 'ñ'] {
+        assert!(covers(c), "{c}");
+    }
+    for c in [
+        'ø', 'ß', 'æ', 'ł', 'ı', 'İ', 'Ÿ', 'α', 'Ω', '×', '−', '·', '\u{2019}',
+    ] {
+        assert!(!covers(c), "{c}");
+    }
 }
