@@ -119,18 +119,18 @@ pub fn appearance_mod(rules: &Rules, level: f64, mask: Option<f64>) -> f64 {
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum DamageMode {
     Cut,
-    Piercing,
+    Pierce,
     Impact,
 }
 
 impl DamageMode {
-    pub const ALL: [DamageMode; 3] = [DamageMode::Cut, DamageMode::Piercing, DamageMode::Impact];
+    pub const ALL: [DamageMode; 3] = [DamageMode::Cut, DamageMode::Pierce, DamageMode::Impact];
 
     /// A chave gravada (`corte`, `perfurante`, `impacto`).
     pub fn id(self) -> &'static str {
         match self {
             DamageMode::Cut => "corte",
-            DamageMode::Piercing => "perfurante",
+            DamageMode::Pierce => "perfurante",
             DamageMode::Impact => "impacto",
         }
     }
@@ -180,7 +180,7 @@ pub fn pierce_gate_opens(
         .and_then(|g| g.modes.as_ref());
     let gated = match modes {
         Some(m) => m.iter().any(|m| m == mode.id()),
-        None => mode == DamageMode::Piercing,
+        None => mode == DamageMode::Pierce,
     };
     !gated || weapon_pierce >= pierce_level
 }

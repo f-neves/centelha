@@ -1,5 +1,9 @@
-# O serde_json do workspace usa preserve_order (ADR 0004): Map::remove vira
-# swap_remove e muda a ordem das chaves. Use shift_remove.
+# O serde_json do workspace usa preserve_order (ADR 0004): Map::remove, o
+# remove_entry e as remoções da entrada viram swap_remove e mudam a ordem das
+# chaves. Use shift_remove (ou shift_remove_entry).
 disallowed-methods = [
     { path = "serde_json::Map::remove", reason = "muda a ordem das chaves; use shift_remove" },
+    { path = "serde_json::Map::remove_entry", reason = "muda a ordem das chaves; use shift_remove_entry" },
+    { path = "serde_json::map::OccupiedEntry::remove", reason = "muda a ordem das chaves; use shift_remove" },
+    { path = "serde_json::map::OccupiedEntry::remove_entry", reason = "muda a ordem das chaves; use shift_remove_entry" },
 ]

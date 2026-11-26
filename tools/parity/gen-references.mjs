@@ -19,6 +19,7 @@
 //   tests/parity/mulberry32.json  sequências do gerador aleatório por semente
 //   tests/parity/sheets.json      fichas de jogador e as saídas do motor (sheets.mjs)
 //   tests/parity/character.json   as contas pequenas do personagem, função a função (character.mjs)
+//   tests/parity/strikes.json     o lance e os dados (strikes.mjs)
 //
 // O JSON não guarda -0 (o JSON.stringify escreve 0). Para a referência não
 // esconder um -0, todo -0 das saídas é gravado como o texto "-0", e o teste do
@@ -32,6 +33,7 @@ import { execFileSync } from 'node:child_process';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { buildSheetInputs, sheetOutputs } from './sheets.mjs';
 import { buildCharacterCases } from './character.mjs';
+import { buildStrikes, ROLLED_SEED, ROLLS_SEED } from './strikes.mjs';
 
 const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 const OUT = path.join(REPO, 'tests', 'parity');
@@ -80,6 +82,21 @@ async function loadTs(rel) {
   }
 }
 
+// Vários módulos num pacote só (o estado do acaso é do pacote).
+async function loadBundle(name, contents) {
+  const outfile = path.join(os.tmpdir(), `parity-${name}-${process.pid}.mjs`);
+  await build({
+    stdin: { contents, resolveDir: path.join(SRC, 'src', 'lib'), loader: 'ts' }, outfile, bundle: true, format: 'esm',
+    platform: 'node', loader: { '.json': 'json' }, logLevel: 'error', define: { 'import.meta.env': 'globalThis.__ENV__' },
+  });
+  globalThis.__ENV__ = globalThis.__ENV__ || { BASE_URL: '/', MODE: 'test' };
+  try {
+    return await import(pathToFileURL(outfile).href);
+  } finally {
+    try { fs.unlinkSync(outfile); } catch { /* o sistema limpa */ }
+  }
+}
+
 const motor = await loadTs('src/lib/motor.ts');
 const acaso = await loadTs('src/lib/acaso.ts');
 const formato = await loadTs('src/lib/ficha-formato.ts');
@@ -87,6 +104,8 @@ const mesa = await loadTs('src/lib/mesa-ficha.ts');
 const quase = await loadTs('src/lib/quase-acerto.ts');
 const equip = await loadTs('src/lib/equip.ts');
 const migra = await loadTs('src/lib/ficha-migra.ts');
+const combat = await loadBundle('combate', "export * from './acaso'; export { rolarExpr } from './rolagem'; "
+  + "export { resolverGolpe, fonteFixa, fonteRolada, defesaEfetiva } from './lance';");
 
 const source = {
   commit,
@@ -99,17 +118,18 @@ const source = {
 // -0 vira o texto "-0" (ver o cabeçalho)
 const keepNegativeZero = (_, v) => (Object.is(v, -0) ? '-0' : v);
 
-// `lines`: a chave de uma lista que sai com um item por linha, sem recuo (as
+// `lines`: a chave (ou as chaves) de uma lista que sai com um item por linha, sem recuo (as
 // fichas: o arquivo fica com a metade do tamanho e o diff continua por ficha).
 function write(name, data, lines) {
   fs.mkdirSync(OUT, { recursive: true });
   const file = path.join(OUT, name);
   let text;
   if (lines) {
-    const head = Object.entries(data).filter(([k]) => k !== lines)
-      .map(([k, v]) => `${JSON.stringify(k)}: ${JSON.stringify(v, keepNegativeZero)}`);
-    const items = data[lines].map((x) => JSON.stringify(x, keepNegativeZero)).join(',\n');
-    text = `{\n${head.join(',\n')},\n${JSON.stringify(lines)}: [\n${items}\n]}`;
+    const listKeys = [lines].flat();
+    const parts = Object.entries(data).map(([k, v]) => (listKeys.includes(k)
+      ? `${JSON.stringify(k)}: [\n${v.map((x) => JSON.stringify(x, keepNegativeZero)).join(',\n')}\n]`
+      : `${JSON.stringify(k)}: ${JSON.stringify(v, keepNegativeZero)}`));
+    text = `{\n${parts.join(',\n')}}`;
   } else {
     text = JSON.stringify(data, keepNegativeZero, 1);
   }
@@ -214,6 +234,14 @@ for (const c of characterCases) {
   characterCounts[c.fn] = (characterCounts[c.fn] || 0) + 1;
 }
 
+// ----- o lance e os dados -----
+const strikes = buildStrikes({
+  combat, fixtureText: fs.readFileSync(path.join(SRC, 'scripts', 'fixtures', 'lances.jsonl'), 'utf8'),
+});
+strikes.fixed.forEach((c, i) => scanNumbers(c.saida, `lance fixo ${i}`));
+strikes.rolled.forEach((c, i) => scanNumbers(c.saida, `lance rolado ${i}`));
+strikes.rolls.forEach((c, i) => scanNumbers(c, `rolagem ${i}`));
+
 if (negativeZeros.length) console.log(`${negativeZeros.length} -0 nas saídas, gravados como "-0"`);
 if (badNumbers.length) {
   for (const b of badNumbers) console.error(`erro: número não finito em ${b}`);
@@ -271,6 +299,19 @@ write('character.json', {
   counts: characterCounts,
   cases: characterCases,
 }, 'cases');
+write('strikes.json', {
+  source,
+  note: 'fixed: resolverGolpe(entrada, fonteFixa(sorteio)) de cada lance de scripts/fixtures/lances.jsonl; '
+    + `rolled: os mesmos lances pela fonteRolada com um Mulberry32 só (semente ${ROLLED_SEED}), draws = números já entregues; `
+    + `rolls: rolarExpr com um Mulberry32 só (semente ${ROLLS_SEED}). Montado por tools/parity/strikes.mjs. -0 gravado como "-0".`,
+  rolledSeed: ROLLED_SEED,
+  rollsSeed: ROLLS_SEED,
+  counts: { fixed: strikes.fixed.length, rolled: strikes.rolled.length, rolls: strikes.rolls.length },
+  fixed: strikes.fixed,
+  rolled: strikes.rolled,
+  rolls: strikes.rolls,
+}, ['fixed', 'rolled', 'rolls']);
+console.log(`${strikes.fixed.length} lances (fixos e rolados), ${strikes.rolls.length} rolagens`);
 console.log(`${characterCases.length} casos das contas pequenas em ${Object.keys(characterCounts).length} funções`);
 console.log(`${sheets.length} fichas: ${Object.entries(groups).map(([g, n]) => `${g} ${n}`).join(', ')}`);
 

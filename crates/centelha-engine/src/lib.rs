@@ -5,6 +5,8 @@
 
 pub mod character;
 pub mod creature;
+pub mod dice;
 pub mod js;
 pub mod rng;
 pub mod sheet;
+pub mod strike;

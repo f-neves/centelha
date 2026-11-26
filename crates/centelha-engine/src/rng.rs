@@ -4,21 +4,33 @@
 //! mesma sequência nos dois lados. Nenhum outro gerador aleatório entra no
 //! motor.
 
-/// Mulberry32: estado de 32 bits, uma saída por passo.
+/// Mulberry32: estado de 32 bits, uma saída por passo. Conta as saídas já
+/// entregues (`draws`), para a paridade achar o primeiro passo em que duas
+/// sequências se separam.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Mulberry32 {
     state: u32,
+    draws: u64,
 }
 
 impl Mulberry32 {
     /// Começa da semente. Uma semente de JavaScript (número qualquer) passa
     /// antes por [`crate::js::to_uint32`], como o TypeScript faz com `>>> 0`.
     pub fn new(seed: u32) -> Self {
-        Self { state: seed }
+        Self {
+            state: seed,
+            draws: 0,
+        }
+    }
+
+    /// Quantas saídas o gerador já entregou.
+    pub fn draws(&self) -> u64 {
+        self.draws
     }
 
     /// A próxima saída, como inteiro de 32 bits sem sinal.
     pub fn next_u32(&mut self) -> u32 {
+        self.draws += 1;
         self.state = self.state.wrapping_add(0x6d2b_79f5);
         let mut t = self.state;
         // Math.imul é a multiplicação de 32 bits que descarta o excesso
