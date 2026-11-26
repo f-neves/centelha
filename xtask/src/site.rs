@@ -8,18 +8,23 @@
 //!    `dist/pkg/`.
 //! 5. `wasm-opt -Oz` encolhe o WebAssembly (com a lista de recursos explícita:
 //!    `--all-features` gera um arquivo que o navegador recusa).
+//! 6. O índice da busca: o Pagefind lê o `dist/` pronto e grava
+//!    `dist/pagefind/`. O texto das páginas não depende dele.
 //!
 //! Opções: `--dev` compila o WebAssembly sem otimizar e pula o `wasm-opt` (o
 //! WebAssembly de depuração escreve os avisos de hidratação no console);
-//! `--out <pasta>` grava noutro lugar. O caminho base vem de `SITE_BASE_PATH`
-//! (padrão `/centelha/`). As ferramentas são procuradas no `PATH`, ou onde
-//! `WASM_BINDGEN` e `WASM_OPT` disserem.
+//! `--out <pasta>` grava noutro lugar; `--busca` exige o índice da busca (sem
+//! ela, o Pagefind ausente ou de outra versão só gera um aviso e o site sai sem
+//! busca). `SITE_SEARCH=1` vale o mesmo que `--busca`. O caminho base vem de
+//! `SITE_BASE_PATH` (padrão `/centelha/`). As ferramentas são procuradas no
+//! `PATH`, ou onde `WASM_BINDGEN`, `WASM_OPT` e `PAGEFIND` disserem.
 
 use std::path::{Path, PathBuf};
 use std::process::Command;
 
 const WASM_BINDGEN_VERSION: &str = "0.2.130";
 const BINARYEN_VERSION: &str = "133";
+const PAGEFIND_VERSION: &str = "1.6.0";
 const PKG_NAME: &str = "centelha_web";
 const WASM_FEATURES: &[&str] = &[
     "--enable-bulk-memory",
@@ -32,18 +37,21 @@ const WASM_FEATURES: &[&str] = &[
 
 struct Options {
     dev: bool,
+    search: bool,
     out: PathBuf,
 }
 
 fn parse(args: &[String], root: &Path) -> Result<Options, String> {
     let mut options = Options {
         dev: false,
+        search: std::env::var("SITE_SEARCH").is_ok_and(|v| v == "1"),
         out: root.join("dist"),
     };
     let mut it = args.iter();
     while let Some(arg) = it.next() {
         match arg.as_str() {
             "--dev" => options.dev = true,
+            "--busca" => options.search = true,
             "--out" => {
                 let dir = it.next().ok_or("--out pede uma pasta")?;
                 options.out = root.join(dir);
@@ -134,6 +142,27 @@ fn check_tools(dev: bool) -> Result<(String, String), String> {
     Ok((bindgen, opt))
 }
 
+/// O Pagefind da versão fixa, ou o motivo de não haver busca. Com
+/// `required`, a falta vira erro; sem, vira aviso e o site sai sem índice.
+fn check_pagefind(required: bool) -> Result<Option<String>, String> {
+    let program = tool("PAGEFIND", "pagefind");
+    let problem = match version_of(&program) {
+        Ok(found) if found.split_whitespace().nth(1) == Some(PAGEFIND_VERSION) => {
+            return Ok(Some(program));
+        }
+        Ok(found) => format!("pagefind: achei {found:?}, o ADR 0003 pede {PAGEFIND_VERSION}"),
+        Err(e) => e.replace("WASM_BINDGEN / WASM_OPT", "PAGEFIND"),
+    };
+    if required {
+        Err(format!(
+            "{problem} (a busca foi pedida com --busca ou SITE_SEARCH=1)"
+        ))
+    } else {
+        eprintln!("aviso: {problem}; o site sai sem o índice da busca");
+        Ok(None)
+    }
+}
+
 /// Raiz deste repositório (onde está o `Cargo.toml` do workspace).
 fn repo_root() -> PathBuf {
     Path::new(env!("CARGO_MANIFEST_DIR"))
@@ -147,6 +176,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
     let options = parse(args, &root)?;
     check_out(&options.out, &root)?;
     let (bindgen, opt) = check_tools(options.dev)?;
+    let pagefind = check_pagefind(options.search)?;
     let cargo = std::env::var("CARGO").unwrap_or_else(|_| "cargo".to_string());
 
     if options.out.exists() {
@@ -224,6 +254,21 @@ pub fn run(args: &[String]) -> Result<(), String> {
                 .arg(&final_wasm),
             "wasm-opt",
         )?;
+    }
+
+    // 6. O índice da busca, sobre o site pronto.
+    if let Some(pagefind) = &pagefind {
+        exec(
+            Command::new(pagefind)
+                .arg("--site")
+                .arg(&options.out)
+                .arg("--quiet"),
+            "pagefind",
+        )?;
+        println!(
+            "índice da busca em {}",
+            options.out.join("pagefind").display()
+        );
     }
 
     let size = |p: &Path| std::fs::metadata(p).map(|m| m.len()).unwrap_or(0);
