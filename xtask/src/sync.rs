@@ -5,12 +5,14 @@
 //! arquivos versionados lá (nada solto), monta tudo numa pasta de preparo,
 //! limpa o metadado das imagens, varre o resultado e só então troca o
 //! `content/`. Se a varredura achar qualquer coisa, `content/` fica como estava.
+//! Única mudança no texto copiado: os nomes de papel das notas de revisão do
+//! bestiário (ADR 0005, módulo `notes`).
 
 use std::fs;
 use std::path::{Path, PathBuf};
 use std::process::Command;
 
-use crate::{images, scan};
+use crate::{images, notes, scan};
 
 /// Uma origem: pasta (ou arquivo) no site atual, destino em `content/` e as
 /// extensões aceitas.
@@ -147,6 +149,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
     let mut files = 0usize;
     let mut bytes_total = 0u64;
     let mut stripped = 0usize;
+    let mut renamed = 0usize;
     let mut skipped = Vec::new();
     let mut per_source = Vec::new();
     for source in SOURCES {
@@ -185,7 +188,17 @@ pub fn run(args: &[String]) -> Result<(), String> {
                     }
                     clean
                 }
-                None => raw,
+                // Texto: os nomes de papel das notas de revisão viram
+                // "revisão" (ADR 0005); fora dos campos previstos, para.
+                None => match String::from_utf8(raw) {
+                    Ok(text) => {
+                        let (text, n) =
+                            notes::neutralize(&format!("{}/{inner}", source.to), &text)?;
+                        renamed += n;
+                        text.into_bytes()
+                    }
+                    Err(e) => e.into_bytes(),
+                },
             };
             if let Some(parent) = dest.parent() {
                 fs::create_dir_all(parent)
@@ -234,7 +247,10 @@ pub fn run(args: &[String]) -> Result<(), String> {
         origem.push_str("atenção: copiado com mudanças não commitadas na origem\n");
     }
     origem.push_str(&format!("arquivos: {files} ({})\n", human(bytes_total)));
-    origem.push_str(&format!("imagens com metadado removido: {stripped}\n\n"));
+    origem.push_str(&format!("imagens com metadado removido: {stripped}\n"));
+    origem.push_str(&format!(
+        "nomes de papel trocados por \"revisão\" nas notas (ADR 0005): {renamed}\n\n"
+    ));
     for line in &per_source {
         origem.push_str(&format!("- {line}\n"));
     }
@@ -253,7 +269,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
         println!("ignorados (extensão fora da lista): {}", skipped.join(", "));
     }
     println!(
-        "total: {files} arquivos, {}; {stripped} imagens limpas; commit {commit}",
+        "total: {files} arquivos, {}; {stripped} imagens limpas; {renamed} nomes trocados; commit {commit}",
         human(bytes_total)
     );
     Ok(())

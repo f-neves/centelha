@@ -196,7 +196,7 @@
     },
     {
       "campo": "corpo.comprimento",
-      "motivo": "Era 3,5 m (o do site). Comprimento total, a medida do FishBase para a real; numa enguia sem nadadeira de cauda separada não há outra leitura natural. 1,4 m da real típica × 3,93. Tamanho: decisão provisória do Arquiteto pelo item 7 da `tamanho-decisoes-5.md`; entre os 16 pés do Pathfinder 1 (4,9 m, Grande) e os 7 m da v3 (Grande)"
+      "motivo": "Era 3,5 m (o do site). Comprimento total, a medida do FishBase para a real; numa enguia sem nadadeira de cauda separada não há outra leitura natural. 1,4 m da real típica × 3,93. Tamanho: decisão provisória da revisão pelo item 7 da `tamanho-decisoes-5.md`; entre os 16 pés do Pathfinder 1 (4,9 m, Grande) e os 7 m da v3 (Grande)"
     },
     {
       "campo": "corpo.largura",

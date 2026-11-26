@@ -190,11 +190,11 @@
     },
     {
       "campo": "corpo.altura",
-      "motivo": "do Arquiteto; a fonte só dá o comprimento total"
+      "motivo": "da revisão; a fonte só dá o comprimento total"
     },
     {
       "campo": "corpo.comprimentoSemCauda",
-      "motivo": "do Arquiteto: \"corpo sem cauda (cerca de 60% de 11 m)\""
+      "motivo": "da revisão: \"corpo sem cauda (cerca de 60% de 11 m)\""
     },
     {
       "campo": "aparencia",

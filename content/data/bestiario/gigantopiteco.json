@@ -200,7 +200,7 @@
     },
     {
       "campo": "atributos.vigor",
-      "motivo": "Era 4. Proposta do Arquiteto: um acima do gorila (4), pela regra da versão maior (D-176, \"a versão maior tem mais Força e Vigor\").  O corpo não se preservou; a massa de 1,56 vez a do gorila é o único dado. A D-164 de hoje (\"não é gigante de Vigor alto\") é atendida: 5 é o Vigor do urso-pardo, de massa parecida, e não o de um gigante."
+      "motivo": "Era 4. Proposta da revisão: um acima do gorila (4), pela regra da versão maior (D-176, \"a versão maior tem mais Força e Vigor\").  O corpo não se preservou; a massa de 1,56 vez a do gorila é o único dado. A D-164 de hoje (\"não é gigante de Vigor alto\") é atendida: 5 é o Vigor do urso-pardo, de massa parecida, e não o de um gigante."
     },
     {
       "campo": "atributos.percepcao",
@@ -252,7 +252,7 @@
     },
     {
       "campo": "habilidadesSec.musculatura",
-      "motivo": "Fica como está. Proposta do Arquiteto, escala da decisão 12 (4 é excepcional),  a do gorila (D-117: \"gorila de Força 7 com Musculatura 4\")."
+      "motivo": "Fica como está. Proposta da revisão, escala da decisão 12 (4 é excepcional),  a do gorila (D-117: \"gorila de Força 7 com Musculatura 4\")."
     },
     {
       "campo": "corpo.altura",

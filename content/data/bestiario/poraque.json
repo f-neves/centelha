@@ -243,7 +243,7 @@
     },
     {
       "campo": "corpo.altura",
-      "motivo": "Era 0,15 m (da Bestiarista-5, para o de 2,5 m; corpo cilíndrico, nenhuma fonte mediu). Escalado pelo cubo da massa: 0,15 × (4,32 ÷ 20)^(1/3) = 0,15 × 0,6 = 0,09 m"
+      "motivo": "Era 0,15 m (da revisão, para o de 2,5 m; corpo cilíndrico, nenhuma fonte mediu). Escalado pelo cubo da massa: 0,15 × (4,32 ÷ 20)^(1/3) = 0,15 × 0,6 = 0,09 m"
     },
     {
       "campo": "corpo.comprimento",
@@ -251,7 +251,7 @@
     },
     {
       "campo": "corpo.largura",
-      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 0,07 × 1,0321 = 0,074 . Antes: Era 0,12 m (da Bestiarista-5, para o de 2,5 m); escalado pelo cubo da massa: 0,12 × 0,6"
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 0,07 × 1,0321 = 0,074 . Antes: Era 0,12 m (da revisão, para o de 2,5 m); escalado pelo cubo da massa: 0,12 × 0,6"
     },
     {
       "campo": "corpo.massa",

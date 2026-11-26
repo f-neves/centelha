@@ -42,7 +42,7 @@
       "exemplo": "esperar"
     }
   ],
-  "notaNumeros": "VOZ.md §10 decisao 6 e §9.5: DUAS listas, nao uma. As faces de d6 (campos tipo 'faces') usam so um..seis, cada palavra desta MESMA tabela validada contra o intervalo 1-6 - nao existe tabela separada. Os campos tipo 'inteiro' usam a faixa inteira (com 'menos' para negativo e 'e' para compor dezena+unidade ou centena+dezena+unidade). O teto cresce so ate onde o dado exige (decisao do Arquiteto, rodada 38): oitenta/noventa/cento entraram porque ABERTURAS/CURVATURAS (artes-grid.ts) tem 90/120/180, e 'cento e oitenta'=180 precisa das duas pontas. Nao adicionar dezena/centena nenhuma que nenhum dado real peça.",
+  "notaNumeros": "VOZ.md §10 decisao 6 e §9.5: DUAS listas, nao uma. As faces de d6 (campos tipo 'faces') usam so um..seis, cada palavra desta MESMA tabela validada contra o intervalo 1-6 - nao existe tabela separada. Os campos tipo 'inteiro' usam a faixa inteira (com 'menos' para negativo e 'e' para compor dezena+unidade ou centena+dezena+unidade). O teto cresce so ate onde o dado exige (decisao da revisão, rodada 38): oitenta/noventa/cento entraram porque ABERTURAS/CURVATURAS (artes-grid.ts) tem 90/120/180, e 'cento e oitenta'=180 precisa das duas pontas. Nao adicionar dezena/centena nenhuma que nenhum dado real peça.",
   "numeros": {
     "unidades": {
       "zero": 0, "um": 1, "dois": 2, "tres": 3, "quatro": 4, "cinco": 5, "seis": 6,

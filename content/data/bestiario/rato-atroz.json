@@ -234,7 +234,7 @@
     },
     {
       "campo": "corpo.massa",
-      "motivo": "Referência: 20 kg , escolha da Bestiarista (D-174) para o atroz ser maior que o rato gigante, com k = (20 ÷ 0,3)^(1/3) = 4,05 e k³ = 66,7. Base: a ratazana adulta de 0,3 kg : adultos selvagens de Salvador, machos 274,8 ± 86,5 g e fêmeas 302,6 ± 63,1 g, as fêmeas com prenhez incluída (Zeppelini e colegas 2020, Urban Ecosystems 24: 801, tabela 2); faixa 140 a 500 g (ADW). Faixa do atroz pela mesma conta: 0,14 a 0,5 kg × 66,7 = 9,3 a 33 kg. Sexos: as médias medidas da base diferem menos de 20%. A ficha atual dá \"até 11 kg\" (`mon-dire-rat`). A Faixa 2 vem de `calc.mjs` (o corte de 35 kg substitui o de 25 kg, decisão 22) e decide o PV, e não o Alvo"
+      "motivo": "Referência: 20 kg , escolha da revisão (D-174) para o atroz ser maior que o rato gigante, com k = (20 ÷ 0,3)^(1/3) = 4,05 e k³ = 66,7. Base: a ratazana adulta de 0,3 kg : adultos selvagens de Salvador, machos 274,8 ± 86,5 g e fêmeas 302,6 ± 63,1 g, as fêmeas com prenhez incluída (Zeppelini e colegas 2020, Urban Ecosystems 24: 801, tabela 2); faixa 140 a 500 g (ADW). Faixa do atroz pela mesma conta: 0,14 a 0,5 kg × 66,7 = 9,3 a 33 kg. Sexos: as médias medidas da base diferem menos de 20%. A ficha atual dá \"até 11 kg\" (`mon-dire-rat`). A Faixa 2 vem de `calc.mjs` (o corte de 35 kg substitui o de 25 kg, decisão 22) e decide o PV, e não o Alvo"
     },
     {
       "campo": "vontade",
