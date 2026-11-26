@@ -254,4 +254,4 @@ No `grid` do Efeito: forma `shape`, âncora `anchor`, gatilho `trigger`, alvo `t
 | entrada da forma | `form_entry` | modificador da Aparência do card | `card_appearance_mod` |
 | linha de PV na zona (de transição) | `hp_line_in_zone`, `HpLineInZone` | escala de Força de Vontade | `willpower_scale` |
 | zona / PV da linha de cima / de baixo | `zone_kg` / `hp_above` / `hp_below` | degrau (de uma escala) | `ScaleStep` |
-| provisório | `provisional` | | |
+| provisório | `provisional` | escala de Centelha | `spark_scale` |
