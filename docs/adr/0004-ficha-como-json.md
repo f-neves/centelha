@@ -10,7 +10,7 @@ A ficha do jogador é gravada no banco do site atual em formas de várias época
 
 1. **Exceção declarada:** no módulo `centelha-engine::sheet`, a ficha entra e sai como `serde_json::Value`, com as chaves em português, como está gravada. Os números que o motor calcula saem em tipos próprios, com nomes do `GLOSSARY.md`. Campos de saída que repetem um pedaço da ficha ou de um catálogo (o item da arma, os Atributos e as Habilidades como estão) continuam `Value` e são marcados no contrato como "chaves em português".
 2. **`serde_json` é dependência normal do `centelha-engine`** (versão 1.0.154, a mesma do `centelha-data`), com `float_roundtrip` e `preserve_order`.
-3. **`preserve_order` vale para o workspace inteiro**, porque o Cargo unifica as features: todo `serde_json::Map` passa a guardar a ordem de inserção (`indexmap`). Nesse modo, `Map::remove` troca o último elemento para o lugar do removido e muda a ordem; o código usa `shift_remove`, e o `clippy.toml` do workspace passa a proibir `serde_json::Map::remove` (`disallowed-methods`).
+3. **`preserve_order` vale para todo build que inclua o `centelha-engine`**, porque o Cargo unifica as features: nesse build, todo `serde_json::Map` passa a guardar a ordem de inserção (`indexmap`). Nesse modo, `Map::remove` troca o último elemento para o lugar do removido e muda a ordem; o código usa `shift_remove`, e o `clippy.toml` do workspace (entra com a tarefa 004 do Backend) passa a proibir `serde_json::Map::remove` (`disallowed-methods`), para o workspace inteiro.
 4. A cadeia nova no `Cargo.lock`: `indexmap` 2.14.2, `hashbrown` 0.17.2, `equivalent` 1.0.3 e `foldhash` 0.2.0 (as versões que o índice do crates.io deu em 25/11/2026).
 
 ## Consequências

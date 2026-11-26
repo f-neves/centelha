@@ -184,6 +184,8 @@ Habilidades Secundárias de criatura (`musculatura`, `corrida`, `voo`, `halterof
 | Aparência | `appearance` | Valor Passivo (o tipo) | `Passive` |
 | Vigor somado aos PV (pela Raça) | `vitality` | | |
 
+Nomes que mudam no código com a tarefa 004 do Backend: `hands_defense` (hoje `HandSet.block`) e `battle` em `Movement` (hoje `Movement.normal`). Até lá o código tem os nomes antigos. Nas regras lidas, `rules::MovementRules.normal` continua com o nome da chave do dado (`derivados.deslocamento.normal`); na saída da ficha, o passo de Batalha é sempre `battle`.
+
 ## Glossário do livro (acréscimo de 26/11, tarefa 003 do Frontend)
 
 | Português | Inglês |
