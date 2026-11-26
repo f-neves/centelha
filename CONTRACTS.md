@@ -145,6 +145,21 @@ Framework e versões: ADR 0003 (Leptos com ilhas; site estático gerado por nós
 
 **Consome:** `centelha-data` (leitura de `content/`, no gerador), `centelha-engine` (toda conta que uma página mostra), `leptos`, `leptos_meta`, `wasm-bindgen`, `web-sys`, `js-sys`, `serde`, e só na feature `ssr` o `pulldown-cmark` (Markdown) e o que a chave dos diagramas pedir (SHA-1). Versões no ADR 0003. Depois, `centelha-grid` e `centelha-supabase`.
 
+**Armazenamento do navegador (R26).** Até o domínio próprio, o site em Rust e o site atual moram na mesma origem (`f-neves.github.io`) e dividem o `localStorage`, o `sessionStorage` e a sessão do Supabase. Regras:
+1. Em chave que o site atual também lê, o Rust grava só valores no mesmo formato e com o mesmo significado; nunca apaga, renomeia nem muda o formato.
+2. Chave que só o Rust usa leva o prefixo `rs:` (por exemplo `rs:algo`).
+3. Toda chave dividida está na tabela abaixo, com o formato; chave nova dividida entra aqui no mesmo PR que começa a usá-la. A Revisora-RS confere isso em todo PR que mexa em armazenamento.
+
+| chave | onde | formato (o do site atual) | o que o Rust faz hoje |
+|---|---|---|---|
+| `tema` | `localStorage` | `classico`, `escuro` ou `legivel`; sem a chave vale `escuro` | lê no `<head>` e grava ao trocar o tema |
+| `sidebar` | `localStorage` | `collapsed` ou `open` | lê no `<head>` e grava ao recolher ou abrir a barra |
+| `centelha:config` | `localStorage` | objeto JSON das preferências de `src/lib/config-site.ts` (largura, fonte, entrelinha, margem, colunas, fundo, cores por tema...) | só lê, no `<head>` (gravar entra com a página de preferências) |
+| `centelha:consulta` | `sessionStorage` | lista JSON de textos `tipo:id` (os termos fixados no cartão do glossário; `termo` para os do glossário) | lê e grava, no mesmo formato |
+| sessão do Supabase | `localStorage` (a chave do `supabase-js`) | a do `supabase-js` | não usa (fase 3) |
+
+**Preferências de leitura (R25):** largura, fonte, entrelinha, colunas e fundo são de cada leitor, como o tema; não são ação de admin e nenhum controle delas fica escondido por `eh_admin`. Sem conta, ficam no navegador (`centelha:config`, com `try/catch` como o tema); com conta, no `profiles.config` da própria conta (fase 3). Os valores têm limites que não quebram a leitura a 375 px.
+
 **Admin na tela (R22):** esconder um controle de admin é conveniência, não proteção. A tela pergunta ao `centelha-supabase` (que pergunta à `eh_admin`) e mostra o controle só com um sim; enquanto não há resposta, ou com falha, mostra como não admin. Nada de e-mail fixo nem lista de admins no site. Ação de admin que grava só existe se o banco a barra por conta própria; uma ação do site atual protegida só no navegador vira aviso ao Coordenador-RS antes do port.
 
 **Não faz:** conta de regra (pede ao `centelha-engine`), mudança no texto do livro (o que está em `content/` sai como está), corte ou recodificação de imagem.
