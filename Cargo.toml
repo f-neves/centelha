@@ -17,3 +17,14 @@ all = { level = "warn", priority = -1 }
 [profile.release]
 lto = "thin"
 codegen-units = 1
+
+# Versões do ADR 0003 (fixadas com `=`; subir é commit próprio, citado no ADR).
+[workspace.dependencies]
+leptos = { version = "=0.8.23", default-features = false }
+wasm-bindgen = "=0.2.130"
+web-sys = "=0.3.107"
+pulldown-cmark = { version = "=0.13.6", default-features = false, features = ["html"] }
+serde = { version = "=1.0.229", features = ["derive"] }
+sha1 = "=0.11.0"
+# O contexto de render das ilhas no gerador (a mesma versão que o leptos usa).
+hydration_context = "=0.3.2"
