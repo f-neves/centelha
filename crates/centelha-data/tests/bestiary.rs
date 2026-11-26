@@ -3,6 +3,7 @@
 
 use std::path::{Path, PathBuf};
 
+use centelha_data::bestiary::{Category, Size};
 use centelha_data::{DataError, load_bestiary, parse_creature};
 use serde::Deserialize;
 
@@ -111,4 +112,72 @@ fn reads_the_catalogs_the_engine_uses() {
             assert!(has(&a, &armor.base), "{}: armadura {}", c.id, armor.base);
         }
     }
+}
+
+#[test]
+fn accepts_the_legacy_form_size_without_area() {
+    // a forma com Tamanho próprio e sem área própria: o esquema de entrada da
+    // fonte recusa, a leitura dela aceita, e aqui também
+    let text =
+        std::fs::read_to_string(repo().join("content/data/bestiario/barghest.json")).unwrap();
+    let mut json: serde_json::Value = serde_json::from_str(&text).unwrap();
+    json["formas"][0]["corpo"] = serde_json::json!({ "tamanhoEscolhido": "pequeno" });
+    let c = parse_creature(&json.to_string()).unwrap_or_else(|e| panic!("{e}"));
+    let body = c.forms.as_ref().unwrap()[0].body.as_ref().unwrap();
+    assert_eq!(body.chosen_size, Some(Size::Small));
+    assert_eq!(body.area, None);
+}
+
+#[test]
+fn keeps_an_unknown_category() {
+    let text = std::fs::read_to_string(repo().join("content/data/bestiario/aasimar.json")).unwrap();
+    let mut json: serde_json::Value = serde_json::from_str(&text).unwrap();
+    json["categoria"] = "categoria-nova".into();
+    let c = parse_creature(&json.to_string()).unwrap_or_else(|e| panic!("{e}"));
+    assert_eq!(c.category, Category::Other("categoria-nova".into()));
+    assert_eq!(c.category.id(), "categoria-nova");
+    json["categoria"] = "morto-vivo".into();
+    let c = parse_creature(&json.to_string()).unwrap();
+    assert_eq!(c.category, Category::Undead);
+    assert_eq!(c.category.id(), "morto-vivo");
+}
+
+#[test]
+fn rejects_a_zone_on_the_last_mass_row() {
+    let text = std::fs::read_to_string(repo().join("content/data/regras.json")).unwrap();
+    let mut json: serde_json::Value = serde_json::from_str(&text).unwrap();
+    let rows = json["derivados"]["pv"]["massa"]["conta"]
+        .as_array_mut()
+        .unwrap();
+    rows.last_mut().unwrap()["zonaKg"] = serde_json::json!([100000, 120000]);
+    let err = centelha_data::parse_rules(&json.to_string()).unwrap_err();
+    assert!(matches!(err, DataError::Invalid { .. }), "{err}");
+    assert_eq!(err.path(), "derivados.pv.massa.conta");
+}
+
+#[test]
+fn checks_the_ids_of_armors_and_shields() {
+    let bad = r#"[{"id": "Placa Velha", "nome": "x", "armadura": null, "escudo": null}]"#;
+    for err in [
+        centelha_data::parse_armors(bad).unwrap_err(),
+        centelha_data::parse_shields(bad).unwrap_err(),
+        centelha_data::parse_ancestries(bad).unwrap_err(),
+    ] {
+        assert!(matches!(err, DataError::Invalid { .. }), "{err}");
+        assert_eq!(err.path(), "[0].id");
+    }
+}
+
+#[test]
+fn reads_the_ancestries() {
+    let list =
+        centelha_data::load_ancestries(&repo().join("content")).unwrap_or_else(|e| panic!("{e}"));
+    assert_eq!(list.len(), 8);
+    let get = |id: &str| list.iter().find(|a| a.id == id).unwrap();
+    assert_eq!(get("humano").size, Some(Size::Medium));
+    assert_eq!(get("humano").mass_kg, Some([60.0, 80.0]));
+    assert_eq!(get("gnomo").size, Some(Size::Small));
+    assert!(get("orc").adds_stamina_to_hp());
+    assert!(!get("elfo").adds_stamina_to_hp());
+    assert_eq!(get("anao").attributes.get("perspicacia"), Some(&-1.0));
 }

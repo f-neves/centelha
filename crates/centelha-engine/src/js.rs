@@ -43,9 +43,89 @@ pub fn pow(a: f64, b: f64) -> f64 {
     libm::pow(a, b)
 }
 
+/// `Math.max(a, b)`: `NaN` contamina, e `max(-0, 0)` é `0`.
+pub fn max(a: f64, b: f64) -> f64 {
+    if a.is_nan() || b.is_nan() {
+        f64::NAN
+    } else if a == b {
+        if a.is_sign_negative() { b } else { a }
+    } else if a > b {
+        a
+    } else {
+        b
+    }
+}
+
+/// `Math.min(a, b)`: `NaN` contamina, e `min(-0, 0)` é `-0`.
+pub fn min(a: f64, b: f64) -> f64 {
+    if a.is_nan() || b.is_nan() {
+        f64::NAN
+    } else if a == b {
+        if a.is_sign_negative() { a } else { b }
+    } else if a < b {
+        a
+    } else {
+        b
+    }
+}
+
+/// O número como texto, como o JavaScript escreve (`String(x)`, `${x}`): a
+/// forma mais curta que volta ao mesmo número, sem expoente entre 1e-6 e
+/// 1e21, e `-0` como `0`.
+pub fn number_to_string(x: f64) -> String {
+    if x.is_nan() {
+        return "NaN".into();
+    }
+    if x.is_infinite() {
+        return if x > 0.0 { "Infinity" } else { "-Infinity" }.into();
+    }
+    if x == 0.0 {
+        return "0".into();
+    }
+    let a = x.abs();
+    if (1e-6..1e21).contains(&a) {
+        return format!("{x}");
+    }
+    let e = format!("{x:e}");
+    match e.split_once('e') {
+        Some((m, exp)) if !exp.starts_with('-') => format!("{m}e+{exp}"),
+        _ => e,
+    }
+}
+
 #[cfg(test)]
 mod tests {
-    use super::{round, to_uint32};
+    use super::{max, min, number_to_string, round, to_uint32};
+
+    #[test]
+    fn numbers_as_text_like_javascript() {
+        let cases = [
+            (0.0, "0"),
+            (-0.0, "0"),
+            (3.0, "3"),
+            (-2.5, "-2.5"),
+            (0.1 + 0.2, "0.30000000000000004"),
+            (1e21, "1e+21"),
+            (1.5e-7, "1.5e-7"),
+            (1e-7, "1e-7"),
+            (1e-6, "0.000001"),
+            (123456789012345680000.0, "123456789012345680000"),
+            (f64::NAN, "NaN"),
+            (f64::NEG_INFINITY, "-Infinity"),
+        ];
+        for (x, want) in cases {
+            assert_eq!(number_to_string(x), want, "{x:e}");
+        }
+    }
+
+    #[test]
+    fn max_and_min_like_javascript() {
+        assert!(max(-0.0, 0.0).is_sign_positive());
+        assert!(max(0.0, -0.0).is_sign_positive());
+        assert!(min(0.0, -0.0).is_sign_negative());
+        assert!(max(1.0, f64::NAN).is_nan());
+        assert_eq!(min(2.0, 3.0), 2.0);
+    }
 
     #[test]
     fn round_like_javascript() {

@@ -106,40 +106,72 @@ pub enum AttackClass {
 }
 
 /// A categoria da criatura.
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Deserialize)]
+///
+/// As 16 categorias de hoje têm variante própria. Uma categoria que a fonte
+/// ganhe depois entra como `Other`, com o texto da fonte, para a leitura não
+/// quebrar (o motor só olha `Animal`).
+#[derive(Debug, Clone, PartialEq, Eq, Hash, Deserialize)]
+#[serde(from = "String")]
 pub enum Category {
-    #[serde(rename = "aberracao")]
     Aberration,
-    #[serde(rename = "animal")]
     Animal,
-    #[serde(rename = "besta-magica")]
     MagicalBeast,
-    #[serde(rename = "celestial")]
     Celestial,
-    #[serde(rename = "construto")]
     Construct,
-    #[serde(rename = "corruptor")]
     Corruptor,
-    #[serde(rename = "dragao")]
     Dragon,
-    #[serde(rename = "elemental")]
     Elemental,
-    #[serde(rename = "fada")]
     Fey,
-    #[serde(rename = "gigante")]
     Giant,
-    #[serde(rename = "humanoide")]
     Humanoid,
-    #[serde(rename = "humanoide-monstruoso")]
     MonstrousHumanoid,
-    #[serde(rename = "limo")]
     Ooze,
-    #[serde(rename = "morto-vivo")]
     Undead,
-    #[serde(rename = "outsider")]
     Outsider,
-    #[serde(rename = "planta")]
     Plant,
+    /// Categoria fora da lista acima, com o texto da fonte.
+    Other(String),
+}
+
+const CATEGORY_IDS: [(Category, &str); 16] = [
+    (Category::Aberration, "aberracao"),
+    (Category::Animal, "animal"),
+    (Category::MagicalBeast, "besta-magica"),
+    (Category::Celestial, "celestial"),
+    (Category::Construct, "construto"),
+    (Category::Corruptor, "corruptor"),
+    (Category::Dragon, "dragao"),
+    (Category::Elemental, "elemental"),
+    (Category::Fey, "fada"),
+    (Category::Giant, "gigante"),
+    (Category::Humanoid, "humanoide"),
+    (Category::MonstrousHumanoid, "humanoide-monstruoso"),
+    (Category::Ooze, "limo"),
+    (Category::Undead, "morto-vivo"),
+    (Category::Outsider, "outsider"),
+    (Category::Plant, "planta"),
+];
+
+impl Category {
+    /// O texto da categoria nos dados (`animal`, `morto-vivo`...).
+    pub fn id(&self) -> &str {
+        match self {
+            Category::Other(s) => s,
+            known => CATEGORY_IDS
+                .iter()
+                .find(|(c, _)| c == known)
+                .map_or("", |(_, id)| id),
+        }
+    }
+}
+
+impl From<String> for Category {
+    fn from(s: String) -> Self {
+        CATEGORY_IDS
+            .iter()
+            .find(|(_, id)| *id == s)
+            .map_or(Category::Other(s), |(c, _)| c.clone())
+    }
 }
 
 /// As Habilidades que o ataque natural pode gravar (as de tiro e arremesso).
