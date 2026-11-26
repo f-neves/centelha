@@ -13,7 +13,9 @@
 //   4. clica num botão do seletor de tema e exige o tema trocado (no
 //      `<html data-theme>`, no `localStorage` e no botão marcado); recolhe e
 //      expande a barra lateral; no celular (375 px), abre a gaveta e fecha
-//      com Esc; e, onde há "Nesta página", abre o sumário e escolhe um título;
+//      com Esc; onde há "Nesta página", abre o sumário e escolhe um título; e,
+//      onde há termos do glossário marcados, abre e fecha o cartão pelo mouse
+//      e pelo teclado (foco e Esc) e abre e fecha o diálogo do termo;
 //   5. exige nenhuma exceção da página e nenhum erro ou aviso no console (em
 //      release um descasamento de hidratação vira pânico sem mensagem, por isso
 //      as exceções contam; o WebAssembly de depuração escreve o aviso).
@@ -145,7 +147,12 @@ for (const rel of pages) {
   // 4b. A barra lateral (desktop) e a gaveta (celular).
   problems.push(...(await checkShell(page)));
 
-  // 4c. O "Nesta página".
+  // 4c. O cartão do glossário (antes do "Nesta página": escolher um título
+  // muda a âncora, e a página rola de novo até ela por um segundo e meio, o
+  // que fecha o cartão).
+  problems.push(...(await checkCards(page)));
+
+  // 4d. O "Nesta página".
   problems.push(...(await checkToc(page)));
 
   // 5. Console limpo.
@@ -210,6 +217,57 @@ async function checkShell(page) {
   if (s.open || s.expanded !== 'false') problems.push(`Esc não fechou a gaveta: ${JSON.stringify(s)}`);
   await page.send('Emulation.setDeviceMetricsOverride', DESKTOP);
   await new Promise((ok) => setTimeout(ok, 100));
+  return problems;
+}
+
+async function checkCards(page) {
+  const problems = [];
+  if (!(await page.eval("!!document.querySelector('main .ref')"))) return problems;
+  await page.eval("window.scrollTo({ top: 0, behavior: 'instant' })");
+  const pop = () => page.eval("document.querySelector('.ref-pop b')?.textContent ?? null");
+  const name = await page.eval(`(() => {
+    const a = document.querySelector('main .ref');
+    const data = JSON.parse(document.getElementById('ref-data').textContent);
+    return data.find((d) => d.id === a.dataset.ref)?.nome ?? null;
+  })()`);
+  // Mouse: passar por cima abre; sair fecha.
+  const rect = await page.eval(`(() => {
+    const a = document.querySelector('main .ref');
+    a.scrollIntoView({ block: 'center', behavior: 'instant' });
+    const r = a.getBoundingClientRect();
+    return { x: r.x + r.width / 2, y: r.y + r.height / 2 };
+  })()`);
+  // A rolagem fecha o cartão (como no site atual): espera o evento de
+  // rolagem do scrollIntoView passar antes de mover o mouse.
+  await new Promise((ok) => setTimeout(ok, 200));
+  await page.send('Input.dispatchMouseEvent', { type: 'mouseMoved', x: rect.x, y: rect.y });
+  await new Promise((ok) => setTimeout(ok, 100));
+  if ((await pop()) !== name) problems.push(`o cartão não abriu pelo mouse (esperava ${name}, veio ${await pop()})`);
+  await page.send('Input.dispatchMouseEvent', { type: 'mouseMoved', x: 2, y: 2 });
+  await new Promise((ok) => setTimeout(ok, 400));
+  if ((await pop()) !== null) problems.push('o cartão não fechou ao tirar o mouse');
+  // Teclado: o foco abre; Esc fecha.
+  await page.eval("document.querySelector('main .ref').focus({ preventScroll: true })");
+  await new Promise((ok) => setTimeout(ok, 100));
+  if ((await pop()) !== name) problems.push('o cartão não abriu pelo foco');
+  for (const type of ['keyDown', 'keyUp']) {
+    await page.send('Input.dispatchKeyEvent', { type, key: 'Escape', code: 'Escape', windowsVirtualKeyCode: 27 });
+  }
+  await new Promise((ok) => setTimeout(ok, 100));
+  if ((await pop()) !== null) problems.push('Esc não fechou o cartão');
+  // Clique: abre o diálogo do termo; Esc fecha.
+  if (!(await click(page, 'main .ref'))) {
+    problems.push('sem termo para clicar');
+    return problems;
+  }
+  await new Promise((ok) => setTimeout(ok, 150));
+  const modal = await page.eval("({ open: document.querySelector('.ref-modal').open, name: document.querySelector('.ref-modal .rm-head b')?.textContent ?? null, url: location.href })");
+  if (!modal.open || modal.name !== name) problems.push(`o clique não abriu o diálogo do termo: ${JSON.stringify(modal)}`);
+  for (const type of ['keyDown', 'keyUp']) {
+    await page.send('Input.dispatchKeyEvent', { type, key: 'Escape', code: 'Escape', windowsVirtualKeyCode: 27 });
+  }
+  await new Promise((ok) => setTimeout(ok, 150));
+  if (await page.eval("document.querySelector('.ref-modal').open")) problems.push('Esc não fechou o diálogo');
   return problems;
 }
 
