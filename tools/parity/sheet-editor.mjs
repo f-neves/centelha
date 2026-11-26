@@ -38,6 +38,10 @@ const HOOK = `
     capFor: (k, key) => capFor(k, key), pisoAttr: (k) => pisoAttr(k),
     clampSpecs: (a, s) => clampSpecs(a, s), renderCaminhos: () => renderCaminhos(),
     efeitosAoAlcance: () => efeitosAoAlcance(), renderDerived: () => renderDerived(),
+    renderForca: () => renderForca(), cargaCalculada: () => cargaCalculada(), cargaAtual: () => cargaAtual(),
+    numPeso: (x) => numPeso(x), r1n: (x) => r1n(x),
+    marcarUso: (u, p) => marcarUso(u, p), ehDuasMaos: (p) => ehDuasMaos(p), pecaPara: (r) => pecaPara(r),
+    calcConj: (c) => calcConj(c), conjAtivo: () => conjAtivo(), duplaConj: (c) => duplaConj(c),
     // o normalize de uma ficha crua: a ficha que sai, o que subiu pelo piso, a
     // massa e os uid sorteados, na ordem
     normalizar: (raw) => {
@@ -54,9 +58,6 @@ const UID = `const novoUid = () => {
     (globalThis.__uids ||= []).push(u);
     return u;
   };`;
-// A semente do sorteio e o relógio parado da ficha (ver loadSheetEditor).
-const UID_SEED = 20261126;
-const FIXED_NOW = Date.UTC(2026, 10, 26);
 const TOTAL_AT = 'const total = xa + xs + xsp + xv + xw + xap + xc + x2 + xt + xar + xef + xan + xr;';
 const TOTAL = `${TOTAL_AT}\n    globalThis.__xp = { xa, xs, xsp, xv, xw, xap, xc, x2, xt, xar, xef, xan, xr, total };`;
 // No renderDerived, depois das duas contas do deslocamento com a penalidade: a
@@ -105,9 +106,33 @@ function fakeDom() {
   return { anything, elements, listeners };
 }
 
+// A semente do sorteio e o relógio parado da ficha (ver `loadSheetEditor`).
+const UID_SEED = 20261126;
+const FIXED_NOW = Date.UTC(2026, 10, 26);
+
 export async function loadSheetEditor({ build, SRC }) {
   const file = path.join(SRC, 'src', 'lib', 'ficha-engine.ts');
-  const text = patch(patch(patch(patch(fs.readFileSync(file, 'utf8'), HOOK_AT, HOOK_AT + HOOK), TOTAL_AT, TOTAL), MOVE_AT, MOVE), UID_AT, UID);
+  // No renderForca, antes da tabela de arremesso: as contas da seção de força,
+  // pelas próprias funções locais da fonte (`dist`, `vel`, `velNatacao`, `velFrac`,
+  // a escada `tw`). A segunda linha do deslocamento (a Vel. de Corrida com a
+  // penalidade de armadura e das mãos) sai com a penalidade inteira e a corrida
+  // sem ela, pelas mesmas chamadas da fonte.
+  const FORCE_AT = 'const rows = tw.map((w) => {';
+  const FORCE = `globalThis.__forca = (() => {
+      const pen = (empilharArmaduras(pecasArmadura()).penalidade || 0) + (calcConj(conjAtivo()).penSum || 0);
+      const dzC = deslocamento({ forca, destreza: A('destreza'), atletismo: atl, centelha: S.centelha }, dzFrac);
+      const dzN = deslocamento({ vigor: A('vigor'), atletismo: atl, natacao: S.skills2['natacao'] || 0 }, dzFrac);
+      const limites = [cMin, cLeve, cMedia, cPesada, maxKg];
+      const amostra = [...limites.flatMap((w) => [w * (1 - 1e-9), w, w * (1 + 1e-9)]),
+        ...Array.from({ length: 15 }, (_, i) => maxKg * (i + 1) / 20), maxKg * 0.3333, maxKg * 0.7, maxKg * 0.749];
+      return { forca, atl, arr, faa, maxKg, acimaKg, tetoKg, pen, penMov, corridaBruta: dzC.corrida, vBase,
+        natacaoBruta: dzN.natacao, vBaseNatacao, bandas: bandas.map((b) => ({ de: b.de, ate: b.ate, nome: b.nome })),
+        tw, dist: tw.map(dist), amostra, velFrac: amostra.map(velFrac), velFracAgua: amostra.map(velFracAgua),
+        vel: amostra.map(vel), velNatacao: amostra.map(velNatacao) };
+    })();
+    ${FORCE_AT}`;
+  const text = patch(patch(patch(patch(patch(fs.readFileSync(file, 'utf8'), HOOK_AT, HOOK_AT + HOOK), TOTAL_AT, TOTAL),
+    MOVE_AT, MOVE), FORCE_AT, FORCE), UID_AT, UID);
   const outfile = path.join(os.tmpdir(), `parity-ficha-engine-${process.pid}.mjs`);
   await build({
     entryPoints: [file], outfile, bundle: true, format: 'esm', platform: 'node', logLevel: 'error',
@@ -127,9 +152,9 @@ export async function loadSheetEditor({ build, SRC }) {
     saved[k] = Object.getOwnPropertyDescriptor(globalThis, k);
     Object.defineProperty(globalThis, k, { value: dom.anything(k), configurable: true, writable: true });
   }
-  // O novoUid da fonte sorteia com Math.random e também com Date.now: com os
-  // dois fixos (o Mulberry32 de semente fixa e um Date.now parado), os uid
-  // saem iguais a cada regeneração e a referência se repete byte a byte.
+  // O `novoUid` da fonte sorteia com `Math.random` e o relógio: com os dois
+  // fixos (o Mulberry32 de semente fixa e um `Date.now` parado), os `uid` das
+  // peças saem iguais a cada regeneração e a referência se repete byte a byte.
   const random = Math.random, now = Date.now;
   let seed = UID_SEED;
   Math.random = () => {
@@ -298,6 +323,135 @@ export function buildSheetEditorCases({ editor, sheets, races, attributes, techn
     const m = globalThis.__mov;
     if (m) add('deslocamento', [m.penFisica, m.dz], m.out);
   }
+  // a seção de força e a carga (o renderForca de cada ficha inteira)
+  // (a força em uma ficha a cada duas; a carga nas que levam peso, até 60, e em
+  // cinco sem peso, com as partes da ficha que ela lê no próprio caso)
+  let comPeso = 0, semPeso = 0;
+  inputs.forEach((x, i) => {
+    x.prepare();
+    globalThis.__forca = null;
+    hook.renderForca();
+    const fz = globalThis.__forca;
+    if (fz && i % 2 === 0) {
+      // a entrada da conta (o que a ficha leu) vai nos argumentos
+      const entrada = Object.fromEntries(['forca', 'atl', 'arr', 'maxKg', 'pen', 'corridaBruta', 'natacaoBruta', 'amostra']
+        .map((k) => [k, fz[k]]));
+      add('forca', [x.id, entrada], fz);
+    }
+    const calculada = hook.cargaCalculada();
+    if ((calculada > 0 && comPeso < 60) || (calculada === 0 && semPeso < 5)) {
+      if (calculada > 0) comPeso++; else semPeso++;
+      const st = hook.getS();
+      const partes = Object.fromEntries(['bolsas', 'arsenal', 'equip', 'cargaAtual']
+        .filter((k) => st[k] !== undefined).map((k) => [k, structuredClone(st[k])]));
+      add('carga', [x.id, partes], { calculada, atual: hook.cargaAtual() });
+    }
+  });
+  // a carga escrita à mão por cima da calculada
+  for (const w of ['', '  ', '12', '1,5 kg', '≈3', '3.2', 'x', '7,25,1']) {
+    hook.fresh();
+    hook.getS().cargaAtual = w;
+    add('cargaEscrita', [w], hook.cargaAtual());
+  }
+  for (const s of [null, '', '1,5', '2 kg', '≈3', '3.2', '1,2,3', '.5', '5.', 'abc', '12,5 e 3', 7, 0.25, true])
+    add('numPeso', [s], hook.numPeso(s));
+  for (const n of [0, 0.04, 0.05, 0.15, 1.25, 1.45, 9.95, 99.94, 99.95, 100, 100.5, 122.4, 1234.5, -1.25])
+    add('r1n', [n], hook.r1n(n));
+
+  // ----- as armas e as peças (fatia 4) -----
+  // a peça nova do arsenal: o uid é sorteado pela fonte, e o Rust recebe o mesmo
+  for (const x of [{ prepare: () => hook.fresh() }, ...inputs.slice(0, 6)]) {
+    for (const ref of ['c', 'ce', 'a:montante', 'a:adaga', 'a:espada-longa', 'e:broquel']) {
+      x.prepare();
+      const antes = structuredClone(hook.getS().arsenal ?? null);
+      const peca = structuredClone(hook.pecaPara(ref));
+      add('pecaNova', [antes, ref], { arsenal: hook.getS().arsenal, peca });
+    }
+  }
+  // a edição de peça: o valor de cada campo no item achatado do catálogo
+  const lists = [['arma', equip.ARMAS, [...equip.CAMPOS_ARMA, ...equip.CAMPOS_ARMA_MAIS]],
+    ['escudo', equip.ESCUDOS, equip.CAMPOS_ESCUDO], ['armadura', equip.ARMADURAS, equip.CAMPOS_ARMADURA]];
+  for (const [tipo, itens, campos] of lists) {
+    for (const it of itens) for (const c of campos) add('baseCampo', [tipo, it.id, c.k], equip.baseCampo(it, c));
+  }
+  // escrever um campo no envelope copiado do catálogo
+  const amostra = { arma: ['espada-longa', 'montante', 'arco-curto', 'adaga'], escudo: ['broquel', 'escudo-medio'],
+    armadura: ['couro', 'cota-de-malha', 'placas'] };
+  const valores = (c) => (c.tipo === 'lista' ? [['a', 'b'], 'x', null]
+    : c.tipo === 'opcao' ? [null, ...c.opcoes.map((o) => o.v)] : [null, 0, 3, -2]);
+  for (const [tipo, itens, campos] of lists) {
+    for (const origem of amostra[tipo]) {
+      if (!equip.copiaDoCatalogo(tipo, origem)) continue;
+      for (const c of campos) {
+        for (const v of valores(c)) {
+          const item = equip.copiaDoCatalogo(tipo, origem);
+          equip.escreveCampo(item, c, structuredClone(v));
+          add('escreveCampo', [tipo, origem, c.k, v], item);
+        }
+      }
+    }
+  }
+  // restaurar o item de peças das fichas (o item delas e um trocado à mão)
+  let restauradas = 0;
+  for (const x of inputs) {
+    if (restauradas >= 40) break;
+    x.prepare();
+    const st = hook.getS();
+    for (const p of [...(st.arsenal || []), ...(st.equip?.armaduras || []).filter((a) => typeof a === 'object')]) {
+      if (restauradas >= 40) break;
+      const mexida = structuredClone(p);
+      if (mexida.item?.arma) mexida.item.arma.dado = 9;
+      if (mexida.item?.armadura?.soak) mexida.item.armadura.soak.corte = 9;
+      for (const q of [p, mexida]) {
+        const r = structuredClone(q);
+        equip.restaurarItem(r);
+        add('restaurarItem', [q], r);
+      }
+      restauradas++;
+    }
+  }
+  // as duas mãos: ehDuasMaos de cada peça, e o marcarUso de cada peça em cada papel
+  const comArsenal = inputs.filter((x) => { x.prepare(); return (hook.getS().arsenal || []).length; });
+  let marcados = 0;
+  for (const x of comArsenal) {
+    x.prepare();
+    for (const p of hook.getS().arsenal) add('ehDuasMaos', [p], hook.ehDuasMaos(p));
+    for (const p of structuredClone(hook.getS().arsenal)) {
+      for (const papel of ['nada', 'habil', 'inabil']) {
+        if (marcados >= 60) break;
+        x.prepare();
+        const antes = { arsenal: structuredClone(hook.getS().arsenal), conjuntos: structuredClone(hook.getS().conjuntos) };
+        hook.marcarUso(p.uid, papel);
+        add('marcarUso', [antes, p.uid, papel], hook.getS().conjuntos);
+        marcados++;
+      }
+    }
+  }
+  // a arma de duas mãos e a dupla, de propósito: montante, adaga e espada curta
+  const pares = [['a:adaga', 'a:espada-curta'], ['a:montante', 'a:adaga'], ['a:espada-curta', 'a:montante'],
+    ['a:machadinha', 'a:adaga'], ['c', 'a:adaga']];
+  for (const [r1, r2] of pares) {
+    for (const ordem of [['habil', 'inabil'], ['inabil', 'habil']]) {
+      hook.fresh();
+      const p1 = hook.pecaPara(r1), p2 = hook.pecaPara(r2);
+      const antes = { arsenal: structuredClone(hook.getS().arsenal), conjuntos: structuredClone(hook.getS().conjuntos) };
+      hook.marcarUso(p1.uid, ordem[0]);
+      add('marcarUso', [antes, p1.uid, ordem[0]], structuredClone(hook.getS().conjuntos));
+      const meio = { arsenal: structuredClone(hook.getS().arsenal), conjuntos: structuredClone(hook.getS().conjuntos) };
+      hook.marcarUso(p2.uid, ordem[1]);
+      add('marcarUso', [meio, p2.uid, ordem[1]], structuredClone(hook.getS().conjuntos));
+      // o ataque duplo do conjunto em uso
+      for (const forca of [1, 3, 5]) {
+        hook.getS().attrs.forca = forca;
+        const c = hook.calcConj(hook.conjAtivo());
+        if (c.dupla) {
+          add('ataqueDuplo', [{ dados: c.dados, bonus: c.bonus, flat: c.flat, dado: c.atk.dado ?? null, dupla: c.dupla }],
+            hook.duplaConj(c));
+        }
+      }
+    }
+  }
+
   // a linha Preparo, Golpe e Recuperação de cada arma (o item como a ficha o
   // guarda: o do catálogo achatado, e variantes)
   const items = [];

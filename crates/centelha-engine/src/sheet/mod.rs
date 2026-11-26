@@ -19,6 +19,7 @@
 mod editor;
 mod equip;
 mod format;
+mod hands;
 mod migrate;
 mod near_miss;
 mod normalize;
@@ -39,8 +40,16 @@ pub use editor::{
     effects_in_reach, fresh_sheet, half_movement_penalty, mass_chosen, penalized_movement,
     specialty_cap, spent_xp, technique_status, trait_cap,
 };
-pub use equip::{Catalog, ItemKind, PieceKind, flatten_item, piece_kind};
+pub use equip::{
+    ARMOR_EDIT_FIELDS, Catalog, EditField, FieldKind, HandRole, ItemKind, PieceKind,
+    SHIELD_EDIT_FIELDS, WEAPON_EDIT_FIELDS, WEAPON_MORE_FIELDS, edit_field_base, flatten_item,
+    piece_kind, write_edit_field,
+};
 pub use format::{for_reading, for_saving, is_saved_form};
+pub use hands::{
+    DualAttack, DualAttackHand, dual_attack, dual_attack_from, dual_damage_text, piece_for,
+    pool_text,
+};
 pub use migrate::{WEAPON_RENAMES, migrate_weapon_refs};
 pub use near_miss::{
     ArmorNearMiss, AttackOutcome, Graze, NearMissAttacker, NearMissOutcome, NearMissTarget,
@@ -55,7 +64,11 @@ pub use numbers::{
     stack_armor,
 };
 pub use pgr::{ExtraLine, extra_lines, sheet_anatomy, sheet_flurry_cap};
-pub use strength::throw_range;
+pub use strength::{
+    LoadBand, carried_load, current_load, load_bands, load_speed_fraction, overhead_lift,
+    penalized_speed, short_number, throw_cap, throw_range, throw_reserve, throw_table_weights,
+    weight_from_text,
+};
 pub use text::{armor_stats, damage_text, shield_stats, signed_number, weapon_stats};
 
 /// Erro ao montar as tabelas da ficha.

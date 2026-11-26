@@ -130,9 +130,18 @@ xtask              (sozinho; não é dependência de ninguém)
 
 **Faz:** fala com o Supabase do jogo (tabelas, funções RPC, arquivos e tempo real). Continua o mesmo banco do site atual (R2).
 
-**Expõe:** a definir na primeira entrega (só leitura), pela ADR 0007: pedido montado sem IO, envio por alvo atrás de um `Transport` (`gloo-net` no WebAssembly, `reqwest` no nativo), toda leitura de dado de mesa com `Session`, `is_admin` só pela `eh_admin`. O tempo real vem depois, em PR próprio.
+**Expõe (primeira entrega, só leitura, PR 34; ADR 0007):**
+- `Config::new(url, anon_key)` (tira a barra do fim; `url()`). A chave não sai do crate: sem leitor público, e o `Debug` mostra `<oculta>`. `Session::new(access_token)`, com o mesmo `Debug`. O crate não lê nem grava sessão do navegador (R26).
+- `Request { method, url, headers, body }` e `Response { status, headers, body }` (`header(nome)`, `ok()`), `Method::{Get, Head, Post}`. O `Debug` do `Request` esconde `apikey` e `Authorization`. O pedido é montado sem IO.
+- `Transport`: `fn send(&self, Request) -> impl Future<Output = Result<Response, Error>>`. `FetchTransport` (`gloo-net`) só no `wasm32`; `ReqwestTransport` (`reqwest` com `rustls`) só no nativo, com o erro sem a URL.
+- `Relation` (`const NAME`, tabela ou view) e `PublicRelation` (leitura com a chave anon como portador). Só `Migration` é pública.
+- `Select<R>`: `new()` (`*`), `columns(..)` (espaços fora de aspas saem, como no `supabase-js`), `eq`, `is_in` (valor com vírgula ou parêntese vai entre aspas), `order(coluna, Direction::{Ascending, Descending})` acumulando, `limit(n)`; consulta codificada como o `URLSearchParams`.
+- `Client::new(config, transport)`. Leituras, todas `async` e com `Result<_, Error>`: `select(&Session, &Select<R>) -> Result<Vec<R>, Error>`, `single` (`Result<R, Error>`, objeto do PostgREST), `maybe_single` (`Result<Option<R>, Error>`; mais de uma linha é o erro `PGRST116`), `count` (`Result<u64, Error>`, por `HEAD` com `Prefer: count=exact`), `select_public(&Select<R: PublicRelation>) -> Result<Vec<R>, Error>` (não compila para relação que não é pública), `visible_party(&Session, table_id) -> Result<Vec<PartyMember>, Error>` (`rpc/grupo_visivel`). `is_admin(Option<&Session>) -> bool` (`async`, sem `Result`: falha é `false`, R22 abaixo). E `config()`, `transport()`.
+- `Error::{Transport(String), Http { status, code, message }, Decode(String)}`; `code` e `message` vêm do JSON de erro do PostgREST, ou o corpo inteiro quando não é JSON.
+- Linhas (colunas das migrações até a 42; todo campo fora a chave tem padrão, porque o site quase sempre pede só algumas colunas): `Profile` (`profiles`), `Table` (`mesas`), `TableMember` (`mesa_membros`, `MemberRole::{GameMaster, Player}`, a mesa embutida em `table`), `Character` (`personagens`, a ficha em `sheet: Value` pela ADR 0004, `CharacterStatus::{Draft, Submitted, Approved}` de `rascunho`, `enviado` e `aprovado`), `Migration` (`migracoes`) e `PartyMember` (a linha da `grupo_visivel`). Os nomes do banco ficam em `serde(rename)`, em `Relation::NAME` ou no literal da chamada RPC (`eh_admin`, `grupo_visivel`).
+- Fora desta entrega: gravar, entrar e renovar a sessão, arquivos e tempo real (PRs próprios). A tabela do códice do Mestre só na fase 3, pela R27.
 
-**Consome:** a URL e a chave anon por configuração (nunca no código). Chave de serviço nunca.
+**Consome:** a URL e a chave anon por configuração (nunca no código). Chave de serviço nunca. Dependências: `serde`, `serde_json`, `gloo-net` (só `wasm32`), `reqwest` com `rustls` (só nativo); `tokio` só em teste e exemplo.
 
 **Admin (R22):** admin é só quem a função `eh_admin` do banco aprova. Nenhum e-mail, id de usuário ou lista de admins no código, em constante, teste, comentário ou configuração do repositório. A conferência devolve sim ou não, e qualquer falha (rede, erro do banco, sessão vencida ou ausente) é não. Sem cache que mantenha alguém admin depois de a sessão cair: a resposta vale para a sessão em que foi pedida e some com ela. Toda ação de admin que grava é barrada no próprio banco (RLS ou função que confere `eh_admin`); o cliente não é proteção.
 

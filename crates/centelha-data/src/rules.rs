@@ -277,6 +277,28 @@ pub struct StrengthRules {
     /// O alcance do arremesso (`arremessoConst`, `arremessoExpFaa`...).
     #[serde(flatten)]
     pub throw: ThrowRules,
+    /// A carga e a altura (`cargaCorte`, `cargaExpoente`...).
+    #[serde(flatten)]
+    pub load: LoadRules,
+}
+
+/// As chaves da carga em `forca`: a velocidade com carga cai como
+/// `1 - (peso / máximo / corte)^expoente`, em terra e na água; acima da
+/// cabeça se ergue uma fração do máximo.
+#[derive(Debug, Clone, Copy, PartialEq, Deserialize)]
+pub struct LoadRules {
+    #[serde(rename = "cargaCorte", default)]
+    pub cut: Option<f64>,
+    #[serde(rename = "cargaExpoente", default)]
+    pub exponent: Option<f64>,
+    #[serde(rename = "cargaCorteAgua", default)]
+    pub water_cut: Option<f64>,
+    #[serde(rename = "cargaExpoenteAgua", default)]
+    pub water_exponent: Option<f64>,
+    /// `levantamentoAcimaCabeca`: a fração do máximo que se ergue acima da
+    /// cabeça.
+    #[serde(rename = "levantamentoAcimaCabeca", default)]
+    pub overhead_fraction: Option<f64>,
 }
 
 /// As chaves do arremesso em `forca`: o alcance é C × FAA^a ÷ peso^b, com o

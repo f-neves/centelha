@@ -18,7 +18,7 @@ use super::editor::{EditorTables, clamp_specialties};
 use super::equip::Catalog;
 use super::format::for_reading;
 use super::migrate::{WEAPON_RENAMES, migrate_weapon_refs};
-use super::value::{is_str, nullish, num, num_or0, strict_eq, to_js_string, to_number, truthy};
+use super::value::{is_str, nullish, num, num_or0, to_js_string, to_number, truthy};
 use crate::js;
 
 /// Um Atributo que estava abaixo do piso da Raça e subiu (`SUBIU_PELO_PISO`):
@@ -194,7 +194,7 @@ pub fn normalize_sheet(
         armor_pieces(cat, s, new_uid);
         build_arsenal(s, new_uid);
     }
-    sync_slots(cat, &mut sheet);
+    cat.sync_slots(&mut sheet);
 
     {
         let s = obj(&mut sheet);
@@ -630,66 +630,6 @@ fn build_arsenal(s: &mut Map<String, Value>, new_uid: &mut dyn FnMut() -> String
         }
     }
     s.insert("arsenal".into(), Value::Array(arsenal));
-}
-
-/// `sincronizarSlots`: o item inteiro em toda peça, e cada mão leva a cópia
-/// da peça do arsenal (a mesa lê o slot, não o arsenal). A mão cuja peça
-/// sumiu do arsenal fica vazia.
-fn sync_slots(cat: &Catalog, sheet: &mut Value) {
-    cat.freeze_items(sheet, false);
-    let arsenal: Vec<Value> = match sheet.get("arsenal") {
-        Some(Value::Array(a)) => a.clone(),
-        _ => Vec::new(),
-    };
-    let Some(Value::Array(sets)) = sheet.get_mut("conjuntos") else {
-        return;
-    };
-    for cj in sets.iter_mut() {
-        for hand in ["habil", "inabil"] {
-            let Some(uid) = cj
-                .get(hand)
-                .and_then(|h| h.get("uid"))
-                .filter(|u| truthy(Some(u)))
-                .cloned()
-            else {
-                continue;
-            };
-            let piece = arsenal.iter().find(|p| strict_eq(p.get("uid"), Some(&uid)));
-            let slot = match piece {
-                None => {
-                    if hand == "habil" {
-                        json!({"ref": "a:desarmado"})
-                    } else {
-                        json!({"ref": "nada"})
-                    }
-                }
-                Some(p) => {
-                    let mut o = Map::new();
-                    o.insert("uid".into(), p.get("uid").cloned().unwrap_or(Value::Null));
-                    if let Some(r) = p.get("ref") {
-                        o.insert("ref".into(), r.clone());
-                    }
-                    if !nullish(p.get("nome")) {
-                        o.insert("nome".into(), p["nome"].clone());
-                    }
-                    for k in ["mod", "item"] {
-                        if truthy(p.get(k)) {
-                            o.insert(k.into(), p[k].clone());
-                        }
-                    }
-                    for k in ["dado", "danoBonus", "acerto"] {
-                        if !nullish(p.get(k)) {
-                            o.insert(k.into(), p[k].clone());
-                        }
-                    }
-                    Value::Object(o)
-                }
-            };
-            if let Value::Object(m) = cj {
-                m.insert(hand.into(), slot);
-            }
-        }
-    }
 }
 
 // ----------------------------------------------------------------- bolsas
