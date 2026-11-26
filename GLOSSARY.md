@@ -184,7 +184,7 @@ Habilidades Secundárias de criatura (`musculatura`, `corrida`, `voo`, `halterof
 | Aparência | `appearance` | Valor Passivo (o tipo) | `Passive` |
 | Vigor somado aos PV (pela Raça) | `vitality` | | |
 
-Nomes que mudam no código com a tarefa 004 do Backend: `hands_defense` (hoje `HandSet.block`) e `battle` em `Movement` (hoje `Movement.normal`). Até lá o código tem os nomes antigos. Nas regras lidas, `rules::MovementRules.normal` continua com o nome da chave do dado (`derivados.deslocamento.normal`); na saída da ficha, o passo de Batalha é sempre `battle`.
+O passo de Batalha é `battle` em todo lugar: na saída da ficha (`Movement.battle`, `Step.battle`) e nas regras lidas (`rules::MovementRules.battle`, lido da chave `derivados.deslocamento.normal`). A soma de Defesa das mãos é `hands_defense`.
 
 ## Glossário do livro (acréscimo de 26/11, tarefa 003 do Frontend)
 
@@ -194,3 +194,18 @@ Nomes que mudam no código com a tarefa 004 do Backend: `hands_defense` (hoje `H
 | termo | `term` (`termo`) |
 | sinônimo | `alias` (`aliases`) |
 | definição | `definition` (`definicao`) |
+
+## Personagem, XP e Quase-Acerto (acréscimo de 26/11, tarefa 004 do Backend)
+
+| Português | Inglês | Português | Inglês |
+|---|---|---|---|
+| raspão | `graze` | piso de XP | `xp_floor` |
+| errou por | `missed_by` | preço do nível | `level_price` |
+| saída do ataque | `attack_outcome` (`Hit`, `Graze`, `Miss`) | trilha de XP | `XpTrack` (`acum` `Accumulated`, `flat` `Flat`, `gratis` `Free`) |
+| limite da morte | `death_limit` | custo da Proeza (chave `tecnica`) | `feat_cost` |
+| passou do limite | `past_death_limit` | levantamento (da Arte de força) | `lifting`, `art_lifting` |
+| modo de ataque | `DamageMode` (`Cut`, `Pierce`, `Impact`) | jogada da manobra | `maneuver_roll` |
+| Absorção natural | `natural_soak` | curva | `curve` |
+| portão da Perfuração | `pierce_gate` | reforma (por categoria) | `reform`, `per_category` |
+
+`DamageMode` segue o `pierce` da Absorção por tipo: a variante é `Pierce`. O código ainda tem `Piercing`; a troca entra na próxima tarefa do Backend.
