@@ -358,6 +358,17 @@ tbody tr:nth-child(even) { background: color-mix(in srgb, var(--accent) 5%, tran
 .gloss-item dd { margin: .2rem 0 0; }
 .al { font-size: var(--fs-rotulo); }
 
+/* ---------- Layout preguiçoso do corpo do capítulo ----------
+   Os capítulos são longos e o primeiro layout com a EB Garamond custa caro:
+   com `content-visibility: auto`, o navegador só faz o layout dos blocos que
+   estão na tela (ou perto dela). Os outros reservam a altura estimada, e
+   `auto` guarda a altura real depois que o bloco passa pela tela, para a
+   barra de rolagem não saltar. O texto continua inteiro no HTML.
+   A estimativa é a altura média dos 1.731 blocos dos 28 capítulos, medida
+   com o layout inteiro: 7,0 em a 1280 px e 12,9 em a 375 px. */
+.chapter-body > * { content-visibility: auto; contain-intrinsic-size: auto 7em; }
+@media (max-width: 900px) { .chapter-body > * { contain-intrinsic-size: auto 13em; } }
+
 /* ---------- Pé do capítulo ---------- */
 .cap-nav { display: flex; justify-content: space-between; gap: 1rem; margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px solid var(--rule); }
 .cap-nav .btn { max-width: 48%; }

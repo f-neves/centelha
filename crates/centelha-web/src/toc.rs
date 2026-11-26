@@ -62,7 +62,7 @@ mod browser {
     use std::cell::Cell;
     use std::rc::Rc;
 
-    use leptos::prelude::window_event_listener;
+    use leptos::prelude::{window_event_listener, window_event_listener_untyped};
     use wasm_bindgen::JsCast;
     use web_sys::{Element, HtmlDetailsElement, HtmlElement};
 
@@ -150,6 +150,87 @@ mod browser {
         update();
         let scrolls = window_event_listener(leptos::ev::scroll, move |_| update());
         std::mem::forget(scrolls);
+
+        hold_anchor();
+    }
+
+    /// O corpo do capítulo faz o layout preguiçoso (`content-visibility`), e
+    /// as fontes chegam depois da primeira rolagem: os blocos acima do alvo
+    /// de um `#âncora` mudam de altura depois que o navegador rolou até ele,
+    /// e o alvo sai do lugar. Por isso, ao abrir a página com âncora e a cada
+    /// troca de âncora, rola de novo até o alvo algumas vezes no primeiro
+    /// segundo e meio, a menos que o leitor mexa na página nesse meio-tempo.
+    fn hold_anchor() {
+        let touched = Rc::new(Cell::new(false));
+        for event in ["wheel", "touchstart", "keydown", "mousedown"] {
+            let touched = touched.clone();
+            let handle = window_event_listener_untyped(event, move |_| touched.set(true));
+            std::mem::forget(handle);
+        }
+        let schedule = {
+            let touched = touched.clone();
+            move || {
+                for delay in [0, 150, 400, 800, 1500] {
+                    let touched = touched.clone();
+                    let again = wasm_bindgen::closure::Closure::once_into_js(move || {
+                        if !touched.get() {
+                            scroll_to_hash();
+                        }
+                    });
+                    if let Some(window) = web_sys::window() {
+                        let _ = window.set_timeout_with_callback_and_timeout_and_arguments_0(
+                            again.unchecked_ref(),
+                            delay,
+                        );
+                    }
+                }
+            }
+        };
+        schedule();
+        let changes = window_event_listener(leptos::ev::hashchange, move |_| {
+            touched.set(false);
+            schedule();
+        });
+        std::mem::forget(changes);
+    }
+
+    /// Põe no alto da tela o elemento da âncora do endereço, se houver.
+    fn scroll_to_hash() {
+        let Some(window) = web_sys::window() else {
+            return;
+        };
+        let hash = window.location().hash().unwrap_or_default();
+        let id = percent_decode(hash.trim_start_matches('#'));
+        if id.is_empty() {
+            return;
+        }
+        let target = window.document().and_then(|d| d.get_element_by_id(&id));
+        if let Some(target) = target {
+            let options = web_sys::ScrollIntoViewOptions::new();
+            options.set_behavior(web_sys::ScrollBehavior::Instant);
+            target.scroll_into_view_with_scroll_into_view_options(&options);
+        }
+    }
+
+    /// Desfaz o `%XX` da âncora (os `id` têm letras acentuadas).
+    fn percent_decode(text: &str) -> String {
+        let bytes = text.as_bytes();
+        let mut out = Vec::with_capacity(bytes.len());
+        let mut i = 0;
+        while i < bytes.len() {
+            let hex = |b: u8| (b as char).to_digit(16);
+            if bytes[i] == b'%'
+                && i + 2 < bytes.len()
+                && let (Some(h), Some(l)) = (hex(bytes[i + 1]), hex(bytes[i + 2]))
+            {
+                out.push((h * 16 + l) as u8);
+                i += 3;
+                continue;
+            }
+            out.push(bytes[i]);
+            i += 1;
+        }
+        String::from_utf8_lossy(&out).into_owned()
     }
 
     fn scroll_y() -> f64 {

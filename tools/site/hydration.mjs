@@ -33,6 +33,19 @@ const THEMES = ['classico', 'escuro', 'legivel'];
 const CONTENT = "document.querySelector('main').textContent";
 // As duas leituras do texto usam a mesma tela (a de desktop, com a barra
 // lateral à vista); a gaveta do celular é conferida à parte.
+// O corpo do capítulo usa `content-visibility: auto` (o navegador só faz o
+// layout do que está na tela), e o `innerText` deixa de fora o que não teve
+// layout. Antes de cada leitura, esta folha desliga o layout preguiçoso, e a
+// comparação fica a mesma.
+const ALL_VISIBLE = `(() => {
+  if (!document.getElementById('prova-visivel')) {
+    const s = document.createElement('style');
+    s.id = 'prova-visivel';
+    s.textContent = '* { content-visibility: visible !important; }';
+    document.head.appendChild(s);
+  }
+  return true;
+})()`;
 const DESKTOP = { width: 1280, height: 900, deviceScaleFactor: 1, mobile: false };
 const PHONE = { width: 375, height: 812, deviceScaleFactor: 1, mobile: true };
 
@@ -53,6 +66,7 @@ for (const rel of pages) {
   await plain.send('Emulation.setScriptExecutionDisabled', { value: true });
   await plain.send('Emulation.setDeviceMetricsOverride', DESKTOP);
   await plain.goto(url);
+  await plain.eval(ALL_VISIBLE);
   const before = await plain.eval('document.body.innerText');
   const contentBefore = await plain.eval(CONTENT);
   await plain.close();
@@ -85,6 +99,7 @@ for (const rel of pages) {
   }
   const hydrateMs = Date.now() - started;
   await new Promise((ok) => setTimeout(ok, 150));
+  await page.eval(ALL_VISIBLE);
   const after = await page.eval('document.body.innerText');
   const contentAfter = await page.eval(CONTENT);
 
