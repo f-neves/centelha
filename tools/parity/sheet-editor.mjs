@@ -174,6 +174,24 @@ export function buildSheetEditorCases({ editor, sheets, races, attributes, techn
     prepare();
     inputs.push({ id: `compras-${c}`, s: pick(hook.getS()), chosen: hook.massaEscolhida(), prepare });
   }
+  // Uma ficha por Proeza, com Centelha 3 e as Técnicas dela compradas uma sim,
+  // uma não (pela ordem de nível): o bloqueio pela Centelha, pelo
+  // pré-requisito, pelos dois, e a comprada sem o pré-requisito
+  const paths = [...new Set(techniques.map((t) => t.caminho))];
+  for (const p of paths) {
+    const prepare = () => {
+      hook.fresh();
+      const st = hook.getS();
+      st.centelha = 3;
+      techniques.filter((t) => t.caminho === p).sort((a, b) => a.nivel - b.nivel)
+        .forEach((t, i) => { if (i % 2 === 0) st.tech[t.id] = true; });
+    };
+    prepare();
+    inputs.push({ id: `proeza-${p}`, s: pick(hook.getS()), chosen: hook.massaEscolhida(), prepare });
+  }
+
+  // a massa escrita pelo jogador, como o normalize a lê ao abrir
+  for (const x of inputs) add('massaEscolhida', [x.id], x.chosen);
 
   // o XP gasto
   for (const x of inputs) {
@@ -223,7 +241,11 @@ export function buildSheetEditorCases({ editor, sheets, races, attributes, techn
     hook.setS(structuredClone(x.s));
     if (Object.values(x.s.tech || {}).some(Boolean) || x.id === 'nova-humano') {
       hook.renderCaminhos();
-      add('tecnicas', [x.id], techniquesFromHtml(String(dom.elements.tecnicas?.innerHTML ?? '')));
+      const pills = techniquesFromHtml(String(dom.elements.tecnicas?.innerHTML ?? ''));
+      // a ficha de uma Proeza grava só as pílulas daquela Proeza (o resto é
+      // a ficha nova com Centelha 3, que as outras fichas já cobrem)
+      const only = x.id.startsWith('proeza-') ? new Set(techniques.filter((t) => `proeza-${t.caminho}` === x.id).map((t) => t.id)) : null;
+      add('tecnicas', [x.id], only ? Object.fromEntries(Object.entries(pills).filter(([k]) => only.has(k))) : pills);
     }
     add('efeitosAoAlcance', [x.id], hook.efeitosAoAlcance().map((e) => e.id));
   }

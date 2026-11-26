@@ -49,34 +49,35 @@ fn ids(v: &Value, keep: impl Fn(&Value) -> bool) -> Vec<String> {
         .unwrap_or_default()
 }
 
+/// Os catálogos crus dos traços, para [`EditorTables::new`]: o
+/// `atributos.json`, o `habilidades.json`, o `habilidades-secundarias.json`, o
+/// `virtudes.json` e o `antecedentes.json`, e as Técnicas, as Artes e os Efeitos
+/// já lidos. O id de cada Secundária é o da ficha (o `slug` do nome, na
+/// fonte; hoje os dois coincidem).
+pub struct EditorCatalogs<'a> {
+    pub attributes: &'a Value,
+    pub skills: &'a Value,
+    pub secondary: &'a Value,
+    pub virtues: &'a Value,
+    pub backgrounds: &'a Value,
+    pub techniques: Vec<Technique>,
+    pub arts: Vec<Art>,
+    pub effects: Vec<Effect>,
+}
+
 impl EditorTables {
-    /// `attributes`, `skills`, `secondary`, `virtues` e `backgrounds` são o
-    /// `atributos.json`, o `habilidades.json`, o `habilidades-secundarias.json`,
-    /// o `virtudes.json` e o `antecedentes.json` crus. O id de cada Secundária
-    /// é o da ficha (o `slug` do nome, na fonte; hoje os dois coincidem).
-    #[allow(clippy::too_many_arguments)]
-    pub fn new(
-        sheet: SheetTables,
-        attributes: &Value,
-        skills: &Value,
-        secondary: &Value,
-        virtues: &Value,
-        backgrounds: &Value,
-        techniques: Vec<Technique>,
-        arts: Vec<Art>,
-        effects: Vec<Effect>,
-    ) -> Self {
+    pub fn new(sheet: SheetTables, c: EditorCatalogs<'_>) -> Self {
         EditorTables {
             sheet,
-            attributes: ids(attributes, |_| true),
-            skills: ids(skills, |h| !truthy(h.get("secundaria"))),
-            secondary: ids(secondary, |_| true),
-            virtues: ids(virtues, |_| true),
-            single_backgrounds: ids(backgrounds, |a| jv::is_str(a.get("formato"), "unico")),
-            named_backgrounds: ids(backgrounds, |a| jv::is_str(a.get("formato"), "nomeado")),
-            techniques,
-            arts,
-            effects,
+            attributes: ids(c.attributes, |_| true),
+            skills: ids(c.skills, |h| !truthy(h.get("secundaria"))),
+            secondary: ids(c.secondary, |_| true),
+            virtues: ids(c.virtues, |_| true),
+            single_backgrounds: ids(c.backgrounds, |a| jv::is_str(a.get("formato"), "unico")),
+            named_backgrounds: ids(c.backgrounds, |a| jv::is_str(a.get("formato"), "nomeado")),
+            techniques: c.techniques,
+            arts: c.arts,
+            effects: c.effects,
         }
     }
 
@@ -204,31 +205,6 @@ pub struct SpentXp {
 /// `x || 0` com um número: `NaN` e `-0` viram `0`.
 fn or0(x: f64) -> f64 {
     if x.is_nan() || x == 0.0 { 0.0 } else { x }
-}
-
-/// A letra sem acento (o `normalize('NFD')` sem as marcas), nas letras
-/// latinas dos nomes do catálogo.
-fn unaccent(s: &str) -> String {
-    s.chars()
-        .filter(|c| !('\u{300}'..='\u{36f}').contains(c))
-        .map(|c| match c {
-            'à' | 'á' | 'â' | 'ã' | 'ä' => 'a',
-            'À' | 'Á' | 'Â' | 'Ã' | 'Ä' => 'A',
-            'ç' => 'c',
-            'Ç' => 'C',
-            'è' | 'é' | 'ê' | 'ë' => 'e',
-            'È' | 'É' | 'Ê' | 'Ë' => 'E',
-            'ì' | 'í' | 'î' | 'ï' => 'i',
-            'Ì' | 'Í' | 'Î' | 'Ï' => 'I',
-            'ñ' => 'n',
-            'Ñ' => 'N',
-            'ò' | 'ó' | 'ô' | 'õ' | 'ö' => 'o',
-            'Ò' | 'Ó' | 'Ô' | 'Õ' | 'Ö' => 'O',
-            'ù' | 'ú' | 'û' | 'ü' => 'u',
-            'Ù' | 'Ú' | 'Û' | 'Ü' => 'U',
-            c => c,
-        })
-        .collect()
 }
 
 /// `specCostSum`: a soma das especialidades nomeadas (`v` de cada uma).
@@ -373,6 +349,14 @@ pub fn trait_cap(t: &EditorTables, sheet: &Value, kind: &str, key: Option<&str>)
         _ => 6.0,
     };
     base + racial
+}
+
+/// A massa foi escrita pelo jogador? (`massaEscolhida`, a conta do
+/// `normalize` ao abrir a ficha: `corpo.massa` é número, ou a identidade tem
+/// peso.) É o `mass_chosen` de [`change_ancestry`].
+pub fn mass_chosen(sheet: &Value) -> bool {
+    jv::get(sheet.get("corpo"), "massa").is_some_and(Value::is_number)
+        || truthy(jv::get(sheet.get("id"), "peso"))
 }
 
 /// A troca de Raça (o `change` do seletor): a Raça nova; a massa sai quando o
@@ -522,7 +506,7 @@ pub fn technique_status(sheet: &Value, technique: &Technique) -> TechniqueStatus
 }
 
 /// `efeitosAoAlcance`: os Efeitos que cabem numa Arte em que a ficha tem o
-/// nível do Efeito, por nível e nome.
+/// nível do Efeito, por nível e nome (a colação `pt`, [`crate::collate`]).
 pub fn effects_in_reach<'a>(t: &'a EditorTables, sheet: &Value) -> Vec<&'a Effect> {
     let mut list: Vec<&Effect> = t
         .effects
@@ -537,18 +521,7 @@ pub fn effects_in_reach<'a>(t: &'a EditorTables, sheet: &Value) -> Vec<&'a Effec
         a.level
             .partial_cmp(&b.level)
             .unwrap_or(Ordering::Equal)
-            .then_with(|| collate_pt(&a.name, &b.name))
+            .then_with(|| crate::collate::compare(&a.name, &b.name))
     });
     list
-}
-
-/// A ordem dos nomes do `localeCompare(..., 'pt')` nos nomes do catálogo: a
-/// letra sem acento e sem caixa primeiro; no empate, o acento e depois a
-/// caixa (a minúscula antes).
-fn collate_pt(a: &str, b: &str) -> Ordering {
-    let key = |s: &str| unaccent(s).to_lowercase();
-    key(a)
-        .cmp(&key(b))
-        .then_with(|| a.to_lowercase().cmp(&b.to_lowercase()))
-        .then_with(|| b.cmp(a))
 }

@@ -23,6 +23,7 @@
 //   tests/parity/techniques.json  o modificador, a Técnica oferecida e o fecho dos pré-requisitos (techniques.mjs)
 //   tests/parity/sheet-editor.json  a ficha nova, o XP gasto, os tetos e os pré-requisitos da ficha interativa (sheet-editor.mjs)
 //   tests/parity/bestiary-card.json  as contas que o card do bestiário faz na hora (bestiary.mjs)
+//   tests/parity/collate.json     a colação do localeCompare com 'pt' (collate.mjs)
 //
 // O JSON não guarda -0 (o JSON.stringify escreve 0). Para a referência não
 // esconder um -0, todo -0 das saídas é gravado como o texto "-0", e o teste do
@@ -40,6 +41,7 @@ import { buildStrikes, ROLLED_SEED, ROLLS_SEED } from './strikes.mjs';
 import { buildTechniqueCases, loadTreeClosure } from './techniques.mjs';
 import { buildSheetEditorCases, loadSheetEditor } from './sheet-editor.mjs';
 import { buildBestiaryCases, loadCardAppearance } from './bestiary.mjs';
+import { buildCollateCases, COLLATE_SEED } from './collate.mjs';
 
 const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 const OUT = path.join(REPO, 'tests', 'parity');
@@ -299,6 +301,17 @@ for (const c of bestiaryCases) {
   bestiaryCounts[c.fn] = (bestiaryCounts[c.fn] || 0) + 1;
 }
 
+// ----- a colação -----
+const collate = buildCollateCases({
+  acaso,
+  lists: [
+    readData('efeitos.json').map((x) => x.nome), readData('tecnicas.json').map((x) => x.nome),
+    readData('artes.json').map((x) => x.nome), readData('caminhos.json').map((x) => x.nome),
+    readData('habilidades-secundarias.json').map((x) => x.nome), readData('monsters.json').map((x) => x.nome),
+    readData('glossario.json').map((x) => x.termo),
+  ],
+});
+
 if (negativeZeros.length) console.log(`${negativeZeros.length} -0 nas saídas, gravados como "-0"`);
 if (badNumbers.length) {
   for (const b of badNumbers) console.error(`erro: número não finito em ${b}`);
@@ -378,6 +391,18 @@ write('techniques.json', {
   cases: techniqueCases,
 }, 'cases');
 console.log(`${techniqueCases.length} casos das Técnicas`);
+write('collate.json', {
+  source,
+  note: "Cada par: [a, b, pt, base, numerico], o sinal de a.localeCompare(b, 'pt'), com { sensitivity: 'base' } e com "
+    + "{ numeric: true, sensitivity: 'base' }, no Node que gerou. Bordas, vizinhos dos nomes do livro ordenados e pares "
+    + `sorteados (semente ${COLLATE_SEED}). Montado por tools/parity/collate.mjs.`,
+  node: process.version,
+  icu: process.versions.icu,
+  names: collate.names,
+  count: collate.pairs.length,
+  pairs: collate.pairs,
+}, 'pairs');
+console.log(`${collate.pairs.length} pares da colação (${collate.names} nomes)`);
 write('sheet-editor.json', {
   source,
   note: 'As contas de src/lib/ficha-engine.ts, rodadas pelas funções internas do montarFicha num DOM falso '

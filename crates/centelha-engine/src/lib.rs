@@ -5,6 +5,7 @@
 
 pub mod bestiary_card;
 pub mod character;
+pub mod collate;
 pub mod creature;
 pub mod dice;
 pub mod js;
