@@ -558,7 +558,10 @@ async function checkToc(page) {
     const f = document.getElementById('otp-fab');
     const r = f.getBoundingClientRect();
     const top = document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2);
-    return { cls: f.className, top: top ? top.outerHTML.slice(0, 80) : null, pop: !!document.querySelector('.ref-pop'), dialog: document.querySelector('.ref-modal')?.open ?? null };
+    return {
+      cls: f.className, top: top ? top.outerHTML.slice(0, 80) : null, pop: !!document.querySelector('.ref-pop'), dialog: document.querySelector('.ref-modal')?.open ?? null,
+      rect: [r.x, r.y, r.width, r.height].map(Math.round), tela: [innerWidth, innerHeight], foco: document.hasFocus(), visivel: document.visibilityState,
+    };
   })()`);
   if (!(await click(page, '#otp-fab'))) return ['sem o botão do "Nesta página"'];
   if (!(await page.eval("document.getElementById('otp').open"))) {
