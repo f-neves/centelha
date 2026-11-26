@@ -216,7 +216,7 @@ O passo de Batalha é `battle` em todo lugar: na saída da ficha (`Movement.batt
 |---|---|---|---|
 | fonte de dados | `DiceSource` | dano líquido | `net` |
 | dados que já caíram | `FixedDice` | resvalar (no portão da Perfuração) | `slips` |
-| dados rolados | `RolledDice` | ferimento | `wound` |
+| dados rolados | `RolledDice` | | |
 | rolagem | `Roll` | Defesa perdida | `lost_defense` |
 | expressão de dados | `DiceExpr` | condições da Defesa | `conditions_defense` |
 | dados ajustados | `adjusted_dice` | penalidade de dados do golpe | `blow_penalty_dice` |
