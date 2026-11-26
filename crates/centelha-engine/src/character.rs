@@ -12,7 +12,6 @@
 use centelha_data::Rules;
 use centelha_data::bestiary::Size;
 use centelha_data::rules::{XpKind, XpTrack};
-use unicode_normalization::UnicodeNormalization;
 
 use crate::js;
 
@@ -234,14 +233,73 @@ pub fn past_death_limit(
 
 // ----- Tamanho -----
 
+/// As letras minúsculas cuja decomposição canônica (NFD) é uma letra das
+/// chaves de Tamanho mais marcas de U+0300 a U+036F, pela letra. Gerada pelo
+/// `String.prototype.normalize('NFD')` do Node 24 (Unicode 17.0). Uma letra
+/// fora daqui não leva a nenhuma chave, com ou sem decomposição: o rótulo que
+/// a tem cai no Médio dos dois jeitos.
+const UNACCENTED: [(char, &str); 14] = [
+    (
+        'a',
+        "\u{e0}\u{e1}\u{e2}\u{e3}\u{e4}\u{e5}\u{101}\u{103}\u{105}\u{1ce}\u{1df}\u{1e1}\u{1fb}\u{201}\u{203}\u{227}\u{1e01}\u{1ea1}\u{1ea3}\u{1ea5}\u{1ea7}\u{1ea9}\u{1eab}\u{1ead}\u{1eaf}\u{1eb1}\u{1eb3}\u{1eb5}\u{1eb7}",
+    ),
+    ('c', "\u{e7}\u{107}\u{109}\u{10b}\u{10d}\u{1e09}"),
+    ('d', "\u{10f}\u{1e0b}\u{1e0d}\u{1e0f}\u{1e11}\u{1e13}"),
+    (
+        'e',
+        "\u{e8}\u{e9}\u{ea}\u{eb}\u{113}\u{115}\u{117}\u{119}\u{11b}\u{205}\u{207}\u{229}\u{1e15}\u{1e17}\u{1e19}\u{1e1b}\u{1e1d}\u{1eb9}\u{1ebb}\u{1ebd}\u{1ebf}\u{1ec1}\u{1ec3}\u{1ec5}\u{1ec7}",
+    ),
+    ('g', "\u{11d}\u{11f}\u{121}\u{123}\u{1e7}\u{1f5}\u{1e21}"),
+    (
+        'i',
+        "\u{ec}\u{ed}\u{ee}\u{ef}\u{129}\u{12b}\u{12d}\u{12f}\u{1d0}\u{209}\u{20b}\u{1e2d}\u{1e2f}\u{1ec9}\u{1ecb}",
+    ),
+    ('l', "\u{13a}\u{13c}\u{13e}\u{1e37}\u{1e39}\u{1e3b}\u{1e3d}"),
+    ('m', "\u{1e3f}\u{1e41}\u{1e43}"),
+    (
+        'n',
+        "\u{f1}\u{144}\u{146}\u{148}\u{1f9}\u{1e45}\u{1e47}\u{1e49}\u{1e4b}",
+    ),
+    (
+        'o',
+        "\u{f2}\u{f3}\u{f4}\u{f5}\u{f6}\u{14d}\u{14f}\u{151}\u{1a1}\u{1d2}\u{1eb}\u{1ed}\u{20d}\u{20f}\u{22b}\u{22d}\u{22f}\u{231}\u{1e4d}\u{1e4f}\u{1e51}\u{1e53}\u{1ecd}\u{1ecf}\u{1ed1}\u{1ed3}\u{1ed5}\u{1ed7}\u{1ed9}\u{1edb}\u{1edd}\u{1edf}\u{1ee1}\u{1ee3}",
+    ),
+    ('p', "\u{1e55}\u{1e57}"),
+    (
+        'r',
+        "\u{155}\u{157}\u{159}\u{211}\u{213}\u{1e59}\u{1e5b}\u{1e5d}\u{1e5f}",
+    ),
+    (
+        's',
+        "\u{15b}\u{15d}\u{15f}\u{161}\u{219}\u{1e61}\u{1e63}\u{1e65}\u{1e67}\u{1e69}",
+    ),
+    (
+        'u',
+        "\u{f9}\u{fa}\u{fb}\u{fc}\u{169}\u{16b}\u{16d}\u{16f}\u{171}\u{173}\u{1b0}\u{1d4}\u{1d6}\u{1d8}\u{1da}\u{1dc}\u{215}\u{217}\u{1e73}\u{1e75}\u{1e77}\u{1e79}\u{1e7b}\u{1ee5}\u{1ee7}\u{1ee9}\u{1eeb}\u{1eed}\u{1eef}\u{1ef1}",
+    ),
+];
+
+/// A letra sem o acento, como o NFD seguido da remoção das marcas.
+fn unaccented(c: char) -> Option<char> {
+    if ('\u{300}'..='\u{36f}').contains(&c) {
+        return None;
+    }
+    Some(
+        UNACCENTED
+            .iter()
+            .find(|(_, set)| set.contains(c))
+            .map_or(c, |(base, _)| *base),
+    )
+}
+
 /// `porteDeRotulo`: o Tamanho pelo rótulo do bestiário (`Miúdo`, `Médio`),
 /// em minúsculas e sem acento; o rótulo que não se reconhece dá Médio.
 pub fn size_from_label(label: Option<&str>) -> Size {
     let k: String = label
         .unwrap_or("")
         .to_lowercase()
-        .nfd()
-        .filter(|c| !('\u{300}'..='\u{36f}').contains(c))
+        .chars()
+        .filter_map(unaccented)
         .collect();
     Size::ALL
         .into_iter()

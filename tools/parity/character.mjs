@@ -86,6 +86,25 @@ export function buildCharacterCases({ motor, quase, equip, migra, regras, weapon
     'pequeno', 'Pequena', '', null, 'xyz', 'Mİudo', 'gigante', 'Grandé', ' medio']) {
     add('porteDeRotulo', [r], motor.porteDeRotulo);
   }
+  {
+    // cada letra de cada chave trocada por cada letra acentuada que volta a
+    // ela pelo NFD, em minúscula e em maiúscula (e uma que não volta: ø)
+    const accented = {};
+    for (let cp = 0x80; cp <= 0x2fff; cp++) {
+      const c = String.fromCodePoint(cp);
+      const base = c.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      if (base.length === 1 && base !== c && /[a-z]/.test(base)) (accented[base] = accented[base] || []).push(c);
+    }
+    for (const k of regras.porteAcerto.ordem) {
+      [...k].forEach((letter, i) => {
+        for (const c of [...(accented[letter] || []), 'ø']) {
+          const label = k.slice(0, i) + c + k.slice(i + 1);
+          add('porteDeRotulo', [label], motor.porteDeRotulo);
+          add('porteDeRotulo', [label.toUpperCase()], motor.porteDeRotulo);
+        }
+      });
+    }
+  }
   const portes = regras.porteAcerto.ordem;
   for (const a of portes) for (const b of portes) for (const d of [false, true]) add('modificadorPorte', [a, b, d], motor.modificadorPorte);
   for (const n of [0, 1, 2, 3, 4, 5, 6, 7, 0.5, 0.7, -1, 10, 0.64, 2.5]) add('levantamentoDaArte', [n], motor.levantamentoDaArte);
