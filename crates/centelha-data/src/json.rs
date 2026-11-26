@@ -33,3 +33,21 @@ pub(crate) fn read_data_file(
     })?;
     Ok((format!("data/{name}"), text))
 }
+
+/// Confere os ids de uma lista: vazio ou repetido dá `Invalid`, com o
+/// caminho `[i].id`.
+pub(crate) fn check_ids<'a>(ids: impl Iterator<Item = &'a str>) -> Result<(), DataError> {
+    let mut seen = std::collections::HashSet::new();
+    for (i, id) in ids.enumerate() {
+        if id.trim().is_empty() {
+            return Err(DataError::invalid(format!("[{i}].id"), "id vazio"));
+        }
+        if !seen.insert(id) {
+            return Err(DataError::invalid(
+                format!("[{i}].id"),
+                format!("id repetido: {id}"),
+            ));
+        }
+    }
+    Ok(())
+}

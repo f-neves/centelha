@@ -24,18 +24,7 @@ pub struct GlossaryEntry {
 /// Lê `glossario.json` a partir do texto. Id vazio ou repetido dá `Invalid`.
 pub fn parse_glossary(json: &str) -> Result<Vec<GlossaryEntry>, DataError> {
     let entries: Vec<GlossaryEntry> = crate::json::parse(json)?;
-    let mut seen = std::collections::HashSet::new();
-    for (i, entry) in entries.iter().enumerate() {
-        if entry.id.trim().is_empty() {
-            return Err(DataError::invalid(format!("[{i}].id"), "id vazio"));
-        }
-        if !seen.insert(entry.id.as_str()) {
-            return Err(DataError::invalid(
-                format!("[{i}].id"),
-                format!("id repetido: {}", entry.id),
-            ));
-        }
-    }
+    crate::json::check_ids(entries.iter().map(|e| e.id.as_str()))?;
     Ok(entries)
 }
 
