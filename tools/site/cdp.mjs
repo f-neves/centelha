@@ -33,13 +33,18 @@ export function detectBase(dist) {
 
 /** As páginas de `dist/`, como caminhos relativos ao caminho base. */
 export function listPages(dist) {
-  const pages = [''];
-  const regras = join(dist, 'regras');
-  if (existsSync(regras)) {
-    for (const slug of readdirSorted(regras)) {
-      if (existsSync(join(regras, slug, 'index.html'))) pages.push(`regras/${slug}/`);
+  // Toda pasta com `index.html` (menos `pkg/` e `assets/`), em ordem.
+  const pages = [];
+  const walk = (rel) => {
+    if (existsSync(join(dist, rel, 'index.html'))) pages.push(rel);
+    for (const name of readdirSorted(join(dist, rel))) {
+      const child = `${rel}${name}/`;
+      if (rel === '' && (name === 'pkg' || name === 'assets')) continue;
+      // Sem a barra do fim: no Linux, `stat` de um arquivo com `/` no fim falha.
+      if (statSync(join(dist, rel, name)).isDirectory()) walk(child);
     }
-  }
+  };
+  walk('');
   return pages;
 }
 

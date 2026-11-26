@@ -12,6 +12,7 @@ pub mod armor;
 pub mod bestiary;
 pub mod chapters;
 mod error;
+pub mod glossary;
 mod json;
 pub mod rules;
 pub mod shields;
@@ -30,6 +31,9 @@ pub use bestiary::{Creature, parse_creature};
 pub use chapters::load_chapters;
 pub use chapters::{Chapter, parse_chapter};
 pub use error::DataError;
+#[cfg(not(target_arch = "wasm32"))]
+pub use glossary::load_glossary;
+pub use glossary::{GlossaryEntry, parse_glossary};
 #[cfg(not(target_arch = "wasm32"))]
 pub use rules::load_rules;
 pub use rules::{Rules, parse_rules};
