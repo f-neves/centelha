@@ -6,6 +6,7 @@
 //!   atrás de termos proibidos.
 
 mod images;
+mod notes;
 mod scan;
 mod sync;
 

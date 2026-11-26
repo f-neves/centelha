@@ -1,8 +1,8 @@
 # Glossário · português para inglês
 
-Fonte única dos nomes dos termos do jogo no código (R8): o identificador em inglês sai daqui. Os dados continuam em português; a tradução fica na leitura (`serde(rename)`). Termo que não está aqui: pedir ao Arquiteto antes de inventar.
+Fonte única dos nomes dos termos do jogo no código (R8): o identificador em inglês sai daqui. Os dados continuam em português; a tradução fica na leitura (`serde(rename)`). Termo que não está aqui: pedir a inclusão antes de inventar.
 
-Estado: **aprovado em 25/11/2026; é regra.** Identificador de termo do jogo sai desta tabela; nome fora dela, só depois de entrar aqui (pedido ao Arquiteto-RS). Os acréscimos das seções de criaturas e derivados seguem a mesma regra. A coluna "nome próprio" marca o que NÃO se traduz.
+Estado: **aprovado em 25/11/2026; é regra.** Identificador de termo do jogo sai desta tabela; nome fora dela, só depois de entrar aqui. Os acréscimos das seções de criaturas e derivados seguem a mesma regra. A coluna "nome próprio" marca o que NÃO se traduz.
 
 `gm_compendium_entry` é provisório até se decidir o nome da tabela do banco (fase 3). `melee` (Armas) foi conferido no livro: a Habilidade Armas não cobre lançar a arma, que é Arremesso (`throwing`).
 

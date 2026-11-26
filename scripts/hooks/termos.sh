@@ -5,7 +5,8 @@
 # Trecho em qualquer posição, sem diferença de caixa.
 TERMOS_TRECHO="cla""ude|anthro""pic|co""dex|open""ai|cha""tgpt|copi""lot|gem""ini|co-authored""-by|generated ""with|c2""pa|trained""algorithmic""media"
 # Palavra curta: sem letra colada antes ou depois.
-TERMOS_PALAVRA="(^|[^a-z])(g""pt|l""lm)([^a-z]|$)"
+# Inclui os nomes internos de papel trocados nas notas (ADR 0005).
+TERMOS_PALAVRA="(^|[^a-z])(g""pt|l""lm|arqui""tetos?|arqui""teta|bestia""ristas?)([^a-z]|$)"
 # Marcadores dentro de imagem e de arquivo binário.
 TERMOS_BINARIO="cla""ude|anthro""pic|open""ai|cha""tgpt|g""pt-image|c2""pa|trained""algorithmic""media"
 

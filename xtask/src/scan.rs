@@ -25,7 +25,16 @@ const SUBSTRINGS: &[&str] = &[
 ];
 
 /// Termos curtos procurados como palavra (sem letra colada antes ou depois).
-const WORDS: &[&str] = &[concat!("g", "pt"), concat!("l", "lm")];
+/// Também os nomes internos de papel trocados nas notas (ADR 0005).
+const WORDS: &[&str] = &[
+    concat!("g", "pt"),
+    concat!("l", "lm"),
+    concat!("arqui", "teto"),
+    concat!("arqui", "teta"),
+    concat!("arqui", "tetos"),
+    concat!("bestia", "rista"),
+    concat!("bestia", "ristas"),
+];
 
 /// Termos procurados no metadado de imagem e em arquivo binário.
 const BINARY_MARKERS: &[&str] = &[
@@ -208,5 +217,10 @@ mod tests {
         assert_eq!(scan_text("m", concat!("modelo G", "PT-4")).len(), 1);
         assert!(scan_text("m", concat!("abg", "ptcd")).is_empty());
         assert!(scan_text("m", "Defesa, Absorção e Desgaste").is_empty());
+        assert_eq!(
+            scan_text("m", concat!("estimativa do Arqui", "teto-RS")).len(),
+            1
+        );
+        assert!(scan_text("m", "Arquitetura e Engenharia").is_empty());
     }
 }

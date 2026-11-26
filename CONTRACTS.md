@@ -33,7 +33,7 @@ xtask              (sozinho; não é dependência de ninguém)
 
 **Expõe (o que já existe no `main`):**
 
-- Módulos: `bestiary`, `rules`, `weapons`, `armor`, `shields`, `ancestry`. Os outros arquivos de dados (atributos, Habilidades, Virtudes, Técnicas, Caminhos, Artes, Efeitos, condições, glossário, raças) entram como módulo quando o Backend propuser a API e o Arquiteto aprovar.
+- Módulos: `bestiary`, `rules`, `weapons`, `armor`, `shields`, `ancestry`. Os outros arquivos de dados (atributos, Habilidades, Virtudes, Técnicas, Caminhos, Artes, Efeitos, condições, glossário, raças) entram como módulo quando a API proposta for aprovada neste arquivo.
 - Na raiz do crate: `Creature`, `Rules`, `Weapon`, `Armor`, `Shield`, `Ancestry`, `DataError`, os `parse_*` e os `load_*`. O resto mora no módulo de cada um (por exemplo `bestiary::Size`).
 - `Creature`: uma criatura do bestiário, com `id: String` e os campos usados pelo motor.
 - Leitura a partir de texto: `fn parse_creature(json: &str) -> Result<Creature, DataError>` e equivalentes. Funciona em WebAssembly (sem arquivo).
@@ -74,7 +74,7 @@ xtask              (sozinho; não é dependência de ninguém)
   - Tipos de saída: `SheetNumbers`, `HandSet`, `HandItem`, `HandKind`, `DamageVersion`, `DualWield`, `ArmorStack`, `Initiative`, `CombatSummary`, `NearMiss`, `Step`, `Movement`, `SheetSummary`, `Passive`, `ArtLevel`, `DbSummary`. Campos `Value` com chaves em português, no formato do item do catálogo ou da ficha: `HandItem.weapon/shield/base/vs_fast_projectile`, `HandSet.attack_weapon`, `DualWield.off_die`, `CombatSummary.attributes/skills/class`, `SheetSummary.attributes/skills/secondary_skills/virtues`, `ArtLevel.level`.
   - Entrada de tipo errado (texto onde vai número): o port segue o `Number()` do JavaScript e não lança erro, onde o TypeScript às vezes lança. Ficha gravada pela tela não tem isso.
 - `js::max`, `js::min`, `js::number_to_string`: `Math.max`, `Math.min` e `String(número)` do JavaScript.
-- Daqui em diante, por fase: derivados da ficha e das criaturas (fase 1), combate e tempo em Ticks, Artes, lógica do Grid (fase 3). Cada módulo entra no contrato quando o Backend propõe a API e o Arquiteto aprova.
+- Daqui em diante, por fase: derivados da ficha e das criaturas (fase 1), combate e tempo em Ticks, Artes, lógica do Grid (fase 3). Cada módulo entra no contrato quando a API proposta é aprovada neste arquivo.
 
 **Aritmética:** os números do TypeScript são `f64`. O port usa `f64` onde o TypeScript faz conta com fração e reproduz `Math.round` (o .5 sobe, inclusive nos negativos: `Math.round(-2.5) == -2`), `Math.floor` e `Math.trunc` exatamente.
 
