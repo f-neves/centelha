@@ -29,6 +29,8 @@ pub const FRESH_BUDGET: f64 = 1500.0;
 pub struct EditorTables {
     sheet: SheetTables,
     attributes: Vec<String>,
+    /// O nome de cada Atributo (`a.nome || a.id`), na ordem de `attributes`.
+    attribute_names: Vec<String>,
     skills: Vec<String>,
     secondary: Vec<String>,
     virtues: Vec<String>,
@@ -45,6 +47,24 @@ fn ids(v: &Value, keep: impl Fn(&Value) -> bool) -> Vec<String> {
             a.iter()
                 .filter(|x| keep(x))
                 .filter_map(|x| x.get("id").and_then(Value::as_str).map(str::to_owned))
+                .collect()
+        })
+        .unwrap_or_default()
+}
+
+/// O nome de cada item (`nome || id`), na ordem do arquivo.
+fn names(v: &Value) -> Vec<String> {
+    v.as_array()
+        .map(|a| {
+            a.iter()
+                .filter_map(|x| {
+                    let id = x.get("id").and_then(Value::as_str)?;
+                    let name = x
+                        .get("nome")
+                        .and_then(Value::as_str)
+                        .filter(|n| !n.is_empty());
+                    Some(name.unwrap_or(id).to_owned())
+                })
                 .collect()
         })
         .unwrap_or_default()
@@ -71,6 +91,7 @@ impl EditorTables {
         EditorTables {
             sheet,
             attributes: ids(c.attributes, |_| true),
+            attribute_names: names(c.attributes),
             skills: ids(c.skills, |h| !truthy(h.get("secundaria"))),
             secondary: ids(c.secondary, |_| true),
             virtues: ids(c.virtues, |_| true),
@@ -86,7 +107,33 @@ impl EditorTables {
         &self.sheet
     }
 
-    fn floor(&self, key: &str) -> f64 {
+    /// Os ids dos Atributos e os nomes (`a.nome || a.id`), na ordem do arquivo.
+    pub(super) fn attributes(&self) -> impl Iterator<Item = (&str, &str)> {
+        self.attributes
+            .iter()
+            .zip(&self.attribute_names)
+            .map(|(a, n)| (a.as_str(), n.as_str()))
+    }
+
+    /// Os ids das Habilidades, das Secundárias, das Virtudes e dos
+    /// Antecedentes nomeados.
+    pub(super) fn skill_ids(&self) -> &[String] {
+        &self.skills
+    }
+
+    pub(super) fn secondary_ids(&self) -> &[String] {
+        &self.secondary
+    }
+
+    pub(super) fn virtue_ids(&self) -> &[String] {
+        &self.virtues
+    }
+
+    pub(super) fn named_background_ids(&self) -> &[String] {
+        &self.named_backgrounds
+    }
+
+    pub(super) fn floor(&self, key: &str) -> f64 {
         xp_floor(self.sheet.rules(), key).unwrap_or(0.0)
     }
 

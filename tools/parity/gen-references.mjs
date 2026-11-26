@@ -284,6 +284,7 @@ const sheetEditor = buildSheetEditorCases({
   techniques: readData('tecnicas.json'), arts: readData('artes.json'), effects: readData('efeitos.json'),
   pgr: await loadTs('src/lib/ficha-pgr.ts'), tempo: await loadTs('src/lib/combate-tempo.ts'),
   forca: await loadTs('src/lib/forca-empurrao.ts'), weapons: Object.values(equip.ARMA), regras: readData('regras.json'),
+  equip,
 });
 editor.restore();
 const sheetEditorCounts = {};
