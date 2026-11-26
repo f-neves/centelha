@@ -64,14 +64,23 @@ pub fn log10(x: f64) -> f64 {
 /// fica para quando uma referência de paridade acusar uma das diferenças.
 ///
 /// A conta:
-/// - expoente inteiro com base de mantissa pequena: a potência exata em
-///   inteiro de 128 bits, arredondada uma vez (é onde há empate, como em
-///   `5 ** 23`);
-/// - base positiva normal e expoente finito: precisão dupla dobrada (uns 106
-///   bits: o logaritmo por um passo de Newton sobre o `log` da `libm`, a
-///   exponencial pela série de Taylor), e só o resultado final é arredondado;
-/// - o resto (base zero, subnormal, negativa ou infinita, expoente zero ou
-///   infinito, resultado fora da faixa normal) pela `libm`.
+/// - expoente inteiro de 1 a 128 com base de mantissa pequena: a potência
+///   exata em inteiro de 128 bits, arredondada uma vez (com o par no empate,
+///   como em `5 ** 23`);
+/// - base positiva normal e expoente finito, com `|b ln a|` abaixo de 700 (o
+///   resultado entre cerca de `1e-304` e `e^709`): precisão dupla dobrada (uns
+///   106 bits: o logaritmo por um passo de Newton sobre o `log` da `libm`, a
+///   exponencial pela série de Taylor), e só o resultado final é arredondado.
+///   Quando esse resultado cai a menos de `2^-80` (relativo) de um meio-ponto
+///   entre dois `f64`, a precisão dobrada não decide o lado, e a conta vai pela
+///   `libm`: é o empate com expoente fracionário de base potência perfeita
+///   (`60219687609 ** 1.5`, que é exatamente um meio-ponto), que a `libm`
+///   resolve;
+/// - o resto pela `libm`: base zero, subnormal, negativa ou infinita, expoente
+///   zero ou infinito, e o resultado fora da faixa acima (abaixo de cerca de
+///   `1e-304` ou acima de `e^709`), onde o arredondamento é o da `libm` (que
+///   erra o último bit em algumas potências pequenas demais, abaixo de
+///   `1e-304`).
 pub fn pow(a: f64, b: f64) -> f64 {
     if !(a >= f64::MIN_POSITIVE && a.is_finite() && b.is_finite()) || b == 0.0 || a == 1.0 {
         return libm::pow(a, b);
@@ -84,7 +93,27 @@ pub fn pow(a: f64, b: f64) -> f64 {
         return libm::pow(a, b);
     }
     let r = dd::exp(t);
+    if near_midpoint(r.0, r.1) {
+        return libm::pow(a, b);
+    }
     r.0 + r.1
+}
+
+/// O resultado em precisão dupla dobrada (`hi + lo`, com `hi` já o `f64` mais
+/// perto) está a menos de `2^-80` (relativo) do meio-ponto entre `hi` e o
+/// vizinho do lado de `lo`?
+fn near_midpoint(hi: f64, lo: f64) -> bool {
+    if lo == 0.0 || !hi.is_normal() {
+        return false;
+    }
+    let bits = hi.to_bits();
+    let next = if (lo > 0.0) == (hi > 0.0) {
+        f64::from_bits(bits + 1)
+    } else {
+        f64::from_bits(bits - 1)
+    };
+    let half = (next - hi).abs() / 2.0;
+    (lo.abs() - half).abs() <= hi.abs() * libm::scalbn(1.0, -80)
 }
 
 /// `a ** b` exato, quando `b` é inteiro positivo e a potência da mantissa de
@@ -317,9 +346,49 @@ mod tests {
             assert_eq!(pow(a, b).to_bits(), f64::to_bits(want), "{a} ** {b}");
         }
         assert!(pow(-8.0, 0.5).is_nan());
+        // empate com expoente fracionário (base potência perfeita, o
+        // resultado exatamente no meio-ponto): o par, como o arredondamento
+        // correto e o Node
+        for (a, b, want) in [
+            (60219687609.0, 1.5, 14777730680185772.0),
+            (43315183129.0, 1.5, 9014885858356868.0),
+            (68184176641.0, 1.5, 17804320388674560.0),
+            (2634129.0, 2.5, 11261405560364344.0),
+        ] {
+            assert_eq!(pow(a, b).to_bits(), f64::to_bits(want), "{a} ** {b}");
+        }
+        // empates em que o Node sai do par (dá ...8002); o Rust fica com o
+        // arredondamento correto
+        assert_eq!(pow(2563201.0, 2.5), 10518568985608000.0);
+        assert_eq!(pow(6569999366401.0, 1.25), 10518568985608000.0);
         // onde o V8 erra o arredondamento, o Rust fica com o correto
         // (`Math.pow(10, 23)` dá 1.0000000000000001e+23 no Node)
         assert_eq!(pow(10.0, 23.0), 1e23);
+    }
+
+    /// Os empates com expoente fracionário: `(s^k) ** (j/k)` com `s` ímpar e
+    /// `s^j` de exatamente 54 bits é um meio-ponto entre dois `f64`, e o
+    /// arredondamento correto é o par (o `u128 as f64`).
+    #[test]
+    fn pow_ties_with_fractional_exponent() {
+        let mut n = 0;
+        for (root, power, b) in [(2u32, 3u32, 1.5), (4, 5, 1.25), (2, 5, 2.5)] {
+            let mut s: u64 = 1;
+            loop {
+                let r = u128::from(s).pow(power);
+                if r >= 1 << 54 {
+                    break;
+                }
+                let a = u128::from(s).pow(root);
+                // amostra: um em cada 16 da faixa de 54 bits
+                if r >= 1 << 53 && a < 1 << 53 && (s / 2).is_multiple_of(16) {
+                    assert_eq!(pow(a as f64, b), r as f64, "{a} ** {b}");
+                    n += 1;
+                }
+                s += 2;
+            }
+        }
+        assert!(n > 1500, "{n}");
     }
 
     #[test]
