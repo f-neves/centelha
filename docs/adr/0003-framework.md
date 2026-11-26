@@ -47,3 +47,9 @@ O spike da fase 0 comparou dois caminhos com a mesma página de prova (o cartão
 - O gerador é nosso e precisa de cuidado: as duas provas do item 7 entram com a primeira página e não saem mais.
 - O app é o site dentro do WebView: o que o app tem a mais (conteúdo offline, sincronização, atualização) fica no `centelha-app` e nos comandos do Tauri, sem duplicar página.
 - O `wasm-opt --all-features` do binaryen `version_133` gera um WebAssembly que o navegador recusa; a lista de features vai explícita no `xtask`.
+
+## Notas
+
+- **26/11/2026, depois da primeira tarefa do Frontend.** As ilhas funcionaram no gerador próprio, sem precisar da alternativa da página inteira. Com ilhas, o WebAssembly do site ficou em 120.159 B depois do `wasm-opt -Oz` e 47.967 B com gzip (o spike, com a página inteira, tinha 106 KB com gzip); a abertura do capítulo `combate` com CPU 4x mais lenta, até a ilha hidratar, ficou em 242 ms (mediana de 7). `unsafe_code = "forbid"` compila com o código de `#[wasm_bindgen]` e `#[island]` sem ajuste.
+- **Perfil do WebAssembly (item 9):** fica o perfil de release do workspace. Com `opt-level = "z"` o arquivo saiu maior depois do `wasm-opt` (51.282 B com gzip) e a abertura não foi mais rápida.
+- **Dependências que entraram** (conferidas no crates.io em 25/11/2026, fixadas com `=`): `sha1` 0.11.0 (só `ssr`, chave dos diagramas) e `hydration_context` 0.3.2 (só `ssr`; a mesma versão que o `leptos` 0.8.23 usa, porque o `leptos` não reexporta o `SsrSharedContext`). `leptos_meta` e `js-sys` ainda não entraram; `serde` entra com a primeira ilha que tiver propriedades.

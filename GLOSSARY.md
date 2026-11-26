@@ -167,3 +167,28 @@ Regras (`regras.json`): `size_accuracy` (`porteAcerto`), `derived` (`derivados`)
 Catálogos: `stats` (o bloco `arma`/`armadura`/`escudo`), `skill` (`pericia`), `damage_bonus`, `hands` (`maos`), `strength_cap`, `strength_min`, `melee_block` (`bloqCaC`), `vs_fast_projectile` (`vsProjetilRapido`), `blocks`.
 
 Habilidades Secundárias de criatura (`musculatura`, `corrida`, `voo`, `halterofilismo`, `natacao`, `escalada`, `equilibrio` e outras) e as Habilidades de tiro do ataque natural (`disparo`, `atirador`, `arremesso`, ver `RANGED_SKILLS`) continuam texto: são chaves do mapa de Habilidades, não viram identificador. Quando uma delas aparecer como parâmetro de função, o nome em inglês é a tradução literal (`musculature`, `weightlifting`).
+
+## Ficha do jogador (acréscimo de 26/11, tarefa 003 do Backend)
+
+| Português | Inglês | Português | Inglês |
+|---|---|---|---|
+| Deslocamento | `movement` | conjunto (de armas nas mãos) | `hand_set` |
+| passo (de Batalha) | `step`, campo `battle` | mão hábil / inábil | `main_hand` / `off_hand` |
+| Arranque | `dash` | empunhadura dupla | `dual_wield` (`DualWield`) |
+| Corrida | `run` | peça personalizada | `custom` |
+| Natação | `swim` | armaduras vestidas | `worn_armor` |
+| salto vertical / parado / com corrida | `vertical_jump` / `standing_jump` / `running_jump` | Defesa das mãos (soma) | `hands_defense` |
+| Investida | `charge` | Força que falta (requisito) | `strength_missing` |
+| Força a mais da Investida | `charge_strength` | arma do ataque | `attack_weapon` |
+| Proezas (`tech` na ficha de leitura) | `feats` | Perfuração da arma | `weapon_pierce` |
+| Aparência | `appearance` | Valor Passivo (o tipo) | `Passive` |
+| Vigor somado aos PV (pela Raça) | `vitality` | | |
+
+## Glossário do livro (acréscimo de 26/11, tarefa 003 do Frontend)
+
+| Português | Inglês |
+|---|---|
+| verbete do glossário | `glossary_entry` (`GlossaryEntry`) |
+| termo | `term` (`termo`) |
+| sinônimo | `alias` (`aliases`) |
+| definição | `definition` (`definicao`) |
