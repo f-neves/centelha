@@ -269,3 +269,14 @@ No `grid` do Efeito: forma `shape`, âncora `anchor`, gatilho `trigger`, alvo `t
 | teto (de uma trilha) | `trait_cap` | Efeitos ao alcance | `effects_in_reach` |
 | piso do Atributo | `attribute_floor` | teto da Arte pela Centelha | `arcane.art_level_cap.by_spark` |
 | custo da Raça | `Ancestry::cost` | | |
+
+## Colação e ficha, fatia 2 (acréscimo de 26/11, tarefas 011 e 012 do Backend)
+
+| Português | Inglês | Português | Inglês |
+|---|---|---|---|
+| colação (a ordem alfabética do `localeCompare`) | `collate` | linha com o item extra | `extra_lines`, `ExtraLine` |
+| letra de base | `fold`, `primary_key` | teto da rajada do item | `sheet_flurry_cap` |
+| comparação só pela base / com números | `compare_base` / `compare_numeric_base` | metade da penalidade no deslocamento | `half_movement_penalty` |
+| catálogos da ficha interativa | `EditorCatalogs` | deslocamento com a penalidade | `penalized_movement`, `PenalizedMovement` |
+| linha Preparo, Golpe e Recuperação da ficha | `sheet_anatomy` | alcance do arremesso / Força aplicada (FAA) | `throw_range` / `reserve` |
+| tabela do livro (a reforma do P/G/R) | `PgrReform`, `PgrRow` (`melee`, `shot`) | regras do arremesso | `ThrowRules` |
