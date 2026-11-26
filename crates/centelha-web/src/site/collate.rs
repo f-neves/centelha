@@ -13,6 +13,8 @@
 
 use std::cmp::Ordering;
 
+use crate::sort::primary_key;
+
 /// Compara dois textos como o `localeCompare` com `'pt'`.
 pub fn compare(a: &str, b: &str) -> Ordering {
     let primary = |s: &str| -> Vec<(u8, char)> { s.chars().map(primary_key).collect() };
@@ -26,37 +28,6 @@ pub fn compare(a: &str, b: &str) -> Ordering {
             let case = |s: &str| -> Vec<bool> { s.chars().map(char::is_uppercase).collect() };
             case(a).cmp(&case(b))
         })
-}
-
-/// A classe e a letra de base de um caractere.
-fn primary_key(c: char) -> (u8, char) {
-    let base = fold(c);
-    let class = if base.is_whitespace() {
-        0
-    } else if base.is_ascii_punctuation() && !"$+<=>^`|~".contains(base) {
-        1
-    } else if base.is_alphanumeric() {
-        if base.is_numeric() { 3 } else { 4 }
-    } else {
-        2
-    };
-    (class, base)
-}
-
-/// A letra sem acento e em minúscula (as letras acentuadas do português e do
-/// espanhol; o resto passa como está, em minúscula).
-fn fold(c: char) -> char {
-    let lower = c.to_lowercase().next().unwrap_or(c);
-    match lower {
-        'á' | 'à' | 'â' | 'ã' | 'ä' => 'a',
-        'é' | 'è' | 'ê' | 'ë' => 'e',
-        'í' | 'ì' | 'î' | 'ï' => 'i',
-        'ó' | 'ò' | 'ô' | 'õ' | 'ö' => 'o',
-        'ú' | 'ù' | 'û' | 'ü' => 'u',
-        'ç' => 'c',
-        'ñ' => 'n',
-        other => other,
-    }
 }
 
 #[cfg(test)]

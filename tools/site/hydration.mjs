@@ -18,6 +18,10 @@
 //      release um descasamento de hidratação vira pânico sem mensagem, por isso
 //      as exceções contam; o WebAssembly de depuração escreve o aviso).
 //
+// Com `CENTELHA_CONFIG` (um JSON), grava essa preferência de diagramação no
+// `localStorage` antes de cada página com JavaScript, como faria quem ajustou
+// o site atual: o texto tem de continuar igual e sem exceção.
+//
 // Sai com código 1 se qualquer página falhar. Só Node 22+ e um navegador
 // (`BROWSER` aponta outro executável; `BROWSER_ARGS` acrescenta argumentos,
 // como `--no-sandbox` no Linux do CI).
@@ -89,6 +93,11 @@ for (const rel of pages) {
   await page.send('Page.enable');
   await page.send('Runtime.enable');
   await page.send('Log.enable');
+  if (process.env.CENTELHA_CONFIG) {
+    await page.send('Page.addScriptToEvaluateOnNewDocument', {
+      source: `localStorage.setItem('centelha:config', ${JSON.stringify(process.env.CENTELHA_CONFIG)});`,
+    });
+  }
   await page.send('Emulation.setDeviceMetricsOverride', DESKTOP);
   await page.goto(url);
   const started = Date.now();
@@ -198,8 +207,17 @@ async function checkShell(page) {
 
   await page.send('Emulation.setDeviceMetricsOverride', PHONE);
   // A barra lateral desliza para fora da tela em 0,22 s ao virar gaveta;
-  // antes disso ela ainda cobre o botão do menu.
-  await new Promise((ok) => setTimeout(ok, 400));
+  // antes disso ela ainda cobre o botão do menu. Num navegador sem janela e
+  // sem placa de vídeo, com o fundo animado, a transição pode demorar mais:
+  // espera o botão ficar à mostra (até 5 s).
+  try {
+    await page.waitFor(`(() => {
+      const b = document.querySelector('.drawer-toggle');
+      if (!b) return true;
+      const r = b.getBoundingClientRect();
+      return document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2)?.closest('.drawer-toggle') === b;
+    })()`, 5000);
+  } catch { /* segue, e a conferência abaixo diz o que houve */ }
   if (!(await click(page, '.drawer-toggle'))) problems.push('sem o botão do menu no celular');
   s = await state();
   if (!s.open || s.expanded !== 'true') problems.push(`o menu não abriu a gaveta: ${JSON.stringify(s)}`);
@@ -210,6 +228,83 @@ async function checkShell(page) {
   if (s.open || s.expanded !== 'false') problems.push(`Esc não fechou a gaveta: ${JSON.stringify(s)}`);
   await page.send('Emulation.setDeviceMetricsOverride', DESKTOP);
   await new Promise((ok) => setTimeout(ok, 100));
+  return problems;
+}
+
+// A regra de ordenação do site atual (src/pages/regras/[slug].astro), como
+// oráculo: a ordem esperada sai desta cópia, e não do código em Rust.
+const ORACLE = `(table, col, dir) => {
+  const FRAC = { '½': 0.5, '¼': 0.25, '¾': 0.75, '⅓': 1 / 3, '⅔': 2 / 3 };
+  const CUR = { pc: 1, pp: 10, po: 100, pl: 1000 };
+  const numOf = (raw) => {
+    const s = raw.replace(/[−–]/g, '-').trim();
+    const cm = s.match(/(-?)\\s*([½¼¾⅓⅔]|\\d{1,3}(?:\\.\\d{3})+(?:,\\d+)?|\\d+(?:[.,]\\d+)?)\\s*(pc|pp|po|pl)\\b/i);
+    if (cm) {
+      const base = FRAC[cm[2]] ?? parseFloat((/^\\d{1,3}(?:\\.\\d{3})+/.test(cm[2]) ? cm[2].replace(/\\./g, '') : cm[2]).replace(',', '.'));
+      return (cm[1] === '-' ? -1 : 1) * base * CUR[cm[3].toLowerCase()];
+    }
+    if (FRAC[s] != null) return FRAC[s];
+    const m = s.match(/-?\\d+(?:[.,]\\d+)?/);
+    return m ? parseFloat(m[0].replace(',', '.')) : null;
+  };
+  const rows = Array.from(table.tBodies[0].rows);
+  const val = (r) => (r.cells[col]?.textContent || '').trim();
+  const vazio = (s) => s === '' || s === '—' || s === '–';
+  const numerico = rows.every((r) => { const v = val(r); return vazio(v) || numOf(v) !== null; });
+  rows.sort((a, b) => {
+    const A = val(a), B = val(b);
+    let c;
+    if (numerico) c = (vazio(A) ? -Infinity : numOf(A)) - (vazio(B) ? -Infinity : numOf(B));
+    else c = A.localeCompare(B, 'pt', { numeric: true, sensitivity: 'base' });
+    return dir === 'asc' ? c : -c;
+  });
+  return rows.map((r) => r.textContent);
+}`;
+
+async function checkTables(page) {
+  const problems = [];
+  const count = await page.eval("[...document.querySelectorAll('main table')].filter((t) => t.querySelector('th.ord')).length");
+  for (let t = 0; t < Math.min(2, count); t++) {
+    const sel = `[...document.querySelectorAll('main table')].filter((t) => t.querySelector('th.ord'))[${t}]`;
+    // O que a regra do site atual daria, para a coluna e a direção pedidas.
+    const expected = (col, dir) => page.eval(`(${ORACLE})(${sel}, ${col}, '${dir}')`);
+    const actual = () => page.eval(`Array.from(${sel}.tBodies[0].rows).map((r) => r.textContent)`);
+    const sortState = () => page.eval(`[...${sel}.tHead.rows[0].cells].map((c) => c.getAttribute('aria-sort'))`);
+    // Clique no primeiro cabeçalho: crescente.
+    const want = await expected(0, 'asc');
+    const ok = await page.eval(`(() => { const b = ${sel}.querySelector('th.ord .ord-btn'); b.scrollIntoView({ block: 'center', behavior: 'instant' }); return true; })()`);
+    if (!ok) continue;
+    await new Promise((r) => setTimeout(r, 100));
+    const rect = await page.eval(`(() => { const r = ${sel}.querySelector('th.ord .ord-btn').getBoundingClientRect(); return { x: r.x + r.width / 2, y: r.y + r.height / 2 }; })()`);
+    for (const type of ['mousePressed', 'mouseReleased']) {
+      await page.send('Input.dispatchMouseEvent', { type, x: rect.x, y: rect.y, button: 'left', clickCount: 1 });
+    }
+    if (JSON.stringify(await actual()) !== JSON.stringify(want)) problems.push(`tabela ${t + 1}: o clique não ordenou como o site atual`);
+    if ((await sortState())[0] !== 'ascending') problems.push(`tabela ${t + 1}: aria-sort não ficou ascending`);
+    // Teclado no segundo cabeçalho que ordena (ou no mesmo): Enter crescente, espaço decrescente.
+    const col = await page.eval(`(() => { const ths = [...${sel}.tHead.rows[0].cells]; const k = ths.findIndex((c, i) => i > 0 && c.classList.contains('ord')); return k > 0 ? k : 0; })()`);
+    await page.eval(`${sel}.tHead.rows[0].cells[${col}].querySelector('.ord-btn').focus({ preventScroll: true })`);
+    const wantAsc = await expected(col, 'asc');
+    for (const type of ['keyDown', 'keyUp']) {
+      await page.send('Input.dispatchKeyEvent', { type, key: 'Enter', code: 'Enter', windowsVirtualKeyCode: 13, ...(type === 'keyDown' ? { text: '\r' } : {}) });
+    }
+    await new Promise((r) => setTimeout(r, 50));
+    const afterEnter = await actual();
+    const stateEnter = await sortState();
+    const wantDesc = await expected(col, col === 0 ? 'asc' : 'desc');
+    for (const type of ['keyDown', 'keyUp']) {
+      await page.send('Input.dispatchKeyEvent', { type, key: ' ', code: 'Space', windowsVirtualKeyCode: 32, ...(type === 'keyDown' ? { text: ' ' } : {}) });
+    }
+    await new Promise((r) => setTimeout(r, 50));
+    const afterSpace = await actual();
+    const stateSpace = await sortState();
+    if (col !== 0) {
+      if (JSON.stringify(afterEnter) !== JSON.stringify(wantAsc)) problems.push(`tabela ${t + 1}: Enter não ordenou a coluna ${col + 1} como o site atual`);
+      if (stateEnter[col] !== 'ascending' || stateEnter[0] !== 'none') problems.push(`tabela ${t + 1}: aria-sort depois do Enter: ${JSON.stringify(stateEnter)}`);
+      if (JSON.stringify(afterSpace) !== JSON.stringify(wantDesc)) problems.push(`tabela ${t + 1}: espaço não inverteu a coluna ${col + 1} como o site atual`);
+      if (stateSpace[col] !== 'descending') problems.push(`tabela ${t + 1}: aria-sort depois do espaço: ${JSON.stringify(stateSpace)}`);
+    }
+  }
   return problems;
 }
 

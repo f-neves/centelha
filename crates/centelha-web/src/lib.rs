@@ -7,6 +7,8 @@
 //! features nunca se combinam (ADR 0003).
 
 pub mod shell;
+pub mod sort;
+pub mod tables;
 pub mod theme;
 pub mod toc;
 

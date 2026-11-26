@@ -141,7 +141,7 @@ body {
   color: var(--ink);
   font-family: 'EB Garamond', Georgia, 'Times New Roman', serif;
   font-size: var(--fs-corpo);
-  line-height: var(--lh-tema, 1.62);
+  line-height: var(--cfg-entrelinha, var(--lh-tema, 1.62));
   -webkit-text-size-adjust: 100%;
 }
 
@@ -180,10 +180,75 @@ leptos-island, leptos-children { display: contents; }
   padding: 1.2rem 1rem 3rem; position: sticky; top: 0; height: 100vh; overflow-y: auto;
 }
 .content { min-width: 0; padding: 1.6rem clamp(1rem, 4vw, 3rem) 6rem; overflow-wrap: break-word; }
-.prose { max-width: 46rem; margin-inline: 0 auto; }
+.prose { max-width: var(--cfg-larg-texto, 46rem); margin-inline: 0 auto; }
 .wide { max-width: 60rem; margin-inline: auto; }
-@media (min-width: 901px) { .content { padding-inline: 3rem; } }
+@media (min-width: 901px) { .content { padding-inline: var(--cfg-margem, 3rem); } }
 .prose p, .prose li { text-align: justify; hyphens: auto; }
+
+/* Preferências de diagramação (o script do <head> lê `centelha:config`):
+   os padrões estão nas regras de base; os atributos marcam só quem saiu do
+   padrão. Port de src/styles/global.css do site atual. */
+html[data-alinha='centro'] .prose { margin-inline: auto; }
+html[data-justif='0'] .prose p,
+html[data-justif='0'] .prose li { text-align: left; hyphens: manual; }
+/* Tabelas e catálogos podem passar da medida do texto acima de 1100 px, sem
+   nunca passar da área de conteúdo. */
+@media (min-width: 1100px) {
+  .prose > .table-wrap, .prose > .cat-grid {
+    --larg: min(var(--cfg-larg-tabela, var(--cfg-larg-texto, 46rem)), calc(100vw - 24rem));
+    width: var(--larg);
+    margin-inline: 0;
+  }
+  html[data-alinha='centro'] .prose > .table-wrap,
+  html[data-alinha='centro'] .prose > .cat-grid { margin-inline: calc((100% - var(--larg)) / 2); }
+  /* Duas colunas de texto corrido; tabelas, caixas, títulos e a abertura
+     atravessam as duas. */
+  html[data-colunas='2'] .prose:not(.sem-colunas) {
+    max-width: calc(var(--cfg-larg-texto, 46rem) * 2 + 2.6rem);
+    columns: 2; column-gap: 2.6rem;
+  }
+  html[data-colunas='2'] .prose:not(.sem-colunas) > :is(h1, h2, .lead, .table-wrap, .cat-grid, .callout, .formula, pre, .diagrama-caixa, .tag-orn, .cinzel, nav, hr) {
+    column-span: all;
+  }
+}
+/* Coluna final oculta (o texto continua no HTML, para a busca). */
+.sem-ultima-coluna th:last-child,
+.sem-ultima-coluna td:last-child { display: none; }
+
+/* A barra de rolagem: a fina é o padrão; `data-barra` troca o estilo. */
+html {
+  --sb-larg: 10px; --sb-trilha: transparent; --sb-polegar: var(--rule); --sb-polegar-hov: var(--accent-soft);
+  --sb-raio: 99px; --sb-folga: 3px; --sb-filete: none; --sb-ff: auto;
+}
+html:not([data-barra]), html[data-barra='fina'] { --sb-ff: thin; }
+html[data-barra='editorial'] {
+  --sb-larg: 14px; --sb-trilha: var(--bg); --sb-polegar: var(--accent-strong);
+  --sb-polegar-hov: var(--accent-soft); --sb-folga: 4px; --sb-filete: inset 1px 0 0 var(--rule);
+}
+html[data-barra='dourada'] {
+  --sb-larg: 13px; --sb-trilha: var(--bg); --sb-polegar: var(--gold); --sb-polegar-hov: var(--accent-soft);
+  --sb-raio: 2px; --sb-filete: inset 1px 0 0 var(--rule), inset -1px 0 0 var(--rule);
+}
+html[data-barra='teal'] { --sb-larg: 12px; --sb-polegar: var(--accent-soft); --sb-polegar-hov: var(--accent); --sb-folga: 2px; }
+html:not([data-barra='nativa'])::-webkit-scrollbar,
+html:not([data-barra='nativa']) ::-webkit-scrollbar { width: var(--sb-larg); height: var(--sb-larg); }
+html:not([data-barra='nativa'])::-webkit-scrollbar-track,
+html:not([data-barra='nativa']) ::-webkit-scrollbar-track { background: var(--sb-trilha); box-shadow: var(--sb-filete); }
+html:not([data-barra='nativa'])::-webkit-scrollbar-thumb,
+html:not([data-barra='nativa']) ::-webkit-scrollbar-thumb {
+  background: var(--sb-polegar); border-radius: var(--sb-raio);
+  border: var(--sb-folga) solid transparent; background-clip: content-box;
+}
+html:not([data-barra='nativa'])::-webkit-scrollbar-thumb:hover,
+html:not([data-barra='nativa']) ::-webkit-scrollbar-thumb:hover { background: var(--sb-polegar-hov); background-clip: content-box; }
+html:not([data-barra='nativa'])::-webkit-scrollbar-corner,
+html:not([data-barra='nativa']) ::-webkit-scrollbar-corner { background: var(--sb-trilha); }
+@supports not selector(::-webkit-scrollbar) {
+  html:not([data-barra='nativa']), html:not([data-barra='nativa']) * {
+    scrollbar-width: var(--sb-ff);
+    scrollbar-color: var(--sb-polegar) var(--sb-trilha);
+  }
+}
 
 /* A barra de cima só existe no celular. */
 .topbar { display: none; }
@@ -372,3 +437,80 @@ tbody tr:nth-child(even) { background: color-mix(in srgb, var(--accent) 5%, tran
 /* ---------- Pé do capítulo ---------- */
 .cap-nav { display: flex; justify-content: space-between; gap: 1rem; margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px solid var(--rule); }
 .cap-nav .btn { max-width: 48%; }
+
+/* ---------- Página não encontrada ---------- */
+.not-found { text-align: center; padding: 3rem 0; }
+.not-found-code { font-size: 4rem; color: var(--accent-texto); margin: 0; }
+.not-found-actions { justify-content: center; margin-top: 1.5rem; }
+
+/* ---------- Fundo decorativo ----------
+   Port de src/components/FundoCentelha.astro do site atual: camadas fixas
+   atrás de tudo (o invólucro não vira caixa), ligadas por `data-fundo`, que o
+   script do <head> escreve (sem atributo vale o site inteiro). O Legível
+   desliga, pelo contraste. */
+.cfundo { display: contents; }
+html[data-fundo='ficha'] .cfundo { display: none; }
+html[data-fundo='ficha'] body.page-ficha .cfundo { display: contents; }
+html[data-theme='legivel'] .cfundo { display: none; }
+.cfundo .bg, .cfundo .bg-glow, .cfundo .bg-sparks, .cfundo .bg-sparks2, .cfundo .bg-grain, .cfundo .bg-seal { position: fixed; inset: 0; pointer-events: none; }
+/* O centro horizontal da coluna de conteúdo: o site atual mede por script; aqui
+   sai da largura da barra lateral (17rem), que é o que muda a coluna. */
+:root { --fundo-cx: 50vw; --deco-strength: 1; }
+@media (min-width: 901px) { html:not(.sidebar-collapsed) { --fundo-cx: calc(8.5rem + 50vw); } }
+.cfundo .bg { z-index: -6; background: var(--bg); }
+.cfundo .bg-glow { z-index: -5;
+  background:
+    radial-gradient(1200px 820px at var(--fundo-cx, 50vw) 116%, color-mix(in srgb, var(--gold) calc(14% * var(--deco-strength, 1)), transparent), transparent 62%),
+    radial-gradient(1000px 700px at var(--fundo-cx, 50vw) -12%, color-mix(in srgb, var(--accent) calc(9% * var(--deco-strength, 1)), transparent), transparent 60%),
+    radial-gradient(150% 130% at var(--fundo-cx, 50vw) 42%, transparent 52%, var(--vignette, rgba(0,0,0,.55))); }
+.cfundo .bg-seal { inset: auto; top: 50%; left: var(--fundo-cx, 50vw); translate: -50% -50%;
+  width: min(94vw, 780px); height: min(94vw, 780px); z-index: -4;
+  color: var(--rule);
+  opacity: calc(var(--seal-intensity, .22) * (0.15 + 0.85 * var(--deco-strength, 1))); }
+.cfundo .bg-seal.still { display: none; }
+.cfundo .bg-sparks, .cfundo .bg-sparks2 { z-index: -3; background-repeat: repeat; }
+.cfundo .bg-sparks { opacity: calc(var(--deco-strength, 1) * .9); background-size: 300px 300px;
+  background-image:
+    radial-gradient(2.2px 2.2px at 40px 60px, var(--gold), transparent 3.2px),
+    radial-gradient(1.6px 1.6px at 210px 110px, var(--gold), transparent 2.6px),
+    radial-gradient(1.9px 1.9px at 130px 240px, var(--accent-strong), transparent 2.9px),
+    radial-gradient(1.4px 1.4px at 260px 280px, var(--gold), transparent 2.4px),
+    radial-gradient(1.6px 1.6px at 80px 200px, var(--accent), transparent 2.6px),
+    radial-gradient(2px 2px at 170px 20px, var(--gold), transparent 3px),
+    radial-gradient(1.4px 1.4px at 285px 175px, var(--accent-strong), transparent 2.4px),
+    radial-gradient(1.8px 1.8px at 20px 145px, var(--gold), transparent 2.8px),
+    radial-gradient(1.5px 1.5px at 105px 292px, var(--gold), transparent 2.5px);
+  background-position-x: calc(var(--fundo-cx, 50vw) - 150px);
+  animation: cfSobe1 34s linear infinite; }
+.cfundo .bg-sparks2 { opacity: calc(var(--deco-strength, 1) * .55); background-size: 340px 340px;
+  background-position-x: calc(var(--fundo-cx, 50vw) - 110px); background-position-y: 30px;
+  background-image:
+    radial-gradient(9px 9px at 42px 62px, color-mix(in srgb, var(--gold) 45%, transparent), transparent 70%),
+    radial-gradient(8px 8px at 132px 242px, color-mix(in srgb, var(--accent) 40%, transparent), transparent 70%),
+    radial-gradient(7px 7px at 265px 150px, color-mix(in srgb, var(--gold) 34%, transparent), transparent 70%),
+    radial-gradient(1.9px 1.9px at 300px 90px, var(--gold), transparent 2.9px),
+    radial-gradient(1.6px 1.6px at 190px 300px, var(--accent-strong), transparent 2.6px);
+  animation: cfTwinkle 7s ease-in-out infinite, cfSobe2 62s linear infinite; }
+@keyframes cfTwinkle { 0%,100% { opacity: calc(var(--deco-strength,1) * .35) } 50% { opacity: calc(var(--deco-strength,1) * .62) } }
+@keyframes cfSobe1 { to { background-position-y: -300px; } }
+@keyframes cfSobe2 { from { background-position-y: 30px; } to { background-position-y: -310px; } }
+.cfundo .bg-grain { z-index: -2; mix-blend-mode: overlay; opacity: calc(var(--deco-strength, 1) * .16);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+@media (prefers-reduced-motion: reduce) {
+  .cfundo .bg-sparks, .cfundo .bg-sparks2 { animation: none; }
+  .cfundo .bg-seal.animated { display: none; }
+  .cfundo .bg-seal.still { display: block; }
+}
+
+/* ---------- Tabelas que ordenam ----------
+   Como em src/pages/regras/[slug].astro do site atual: o cabeçalho que ordena
+   mostra ⇅, e ↑ ou ↓ na coluna da ordem atual. O conteúdo do cabeçalho vai
+   num botão (veja `crate::tables`), que herda a cara do cabeçalho. */
+main table th.ord { cursor: pointer; user-select: none; }
+main table th.ord::after { content: ' ⇅'; opacity: .35; font-size: .82em; }
+main table th.ord.asc::after { content: ' ↑'; opacity: .9; }
+main table th.ord.desc::after { content: ' ↓'; opacity: .9; }
+main table th.ord .ord-btn { all: unset; cursor: pointer; }
+main table th.ord .ord-btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: var(--r-sm); }
+main table th.ord:hover, main table th.ord:focus-within { color: var(--accent-strong); }
+@media (max-width: 900px) { main table th.ord { padding-block: .8rem; } }
