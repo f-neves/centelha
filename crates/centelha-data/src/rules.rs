@@ -42,6 +42,9 @@ pub struct Rules {
     /// `escalasProeza`: quanto cada Técnica melhora pelo nível.
     #[serde(rename = "escalasProeza", default)]
     pub feat_scales: Option<FeatScales>,
+    /// `arcano`: as regras das Artes que a ficha lê.
+    #[serde(rename = "arcano", default)]
+    pub arcane: Option<ArcaneRules>,
     /// `escalaCentelha`: o que cada nível de Centelha quer dizer, de 0 a 12.
     #[serde(rename = "escalaCentelha", default)]
     pub spark_scale: Vec<ScaleStep>,
@@ -63,6 +66,22 @@ pub struct ScaleStep {
     /// `provisorio`: o degrau ainda sem nome definitivo.
     #[serde(rename = "provisorio", default)]
     pub provisional: bool,
+}
+
+/// `arcano`: o que a ficha lê das regras das Artes.
+#[derive(Debug, Clone, PartialEq, Deserialize)]
+pub struct ArcaneRules {
+    /// `tetoNivelArte`: o nível máximo de uma Arte.
+    #[serde(rename = "tetoNivelArte", default)]
+    pub art_level_cap: Option<ArtLevelCap>,
+}
+
+/// `arcano.tetoNivelArte`.
+#[derive(Debug, Clone, PartialEq, Deserialize)]
+pub struct ArtLevelCap {
+    /// `porCentelha`: o teto pelo índice da Centelha (de 0 em diante).
+    #[serde(rename = "porCentelha", default)]
+    pub by_spark: Vec<f64>,
 }
 
 /// `escalasProeza`: as trilhas de melhora das Técnicas.
