@@ -8,6 +8,7 @@
 //! partir de pasta (`load_*`) existe só no nativo.
 
 pub mod ancestry;
+pub mod arcane;
 pub mod armor;
 pub mod arts;
 pub mod attributes;
@@ -29,6 +30,9 @@ pub mod weapons;
 #[cfg(not(target_arch = "wasm32"))]
 pub use ancestry::load_ancestries;
 pub use ancestry::{Ancestry, parse_ancestries};
+pub use arcane::{
+    DetourNumbers, ImprovisationCost, ManifestationNumbers, Node, SideState, StretchRow,
+};
 #[cfg(not(target_arch = "wasm32"))]
 pub use armor::load_armors;
 pub use armor::{Armor, parse_armors};
