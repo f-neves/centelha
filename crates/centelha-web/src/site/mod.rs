@@ -4,6 +4,8 @@
 //! O WebAssembly (as ilhas) e o script de carga entram em `dist/pkg/`, gravados
 //! pelo `cargo xtask site` depois do gerador.
 
+pub mod arts;
+pub mod arts_pages;
 mod backdrop;
 pub mod equipment;
 pub mod links;
@@ -151,6 +153,7 @@ pub struct Site {
     counts: HomeCounts,
     scales: HashMap<String, leptos::serde_json::Value>,
     equipment: equipment::Equipment,
+    arts: arts::Arts,
     diagrams: Diagrams,
     content_dir: PathBuf,
 }
@@ -174,6 +177,7 @@ impl Site {
             counts: home_counts(content_dir)?,
             scales: glossary_scales(content_dir)?,
             equipment: equipment::load(content_dir, &skill_names(content_dir)?)?,
+            arts: arts::load(content_dir, &centelha_data::load_rules(content_dir)?)?,
             diagrams,
             content_dir: content_dir.to_path_buf(),
         })
@@ -259,6 +263,42 @@ impl Site {
                 equipment_page,
                 Some("Catálogo filtrável de armas, armaduras e escudos, com dano, Absorção e os trade-offs."),
                 move || view! { <EquipmentPage base equipment/> }.into_any(),
+            ),
+        });
+        // As Artes: `artes/` leva às regras; o catálogo e os Efeitos.
+        pages.push(Page {
+            path: "artes/index.html".to_string(),
+            html: arts_pages::redirect_html(&self.base),
+        });
+        let (base, arts) = (self.base.clone(), self.arts.clone());
+        let title = format!("As {} Artes", arts.art_count);
+        pages.push(Page {
+            path: "artes/catalogo/index.html".to_string(),
+            html: self.document(
+                PageInfo {
+                    path: "artes/catalogo".to_string(),
+                    title,
+                    wide: true,
+                    toc: Vec::new(),
+                    refs: true,
+                },
+                Some("O catálogo das Artes da feitiçaria: os seis níveis de cada uma, com exemplos do que aquele patamar alcança."),
+                move || view! { <arts_pages::ArtsCatalogPage base arts/> }.into_any(),
+            ),
+        });
+        let (base, arts) = (self.base.clone(), self.arts.clone());
+        pages.push(Page {
+            path: "artes/efeitos/index.html".to_string(),
+            html: self.document(
+                PageInfo {
+                    path: "artes/efeitos".to_string(),
+                    title: "Efeitos Especiais".to_string(),
+                    wide: true,
+                    toc: Vec::new(),
+                    refs: true,
+                },
+                Some("Os Efeitos Especiais das Artes: o que cada um faz, o que custa e quais parâmetros o jogador escolhe na hora de conjurar."),
+                move || view! { <arts_pages::ArtsEffectsPage base arts/> }.into_any(),
             ),
         });
         // A página de "não encontrada", na raiz de `dist/` (o GitHub Pages a

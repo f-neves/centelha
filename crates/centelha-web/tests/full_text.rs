@@ -64,8 +64,12 @@ fn check_site(base: &str) {
     let site = Site::load(&content, base).expect("o site se lê");
     let out = temp_out(base.trim_matches('/'));
     let pages = site.write(&out).expect("o site se grava");
-    // A inicial, os capítulos, o glossário, Equipamentos e a de não encontrada.
-    assert_eq!(pages.len(), site.chapters().len() + 4);
+    // A inicial, os capítulos, o glossário, Equipamentos, as três das Artes
+    // (o redirecionamento, o catálogo e os Efeitos) e a de não encontrada.
+    assert_eq!(pages.len(), site.chapters().len() + 7);
+    // Os Efeitos saem inteiros no HTML, sem WebAssembly: os 189 cartões.
+    let effects = std::fs::read_to_string(out.join("artes/efeitos/index.html")).expect("Efeitos");
+    assert_eq!(effects.matches("class=\"panel efeito\"").count(), 189);
     assert_eq!(site.chapters().len(), 28);
 
     let mut failures = Vec::new();

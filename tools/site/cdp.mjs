@@ -32,12 +32,15 @@ export function detectBase(dist) {
   return m ? m[1] : '/';
 }
 
-/** As páginas de `dist/`, como caminhos relativos ao caminho base (mais a `404.html`). */
+/** As páginas de `dist/`, como caminhos relativos ao caminho base (mais a `404.html`, menos as que só redirecionam). */
 export function listPages(dist) {
   // Toda pasta com `index.html` (menos `pkg/` e `assets/`), em ordem.
   const pages = [];
   const walk = (rel) => {
-    if (existsSync(join(dist, rel, 'index.html'))) pages.push(rel);
+    // A página que só redireciona (`artes/`, um `meta refresh` sem a casca)
+    // fica de fora: não tem conteúdo nem ilhas.
+    const index = join(dist, rel, 'index.html');
+    if (existsSync(index) && !readFileSync(index, 'utf8').includes('http-equiv="refresh"')) pages.push(rel);
     for (const name of readdirSorted(join(dist, rel))) {
       const child = `${rel}${name}/`;
       if (rel === '' && (name === 'pkg' || name === 'assets')) continue;
