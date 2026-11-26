@@ -255,3 +255,17 @@ No `grid` do Efeito: forma `shape`, âncora `anchor`, gatilho `trigger`, alvo `t
 | linha de PV na zona (de transição) | `hp_line_in_zone`, `HpLineInZone` | escala de Força de Vontade | `willpower_scale` |
 | zona / PV da linha de cima / de baixo | `zone_kg` / `hp_above` / `hp_below` | degrau (de uma escala) | `ScaleStep` |
 | provisório | `provisional` | escala de Centelha | `spark_scale` |
+
+## Ficha interativa (acréscimo de 26/11, tarefa 010 do Backend)
+
+| Português | Inglês | Português | Inglês |
+|---|---|---|---|
+| tabelas da ficha interativa | `EditorTables` | troca de Raça | `change_ancestry` |
+| ficha nova | `fresh_sheet` | massa escrita pelo jogador | `mass_chosen` |
+| orçamento (de XP) | `budget`, `FRESH_BUDGET` | especialidade nomeada | `Specialty { name, level }` |
+| Secundárias livres | `FREE_SECONDARY` | teto das especialidades | `specialty_cap`, `clamp_specialties` |
+| XP gasto | `spent_xp`, `SpentXp` | estado da Técnica | `TechniqueStatus` |
+| parcela dos Antecedentes (no XP gasto) | `SpentXp::backgrounds` | Centelha que basta / pré-requisitos que faltam | `spark_ok` / `missing` |
+| teto (de uma trilha) | `trait_cap` | Efeitos ao alcance | `effects_in_reach` |
+| piso do Atributo | `attribute_floor` | teto da Arte pela Centelha | `arcane.art_level_cap.by_spark` |
+| custo da Raça | `Ancestry::cost` | | |
