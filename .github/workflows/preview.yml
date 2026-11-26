@@ -25,6 +25,9 @@ concurrency:
   cancel-in-progress: false
 
 env:
+  # Igual ao CI: o rust-cache põe as variáveis CARGO_* no hash da chave, e
+  # sem esta linha a prévia caía numa família de cache só dela.
+  CARGO_TERM_COLOR: always
   SITE_BASE_PATH: ${{ vars.SITE_BASE_PATH || '/centelha/' }}
   SITE_SEARCH: "1"
 
@@ -46,10 +49,14 @@ jobs:
         run: rustup toolchain install
 
       # O mesmo cache do job "Site" do CI: o build de release já vem pronto.
+      # Só restaura: quem grava é o job "Site" no main, com o target inteiro
+      # (clippy, testes, release e depuração). Se a prévia gravasse antes, a
+      # chave ficaria tomada por um target só de release.
       - name: Cache de compilação
         uses: Swatinem/rust-cache@v2.9.3
         with:
           shared-key: site
+          save-if: false
 
       - name: Cache das ferramentas do site
         uses: actions/cache@v6.1.0
