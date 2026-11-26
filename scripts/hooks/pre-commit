@@ -25,6 +25,18 @@ so_preparados() {
 	tr '\0' '\t' | awk -F '\t' 'NR == FNR { p[$0] = 1; next } ($1 in p)' "$tmp/lista" -
 }
 
+# Roda o `git grep` gravando a saída em $tmp/bruto. Código 0 é "achou" e 1 é
+# "nada achado"; acima disso é erro do git, e o commit não passa sem a
+# verificação.
+procurar() {
+	git grep "$@" > "$tmp/bruto"
+	cod=$?
+	if [ "$cod" -gt 1 ]; then
+		echo "pre-commit: git grep falhou (código $cod); verificação não feita" >&2
+		exit 2
+	fi
+}
+
 # 1. Nomes de arquivo.
 if grep -i -E -e "$TERMOS_TRECHO" -e "$TERMOS_PALAVRA" "$tmp/lista" > "$tmp/nomes"; then
 	sed 's/^/pre-commit: nome de arquivo com termo proibido: /' "$tmp/nomes" >&2
@@ -34,10 +46,12 @@ fi
 # 2. Conteúdo de todo arquivo que não é imagem (texto e binário).
 set -- .
 for e in $EXTENSOES; do set -- "$@" ":(exclude,icase,glob)**/*.$e"; done
-git grep --cached -z --text -i -o -E -e "$TERMOS_TRECHO" -e "$TERMOS_PALAVRA" -- "$@" \
-	| so_preparados > "$tmp/conteudo"
+procurar --cached -z --text -i -o -E -e "$TERMOS_TRECHO" -e "$TERMOS_PALAVRA" -- "$@"
+so_preparados < "$tmp/bruto" > "$tmp/conteudo"
 if [ -s "$tmp/conteudo" ]; then
-	awk -F '\t' '{ t = tolower($2); gsub(/^[^a-z]+|[^a-z]+$/, "", t); a[$1] = a[$1] " " t }
+	# Cada termo aparece uma vez por arquivo, mesmo que se repita no texto.
+	awk -F '\t' '{ t = tolower($2); gsub(/^[^a-z]+|[^a-z]+$/, "", t)
+		if (!(($1, t) in visto)) { visto[$1, t] = 1; a[$1] = a[$1] " " t } }
 		END { for (f in a) print "pre-commit: termo proibido em " f ":" a[f] }' \
 		"$tmp/conteudo" >&2
 	falhou=1
@@ -46,8 +60,8 @@ fi
 # 3. Imagens: marcadores de metadado em qualquer parte do arquivo.
 set --
 for e in $EXTENSOES; do set -- "$@" ":(icase,glob)**/*.$e"; done
-git grep --cached -z --text -i -l -E -e "$TERMOS_BINARIO" -- "$@" \
-	| tr '\0' '\n' | so_preparados > "$tmp/imagens"
+procurar --cached -z --text -i -l -E -e "$TERMOS_BINARIO" -- "$@"
+tr '\0' '\n' < "$tmp/bruto" | so_preparados > "$tmp/imagens"
 if [ -s "$tmp/imagens" ]; then
 	sed 's/^/pre-commit: imagem com metadado proibido: /; s/$/ (rode a limpeza do sync-content)/' \
 		"$tmp/imagens" >&2
