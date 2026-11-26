@@ -24,6 +24,11 @@
 // `localStorage` antes de cada página com JavaScript, como faria quem ajustou
 // o site atual: o texto tem de continuar igual e sem exceção.
 //
+// As páginas rodam em `HYDRATION_TABS` abas ao mesmo tempo (padrão 4), cada
+// aba num contexto de navegador próprio. A saída sai na ordem das páginas; uma
+// página que lança erro ou passa de `HYDRATION_PAGE_TIMEOUT_MS` (padrão 120 s)
+// falha com o motivo, e as outras seguem.
+//
 // Sai com código 1 se qualquer página falhar. Só Node 22+ e um navegador
 // (`BROWSER` aponta outro executável; `BROWSER_ARGS` acrescenta argumentos,
 // como `--no-sandbox` no Linux do CI).
@@ -85,8 +90,20 @@ const ALL_VISIBLE = `(() => {
 const DESKTOP = { width: 1280, height: 900, deviceScaleFactor: 1, mobile: false };
 const PHONE = { width: 375, height: 812, deviceScaleFactor: 1, mobile: true };
 
+// Quantas abas ao mesmo tempo (`HYDRATION_TABS`, padrão 4). Cada aba tem o
+// seu contexto de navegador (armazenamento próprio) e pega a próxima página da
+// fila; dentro de uma aba as páginas seguem em ordem, como na prova em série.
+const TABS = Math.max(1, Number.parseInt(process.env.HYDRATION_TABS ?? '4', 10) || 1);
+// Uma página que trava não segura as outras: passou disto, falha com o motivo.
+const PAGE_TIMEOUT_MS = Number.parseInt(process.env.HYDRATION_PAGE_TIMEOUT_MS ?? '120000', 10);
+
 const server = await serve(dist, base);
-const browser = await launch();
+// Abas em segundo plano não podem ter o relógio nem o desenho freados.
+const browser = await launch(undefined, [
+  '--disable-background-timer-throttling',
+  '--disable-backgrounding-occluded-windows',
+  '--disable-renderer-backgrounding',
+]);
 let failures = 0;
 // Quantas páginas tiveram termo do glossário marcado (a prova falha se
 // nenhuma tiver: a conferência do cartão não pode passar calada).
@@ -95,14 +112,94 @@ let pagesWithTerms = 0;
 // auto-link do site atual, os outros 27 têm termo marcado).
 const CHAPTERS_WITHOUT_TERMS = ['regras/custo-montarias-e-viagens/'];
 
-console.log(`hidratação: ${pages.length} páginas de ${dist} (base ${base}), navegador ${browser.executable}`);
+const tabs = Math.min(TABS, pages.length) || 1;
+console.log(`hidratação: ${pages.length} páginas de ${dist} (base ${base}), navegador ${browser.executable}, ${tabs} abas`);
 
-for (const rel of pages) {
+// As linhas saem na ordem das páginas, como na prova em série: cada resultado
+// espera os de antes dele.
+const results = new Array(pages.length);
+let printed = 0;
+const flush = () => {
+  while (printed < pages.length && results[printed]) {
+    const r = results[printed++];
+    if (r.problems.length) {
+      failures++;
+      console.log(`FALHA ${base}${r.rel}\n  ${r.problems.join('\n  ')}`);
+    } else {
+      console.log(`ok    ${base}${r.rel} (${r.summary})`);
+    }
+  }
+};
+
+let next = 0;
+const runStarted = Date.now();
+await Promise.all(Array.from({ length: tabs }, async () => {
+  const { browserContextId } = await browser.send('Target.createBrowserContext');
+  try {
+    while (next < pages.length) {
+      const i = next++;
+      results[i] = await runPage(browserContextId, pages[i]);
+      flush();
+    }
+  } finally {
+    await browser.send('Target.disposeBrowserContext', { browserContextId }).catch(() => {});
+  }
+}));
+flush();
+
+if (pages.some((r) => r.startsWith('regras/')) && pagesWithTerms === 0) {
+  failures++;
+  console.log('FALHA nenhuma página com termo do glossário marcado (o cartão não foi conferido)');
+}
+
+await browser.close();
+await server.close();
+console.log(`(${((Date.now() - runStarted) / 1000).toFixed(1)} s com ${tabs} abas)`);
+console.log(failures ? `${failures} de ${pages.length} páginas falharam` : `todas as ${pages.length} páginas passaram`);
+process.exit(failures ? 1 : 0);
+
+/**
+ * Uma página, com as abas dela no contexto `contextId`. Qualquer erro (uma
+ * conferência que lança, a página que passa do tempo) vira problema desta
+ * página, e as abas dela fecham; as outras seguem.
+ */
+async function runPage(contextId, rel) {
+  // As abas abertas, os problemas e as mensagens do console e as exceções da
+  // página: as mensagens entram no fim mesmo se a prova parar no meio.
+  const ctx = { opened: [], problems: [], messages: [], offs: [] };
+  let summary = '';
+  let timer;
+  const timeout = new Promise((_, fail) => {
+    timer = setTimeout(() => fail(new Error(`a página passou de ${PAGE_TIMEOUT_MS} ms`)), PAGE_TIMEOUT_MS);
+  });
+  try {
+    summary = await Promise.race([checkPage(contextId, rel, ctx), timeout]);
+  } catch (e) {
+    ctx.problems.push(`a prova parou nesta página: ${e.message}`);
+  } finally {
+    clearTimeout(timer);
+    for (const off of ctx.offs) off();
+    for (const p of ctx.opened) await p.close().catch(() => {});
+  }
+  // 5. Console limpo.
+  const problems = [...ctx.problems, ...ctx.messages];
+  return { rel, problems, summary };
+}
+
+async function checkPage(contextId, rel, ctx) {
+  const { problems, opened, messages } = ctx;
   const url = `${server.origin}${base}${rel}`;
-  const problems = [];
+  const newPage = async () => {
+    const p = await browser.newPage({ browserContextId: contextId, newWindow: true });
+    opened.push(p);
+    // A aba se comporta como a da frente (foco, eventos de foco e teclado),
+    // mesmo com outras abertas ao mesmo tempo.
+    await p.send('Emulation.setFocusEmulationEnabled', { enabled: true });
+    return p;
+  };
 
   // 1. Sem JavaScript.
-  const plain = await browser.newPage();
+  const plain = await newPage();
   await plain.send('Page.enable');
   await plain.send('Runtime.enable');
   await plain.send('Emulation.setScriptExecutionDisabled', { value: true });
@@ -112,20 +209,21 @@ for (const rel of pages) {
   const before = await plain.eval('document.body.innerText');
   const contentBefore = await plain.eval(CONTENT);
   await plain.close();
+  opened.splice(opened.indexOf(plain), 1);
 
   // 2. Com JavaScript e as ilhas.
-  const page = await browser.newPage();
-  const messages = [];
-  page.on('Runtime.consoleAPICalled', (p) => {
+  const page = await newPage();
+  const on = (method, fn) => ctx.offs.push(page.on(method, fn));
+  on('Runtime.consoleAPICalled', (p) => {
     if (['error', 'warning', 'assert'].includes(p.type)) {
       messages.push(`console.${p.type}: ${p.args.map((a) => a.value ?? a.description ?? '').join(' ')}`);
     }
   });
-  page.on('Runtime.exceptionThrown', (p) => {
+  on('Runtime.exceptionThrown', (p) => {
     const d = p.exceptionDetails;
     messages.push(`exceção: ${d.exception?.description ?? d.text}`);
   });
-  page.on('Log.entryAdded', (p) => {
+  on('Log.entryAdded', (p) => {
     if (['error', 'warning'].includes(p.entry.level)) messages.push(`log.${p.entry.level}: ${p.entry.text} ${p.entry.url ?? ''}`);
   });
   await page.send('Page.enable');
@@ -211,27 +309,9 @@ for (const rel of pages) {
   problems.push(...(await checkBackToTop(page)));
   problems.push(...(await checkBookmarks(page)));
 
-  // 5. Console limpo.
-  problems.push(...messages);
-  await page.close();
-
-  if (problems.length) {
-    failures++;
-    console.log(`FALHA ${base}${rel}\n  ${problems.join('\n  ')}`);
-  } else {
-    console.log(`ok    ${base}${rel} (${before.length} caracteres, ilhas em ${hydrateMs} ms, tema ${current} -> ${target})`);
-  }
+  // 5. Console limpo: as mensagens entram em `runPage`.
+  return `${before.length} caracteres, ilhas em ${hydrateMs} ms, tema ${current} -> ${target}`;
 }
-
-if (pages.some((r) => r.startsWith('regras/')) && pagesWithTerms === 0) {
-  failures++;
-  console.log('FALHA nenhuma página com termo do glossário marcado (o cartão não foi conferido)');
-}
-
-await browser.close();
-await server.close();
-console.log(failures ? `${failures} de ${pages.length} páginas falharam` : `todas as ${pages.length} páginas passaram`);
-process.exit(failures ? 1 : 0);
 
 /**
  * O centro de um elemento depois que ele parou de mexer (com a página em
