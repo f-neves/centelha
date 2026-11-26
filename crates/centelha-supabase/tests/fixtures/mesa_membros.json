@@ -1,0 +1,22 @@
+{
+  "status": 200,
+  "headers": {
+    "content-range": "0-1/*"
+  },
+  "body": [
+    {
+      "papel": "jogador",
+      "mesa": {
+        "id": "00000000-0000-4000-8000-000000000010",
+        "nome": "Mesa de teste"
+      }
+    },
+    {
+      "papel": "mestre",
+      "mesa": {
+        "id": "00000000-0000-4000-8000-000000000011",
+        "nome": "Outra mesa"
+      }
+    }
+  ]
+}

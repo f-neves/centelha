@@ -9,6 +9,7 @@ use std::collections::BTreeMap;
 use serde::Deserialize;
 
 use crate::DataError;
+use crate::arcane::{DetourNumbers, ImprovisationCost, ManifestationNumbers, Node, StretchRow};
 use crate::bestiary::Size;
 
 /// O subconjunto de `regras.json` lido hoje.
@@ -68,12 +69,79 @@ pub struct ScaleStep {
     pub provisional: bool,
 }
 
-/// `arcano`: o que a ficha lê das regras das Artes.
+/// `arcano`: as regras das Artes. A ficha lê o teto de nível; a página das
+/// regras lê o resto pelos números tipados e pela árvore de texto
+/// ([`Node`], com leitura por caminho: `arcane.get("improviso.graus")`).
 #[derive(Debug, Clone, PartialEq, Deserialize)]
+#[serde(try_from = "RawArcane")]
 pub struct ArcaneRules {
     /// `tetoNivelArte`: o nível máximo de uma Arte.
-    #[serde(rename = "tetoNivelArte", default)]
     pub art_level_cap: Option<ArtLevelCap>,
+    /// Os ramos de `arcano` fora o `tetoNivelArte`, como árvore de texto, na
+    /// ordem do arquivo e com o texto como está.
+    pub tree: Node,
+    /// `improviso.custoPorNivel`: o custo em pontos por nível de grau.
+    pub improvisation_cost: Option<ImprovisationCost>,
+    /// `cura.custoPorNivel`: o custo por nível da Cura.
+    pub healing_cost_per_level: Option<f64>,
+    /// `fonteElemental.desconto`: o desconto de quem conjura com o elemento
+    /// ao alcance da mão.
+    pub elemental_source_discount: Option<f64>,
+    /// `esticar.tabela`: as linhas do esticar.
+    pub stretch_table: Vec<StretchRow>,
+    /// `improviso.manifestacao.numeros`.
+    pub manifestation: Option<ManifestationNumbers>,
+    /// `tempoDaArte.area.desvio.numeros`.
+    pub detour: Option<DetourNumbers>,
+}
+
+impl ArcaneRules {
+    /// Lê um ramo da árvore por caminho (`"improviso.graus"`).
+    pub fn get(&self, path: &str) -> Option<&Node> {
+        self.tree.get(path)
+    }
+
+    /// O texto no caminho (`"cura.nota"`).
+    pub fn text(&self, path: &str) -> Option<&str> {
+        self.tree.text(path)
+    }
+
+    /// O número no caminho.
+    pub fn number(&self, path: &str) -> Option<f64> {
+        self.tree.number(path)
+    }
+
+    /// A lista no caminho.
+    pub fn list(&self, path: &str) -> Option<&[Node]> {
+        self.tree.list(path)
+    }
+}
+
+/// `arcano` como vem do arquivo: o teto e todo o resto.
+#[derive(Deserialize)]
+struct RawArcane {
+    #[serde(rename = "tetoNivelArte", default)]
+    art_level_cap: Option<ArtLevelCap>,
+    #[serde(flatten)]
+    tree: Node,
+}
+
+impl TryFrom<RawArcane> for ArcaneRules {
+    type Error = String;
+
+    fn try_from(raw: RawArcane) -> Result<Self, String> {
+        let t = crate::arcane::typed(&raw.tree)?;
+        Ok(ArcaneRules {
+            art_level_cap: raw.art_level_cap,
+            improvisation_cost: t.improvisation_cost,
+            healing_cost_per_level: t.healing_cost_per_level,
+            elemental_source_discount: t.elemental_source_discount,
+            stretch_table: t.stretch_table,
+            manifestation: t.manifestation,
+            detour: t.detour,
+            tree: raw.tree,
+        })
+    }
 }
 
 /// `arcano.tetoNivelArte`.
@@ -209,6 +277,28 @@ pub struct StrengthRules {
     /// O alcance do arremesso (`arremessoConst`, `arremessoExpFaa`...).
     #[serde(flatten)]
     pub throw: ThrowRules,
+    /// A carga e a altura (`cargaCorte`, `cargaExpoente`...).
+    #[serde(flatten)]
+    pub load: LoadRules,
+}
+
+/// As chaves da carga em `forca`: a velocidade com carga cai como
+/// `1 - (peso / máximo / corte)^expoente`, em terra e na água; acima da
+/// cabeça se ergue uma fração do máximo.
+#[derive(Debug, Clone, Copy, PartialEq, Deserialize)]
+pub struct LoadRules {
+    #[serde(rename = "cargaCorte", default)]
+    pub cut: Option<f64>,
+    #[serde(rename = "cargaExpoente", default)]
+    pub exponent: Option<f64>,
+    #[serde(rename = "cargaCorteAgua", default)]
+    pub water_cut: Option<f64>,
+    #[serde(rename = "cargaExpoenteAgua", default)]
+    pub water_exponent: Option<f64>,
+    /// `levantamentoAcimaCabeca`: a fração do máximo que se ergue acima da
+    /// cabeça.
+    #[serde(rename = "levantamentoAcimaCabeca", default)]
+    pub overhead_fraction: Option<f64>,
 }
 
 /// As chaves do arremesso em `forca`: o alcance é C × FAA^a ÷ peso^b, com o

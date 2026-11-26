@@ -1,0 +1,10 @@
+{
+  "status": 401,
+  "headers": {},
+  "body": {
+    "code": "PGRST301",
+    "details": null,
+    "hint": null,
+    "message": "JWT expired"
+  }
+}

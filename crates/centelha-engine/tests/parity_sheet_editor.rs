@@ -12,9 +12,14 @@ mod common;
 
 use centelha_data::{Technique, Weapon};
 use centelha_engine::sheet::{
-    Catalog, EditorCatalogs, EditorTables, Movement, SheetTables, attribute_floor, change_ancestry,
-    clamp_specialties, effects_in_reach, extra_lines, fresh_sheet, mass_chosen, penalized_movement,
-    sheet_anatomy, sheet_flurry_cap, spent_xp, technique_status, throw_range, trait_cap,
+    ARMOR_EDIT_FIELDS, Catalog, DualWield, EditField, EditorCatalogs, EditorTables, HandRole,
+    ItemKind, Movement, SHIELD_EDIT_FIELDS, SheetTables, WEAPON_EDIT_FIELDS, WEAPON_MORE_FIELDS,
+    attribute_floor, carried_load, change_ancestry, clamp_specialties, current_load,
+    dual_attack_from, dual_damage_text, edit_field_base, effects_in_reach, extra_lines,
+    fresh_sheet, load_bands, load_speed_fraction, mass_chosen, normalize_sheet, overhead_lift,
+    penalized_movement, penalized_speed, piece_for, pool_text, sheet_anatomy, sheet_flurry_cap,
+    short_number, spent_xp, technique_status, throw_cap, throw_range, throw_reserve,
+    throw_table_weights, trait_cap, weight_from_text, write_edit_field,
 };
 use common::{compare, num, repo};
 use serde_json::{Map, Value, json};
@@ -115,7 +120,7 @@ struct Ctx {
     extras: Value,
 }
 
-fn run(ctx: &Ctx, inputs: &Value, name: &str, a: &[Value]) -> Value {
+fn run(ctx: &Ctx, inputs: &Value, name: &str, a: &[Value], want: &Value) -> Value {
     let (t, techniques, weapons, extras) =
         (&ctx.t, &ctx.techniques[..], &ctx.weapons[..], &ctx.extras);
     let input = |i: usize| &inputs[a[i].as_str().unwrap()];
@@ -226,6 +231,147 @@ fn run(ctx: &Ctx, inputs: &Value, name: &str, a: &[Value]) -> Value {
         ),
         "tetoDaRajada" => num(sheet_flurry_cap(t.sheet_tables().rules(), weapons, &a[0])),
         "alcanceArremesso" => num(throw_range(t.sheet_tables().rules(), f(&a[0]), f(&a[1]), f(&a[2]))),
+        "normalize" => {
+            // os uid chegam na ordem em que a fonte os sorteou
+            let mut uids = a[1]
+                .as_array()
+                .unwrap()
+                .iter()
+                .map(|u| u.as_str().unwrap().to_owned())
+                .collect::<Vec<_>>()
+                .into_iter();
+            let n = normalize_sheet(t, &a[0], &mut || {
+                uids.next().expect("o Rust pediu mais uid que a fonte")
+            });
+            assert!(uids.next().is_none(), "o Rust pediu menos uid que a fonte");
+            let raised: Vec<Value> = n
+                .raised
+                .iter()
+                .map(|r| json!({"nome": r.name, "de": r.from, "para": num(r.to)}))
+                .collect();
+            json!({"ficha": n.sheet, "subiu": raised, "massa": n.mass_chosen})
+        }
+        "forca" => {
+            // a entrada da conta é o que a ficha leu (Força, Atletismo,
+            // Arremesso, o peso máximo, a penalidade e as velocidades sem ela);
+            // o resto sai do Rust e é comparado com o que a fonte calculou
+            let o = &a[1];
+            let r = t.sheet_tables().rules();
+            let max = f(&o["maxKg"]);
+            let tw = throw_table_weights(r, max);
+            let reserve = throw_reserve(f(&o["forca"]), f(&o["atl"]), f(&o["arr"]));
+            let v_base = penalized_speed(f(&o["corridaBruta"]), f(&o["pen"]));
+            let v_swim = penalized_speed(f(&o["natacaoBruta"]), 0.0);
+            let sample: Vec<f64> = o["amostra"].as_array().unwrap().iter().map(f).collect();
+            let nums = |v: Vec<f64>| Value::Array(v.into_iter().map(num).collect());
+            json!({
+                "forca": o["forca"], "atl": o["atl"], "arr": o["arr"], "faa": num(reserve), "maxKg": o["maxKg"],
+                "acimaKg": num(overhead_lift(r, max)), "tetoKg": num(throw_cap(r, max)), "pen": o["pen"],
+                "penMov": num(centelha_engine::sheet::half_movement_penalty(f(&o["pen"]))),
+                "corridaBruta": o["corridaBruta"], "vBase": num(v_base),
+                "natacaoBruta": o["natacaoBruta"], "vBaseNatacao": num(v_swim),
+                "bandas": Value::Array(load_bands(r, max).into_iter()
+                    .map(|b| json!({"de": num(b.from), "ate": num(b.to), "nome": b.name})).collect()),
+                "dist": nums(tw.iter().map(|w| throw_range(r, reserve, *w, max)).collect()),
+                "tw": nums(tw),
+                "amostra": o["amostra"],
+                "velFrac": nums(sample.iter().map(|w| load_speed_fraction(r, *w, max, false)).collect()),
+                "velFracAgua": nums(sample.iter().map(|w| load_speed_fraction(r, *w, max, true)).collect()),
+                "vel": nums(sample.iter().map(|w| v_base * load_speed_fraction(r, *w, max, false)).collect()),
+                "velNatacao": nums(sample.iter().map(|w| v_swim * load_speed_fraction(r, *w, max, true)).collect()),
+            })
+        }
+        "carga" => {
+            let catalog = t.sheet_tables().catalog();
+            json!({"calculada": num(carried_load(catalog, &a[1])), "atual": num(current_load(catalog, &a[1]))})
+        }
+        "cargaEscrita" => {
+            let sheet = json!({"cargaAtual": a[0], "bolsas": [], "arsenal": [], "equip": {"armaduras": []}});
+            num(current_load(t.sheet_tables().catalog(), &sheet))
+        }
+        "numPeso" => num(weight_from_text(Some(&a[0]))),
+        "r1n" => json!(short_number(f(&a[0]))),
+        "pecaNova" => {
+            let mut sheet = json!({});
+            if !a[0].is_null() {
+                sheet["arsenal"] = a[0].clone();
+            }
+            // o uid é sorteado pela fonte: o Rust recebe o da peça que ela deu
+            let uid = want["peca"]["uid"].as_str().unwrap_or_default();
+            let peca = piece_for(&mut sheet, a[1].as_str().unwrap(), uid);
+            json!({"arsenal": sheet["arsenal"], "peca": peca})
+        }
+        "baseCampo" => {
+            let catalog = t.sheet_tables().catalog();
+            let id = a[1].as_str().unwrap();
+            let (item, fields): (Option<&Value>, Vec<&EditField>) = match a[0].as_str().unwrap() {
+                "arma" => (
+                    catalog.weapon(id),
+                    WEAPON_EDIT_FIELDS.iter().chain(WEAPON_MORE_FIELDS.iter()).collect(),
+                ),
+                "escudo" => (catalog.shield(id), SHIELD_EDIT_FIELDS.iter().collect()),
+                _ => (catalog.armor(id), ARMOR_EDIT_FIELDS.iter().collect()),
+            };
+            let f = fields.into_iter().find(|f| f.key == a[2]).unwrap();
+            edit_field_base(item, f).unwrap_or(Value::Null)
+        }
+        "escreveCampo" => {
+            let catalog = t.sheet_tables().catalog();
+            let (kind, fields): (_, Vec<&EditField>) = match a[0].as_str().unwrap() {
+                "arma" => (
+                    ItemKind::Weapon,
+                    WEAPON_EDIT_FIELDS.iter().chain(WEAPON_MORE_FIELDS.iter()).collect(),
+                ),
+                "escudo" => (ItemKind::Shield, SHIELD_EDIT_FIELDS.iter().collect()),
+                _ => (ItemKind::Armor, ARMOR_EDIT_FIELDS.iter().collect()),
+            };
+            let mut item = catalog.catalog_copy(kind, a[1].as_str().unwrap()).unwrap();
+            let f = fields.into_iter().find(|f| f.key == a[2]).unwrap();
+            write_edit_field(&mut item, f, Some(a[3].clone()));
+            item
+        }
+        "restaurarItem" => {
+            let mut p = a[0].clone();
+            t.sheet_tables().catalog().restore_item(&mut p);
+            p
+        }
+        "ehDuasMaos" => json!(t.sheet_tables().catalog().two_handed(&a[0])),
+        "marcarUso" => {
+            let mut sheet = a[0].clone();
+            let role = match a[2].as_str().unwrap() {
+                "habil" => HandRole::Main,
+                "inabil" => HandRole::Off,
+                _ => HandRole::None,
+            };
+            t.sheet_tables()
+                .catalog()
+                .mark_hand_use(&mut sheet, a[1].as_str().unwrap(), role);
+            sheet["conjuntos"].clone()
+        }
+        "ataqueDuplo" => {
+            let x = &a[0];
+            let d = &x["dupla"];
+            let dual = DualWield {
+                main_bonus: f(&d["habilAp"]),
+                off_dice: f(&d["inabilDados"]),
+                off_roll_bonus: f(&d["inabilBonus"]),
+                off_flat: f(&d["inabilFlat"]),
+                off_die: d.get("inabilDado").cloned(),
+                off_bonus: f(&d["inabilAp"]),
+                off_penalty: f(&d["inabilPen"]),
+            };
+            let main_die = x.get("dado").filter(|v| !v.is_null()).cloned();
+            let r = dual_attack_from(f(&x["dados"]), f(&x["bonus"]), f(&x["flat"]), main_die, &dual);
+            // a marcação é da página; a conta e o texto são do motor
+            json!(format!(
+                "<div class=\"conj-dupla\"><b>Ataque duplo</b> hábil \u{2212}1d6: {} ({}) · inábil \u{2212}{}d6: {} ({}) <span class=\"muted\">· guarda \u{2212}4 até seu turno</span></div>",
+                pool_text(r.main.dice, r.main.roll_bonus, r.main.flat),
+                dual_damage_text(r.main.damage_die.as_ref(), r.main.damage_bonus),
+                centelha_engine::js::number_to_string(dual.off_penalty),
+                pool_text(r.off.dice, r.off.roll_bonus, r.off.flat),
+                dual_damage_text(r.off.damage_die.as_ref(), r.off.damage_bonus),
+            ))
+        }
         other => panic!("função sem par no Rust: {other}"),
     }
 }
@@ -253,7 +399,13 @@ fn sheet_editor_matches_typescript() {
     let mut fields = 0;
     for (i, c) in cases.iter().enumerate() {
         let name = c["fn"].as_str().unwrap();
-        let got = run(&ctx, &r["inputs"], name, c["args"].as_array().unwrap());
+        let got = run(
+            &ctx,
+            &r["inputs"],
+            name,
+            c["args"].as_array().unwrap(),
+            &c["out"],
+        );
         let mut diffs = Vec::new();
         fields += compare(
             &format!("{i}:{name}{}", c["args"]),
@@ -261,6 +413,11 @@ fn sheet_editor_matches_typescript() {
             &c["out"],
             &mut diffs,
         );
+        // a ordem das chaves da ficha faz parte da paridade (ADR 0004): o
+        // `compare` não a olha, então a ficha do `normalize` é conferida à parte
+        if name == "normalize" {
+            order_diffs(&got["ficha"], &c["out"]["ficha"], "ficha", &mut diffs);
+        }
         assert!(
             diffs.is_empty(),
             "primeiro caso diferente: {i} ({} diferenças):\n{}",
@@ -277,4 +434,29 @@ fn sheet_editor_matches_typescript() {
 #[test]
 fn the_comparison_catches_differences() {
     common::check_comparator();
+}
+
+/// As chaves de cada objeto na mesma ordem (a da fonte), em toda a ficha.
+fn order_diffs(got: &Value, want: &Value, path: &str, diffs: &mut Vec<String>) {
+    match (got, want) {
+        (Value::Object(g), Value::Object(w)) => {
+            let gk: Vec<&String> = g.keys().collect();
+            let wk: Vec<&String> = w.keys().collect();
+            if gk != wk {
+                diffs.push(format!(
+                    "{path}: chaves em outra ordem: {gk:?} contra {wk:?}"
+                ));
+                return;
+            }
+            for (k, v) in g {
+                order_diffs(v, &w[k], &format!("{path}.{k}"), diffs);
+            }
+        }
+        (Value::Array(g), Value::Array(w)) => {
+            for (i, (a, b)) in g.iter().zip(w).enumerate() {
+                order_diffs(a, b, &format!("{path}[{i}]"), diffs);
+            }
+        }
+        _ => {}
+    }
 }

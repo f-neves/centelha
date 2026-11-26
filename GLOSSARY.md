@@ -288,3 +288,45 @@ No `grid` do Efeito: forma `shape`, âncora `anchor`, gatilho `trigger`, alvo `t
 | descrição de um nível | `LevelText` | tabela ou view do banco (PostgREST) | `Relation` (a mesa do jogo continua `Table`) |
 | resiste (da Virtude) | `resists` | sessão (o token do usuário) | `Session` |
 | conduta | `conduct` | | |
+
+## Regras do Arcano (acréscimo de 26/11, tarefa 016 do Backend)
+
+| Português | Inglês | Português | Inglês |
+|---|---|---|---|
+| improviso (da Arte) | `improvisation` | manifestação | `manifestation` |
+| fonte do elemento (fonteElemental) | `elemental_source` | esticar | `stretch` |
+| desvio (sair da área) | `detour` | Cura (a Arte) | `healing` (o campo `cura` do Efeito continua `heals`) |
+| padrão (valor) | `standard` (no `SideState`, o campo do JSON `padrao` ficou `default`) | acima de (linha do esticar) | `above` |
+| aberturas (graus do arco) | `openings` | estado no lado | `side_state` |
+| fatias | `slices` | árvore de texto (de uma regra) | `Node` |
+
+## Cliente do banco, só leitura (acréscimo de 26/11, tarefa 015 do Backend)
+
+| Português | Inglês | Português | Inglês |
+|---|---|---|---|
+| configuração (URL e chave anon) | `Config` | transporte (quem envia o pedido) | `Transport` |
+| consulta (select do PostgREST) | `Select` | está em (filtro `in`) | `is_in` (`in` é palavra reservada) |
+| perfil | `Profile` | membro da mesa | `TableMember` |
+| papel na mesa | `MemberRole` (`GameMaster`, `Player`) | situação da ficha | `CharacterStatus` (`Draft` rascunho, `Submitted` enviado, `Approved` aprovado) |
+| colega do grupo (linha da `grupo_visivel`) | `PartyMember` | grupo visível | `visible_party` |
+| é admin (pela `eh_admin`) | `is_admin` | migração (linha de `migracoes`) | `Migration` |
+| código de convite | `invite_code` | XP inicial | `starting_xp` |
+| revelar | `reveal` | gravar lances | `record_strikes` |
+| dono | `owner` | conceito | `concept` |
+| história | `history` | anotações | `notes` |
+| nota de revisão | `review_note` | vaga / código da vaga | `slot` / `slot_code` |
+| posição da imagem | `image_position` | à mão / aplicada em (migração) | `by_hand` / `applied_at` |
+| resumo (da ficha na mesa: Vida, Energia) | `summary` (o mesmo termo do resumo do capítulo, em outro contexto) | | |
+
+## Força, carga e mãos (acréscimo de 26/11, tarefas 013 e 014 do Backend)
+
+| Português | Inglês | Português | Inglês |
+|---|---|---|---|
+| levantar acima da cabeça | `overhead_lift` | teto do arremesso | `throw_cap` |
+| faixa de carga (Mínima, Leve, Média, Pesada, Máxima) | `LoadBand` | fração da velocidade com carga | `load_speed_fraction` |
+| carga carregada / carga atual | `carried_load` / `current_load` | velocidade com a penalidade | `penalized_speed` |
+| corte e expoente da carga | `cut` / `exponent` (`LoadRules`) | peso escrito como texto | `weight_from_text` |
+| papel da peça nas mãos (nada, mão hábil, mão inábil) | `HandRole` (`None`, `Main`, `Off`) | marcar uso | `mark_hand_use` |
+| ataque duplo (uma arma em cada mão; ver `dual_wield`) | `DualAttack` | peça do arsenal para uma referência | `piece_for` |
+| campo de edição da peça | `EditField` | sincronizar as mãos (aqui `slot` é a mão da ficha, não a vaga do banco) | `sync_slots` |
+

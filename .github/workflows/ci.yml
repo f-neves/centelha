@@ -5,6 +5,10 @@
 # Versões das actions conferidas nas páginas de release em 25/11/2026:
 # actions/checkout v7.0.1, Swatinem/rust-cache v2.9.3; em 26/11/2026:
 # actions/cache v6.1.0, actions/setup-node v7.1.0.
+#
+# Cache do Cargo: só o push no main grava (save-if). Os PRs restauram o cache
+# do main e não gravam o próprio, para o total ficar abaixo dos 10 GB do
+# GitHub. A prévia restaura o cache do job "Site" e também não grava.
 name: CI
 
 on:
@@ -45,6 +49,8 @@ jobs:
 
       - name: Cache de compilação
         uses: Swatinem/rust-cache@v2.9.3
+        with:
+          save-if: ${{ github.ref == 'refs/heads/main' }}
 
       - name: Formatação
         run: cargo fmt --all --check
@@ -72,6 +78,11 @@ jobs:
       - name: Build para WebAssembly
         run: cargo build -p centelha-engine -p centelha-data --target wasm32-unknown-unknown
 
+      # O cliente do Supabase também roda no navegador: o clippy no wasm32
+      # pega dependência ou código que só compila no nativo.
+      - name: Clippy do cliente do Supabase (WebAssembly)
+        run: cargo clippy -p centelha-supabase --target wasm32-unknown-unknown -- -D warnings
+
   # O site (centelha-web): clippy e testes de cada lado (gerador nativo com
   # `ssr`, ilhas no navegador com `hydrate`), a montagem do `dist/` e a prova
   # de hidratação num Chrome sem janela, em release e em depuração (ADR 0003).
@@ -98,6 +109,7 @@ jobs:
         uses: Swatinem/rust-cache@v2.9.3
         with:
           shared-key: site
+          save-if: ${{ github.ref == 'refs/heads/main' }}
 
       # Binários prontos das releases oficiais, com SHA-256 conferido no
       # script; o cache é pela versão (a chave muda quando o script muda).

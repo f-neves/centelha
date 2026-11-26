@@ -284,6 +284,7 @@ const sheetEditor = buildSheetEditorCases({
   techniques: readData('tecnicas.json'), arts: readData('artes.json'), effects: readData('efeitos.json'),
   pgr: await loadTs('src/lib/ficha-pgr.ts'), tempo: await loadTs('src/lib/combate-tempo.ts'),
   forca: await loadTs('src/lib/forca-empurrao.ts'), weapons: Object.values(equip.ARMA), regras: readData('regras.json'),
+  equip,
 });
 editor.restore();
 const sheetEditorCounts = {};
@@ -412,7 +413,10 @@ write('sheet-editor.json', {
     + 'cada caso cita o id. fresh, xpGasto (as parcelas do recompute), capFor, pisoAttr, trocaDeRaca (o ouvinte de '
     + '#raca-sel), clampSpecs, tecnicas (as pílulas que o renderCaminhos marca), efeitosAoAlcance e deslocamento (o '
     + 'renderDerived: a penalidade física, o deslocamento e as medidas com a penalidade); anatomiaDaFicha e linhasComExtra '
-    + '(src/lib/ficha-pgr.ts), tetoDaRajada da classe do item, e alcanceArremesso (src/lib/forca-empurrao.ts).',
+    + '(src/lib/ficha-pgr.ts), tetoDaRajada da classe do item, e alcanceArremesso (src/lib/forca-empurrao.ts); '
+    + 'forca (o renderForca: FAA, alturas, faixas, tabela de arremesso, velocidade com carga, a corrida com a '
+    + 'penalidade), carga, cargaEscrita, numPeso e r1n; pecaNova (o pecaPara), baseCampo, escreveCampo e restaurarItem '
+    + '(src/lib/equip.ts), ehDuasMaos, marcarUso (o conjunto antes e o depois) e ataqueDuplo (o duplaConj).',
   count: sheetEditor.cases.length,
   counts: sheetEditorCounts,
   inputs: sheetEditor.inputs,

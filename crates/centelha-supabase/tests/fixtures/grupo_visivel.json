@@ -1,0 +1,24 @@
+{
+  "status": 200,
+  "headers": {},
+  "body": [
+    {
+      "id": "00000000-0000-4000-8000-000000000021",
+      "nome": "Colega Exemplo",
+      "conceito": "guarda",
+      "dono_id": "00000000-0000-4000-8000-000000000003",
+      "imagem_path": "exemplo/retrato.webp",
+      "nivel": "fisico",
+      "dados": {
+        "raca": "anao",
+        "forca": "3",
+        "destreza": "1",
+        "vigor": "2",
+        "aparencia": "0"
+      },
+      "extra": {
+        "pv": 7
+      }
+    }
+  ]
+}
