@@ -51,6 +51,7 @@ xtask              (sozinho; não é dependência de ninguém)
   - `arts::{Art, ArtCategory, ArtLevel, ArtCost, ArtGrid}`, de `artes.json`, com `parse_arts`/`load_arts`;
   - `effects::{Effect, EffectArt, EffectParameter, ParameterKind, EffectGrid}`, de `efeitos.json`, com `parse_effects`/`load_effects`;
   - em `Rules`: `rules::{FeatScales, FeatScaleTrack}` e `Rules::feat_scales` (`escalasProeza.trilhas`);
+  - para a ficha interativa: `Ancestry::cost: Option<f64>` (o `custo` da Raça) e `Rules::arcane: Option<rules::ArcaneRules>`, com `ArcaneRules { art_level_cap: Option<ArtLevelCap> }` e `ArtLevelCap { by_spark: Vec<f64> }` (`arcano.tetoNivelArte.porCentelha`);
   - em `Rules`: `Rules::spark_scale` (`escalaCentelha`) e `Rules::willpower_scale` (`escalaVontade`), `Vec<rules::ScaleStep>` na ordem do arquivo; `ScaleStep { level, label, text, provisional }` (`provisional` é falso quando a chave falta);
   - cada `enum` desses tem `id()`, que devolve o texto do JSON.
 - `serde_json` com `float_roundtrip` (a leitura de `f64` tem de ser exata para a paridade).
@@ -83,6 +84,16 @@ xtask              (sozinho; não é dependência de ninguém)
   - Tipos de saída: `SheetNumbers`, `HandSet`, `HandItem`, `HandKind`, `DamageVersion`, `DualWield`, `ArmorStack`, `Initiative`, `CombatSummary`, `NearMiss`, `Step`, `Movement`, `SheetSummary`, `Passive`, `ArtLevel`, `DbSummary`. Campos `Value` com chaves em português, no formato do item do catálogo ou da ficha: `HandItem.weapon/shield/base/vs_fast_projectile`, `HandSet.attack_weapon`, `DualWield.off_die`, `CombatSummary.attributes/skills/class`, `SheetSummary.attributes/skills/secondary_skills/virtues`, `ArtLevel.level`.
   - Entrada de tipo errado (texto onde vai número): o port segue o `Number()` do JavaScript e não lança erro, onde o TypeScript às vezes lança. Ficha gravada pela tela não tem isso.
 - `sheet`, acréscimos da fase 1: Quase-Acerto (`SheetTables::{weapon_near_miss, armor_near_miss, near_miss_between}`, `encounter_near_miss`, `missed_by`, `grazes`, `attack_outcome`; tipos `WeaponNearMiss`, `ArmorNearMiss`, `NearMissAttacker`, `NearMissTarget`, `Graze`, `NearMissOutcome`, `AttackOutcome`); textos (`signed_number`, `damage_text`, `weapon_stats`, `shield_stats`, `armor_stats`, iguais byte a byte ao TypeScript, com o sinal de menos U+2212); troca de ids de arma (`migrate_weapon_refs`, `WEAPON_RENAMES`); ficha já lida (`sheet_numbers_read`, `sheet_summary_read`, `Catalog::worn_armor_read`), para quem chama a cada tecla.
+- Ficha interativa, em `sheet` (implementada em `sheet/editor.rs`, módulo privado; os itens são reexportados em `sheet`): port das contas de `src/lib/ficha-engine.ts`, que na fonte moram dentro de `montarFicha`. A ficha entra e sai em `Value` na forma de leitura (ADR 0004).
+  - `EditorTables::new(SheetTables, atributos, habilidades, secundárias, virtudes, antecedentes: &Value, Vec<Technique>, Vec<Art>, Vec<Effect>)` e `EditorTables::sheet_tables()`.
+  - `fresh_sheet(&EditorTables) -> Value` (`fresh()`), com `FRESH_BUDGET = 1500` (o padrão; quem chama pode trocar o orçamento) e `FREE_SECONDARY` (as três Secundárias livres).
+  - `spent_xp(&EditorTables, &Value) -> SpentXp` (`recompute()`), com as parcelas na ordem da soma (`attributes`, `skills`, `specialties`, `virtues`, `willpower`, `appearance`, `spark`, `secondary`, `techniques`, `arts`, `effects`, `backgrounds`, `ancestry`) e o `total`.
+  - Tetos e piso: `trait_cap(&EditorTables, &Value, kind, key: Option<&str>) -> f64` (`capFor`) e `attribute_floor(&EditorTables, &Value, key) -> f64` (`pisoAttr`).
+  - `change_ancestry(&EditorTables, &mut Value, ancestry, mass_chosen: bool)`: a troca de Raça; `mass_chosen` é o estado da ficha ao abrir (o `massaEscolhida` do `normalize`), que a tela guarda.
+  - Especialidades: `clamp_specialties(&Value, skill_level) -> Vec<Specialty { name, level }>` (`clampSpecs`) e `specialty_cap(skill_level) -> f64` (metade do nível, para baixo).
+  - `technique_status(&Value, &Technique) -> TechniqueStatus { owned, spark_ok, missing, ok }`: Centelha mínima e os pré-requisitos **diretos** que faltam (como a ficha da fonte; não o fecho).
+  - `effects_in_reach(&EditorTables, &Value) -> Vec<&Effect>` (`efeitosAoAlcance`), por nível e depois por nome na ordem `pt`.
+  - As migrações do `normalize()` ainda não estão aqui (esperam a função pura pedida à equipe das regras).
 - `character`: as contas do personagem fora da ficha.
   - XP: `xp_floor(&Rules, &str) -> Option<f64>`, `level_price(&Rules, &str, f64) -> Option<f64>`, `xp_cost(&Rules, &str, from: Option<f64>, to: f64) -> Option<f64>`; custos `feat_cost` (a chave do dado é `tecnica`, mas a conta é a da Proeza), `art_cost`, `effect_cost`, `specialty_cost(&Rules, f64, secondary: bool)`.
   - `appearance_mod`, `DamageMode` (`Cut`, `Pierce`, `Impact`, com `id()` e `from_id()`), `natural_soak`, `mode_soak`, `pierce_gate_opens`, `death_limit`, `past_death_limit`, `size_from_label`, `size_modifier`, `art_lifting`, `maneuver_roll`.
@@ -133,6 +144,21 @@ Framework e versões: ADR 0003 (Leptos com ilhas; site estático gerado por nós
 - Fontes (R13): Cinzel e EB Garamond servidas pelo próprio site, em `crates/centelha-web/fonts/` com o `OFL.txt` de cada família; só `woff2`, subconjunto latino, só os pesos usados, `font-display: swap` e `unicode-range`; pré-carga só da fonte do texto corrido. Nada de serviço externo de fontes.
 
 **Consome:** `centelha-data` (leitura de `content/`, no gerador), `centelha-engine` (toda conta que uma página mostra), `leptos`, `leptos_meta`, `wasm-bindgen`, `web-sys`, `js-sys`, `serde`, e só na feature `ssr` o `pulldown-cmark` (Markdown) e o que a chave dos diagramas pedir (SHA-1). Versões no ADR 0003. Depois, `centelha-grid` e `centelha-supabase`.
+
+**Armazenamento do navegador (R26).** Até o domínio próprio, o site em Rust e o site atual moram na mesma origem (`f-neves.github.io`) e dividem o `localStorage`, o `sessionStorage` e a sessão do Supabase. Regras:
+1. Em chave que o site atual também lê, o Rust grava só valores no mesmo formato e com o mesmo significado; nunca apaga, renomeia nem muda o formato.
+2. Chave que só o Rust usa leva o prefixo `rs:` (por exemplo `rs:algo`).
+3. Toda chave dividida está na tabela abaixo, com o formato; chave nova dividida entra aqui no mesmo PR que começa a usá-la. A Revisora-RS confere isso em todo PR que mexa em armazenamento.
+
+| chave | onde | formato (o do site atual) | o que o Rust faz hoje |
+|---|---|---|---|
+| `tema` | `localStorage` | `classico`, `escuro` ou `legivel`; sem a chave vale `escuro` | lê no `<head>` e grava ao trocar o tema |
+| `sidebar` | `localStorage` | `collapsed` ou `open` | lê no `<head>` e grava ao recolher ou abrir a barra |
+| `centelha:config` | `localStorage` | objeto JSON das preferências de `src/lib/config-site.ts` (largura, fonte, entrelinha, margem, colunas, fundo, cores por tema...) | só lê, no `<head>` (gravar entra com a página de preferências) |
+| `centelha:consulta` | `sessionStorage` | lista JSON de textos `tipo:id` (os termos fixados no cartão do glossário; `termo` para os do glossário) | lê e grava, no mesmo formato |
+| sessão do Supabase | `localStorage` (a chave do `supabase-js`) | a do `supabase-js` | não usa (fase 3) |
+
+**Preferências de leitura (R25):** largura, fonte, entrelinha, colunas e fundo são de cada leitor, como o tema; não são ação de admin e nenhum controle delas fica escondido por `eh_admin`. Sem conta, ficam no navegador (`centelha:config`, com `try/catch` como o tema); com conta, no `profiles.config` da própria conta (fase 3). Os valores têm limites que não quebram a leitura a 375 px.
 
 **Admin na tela (R22):** esconder um controle de admin é conveniência, não proteção. A tela pergunta ao `centelha-supabase` (que pergunta à `eh_admin`) e mostra o controle só com um sim; enquanto não há resposta, ou com falha, mostra como não admin. Nada de e-mail fixo nem lista de admins no site. Ação de admin que grava só existe se o banco a barra por conta própria; uma ação do site atual protegida só no navegador vira aviso ao Coordenador-RS antes do port.
 
