@@ -26,6 +26,7 @@ concurrency:
 
 env:
   SITE_BASE_PATH: ${{ vars.SITE_BASE_PATH || '/centelha/' }}
+  SITE_SEARCH: "1"
 
 jobs:
   montar:
@@ -50,17 +51,18 @@ jobs:
         with:
           shared-key: site
 
-      - name: Cache das ferramentas do WebAssembly
+      - name: Cache das ferramentas do site
         uses: actions/cache@v6.1.0
         with:
           path: ~/.centelha-ferramentas
           key: ferramentas-${{ runner.os }}-${{ hashFiles('tools/ci/ferramentas.sh') }}
 
-      - name: Ferramentas do WebAssembly (wasm-bindgen, wasm-opt)
+      - name: Ferramentas do site (wasm-bindgen, wasm-opt, Pagefind)
         run: |
           sh tools/ci/ferramentas.sh ~/.centelha-ferramentas
           echo "WASM_BINDGEN=$HOME/.centelha-ferramentas/bin/wasm-bindgen" >> "$GITHUB_ENV"
           echo "WASM_OPT=$HOME/.centelha-ferramentas/bin/wasm-opt" >> "$GITHUB_ENV"
+          echo "PAGEFIND=$HOME/.centelha-ferramentas/bin/pagefind" >> "$GITHUB_ENV"
 
       # O site inteiro em dist/, com o SITE_BASE_PATH do topo.
       - name: Montar o site

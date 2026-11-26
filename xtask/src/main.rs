@@ -22,7 +22,7 @@ fn main() -> ExitCode {
         Some("site") => site::run(&args[1..]),
         _ => {
             eprintln!(
-                "uso: cargo xtask <sync-content [--allow-dirty] | scan [--no-commits] | site [--dev] [--out <pasta>]>"
+                "uso: cargo xtask <sync-content [--allow-dirty] | scan [--no-commits] | site [--dev] [--busca] [--out <pasta>]>"
             );
             return ExitCode::from(2);
         }
