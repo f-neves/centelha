@@ -208,4 +208,18 @@ O passo de Batalha é `battle` em todo lugar: na saída da ficha (`Movement.batt
 | Absorção natural | `natural_soak` | curva | `curve` |
 | portão da Perfuração | `pierce_gate` | reforma (por categoria) | `reform`, `per_category` |
 
-`DamageMode` segue o `pierce` da Absorção por tipo: a variante é `Pierce`. O código ainda tem `Piercing`; a troca entra na próxima tarefa do Backend.
+`DamageMode` segue o `pierce` da Absorção por tipo: a variante é `Pierce`.
+
+## Dados e lance (acréscimo de 26/11, tarefa 006 do Backend)
+
+| Português | Inglês | Português | Inglês |
+|---|---|---|---|
+| fonte de dados | `DiceSource` | dano líquido | `net` |
+| dados que já caíram | `FixedDice` | resvalar (no portão da Perfuração) | `slips` |
+| dados rolados | `RolledDice` | | |
+| rolagem | `Roll` | Defesa perdida | `lost_defense` |
+| expressão de dados | `DiceExpr` | condições da Defesa | `conditions_defense` |
+| dados ajustados | `adjusted_dice` | penalidade de dados do golpe | `blow_penalty_dice` |
+| Defesa efetiva | `effective_defense` | índice do golpe | `blow_index` |
+| dano bruto | `gross` | modificador manual | `manual_mod` |
+| dano absorvido | `absorbed` | margem do raspão / dano do raspão | `graze_margin` / `graze_damage` |
