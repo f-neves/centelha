@@ -235,7 +235,7 @@
     },
     {
       "campo": "corpo.comprimento",
-      "motivo": "Era 8,50 m. O comprimento da ficha atual do Centelha (decisão do Arquiteto); 0,85 m do real (ADW) × 4,71; 4 m na ficha atual. Base da revisão anterior: 4 m, o da ficha atual; a massa sai dele (66,2 kg) e não dos 900 kg da ficha atual, que pediriam cerca de 9,5 m. Era 8,5 m (D-105, D-174; sexta rodada, seção 3)"
+      "motivo": "Era 8,50 m. O comprimento da ficha atual do Centelha (decisão da revisão); 0,85 m do real (ADW) × 4,71; 4 m na ficha atual. Base da revisão anterior: 4 m, o da ficha atual; a massa sai dele (66,2 kg) e não dos 900 kg da ficha atual, que pediriam cerca de 9,5 m. Era 8,5 m (D-105, D-174; sexta rodada, seção 3)"
     },
     {
       "campo": "corpo.comprimentoSemCauda",
@@ -251,7 +251,7 @@
     },
     {
       "campo": "corpo",
-      "motivo": "gigante da D-105, escala × 4,71 do adulto real típico (ADW), para dar os 4 m da ficha atual (decisão do Arquiteto, sexta rodada). Era × 10 do macho real. Tudo  (D-105, D-174)"
+      "motivo": "gigante da D-105, escala × 4,71 do adulto real típico (ADW), para dar os 4 m da ficha atual (decisão da revisão, sexta rodada). Era × 10 do macho real. Tudo  (D-105, D-174)"
     }
   ]
 }

@@ -264,7 +264,7 @@
     },
     {
       "campo": "corpo.largura",
-      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 0,35 × 1,0527 = 0,368 . Antes: estimativa do Arquiteto; 0,37 m na ficha atual. Base da revisão anterior: 0,35 m, estimada pelo Arquiteto, sem fonte"
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 0,35 × 1,0527 = 0,368 . Antes: estimativa da revisão; 0,37 m na ficha atual. Base da revisão anterior: 0,35 m, estimada pela revisão, sem fonte"
     },
     {
       "campo": "aparencia",

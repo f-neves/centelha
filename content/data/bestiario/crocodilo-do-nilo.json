@@ -231,7 +231,7 @@
   "revisao": [
     {
       "campo": "corpo.altura",
-      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 0,49 × 1,0278 = 0,504 . Antes: Era 0,55 m, estimativa do Arquiteto para o macho de 4,20 m (`porte-dimensoes.mjs`; `regua-d139.md` §2): não há altura na pesquisa. Escalado pelo cubo da massa: 0,55 × (198 ÷ 280)^(1/3) = 0,55 × 0,891 = 0,49"
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 0,49 × 1,0278 = 0,504 . Antes: Era 0,55 m, estimativa da revisão para o macho de 4,20 m (`porte-dimensoes.mjs`; `regua-d139.md` §2): não há altura na pesquisa. Escalado pelo cubo da massa: 0,55 × (198 ÷ 280)^(1/3) = 0,55 × 0,891 = 0,49"
     },
     {
       "campo": "corpo.comprimento",
@@ -239,11 +239,11 @@
     },
     {
       "campo": "corpo.comprimentoSemCauda",
-      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 1,96 × 1,0278 = 2,015 . Antes: Era 2,20 m (do Arquiteto: a cauda é cerca de metade do total). Escalado pelo cubo da massa: 2,20 × 0,891 = 1,96"
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 1,96 × 1,0278 = 2,015 . Antes: Era 2,20 m (da revisão: a cauda é cerca de metade do total). Escalado pelo cubo da massa: 2,20 × 0,891 = 1,96"
     },
     {
       "campo": "corpo.largura",
-      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 0,62 × 1,0278 = 0,637 . Antes: Era 0,70 m, estimada pelo Arquiteto (`porte-area-forca.md` §1.2); a pesquisa não mediu largura. Escalada pelo cubo da massa: 0,70 × 0,891 = 0,62"
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 0,62 × 1,0278 = 0,637 . Antes: Era 0,70 m, estimada pela revisão (`porte-area-forca.md` §1.2); a pesquisa não mediu largura. Escalada pelo cubo da massa: 0,70 × 0,891 = 0,62"
     }
   ]
 }
