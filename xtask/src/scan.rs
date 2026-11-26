@@ -25,7 +25,30 @@ const SUBSTRINGS: &[&str] = &[
 ];
 
 /// Termos curtos procurados como palavra (sem letra colada antes ou depois).
-const WORDS: &[&str] = &[concat!("g", "pt"), concat!("l", "lm")];
+/// Também os nomes internos de papel trocados nas notas (ADR 0005), que
+/// começam em `ROLE_WORDS_FROM`.
+const WORDS: &[&str] = &[
+    concat!("g", "pt"),
+    concat!("l", "lm"),
+    concat!("arqui", "teto"),
+    concat!("arqui", "teta"),
+    concat!("arqui", "tetos"),
+    concat!("arqui", "tetas"),
+    concat!("bestia", "rista"),
+    concat!("bestia", "ristas"),
+];
+
+/// Quantos termos de `WORDS`, a partir do fim, são nomes de papel (ADR 0005).
+const ROLE_WORDS: usize = 6;
+
+/// Commits de antes do ADR 0005 cuja mensagem cita um nome de papel (o nome
+/// de um ramo num merge). O histórico não se reescreve; só esses três ficam
+/// fora da busca dos nomes de papel. Os termos de rastro valem para todos.
+const ROLE_WORDS_HISTORIC: &[&str] = &[
+    "f3a085545d6", // merge do ADR 0003
+    "ebd5eb648b",  // merge do contrato das criaturas
+    "fc32457250",  // merge do clippy do xtask
+];
 
 /// Termos procurados no metadado de imagem e em arquivo binário.
 const BINARY_MARKERS: &[&str] = &[
@@ -53,13 +76,22 @@ impl std::fmt::Display for Finding {
 
 /// Procura os termos de texto numa sequência de bytes já em minúsculas.
 fn text_terms(lower: &[u8]) -> Vec<&'static str> {
+    text_terms_with(lower, true)
+}
+
+fn text_terms_with(lower: &[u8], role_words: bool) -> Vec<&'static str> {
     let mut found = Vec::new();
     for term in SUBSTRINGS {
         if find(lower, term.as_bytes(), false) {
             found.push(*term);
         }
     }
-    for term in WORDS {
+    let words = if role_words {
+        WORDS
+    } else {
+        &WORDS[..WORDS.len() - ROLE_WORDS]
+    };
+    for term in words {
         if find(lower, term.as_bytes(), true) {
             found.push(*term);
         }
@@ -177,7 +209,15 @@ pub fn run(args: &[String]) -> Result<(), String> {
                 continue;
             }
             let hash = &text[..text.len().min(10)];
-            findings.extend(scan_text(&format!("commit {hash}"), text));
+            let historic = ROLE_WORDS_HISTORIC.iter().any(|h| text.starts_with(h));
+            findings.extend(
+                text_terms_with(text.to_ascii_lowercase().as_bytes(), !historic)
+                    .into_iter()
+                    .map(|term| Finding {
+                        place: format!("commit {hash}"),
+                        term: term.to_string(),
+                    }),
+            );
             commits += 1;
         }
     }
@@ -208,5 +248,20 @@ mod tests {
         assert_eq!(scan_text("m", concat!("modelo G", "PT-4")).len(), 1);
         assert!(scan_text("m", concat!("abg", "ptcd")).is_empty());
         assert!(scan_text("m", "Defesa, Absorção e Desgaste").is_empty());
+        assert_eq!(
+            scan_text("m", concat!("estimativa do Arqui", "teto-RS")).len(),
+            1
+        );
+        assert!(scan_text("m", "Arquitetura e Engenharia").is_empty());
+    }
+
+    #[test]
+    fn historic_commits_skip_only_role_words() {
+        let role = concat!("merge do ramo arqui", "teto/x");
+        assert_eq!(text_terms_with(role.as_bytes(), true).len(), 1);
+        assert!(text_terms_with(role.as_bytes(), false).is_empty());
+        let trace = concat!("feito com cha", "tgpt");
+        assert_eq!(text_terms_with(trace.as_bytes(), false).len(), 1);
+        assert_eq!(WORDS.len() - ROLE_WORDS, 2);
     }
 }

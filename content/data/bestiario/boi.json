@@ -230,19 +230,19 @@
     },
     {
       "campo": "corpo.altura",
-      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 1,56 × 1,0175 = 1,587 . Antes: Era 1,5 m, a estimativa para o boi de 700 kg; escalado pelo cubo da massa: 1,5 × (788 ÷ 700)^(1/3) = 1,5 × 1,040 = 1,56 m. A estimativa de origem, do Arquiteto: \"boi de tração de 700 kg: a ADW dá 1,28 m para a espécie inteira, baixo para as raças grandes; cernelha e corpo pelo zebu e pelo boi de canga, sem fonte conferida\". A única altura com fonte é a da espécie: 1,24 a 1,32 m (ADW, \"49 a 52 polegadas\", sem dizer se é cernelha; `dimensoes.md`). A cabeça erguida passa da cernelha"
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 1,56 × 1,0175 = 1,587 . Antes: Era 1,5 m, a estimativa para o boi de 700 kg; escalado pelo cubo da massa: 1,5 × (788 ÷ 700)^(1/3) = 1,5 × 1,040 = 1,56 m. A estimativa de origem, da revisão: \"boi de tração de 700 kg: a ADW dá 1,28 m para a espécie inteira, baixo para as raças grandes; cernelha e corpo pelo zebu e pelo boi de canga, sem fonte conferida\". A única altura com fonte é a da espécie: 1,24 a 1,32 m (ADW, \"49 a 52 polegadas\", sem dizer se é cernelha; `dimensoes.md`). A cabeça erguida passa da cernelha"
     },
     {
       "campo": "corpo.comprimento",
-      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 3,43 × 1,0175 = 3,490 . Antes: Era 3,3 m; escalado pelo cubo da massa: 3,3 × (788 ÷ 700)^(1/3) = 3,43 m. O 3,3 é número da conta do Arquiteto (`porte-area.mjs`); a ADW não traz nenhum comprimento (`dimensoes.md`). Com a cauda fina, o total entra só no espaço"
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 3,43 × 1,0175 = 3,490 . Antes: Era 3,3 m; escalado pelo cubo da massa: 3,3 × (788 ÷ 700)^(1/3) = 3,43 m. O 3,3 é número da conta da revisão (`porte-area.mjs`); a ADW não traz nenhum comprimento (`dimensoes.md`). Com a cauda fina, o total entra só no espaço"
     },
     {
       "campo": "corpo.comprimentoSemCauda",
-      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 2,70 × 1,0175 = 2,747 . Antes: Era 2,6 m, do Arquiteto, pela mesma estimativa da altura; escalado pelo cubo da massa: 2,6 × (788 ÷ 700)^(1/3) = 2,70 m"
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 2,70 × 1,0175 = 2,747 . Antes: Era 2,6 m, da revisão, pela mesma estimativa da altura; escalado pelo cubo da massa: 2,6 × (788 ÷ 700)^(1/3) = 2,70 m"
     },
     {
       "campo": "corpo.largura",
-      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 0,83 × 1,0175 = 0,844 . Antes: Era 0,8 m; escalado pelo cubo da massa: 0,8 × (788 ÷ 700)^(1/3) = 0,83 m. O 0,8 é estimativa do Arquiteto (`porte-area.mjs`); a pesquisa não mediu largura"
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 0,83 × 1,0175 = 0,844 . Antes: Era 0,8 m; escalado pelo cubo da massa: 0,8 × (788 ÷ 700)^(1/3) = 0,83 m. O 0,8 é estimativa da revisão (`porte-area.mjs`); a pesquisa não mediu largura"
     },
     {
       "campo": "corpo.massa",
