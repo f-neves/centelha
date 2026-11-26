@@ -117,15 +117,15 @@ mod browser {
         }
     }
 
-    /// Marca no documento que as ilhas hidrataram: `<html data-ilhas>` e a
-    /// marca de desempenho `ilha-hidratada` (as provas e a medida de abertura
+    /// Marca no documento que as ilhas hidrataram: `<html data-islands>` e a
+    /// marca de desempenho `island-hydrated` (as provas e a medida de abertura
     /// leem as duas).
     pub fn mark_hydrated() {
         if let Some(root) = root() {
-            let _ = root.dataset().set("ilhas", "hidratadas");
+            let _ = root.dataset().set("islands", "hydrated");
         }
         if let Some(performance) = web_sys::window().and_then(|w| w.performance()) {
-            let _ = performance.mark("ilha-hidratada");
+            let _ = performance.mark("island-hydrated");
         }
     }
 }
