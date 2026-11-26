@@ -71,7 +71,7 @@ xtask              (sozinho; não é dependência de ninguém)
 
 - `js::to_uint32(f64) -> u32`: o `>>> 0` do JavaScript (conversão da semente).
 - `rng::Mulberry32`: o gerador aleatório. `Mulberry32::new(seed: u32)`, `next_u32(&mut self) -> u32`, `next_f64(&mut self) -> f64` (no intervalo [0, 1), igual ao TypeScript bit a bit), `draws(&self) -> u64` (quantos números já entregou, para os testes de paridade acharem a primeira divergência). Nenhum outro gerador aleatório no motor.
-- `js::round` (`Math.round`, inclusive o `-0`), `js::log10` e `js::pow` (pela `libm`, ADR 0002).
+- `js::round` (`Math.round`, inclusive o `-0`), `js::log10` (pela `libm`, ADR 0002) e `js::pow` (com arredondamento correto, ver abaixo).
 - `creature`: os derivados da criatura (port de `criatura()` e `comForma()`).
   - Tudo em `creature::`. `Tables::new(rules, weapons, armors, shields)` e `Tables::rules()`: regras e catálogos já lidos; busca como o TypeScript (arma pela primeira peça com o id; armadura e escudo só com bloco de números, id repetido fica com o último).
   - `derive(&Tables, &Creature) -> CreatureDerived` e `with_form(&Creature, &Form) -> Creature` (devolve `id` e `name` da forma, como o `comForma()`).
