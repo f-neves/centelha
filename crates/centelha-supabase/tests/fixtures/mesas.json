@@ -1,0 +1,23 @@
+{
+  "status": 200,
+  "headers": {
+    "content-range": "0-0/*"
+  },
+  "body": [
+    {
+      "id": "00000000-0000-4000-8000-000000000010",
+      "nome": "Mesa de teste",
+      "descricao": "Uma mesa inventada.",
+      "mestre_id": "00000000-0000-4000-8000-000000000002",
+      "codigo_convite": "ABC123",
+      "criado_em": "2026-01-02T03:04:05.123456+00:00",
+      "xp_inicial": 30,
+      "revelar": {
+        "fichaColegas": "fisico",
+        "vidaColegas": true
+      },
+      "combate": {},
+      "gravar_lances": false
+    }
+  ]
+}
