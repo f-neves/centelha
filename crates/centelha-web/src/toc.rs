@@ -139,9 +139,9 @@ mod browser {
             if !details.open() {
                 let classes = fab.class_list();
                 if y > previous + 4.0 && !at_edge {
-                    let _ = classes.add_1("otp-oculto");
+                    let _ = classes.add_1("otp-hidden");
                 } else if y < previous - 4.0 || at_edge {
-                    let _ = classes.remove_1("otp-oculto");
+                    let _ = classes.remove_1("otp-hidden");
                 }
             }
             last_y.set(y);

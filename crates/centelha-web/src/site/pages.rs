@@ -355,7 +355,9 @@ pub fn ChapterPage(
 }
 
 /// A página do glossário, como `src/pages/glossario.astro` do site atual: os
-/// termos já em ordem, cada um com a sua âncora.
+/// termos já em ordem, cada um com a sua âncora. A abertura ainda não leva as
+/// duas frases do site atual sobre o balão no corpo do texto e sobre a busca:
+/// elas voltam com os balões e com a busca.
 #[component]
 pub fn GlossaryPage(entries: Vec<GlossaryEntry>) -> impl IntoView {
     let items = entries
@@ -374,11 +376,7 @@ pub fn GlossaryPage(entries: Vec<GlossaryEntry>) -> impl IntoView {
         .collect_view();
     view! {
         <h1>"Glossário"</h1>
-        <p class="lead">
-            "Os termos que aparecem por todo o livro. No corpo do texto, eles viram um balão ao passar o mouse. Os sinônimos ajudam a busca: procure por "
-            <em>"willpower"</em>
-            " e chegue a Força de Vontade."
-        </p>
+        <p class="lead">"Os termos que aparecem por todo o livro."</p>
         <dl class="gloss-list no-gloss">{items}</dl>
     }
 }
