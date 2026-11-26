@@ -27,6 +27,7 @@ mod numbers;
 mod pgr;
 mod strength;
 mod text;
+mod traits;
 pub(crate) mod value;
 
 use std::collections::HashMap;
@@ -70,6 +71,15 @@ pub use strength::{
     weight_from_text,
 };
 pub use text::{armor_stats, damage_text, shield_stats, signed_number, weapon_stats};
+pub use traits::{
+    SpecialtyScope, TraitKind, add_defense_specialty, add_named_background, add_specialty,
+    click_dot, close_specialties, effective_appearance, free_secondary_name, is_free_secondary,
+    named_instance, open_specialties, racial_appearance_mod, racial_cap_bonus, racial_floor_bonus,
+    remove_defense_specialty, remove_named_background, remove_specialty, rename_named_background,
+    rename_specialty, set_body_mass, set_budget, set_free_secondary_name, set_identity_field,
+    set_specialty_level, set_trait, specialty_count, specialty_skill_level, step_trait,
+    toggle_effect, toggle_technique, trait_floor, trait_value,
+};
 
 /// Erro ao montar as tabelas da ficha.
 #[derive(Debug, Clone, PartialEq)]

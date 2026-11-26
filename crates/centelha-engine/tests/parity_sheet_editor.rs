@@ -21,6 +21,15 @@ use centelha_engine::sheet::{
     short_number, spent_xp, technique_status, throw_cap, throw_range, throw_reserve,
     throw_table_weights, trait_cap, weight_from_text, write_edit_field,
 };
+use centelha_engine::sheet::{
+    SpecialtyScope, TraitKind, add_defense_specialty, add_named_background, add_specialty,
+    click_dot, close_specialties, effective_appearance, free_secondary_name, is_free_secondary,
+    named_instance, open_specialties, racial_appearance_mod, racial_cap_bonus, racial_floor_bonus,
+    remove_defense_specialty, remove_named_background, remove_specialty, rename_named_background,
+    rename_specialty, set_body_mass, set_budget, set_free_secondary_name, set_identity_field,
+    set_specialty_level, set_trait, specialty_count, step_trait, toggle_effect, toggle_technique,
+    trait_floor, trait_value,
+};
 use common::{compare, num, repo};
 use serde_json::{Map, Value, json};
 
@@ -372,7 +381,8 @@ fn run(ctx: &Ctx, inputs: &Value, name: &str, a: &[Value], want: &Value) -> Valu
                 dual_damage_text(r.off.damage_die.as_ref(), r.off.damage_bonus),
             ))
         }
-        other => panic!("função sem par no Rust: {other}"),
+        other => run_traits(ctx, inputs, other, a, want)
+            .unwrap_or_else(|| panic!("função sem par no Rust: {other}")),
     }
 }
 
@@ -459,4 +469,354 @@ fn order_diffs(got: &Value, want: &Value, path: &str, diffs: &mut Vec<String>) {
         }
         _ => {}
     }
+}
+
+// ------------------------------------------------------------ os traços
+
+/// As chaves de topo que mudaram, na ordem da ficha de depois (o `mudou` do
+/// gerador: o texto JSON de cada uma, antes e depois).
+fn changed_keys(before: &Value, after: &Value) -> Vec<Value> {
+    let text = |v: Option<&Value>| v.map(|v| serde_json::to_string(v).unwrap());
+    after
+        .as_object()
+        .unwrap()
+        .keys()
+        .filter(|k| text(before.get(k.as_str())) != text(after.get(k.as_str())))
+        .map(|k| json!(k))
+        .collect()
+}
+
+/// O que a trilha guarda depois da operação (o `resumo` do gerador).
+fn trait_summary(sheet: &Value, kind: TraitKind, key: &str) -> Map<String, Value> {
+    let get = |group: &str| {
+        sheet
+            .get(group)
+            .and_then(|g| g.get(key))
+            .cloned()
+            .unwrap_or(Value::Null)
+    };
+    let mut out = Map::new();
+    match kind {
+        TraitKind::NamedBackground => {
+            let v = named_instance(sheet, key)
+                .and_then(|i| i.get("v"))
+                .cloned()
+                .unwrap_or(Value::Null);
+            out.insert("v".into(), v);
+        }
+        TraitKind::Spark | TraitKind::Willpower | TraitKind::Appearance => {
+            let k = kind.source_name();
+            out.insert("v".into(), sheet.get(k).cloned().unwrap_or(Value::Null));
+        }
+        _ => {
+            let group = match kind {
+                TraitKind::Attribute => "attrs",
+                TraitKind::Skill => "skills",
+                TraitKind::Secondary => "skills2",
+                TraitKind::Virtue => "virtues",
+                TraitKind::Art => "arte",
+                _ => "ante",
+            };
+            out.insert("v".into(), get(group));
+            if kind == TraitKind::Skill {
+                out.insert("spec".into(), get("spec"));
+            }
+            if kind == TraitKind::Secondary {
+                out.insert("spec2".into(), get("spec2"));
+            }
+        }
+    }
+    out
+}
+
+/// Uma operação sobre a ficha de entrada: devolve o que ela deixou e as
+/// chaves de topo que mudaram.
+fn with_changes(
+    sheet: Value,
+    op: impl FnOnce(&mut Value),
+    out: impl FnOnce(&Value) -> Map<String, Value>,
+) -> Value {
+    let before = sheet.clone();
+    let mut after = sheet;
+    op(&mut after);
+    let mut o = out(&after);
+    o.insert("mudou".into(), Value::Array(changed_keys(&before, &after)));
+    Value::Object(o)
+}
+
+/// Os casos da fatia 6 (mexer nos traços). `None` quando o nome não é daqui.
+fn run_traits(ctx: &Ctx, inputs: &Value, name: &str, a: &[Value], want: &Value) -> Option<Value> {
+    let t = &ctx.t;
+    let sheet = |i: usize| inputs[a[i].as_str().unwrap()]["ficha"].clone();
+    let kind = |i: usize| TraitKind::from_source_name(a[i].as_str().unwrap()).unwrap();
+    let text = |i: usize| a[i].as_str().unwrap();
+    let f = |i: usize| a[i].as_f64().unwrap();
+    let scope = |i: usize| match text(i) {
+        "p" => SpecialtyScope::Primary,
+        _ => SpecialtyScope::Secondary,
+    };
+    let out = match name {
+        "aplicarValor" | "clicarBolinha" | "teclaSeta" => {
+            let (k, key) = (kind(1), text(2));
+            with_changes(
+                sheet(0),
+                |s| match name {
+                    "aplicarValor" => set_trait(t, s, k, key, f(3)),
+                    "clicarBolinha" => click_dot(t, s, k, key, f(3)),
+                    _ => match text(3) {
+                        "ArrowRight" | "ArrowUp" => step_trait(t, s, k, key, 1.0),
+                        "ArrowLeft" | "ArrowDown" => step_trait(t, s, k, key, -1.0),
+                        _ => {}
+                    },
+                },
+                |s| trait_summary(s, k, key),
+            )
+        }
+        "pisoDe" => num(trait_floor(t, &sheet(0), kind(1), text(2))),
+        "valOf" => num(trait_value(&sheet(0), kind(1), text(2))),
+        "tetoRacial" => {
+            let s = sheet(0);
+            json!({"teto": num(racial_cap_bonus(t, &s, text(1))), "piso": num(racial_floor_bonus(t, &s, text(1)))})
+        }
+        "racApMod" => num(racial_appearance_mod(t, &sheet(0))),
+        "apEfetiva" => num(effective_appearance(t, &sheet(0), f(1))),
+        "racApModDaRaca" => num(racial_appearance_mod(t, &json!({"raca": text(0)}))),
+        "apEfetivaDaRaca" => num(effective_appearance(t, &json!({"raca": text(0)}), f(1))),
+        "ehSecLivre" => json!(is_free_secondary(text(0))),
+        "nomeLivre" => {
+            let s = json!({"livreNome": {"livre-1": "  Cantoria \u{a0}", "livre-2": "", "livre-3": "Tricô"}});
+            json!(free_secondary_name(&s, text(0)))
+        }
+        "specCount" => num(specialty_count(&a[0])),
+        "anteInst" => named_instance(&sheet(0), text(1))
+            .cloned()
+            .unwrap_or(Value::Null),
+        "anteAdd" => {
+            let uid = want["uids"][0].as_str().unwrap().to_owned();
+            let id = text(1);
+            let mut o = with_changes(
+                sheet(0),
+                |s| add_named_background(s, id, &uid),
+                |s| {
+                    let mut m = Map::new();
+                    m.insert(
+                        "lista".into(),
+                        s["anteNom"].get(id).cloned().unwrap_or(Value::Null),
+                    );
+                    m
+                },
+            );
+            o["uids"] = json!([uid]);
+            o
+        }
+        "anteRm" | "anteNome" => {
+            let key = text(1);
+            let id = key.split('~').next().unwrap().to_owned();
+            with_changes(
+                sheet(0),
+                |s| {
+                    if name == "anteRm" {
+                        remove_named_background(s, key)
+                    } else {
+                        rename_named_background(s, key, text(2))
+                    }
+                },
+                |s| {
+                    let mut m = Map::new();
+                    m.insert(
+                        "lista".into(),
+                        s["anteNom"].get(&id).cloned().unwrap_or(Value::Null),
+                    );
+                    m
+                },
+            )
+        }
+        "defEspMais" => with_changes(
+            sheet(0),
+            |s| add_defense_specialty(s, text(1), text(2), text(3)),
+            |s| {
+                let mut m = Map::new();
+                m.insert(
+                    "lista".into(),
+                    s["defSpec"].get(text(1)).cloned().unwrap_or(Value::Null),
+                );
+                m
+            },
+        ),
+        "defEspTira" => with_changes(
+            sheet(0),
+            |s| remove_defense_specialty(s, text(1), a[2].as_u64().unwrap() as usize),
+            |s| {
+                let mut m = Map::new();
+                m.insert(
+                    "lista".into(),
+                    s["defSpec"].get(text(1)).cloned().unwrap_or(Value::Null),
+                );
+                m
+            },
+        ),
+        "tecnicaClique" => {
+            let tech = ctx.techniques.iter().find(|x| x.id == text(1)).unwrap();
+            with_changes(
+                sheet(0),
+                |s| {
+                    toggle_technique(s, tech);
+                },
+                |s| {
+                    let mut m = Map::new();
+                    m.insert(
+                        "v".into(),
+                        s["tech"].get(&tech.id).cloned().unwrap_or(Value::Null),
+                    );
+                    m
+                },
+            )
+        }
+        "efeitoClique" => with_changes(
+            sheet(0),
+            |s| toggle_effect(s, text(1)),
+            |s| {
+                let mut m = Map::new();
+                m.insert(
+                    "v".into(),
+                    s["efeito"].get(text(1)).cloned().unwrap_or(Value::Null),
+                );
+                m
+            },
+        ),
+        "massaCampo" | "identidade" => {
+            let mut s = sheet(0);
+            let before_flag = if name == "massaCampo" {
+                a[2].as_bool().unwrap()
+            } else {
+                false
+            };
+            if name == "massaCampo" && before_flag {
+                s["corpo"] = json!({"massa": 80});
+                s["id"] = json!({"peso": "80 kg"});
+            } else if name == "identidade" {
+                s["corpo"] = json!({"massa": 55});
+            }
+            let mut flag = before_flag;
+            let mut o = with_changes(
+                s,
+                |s| {
+                    let r = if name == "massaCampo" {
+                        let blank = text(1).trim().is_empty();
+                        let n = if blank {
+                            f64::NAN
+                        } else {
+                            text(1).parse::<f64>().unwrap_or(f64::NAN)
+                        };
+                        set_body_mass(s, n, blank)
+                    } else {
+                        set_identity_field(s, text(1), text(2))
+                    };
+                    if let Some(v) = r {
+                        flag = v;
+                    }
+                },
+                |s| {
+                    let mut m = Map::new();
+                    m.insert(
+                        "corpo".into(),
+                        s.get("corpo").cloned().unwrap_or(Value::Null),
+                    );
+                    m.insert("id".into(), s.get("id").cloned().unwrap_or(Value::Null));
+                    m
+                },
+            );
+            // a ordem das chaves do objeto de saída: corpo, id, massaEscolhida, mudou
+            let mudou = o["mudou"].take();
+            o["massaEscolhida"] = json!(flag);
+            o["mudou"] = mudou;
+            o
+        }
+        "orcamento" => with_changes(
+            sheet(0),
+            |s| set_budget(s, text(1)),
+            |s| {
+                let mut m = Map::new();
+                m.insert(
+                    "budget".into(),
+                    s.get("budget").cloned().unwrap_or(Value::Null),
+                );
+                m
+            },
+        ),
+        "livreNome" => with_changes(
+            sheet(0),
+            |s| set_free_secondary_name(s, text(1), text(2)),
+            |s| {
+                let mut m = Map::new();
+                m.insert(
+                    "livreNome".into(),
+                    s.get("livreNome").cloned().unwrap_or(Value::Null),
+                );
+                m
+            },
+        ),
+        "especialidade" => {
+            let (sc, key) = (scope(1), text(2));
+            let (skills, spec) = if text(1) == "p" {
+                ("skills", "spec")
+            } else {
+                ("skills2", "spec2")
+            };
+            let mut s = sheet(0);
+            s[skills][key] = a[3].clone();
+            match &a[4] {
+                Value::Null => {
+                    s[spec].as_object_mut().unwrap().shift_remove(key);
+                }
+                list => s[spec][key] = list.clone(),
+            }
+            let op = a[5].as_array().unwrap();
+            let name = op[0].as_str().unwrap();
+            let pre = name != "abrir" && name != "fechar";
+            let mut opened = Value::Null;
+            let mut o = with_changes(
+                s,
+                |s| {
+                    if pre {
+                        open_specialties(s, sc, key);
+                    }
+                    match name {
+                        "abrir" => opened = json!(open_specialties(s, sc, key)),
+                        "quad" => set_specialty_level(
+                            s,
+                            sc,
+                            key,
+                            op[1].as_u64().unwrap() as usize,
+                            op[2].as_f64().unwrap(),
+                        ),
+                        "nome" => rename_specialty(
+                            s,
+                            sc,
+                            key,
+                            op[1].as_u64().unwrap() as usize,
+                            op[2].as_str().unwrap(),
+                        ),
+                        "tirar" => remove_specialty(s, sc, key, op[1].as_u64().unwrap() as usize),
+                        "mais" => add_specialty(s, sc, key),
+                        _ => close_specialties(s, sc, key),
+                    }
+                },
+                |s| {
+                    let mut m = Map::new();
+                    m.insert(
+                        "lista".into(),
+                        s[spec].get(key).cloned().unwrap_or(Value::Null),
+                    );
+                    m
+                },
+            );
+            let mudou = o["mudou"].take();
+            o["aberto"] = opened;
+            o["mudou"] = mudou;
+            o
+        }
+        _ => return None,
+    };
+    Some(out)
 }

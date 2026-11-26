@@ -69,6 +69,40 @@ const MOVE = `${MOVE_AT}
           corrida: mp(dz.corrida), natacao: dz.natacao, saltoVertical: cmp(dz.saltoVertical),
           saltoHorizontalParado: mp(dz.saltoHorizontalParado), saltoHorizontalCorrendo: mp(dz.saltoHorizontalCorrendo) } };`;
 
+// Mais gancho, para mexer nos traços: as funções da fonte como estão, e cópias
+// conferidas do que os ouvintes fazem dentro de um modal que o DOM falso não
+// monta (as especialidades, o diálogo da especialidade de defesa, a linha de
+// identidade). Cada trecho copiado tem o original em GUARDAS: se ele mudar na
+// fonte, o gerador para.
+const HOOK2 = String.raw`
+  Object.assign(globalThis.__ficha, {
+    applyVal: (k, key, v) => applyVal(k, key, v), pisoDe: (k, key) => pisoDe(k, key), valOf: (k, key) => valOf(k, key),
+    apEfetiva: (v) => apEfetiva(v), racApMod: () => racApMod(), tetoRacialAttr: (k) => tetoRacialAttr(k),
+    pisoRacialAttr: (k) => pisoRacialAttr(k), anteInst: (k) => anteInst(k), ehSecLivre: (k) => ehSecLivre(k),
+    nomeLivre: (k) => nomeLivre(k), specCount: (a) => specCount(a), specSkill: (sc, k) => specSkill(sc, k),
+    setMassa: (v) => { massaEscolhida = v; },
+    espAbrir: (scope, key) => { const cap = Math.floor(specSkill(scope, key) / 2); if (cap <= 0) return false; const arr = specArr(scope, key); if (!arr.length) arr.push({ s: '', v: 0 }); return true; },
+    espQuad: (scope, key, i, d) => { const cap = Math.floor(specSkill(scope, key) / 2); if (d > cap) return; const arr = specArr(scope, key); arr[i].v = arr[i].v === d ? d - 1 : Math.min(cap, d); },
+    espNome: (scope, key, i, v) => { const arr = specArr(scope, key); arr[i].s = v; },
+    espTirar: (scope, key, i) => { const arr = specArr(scope, key); arr.splice(i, 1); if (!arr.length) arr.push({ s: '', v: 0 }); },
+    espMais: (scope, key) => { const cap = Math.floor(specSkill(scope, key) / 2); const arr = specArr(scope, key); if (arr.length < cap) { arr.push({ s: '', v: 0 }); } },
+    espFechar: (scope, key) => { const arr = scope === 'p' ? S.spec[key] : S.spec2[key]; if (Array.isArray(arr)) { const p = arr.filter((e) => e.v > 0); if (scope === 'p') S.spec[key] = p; else S.spec2[key] = p; } },
+    defEspMais: (key, r) => { const s = r.s.trim(); const v = Math.max(0, Math.min(6, parseInt(r.v, 10) || 0)); if (!s || !v) return; (S.defSpec[key] ||= []).push({ s, v }); },
+    idLinha: (id, value) => { S.id[id] = value; if (id === 'peso') { const massa = Number(value.replace(',', '.').match(/\d+(?:\.\d+)?/)?.[0]); if (massa > 0) { S.corpo ??= {}; S.corpo.massa = massa; massaEscolhida = true; } else if (!value.trim()) { if (S.corpo) delete S.corpo.massa; massaEscolhida = false; } } },
+  });`;
+const GUARDAS = [
+  String.raw`const cap = Math.floor(specSkill(scope, key) / 2); if (cap <= 0) return;`,
+  String.raw`if (!arr.length) arr.push({ s: '', v: 0 });`,
+  String.raw`arr[i].v = arr[i].v === d ? d - 1 : Math.min(cap, d);`,
+  String.raw`arr[+inp.dataset.spname!].s = inp.value; save();`,
+  String.raw`arr.splice(+b.dataset.sprm!, 1); paint(arr.length - 1); recompute();`,
+  String.raw`if (arr.length < cap) { arr.push({ s: '', v: 0 }); paint(arr.length - 1); }`,
+  String.raw`const p = arr.filter((e: any) => e.v > 0); if (scope === 'p') S.spec[key] = p; else S.spec2[key] = p;`,
+  String.raw`const v = Math.max(0, Math.min(6, parseInt(r.v, 10) || 0));`,
+  String.raw`(S.defSpec[key] ||= []).push({ s, v }); recompute();`,
+  String.raw`S.id[inp.dataset.id!] = inp.value; if (inp.dataset.id === 'peso') { const massa = Number(inp.value.replace(',', '.').match(/\d+(?:\.\d+)?/)?.[0]); if (massa > 0) { S.corpo ??= {}; S.corpo.massa = massa; massaEscolhida = true; renderForca(); } else if (!inp.value.trim()) { if (S.corpo) delete S.corpo.massa; massaEscolhida = false; renderForca(); } }`,
+];
+
 function patch(text, at, by) {
   if (text.split(at).length !== 2) throw new Error(`ficha-engine.ts: o trecho do remendo não está lá uma vez só: ${at}`);
   return text.replace(at, by);
@@ -131,8 +165,11 @@ export async function loadSheetEditor({ build, SRC }) {
         vel: amostra.map(vel), velNatacao: amostra.map(velNatacao) };
     })();
     ${FORCE_AT}`;
-  const text = patch(patch(patch(patch(patch(fs.readFileSync(file, 'utf8'), HOOK_AT, HOOK_AT + HOOK), TOTAL_AT, TOTAL),
+  const text = patch(patch(patch(patch(patch(fs.readFileSync(file, 'utf8'), HOOK_AT, HOOK_AT + HOOK + HOOK2), TOTAL_AT, TOTAL),
     MOVE_AT, MOVE), FORCE_AT, FORCE), UID_AT, UID);
+  // o original de cada trecho copiado no gancho tem de estar na fonte, uma vez só
+  const fonte = fs.readFileSync(file, 'utf8');
+  for (const g of GUARDAS) patch(fonte, g, g);
   const outfile = path.join(os.tmpdir(), `parity-ficha-engine-${process.pid}.mjs`);
   await build({
     entryPoints: [file], outfile, bundle: true, format: 'esm', platform: 'node', logLevel: 'error',
@@ -594,5 +631,257 @@ export function buildSheetEditorCases({ editor, sheets, races, attributes, techn
     add('normalize', [x.ficha, r.uids], { ficha: r.ficha, subiu: r.subiu, massa: r.massa });
   }
 
-  return { inputs: Object.fromEntries(inputs.map((x) => [x.id, { ficha: x.s, massaEscolhida: x.chosen }])), cases };
+
+  // ----- mexer nos traços: os ouvintes de verdade, com um alvo falso -----
+  // O clique, a seta, o campo de massa e o do orçamento são os ouvintes da fonte,
+  // chamados como o navegador os chamaria. O que o DOM falso não monta (o modal
+  // das especialidades, o diálogo da especialidade de defesa, a linha de
+  // identidade) vai pelas cópias conferidas do gancho.
+  const achaOuvinte = (nome, tipo, pista) => {
+    const l = dom.listeners.find((x) => x.name === nome && x.type === tipo && (!pista || String(x.fn).includes(pista)));
+    if (!l) throw new Error(`não achei o ouvinte ${tipo} de ${nome} (${pista ?? ''})`);
+    return l.fn;
+  };
+  const onClick = achaOuvinte('document', 'click', 'data-ante-add');
+  const onKey = achaOuvinte('document', 'keydown', 'ArrowRight');
+  const onInput = achaOuvinte('document', 'input', 'data-ante-nome');
+  const onMassa = achaOuvinte('#corpo-massa', 'input');
+  const onOrcamento = achaOuvinte('#xpBudget', 'input');
+  const onLivre = achaOuvinte('#secondary', 'input', 'data-livre');
+  const elfake = (dataset, extra = {}) => ({ dataset, classList: { contains: (c) => (extra.classes ?? []).includes(c) }, ...extra });
+  const clicar = (mapa) => onClick({ target: { closest: (sel) => mapa[sel] ?? null } });
+
+  const estados = {};
+  const mkEstado = (id, raca, meio) => {
+    hook.fresh();
+    const s = hook.getS();
+    s.raca = raca;
+    for (const k of Object.keys(s.attrs)) s.attrs[k] = hook.pisoAttr(k);
+    if (meio) {
+      let i = 0;
+      for (const k of Object.keys(s.attrs)) s.attrs[k] = Math.min(6, hook.pisoAttr(k) + (i++ % 4));
+      Object.keys(s.skills).forEach((k, j) => { s.skills[k] = j % 7; if (j % 7 >= 2) s.spec[k] = [{ s: 'um', v: 1 }]; });
+      Object.keys(s.skills2).slice(0, 12).forEach((k, j) => { s.skills2[k] = j % 6; if (j % 6 >= 4) s.spec2[k] = [{ s: 'dois', v: 2 }]; });
+      Object.keys(s.virtues).forEach((k, j) => { s.virtues[k] = 1 + (j % 4); });
+      s.centelha = 5; s.willpower = 6; s.aparencia = 4;
+      for (const a of arts.slice(0, 5)) s.arte[a.id] = 3;
+      for (const k of [...ANTE_UNICOS].slice(0, 3)) s.ante[k] = 2;
+      s.anteNom = { ...s.anteNom, [ANTE_NOMEADO]: [{ u: 'ua', n: 'Ana', v: 2 }, { u: 'ub', n: 'Bia', v: 5 }] };
+      techniques.slice(0, 8).forEach((tc) => { s.tech[tc.id] = true; });
+    }
+    estados[id] = structuredClone(s);
+  };
+  const ANTE_UNICOS = new Set(sheets.flatMap((sh) => Object.keys(sh.ficha?.ante ?? {})));
+  const ANTE_NOMEADO = Object.keys(hook.normalizar({}).ficha.anteNom)[0];
+  mkEstado('traco-humano', 'humano', false);
+  mkEstado('traco-elfo', 'elfo', false);
+  mkEstado('meio-anao', 'anao', true);
+  mkEstado('meio-humano', 'humano', true);
+
+  const ordem = (o) => Object.keys(o);
+  const grupoDe = { attr: 'attrs', skill: 'skills', skill2: 'skills2', virtue: 'virtues', arte2: 'arte', ante: 'ante' };
+  // o que a trilha guarda depois da operação
+  const resumo = (kind, key) => {
+    const S = hook.getS();
+    if (kind === 'anten') return { v: hook.anteInst(key)?.v ?? null };
+    if (grupoDe[kind]) {
+      const r = { v: S[grupoDe[kind]]?.[key] ?? null };
+      if (kind === 'skill') r.spec = S.spec?.[key] ?? null;
+      if (kind === 'skill2') r.spec2 = S.spec2?.[key] ?? null;
+      return r;
+    }
+    return { v: S[kind] ?? null };
+  };
+  // as chaves de topo da ficha que a operação mudou
+  const mudou = (fn) => {
+    const S0 = hook.getS();
+    const antes = Object.fromEntries(Object.entries(S0).map(([k, v]) => [k, JSON.stringify(v)]));
+    fn();
+    const S1 = hook.getS();
+    return Object.keys(S1).filter((k) => antes[k] !== JSON.stringify(S1[k]));
+  };
+  const abrir = (id) => { hook.setS(structuredClone(estados[id])); hook.setMassa(false); globalThis.__uids = []; };
+  const trilhas = [];
+  const cada = (kind, keys) => keys.forEach((key) => trilhas.push([kind, key]));
+  const E = estados['meio-anao'];
+  cada('attr', Object.keys(E.attrs));
+  cada('skill', ['briga', 'armas', Object.keys(E.skills)[3], Object.keys(E.skills)[9]]);
+  cada('skill2', Object.keys(E.skills2).slice(0, 3).concat(['livre-1']));
+  cada('virtue', Object.keys(E.virtues));
+  cada('centelha', ['']); cada('willpower', ['']); cada('aparencia', ['']);
+  cada('arte2', arts.slice(0, 2).map((a) => a.id));
+  cada('ante', [...ANTE_UNICOS].slice(0, 2));
+  cada('anten', [`${ANTE_NOMEADO}~ua`, `${ANTE_NOMEADO}~ub`, `${ANTE_NOMEADO}~fantasma`]);
+  const valoresDoTraco = [-2, 0, 1, 2, 3, 5, 6, 7, 9, 12, 13, 14];
+  const bolinhas = [0, 1, 2, 3, 4, 5, 6, 7, 8, 12, 13];
+  for (const id of Object.keys(estados)) {
+    for (const [kind, key] of trilhas) {
+      for (const v of valoresDoTraco) {
+        abrir(id);
+        const m = mudou(() => hook.applyVal(kind, key, v));
+        add('aplicarValor', [id, kind, key, v], { ...resumo(kind, key), mudou: m });
+      }
+      for (const d of bolinhas) {
+        abrir(id);
+        const cap = d > hook.capFor(kind, key || undefined);
+        const m = mudou(() => clicar({ '.dots .dot': elfake({ d: String(d) }, { classes: cap ? ['cap'] : [], parentElement: { dataset: { kind, key } } }) }));
+        add('clicarBolinha', [id, kind, key, d], { ...resumo(kind, key), mudou: m });
+      }
+      for (const tecla of ['ArrowRight', 'ArrowLeft', 'ArrowUp', 'ArrowDown', 'Enter']) {
+        if (tecla !== 'ArrowRight' && tecla !== 'ArrowLeft' && id !== 'meio-anao') continue;
+        abrir(id);
+        const m = mudou(() => onKey({ key: tecla, preventDefault() {}, target: { closest: (sel) => (sel === '.dots' ? { dataset: { kind, key } } : null) } }));
+        add('teclaSeta', [id, kind, key, tecla], { ...resumo(kind, key), mudou: m });
+      }
+    }
+  }
+  // a Raça no piso, no teto e na Aparência; o valor da trilha
+  for (const id of Object.keys(estados)) {
+    hook.setS(structuredClone(estados[id]));
+    for (const [kind, key] of trilhas) {
+      add('pisoDe', [id, kind, key], hook.pisoDe(kind, key));
+      add('valOf', [id, kind, key], hook.valOf(kind, key));
+    }
+    for (const a of Object.keys(estados[id].attrs)) {
+      add('tetoRacial', [id, a], { teto: hook.tetoRacialAttr(a), piso: hook.pisoRacialAttr(a) });
+    }
+    add('racApMod', [id], hook.racApMod());
+    for (const v of [-1, 0, 3, 11, 12, 15]) add('apEfetiva', [id, v], hook.apEfetiva(v));
+  }
+  for (const r of races) {
+    hook.fresh(); hook.getS().raca = r.id;
+    add('racApModDaRaca', [r.id], hook.racApMod());
+    for (const v of [0, 5, 12]) add('apEfetivaDaRaca', [r.id, v], hook.apEfetiva(v));
+  }
+  add('ehSecLivre', ['livre-1'], hook.ehSecLivre('livre-1'));
+  add('ehSecLivre', ['livre-4'], hook.ehSecLivre('livre-4'));
+  add('ehSecLivre', ['culinaria'], hook.ehSecLivre('culinaria'));
+  hook.setS({ livreNome: { 'livre-1': '  Cantoria \u00a0', 'livre-2': '', 'livre-3': 'Tricô' } });
+  for (const k of ['livre-1', 'livre-2', 'livre-3', 'livre-4']) add('nomeLivre', [k], hook.nomeLivre(k));
+  for (const lista of [[], [{ s: 'a', v: 2 }, { s: 'b', v: 1 }], [{ s: 'a' }, { v: 2 }, { s: 'c', v: null }]]) add('specCount', [lista], hook.specCount(lista));
+
+  // a instância nomeada: pela chave, a que sumiu, e as três operações
+  abrir('meio-anao');
+  for (const key of [`${ANTE_NOMEADO}~ua`, `${ANTE_NOMEADO}~ub`, `${ANTE_NOMEADO}~fantasma`, 'x', `outro~ua`, `${ANTE_NOMEADO}`]) {
+    add('anteInst', ['meio-anao', key], hook.anteInst(key));
+  }
+  for (const id of ['meio-anao', 'traco-humano']) {
+    for (const nome of [ANTE_NOMEADO, 'inexistente']) {
+      abrir(id);
+      const m = mudou(() => clicar({ '[data-ante-add]': elfake({ anteAdd: nome }) }));
+      add('anteAdd', [id, nome], { lista: hook.getS().anteNom?.[nome] ?? null, uids: [...globalThis.__uids], mudou: m });
+    }
+    for (const key of [`${ANTE_NOMEADO}~ua`, `${ANTE_NOMEADO}~fantasma`, `${ANTE_NOMEADO}~ub`]) {
+      abrir(id);
+      const m = mudou(() => clicar({ '[data-ante-rm]': elfake({ anteRm: key }) }));
+      add('anteRm', [id, key], { lista: hook.getS().anteNom?.[ANTE_NOMEADO] ?? null, mudou: m });
+      abrir(id);
+      const m2 = mudou(() => onInput({ target: { closest: (sel) => (sel === '[data-ante-nome]' ? { dataset: { anteNome: key }, value: 'Novo nome' } : null) } }));
+      add('anteNome', [id, key, 'Novo nome'], { lista: hook.getS().anteNom?.[ANTE_NOMEADO] ?? null, mudou: m2 });
+    }
+  }
+
+  // a especialidade de defesa
+  for (const [situacao, bonus] of [['contra um grupo', '2'], ['  na floresta  ', '9'], ['vs sedução', '0'], ['', '3'], ['x', 'abc'], ['y', '-4'], ['z', ' 5 acima'], ['w', '3.9']]) {
+    for (const key of ['esquiva', 'social']) {
+      abrir('meio-humano');
+      const m = mudou(() => hook.defEspMais(key, { s: situacao, v: bonus }));
+      add('defEspMais', ['meio-humano', key, situacao, bonus], { lista: hook.getS().defSpec?.[key] ?? null, mudou: m });
+    }
+  }
+  abrir('meio-humano');
+  hook.getS().defSpec.mental = [{ s: 'a', v: 1 }, { s: 'b', v: 2 }, { s: 'c', v: 3 }];
+  const comDef = structuredClone(hook.getS());
+  estados['defesas'] = comDef;
+  for (const idx of [0, 1, 2, 3]) {
+    abrir('defesas');
+    const m = mudou(() => clicar({ '[data-defspec-del]': elfake({ defspecDel: `mental:${idx}` }) }));
+    add('defEspTira', ['defesas', 'mental', idx], { lista: hook.getS().defSpec?.mental ?? null, mudou: m });
+  }
+
+  // as Técnicas (o clique na pílula) e os Efeitos
+  for (const id of ['traco-humano', 'meio-anao']) {
+    for (const tc of techniques.slice(0, 70)) {
+      abrir(id);
+      hook.renderCaminhos();
+      const classes = techniquesFromHtml(String(dom.elements.tecnicas?.innerHTML ?? ''))[tc.id]?.classes ?? [];
+      const m = mudou(() => clicar({ '.tpill': elfake({ tech: tc.id }, { classes }) }));
+      add('tecnicaClique', [id, tc.id], { v: hook.getS().tech?.[tc.id] ?? null, mudou: m });
+    }
+    for (const ef of effects.slice(0, 25)) {
+      abrir(id);
+      const m = mudou(() => clicar({ '[data-efeito], [data-efbuy]': elfake({ efeito: ef.id }) }));
+      add('efeitoClique', [id, ef.id], { v: hook.getS().efeito?.[ef.id] ?? null, mudou: m });
+    }
+  }
+
+  // a massa, a identidade, o orçamento e o nome da Secundária livre
+  for (const id of ['traco-humano', 'meio-anao']) {
+    for (const texto of ['', '  ', '70', '82.5', '0', '-3', 'abc', '1e2']) {
+      for (const antes of [false, true]) {
+        abrir(id);
+        hook.setMassa(antes);
+        if (antes) { hook.getS().corpo = { massa: 80 }; hook.getS().id = { peso: '80 kg' }; }
+        const numero = texto.trim() === '' ? NaN : Number(texto);
+        const m = mudou(() => onMassa({ target: { value: texto, valueAsNumber: numero } }));
+        add('massaCampo', [id, texto, antes], { corpo: hook.getS().corpo ?? null, id: hook.getS().id ?? null, massaEscolhida: hook.massaEscolhida(), mudou: m });
+      }
+    }
+    for (const [campo, texto] of [['nome', 'Aria'], ['peso', '70 kg'], ['peso', '82,5'], ['peso', 'umas 3,5 e 7'], ['peso', ''], ['peso', '   '], ['peso', 'leve'], ['peso', '0 kg'], ['idade', '30']]) {
+      abrir(id);
+      hook.getS().corpo = { massa: 55 };
+      const m = mudou(() => hook.idLinha(campo, texto));
+      add('identidade', [id, campo, texto], { corpo: hook.getS().corpo ?? null, id: hook.getS().id ?? null, massaEscolhida: hook.massaEscolhida(), mudou: m });
+    }
+    for (const v of ['1200', '', 'abc', '-5', ' 800 ', '0x10', '3.5']) {
+      abrir(id);
+      const m = mudou(() => onOrcamento({ target: { value: v } }));
+      add('orcamento', [id, v], { budget: hook.getS().budget ?? null, mudou: m });
+    }
+    for (const [k, v] of [['livre-1', 'Cantoria'], ['livre-3', ''], ['outra', 'x']]) {
+      abrir(id);
+      const m = mudou(() => onLivre({ target: { closest: (sel) => (sel === '[data-livre]' ? { dataset: { livre: k }, value: v } : null) } }));
+      add('livreNome', [id, k, v], { livreNome: hook.getS().livreNome ?? null, mudou: m });
+    }
+  }
+
+  // as especialidades: o modal, uma operação por caso, sobre a lista dada
+  const listas = [null, [], [{ s: 'a', v: 1 }], [{ s: 'a', v: 2 }, { s: 'b', v: 0 }], [{ s: 'a', v: 1 }, { s: 'b', v: 1 }, { s: 'c', v: 1 }]];
+  const ops = [['abrir'], ['quad', 0, 1], ['quad', 0, 2], ['quad', 0, 3], ['quad', 1, 1], ['nome', 0, 'novo'], ['tirar', 0], ['tirar', 1], ['mais'], ['fechar']];
+  for (const [scope, kind] of [['p', 'skill'], ['s', 'skill2']]) {
+    const chave = scope === 'p' ? 'briga' : Object.keys(E.skills2)[1];
+    for (const nivel of [0, 1, 2, 4, 6]) {
+      for (const lista of listas) {
+        for (const op of ops) {
+          abrir('meio-humano');
+          const S = hook.getS();
+          (scope === 'p' ? S.skills : S.skills2)[chave] = nivel;
+          if (lista === null) delete (scope === 'p' ? S.spec : S.spec2)[chave]; else (scope === 'p' ? S.spec : S.spec2)[chave] = structuredClone(lista);
+          let aberto = null;
+          // o modal só existe aberto: toda operação, menos abrir e fechar, vem depois de abrir
+          const preabre = op[0] !== 'abrir' && op[0] !== 'fechar';
+          const cap = Math.floor(nivel / 2);
+          if (preabre && cap <= 0) continue;
+          if (preabre) {
+            const tam = lista === null ? 1 : Math.max(1, lista.length);
+            if ((op[0] === 'quad' || op[0] === 'nome' || op[0] === 'tirar') && op[1] >= tam) continue;
+          }
+          const m = mudou(() => {
+            if (preabre) hook.espAbrir(scope, chave);
+            if (op[0] === 'abrir') aberto = hook.espAbrir(scope, chave);
+            else if (op[0] === 'quad') hook.espQuad(scope, chave, op[1], op[2]);
+            else if (op[0] === 'nome') hook.espNome(scope, chave, op[1], op[2]);
+            else if (op[0] === 'tirar') hook.espTirar(scope, chave, op[1]);
+            else if (op[0] === 'mais') hook.espMais(scope, chave);
+            else hook.espFechar(scope, chave);
+          });
+          const S2 = hook.getS();
+          add('especialidade', ['meio-humano', scope, chave, nivel, lista, op], { lista: (scope === 'p' ? S2.spec : S2.spec2)[chave] ?? null, aberto, mudou: m });
+        }
+      }
+    }
+  }
+
+  return { inputs: Object.fromEntries([...inputs.map((x) => [x.id, { ficha: x.s, massaEscolhida: x.chosen }]),
+    ...Object.entries(estados).map(([id, s]) => [id, { ficha: s, massaEscolhida: false }])]), cases };
 }

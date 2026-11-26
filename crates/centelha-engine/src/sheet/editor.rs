@@ -142,7 +142,7 @@ impl EditorTables {
     }
 
     /// `RACA[S.raca]?.atributos?.[key] || 0`.
-    fn racial(&self, sheet: &Value, key: &str) -> f64 {
+    pub(super) fn racial(&self, sheet: &Value, key: &str) -> f64 {
         self.sheet
             .ancestry_of(sheet.get("raca").unwrap_or(&Value::Null))
             .and_then(|a| a.attributes.get(key).copied())
