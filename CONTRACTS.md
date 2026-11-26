@@ -34,7 +34,7 @@ xtask              (sozinho; não é dependência de ninguém)
 **Expõe (o que já existe no `main`):**
 
 - Módulos: `bestiary`, `rules`, `weapons`, `armor`, `shields`, `ancestry`, `techniques`, `paths`, `arts`, `effects` (e `chapters` e `glossary`, abaixo). Os outros arquivos de dados (atributos, Habilidades, Virtudes, condições) entram como módulo quando a API proposta for aprovada neste arquivo.
-- Na raiz do crate: `Creature`, `Rules`, `Weapon`, `Armor`, `Shield`, `Ancestry`, `Technique`, `Art`, `Effect`, `DataError`, os `parse_*` e os `load_*` (de todos os módulos). `paths::Path` fica fora da raiz. O resto mora no módulo de cada um (por exemplo `bestiary::Size`).
+- Na raiz do crate: `Creature`, `Rules`, `Weapon`, `Armor`, `Shield`, `Ancestry`, `Technique`, `Art`, `Effect`, `Chapter`, `GlossaryEntry`, `DataError`, os `parse_*` e os `load_*` (de todos os módulos). `paths::Path` fica fora da raiz. O resto mora no módulo de cada um (por exemplo `bestiary::Size`).
 - `Creature`: uma criatura do bestiário, com `id: String` e os campos usados pelo motor.
 - Leitura a partir de texto: `fn parse_creature(json: &str) -> Result<Creature, DataError>` e equivalentes. Funciona em WebAssembly (sem arquivo).
 - Leitura a partir de pasta, só no nativo (`cfg(not(target_arch = "wasm32"))`): `fn load_bestiary(content_dir: &Path) -> Result<Vec<Creature>, DataError>`.
