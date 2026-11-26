@@ -80,8 +80,9 @@ pub fn log10(x: f64) -> f64 {
 ///   (`(1 - 2^-53) ** 1.5`, a `2^-106` do meio-ponto). Senão, com a base a
 ///   menos de `2^-20` de 1 e `|b|` até 1024, decide a comparação de `b ln a`
 ///   com `ln m` em ponto fixo de 124 bits, quando a diferença passa do erro
-///   da conta (`64 (|b| + 2)` vezes `2^-124`; é o quase empate de `(1 - k 2^-53) ** b` com `b` decimal, como
-///   `0.9999999999999994 ** 1.1`). Fora disso, fica a precisão dobrada;
+///   da conta (`64 (|b| + 2)` vezes `2^-124`). É o quase empate de
+///   `(1 - k 2^-53) ** b` com `b` decimal, como `0.9999999999999994 ** 1.1`.
+///   Fora disso, fica a precisão dobrada;
 /// - o resto pela `libm`: base zero, subnormal, negativa ou infinita, expoente
 ///   zero ou infinito, e o resultado fora da faixa acima (abaixo de cerca de
 ///   `1e-304` ou acima de `e^709`), onde o arredondamento é o da `libm` (que
@@ -111,13 +112,12 @@ pub fn pow(a: f64, b: f64) -> f64 {
     r.0 + r.1
 }
 
-/// O lado do arredondamento perto do meio-ponto, pela conta exata: com
+/// O lado do arredondamento perto do meio-ponto, pela conta exata. Com
 /// `b = p/q` (`q` potência de 2 até 16, `p` até 64, `b` positivo: assim o
-/// `f64` `b` é exatamente `p/q`), o valor exato `a^(p/q)`
-/// está acima, abaixo ou em cima do meio-ponto `m` entre os dois `f64`
-/// vizinhos conforme `a^p` está acima, abaixo ou igual a `m^q`, em inteiros
-/// sem limite de tamanho. No empate, fica o de mantissa par. `None` quando
-/// `b` não tem essa forma.
+/// `f64` `b` é exatamente `p/q`), o valor exato `a^(p/q)` está acima, abaixo
+/// ou em cima do meio-ponto `m` entre os dois `f64` vizinhos conforme `a^p`
+/// está acima, abaixo ou igual a `m^q`, em inteiros sem limite de tamanho.
+/// No empate, fica o de mantissa par. `None` quando `b` não tem essa forma.
 fn exact_side(a: f64, b: f64, hi: f64, lo: f64) -> Option<f64> {
     if b.is_nan() || b <= 0.0 {
         return None;
@@ -522,7 +522,10 @@ pub fn number_to_string(x: f64) -> String {
 
 #[cfg(test)]
 mod tests {
-    use super::{max, min, number_to_string, pow, round, to_uint32};
+    use super::{
+        exact_integer_power, exact_side, max, min, near_one_side, number_to_string, pow, round,
+        to_uint32,
+    };
 
     #[test]
     fn numbers_as_text_like_javascript() {
@@ -646,6 +649,162 @@ mod tests {
             1.0 - pow(91.9425 / 122.59 / 0.75, 1.5),
             1.1102230246251565e-16
         );
+    }
+
+    /// Um `f64` pelos bits.
+    fn f(bits: u64) -> f64 {
+        f64::from_bits(bits)
+    }
+
+    /// O `hi` que o `pow` passaria aos decisores: o `f64` logo abaixo do
+    /// valor exato, com um `lo` positivo (o vizinho de cima é o `hi + 1 ulp`).
+    const LO: f64 = f64::MIN_POSITIVE;
+
+    /// A base perto de 1 com `b < 0`: sem inverter o sinal de `b`, `bl` fica
+    /// com o sinal trocado e o lado sai errado. Casos de `a < 1` e de `a > 1`,
+    /// com o valor exato conferido a 150 dígitos.
+    #[test]
+    fn near_one_negative_exponent() {
+        // 1 / (1 - 2^-53) = 1 + 2^-53 + 2^-106 + ...: acima do meio-ponto
+        // entre 1 e 1 + 2^-52 (o V8 devolve 1, o correto sobe)
+        let x = 1.0 - f64::EPSILON / 2.0;
+        assert_eq!(pow(x, -1.0), 1.0 + f64::EPSILON);
+        // direto na função: (base, b, hi, o lado correto)
+        let cases = [
+            // a < 1, b < 0: o valor passa de 1
+            (
+                f(0x3feffffffffffffe),
+                -0.7,
+                f(0x3ff0000000000000),
+                f(0x3ff0000000000001),
+            ),
+            (
+                f(0x3feffffffffffff9),
+                -1.1,
+                f(0x3ff0000000000003),
+                f(0x3ff0000000000004),
+            ),
+            // a > 1, b < 0: o valor fica abaixo de 1
+            (
+                f(0x3ff0000000000009),
+                -0.7,
+                f(0x3feffffffffffff3),
+                f(0x3feffffffffffff3),
+            ),
+            (
+                f(0x3ff0000000000003),
+                -1.1,
+                f(0x3feffffffffffff9),
+                f(0x3feffffffffffff9),
+            ),
+        ];
+        for (a, b, hi, want) in cases {
+            assert_eq!(near_one_side(a, b, hi, LO), Some(want), "{a:e} ** {b}");
+        }
+    }
+
+    /// Com a base `a > 1` e `b > 0`, o quase empate decimal também sai pela
+    /// conta em ponto fixo: `(1 + 5 * 2^-52) ** 1.1` fica a `3,4 * 2^-104` do
+    /// meio-ponto entre `1 + 5e` e `1 + 6e`, e o correto sobe.
+    #[test]
+    fn near_one_base_above_one() {
+        let a = f(0x3ff0000000000005);
+        assert_eq!(pow(a, 1.1), f(0x3ff0000000000006));
+    }
+
+    /// O corte de `2^-20`: a base logo dentro entra no ramo, a base no corte
+    /// ou logo fora não. Com o corte em `2^-30` (ou em `<=`) este teste falha.
+    #[test]
+    fn near_one_cutoff_is_two_to_the_minus_20() {
+        let inside = [
+            (f(0x3ff0000080000000), f(0x3ff00000a666672e)), // 1 + 2^-21
+            (f(0x3ff00000ffffffff), f(0x3ff000014ccccfea)), // 1 + 2^-20 - 2^-52
+            (f(0x3feffffe00000001), f(0x3feffffd66666ca5)), // 1 - 2^-20 + 2^-53
+        ];
+        for (a, want) in inside {
+            assert_eq!(near_one_side(a, 1.3, want, LO), Some(want), "{a:e}");
+        }
+        // no corte (`|a - 1| = 2^-20`, e a conta é `<`): fora
+        for a in [f(0x3ff0000100000000), f(0x3feffffe00000000)] {
+            assert_eq!(
+                near_one_side(a, 1.3, f(0x3ff0000000000000), LO),
+                None,
+                "{a:e}"
+            );
+        }
+        // e o limite de `|b|`: 1024 entra, acima não; zero não
+        let a = f(0x3ff0000000000003);
+        assert!(near_one_side(a, 1024.0, f(0x3ff0000000000000), LO).is_some());
+        assert_eq!(near_one_side(a, 1024.5, f(0x3ff0000000000000), LO), None);
+        assert_eq!(near_one_side(a, 0.0, f(0x3ff0000000000000), LO), None);
+    }
+
+    /// A tolerância: quando o valor cai dentro do erro da conta do meio-ponto,
+    /// a função desiste (`None`) e fica a precisão dobrada. O caso exato:
+    /// `a = 1 - c 2^-27` com `c` ímpar, em que `a * a = 1 - c 2^-26 + c^2 2^-54`
+    /// é exatamente um meio-ponto (o bit de `2^-54` fica ligado). Com a
+    /// tolerância em `0` o resto da série decide um lado qualquer.
+    #[test]
+    fn near_one_gives_up_inside_the_tolerance() {
+        for c in (1..128u32).step_by(2) {
+            let c = f64::from(c);
+            let a = 1.0 - c * 2.0f64.powi(-27);
+            // o `f64` logo abaixo do meio-ponto `a * a`
+            let hi = 1.0 - c * 2.0f64.powi(-26) + ((c * c - 1.0) / 2.0) * 2.0f64.powi(-53);
+            assert_eq!(near_one_side(a, 2.0, hi, LO), None, "c = {c}");
+        }
+    }
+
+    /// `p` até 64 em `exact_side`: `b = 33/8`, `63/16` e `64` entram (a conta
+    /// exata decide, com o valor conferido a 150 dígitos); `65/16` e `64.5`
+    /// (`p = 129`) não. Com o limite em 32 os três primeiros dão `None`.
+    #[test]
+    fn exact_side_numerator_up_to_64() {
+        let cases = [
+            // (a, b, o f64 logo abaixo do valor, o lado correto)
+            (1.7, 4.125, f(0x4021d9884bd038fb), f(0x4021d9884bd038fb)),
+            (1.3, 3.9375, f(0x40067a28da3e5454), f(0x40067a28da3e5455)),
+            (
+                1.0000001,
+                64.0,
+                f(0x3ff00006b5fe0968),
+                f(0x3ff00006b5fe0969),
+            ),
+        ];
+        for (a, b, hi, want) in cases {
+            assert_eq!(exact_side(a, b, hi, LO), Some(want), "{a} ** {b}");
+        }
+        for b in [4.0625, 64.5, 65.0] {
+            assert_eq!(
+                exact_side(1.7, b, f(0x4021d9884bd038fb), LO),
+                None,
+                "b = {b}"
+            );
+        }
+        // o expoente tem de ser de denominador potência de 2: 1,1 não é 11/10
+        assert_eq!(exact_side(1.7, 1.1, 1.8, LO), None);
+        assert_eq!(exact_side(1.7, -2.0, 0.3, LO), None);
+        assert_eq!(exact_side(1.7, f64::NAN, 1.8, LO), None);
+    }
+
+    /// O caminho inteiro exato, sozinho: o `exact_side` com `q = 1` daria o
+    /// mesmo valor perto do meio-ponto, então o `pow` não separa os dois. Aqui
+    /// chamo a função: `3^64` não cabe em 53 bits e sai do `u128` arredondado
+    /// (o `as f64` arredonda ao par); ela recusa o que não cabe em 128 bits,
+    /// o que não é inteiro e o que está fora de 1 a 128.
+    #[test]
+    fn exact_integer_power_alone() {
+        assert_eq!(exact_integer_power(3.0, 64.0), Some(f(0x4645ab6a57c7bc99)));
+        assert_eq!(exact_integer_power(3.0, 1.0), Some(3.0));
+        // 3 tem 2 bits: 65 * 2 passa de 128
+        assert_eq!(exact_integer_power(3.0, 65.0), None);
+        // a escala de uma potência de 2 cabe em qualquer expoente
+        assert_eq!(exact_integer_power(0.5, 128.0), Some(2.0f64.powi(-128)));
+        for b in [0.0, 129.0, 1.5, -2.0, f64::NAN] {
+            assert_eq!(exact_integer_power(3.0, b), None, "b = {b}");
+        }
+        // e o `pow` o usa: o mesmo valor
+        assert_eq!(pow(3.0, 64.0), f(0x4645ab6a57c7bc99));
     }
 
     #[test]
