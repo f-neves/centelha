@@ -555,7 +555,7 @@ pub struct StrengthDamage {
     pub two_hands: f64,
 }
 
-/// `combate`: o que os derivados da criatura leem.
+/// `combate`: o que os derivados da criatura e a régua do tempo leem.
 #[derive(Debug, Clone, PartialEq, Deserialize)]
 pub struct CombatRules {
     #[serde(rename = "escalaPorTamanho")]
@@ -564,6 +564,70 @@ pub struct CombatRules {
     pub ranged: Option<RangedRules>,
     #[serde(rename = "movimento", default)]
     pub movement: Option<CombatMovement>,
+    /// `pgr`: a régua do Preparo por classe e a tabela do livro (`reforma`).
+    #[serde(default)]
+    pub pgr: Option<PgrRules>,
+    /// `rajada`: a rajada de golpes.
+    #[serde(rename = "rajada", default)]
+    pub flurry: Option<FlurryRules>,
+    /// `dupla`: a empunhadura dupla.
+    #[serde(rename = "dupla", default)]
+    pub dual_wield: Option<DualWieldRules>,
+}
+
+/// `combate.pgr`.
+#[derive(Debug, Clone, PartialEq, Deserialize)]
+pub struct PgrRules {
+    /// `preparo`: o Preparo por classe (o id da classe, `leve`, `arte`...).
+    #[serde(rename = "preparo", default)]
+    pub windup: Option<BTreeMap<String, WindupRule>>,
+}
+
+/// Uma linha de `combate.pgr.preparo`: um Preparo fixo, ou a Velocidade mais
+/// um ajuste.
+#[derive(Debug, Clone, Copy, PartialEq, Deserialize)]
+pub struct WindupRule {
+    #[serde(rename = "fixo", default)]
+    pub fixed: Option<f64>,
+    #[serde(rename = "daVelocidade", default)]
+    pub from_speed: Option<f64>,
+}
+
+/// `combate.rajada`.
+#[derive(Debug, Clone, PartialEq, Deserialize)]
+pub struct FlurryRules {
+    /// `penDadosPorGolpeExtra`: os dados a menos por golpe a mais (-1).
+    #[serde(rename = "penDadosPorGolpeExtra", default)]
+    pub dice_per_extra_blow: Option<f64>,
+    /// `penDadosAcumula`: a penalidade cresce a cada golpe.
+    #[serde(rename = "penDadosAcumula", default)]
+    pub penalty_accumulates: Option<bool>,
+    /// `velocidadePorGolpeExtra`: os Ticks a mais por golpe a mais (2).
+    #[serde(rename = "velocidadePorGolpeExtra", default)]
+    pub speed_per_extra_blow: Option<f64>,
+    /// `teto`: o teto de golpes por classe.
+    #[serde(rename = "teto", default)]
+    pub cap: Option<BTreeMap<String, Option<f64>>>,
+    /// `corpoACorpo`: a rajada é só corpo a corpo.
+    #[serde(rename = "corpoACorpo", default)]
+    pub melee_only: Option<bool>,
+}
+
+/// `combate.dupla`.
+#[derive(Debug, Clone, PartialEq, Deserialize)]
+pub struct DualWieldRules {
+    /// `penDados`: os dados a menos no golpe da mão hábil (-1).
+    #[serde(rename = "penDados", default)]
+    pub dice_penalty: Option<f64>,
+    /// `penDadosAmbasAsMaos`: a segunda mão paga o mesmo.
+    #[serde(rename = "penDadosAmbasAsMaos", default)]
+    pub penalty_both_hands: Option<bool>,
+    /// `cicloExtra`: os Ticks a mais por classe, no P/G/R.
+    #[serde(rename = "cicloExtra", default)]
+    pub extra_cycle: Option<BTreeMap<String, Option<f64>>>,
+    /// `cicloExtraNoNormal`: os Ticks a mais no sistema normal.
+    #[serde(rename = "cicloExtraNoNormal", default)]
+    pub extra_cycle_normal: Option<f64>,
 }
 
 /// `combate.movimento`.

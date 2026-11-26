@@ -13,3 +13,4 @@ pub mod rng;
 pub mod sheet;
 pub mod strike;
 pub mod technique;
+pub mod timeline;
