@@ -14,6 +14,21 @@ pub fn to_uint32(x: f64) -> u32 {
     r as u32
 }
 
+/// O tamanho que o `Array.from({ length })` dá a um número (`NaN` e negativo
+/// dão 0, a fração cai).
+pub fn array_length(x: f64) -> usize {
+    if x.is_nan() || x <= 0.0 {
+        0
+    } else {
+        x.floor() as usize
+    }
+}
+
+/// `x || 0` com um número: `NaN` e `-0` viram `0`.
+pub fn or_zero(x: f64) -> f64 {
+    if x.is_nan() || x == 0.0 { 0.0 } else { x }
+}
+
 /// `Math.round` do JavaScript: o meio sobe (para +infinito), inclusive nos
 /// negativos (`round(-2.5) == -2`, `round(2.5) == 3`). Diferente do
 /// `f64::round` do Rust, que afasta o meio do zero.
