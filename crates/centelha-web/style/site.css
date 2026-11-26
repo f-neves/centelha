@@ -552,3 +552,66 @@ main table th.ord:hover, main table th.ord:focus-within { color: var(--accent-st
 .rm-conduta { display: block; margin-top: .15rem; font-size: var(--fs-rotulo); color: var(--ink-soft); font-style: italic; line-height: 1.35; }
 .rm-conduta b { font-family: 'Cinzel', Georgia, serif; font-style: normal; color: var(--gold); font-size: var(--fs-micro); text-transform: uppercase; letter-spacing: .04em; }
 .rm-go { display: inline-block; margin-top: .8rem; font-style: italic; color: var(--accent-texto); text-decoration: none; }
+
+/* ---------- Equipamentos ----------
+   O filtro de src/pages/equipamentos.astro do site atual. */
+.filtros { margin: 1rem 0 1.4rem; display: flex; flex-wrap: wrap; gap: .8rem 1.2rem; align-items: flex-end; }
+.filtros label { font-family: 'Cinzel', Georgia, serif; font-size: var(--fs-micro); color: var(--ink-soft); }
+.filtros input[type='search'] { padding: .35rem .5rem; border: 1px solid var(--panel-border); border-radius: var(--r-sm); background: var(--bg); color: var(--ink); min-width: 12rem; }
+.filtros fieldset { border: 1px solid var(--panel-border); border-radius: var(--r-sm); padding: .3rem .6rem; }
+.filtros legend { font-family: 'Cinzel', Georgia, serif; font-size: var(--fs-micro); color: var(--ink-soft); }
+.chk { display: inline-flex; align-items: center; gap: .25rem; margin-right: .5rem; font-family: 'EB Garamond', Georgia, serif; }
+@media (max-width: 900px) {
+  input:not([type='checkbox']):not([type='radio']) { min-height: 44px; }
+  label.chk { min-height: 44px; display: inline-flex; align-items: center; }
+}
+
+/* ---------- Fixados (painel de consulta) ----------
+   Como em src/components/Referencias.astro do site atual. */
+.ref-pinned { background: color-mix(in srgb, var(--gold) 24%, transparent); border-radius: var(--r-sm); box-shadow: 0 0 0 1px color-mix(in srgb, var(--gold) 35%, transparent); }
+#consulta { position: fixed; right: .8rem; bottom: .8rem; z-index: 55; width: min(20rem, 90vw); max-height: 60vh; overflow-y: auto;
+  background: var(--panel); border: 1px solid var(--accent); border-radius: var(--r-lg); box-shadow: 0 8px 28px var(--shadow); }
+#consulta .cs-head { position: sticky; top: 0; display: flex; justify-content: space-between; align-items: center;
+  background: var(--accent); color: var(--on-accent); font-family: 'Cinzel', Georgia, serif; font-size: var(--fs-micro); padding: .4rem .7rem; }
+#consulta .cs-clear, #consulta .cs-comparar { background: none; border: 1px solid var(--on-accent); color: var(--on-accent); border-radius: var(--r-sm); font-size: var(--fs-micro); cursor: pointer; padding: .05rem .4rem; font-family: 'Cinzel', Georgia, serif; }
+#consulta .cs-n { background: var(--on-accent); color: var(--accent-texto); border-radius: 999px; font-size: var(--fs-micro); padding: 0 .4rem; margin-left: .2rem; }
+#consulta .cs-filter { width: calc(100% - 1.4rem); margin: .5rem .7rem 0; padding: .3rem .45rem; border: 1px solid var(--panel-border); border-radius: var(--r-sm); background: var(--bg); color: var(--ink); font-size: var(--fs-rotulo); }
+#consulta .cs-card { padding: .5rem .7rem; border-bottom: 1px solid var(--rule); position: relative; }
+#consulta .cs-card a { text-decoration: none; }
+#consulta .cs-card b { font-family: 'Cinzel', Georgia, serif; color: var(--accent-texto); }
+#consulta .cs-resumo { display: block; font-size: var(--fs-micro); color: var(--ink-soft); margin-top: .2rem; }
+#consulta .cs-x { position: absolute; top: .35rem; right: .4rem; background: none; border: none; color: var(--ink-soft); cursor: pointer; font-size: var(--fs-micro); }
+@media (max-width: 620px) { #consulta { right: .4rem; left: .4rem; width: auto; } }
+.ref-modal.wide { width: min(58rem, 95vw); }
+.rm-compare { display: flex; gap: 1rem; overflow-x: auto; padding-bottom: .4rem; }
+.rm-col { flex: 0 0 16rem; border: 1px solid var(--panel-border); border-radius: var(--r-lg); padding: .7rem .8rem; background: var(--panel-2); }
+.rm-col .rm-cnome { display: block; font-family: 'Cinzel', Georgia, serif; color: var(--accent-texto); font-size: var(--fs-aux); margin: .3rem 0; }
+.rm-col .rm-cdesc { font-size: var(--fs-rotulo); margin: 0 0 .5rem; }
+
+/* ---------- Cartão das formas ----------
+   Como em src/components/FormasPop.astro do site atual. */
+.formas-fonte { display: none; }
+[data-formas] { cursor: help; text-decoration: underline dotted var(--accent); text-underline-offset: .18em; }
+.formas-pop { position: absolute; z-index: 90; max-width: min(35rem, 92vw); padding: .6rem .75rem;
+  background: var(--panel); border: 1px solid var(--rule); border-radius: var(--r-md);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, .28); font-size: var(--fs-rotulo); line-height: 1.4; animation: formas-entra .12s ease-out; }
+@keyframes formas-entra { from { opacity: 0; transform: translateY(-3px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .formas-pop { animation: none; } }
+.formas-pop .formas-tit { font-family: 'Cinzel', Georgia, serif; color: var(--accent-strong); font-size: var(--fs-rotulo); letter-spacing: .04em; text-transform: uppercase; display: block; margin-bottom: .15rem; }
+.formas-pop .formas-nota { display: block; color: var(--ink-soft); font-size: var(--fs-micro); margin-bottom: .5rem; }
+.formas-pop .formas-grade { display: flex; flex-wrap: wrap; gap: .5rem .7rem; }
+.formas-pop figure { margin: 0; width: 5.2rem; text-align: center; }
+.formas-pop figcaption { font-size: var(--fs-micro); color: var(--ink-soft); margin-top: .1rem; }
+.formas-pop svg { width: 100%; height: 3.2rem; display: block; fill: color-mix(in srgb, var(--accent) 16%, transparent); stroke: var(--accent-strong); stroke-width: 1.6; stroke-linejoin: round; }
+.formas-pop svg .face-topo { fill: color-mix(in srgb, var(--accent) 30%, transparent); }
+.formas-pop svg .face-lado { fill: color-mix(in srgb, var(--accent) 24%, transparent); }
+.formas-pop svg .linha-fina { fill: none; stroke-width: 1.1; stroke-dasharray: 3 2.5; }
+@media print { .formas-pop { display: none !important; } }
+
+/* ---------- Voltar ao topo ----------
+   Como em src/components/VoltarAoTopo.astro do site atual. */
+.topo-btn { position: fixed; right: .8rem; bottom: .8rem; z-index: 54; font-family: 'Cinzel', Georgia, serif; font-size: var(--fs-micro); letter-spacing: .04em;
+  padding: .4rem .8rem; border-radius: 999px; cursor: pointer; background: var(--panel); color: var(--ink); border: 1px solid var(--panel-border);
+  box-shadow: 0 2px 10px var(--shadow); opacity: .92; }
+.topo-btn:hover { border-color: var(--accent); color: var(--accent-texto); opacity: 1; }
+@media print { .topo-btn { display: none !important; } }

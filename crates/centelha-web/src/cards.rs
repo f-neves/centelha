@@ -384,6 +384,10 @@ mod browser {
             if let Ok(text) = js_sys::JSON::stringify(&list) {
                 let _ = storage.set_item(key, &String::from(text));
             }
+            // O painel dos fixados (`crate::bookmarks`) se redesenha.
+            if let Ok(event) = web_sys::Event::new(crate::bookmarks::CHANGED) {
+                let _ = self.window.dispatch_event(&event);
+            }
         }
     }
 
