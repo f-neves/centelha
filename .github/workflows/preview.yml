@@ -51,13 +51,13 @@ jobs:
         with:
           shared-key: site
 
-      - name: Cache das ferramentas do WebAssembly
+      - name: Cache das ferramentas do site
         uses: actions/cache@v6.1.0
         with:
           path: ~/.centelha-ferramentas
           key: ferramentas-${{ runner.os }}-${{ hashFiles('tools/ci/ferramentas.sh') }}
 
-      - name: Ferramentas do WebAssembly (wasm-bindgen, wasm-opt)
+      - name: Ferramentas do site (wasm-bindgen, wasm-opt, Pagefind)
         run: |
           sh tools/ci/ferramentas.sh ~/.centelha-ferramentas
           echo "WASM_BINDGEN=$HOME/.centelha-ferramentas/bin/wasm-bindgen" >> "$GITHUB_ENV"

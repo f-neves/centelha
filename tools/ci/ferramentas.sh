@@ -65,7 +65,8 @@ fi
 PF_TEXTO="pagefind $PAGEFIND_VERSAO"
 if ! versao_certa "$destino/bin/pagefind" "$PF_TEXTO"; then
 	nome=pagefind-v$PAGEFIND_VERSAO-x86_64-unknown-linux-musl
-	baixar pagefind "https://github.com/Pagefind/pagefind/releases/download/v$PAGEFIND_VERSAO/$nome.tar.gz" 		"$PAGEFIND_SHA256" "$tmp/pf.tar.gz"
+	baixar pagefind "https://github.com/Pagefind/pagefind/releases/download/v$PAGEFIND_VERSAO/$nome.tar.gz" \
+		"$PAGEFIND_SHA256" "$tmp/pf.tar.gz"
 	tar -xzf "$tmp/pf.tar.gz" -C "$tmp" pagefind
 	cp "$tmp/pagefind" "$destino/bin/pagefind"
 fi

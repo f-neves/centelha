@@ -33,8 +33,12 @@ try {
   const page = await browser.newPage();
   const bytes = new Map();
   const urls = new Map();
-  page.on('Network.requestWillBeSent', (p) => urls.set(p.requestId, p.request.url));
+  // Todo pedido conta, terminado ou não: um arquivo do Pagefind pedido e
+  // falhado (ou ainda em curso) também quebra a regra "sem buscar, nada".
+  let pedidos = [];
+  page.on('Network.requestWillBeSent', (p) => { urls.set(p.requestId, p.request.url); pedidos.push(p.request.url); });
   page.on('Network.loadingFinished', (p) => bytes.set(p.requestId, p.encodedDataLength));
+  page.on('Network.loadingFailed', (p) => pedidos.push(urls.get(p.requestId) ?? ''));
   await page.send('Page.enable');
   await page.send('Runtime.enable');
   await page.send('Network.enable');
@@ -52,7 +56,9 @@ try {
   await new Promise((ok) => setTimeout(ok, 1500));
   const semBusca = soma(() => true);
   const pagefindSemBusca = soma(doPagefind);
+  const pedidosSemBusca = [...new Set(pedidos.filter(doPagefind))];
   bytes.clear();
+  pedidos = [];
 
   // 2. A busca, pela API do pagefind.js.
   const r = await page.eval(`(async () => {
@@ -67,21 +73,26 @@ try {
   })()`);
   await new Promise((ok) => setTimeout(ok, 500));
   const daBusca = soma(doPagefind);
+  const pedidosDaBusca = [...new Set(pedidos.filter(doPagefind))].length;
 
   const alvo = r.dados.find((d) => d.url.includes(PAGINA));
-  const ancora = alvo?.sub.find((s) => s.url.includes('#') && s.titulo.toLowerCase().includes(TERMO.toLowerCase()));
+  const ancora = alvo?.sub.find((s) => s.url.includes('#') && s.titulo?.toLowerCase().includes(TERMO.toLowerCase()));
   console.log(`busca por "${TERMO}" em ${origin}${base}: ${r.total} resultados`);
   for (const d of r.dados) {
     console.log(`  ${d.url} (${d.titulo})`);
     for (const s of d.sub) console.log(`      ${s.url} (${s.titulo})`);
   }
-  console.log(`bytes ao abrir ${PAGINA} sem buscar: ${semBusca} (do Pagefind: ${pagefindSemBusca})`);
-  console.log(`bytes que a busca acrescenta (pagefind.js, WebAssembly, índice, fragmentos): ${daBusca}`);
+  console.log(`bytes ao abrir ${PAGINA} sem buscar: ${semBusca} (do Pagefind: ${pagefindSemBusca} B em ${pedidosSemBusca.length} pedidos)`);
+  console.log(`bytes que a busca acrescenta (pagefind.js, WebAssembly, índice, fragmentos): ${daBusca} B em ${pedidosDaBusca} pedidos`);
+  if (pedidosDaBusca === 0) { console.log('FALHA: a busca não pediu nenhum arquivo do Pagefind (a contagem de pedidos está quebrada?)'); falhou = true; }
 
   if (!alvo) { console.log(`FALHA: nenhum dos 5 primeiros resultados é ${PAGINA}`); falhou = true; }
   else if (!ancora) { console.log(`FALHA: ${PAGINA} veio sem âncora de título com "${TERMO}"`); falhou = true; }
   else console.log(`ok: ${ancora.url}`);
-  if (pagefindSemBusca > 0) { console.log('FALHA: a página baixou arquivo do Pagefind sem buscar'); falhou = true; }
+  if (pedidosSemBusca.length > 0) {
+    console.log(`FALHA: a página pediu arquivo do Pagefind sem buscar: ${pedidosSemBusca.join(', ')}`);
+    falhou = true;
+  }
 } finally {
   await browser.close();
   if (server) await server.close();
