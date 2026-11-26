@@ -130,7 +130,16 @@ xtask              (sozinho; não é dependência de ninguém)
 
 **Faz:** fala com o Supabase do jogo (tabelas, funções RPC, arquivos e tempo real). Continua o mesmo banco do site atual (R2).
 
-**Expõe:** a definir na primeira entrega (só leitura), pela ADR 0007: pedido montado sem IO, envio por alvo atrás de um `Transport` (`gloo-net` no WebAssembly, `reqwest` no nativo), toda leitura de dado de mesa com `Session`, `is_admin` só pela `eh_admin`. O tempo real vem depois, em PR próprio.
+**Expõe (primeira entrega, só leitura, PR 34; ADR 0007):**
+- `Config::new(url, anon_key)` (tira a barra do fim; `url()`). A chave não sai do crate: sem leitor público, e o `Debug` mostra `<oculta>`. `Session::new(access_token)`, com o mesmo `Debug`. O crate não lê nem grava sessão do navegador (R26).
+- `Request { method, url, headers, body }` e `Response { status, headers, body }` (`header(nome)`, `ok()`), `Method::{Get, Head, Post}`. O `Debug` do `Request` esconde `apikey` e `Authorization`. O pedido é montado sem IO.
+- `Transport`: `fn send(&self, Request) -> impl Future<Output = Result<Response, Error>>`. `FetchTransport` (`gloo-net`) só no `wasm32`; `ReqwestTransport` (`reqwest` com `rustls`) só no nativo, com o erro sem a URL.
+- `Relation` (`const NAME`, tabela ou view) e `PublicRelation` (leitura com a chave anon como portador). Só `Migration` é pública.
+- `Select<R>`: `new()` (`*`), `columns(..)` (espaços fora de aspas saem, como no `supabase-js`), `eq`, `is_in` (valor com vírgula ou parêntese vai entre aspas), `order(coluna, Direction::{Ascending, Descending})` acumulando, `limit(n)`; consulta codificada como o `URLSearchParams`.
+- `Client::new(config, transport)`: `select(&Session, &Select) -> Vec<R>`, `single` (objeto do PostgREST), `maybe_single` (mais de uma linha é o erro `PGRST116`), `count` (`HEAD` com `Prefer: count=exact`), `select_public(&Select<R: PublicRelation>)` (não compila para relação que não é pública), `is_admin(Option<&Session>) -> bool` (R22, abaixo), `visible_party(&Session, table_id) -> Vec<PartyMember>` (`rpc/grupo_visivel`), `config()`, `transport()`.
+- `Error::{Transport(String), Http { status, code, message }, Decode(String)}`; `code` e `message` vêm do JSON de erro do PostgREST, ou o corpo inteiro quando não é JSON.
+- Linhas (colunas das migrações até a 42; todo campo fora a chave tem padrão, porque o site quase sempre pede só algumas colunas): `Profile` (`profiles`), `Table` (`mesas`), `TableMember` (`mesa_membros`, `MemberRole::{GameMaster, Player}`, a mesa embutida em `table`), `Character` (`personagens`, a ficha em `sheet: Value` pela ADR 0004, `CharacterStatus::{Draft, Submitted, Approved}` de `rascunho`, `enviado` e `aprovado`), `Migration` (`migracoes`) e `PartyMember` (a linha da `grupo_visivel`). O nome do banco fica só em `serde(rename)` ou constante.
+- Fora desta entrega: gravar, entrar e renovar a sessão, arquivos e tempo real (PRs próprios). A tabela do códice do Mestre só na fase 3, pela R27.
 
 **Consome:** a URL e a chave anon por configuração (nunca no código). Chave de serviço nunca.
 

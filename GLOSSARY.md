@@ -299,3 +299,21 @@ No `grid` do Efeito: forma `shape`, âncora `anchor`, gatilho `trigger`, alvo `t
 | padrão (valor) | `standard` (no `SideState`, o campo do JSON `padrao` ficou `default`) | acima de (linha do esticar) | `above` |
 | aberturas (graus do arco) | `openings` | estado no lado | `side_state` |
 | fatias | `slices` | árvore de texto (de uma regra) | `Node` |
+
+## Cliente do banco, só leitura (acréscimo de 26/11, tarefa 015 do Backend)
+
+| Português | Inglês | Português | Inglês |
+|---|---|---|---|
+| configuração (URL e chave anon) | `Config` | transporte (quem envia o pedido) | `Transport` |
+| consulta (select do PostgREST) | `Select` | está em (filtro `in`) | `is_in` (`in` é palavra reservada) |
+| perfil | `Profile` | membro da mesa | `TableMember` |
+| papel na mesa | `MemberRole` (`GameMaster`, `Player`) | situação da ficha | `CharacterStatus` (`Draft` rascunho, `Submitted` enviado, `Approved` aprovado) |
+| colega do grupo (linha da `grupo_visivel`) | `PartyMember` | grupo visível | `visible_party` |
+| é admin (pela `eh_admin`) | `is_admin` | migração (linha de `migracoes`) | `Migration` |
+| código de convite | `invite_code` | XP inicial | `starting_xp` |
+| revelar | `reveal` | gravar lances | `record_strikes` |
+| dono | `owner` | conceito | `concept` |
+| história | `history` | anotações | `notes` |
+| nota de revisão | `review_note` | vaga / código da vaga | `slot` / `slot_code` |
+| posição da imagem | `image_position` | à mão / aplicada em (migração) | `by_hand` / `applied_at` |
+| resumo (da ficha na mesa: Vida, Energia) | `summary` (o mesmo termo do resumo do capítulo, em outro contexto) | | |
