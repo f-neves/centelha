@@ -428,6 +428,15 @@ fn sheet_editor_matches_typescript() {
         if name == "normalize" {
             order_diffs(&got["ficha"], &c["out"]["ficha"], "ficha", &mut diffs);
         }
+        // o mesmo nos casos dos traços: o que a operação deixou, em cada objeto
+        if run_traits_names().contains(&name) {
+            // (a ordem das chaves do envelope do caso é do gerador; a dos valores, da ficha)
+            if let Some(o) = c["out"].as_object() {
+                for (k, v) in o {
+                    order_diffs(&got[k.as_str()], v, k, &mut diffs);
+                }
+            }
+        }
         assert!(
             diffs.is_empty(),
             "primeiro caso diferente: {i} ({} diferenças):\n{}",
@@ -819,4 +828,32 @@ fn run_traits(ctx: &Ctx, inputs: &Value, name: &str, a: &[Value], want: &Value) 
         _ => return None,
     };
     Some(out)
+}
+
+/// Os casos da fatia 6 (os que passam por `run_traits`).
+fn run_traits_names() -> [&'static str; 22] {
+    [
+        "aplicarValor",
+        "clicarBolinha",
+        "teclaSeta",
+        "anteAdd",
+        "anteRm",
+        "anteNome",
+        "defEspMais",
+        "defEspTira",
+        "tecnicaClique",
+        "efeitoClique",
+        "massaCampo",
+        "identidade",
+        "orcamento",
+        "livreNome",
+        "especialidade",
+        "anteInst",
+        "tetoRacial",
+        "pisoDe",
+        "valOf",
+        "racApMod",
+        "apEfetiva",
+        "specCount",
+    ]
 }
