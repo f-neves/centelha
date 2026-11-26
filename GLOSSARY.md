@@ -223,3 +223,22 @@ O passo de Batalha é `battle` em todo lugar: na saída da ficha (`Movement.batt
 | Defesa efetiva | `effective_defense` | índice do golpe | `blow_index` |
 | dano bruto | `gross` | modificador manual | `manual_mod` |
 | dano absorvido | `absorbed` | margem do raspão / dano do raspão | `graze_margin` / `graze_damage` |
+
+## Catálogos da fase 2 (acréscimo de 26/11, tarefa 008 do Backend)
+
+Proeza, Caminho e Técnica: cada entrada de `caminhos.json` é um Caminho (`path`), o grupo de Técnicas que a fonte também chama de Proeza (`feat`); a Técnica (`technique`) é cada compra dentro dele. O custo e as escalas seguem o nome Proeza da fonte (`feat_cost`, `feat_scales` de `escalasProeza`), e o modificador que uma Técnica dá numa dessas escalas é `technique_modifier` (`modProeza`).
+
+| Português | Inglês | Português | Inglês |
+|---|---|---|---|
+| tipo da Técnica: passiva, ativa, reflexiva | `TechniqueKind`: `Passive`, `Active`, `Reflexive` | categoria da Arte: elemental, universal | `ArtCategory`: `Elemental`, `Universal` |
+| trilha de melhora (da Técnica) | `effect` (o campo), `FeatScaleTrack` | atributo de conjuração | `casting_attribute` |
+| escalas da Proeza | `feat_scales` | nível da Arte | `ArtLevel` |
+| modificador da Técnica | `technique_modifier`, `TechniqueModifier` | exemplos | `examples` |
+| rótulo / unidade / valores | `label` / `unit` / `values` | sabor (do Efeito numa Arte) | `flavor` |
+| fecho dos pré-requisitos | `prerequisite_closure` | parâmetro: padrão, substitui, fixo | `ParameterKind`: `Standard`, `Replaces`, `Fixed` |
+| XP da cadeia | `chain_xp` | escala / régua / pontos / por nível / custa Mana | `scale` / `ruler` / `points` / `per_level` / `mana_cost` |
+| trilha do Caminho: corpo, voz, mente | `Track`: `Body`, `Voice`, `Mind` | escalonável | `scalable` |
+| Habilidade âncora | `anchor_skill` | ação livre | `free_action` |
+| dano bruto (da Arte) | `raw_damage` | dado por nível | `dice_per_level` |
+
+No `grid` do Efeito: forma `shape`, âncora `anchor`, gatilho `trigger`, alvo `target`, persiste `persists`, matéria `matter`, condição aparente `apparent_condition`, pega item `takes_item`, arena inteira `whole_arena`, dissipa `dispels`, fere `harms`, cura `heals`, teste `test`.

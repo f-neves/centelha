@@ -33,7 +33,7 @@ xtask              (sozinho; não é dependência de ninguém)
 
 **Expõe (o que já existe no `main`):**
 
-- Módulos: `bestiary`, `rules`, `weapons`, `armor`, `shields`, `ancestry`. Os outros arquivos de dados (atributos, Habilidades, Virtudes, Técnicas, Caminhos, Artes, Efeitos, condições, glossário, raças) entram como módulo quando a API proposta for aprovada neste arquivo.
+- Módulos: `bestiary`, `rules`, `weapons`, `armor`, `shields`, `ancestry`, `techniques`, `paths`, `arts`, `effects` (e `chapters` e `glossary`, abaixo). Os outros arquivos de dados (atributos, Habilidades, Virtudes, condições) entram como módulo quando a API proposta for aprovada neste arquivo.
 - Na raiz do crate: `Creature`, `Rules`, `Weapon`, `Armor`, `Shield`, `Ancestry`, `DataError`, os `parse_*` e os `load_*`. O resto mora no módulo de cada um (por exemplo `bestiary::Size`).
 - `Creature`: uma criatura do bestiário, com `id: String` e os campos usados pelo motor.
 - Leitura a partir de texto: `fn parse_creature(json: &str) -> Result<Creature, DataError>` e equivalentes. Funciona em WebAssembly (sem arquivo).
@@ -45,11 +45,18 @@ xtask              (sozinho; não é dependência de ninguém)
 - Raças: `ancestry::{Ancestry, ConditionalBonus, parse_ancestries}` e, no nativo, `load_ancestries` (de `racas.json`). `Ancestry` com `id`, `name`, `size: Option<Size>`, `attributes`, `appearance_mod`, `mass_kg: Option<[f64; 2]>`, `movement_fraction`, `conditional_bonuses` e `adds_stamina_to_hp()`.
 - Em `Rules`, para o personagem: `XpRules`, `XpTrack`, `XpKind` (fechado de propósito: tipo de trilha desconhecido em `regras.json` faz a leitura falhar, onde o TypeScript somaria como `acum` sem avisar), `XP_NAMED`, `AppearanceRules`, `DeathRules`, `DeathRounding`, `DamageRules`, `PierceGate`, `StrengthRules`, `SizeAccuracyReform`.
 - Em `Rules`, para a ficha: `rules::{MovementRules, Ladder, NearMissRules, NearMissWeapon, NearMissArmor, NearMissThresholds, CombatMovement, Charge}` (`derived.movement`, `near_miss`, `combat.movement.charge`). As escadas do Deslocamento ficam na ordem do JSON, porque a soma é feita nessa ordem.
+- Catálogos da fase 2, no molde do `glossary` (`parse_*(&str) -> Result<Vec<_>, DataError>`, `load_*(content_dir)` só no nativo; campo desconhecido não dá erro; id vazio ou repetido dá `Invalid`):
+  - `techniques::{Technique, TechniqueKind, TechniqueCost}`, de `tecnicas.json`, com `parse_techniques`/`load_techniques`;
+  - `paths::{Path, Track}`, de `caminhos.json` (as Proezas), com `parse_paths`/`load_paths`. O tipo `Path` não é reexportado na raiz (o nome coincide com `std::path::Path`): use `paths::Path`;
+  - `arts::{Art, ArtCategory, ArtLevel, ArtCost, ArtGrid}`, de `artes.json`, com `parse_arts`/`load_arts`;
+  - `effects::{Effect, EffectArt, EffectParameter, ParameterKind, EffectGrid}`, de `efeitos.json`, com `parse_effects`/`load_effects`;
+  - em `Rules`: `rules::{FeatScales, FeatScaleTrack}` e `Rules::feat_scales` (`escalasProeza.trilhas`);
+  - cada `enum` desses tem `id()`, que devolve o texto do JSON.
 - `serde_json` com `float_roundtrip` (a leitura de `f64` tem de ser exata para a paridade).
 
 **Expõe também (feito pelo Frontend por exceção):** módulo `chapters`, com `Chapter { slug, order, numeral, title, summary, chapter_name, body }`. `chapter_name: Option<String>` é o campo opcional `capitulo` do schema do site atual (o nome do capítulo de várias páginas quando a primeira página tem outro título); os outros quatro campos do cabeçalho são obrigatórios. `body` é o Markdown sem o cabeçalho. Funções: `parse_chapter(slug: &str, text: &str) -> Result<Chapter, DataError>` e, no nativo, `load_chapters(content_dir: &Path) -> Result<Vec<Chapter>, DataError>` em ordem de `order`. O `slug` é o nome do arquivo sem `.md`. Sem dependência nova de YAML: o cabeçalho é uma linha por campo, `chave: valor`, separado no primeiro dois-pontos, com valor entre aspas duplas (texto) ou número inteiro (`ordem`); o que não seguir isso, ou chave desconhecida, dá erro `Invalid`.
 
-**Vai expor (entra com a tarefa 003 do Frontend, por exceção, com esta API):** módulo `glossary`, com `GlossaryEntry { id: String, term: String, aliases: Vec<String>, definition: String }` lido de `glossario.json` (`termo`, `aliases`, `definicao`), `parse_glossary(json: &str) -> Result<Vec<GlossaryEntry>, DataError>` e, no nativo, `load_glossary(content_dir: &Path)`. Id vazio ou repetido dá `Invalid`.
+**Expõe também (feito pelo Frontend por exceção):** módulo `glossary`, com `GlossaryEntry { id: String, term: String, aliases: Vec<String>, definition: String }` lido de `glossario.json` (`termo`, `aliases`, `definicao`), `parse_glossary(json: &str) -> Result<Vec<GlossaryEntry>, DataError>` e, no nativo, `load_glossary(content_dir: &Path)`. Id vazio ou repetido dá `Invalid`.
 
 **Consome:** `content/` (nada mais).
 
@@ -84,6 +91,10 @@ xtask              (sozinho; não é dependência de ninguém)
   - Fontes de dados: o trait `DiceSource` (`roll(&mut self, &str, extra_dice, extra_flat) -> (f64, Vec<f64>)`), `RolledDice<'a>(&'a mut Mulberry32)` (a `fonteRolada`) e `FixedDice::new(attack, damage)` (a `fonteFixa`, dados que já caíram).
   - Tipos: `StrikeAttacker`, `StrikeTarget`, `StrikeInput`, `StrikeOutcome`, `BlowDamage { gross, absorbed, net }`.
   - Funções: `effective_defense(&StrikeTarget) -> Option<f64>` (`defesaEfetiva`), `resolve_strike(&StrikeInput, &mut impl DiceSource) -> StrikeOutcome` (`resolverGolpe`; o dano só é rolado no acerto), `blow_damage(Option<AttackOutcome>, rolled, graze_damage, soak, slips) -> BlowDamage` e `blow_slips(&Rules, gate_on, weapon_pierce: Option<f64>, pierce_level: Option<f64>) -> bool`. O dano do golpe (piso do raspão e portão da Perfuração) mora só em `blow_damage`: no acerto, o rolado (nunca abaixo de 0) menos a Absorção, com piso no dano do raspão; no raspão, o dano fixo, sem Absorção; no erro, nada; quando o golpe resvala, nada, nem o piso (a conta do Grid que desce a Vida).
+- `technique`: as contas das Técnicas que a árvore, o catálogo e a ficha usam.
+  - `technique_modifier(&Rules, effect, level) -> Option<TechniqueModifier { value, title }>` (`modProeza` de `data.ts`; o título é o do `data.ts`, com a unidade; a árvore monta o texto curto dela com o `value` e o rótulo da escala).
+  - `prerequisite_closure<'a>(&'a [Technique], id: &str) -> Vec<&'a str>`: os pré-requisitos da Técnica, sem ela mesma, na ordem do `closure` da árvore (o da fonte é a Técnica seguida desta lista).
+  - `chain_xp(&Rules, &[Technique], id) -> f64`: o XP da Técnica mais o da cadeia, pelo `feat_cost` do nível (0 para id de fora).
 - `js::max`, `js::min`, `js::number_to_string`: `Math.max`, `Math.min` e `String(número)` do JavaScript.
 - Daqui em diante, por fase: derivados da ficha e das criaturas (fase 1), combate e tempo em Ticks, Artes, lógica do Grid (fase 3). Cada módulo entra no contrato quando a API proposta é aprovada neste arquivo.
 
