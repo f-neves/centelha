@@ -1,5 +1,5 @@
 {
-"source": {"commit":"055dccd94617f8593445793876e545b8e33dfc44","commitDate":"2026-11-25T13:06:45-03:00","contentCommit":"055dccd94617f8593445793876e545b8e33dfc44","forced":false,"generator":"tools/parity/gen-references.mjs"},
+"source": {"commit":"67d498490a2e07cdce9140a82c84d8515d2dfaaf","commitDate":"2026-11-26T01:41:58-03:00","contentCommit":"67d498490a2e07cdce9140a82c84d8515d2dfaaf","forced":false,"generator":"tools/parity/gen-references.mjs"},
 "note": "fixed: resolverGolpe(entrada, fonteFixa(sorteio)) de cada lance de scripts/fixtures/lances.jsonl; rolled: os mesmos lances pela fonteRolada com um Mulberry32 só (semente 20260903), draws = números já entregues; rolls: rolarExpr com um Mulberry32 só (semente 771107). Montado por tools/parity/strikes.mjs. -0 gravado como \"-0\".",
 "rolledSeed": 20260903,
 "rollsSeed": 771107,

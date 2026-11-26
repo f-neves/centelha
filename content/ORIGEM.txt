@@ -1,7 +1,7 @@
 Origem do conteúdo desta pasta (gerado por `cargo xtask sync-content`; não editar à mão).
 
-commit: 055dccd94617f8593445793876e545b8e33dfc44
-data do commit: 2026-11-25T13:06:45-03:00
+commit: 67d498490a2e07cdce9140a82c84d8515d2dfaaf
+data do commit: 2026-11-26T01:41:58-03:00
 arquivos: 703 (20.8 MB)
 imagens com metadado removido: 0
 nomes de papel trocados por "revisão" nas notas (ADR 0005): 100
