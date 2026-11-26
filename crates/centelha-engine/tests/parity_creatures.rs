@@ -3,27 +3,14 @@
 //!
 //! A saída do Rust é escrita na mesma forma do objeto do TypeScript (as mesmas
 //! chaves, `null` onde o TypeScript escreve `null`, chave ausente onde ele não
-//! escreve) e comparada folha por folha: número por `to_bits()` (o JSON não
-//! guarda -0, então 0 e -0 contam iguais), texto e booleano por igualdade.
+//! escreve) e comparada folha por folha: número por `to_bits()` (o gerador
+//! grava -0 como o texto `"-0"`), texto e booleano por igualdade.
 
-use std::path::{Path, PathBuf};
+mod common;
 
 use centelha_engine::creature::{CreatureDerived, Defense, Soak, Tables, derive, with_form};
+use common::{compare, num, opt, repo};
 use serde_json::{Map, Value, json};
-
-fn repo() -> PathBuf {
-    Path::new(env!("CARGO_MANIFEST_DIR")).join("../..")
-}
-
-fn num(x: f64) -> Value {
-    Value::Number(
-        serde_json::Number::from_f64(x).unwrap_or_else(|| panic!("número não finito: {x}")),
-    )
-}
-
-fn opt(x: Option<f64>) -> Value {
-    x.map_or(Value::Null, num)
-}
 
 fn defense(d: Defense) -> Value {
     match d {
@@ -98,55 +85,6 @@ fn as_typescript(d: &CreatureDerived) -> Value {
     Value::Object(o)
 }
 
-/// Compara folha por folha; devolve quantas folhas comparou e anota as
-/// diferenças.
-fn compare(path: &str, got: &Value, want: &Value, diffs: &mut Vec<String>) -> usize {
-    match (got, want) {
-        (Value::Object(g), Value::Object(w)) => {
-            let mut n = 0;
-            for k in w.keys().chain(g.keys().filter(|k| !w.contains_key(*k))) {
-                match (g.get(k), w.get(k)) {
-                    (Some(a), Some(b)) => n += compare(&format!("{path}.{k}"), a, b, diffs),
-                    (None, Some(b)) => {
-                        diffs.push(format!("{path}.{k}: falta no Rust (TypeScript: {b})"))
-                    }
-                    (Some(a), None) => diffs.push(format!("{path}.{k}: sobra no Rust ({a})")),
-                    (None, None) => unreachable!(),
-                }
-            }
-            n
-        }
-        (Value::Array(g), Value::Array(w)) => {
-            if g.len() != w.len() {
-                diffs.push(format!(
-                    "{path}: {} itens no Rust, {} no TypeScript",
-                    g.len(),
-                    w.len()
-                ));
-                return 1;
-            }
-            g.iter()
-                .zip(w)
-                .enumerate()
-                .map(|(i, (a, b))| compare(&format!("{path}[{i}]"), a, b, diffs))
-                .sum()
-        }
-        (Value::Number(a), Value::Number(b)) => {
-            let (a, b) = (a.as_f64().unwrap(), b.as_f64().unwrap());
-            if a.to_bits() != b.to_bits() && !(a == 0.0 && b == 0.0) {
-                diffs.push(format!("{path}: Rust {a:?}, TypeScript {b:?}"));
-            }
-            1
-        }
-        (a, b) => {
-            if a != b {
-                diffs.push(format!("{path}: Rust {a}, TypeScript {b}"));
-            }
-            1
-        }
-    }
-}
-
 #[test]
 fn creatures_match_typescript() {
     let content = repo().join("content");
@@ -207,22 +145,5 @@ fn creatures_match_typescript() {
 
 #[test]
 fn the_comparison_catches_differences() {
-    let mut diffs = Vec::new();
-    let want = json!({"pv": 37, "tamanho": "medio", "mana": null, "ataques": [{"jogada": 7}]});
-    let same = json!({"pv": 37.0, "tamanho": "medio", "mana": null, "ataques": [{"jogada": 7}]});
-    assert_eq!(compare("x", &same, &want, &mut diffs), 4);
-    assert!(diffs.is_empty());
-    let cases = [
-        json!({"pv": num(f64::from_bits(37f64.to_bits() + 1)), "tamanho": "medio", "mana": null, "ataques": [{"jogada": 7}]}),
-        json!({"pv": 37, "tamanho": "grande", "mana": null, "ataques": [{"jogada": 7}]}),
-        json!({"pv": 37, "tamanho": "medio", "mana": 0, "ataques": [{"jogada": 7}]}),
-        json!({"pv": 37, "tamanho": "medio", "ataques": [{"jogada": 7}]}),
-        json!({"pv": 37, "tamanho": "medio", "mana": null, "ataques": [{"jogada": 7}], "enxame": {}}),
-        json!({"pv": 37, "tamanho": "medio", "mana": null, "ataques": []}),
-    ];
-    for got in cases {
-        let mut diffs = Vec::new();
-        compare("x", &got, &want, &mut diffs);
-        assert_eq!(diffs.len(), 1, "{got}");
-    }
+    common::check_comparator();
 }
