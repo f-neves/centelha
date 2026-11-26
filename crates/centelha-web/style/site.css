@@ -163,27 +163,137 @@ code { font-size: .9em; }
 .skip { position: absolute; left: -9999px; top: 0; background: var(--accent); color: var(--on-accent); padding: .5em 1em; z-index: 100; }
 .skip:focus { left: 0; }
 
-/* ---------- Casca ---------- */
-.topbar {
-  display: flex; align-items: center; justify-content: space-between; gap: .6rem; flex-wrap: wrap;
-  padding: .6rem clamp(1rem, 4vw, 3rem);
-  border-bottom: 1.5px solid var(--rule); background: var(--bg-soft);
-}
-.brand { font-family: 'Cinzel', Georgia, serif; font-weight: 700; color: var(--accent-texto); font-size: var(--fs-h3); text-decoration: none; line-height: 1.1; }
-.brand .d6, .d6 { color: var(--accent-strong); }
+/* ---------- Casca ----------
+   Port da casca do site atual (src/styles/global.css e os componentes da
+   barra lateral, da trilha e do "Nesta página"). */
 
+/* O invólucro das ilhas não entra no desenho da página (senão vira item da
+   grade da casca). */
+leptos-island, leptos-children { display: contents; }
+
+/* `hidden` vence qualquer `display` das regras abaixo. */
+[hidden] { display: none !important; }
+
+.shell { display: grid; grid-template-columns: 17rem 1fr; min-height: 100vh; }
+.sidebar {
+  border-right: 1.5px solid var(--rule); background: var(--bg-soft);
+  padding: 1.2rem 1rem 3rem; position: sticky; top: 0; height: 100vh; overflow-y: auto;
+}
+.content { min-width: 0; padding: 1.6rem clamp(1rem, 4vw, 3rem) 6rem; overflow-wrap: break-word; }
+.prose { max-width: 46rem; margin-inline: 0 auto; }
+.wide { max-width: 60rem; margin-inline: auto; }
+@media (min-width: 901px) { .content { padding-inline: 3rem; } }
+.prose p, .prose li { text-align: justify; hyphens: auto; }
+
+/* A barra de cima só existe no celular. */
+.topbar { display: none; }
+
+/* Recolher e expandir a barra lateral (desktop). */
+.sidebar-collapse, .sidebar-expand { display: none; }
+@media (min-width: 901px) {
+  .sidebar-collapse { display: inline-flex; position: absolute; top: .7rem; right: .7rem; padding: .15rem .5rem; line-height: 1; }
+  .sidebar-expand { position: fixed; top: .7rem; left: .7rem; z-index: 50; padding: .2rem .6rem; line-height: 1; box-shadow: 0 2px 8px var(--shadow); }
+  html.sidebar-collapsed .shell { grid-template-columns: 1fr; }
+  html.sidebar-collapsed .sidebar { display: none; }
+  html.sidebar-collapsed .content { padding-left: clamp(3rem, 6vw, 5rem); }
+  html.sidebar-collapsed .sidebar-expand { display: inline-flex; }
+}
+
+.brand { font-family: 'Cinzel', Georgia, serif; font-weight: 700; color: var(--accent-texto); font-size: var(--fs-h3); text-decoration: none; display: block; line-height: 1.1; }
+.brand .d6, .d6 { color: var(--accent-strong); }
+.brand small { display: block; font-family: 'EB Garamond', Georgia, serif; font-style: italic; font-weight: 400; font-size: var(--fs-micro); color: var(--ink-soft); letter-spacing: 0; }
+
+.sidebar-theme { margin-top: 1rem; }
 .theme-switcher { display: flex; gap: .3rem; flex-wrap: wrap; }
 .theme-switcher .btn { padding: .3rem .6rem; }
 .theme-switcher .btn[aria-pressed='true'] { background: var(--accent); color: var(--on-accent); border-color: transparent; }
 
-.content { min-width: 0; padding: 1.6rem clamp(1rem, 4vw, 3rem) 6rem; overflow-wrap: break-word; }
-.prose { max-width: 46rem; margin-inline: 0 auto; }
-.prose p, .prose li { text-align: justify; hyphens: auto; }
+nav.toc { margin-top: 1.2rem; }
+nav.toc .grp { font-variant: small-caps; letter-spacing: .08em; color: var(--ink-soft); font-size: var(--fs-rotulo); margin: 1.1rem 0 .3rem; font-family: 'Cinzel', Georgia, serif; }
+nav.toc a { display: flex; gap: .5rem; align-items: baseline; text-decoration: none; color: var(--ink); padding: .28rem .5rem; border-radius: var(--r-sm); font-size: var(--fs-aux); }
+nav.toc a:hover { background: var(--panel); }
+nav.toc a[aria-current='page'] { background: var(--accent); color: var(--on-accent); }
+nav.toc a[aria-current='page'] .num { color: var(--on-accent); }
+nav.toc a .num { color: var(--accent-texto); font-family: 'Cinzel', Georgia, serif; font-size: var(--fs-micro); min-width: 2.1rem; }
+nav.toc a.subcap { padding-left: 2.6rem; font-size: var(--fs-rotulo); color: var(--ink-soft); }
+nav.toc a.subcap .num { min-width: 0; margin-left: -.9rem; }
+nav.toc a.subcap[aria-current='page'] { color: var(--on-accent); }
+
+.crumbs { font-size: var(--fs-rotulo); color: var(--ink-soft); margin: 0 0 1rem; font-family: 'Cinzel', Georgia, serif; letter-spacing: .02em; }
+.crumbs a { color: var(--accent-texto); text-decoration: none; }
+.crumbs a:hover { text-decoration: underline; }
+.crumbs .crumb-sep { margin: 0 .45rem; color: var(--rule); }
+.crumbs [aria-current='page'] { color: var(--ink); }
+
+/* A gaveta do celular. */
+.drawer-toggle, .drawer-close, .scrim { display: none; }
+@media (max-width: 900px) {
+  .shell { grid-template-columns: 1fr; }
+  .topbar { display: flex; align-items: center; gap: .6rem; position: sticky; top: 0; z-index: 30;
+    background: var(--bg-soft); border-bottom: 1.5px solid var(--rule); padding: .55rem .8rem; }
+  .topbar .brand { font-size: 1.05rem; }
+  .drawer-toggle { display: inline-flex; }
+  .sidebar { position: fixed; top: 0; left: 0; width: min(20rem, 86vw); height: 100vh; z-index: 40;
+    transform: translateX(-105%); transition: transform .22s ease; box-shadow: 4px 0 20px var(--shadow); }
+  body.drawer-open .sidebar { transform: translateX(0); }
+  body.drawer-open .scrim { display: block; position: fixed; inset: 0; background: rgba(0,0,0,.4); z-index: 35; }
+  .drawer-close { display: inline-flex; position: absolute; top: .6rem; right: .6rem; }
+  .content { padding: 1rem 1rem 5.5rem; }
+  .prose { max-width: 100%; }
+  .prose p, .prose li { text-align: left; hyphens: manual; }
+}
+@media (prefers-reduced-motion: reduce) { .sidebar { transition: none; } }
+
+/* Alvos de toque de 44 px no celular (os links no meio do texto ficam de fora). */
+@media (max-width: 900px) {
+  .topbar { padding: .35rem .6rem; gap: .5rem; }
+  .topbar .btn, .topbar .brand { min-height: 44px; display: inline-flex; align-items: center; gap: .35ch; }
+  .btn { min-height: 44px; }
+  .crumbs a, .crumbs [aria-current='page'] { display: inline-flex; align-items: center; min-height: 44px; }
+  #otp-fab { min-height: 44px; }
+  #otp-panel a { min-height: 44px; display: flex; align-items: center; }
+  nav.toc a { min-height: 44px; align-items: center; }
+}
+
+/* "Nesta página": um <details> que abre sem JavaScript; a ilha fecha ao
+   escolher, esconde o botão ao descer e marca a seção. */
+.otp > summary { list-style: none; }
+.otp > summary::-webkit-details-marker { display: none; }
+#otp-fab { position: fixed; left: .8rem; bottom: .8rem; z-index: 54; box-shadow: 0 2px 10px var(--shadow); font-size: var(--fs-micro);
+  transition: transform .18s ease, opacity .18s ease; }
+#otp-fab.otp-hidden { transform: translateY(140%); opacity: 0; pointer-events: none; }
+@media (prefers-reduced-motion: reduce) { #otp-fab { transition: none; } }
+#otp-panel { position: fixed; left: .8rem; bottom: 3rem; z-index: 54; width: min(17rem, 80vw); max-height: 60vh; overflow-y: auto;
+  background: var(--panel); border: 1px solid var(--accent); border-radius: var(--r-lg); box-shadow: 0 8px 28px var(--shadow); padding: .5rem; }
+#otp-panel a { display: block; text-decoration: none; color: var(--ink); padding: .28rem .5rem; border-radius: var(--r-sm); font-size: var(--fs-rotulo); border-left: 2px solid transparent; }
+#otp-panel a:hover { background: var(--panel-2); }
+#otp-panel a.otp-h3 { padding-left: 1.3rem; color: var(--ink-soft); }
+#otp-panel a.active { border-left-color: var(--accent); color: var(--accent-texto); font-weight: 600; background: color-mix(in srgb, var(--accent) 8%, transparent); }
+@media (min-width: 901px) { #otp-fab, #otp-panel { left: 18rem; } html.sidebar-collapsed #otp-fab, html.sidebar-collapsed #otp-panel { left: .8rem; } }
+body.drawer-open .otp { display: none; }
+
+/* A faísca: animada, ou parada no pico para quem pede menos movimento. */
+.tag-orn { color: var(--gold); letter-spacing: .3em; text-align: center; }
+.tag-orn-left { text-align: left; }
+.centelha-spark {
+  display: inline-block; height: .9em; width: auto; vertical-align: -.12em; overflow: visible;
+  animation: cs-respiro 5s cubic-bezier(.4, 0, .6, 1) infinite;
+}
+.centelha-spark.parada { display: none; }
+@keyframes cs-respiro {
+  0%, 100% { filter: brightness(1) drop-shadow(0 0 0 currentColor); }
+  50% { filter: brightness(1.18) drop-shadow(0 0 .128em currentColor); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .centelha-spark.animada { display: none; }
+  .centelha-spark.parada { display: inline-block; animation: none; filter: brightness(1.18) drop-shadow(0 0 .128em currentColor); }
+}
 
 /* ---------- Componentes ---------- */
 .muted { color: var(--ink-soft); }
 .kicker { letter-spacing: .3em; text-transform: uppercase; font-size: var(--fs-micro); margin: 0; }
-.lead { font-size: 1.12em; font-style: italic; }
+.lead { font-size: 1.12em; }
+.lead::first-letter { font-family: 'Cinzel', Georgia, serif; font-weight: 900; float: left; font-size: 3.1em; line-height: .8; padding: .05em .12em 0 0; color: var(--accent-texto); }
 
 .panel { background: var(--panel); border: 1px solid var(--panel-border); border-radius: var(--r-lg); padding: var(--pad-2) var(--pad-3); box-shadow: 0 1px 2px var(--shadow); }
 .callout { background: var(--panel); border: 1px solid var(--panel-border); border-left: 4px solid var(--accent); border-radius: var(--r-md); padding: var(--pad-2) var(--pad-3); margin: 1em 0; }
@@ -196,7 +306,9 @@ code { font-size: .9em; }
   padding: .6rem .8rem; margin: 1em 0; font-size: var(--fs-aux); }
 
 .btn { font-family: 'Cinzel', Georgia, serif; font-size: var(--fs-rotulo); cursor: pointer; border: 1px solid var(--panel-border);
-  background: var(--panel); color: var(--ink); padding: .45rem .9rem; border-radius: var(--r-sm); text-decoration: none; display: inline-block; }
+  background: var(--panel); color: var(--ink); padding: .45rem .9rem; border-radius: var(--r-sm); text-decoration: none; }
+/* Só no link: um `display` em `.btn` acenderia os botões que a casca esconde. */
+a.btn { display: inline-block; }
 .btn:hover { border-color: var(--accent); color: var(--accent-texto); }
 
 /* ---------- Tabelas: rolam dentro da caixa, nunca a página ---------- */
@@ -224,13 +336,38 @@ tbody tr:nth-child(even) { background: color-mix(in srgb, var(--accent) 5%, tran
 /* ---------- Página inicial ---------- */
 .home-head { text-align: center; margin: 1.5rem 0 2.5rem; }
 .home-head h1 { font-size: clamp(2.2rem, 6vw, 3.4rem); margin: .2em 0; }
-.home-head .lead { max-width: 34rem; margin: .5rem auto 0; }
-.chapter-list { list-style: none; padding: 0; margin: 0; display: grid; gap: .8rem; grid-template-columns: repeat(auto-fill, minmax(min(15rem, 100%), 1fr)); }
-.chapter-card { display: flex; flex-direction: column; gap: .2rem; height: 100%; color: inherit; text-decoration: none; }
-.chapter-card .kicker { color: var(--accent-texto); letter-spacing: .1em; }
-.chapter-card .card-title { font-size: var(--fs-corpo); }
-.chapter-card .card-summary { font-size: var(--fs-aux); color: var(--ink-soft); text-align: left; }
-.chapter-card:hover { border-color: var(--accent); }
+.home-kicker { letter-spacing: .4em; text-transform: uppercase; font-size: var(--fs-micro); }
+.home-lead { max-width: 34rem; margin: .5rem auto 0; font-style: italic; }
+.home-pitch { max-width: 40rem; margin: 1rem auto 0; }
+.home-actions { justify-content: center; margin-top: 1.4rem; }
+.counters { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-bottom: 2rem; }
+.counter { text-align: center; min-width: 8rem; text-decoration: none; color: inherit; }
+.counter-value { font-size: 2rem; color: var(--accent-texto); }
+.grid-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(15rem, 100%), 1fr)); gap: .8rem; }
+.card { text-decoration: none; color: inherit; display: block; }
+.card-kicker { color: var(--accent-texto); font-size: var(--fs-micro); }
+.card-title { font-size: var(--fs-corpo); margin-top: .2rem; }
+.card-tool { font-size: var(--fs-aux); color: var(--accent-texto); }
+.btn.primary { background: var(--accent); color: var(--on-accent); border-color: transparent; }
+.btn-row { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
+
+/* ---------- Glossário ---------- */
+.gloss-list { margin: 1.5rem 0; }
+.gloss-item { padding: .7rem 0; border-bottom: 1px solid var(--rule); scroll-margin-top: 4rem; }
+.gloss-item dt { color: var(--accent-texto); font-size: var(--fs-corpo); }
+.gloss-item dd { margin: .2rem 0 0; }
+.al { font-size: var(--fs-rotulo); }
+
+/* ---------- Layout preguiçoso do corpo do capítulo ----------
+   Os capítulos são longos e o primeiro layout com a EB Garamond custa caro:
+   com `content-visibility: auto`, o navegador só faz o layout dos blocos que
+   estão na tela (ou perto dela). Os outros reservam a altura estimada, e
+   `auto` guarda a altura real depois que o bloco passa pela tela, para a
+   barra de rolagem não saltar. O texto continua inteiro no HTML.
+   A estimativa é a altura média dos 1.731 blocos dos 28 capítulos, medida
+   com o layout inteiro: 7,0 em a 1280 px e 12,9 em a 375 px. */
+.chapter-body > * { content-visibility: auto; contain-intrinsic-size: auto 7em; }
+@media (max-width: 900px) { .chapter-body > * { contain-intrinsic-size: auto 13em; } }
 
 /* ---------- Pé do capítulo ---------- */
 .cap-nav { display: flex; justify-content: space-between; gap: 1rem; margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px solid var(--rule); }
