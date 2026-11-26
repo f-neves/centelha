@@ -132,7 +132,7 @@ pub fn Layout(base: String, page: PageInfo, children: Children) -> impl IntoView
                 view! { {sep} {step} }
             })
             .collect_view();
-        view! { <nav class="crumbs" aria-label="Trilha de navegação">{steps}</nav> }
+        view! { <nav class="crumbs" aria-label="Trilha de navegação" data-pagefind-ignore="">{steps}</nav> }
     });
 
     let toc = (page.toc.len() >= 2).then(|| view! { <OnThisPage entries=page.toc/> });
@@ -147,19 +147,22 @@ pub fn Layout(base: String, page: PageInfo, children: Children) -> impl IntoView
         }
     });
     let article_class = if page.wide { "wide" } else { "prose" };
+    // A busca (Pagefind) indexa só o conteúdo (`data-pagefind-body`, como no
+    // site atual); a página de não encontrada fica fora do índice.
+    let indexed = (page.path != "404").then_some("");
     let home = nav::url(&base, "");
 
     view! {
         <div class="cfundo" aria-hidden="true" inner_html=BACKDROP_HTML.as_str()></div>
         <a href="#conteudo" class="skip">"Pular para o conteúdo"</a>
-        <div class="topbar">
+        <div class="topbar" data-pagefind-ignore="">
             <DrawerToggle/>
             <a class="brand" href=home.clone()>"Centelha " <span class="d6">"D6"</span></a>
         </div>
         <div class="shell">
             <Scrim/>
             <SidebarExpand/>
-            <aside class="sidebar" id="nav">
+            <aside class="sidebar" id="nav" data-pagefind-ignore="">
                 <DrawerClose/>
                 <SidebarCollapse/>
                 <a class="brand" href=home>
@@ -185,7 +188,7 @@ pub fn Layout(base: String, page: PageInfo, children: Children) -> impl IntoView
                     </a>
                 </nav>
             </aside>
-            <main class="content" id="conteudo">
+            <main class="content" id="conteudo" data-pagefind-body=indexed>
                 {crumbs}
                 <article class=article_class>{children()}</article>
             </main>
