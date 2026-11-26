@@ -128,7 +128,7 @@ xtask              (sozinho; não é dependência de ninguém)
 
 **Faz:** fala com o Supabase do jogo (tabelas, funções RPC, arquivos e tempo real). Continua o mesmo banco do site atual (R2).
 
-**Expõe:** a definir pelo Backend em ADR (fase 3), incluindo como fazer o tempo real no WebAssembly.
+**Expõe:** a definir na primeira entrega (só leitura), pela ADR 0007: pedido montado sem IO, envio por alvo atrás de um `Transport` (`gloo-net` no WebAssembly, `reqwest` no nativo), toda leitura de dado de mesa com `Session`, `is_admin` só pela `eh_admin`. O tempo real vem depois, em PR próprio.
 
 **Consome:** a URL e a chave anon por configuração (nunca no código). Chave de serviço nunca.
 

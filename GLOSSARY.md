@@ -280,3 +280,11 @@ No `grid` do Efeito: forma `shape`, âncora `anchor`, gatilho `trigger`, alvo `t
 | catálogos da ficha interativa | `EditorCatalogs` | deslocamento com a penalidade | `penalized_movement`, `PenalizedMovement` |
 | linha Preparo, Golpe e Recuperação da ficha | `sheet_anatomy` | alcance do arremesso / Força aplicada (FAA) | `throw_range` / `reserve` |
 | tabela do livro (a reforma do P/G/R) | `PgrReform`, `PgrRow` (`melee`, `shot`) | regras do arremesso | `ThrowRules` |
+
+## Dados de texto e cliente do banco (acréscimo de 26/11, tarefas 014 e 014a do Backend)
+
+| Português | Inglês | Português | Inglês |
+|---|---|---|---|
+| descrição de um nível | `LevelText` | tabela ou view do banco (PostgREST) | `Relation` (a mesa do jogo continua `Table`) |
+| resiste (da Virtude) | `resists` | sessão (o token do usuário) | `Session` |
+| conduta | `conduct` | | |
