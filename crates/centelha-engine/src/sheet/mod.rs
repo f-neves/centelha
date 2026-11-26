@@ -19,6 +19,7 @@
 mod editor;
 mod equip;
 mod format;
+mod hands;
 mod migrate;
 mod near_miss;
 mod numbers;
@@ -38,8 +39,16 @@ pub use editor::{
     effects_in_reach, fresh_sheet, half_movement_penalty, mass_chosen, penalized_movement,
     specialty_cap, spent_xp, technique_status, trait_cap,
 };
-pub use equip::{Catalog, ItemKind, PieceKind, flatten_item, piece_kind};
+pub use equip::{
+    ARMOR_EDIT_FIELDS, Catalog, EditField, FieldKind, HandRole, ItemKind, PieceKind,
+    SHIELD_EDIT_FIELDS, WEAPON_EDIT_FIELDS, WEAPON_MORE_FIELDS, edit_field_base, flatten_item,
+    piece_kind, write_edit_field,
+};
 pub use format::{for_reading, for_saving, is_saved_form};
+pub use hands::{
+    DualAttack, DualAttackHand, dual_attack, dual_attack_from, dual_damage_text, piece_for,
+    pool_text,
+};
 pub use migrate::{WEAPON_RENAMES, migrate_weapon_refs};
 pub use near_miss::{
     ArmorNearMiss, AttackOutcome, Graze, NearMissAttacker, NearMissOutcome, NearMissTarget,

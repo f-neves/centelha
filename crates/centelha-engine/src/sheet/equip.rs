@@ -848,3 +848,393 @@ mod tests {
         assert_eq!(k(json!("gambeson")), None);
     }
 }
+
+// ----- a edição de peça (os campos que a ficha deixa trocar) -----
+
+/// Como o campo se escreve: número com intervalo, uma opção de lista, ou
+/// texto separado por vírgula (as tags).
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum FieldKind {
+    Number,
+    Choice,
+    List,
+}
+
+/// Um campo editável de uma peça (`CampoEquip`): a chave, o rótulo, o
+/// intervalo, o sinal, o tipo, as opções e se apagar tira a chave do item.
+#[derive(Debug, Clone, Copy, PartialEq)]
+pub struct EditField {
+    pub key: &'static str,
+    pub label: &'static str,
+    pub min: f64,
+    pub max: f64,
+    pub signed: bool,
+    pub kind: FieldKind,
+    pub optional: bool,
+    pub step: Option<f64>,
+    pub options: &'static [(&'static str, &'static str)],
+}
+
+const fn number(
+    key: &'static str,
+    label: &'static str,
+    min: f64,
+    max: f64,
+    signed: bool,
+) -> EditField {
+    EditField {
+        key,
+        label,
+        min,
+        max,
+        signed,
+        kind: FieldKind::Number,
+        optional: false,
+        step: None,
+        options: &[],
+    }
+}
+
+/// `CAMPOS_ARMA`, na ordem da ficha: Velocidade, Acerto, Dado, Dano, Defesa.
+pub const WEAPON_EDIT_FIELDS: [EditField; 5] = [
+    number("ticks", "Velocidade", 1.0, 20.0, false),
+    number("acerto", "Acerto", -10.0, 10.0, true),
+    number("dado", "Dado", 1.0, 6.0, false),
+    number("danoBonus", "Dano ±", -10.0, 10.0, true),
+    number("defesaArma", "Defesa", -5.0, 10.0, true),
+];
+
+/// `CAMPOS_ARMA_MAIS`: os campos que a D-259 abriu à edição.
+pub const WEAPON_MORE_FIELDS: [EditField; 8] = [
+    number("maos", "Mãos", 1.0, 2.0, false),
+    EditField {
+        kind: FieldKind::Choice,
+        options: &[
+            ("impacto", "Impacto"),
+            ("corte", "Corte"),
+            ("perfurante", "Perfuração"),
+        ],
+        ..number("tipoDano", "Tipo de dano", 0.0, 0.0, false)
+    },
+    EditField {
+        kind: FieldKind::Choice,
+        options: &[
+            ("armas", "Armas"),
+            ("briga", "Briga"),
+            ("arremesso", "Arremesso"),
+            ("atirador", "Atirador"),
+        ],
+        ..number("pericia", "Habilidade", 0.0, 0.0, false)
+    },
+    EditField {
+        optional: true,
+        step: Some(0.5),
+        ..number("forcaMult", "Força ×", 0.0, 3.0, false)
+    },
+    EditField {
+        kind: FieldKind::Choice,
+        optional: true,
+        options: &[("curto", "curto"), ("medio", "médio"), ("longo", "longo")],
+        ..number("alcance", "Alcance", 0.0, 0.0, false)
+    },
+    EditField {
+        optional: true,
+        ..number("efetiva", "Efetiva (m)", 0.0, 1000.0, false)
+    },
+    EditField {
+        optional: true,
+        ..number("distMax", "Distância (m)", 0.0, 2000.0, false)
+    },
+    EditField {
+        kind: FieldKind::List,
+        ..number("tags", "Tags", 0.0, 0.0, false)
+    },
+];
+
+/// `CAMPOS_ESCUDO`.
+pub const SHIELD_EDIT_FIELDS: [EditField; 2] = [
+    number("bloqCaC", "Defesa", -5.0, 10.0, true),
+    number("penalidade", "Penalidade", 0.0, 10.0, false),
+];
+
+/// `CAMPOS_ARMADURA` (as Absorções viram campo raso aqui).
+pub const ARMOR_EDIT_FIELDS: [EditField; 5] = [
+    number("impacto", "Impacto", 0.0, 20.0, false),
+    number("corte", "Corte", 0.0, 20.0, false),
+    number("perfuracao", "Perfuração", 0.0, 20.0, false),
+    number("resistPerf", "Nível", 0.0, 6.0, false),
+    number("penalidade", "Penalidade", 0.0, 10.0, false),
+];
+
+/// `baseCampo`: o valor de um campo numa peça achatada (a armadura guarda as
+/// Absorções em `soak`). O campo de opção, de lista ou opcional volta como
+/// está (`None` quando falta); o numérico, `?? 0`.
+pub fn edit_field_base(base: Option<&Value>, f: &EditField) -> Option<Value> {
+    let soak = get(base, "soak");
+    if truthy(soak) && is_soak(f.key) {
+        return Some(
+            coalesce(get(soak, f.key), None)
+                .cloned()
+                .unwrap_or(json!(0)),
+        );
+    }
+    if f.kind != FieldKind::Number || f.optional {
+        return get(base, f.key).cloned();
+    }
+    Some(
+        coalesce(get(base, f.key), None)
+            .cloned()
+            .unwrap_or(json!(0)),
+    )
+}
+
+/// `escreveCampo`: escreve um campo no envelope do item (a armadura guarda as
+/// Absorções em `soak`); `None` apaga. As tags vão na raiz. Trocar o tipo de
+/// dano troca também o do modo principal (`modos`), que é o da conta.
+pub fn write_edit_field(item: &mut Value, f: &EditField, v: Option<Value>) {
+    if f.key == "tags" {
+        if let Value::Object(m) = item {
+            let list = match v {
+                Some(Value::Array(a)) => Value::Array(a),
+                _ => json!([]),
+            };
+            m.insert("tags".into(), list);
+        }
+        return;
+    }
+    let is_armor = is_str(get(Some(item), "tipo"), "armadura");
+    let Some(bk) = block_key(item) else { return };
+    let Some(Value::Object(b)) = item.get_mut(&bk) else {
+        return;
+    };
+    if is_soak(f.key) && is_armor {
+        let soak = b.entry("soak").or_insert(Value::Null);
+        if !truthy(Some(soak)) {
+            *soak = Value::Object(Map::new());
+        }
+        if let Value::Object(s) = soak {
+            let val = match v {
+                Some(x) if !x.is_null() => x,
+                _ => json!(0),
+            };
+            s.insert(f.key.into(), val);
+        }
+        return;
+    }
+    let Some(v) = v.filter(|x| !x.is_null()) else {
+        b.shift_remove(f.key);
+        return;
+    };
+    b.insert(f.key.into(), v.clone());
+    if f.key == "tipoDano"
+        && let Some(Value::Array(modes)) = b.get("modos").cloned()
+    {
+        let principal = modes
+            .iter()
+            .position(|m| truthy(get(Some(m), "principal")))
+            .or(if modes.is_empty() { None } else { Some(0) });
+        if let Some(pi) = principal {
+            let pen = b
+                .get("pen")
+                .filter(|x| !x.is_null())
+                .cloned()
+                .unwrap_or(json!(0));
+            let mut kept = Vec::new();
+            for (i, mut m) in modes.into_iter().enumerate() {
+                if i == pi {
+                    if let Value::Object(mm) = &mut m {
+                        mm.insert("tipo".into(), v.clone());
+                        if !is_str(Some(&v), "perfurante") {
+                            mm.shift_remove("perf");
+                        } else if nullish(mm.get("perf")) {
+                            mm.insert("perf".into(), pen.clone());
+                        }
+                    }
+                    kept.push(m);
+                } else if !super::value::strict_eq(get(Some(&m), "tipo"), Some(&v)) {
+                    kept.push(m);
+                }
+            }
+            b.insert("modos".into(), Value::Array(kept));
+        }
+    }
+}
+
+impl Catalog {
+    /// `restaurarItem`: o item da peça de volta ao do livro; a peça
+    /// personalizada volta ao padrão dela.
+    pub fn restore_item(&self, p: &mut Value) {
+        let Some(t) = piece_kind(Some(p)) else { return };
+        let new = if t.custom {
+            Some(custom_envelope(t.kind, &custom_base(t.kind)))
+        } else {
+            let saved = get(get(Some(p), "item"), "origem");
+            let origin = if nullish(saved) {
+                t.origin.clone()
+            } else {
+                Some(property_key(saved))
+            };
+            origin.and_then(|o| self.catalog_copy(t.kind, &o))
+        };
+        if let (Some(n), Value::Object(m)) = (new, p) {
+            m.insert("item".into(), n);
+        }
+    }
+
+    /// `ehDuasMaos`: a peça é arma (do catálogo ou personalizada) de duas mãos?
+    pub fn two_handed(&self, p: &Value) -> bool {
+        let r = get(Some(p), "ref").and_then(Value::as_str).unwrap_or("");
+        if !(r.starts_with("a:") || r == "c") {
+            return false;
+        }
+        self.piece_item(Some(p))
+            .is_some_and(|w| get(Some(&w), "maos").and_then(Value::as_f64) == Some(2.0))
+    }
+
+    /// `sincronizarSlots`: dá item inteiro a toda peça e copia a peça do
+    /// arsenal para cada mão que a usa (o slot leva `ref`, `nome`, `mod`, o
+    /// item e os números da peça personalizada). A mão cuja peça sumiu do
+    /// arsenal fica vazia.
+    pub fn sync_slots(&self, s: &mut Value) {
+        self.freeze_items(s, false);
+        let arsenal: Vec<Value> = get(Some(s), "arsenal")
+            .and_then(Value::as_array)
+            .cloned()
+            .unwrap_or_default();
+        let Some(Value::Array(sets)) = s.get_mut("conjuntos") else {
+            return;
+        };
+        for cj in sets.iter_mut() {
+            for hand in ["habil", "inabil"] {
+                let Some(uid) = get(get(Some(cj), hand), "uid")
+                    .filter(|u| truthy(Some(u)))
+                    .cloned()
+                else {
+                    continue;
+                };
+                let p = arsenal
+                    .iter()
+                    .find(|x| super::value::strict_eq(get(Some(x), "uid"), Some(&uid)));
+                let slot = match p {
+                    None => empty_hand(hand),
+                    Some(p) => {
+                        let mut o = Map::new();
+                        o.insert(
+                            "uid".into(),
+                            get(Some(p), "uid").cloned().unwrap_or(Value::Null),
+                        );
+                        o.insert(
+                            "ref".into(),
+                            get(Some(p), "ref").cloned().unwrap_or(Value::Null),
+                        );
+                        if !nullish(get(Some(p), "nome")) {
+                            o.insert("nome".into(), p["nome"].clone());
+                        }
+                        if truthy(get(Some(p), "mod")) {
+                            o.insert("mod".into(), p["mod"].clone());
+                        }
+                        if truthy(get(Some(p), "item")) {
+                            o.insert("item".into(), p["item"].clone());
+                        }
+                        for k in ["dado", "danoBonus", "acerto"] {
+                            if !nullish(get(Some(p), k)) {
+                                o.insert(k.into(), p[k].clone());
+                            }
+                        }
+                        Value::Object(o)
+                    }
+                };
+                if let Value::Object(m) = cj {
+                    m.insert(hand.into(), slot);
+                }
+            }
+        }
+    }
+}
+
+/// A mão vazia: os punhos na hábil, nada na inábil.
+fn empty_hand(hand: &str) -> Value {
+    if hand == "habil" {
+        json!({"ref": "a:desarmado"})
+    } else {
+        json!({"ref": "nada"})
+    }
+}
+
+/// O papel de uma peça no conjunto em uso.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum HandRole {
+    /// `nada`: fora das mãos.
+    None,
+    /// `habil`: na mão hábil.
+    Main,
+    /// `inabil`: na mão inábil.
+    Off,
+}
+
+impl Catalog {
+    /// `marcarUso`: põe a peça do arsenal (pelo `uid`) no papel dado, no
+    /// conjunto em uso (o marcado `ativo`, senão o primeiro). Escolher a mão
+    /// hábil tira a peça da inábil; a arma de duas mãos esvazia a inábil; pôr
+    /// na inábil tira da hábil a peça e a arma de duas mãos que estivesse lá.
+    /// Depois, o [`Catalog::sync_slots`].
+    pub fn mark_hand_use(&self, s: &mut Value, uid: &str, role: HandRole) {
+        let arsenal: Vec<Value> = get(Some(s), "arsenal")
+            .and_then(Value::as_array)
+            .cloned()
+            .unwrap_or_default();
+        let by_uid = |u: &str| arsenal.iter().find(|x| is_str(get(Some(x), "uid"), u));
+        let Some(p) = by_uid(uid) else { return };
+        let two = self.two_handed(p);
+        let Some(Value::Array(sets)) = s.get_mut("conjuntos") else {
+            return;
+        };
+        let i = sets
+            .iter()
+            .position(|c| truthy(get(Some(c), "ativo")))
+            .or(if sets.is_empty() { None } else { Some(0) });
+        if let Some(i) = i
+            && let Value::Object(cj) = &mut sets[i]
+        {
+            let holds = |cj: &Map<String, Value>, hand: &str| is_str(get(cj.get(hand), "uid"), uid);
+            let mut placed = Map::new();
+            placed.insert("uid".into(), p["uid"].clone());
+            if let Some(r) = get(Some(p), "ref") {
+                placed.insert("ref".into(), r.clone());
+            }
+            let placed = Value::Object(placed);
+            match role {
+                HandRole::None => {
+                    if holds(cj, "habil") {
+                        cj.insert("habil".into(), empty_hand("habil"));
+                    }
+                    if holds(cj, "inabil") {
+                        cj.insert("inabil".into(), empty_hand("inabil"));
+                    }
+                }
+                HandRole::Main => {
+                    if holds(cj, "inabil") {
+                        cj.insert("inabil".into(), empty_hand("inabil"));
+                    }
+                    cj.insert("habil".into(), placed);
+                    if two {
+                        cj.insert("inabil".into(), empty_hand("inabil"));
+                    }
+                }
+                HandRole::Off => {
+                    if holds(cj, "habil") {
+                        cj.insert("habil".into(), empty_hand("habil"));
+                    }
+                    let in_main = get(cj.get("habil"), "uid")
+                        .and_then(Value::as_str)
+                        .and_then(by_uid);
+                    if in_main.is_some_and(|q| self.two_handed(q)) {
+                        cj.insert("habil".into(), empty_hand("habil"));
+                    }
+                    cj.insert("inabil".into(), placed);
+                }
+            }
+        }
+        self.sync_slots(s);
+    }
+}
