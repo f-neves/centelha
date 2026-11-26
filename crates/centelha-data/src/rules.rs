@@ -39,6 +39,29 @@ pub struct Rules {
     /// `forca`: a tabela do que a Força ergue.
     #[serde(rename = "forca")]
     pub strength: StrengthRules,
+    /// `escalasProeza`: quanto cada Técnica melhora pelo nível.
+    #[serde(rename = "escalasProeza", default)]
+    pub feat_scales: Option<FeatScales>,
+}
+
+/// `escalasProeza`: as trilhas de melhora das Técnicas.
+#[derive(Debug, Clone, PartialEq, Deserialize)]
+pub struct FeatScales {
+    /// `trilhas`: pela chave de melhora (`bonus`, `dano`, `estado`...).
+    #[serde(rename = "trilhas", default)]
+    pub tracks: BTreeMap<String, FeatScaleTrack>,
+}
+
+/// Uma trilha de `escalasProeza.trilhas`.
+#[derive(Debug, Clone, PartialEq, Deserialize)]
+pub struct FeatScaleTrack {
+    #[serde(rename = "rotulo")]
+    pub label: String,
+    #[serde(rename = "unidade", default)]
+    pub unit: Option<String>,
+    /// `valores`: o valor de cada nível, de 1 a 6, como texto.
+    #[serde(rename = "valores", default)]
+    pub values: Vec<String>,
 }
 
 /// Como uma trilha de XP soma os preços dos níveis (`tipo`).

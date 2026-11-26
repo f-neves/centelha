@@ -9,13 +9,17 @@
 
 pub mod ancestry;
 pub mod armor;
+pub mod arts;
 pub mod bestiary;
 pub mod chapters;
+pub mod effects;
 mod error;
 pub mod glossary;
 mod json;
+pub mod paths;
 pub mod rules;
 pub mod shields;
+pub mod techniques;
 pub mod weapons;
 
 #[cfg(not(target_arch = "wasm32"))]
@@ -25,21 +29,33 @@ pub use ancestry::{Ancestry, parse_ancestries};
 pub use armor::load_armors;
 pub use armor::{Armor, parse_armors};
 #[cfg(not(target_arch = "wasm32"))]
+pub use arts::load_arts;
+pub use arts::{Art, parse_arts};
+#[cfg(not(target_arch = "wasm32"))]
 pub use bestiary::load_bestiary;
 pub use bestiary::{Creature, parse_creature};
 #[cfg(not(target_arch = "wasm32"))]
 pub use chapters::load_chapters;
 pub use chapters::{Chapter, parse_chapter};
+#[cfg(not(target_arch = "wasm32"))]
+pub use effects::load_effects;
+pub use effects::{Effect, parse_effects};
 pub use error::DataError;
 #[cfg(not(target_arch = "wasm32"))]
 pub use glossary::load_glossary;
 pub use glossary::{GlossaryEntry, parse_glossary};
+#[cfg(not(target_arch = "wasm32"))]
+pub use paths::load_paths;
+pub use paths::{Path, parse_paths};
 #[cfg(not(target_arch = "wasm32"))]
 pub use rules::load_rules;
 pub use rules::{Rules, parse_rules};
 #[cfg(not(target_arch = "wasm32"))]
 pub use shields::load_shields;
 pub use shields::{Shield, parse_shields};
+#[cfg(not(target_arch = "wasm32"))]
+pub use techniques::load_techniques;
+pub use techniques::{Technique, parse_techniques};
 #[cfg(not(target_arch = "wasm32"))]
 pub use weapons::load_weapons;
 pub use weapons::{Weapon, parse_weapons};

@@ -20,6 +20,7 @@
 //   tests/parity/sheets.json      fichas de jogador e as saídas do motor (sheets.mjs)
 //   tests/parity/character.json   as contas pequenas do personagem, função a função (character.mjs)
 //   tests/parity/strikes.json     o lance e os dados (strikes.mjs)
+//   tests/parity/techniques.json  o modificador, a Técnica oferecida e o fecho dos pré-requisitos (techniques.mjs)
 //
 // O JSON não guarda -0 (o JSON.stringify escreve 0). Para a referência não
 // esconder um -0, todo -0 das saídas é gravado como o texto "-0", e o teste do
@@ -34,6 +35,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { buildSheetInputs, sheetOutputs } from './sheets.mjs';
 import { buildCharacterCases } from './character.mjs';
 import { buildStrikes, ROLLED_SEED, ROLLS_SEED } from './strikes.mjs';
+import { buildTechniqueCases, loadTreeClosure } from './techniques.mjs';
 
 const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 const OUT = path.join(REPO, 'tests', 'parity');
@@ -66,13 +68,27 @@ if (problems.length) {
 
 // ----- carregar o TypeScript da fonte pelo esbuild dela -----
 const requireFromSource = createRequire(path.join(SRC, 'package.json'));
-const { build } = requireFromSource('esbuild');
+const { build, transform } = requireFromSource('esbuild');
+
+// O `astro:content` só existe dentro do Astro. Quem o importa só para montar páginas
+// (src/lib/data.ts) recebe um módulo vazio; a função que o chamar quebra.
+const noAstro = {
+  name: 'sem-astro',
+  setup(b) {
+    b.onResolve({ filter: /^astro:content$/ }, () => ({ path: 'astro:content', namespace: 'sem-astro' }));
+    b.onLoad({ filter: /.*/, namespace: 'sem-astro' }, () => ({
+      contents: 'export const getCollection = () => { throw new Error("astro:content fora do Astro"); };',
+      loader: 'js',
+    }));
+  },
+};
 
 async function loadTs(rel) {
   const outfile = path.join(os.tmpdir(), `parity-${path.basename(rel, '.ts')}-${process.pid}.mjs`);
   await build({
     entryPoints: [path.join(SRC, rel)], outfile, bundle: true, format: 'esm', platform: 'node',
     loader: { '.json': 'json' }, logLevel: 'error', define: { 'import.meta.env': 'globalThis.__ENV__' },
+    plugins: [noAstro],
   });
   globalThis.__ENV__ = globalThis.__ENV__ || { BASE_URL: '/', MODE: 'test' };
   try {
@@ -104,6 +120,8 @@ const mesa = await loadTs('src/lib/mesa-ficha.ts');
 const quase = await loadTs('src/lib/quase-acerto.ts');
 const equip = await loadTs('src/lib/equip.ts');
 const migra = await loadTs('src/lib/ficha-migra.ts');
+const data = await loadTs('src/lib/data.ts');
+const modulos = await loadTs('src/lib/modulos.ts');
 const combat = await loadBundle('combate', "export * from './acaso'; export { rolarExpr } from './rolagem'; "
   + "export { resolverGolpe, fonteFixa, fonteRolada, defesaEfetiva } from './lance';");
 
@@ -242,6 +260,17 @@ strikes.fixed.forEach((c, i) => scanNumbers(c.saida, `lance fixo ${i}`));
 strikes.rolled.forEach((c, i) => scanNumbers(c.saida, `lance rolado ${i}`));
 strikes.rolls.forEach((c, i) => scanNumbers(c, `rolagem ${i}`));
 
+// ----- as Técnicas -----
+const techniqueCases = buildTechniqueCases({
+  data, modulos, motor, regras: readData('regras.json'), techniques: readData('tecnicas.json'),
+  closureFor: await loadTreeClosure({ transform, file: path.join(SRC, 'src', 'components', 'ArvoreTecnicas.astro') }),
+});
+const techniqueCounts = {};
+for (const c of techniqueCases) {
+  scanNumbers(c.out, `${c.fn}(${JSON.stringify(c.args)})`);
+  techniqueCounts[c.fn] = (techniqueCounts[c.fn] || 0) + 1;
+}
+
 if (negativeZeros.length) console.log(`${negativeZeros.length} -0 nas saídas, gravados como "-0"`);
 if (badNumbers.length) {
   for (const b of badNumbers) console.error(`erro: número não finito em ${b}`);
@@ -311,6 +340,16 @@ write('strikes.json', {
   rolled: strikes.rolled,
   rolls: strikes.rolls,
 }, ['fixed', 'rolled', 'rolls']);
+write('techniques.json', {
+  source,
+  note: 'Cada caso: fn, args e out. modProeza (src/lib/data.ts), tecnicaDisponivel (src/lib/modulos.ts) e closure '
+    + '(o fecho dos pré-requisitos de src/components/ArvoreTecnicas.astro, recortado do arquivo; out = cadeia e XP). '
+    + 'Montado por tools/parity/techniques.mjs.',
+  count: techniqueCases.length,
+  counts: techniqueCounts,
+  cases: techniqueCases,
+}, 'cases');
+console.log(`${techniqueCases.length} casos das Técnicas`);
 console.log(`${strikes.fixed.length} lances (fixos e rolados), ${strikes.rolls.length} rolagens`);
 console.log(`${characterCases.length} casos das contas pequenas em ${Object.keys(characterCounts).length} funções`);
 console.log(`${sheets.length} fichas: ${Object.entries(groups).map(([g, n]) => `${g} ${n}`).join(', ')}`);
