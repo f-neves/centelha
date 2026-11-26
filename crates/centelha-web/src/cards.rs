@@ -31,18 +31,19 @@ mod browser {
     /// O que o cartão e o diálogo mostram de um termo.
     struct Item {
         id: String,
-        tipo: String,
-        nome: String,
+        kind: String,
+        name: String,
         url: String,
-        resumo: String,
-        niveis: Vec<Level>,
+        summary: String,
+        levels: Vec<Level>,
     }
 
+    /// Um degrau da escala (as chaves do JSON vêm de `regras.json`).
     struct Level {
-        nivel: String,
-        rotulo: String,
-        texto: String,
-        conduta: String,
+        number: String,
+        label: String,
+        text: String,
+        conduct: String,
     }
 
     #[derive(Default)]
@@ -91,10 +92,6 @@ mod browser {
         let c = cards.clone();
         forget(window_event_listener(leptos::ev::mouseover, move |e| {
             if let Some(el) = closest(e.target(), SELECTOR) {
-                // O `title` serve a quem está sem JavaScript; com o cartão, o
-                // balão do navegador apareceria por cima dele. Sai no primeiro
-                // apontar (tirar de todos ao abrir a página custava tempo).
-                let _ = el.remove_attribute("title");
                 c.cancel_hide();
                 if let Some(i) = c.item_for(&el) {
                     c.show(&el, i);
@@ -233,9 +230,9 @@ mod browser {
                 "<span class=\"ref-tipo\">{}</span><b>{}</b><span class=\"ref-resumo\">{}</span>\
                  <span class=\"ref-bar\"><a class=\"ref-go\" href=\"{}\">abrir →</a>\
                  <button class=\"ref-pin\" type=\"button\" title=\"Fixar na consulta (tecla f)\">📌 fixar <kbd>f</kbd></button></span>",
-                escape(&capitalize(&item.tipo)),
-                escape(&item.nome),
-                escape(&item.resumo),
+                escape(&capitalize(&item.kind)),
+                escape(&item.name),
+                escape(&item.summary),
                 escape(&item.url),
             );
             pop.set_inner_html(&html);
@@ -301,35 +298,35 @@ mod browser {
             let item = &self.items[i];
             let mut html = format!(
                 "<div class=\"rm-head\"><span class=\"ref-tipo\">{}</span><b>{}</b></div>",
-                escape(&capitalize(&item.tipo)),
-                escape(&item.nome)
+                escape(&capitalize(&item.kind)),
+                escape(&item.name)
             );
-            if !item.resumo.is_empty() {
+            if !item.summary.is_empty() {
                 html.push_str(&format!(
                     "<p class=\"rm-desc\">{}</p>",
-                    escape(&item.resumo)
+                    escape(&item.summary)
                 ));
             }
-            if !item.niveis.is_empty() {
+            if !item.levels.is_empty() {
                 html.push_str("<div class=\"rm-niveis\">");
-                for n in &item.niveis {
-                    let rotulo = if n.rotulo.is_empty() {
+                for n in &item.levels {
+                    let label = if n.label.is_empty() {
                         String::new()
                     } else {
-                        format!("<b>{}</b> · ", escape(&n.rotulo))
+                        format!("<b>{}</b> · ", escape(&n.label))
                     };
-                    let conduta = if n.conduta.is_empty() {
+                    let conduct = if n.conduct.is_empty() {
                         String::new()
                     } else {
                         format!(
                             "<span class=\"rm-conduta\"><b>Conduta:</b> {}</span>",
-                            escape(&n.conduta)
+                            escape(&n.conduct)
                         )
                     };
                     html.push_str(&format!(
-                        "<div class=\"rm-lv\"><span class=\"rm-n\">{}</span><span>{rotulo}{}{conduta}</span></div>",
-                        escape(&n.nivel),
-                        escape(&n.texto)
+                        "<div class=\"rm-lv\"><span class=\"rm-n\">{}</span><span>{label}{}{conduct}</span></div>",
+                        escape(&n.number),
+                        escape(&n.text)
                     ));
                 }
                 html.push_str("</div>");
@@ -364,13 +361,13 @@ mod browser {
         }
 
         /// Grava o termo nos fixados (a mesma chave e o mesmo formato do site
-        /// atual: uma lista de `tipo:id`, sem repetir).
+        /// atual: uma lista de `termo:id`, sem repetir).
         fn pin(&self, i: usize) {
             let Ok(Some(storage)) = self.window.session_storage() else {
                 return;
             };
             let key = "centelha:consulta";
-            let entry = format!("{}:{}", self.items[i].tipo, self.items[i].id);
+            let entry = format!("{}:{}", self.items[i].kind, self.items[i].id);
             let list = storage
                 .get_item(key)
                 .ok()
@@ -414,21 +411,21 @@ mod browser {
         list.iter()
             .map(|v| Item {
                 id: field(&v, "id"),
-                tipo: field(&v, "tipo"),
-                nome: field(&v, "nome"),
+                kind: field(&v, "kind"),
+                name: field(&v, "name"),
                 url: field(&v, "url"),
-                resumo: field(&v, "resumo"),
-                niveis: js_sys::Reflect::get(&v, &"niveis".into())
+                summary: field(&v, "summary"),
+                levels: js_sys::Reflect::get(&v, &"levels".into())
                     .ok()
                     .and_then(|n| n.dyn_into::<js_sys::Array>().ok())
                     .map(|levels| {
                         levels
                             .iter()
                             .map(|l| Level {
-                                nivel: field(&l, "nivel"),
-                                rotulo: field(&l, "rotulo"),
-                                texto: field(&l, "texto"),
-                                conduta: field(&l, "conduta"),
+                                number: field(&l, "nivel"),
+                                label: field(&l, "rotulo"),
+                                text: field(&l, "texto"),
+                                conduct: field(&l, "conduta"),
                             })
                             .collect()
                     })

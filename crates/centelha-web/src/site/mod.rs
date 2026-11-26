@@ -402,13 +402,13 @@ impl Site {
             .map(|g| {
                 let mut item = leptos::serde_json::json!({
                     "id": g.id,
-                    "tipo": "termo",
-                    "nome": g.term,
+                    "kind": "termo",
+                    "name": g.term,
                     "url": nav::url(&self.base, &format!("glossario#{}", g.id)),
-                    "resumo": g.definition,
+                    "summary": g.definition,
                 });
                 if let Some(scale) = self.scales.get(&g.id) {
-                    item["niveis"] = scale.clone();
+                    item["levels"] = scale.clone();
                 }
                 item
             })

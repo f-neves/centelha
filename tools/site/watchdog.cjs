@@ -1,19 +1,31 @@
 // Vigia de um navegador de teste aberto pelo `launch()` de `cdp.mjs`.
 //
-//   node watchdog.cjs <pid do Node que abriu> <pid do navegador> <pasta do perfil>
+//   node watchdog.cjs <pid do Node que abriu> <pid do navegador ou -> <pasta do perfil>
 //
 // Roda à parte (processo solto) enquanto o Node que abriu o navegador viver.
-// Quando ele morre, de qualquer jeito (fim normal, exceção, Ctrl+C ou `kill`
-// forçado), o vigia mata o navegador com os filhos, se ainda estiver vivo, e
-// apaga o perfil, tentando por até 10 s (os processos filhos do navegador
-// soltam os arquivos com atraso). Depois sai.
+// No fim normal o próprio Node encerra o vigia (`killNow` em `cdp.mjs`); o
+// vigia só age se o Node morrer à força: mata o navegador com os filhos, se
+// ainda estiver vivo, e apaga o perfil, tentando por até 10 s (os processos
+// filhos do navegador soltam os arquivos com atraso). Depois sai. Com `-` no
+// lugar do navegador, só apaga o perfil.
+//
+// Só apaga uma pasta `centelha-cdp-*` dentro da pasta temporária do sistema.
 
 const { spawnSync } = require('node:child_process');
 const { rmSync } = require('node:fs');
+const { tmpdir } = require('node:os');
+const { basename, dirname, resolve } = require('node:path');
 
 const [parent, browser, profile] = process.argv.slice(2);
 
+/** A pasta é um perfil do `launch()`: `centelha-cdp-*`, direto na pasta temporária. */
+function isOurProfile(dir) {
+  const full = resolve(dir);
+  return basename(full).startsWith('centelha-cdp-') && dirname(full).toLowerCase() === resolve(tmpdir()).toLowerCase();
+}
+
 function alive(pid) {
+  if (!/^\d+$/.test(String(pid))) return false;
   try {
     process.kill(Number(pid), 0);
     return true;
@@ -23,6 +35,7 @@ function alive(pid) {
 }
 
 function removeProfile(triesLeft) {
+  if (!isOurProfile(profile)) return;
   try {
     rmSync(profile, { recursive: true, force: true });
   } catch {

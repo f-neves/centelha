@@ -140,8 +140,12 @@ function alive(pid) {
  */
 function killNow(entry) {
   open.delete(entry);
-  for (const pid of [entry.browserPid, entry.proc.pid]) {
-    if (!pid || !alive(pid)) continue;
+  // O vigia só serve se este processo morrer à força: num fim que passa por
+  // aqui, ele sai antes, para não agir sobre um número de processo reusado.
+  if (entry.watchdog && entry.watchdog.exitCode === null) {
+    try { entry.watchdog.kill(); } catch { /* já saiu */ }
+  }
+  for (const pid of livePids(entry)) {
     if (process.platform === 'win32') {
       spawnSync('taskkill', ['/PID', String(pid), '/T', '/F'], { stdio: 'ignore' });
     } else {
@@ -152,10 +156,26 @@ function killNow(entry) {
   // os arquivos do perfil antes de apagar.
   const deadline = Date.now() + 3000;
   const pause = new Int32Array(new SharedArrayBuffer(4));
-  while ([entry.browserPid, entry.proc.pid].some((pid) => pid && alive(pid)) && Date.now() < deadline) {
+  while (livePids(entry).length && Date.now() < deadline) {
     Atomics.wait(pause, 0, 0, 50);
   }
   try { rmSync(entry.profile, { recursive: true, force: true, maxRetries: 10, retryDelay: 200 }); } catch { /* arquivo preso */ }
+  // Se algum arquivo ainda estava preso (os filhos do navegador soltam com
+  // atraso), um vigia novo, sem navegador para matar, apaga o perfil depois
+  // que este processo sair.
+  if (existsSync(entry.profile)) watchdog('-', entry.profile);
+}
+
+/**
+ * Os processos do navegador ainda vivos. O do `spawn` só conta enquanto o
+ * Node não o viu sair: depois disso o número pode já ser de outro processo.
+ */
+function livePids(entry) {
+  const pids = [];
+  if (entry.browserPid && alive(entry.browserPid)) pids.push(entry.browserPid);
+  const { proc } = entry;
+  if (proc.pid && proc.exitCode === null && proc.signalCode === null && alive(proc.pid)) pids.push(proc.pid);
+  return pids;
 }
 
 let handlersInstalled = false;
@@ -178,17 +198,19 @@ function installHandlers() {
 }
 
 /**
- * Um processo Node à parte (`watchdog.cjs`) que vigia este: se ele morrer sem
- * fechar o navegador (um `kill` forçado, por exemplo), o vigia mata o
- * navegador e apaga o perfil. Sai sozinho quando o navegador fecha.
+ * Um processo Node à parte (`watchdog.cjs`) que vigia este: se ele morrer à
+ * força, sem passar por `killNow` (que encerra o vigia antes), o vigia mata o
+ * navegador e apaga o perfil. Devolve o processo do vigia.
  */
 function watchdog(browserPid, profile) {
   const script = fileURLToPath(new URL('./watchdog.cjs', import.meta.url));
   const child = spawn(process.execPath, [script, String(process.pid), String(browserPid), profile], {
     detached: true,
     stdio: 'ignore',
+    windowsHide: true,
   });
   child.unref();
+  return child;
 }
 
 /**
@@ -242,7 +264,7 @@ export async function launch(executable = findBrowser(), extraArgs = []) {
     const info = await browser.send('SystemInfo.getProcessInfo');
     entry.browserPid = info.processInfo.find((p) => p.type === 'browser')?.id ?? null;
   } catch { /* sem a informação, fica o do spawn */ }
-  watchdog(entry.browserPid ?? proc.pid, profile);
+  entry.watchdog = watchdog(entry.browserPid ?? proc.pid, profile);
   browser.close = async () => {
     try { await browser.send('Browser.close'); } catch { /* já fechou */ }
     const pid = entry.browserPid ?? proc.pid;

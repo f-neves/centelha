@@ -251,10 +251,9 @@ impl<'a> Refs<'a> {
             out.html.push_str(&escape_html(&piece));
             let matched: String = chars[start..start + len].iter().collect();
             out.html.push_str(&format!(
-                "<a class=\"ref\" href=\"{}\" data-ref=\"{}\" title=\"{}\">{}</a>",
+                "<a class=\"ref\" href=\"{}\" data-ref=\"{}\">{}</a>",
                 nav::url(self.base, &format!("glossario#{}", e.id)),
                 escape_html(&e.id),
-                escape_html(&e.definition),
                 escape_html(&matched),
             ));
             out.marks.push(Mark {
@@ -408,7 +407,7 @@ mod tests {
             ]
         );
         assert!(m.html.contains(
-            "<a class=\"ref\" href=\"/b/glossario/#defesa-mental\" data-ref=\"defesa-mental\" title=\"def defesa-mental\">Defesa Mental</a>"
+            "<a class=\"ref\" href=\"/b/glossario/#defesa-mental\" data-ref=\"defesa-mental\">Defesa Mental</a>"
         ));
     }
 

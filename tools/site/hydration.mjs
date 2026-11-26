@@ -54,6 +54,12 @@ const PHONE = { width: 375, height: 812, deviceScaleFactor: 1, mobile: true };
 const server = await serve(dist, base);
 const browser = await launch();
 let failures = 0;
+// Quantas páginas tiveram termo do glossário marcado (a prova falha se
+// nenhuma tiver: a conferência do cartão não pode passar calada).
+let pagesWithTerms = 0;
+// Os capítulos sem nenhum termo do glossário no texto (na comparação com o
+// auto-link do site atual, os outros 27 têm termo marcado).
+const CHAPTERS_WITHOUT_TERMS = ['regras/custo-montarias-e-viagens/'];
 
 console.log(`hidratação: ${pages.length} páginas de ${dist} (base ${base}), navegador ${browser.executable}`);
 
@@ -150,7 +156,7 @@ for (const rel of pages) {
   // 4c. O cartão do glossário (antes do "Nesta página": escolher um título
   // muda a âncora, e a página rola de novo até ela por um segundo e meio, o
   // que fecha o cartão).
-  problems.push(...(await checkCards(page)));
+  problems.push(...(await checkCards(page, rel)));
 
   // 4d. O "Nesta página".
   problems.push(...(await checkToc(page)));
@@ -165,6 +171,11 @@ for (const rel of pages) {
   } else {
     console.log(`ok    ${base}${rel} (${before.length} caracteres, ilhas em ${hydrateMs} ms, tema ${current} -> ${target})`);
   }
+}
+
+if (pages.some((r) => r.startsWith('regras/')) && pagesWithTerms === 0) {
+  failures++;
+  console.log('FALHA nenhuma página com termo do glossário marcado (o cartão não foi conferido)');
 }
 
 await browser.close();
@@ -220,15 +231,21 @@ async function checkShell(page) {
   return problems;
 }
 
-async function checkCards(page) {
+async function checkCards(page, rel) {
   const problems = [];
-  if (!(await page.eval("!!document.querySelector('main .ref')"))) return problems;
+  if (!(await page.eval("!!document.querySelector('main .ref')"))) {
+    if (rel.startsWith('regras/') && !CHAPTERS_WITHOUT_TERMS.includes(rel)) {
+      problems.push('capítulo sem nenhum termo do glossário marcado');
+    }
+    return problems;
+  }
+  pagesWithTerms++;
   await page.eval("window.scrollTo({ top: 0, behavior: 'instant' })");
   const pop = () => page.eval("document.querySelector('.ref-pop b')?.textContent ?? null");
   const name = await page.eval(`(() => {
     const a = document.querySelector('main .ref');
     const data = JSON.parse(document.getElementById('ref-data').textContent);
-    return data.find((d) => d.id === a.dataset.ref)?.nome ?? null;
+    return data.find((d) => d.id === a.dataset.ref)?.name ?? null;
   })()`);
   // Mouse: passar por cima abre; sair fecha.
   const rect = await page.eval(`(() => {
