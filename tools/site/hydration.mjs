@@ -554,6 +554,17 @@ async function checkToc(page) {
   // O ponteiro sai de cima do texto (o passo anterior o deixou sobre um termo).
   await page.send('Input.dispatchMouseEvent', { type: 'mouseMoved', x: 2, y: 2 });
   await new Promise((ok) => setTimeout(ok, 300));
+  // Tirar o `otp-hidden` devolve o botão com uma transição (ele sobe de baixo
+  // da tela). Com a máquina ocupada (várias abas ao mesmo tempo no CI), a
+  // transição pode não ter andado ainda: espera o botão à mostra e recebendo
+  // o clique no meio dele (até 5 s), como o botão do menu em `checkShell`.
+  try {
+    await page.waitFor(`(() => {
+      const f = document.getElementById('otp-fab');
+      const r = f.getBoundingClientRect();
+      return document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2)?.closest('#otp-fab') === f;
+    })()`, 5000);
+  } catch { /* segue; a conferência abaixo diz o que houve */ }
   const fabState = await page.eval(`(() => {
     const f = document.getElementById('otp-fab');
     const r = f.getBoundingClientRect();
