@@ -40,9 +40,9 @@ const CONTENT = "document.querySelector('main').textContent";
 // layout. Antes de cada leitura, esta folha desliga o layout preguiçoso, e a
 // comparação fica a mesma.
 const ALL_VISIBLE = `(() => {
-  if (!document.getElementById('prova-visivel')) {
+  if (!document.getElementById('test-all-visible')) {
     const s = document.createElement('style');
-    s.id = 'prova-visivel';
+    s.id = 'test-all-visible';
     s.textContent = '* { content-visibility: visible !important; }';
     document.head.appendChild(s);
   }

@@ -206,7 +206,7 @@ M 425.40 462.00 L 309.21 313.25 L 122.29 287.00 L 238.48 435.75 Z";
     const VIEWBOX: &str = "122.29 62 779.42 900";
     let values = format!("{VALE};{PICO};{VALE}");
     view! {
-        <svg class="centelha-spark animada" viewBox=VIEWBOX fill="currentColor" aria-hidden="true">
+        <svg class="centelha-spark animated" viewBox=VIEWBOX fill="currentColor" aria-hidden="true">
             <g transform="translate(512 512)">
                 <g>
                     <animateTransform
@@ -235,7 +235,7 @@ M 425.40 462.00 L 309.21 313.25 L 122.29 287.00 L 238.48 435.75 Z";
                 </g>
             </g>
         </svg>
-        <svg class="centelha-spark parada" viewBox=VIEWBOX fill="currentColor" aria-hidden="true">
+        <svg class="centelha-spark still" viewBox=VIEWBOX fill="currentColor" aria-hidden="true">
             <path d=PICO></path>
         </svg>
     }
