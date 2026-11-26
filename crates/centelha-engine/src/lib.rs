@@ -6,3 +6,4 @@
 pub mod creature;
 pub mod js;
 pub mod rng;
+pub mod sheet;

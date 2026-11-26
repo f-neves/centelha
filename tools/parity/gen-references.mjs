@@ -17,6 +17,11 @@
 //   tests/parity/bestiary-ids.json  a lista dos ids das criaturas, em ordem
 //   tests/parity/creatures.json   os derivados de cada criatura e das formas
 //   tests/parity/mulberry32.json  sequências do gerador aleatório por semente
+//   tests/parity/sheets.json      fichas de jogador e as saídas do motor (sheets.mjs)
+//
+// O JSON não guarda -0 (o JSON.stringify escreve 0). Para a referência não
+// esconder um -0, todo -0 das saídas é gravado como o texto "-0", e o teste do
+// Rust lê esse texto como o número -0. NaN e infinito param o gerador.
 
 import fs from 'node:fs';
 import os from 'node:os';
@@ -24,6 +29,7 @@ import path from 'node:path';
 import { createRequire } from 'node:module';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import { buildSheetInputs, sheetOutputs } from './sheets.mjs';
 
 const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 const OUT = path.join(REPO, 'tests', 'parity');
@@ -74,6 +80,8 @@ async function loadTs(rel) {
 
 const motor = await loadTs('src/lib/motor.ts');
 const acaso = await loadTs('src/lib/acaso.ts');
+const formato = await loadTs('src/lib/ficha-formato.ts');
+const mesa = await loadTs('src/lib/mesa-ficha.ts');
 
 const source = {
   commit,
@@ -83,15 +91,30 @@ const source = {
   generator: 'tools/parity/gen-references.mjs',
 };
 
-function write(name, data) {
+// -0 vira o texto "-0" (ver o cabeçalho)
+const keepNegativeZero = (_, v) => (Object.is(v, -0) ? '-0' : v);
+
+// `lines`: a chave de uma lista que sai com um item por linha, sem recuo (as
+// fichas: o arquivo fica com a metade do tamanho e o diff continua por ficha).
+function write(name, data, lines) {
   fs.mkdirSync(OUT, { recursive: true });
   const file = path.join(OUT, name);
-  fs.writeFileSync(file, JSON.stringify(data, null, 1) + '\n');
+  let text;
+  if (lines) {
+    const head = Object.entries(data).filter(([k]) => k !== lines)
+      .map(([k, v]) => `${JSON.stringify(k)}: ${JSON.stringify(v, keepNegativeZero)}`);
+    const items = data[lines].map((x) => JSON.stringify(x, keepNegativeZero)).join(',\n');
+    text = `{\n${head.join(',\n')},\n${JSON.stringify(lines)}: [\n${items}\n]}`;
+  } else {
+    text = JSON.stringify(data, keepNegativeZero, 1);
+  }
+  fs.writeFileSync(file, text + '\n');
   console.log(`${path.relative(REPO, file)}: ${(fs.statSync(file).size / 1024).toFixed(1)} KB`);
 }
 
-// O JSON.stringify escreve NaN e infinito como null e -0 como 0: a referência
-// esconderia os três. Antes de gravar, procura em cada saída do motor.
+// O JSON.stringify escreve NaN e infinito como null: a referência esconderia os
+// dois. Antes de gravar, procura em cada saída do motor. O -0 só é contado: ele
+// é gravado como "-0".
 const badNumbers = [];
 const negativeZeros = [];
 function scanNumbers(value, where) {
@@ -144,7 +167,39 @@ for (const [id, x] of Object.entries(expectedFixture.criaturas)) {
 }
 for (const id of ids) if (!expectedFixture.criaturas[id]) differs.push(`${id}: não está na fixture`);
 
-for (const w of negativeZeros) console.warn(`aviso: -0 em ${w} (o JSON grava 0)`);
+// ----- fichas de jogador -----
+const readData = (name) => JSON.parse(fs.readFileSync(path.join(CONTENT, 'data', name), 'utf8'));
+const kael = JSON.parse(fs.readFileSync(path.join(SRC, 'scripts', 'fixtures', 'kael.json'), 'utf8'));
+const sheetInputs = buildSheetInputs({
+  kael, formato, acaso,
+  weapons: readData('armas.json'), shields: readData('escudos.json'), armors: readData('armaduras.json'),
+  races: readData('racas.json'),
+});
+const sheets = [];
+const sheetErrors = [];
+const groups = {};
+for (const c of sheetInputs) {
+  try {
+    const out = sheetOutputs({ formato, motor, mesa }, c.ficha);
+    scanNumbers(out, `ficha ${c.id}`);
+    sheets.push({ ...c, ...out });
+    groups[c.grupo] = (groups[c.grupo] || 0) + 1;
+  } catch (e) {
+    sheetErrors.push(`${c.id}: ${e.message}`);
+  }
+}
+if (sheetErrors.length) {
+  for (const e of sheetErrors) console.error(`erro: o motor falhou na ficha ${e}`);
+  console.error('nada gravado.');
+  process.exit(1);
+}
+const sheetIds = new Set();
+for (const s of sheets) {
+  if (sheetIds.has(s.id)) throw new Error(`ficha repetida: ${s.id}`);
+  sheetIds.add(s.id);
+}
+
+if (negativeZeros.length) console.log(`${negativeZeros.length} -0 nas saídas, gravados como "-0"`);
 if (badNumbers.length) {
   for (const b of badNumbers) console.error(`erro: número não finito em ${b}`);
   console.error('nada gravado: o motor deu NaN ou infinito.');
@@ -184,6 +239,16 @@ const sequences = SEEDS.map((seed) => {
   return { seed, seedU32: seed >>> 0, u32, f64 };
 });
 write('mulberry32.json', { source, steps: STEPS, f64Steps: F64_STEPS, sequences });
+write('sheets.json', {
+  source,
+  note: 'ficha: a entrada; leitura: fichaParaLeitura; gravar: fichaParaGravar; numeros: numerosPersonagem; '
+    + 'combate: combatePersonagem; resumo: resumoFicha (mesa-ficha.ts); banco: resumoParaBanco(resumo). '
+    + 'O lote é montado por tools/parity/sheets.mjs. -0 gravado como "-0".',
+  count: sheets.length,
+  groups,
+  sheets,
+}, 'sheets');
+console.log(`${sheets.length} fichas: ${Object.entries(groups).map(([g, n]) => `${g} ${n}`).join(', ')}`);
 
 console.log(`${ids.length} criaturas, ${formCount} formas, ${attackCount} ataques; ${SEEDS.length} sementes × ${STEPS}`);
 if (differs.length) {
