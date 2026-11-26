@@ -28,7 +28,6 @@ hydrate = ["leptos/hydrate", "dep:wasm-bindgen", "dep:web-sys"]
 
 [dependencies]
 leptos = { workspace = true, features = ["islands"] }
-serde.workspace = true
 centelha-data = { path = "../centelha-data", optional = true }
 pulldown-cmark = { workspace = true, optional = true }
 sha1 = { workspace = true, optional = true }
