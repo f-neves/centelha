@@ -251,9 +251,9 @@ pub fn load(content_dir: &Path, skill_names: &[(String, String)]) -> Result<Equi
             .unwrap_or(-1)
     };
     list.sort_by(|a, b| {
-        class_rank(a)
-            .cmp(&class_rank(b))
-            .then_with(|| super::collate::compare(&text(a.get("nome")), &text(b.get("nome"))))
+        class_rank(a).cmp(&class_rank(b)).then_with(|| {
+            centelha_engine::collate::compare(&text(a.get("nome")), &text(b.get("nome")))
+        })
     });
     let tags: BTreeSet<String> = list
         .iter()

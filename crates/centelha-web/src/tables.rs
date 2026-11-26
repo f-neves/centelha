@@ -6,7 +6,7 @@
 //! coluna (normalmente a descrição). A coluna em que todas as células são
 //! número (ou vazias) ordena pelo valor (`crate::sort::cell_value`: moeda em
 //! cobre, frações, milhar e vírgula); as outras, pelo texto
-//! (`crate::sort::compare_numeric_base`). A ordem é estável.
+//! (`centelha_engine::collate::compare_numeric_base`, o `localeCompare` do site atual). A ordem é estável.
 //!
 //! Melhoria de acessibilidade, sem mudar o texto: o site atual põe
 //! `role="button"` no próprio `<th>`, o que tira dele o papel de cabeçalho;
@@ -29,7 +29,9 @@ mod browser {
     use wasm_bindgen::closure::Closure;
     use web_sys::{Element, HtmlTableElement, HtmlTableRowElement, HtmlTableSectionElement};
 
-    use crate::sort::{cell_value, compare_numeric_base, is_empty_cell};
+    use centelha_engine::collate::compare_numeric_base;
+
+    use crate::sort::{cell_value, is_empty_cell};
 
     pub fn start() {
         let Some(document) = web_sys::window().and_then(|w| w.document()) else {

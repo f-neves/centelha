@@ -24,7 +24,7 @@ required-features = ["ssr"]
 [features]
 # Sem features padrão; `ssr` e `hydrate` nunca juntas.
 ssr = ["leptos/ssr", "dep:centelha-data", "dep:centelha-engine", "dep:pulldown-cmark", "dep:sha1", "dep:hydration_context"]
-hydrate = ["leptos/hydrate", "dep:wasm-bindgen", "dep:web-sys", "dep:js-sys"]
+hydrate = ["leptos/hydrate", "dep:centelha-engine", "dep:wasm-bindgen", "dep:web-sys", "dep:js-sys"]
 
 [dependencies]
 leptos = { workspace = true, features = ["islands"] }

@@ -1,107 +1,9 @@
-//! A ordem das tabelas dos capítulos, igual à do site atual: a comparação de
-//! texto do `localeCompare(b, 'pt', { numeric: true, sensitivity: 'base' })` e
-//! a leitura de valores da ordenação de `src/pages/regras/[slug].astro`
-//! (moeda convertida para cobre, frações, separador de milhar e vírgula
-//! decimal). Vale no gerador e no navegador (a ilha que ordena).
-
-use std::cmp::Ordering;
-
-/// A letra de base: sem acento e em minúscula (as letras acentuadas do
-/// português e do espanhol, e as das línguas vizinhas no Latim estendido).
-pub fn fold(c: char) -> char {
-    let lower = lowercase(c);
-    match lower {
-        'à' | 'á' | 'â' | 'ã' | 'ä' | 'å' | 'ā' | 'ă' | 'ą' => 'a',
-        'ç' | 'ć' | 'ĉ' | 'ċ' | 'č' => 'c',
-        'ď' => 'd',
-        'è' | 'é' | 'ê' | 'ë' | 'ē' | 'ĕ' | 'ė' | 'ę' | 'ě' => 'e',
-        'ĝ' | 'ğ' | 'ġ' | 'ģ' => 'g',
-        'ĥ' => 'h',
-        'ì' | 'í' | 'î' | 'ï' | 'ĩ' | 'ī' | 'ĭ' | 'į' => 'i',
-        'ĵ' => 'j',
-        'ķ' => 'k',
-        'ĺ' | 'ļ' | 'ľ' => 'l',
-        'ñ' | 'ń' | 'ņ' | 'ň' => 'n',
-        'ò' | 'ó' | 'ô' | 'õ' | 'ö' | 'ō' | 'ŏ' | 'ő' => 'o',
-        'ŕ' | 'ŗ' | 'ř' => 'r',
-        'ś' | 'ŝ' | 'ş' | 'š' => 's',
-        'ţ' | 'ť' => 't',
-        'ù' | 'ú' | 'û' | 'ü' | 'ũ' | 'ū' | 'ŭ' | 'ů' | 'ű' | 'ų' => 'u',
-        'ŵ' => 'w',
-        'ý' | 'ÿ' | 'ŷ' => 'y',
-        'ź' | 'ż' | 'ž' => 'z',
-        other => other,
-    }
-}
-
-/// A minúscula das letras latinas (ASCII, Latim-1 e Latim estendido A), sem
-/// as tabelas de caixa do Unicode inteiro, que pesam no WebAssembly. As
-/// outras letras passam como estão (não aparecem nas tabelas do livro).
-fn lowercase(c: char) -> char {
-    let u = c as u32;
-    let lower = match u {
-        0x41..=0x5A | 0xC0..=0xD6 | 0xD8..=0xDE => u + 32,
-        // Latim estendido A: maiúscula no par, minúscula no ímpar (com os
-        // trechos que invertem a paridade).
-        0x100..=0x137 | 0x14A..=0x177 if u.is_multiple_of(2) => u + 1,
-        0x139..=0x148 | 0x179..=0x17E if !u.is_multiple_of(2) => u + 1,
-        _ => u,
-    };
-    char::from_u32(lower).unwrap_or(c)
-}
-
-/// A classe e a letra de base de um caractere na colação: espaço antes de
-/// pontuação, pontuação antes de símbolo, símbolo antes de algarismo,
-/// algarismo antes de letra.
-pub fn primary_key(c: char) -> (u8, char) {
-    let base = fold(c);
-    let class = if base.is_whitespace() {
-        0
-    } else if base.is_ascii_punctuation() && !"$+<=>^`|~".contains(base) {
-        1
-    } else if base.is_alphanumeric() {
-        if base.is_numeric() { 3 } else { 4 }
-    } else {
-        2
-    };
-    (class, base)
-}
-
-/// Compara como `localeCompare` com `numeric: true` e `sensitivity: 'base'`:
-/// só a letra de base conta (acento e caixa empatam), e uma sequência de
-/// algarismos vale pelo número (`2` antes de `10`).
-pub fn compare_numeric_base(a: &str, b: &str) -> Ordering {
-    let a: Vec<char> = a.chars().collect();
-    let b: Vec<char> = b.chars().collect();
-    let (mut i, mut j) = (0, 0);
-    while i < a.len() && j < b.len() {
-        let (da, db) = (a[i].is_ascii_digit(), b[j].is_ascii_digit());
-        if da && db {
-            let (si, sj) = (i, j);
-            while i < a.len() && a[i].is_ascii_digit() {
-                i += 1;
-            }
-            while j < b.len() && b[j].is_ascii_digit() {
-                j += 1;
-            }
-            let na: String = a[si..i].iter().collect();
-            let nb: String = b[sj..j].iter().collect();
-            let (na, nb) = (na.trim_start_matches('0'), nb.trim_start_matches('0'));
-            let order = na.len().cmp(&nb.len()).then_with(|| na.cmp(nb));
-            if order != Ordering::Equal {
-                return order;
-            }
-            continue;
-        }
-        let order = primary_key(a[i]).cmp(&primary_key(b[j]));
-        if order != Ordering::Equal {
-            return order;
-        }
-        i += 1;
-        j += 1;
-    }
-    (a.len() - i).cmp(&(b.len() - j))
-}
+//! A leitura de valores da ordenação das tabelas, igual à de
+//! `src/pages/regras/[slug].astro` do site atual (moeda convertida para
+//! cobre, frações, separador de milhar e vírgula decimal). A comparação de
+//! texto é a do motor (`centelha_engine::collate::compare_numeric_base`, o
+//! `localeCompare` com `numeric` e `sensitivity: 'base'`). Vale no gerador e
+//! no navegador (a ilha que ordena).
 
 /// O valor de "inteiro,fração" escritos só com algarismos, por conta, sem o
 /// leitor de números com fração da biblioteca padrão (que pesa no
@@ -305,14 +207,6 @@ mod tests {
         assert_eq!(cell_value("leve"), None);
         // "pcs" não é a unidade (fronteira de palavra), vale o número.
         assert_eq!(cell_value("4 pcs"), Some(4.0));
-    }
-
-    #[test]
-    fn text_order_is_numeric_and_ignores_accent_and_case() {
-        assert_eq!(compare_numeric_base("Nível 2", "Nível 10"), Ordering::Less);
-        assert_eq!(compare_numeric_base("ação", "Acao"), Ordering::Equal);
-        assert_eq!(compare_numeric_base("Arco", "Espada"), Ordering::Less);
-        assert_eq!(compare_numeric_base("Arco", "Arco longo"), Ordering::Less);
     }
 
     #[test]

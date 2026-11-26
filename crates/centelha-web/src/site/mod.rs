@@ -5,7 +5,6 @@
 //! pelo `cargo xtask site` depois do gerador.
 
 mod backdrop;
-pub mod collate;
 pub mod equipment;
 pub mod links;
 pub mod markdown;
@@ -163,7 +162,7 @@ impl Site {
         let chapters = load_chapters(content_dir)?;
         let glossary_source = load_glossary(content_dir)?;
         let mut glossary = glossary_source.clone();
-        glossary.sort_by(|a, b| collate::compare(&a.term, &b.term));
+        glossary.sort_by(|a, b| centelha_engine::collate::compare(&a.term, &b.term));
         let diagrams_path = content_dir.join("data").join("diagramas.json");
         let json = std::fs::read_to_string(&diagrams_path).map_err(io_error(&diagrams_path))?;
         let diagrams = Diagrams::parse(&json).map_err(SiteError::Diagrams)?;
