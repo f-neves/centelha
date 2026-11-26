@@ -288,3 +288,14 @@ No `grid` do Efeito: forma `shape`, âncora `anchor`, gatilho `trigger`, alvo `t
 | descrição de um nível | `LevelText` | tabela ou view do banco (PostgREST) | `Relation` (a mesa do jogo continua `Table`) |
 | resiste (da Virtude) | `resists` | sessão (o token do usuário) | `Session` |
 | conduta | `conduct` | | |
+
+## Regras do Arcano (acréscimo de 26/11, tarefa 016 do Backend)
+
+| Português | Inglês | Português | Inglês |
+|---|---|---|---|
+| improviso (da Arte) | `improvisation` | manifestação | `manifestation` |
+| fonte do elemento (fonteElemental) | `elemental_source` | esticar | `stretch` |
+| desvio (sair da área) | `detour` | Cura (a Arte) | `healing` (o campo `cura` do Efeito continua `heals`) |
+| padrão (valor) | `standard` (no `SideState`, o campo do JSON `padrao` ficou `default`) | acima de (linha do esticar) | `above` |
+| aberturas (graus do arco) | `openings` | estado no lado | `side_state` |
+| fatias | `slices` | árvore de texto (de uma regra) | `Node` |
