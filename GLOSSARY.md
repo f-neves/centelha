@@ -260,7 +260,7 @@ No `grid` do Efeito: forma `shape`, âncora `anchor`, gatilho `trigger`, alvo `t
 
 | Português | Inglês | Português | Inglês |
 |---|---|---|---|
-| ficha interativa (as contas dela) | `sheet::editor`, `EditorTables` | troca de Raça | `change_ancestry` |
+| tabelas da ficha interativa | `EditorTables` | troca de Raça | `change_ancestry` |
 | ficha nova | `fresh_sheet` | massa escrita pelo jogador | `mass_chosen` |
 | orçamento (de XP) | `budget`, `FRESH_BUDGET` | especialidade nomeada | `Specialty { name, level }` |
 | Secundárias livres | `FREE_SECONDARY` | teto das especialidades | `specialty_cap`, `clamp_specialties` |
