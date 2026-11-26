@@ -22,6 +22,7 @@ mod format;
 mod hands;
 mod migrate;
 mod near_miss;
+mod normalize;
 mod numbers;
 mod pgr;
 mod strength;
@@ -54,6 +55,7 @@ pub use near_miss::{
     ArmorNearMiss, AttackOutcome, Graze, NearMissAttacker, NearMissOutcome, NearMissTarget,
     WeaponNearMiss, attack_outcome, encounter_near_miss, grazes, missed_by,
 };
+pub use normalize::{FloorRaise, Normalized, normalize_sheet};
 pub use numbers::{
     ArmorStack, ArtLevel, CombatSummary, DamageVersion, DbSummary, DualWield, HandItem, HandKind,
     HandSet, Initiative, Movement, NearMiss, Passive, SheetNumbers, SheetSummary, Step,

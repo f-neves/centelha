@@ -16,10 +16,10 @@ use centelha_engine::sheet::{
     ItemKind, Movement, SHIELD_EDIT_FIELDS, SheetTables, WEAPON_EDIT_FIELDS, WEAPON_MORE_FIELDS,
     attribute_floor, carried_load, change_ancestry, clamp_specialties, current_load,
     dual_attack_from, dual_damage_text, edit_field_base, effects_in_reach, extra_lines,
-    fresh_sheet, load_bands, load_speed_fraction, mass_chosen, overhead_lift, penalized_movement,
-    penalized_speed, piece_for, pool_text, sheet_anatomy, sheet_flurry_cap, short_number, spent_xp,
-    technique_status, throw_cap, throw_range, throw_reserve, throw_table_weights, trait_cap,
-    weight_from_text, write_edit_field,
+    fresh_sheet, load_bands, load_speed_fraction, mass_chosen, normalize_sheet, overhead_lift,
+    penalized_movement, penalized_speed, piece_for, pool_text, sheet_anatomy, sheet_flurry_cap,
+    short_number, spent_xp, technique_status, throw_cap, throw_range, throw_reserve,
+    throw_table_weights, trait_cap, weight_from_text, write_edit_field,
 };
 use common::{compare, num, repo};
 use serde_json::{Map, Value, json};
@@ -231,6 +231,26 @@ fn run(ctx: &Ctx, inputs: &Value, name: &str, a: &[Value], want: &Value) -> Valu
         ),
         "tetoDaRajada" => num(sheet_flurry_cap(t.sheet_tables().rules(), weapons, &a[0])),
         "alcanceArremesso" => num(throw_range(t.sheet_tables().rules(), f(&a[0]), f(&a[1]), f(&a[2]))),
+        "normalize" => {
+            // os uid chegam na ordem em que a fonte os sorteou
+            let mut uids = a[1]
+                .as_array()
+                .unwrap()
+                .iter()
+                .map(|u| u.as_str().unwrap().to_owned())
+                .collect::<Vec<_>>()
+                .into_iter();
+            let n = normalize_sheet(t, &a[0], &mut || {
+                uids.next().expect("o Rust pediu mais uid que a fonte")
+            });
+            assert!(uids.next().is_none(), "o Rust pediu menos uid que a fonte");
+            let raised: Vec<Value> = n
+                .raised
+                .iter()
+                .map(|r| json!({"nome": r.name, "de": r.from, "para": num(r.to)}))
+                .collect();
+            json!({"ficha": n.sheet, "subiu": raised, "massa": n.mass_chosen})
+        }
         "forca" => {
             // a entrada da conta é o que a ficha leu (Força, Atletismo,
             // Arremesso, o peso máximo, a penalidade e as velocidades sem ela);
@@ -393,6 +413,11 @@ fn sheet_editor_matches_typescript() {
             &c["out"],
             &mut diffs,
         );
+        // a ordem das chaves da ficha faz parte da paridade (ADR 0004): o
+        // `compare` não a olha, então a ficha do `normalize` é conferida à parte
+        if name == "normalize" {
+            order_diffs(&got["ficha"], &c["out"]["ficha"], "ficha", &mut diffs);
+        }
         assert!(
             diffs.is_empty(),
             "primeiro caso diferente: {i} ({} diferenças):\n{}",
@@ -409,4 +434,29 @@ fn sheet_editor_matches_typescript() {
 #[test]
 fn the_comparison_catches_differences() {
     common::check_comparator();
+}
+
+/// As chaves de cada objeto na mesma ordem (a da fonte), em toda a ficha.
+fn order_diffs(got: &Value, want: &Value, path: &str, diffs: &mut Vec<String>) {
+    match (got, want) {
+        (Value::Object(g), Value::Object(w)) => {
+            let gk: Vec<&String> = g.keys().collect();
+            let wk: Vec<&String> = w.keys().collect();
+            if gk != wk {
+                diffs.push(format!(
+                    "{path}: chaves em outra ordem: {gk:?} contra {wk:?}"
+                ));
+                return;
+            }
+            for (k, v) in g {
+                order_diffs(v, &w[k], &format!("{path}.{k}"), diffs);
+            }
+        }
+        (Value::Array(g), Value::Array(w)) => {
+            for (i, (a, b)) in g.iter().zip(w).enumerate() {
+                order_diffs(a, b, &format!("{path}[{i}]"), diffs);
+            }
+        }
+        _ => {}
+    }
 }
