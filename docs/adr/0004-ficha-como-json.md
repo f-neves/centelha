@@ -17,3 +17,7 @@ A ficha do jogador é gravada no banco do site atual em formas de várias época
 
 - A paridade da ficha continua a comparar valores; comparar também a ordem das chaves de `for_reading` e `for_saving` fica como melhoria futura.
 - Se a ilha da ficha precisar de um campo tipado, ele entra como tipo de saída novo do motor, sem trocar a entrada `Value`.
+
+## Notas
+
+- **26/11/2026, card do bestiário.** O `centelha-engine::bestiary_card` também recebe e devolve `serde_json::Value` (chaves em português, as do `monsters.json`), pelas mesmas razões e com as mesmas regras desta ADR (`preserve_order`, `shift_remove`, nada de `Map::remove`). O item 1 vale para ele como vale para o `sheet`.
