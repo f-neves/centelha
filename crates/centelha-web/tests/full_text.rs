@@ -64,8 +64,8 @@ fn check_site(base: &str) {
     let site = Site::load(&content, base).expect("o site se lê");
     let out = temp_out(base.trim_matches('/'));
     let pages = site.write(&out).expect("o site se grava");
-    // A inicial, os capítulos, o glossário e a de não encontrada.
-    assert_eq!(pages.len(), site.chapters().len() + 3);
+    // A inicial, os capítulos, o glossário, Equipamentos e a de não encontrada.
+    assert_eq!(pages.len(), site.chapters().len() + 4);
     assert_eq!(site.chapters().len(), 28);
 
     let mut failures = Vec::new();

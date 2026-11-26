@@ -5,7 +5,7 @@
 //! pelo `cargo xtask site` depois do gerador.
 
 mod backdrop;
-pub mod collate;
+pub mod equipment;
 pub mod links;
 pub mod markdown;
 pub mod nav;
@@ -30,7 +30,8 @@ use leptos::reactive::owner::Owner;
 
 use markdown::{Diagrams, DiagramsError, Markdown};
 use pages::{
-    ChapterPage, GlossaryPage, HomeCounts, HomePage, Layout, Neighbor, NotFoundPage, PageInfo,
+    ChapterPage, EquipmentPage, GlossaryPage, HomeCounts, HomePage, IslandsTestPage, Layout,
+    Neighbor, NotFoundPage, PageInfo,
 };
 
 /// O caminho base de quem não diz outro (a prévia no GitHub Pages).
@@ -89,6 +90,8 @@ pub enum SiteError {
     Data(DataError),
     /// `diagramas.json` não se leu.
     Diagrams(DiagramsError),
+    /// O catálogo de equipamento não se montou.
+    Equipment(centelha_engine::sheet::SheetError),
     /// Um arquivo não se leu ou não se gravou.
     Io {
         path: PathBuf,
@@ -101,6 +104,7 @@ impl fmt::Display for SiteError {
         match self {
             SiteError::Data(e) => write!(f, "{e}"),
             SiteError::Diagrams(e) => write!(f, "{e}"),
+            SiteError::Equipment(e) => write!(f, "{e}"),
             SiteError::Io { path, source } => write!(f, "{}: {source}", path.display()),
         }
     }
@@ -111,6 +115,7 @@ impl std::error::Error for SiteError {
         match self {
             SiteError::Data(e) => Some(e),
             SiteError::Diagrams(e) => Some(e),
+            SiteError::Equipment(e) => Some(e),
             SiteError::Io { source, .. } => Some(source),
         }
     }
@@ -145,6 +150,7 @@ pub struct Site {
     glossary_source: Vec<GlossaryEntry>,
     counts: HomeCounts,
     scales: HashMap<String, leptos::serde_json::Value>,
+    equipment: equipment::Equipment,
     diagrams: Diagrams,
     content_dir: PathBuf,
 }
@@ -156,7 +162,7 @@ impl Site {
         let chapters = load_chapters(content_dir)?;
         let glossary_source = load_glossary(content_dir)?;
         let mut glossary = glossary_source.clone();
-        glossary.sort_by(|a, b| collate::compare(&a.term, &b.term));
+        glossary.sort_by(|a, b| centelha_engine::collate::compare(&a.term, &b.term));
         let diagrams_path = content_dir.join("data").join("diagramas.json");
         let json = std::fs::read_to_string(&diagrams_path).map_err(io_error(&diagrams_path))?;
         let diagrams = Diagrams::parse(&json).map_err(SiteError::Diagrams)?;
@@ -167,6 +173,7 @@ impl Site {
             glossary_source,
             counts: home_counts(content_dir)?,
             scales: glossary_scales(content_dir)?,
+            equipment: equipment::load(content_dir, &skill_names(content_dir)?)?,
             diagrams,
             content_dir: content_dir.to_path_buf(),
         })
@@ -235,6 +242,23 @@ impl Site {
                 glossary,
                 Some("Os termos-chave do sistema, com sinônimos e definições."),
                 move || view! { <GlossaryPage entries/> }.into_any(),
+            ),
+        });
+        let equipment = self.equipment.clone();
+        let base = self.base.clone();
+        let equipment_page = PageInfo {
+            path: "equipamentos".to_string(),
+            title: "Equipamentos".to_string(),
+            wide: true,
+            toc: Vec::new(),
+            refs: true,
+        };
+        pages.push(Page {
+            path: "equipamentos/index.html".to_string(),
+            html: self.document(
+                equipment_page,
+                Some("Catálogo filtrável de armas, armaduras e escudos, com dano, Absorção e os trade-offs."),
+                move || view! { <EquipmentPage base equipment/> }.into_any(),
             ),
         });
         // A página de "não encontrada", na raiz de `dist/` (o GitHub Pages a
@@ -334,6 +358,7 @@ impl Site {
 <script>{HEAD_SCRIPT}</script>\n\
 <link rel=\"preload\" href=\"{b}assets/fonts/{PRELOADED_FONT}\" as=\"font\" type=\"font/woff2\" crossorigin>\n\
 <link rel=\"stylesheet\" href=\"{b}assets/site.css\">\n\
+<meta name=\"centelha-ref-index\" content=\"{b}ref-index.json\">\n\
 {scripts}\n\
 </head>\n\
 <body>\n{body}\n</body>\n\
@@ -364,6 +389,8 @@ impl Site {
             let path = fonts.join(name);
             std::fs::write(&path, bytes).map_err(io_error(&path))?;
         }
+        let index = out_dir.join("ref-index.json");
+        std::fs::write(&index, self.ref_index_json()).map_err(io_error(&index))?;
         self.copy_public_files(out_dir)?;
         Ok(pages)
     }
@@ -381,13 +408,60 @@ impl Site {
         let (Some(start), Some(end)) = (body.find("<main"), body.find("</main>")) else {
             return body.to_string();
         };
-        let marked = self.refs().mark(&body[start..end]);
+        let sortable = body.contains("data-component=\"TableSorter_");
+        let marked = self.refs().mark(&body[start..end], sortable);
         let json = self.refs_json(&marked).unwrap_or_else(|| "[]".to_string());
         let mut out = String::with_capacity(body.len() + marked.html.len());
         out.push_str(&body[..start]);
         out.push_str(&marked.html);
         out.push_str(&body[end..].replacen(pages::REF_DATA_SLOT, &json, 1));
         out
+    }
+
+    /// O `ref-index.json`, no mesmo endereço e no mesmo formato do site atual
+    /// (`src/pages/ref-index.json.ts`): por enquanto só o glossário. O painel
+    /// dos fixados (`crate::bookmarks`) o baixa sob demanda.
+    pub fn ref_index_json(&self) -> String {
+        let items: Vec<leptos::serde_json::Value> = self
+            .glossary
+            .iter()
+            .map(|g| {
+                let mut terms = vec![g.term.clone()];
+                terms.extend(g.aliases.iter().cloned());
+                let mut detail = leptos::serde_json::json!({ "descricao": g.definition });
+                if let Some(scale) = self.scales.get(&g.id) {
+                    detail["niveis"] = scale.clone();
+                }
+                leptos::serde_json::json!({
+                    "id": g.id,
+                    "tipo": "termo",
+                    "nome": g.term,
+                    "url": nav::url(&self.base, &format!("glossario#{}", g.id)),
+                    "resumo": g.definition,
+                    "termos": terms,
+                    "autolink": true,
+                    "detalhe": detail,
+                })
+            })
+            .collect();
+        leptos::serde_json::to_string(&items).unwrap_or_else(|_| "[]".to_string())
+    }
+
+    /// Uma página de teste das ilhas que ainda não têm página portada (o
+    /// cartão das formas e o voltar ao topo, das páginas das Artes). Não vai
+    /// para o `dist/`: o binário só a grava com `--test-page`.
+    pub fn test_page(&self) -> Page {
+        let info = PageInfo {
+            path: "teste-ilhas".to_string(),
+            title: "Teste das ilhas".to_string(),
+            wide: false,
+            toc: Vec::new(),
+            refs: false,
+        };
+        Page {
+            path: "teste-ilhas/index.html".to_string(),
+            html: self.document(info, None, move || view! { <IslandsTestPage/> }.into_any()),
+        }
     }
 
     /// Os dados do cartão para os termos da página: os marcados e os que um
@@ -464,6 +538,34 @@ impl Site {
         }
         Ok(())
     }
+}
+
+/// Os nomes das Habilidades por id (a coluna Habilidade de Equipamentos).
+///
+/// Provisório, como as escalas e os contadores: o `centelha-data` ainda não
+/// tem o módulo das Habilidades. Lê só `id` e `nome` de `habilidades.json`.
+/// Sai do provisório com o leitor de `habilidades.json` do `centelha-data`
+/// (tarefa 014a do Backend).
+fn skill_names(content_dir: &Path) -> Result<Vec<(String, String)>, SiteError> {
+    let path = content_dir.join("data").join("habilidades.json");
+    let text = std::fs::read_to_string(&path).map_err(io_error(&path))?;
+    let list: Vec<leptos::serde_json::Value> =
+        leptos::serde_json::from_str(&text).map_err(|e| {
+            SiteError::Data(DataError::Json {
+                file: Some("data/habilidades.json".to_string()),
+                path: String::new(),
+                reason: e.to_string(),
+            })
+        })?;
+    Ok(list
+        .iter()
+        .filter_map(|h| {
+            Some((
+                h.get("id")?.as_str()?.to_string(),
+                h.get("nome")?.as_str()?.to_string(),
+            ))
+        })
+        .collect())
 }
 
 /// As escalas que o cartão do glossário mostra em dois termos (Centelha e

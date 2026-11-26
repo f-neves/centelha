@@ -20,10 +20,12 @@
 //! - o texto dos diagramas (dentro de `<svg>`) não é marcado. No site atual o
 //!   link entra dentro do `<tspan>` do desenho, onde o navegador não o
 //!   desenha, e o rótulo some;
-//! - o cabeçalho das tabelas (`<thead>`) não é marcado. Ali o cabeçalho ordena
-//!   a tabela (`crate::tables`, num botão), e um link dentro dele seria um
-//!   controle dentro de outro: o clique ordenava e abria o diálogo do termo
-//!   ao mesmo tempo, e o teclado ficava preso no diálogo.
+//! - os cabeçalhos que ordenam a tabela não são marcados. Ali o cabeçalho vira
+//!   um botão (`crate::tables`: em tabela com corpo e duas colunas ou mais,
+//!   toda coluna menos a última), e um link dentro dele seria um controle
+//!   dentro de outro: o clique ordenava e abria o diálogo do termo ao mesmo
+//!   tempo, e o teclado ficava preso no diálogo. A última coluna e as tabelas
+//!   que não ordenam são marcadas, como no site atual.
 //!
 //! Primeira etapa: só os termos do glossário. Atributos, Habilidades,
 //! Virtudes, Caminhos, Técnicas e Artes entram com os módulos da fase 2.
@@ -128,12 +130,19 @@ impl<'a> Refs<'a> {
     }
 
     /// Marca o HTML de um capítulo.
-    pub fn mark(&self, html: &str) -> Marked {
+    /// `sortable_tables` diz se a página tem a ilha que ordena as tabelas (os
+    /// capítulos); sem ela (Equipamentos), os cabeçalhos são marcados.
+    pub fn mark(&self, html: &str, sortable_tables: bool) -> Marked {
         let mut out = Marked {
             html: String::with_capacity(html.len() + html.len() / 8),
             marks: Vec::new(),
         };
         let mut stack: Vec<Element> = Vec::new();
+        let sortable = if sortable_tables {
+            sortable_headers(html)
+        } else {
+            HashSet::new()
+        };
         let mut used: HashMap<usize, HashSet<usize>> = HashMap::new();
         let mut next_uid = 1usize;
         let mut rest = html;
@@ -172,9 +181,11 @@ impl<'a> Refs<'a> {
                 if VOID.contains(&name.as_str()) || tag.ends_with("/>") {
                     continue;
                 }
+                let start = html.len() - rest.len() - tag.len();
                 let skip_inside = classes(tag)
                     .iter()
-                    .any(|c| SKIP_CLASSES.contains(&c.as_str()));
+                    .any(|c| SKIP_CLASSES.contains(&c.as_str()))
+                    || sortable.contains(&start);
                 stack.push(Element {
                     name,
                     skip_inside,
@@ -207,7 +218,7 @@ impl<'a> Refs<'a> {
         let parent_skips = stack
             .last()
             .is_some_and(|p| SKIP.contains(&p.name.as_str()));
-        let inside_skip = stack.iter().any(|e| e.skip_inside || e.name == "thead");
+        let inside_skip = stack.iter().any(|e| e.skip_inside);
         let text = decode_entities(raw);
         if parent_skips || inside_skip || text.trim().chars().count() <= 2 {
             out.html.push_str(raw);
@@ -270,6 +281,51 @@ impl<'a> Refs<'a> {
         let tail: String = chars[pos..].iter().collect();
         out.html.push_str(&escape_html(&tail));
     }
+}
+
+/// Onde começam (posição no HTML) os `<th>` que a ilha de ordenação torna
+/// botão: os da primeira linha do `<thead>`, menos o último, em tabela com
+/// `<tbody>` e duas colunas ou mais (a mesma regra de `crate::tables`).
+fn sortable_headers(html: &str) -> HashSet<usize> {
+    let lower = html.to_ascii_lowercase();
+    let mut out = HashSet::new();
+    let mut from = 0;
+    while let Some(t) = lower[from..].find("<table") {
+        let table = from + t;
+        let end = lower[table..]
+            .find("</table")
+            .map(|e| table + e)
+            .unwrap_or(lower.len());
+        from = end.max(table + 1);
+        let inner = &lower[table..end];
+        let (Some(head), Some(_)) = (inner.find("<thead"), inner.find("<tbody")) else {
+            continue;
+        };
+        let Some(tr) = inner[head..].find("<tr") else {
+            continue;
+        };
+        let row_start = head + tr;
+        let row_end = inner[row_start..]
+            .find("</tr")
+            .map(|e| row_start + e)
+            .unwrap_or(inner.len());
+        let row = &inner[row_start..row_end];
+        let mut cells = Vec::new();
+        let mut k = 0;
+        while let Some(i) = row[k..].find("<th") {
+            let at = k + i;
+            // `<th` e não `<thead`.
+            if row[at + 3..].starts_with(|c: char| c == '>' || c.is_whitespace()) {
+                cells.push(table + row_start + at);
+            }
+            k = at + 3;
+        }
+        if cells.len() >= 2 {
+            cells.pop();
+            out.extend(cells);
+        }
+    }
+    out
 }
 
 /// Sem acento e em minúscula, caractere a caractere (o tamanho não muda, como
@@ -388,7 +444,7 @@ mod tests {
 
     fn marked(html: &str) -> Marked {
         let g = glossary();
-        Refs::new("/b/", &g).mark(html)
+        Refs::new("/b/", &g).mark(html, true)
     }
 
     #[test]
@@ -445,12 +501,19 @@ mod tests {
     }
 
     #[test]
-    fn table_headers_are_left_alone() {
+    fn sortable_headers_are_left_alone() {
+        // Duas colunas e corpo: a primeira ordena (sem marca), a última não.
         let m = marked(
-            "<table><thead><tr><th>Defesa</th></tr></thead><tbody><tr><td>Defesa</td></tr></tbody></table>",
+            "<table><thead><tr><th>Defesa</th><th>Pool</th></tr></thead><tbody><tr><td>Defesa</td><td>x</td></tr></tbody></table>",
+        );
+        assert!(m.html.contains("<th>Defesa</th>"));
+        assert!(m.html.contains("data-ref=\"pool\">Pool</a></th>"));
+        assert_eq!(m.marks.len(), 2);
+        // Uma coluna só: não ordena, e o cabeçalho é marcado.
+        let m = marked(
+            "<table><thead><tr><th>Defesa</th></tr></thead><tbody><tr><td>x</td></tr></tbody></table>",
         );
         assert_eq!(m.marks.len(), 1);
-        assert!(m.html.contains("<th>Defesa</th>"));
     }
 
     #[test]

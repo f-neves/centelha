@@ -203,6 +203,14 @@ for (const rel of pages) {
   // 4e. As tabelas que ordenam.
   problems.push(...(await checkTables(page)));
 
+  // 4f. O filtro de Equipamentos.
+  problems.push(...(await checkFilter(page)));
+
+  // 4g. O cartão das formas, o voltar ao topo e o painel dos fixados.
+  problems.push(...(await checkShapes(page)));
+  problems.push(...(await checkBackToTop(page)));
+  problems.push(...(await checkBookmarks(page)));
+
   // 5. Console limpo.
   problems.push(...messages);
   await page.close();
@@ -225,7 +233,6 @@ await server.close();
 console.log(failures ? `${failures} de ${pages.length} páginas falharam` : `todas as ${pages.length} páginas passaram`);
 process.exit(failures ? 1 : 0);
 
-/** Clica no meio do elemento, como um dedo (sem `element.click()`). */
 /**
  * O centro de um elemento depois que ele parou de mexer (com a página em
  * duas colunas, ou logo depois de trocar a tela, o layout assenta aos
@@ -343,7 +350,15 @@ async function checkTables(page) {
       continue;
     }
     await new Promise((r) => setTimeout(r, 100));
-    const rect = await page.eval(`(() => { const r = ${sel}.tHead.rows[0].cells[${first}].getBoundingClientRect(); return { x: r.x + r.width / 2, y: r.y + r.height / 2 }; })()`);
+    // No canto direito do cabeçalho, onde fica a seta (o `::after` do `<th>`),
+    // fora do botão: prova que o ouvinte está no `<th>` inteiro.
+    const rect = await page.eval(`(() => {
+      const th = ${sel}.tHead.rows[0].cells[${first}];
+      const r = th.getBoundingClientRect();
+      const x = r.right - 4, y = r.y + r.height / 2;
+      return { x, y, onTh: document.elementFromPoint(x, y) === th };
+    })()`);
+    if (!rect.onTh) problems.push(`${label}: o canto direito do cabeçalho não é o próprio <th>`);
     let want = await expected(first, 'asc');
     for (const type of ['mousePressed', 'mouseReleased']) {
       await page.send('Input.dispatchMouseEvent', { type, x: rect.x, y: rect.y, button: 'left', clickCount: 1 });
@@ -477,6 +492,122 @@ async function checkToc(page) {
     const after = await page.eval("({ open: document.getElementById('otp').open, hash: decodeURIComponent(location.hash) })");
     if (after.open || after.hash !== `#${id}`) problems.push(`escolher um título não levou a ele: ${JSON.stringify(after)}`);
   }
+  return problems;
+}
+
+async function checkFilter(page) {
+  const problems = [];
+  if (!(await page.eval("!!document.querySelector('[data-ef]')"))) return problems;
+  const state = () => page.eval(`({
+    visible: [...document.querySelectorAll('tr[data-arma]')].filter((r) => r.style.display !== 'none').length,
+    total: document.querySelectorAll('tr[data-arma]').length,
+    count: document.querySelector('.ef-count')?.textContent ?? null,
+    hiddenBlocks: [...document.querySelectorAll('[data-bloco]')].filter((b) => b.hidden).length,
+  })`);
+  let s = await state();
+  if (s.visible !== s.total || s.count !== `${s.total} armas`) problems.push(`filtro, ao abrir: ${JSON.stringify(s)}`);
+  // Busca pelo teclado: digitar "adaga" no campo.
+  await page.eval("document.querySelector('[data-ef=\"q\"]').focus({ preventScroll: true })");
+  await page.send('Input.insertText', { text: 'adaga' });
+  await new Promise((ok) => setTimeout(ok, 100));
+  s = await state();
+  const expected = await page.eval("[...document.querySelectorAll('tr[data-arma]')].filter((r) => r.dataset.txt.includes('adaga')).length");
+  if (s.visible !== expected || s.count !== `${expected} arma${expected === 1 ? '' : 's'}`) problems.push(`filtro pela busca: ${JSON.stringify(s)} (esperava ${expected})`);
+  // Limpa a busca e marca a classe "distancia" pelo mouse: a tabela de corpo a corpo some.
+  await page.eval("(() => { const q = document.querySelector('[data-ef=\"q\"]'); q.value = ''; q.dispatchEvent(new Event('input')); return true; })()");
+  if (!(await click(page, '[data-ef="classe"][value="distancia"]'))) problems.push('sem a caixa da classe Distância');
+  await new Promise((ok) => setTimeout(ok, 100));
+  s = await state();
+  const ranged = await page.eval("document.querySelectorAll('tr[data-arma][data-classe=\"distancia\"]').length");
+  if (s.visible !== ranged || s.hiddenBlocks !== 1) problems.push(`filtro pela classe: ${JSON.stringify(s)} (esperava ${ranged} e um bloco escondido)`);
+  await click(page, '[data-ef="classe"][value="distancia"]');
+  return problems;
+}
+
+async function checkShapes(page) {
+  const problems = [];
+  if (!(await page.eval("!!document.querySelector('[data-formas]')"))) return problems;
+  const title = () => page.eval("document.querySelector('.formas-pop .formas-tit')?.textContent ?? null");
+  const until = async (want) => {
+    for (let i = 0; i < 20; i++) {
+      if ((await title()) === want) return true;
+      await new Promise((ok) => setTimeout(ok, 100));
+    }
+    return false;
+  };
+  const rect = await stableCenter(page, '[data-formas="area"]');
+  await new Promise((ok) => setTimeout(ok, 200));
+  await page.send('Input.dispatchMouseEvent', { type: 'mouseMoved', x: rect.x, y: rect.y });
+  if (!(await until('Área'))) problems.push('o cartão das formas não abriu pelo mouse');
+  await page.send('Input.dispatchMouseEvent', { type: 'mouseMoved', x: 2, y: 2 });
+  if (!(await until(null))) problems.push('o cartão das formas não fechou ao tirar o mouse');
+  // Teclado: Tab até o rótulo de Volume abre; Esc fecha.
+  await page.eval("document.querySelector('[data-formas=\"area\"]').focus({ preventScroll: true })");
+  for (const type of ['keyDown', 'keyUp']) {
+    await page.send('Input.dispatchKeyEvent', { type, key: 'Tab', code: 'Tab', windowsVirtualKeyCode: 9 });
+  }
+  if (!(await until('Volume'))) problems.push('o Tab não abriu o cartão das formas no rótulo seguinte');
+  for (const type of ['keyDown', 'keyUp']) {
+    await page.send('Input.dispatchKeyEvent', { type, key: 'Escape', code: 'Escape', windowsVirtualKeyCode: 27 });
+  }
+  if (!(await until(null))) problems.push('Esc não fechou o cartão das formas');
+  return problems;
+}
+
+async function checkBackToTop(page) {
+  const problems = [];
+  if (!(await page.eval("!!document.getElementById('topo-btn')"))) return problems;
+  const hidden = () => page.eval("document.getElementById('topo-btn').hidden");
+  await page.eval("window.scrollTo({ top: 0, behavior: 'instant' })");
+  await new Promise((ok) => setTimeout(ok, 200));
+  if (!(await hidden())) problems.push('o voltar ao topo aparece no alto da página');
+  await page.eval("window.scrollTo({ top: innerHeight * 2.5, behavior: 'instant' })");
+  await new Promise((ok) => setTimeout(ok, 300));
+  if (await hidden()) problems.push('o voltar ao topo não apareceu depois de duas telas');
+  await page.eval("history.replaceState(null, '', location.pathname + '#algum-lugar')");
+  if (!(await click(page, '#topo-btn'))) problems.push('sem o botão de voltar ao topo');
+  for (let i = 0; i < 30 && (await page.eval('scrollY')) > 0; i++) await new Promise((ok) => setTimeout(ok, 100));
+  const after = await page.eval("({ y: scrollY, hash: location.hash })");
+  if (after.y > 0 || after.hash !== '') problems.push(`o voltar ao topo não levou ao alto sem a âncora: ${JSON.stringify(after)}`);
+  return problems;
+}
+
+async function checkBookmarks(page) {
+  const problems = [];
+  if (!(await page.eval("!!document.querySelector('main .ref')"))) return problems;
+  await page.eval("window.scrollTo({ top: 0, behavior: 'instant' })");
+  // A rolagem fecha o cartão, e o evento dela chega um quadro depois: espera
+  // passar antes de abrir.
+  await new Promise((ok) => setTimeout(ok, 300));
+  // O termo pode já estar com o foco (o passo do cartão o deixou assim), e
+  // focar de novo não dispara o evento: tira o foco antes.
+  await page.eval("(() => { document.activeElement?.blur(); document.querySelector('main .ref').focus({ preventScroll: true }); return true; })()");
+  // Sem fixados, o índice dos fixados não é baixado.
+  const fetched = "performance.getEntriesByType('resource').some((e) => e.name.endsWith('/ref-index.json'))";
+  if (await page.eval(fetched)) problems.push('o ref-index.json foi baixado sem nenhum termo fixado');
+  let name = null;
+  for (let i = 0; i < 20 && !name; i++) {
+    name = await page.eval("document.querySelector('.ref-pop b')?.textContent ?? null");
+    if (!name) await new Promise((ok) => setTimeout(ok, 100));
+  }
+  for (const type of ['keyDown', 'keyUp']) {
+    await page.send('Input.dispatchKeyEvent', { type, key: 'f', code: 'KeyF', windowsVirtualKeyCode: 70, ...(type === 'keyDown' ? { text: 'f' } : {}) });
+  }
+  // O painel baixa o índice (`ref-index.json`) no primeiro fixado: espera.
+  for (let i = 0; i < 30 && !(await page.eval("!!document.querySelector('#consulta .cs-card')")); i++) {
+    await new Promise((ok) => setTimeout(ok, 100));
+  }
+  if (!(await page.eval(fetched))) problems.push('o ref-index.json não foi baixado ao fixar o primeiro termo');
+  const panel = await page.eval(`({
+    names: [...document.querySelectorAll('#consulta .cs-card b')].map((b) => b.textContent),
+    pinned: !!document.querySelector('main .ref.ref-pinned'),
+    stored: sessionStorage.getItem('centelha:consulta'),
+  })`);
+  if (!name || !panel.names.includes(name) || !panel.pinned) problems.push(`a tecla f não fixou o termo no painel: ${JSON.stringify({ name, ...panel })}`);
+  if (!(await click(page, '#consulta .cs-x'))) problems.push('sem o ✕ no painel dos fixados');
+  await new Promise((ok) => setTimeout(ok, 200));
+  const after = await page.eval("({ panel: !!document.getElementById('consulta'), stored: sessionStorage.getItem('centelha:consulta') })");
+  if (after.panel || after.stored !== '[]') problems.push(`o ✕ não tirou o termo do painel: ${JSON.stringify(after)}`);
   return problems;
 }
 

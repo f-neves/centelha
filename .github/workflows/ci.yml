@@ -151,6 +151,9 @@ jobs:
       - name: Prova de hidratação (release)
         run: node tools/site/hydration.mjs dist
 
+      - name: Prova das ilhas sem página portada (página de teste fora do dist)
+        run: node tools/site/islands-test.mjs dist
+
       # O índice do Pagefind acha "Iniciativa" no combate com a âncora certa, e
       # a página aberta sem buscar não baixa nada do Pagefind.
       - name: Prova da busca

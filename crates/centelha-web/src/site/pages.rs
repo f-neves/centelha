@@ -10,8 +10,13 @@ use centelha_data::{Chapter, GlossaryEntry};
 use leptos::prelude::*;
 
 use super::backdrop::BACKDROP_HTML;
+use super::equipment::{CLASS_ORDER, Equipment, WeaponRow, class_name};
 use super::nav::{self, NAV, TOOLS};
+use crate::back_to_top::BackToTop;
+use crate::bookmarks::Bookmarks;
 use crate::cards::RefCards;
+use crate::equipment_filter::EquipmentFilter;
+use crate::shapes::Shapes;
 use crate::shell::{DrawerClose, DrawerToggle, Scrim, SidebarCollapse, SidebarExpand};
 use crate::tables::TableSorter;
 use crate::theme::ThemeSwitcher;
@@ -123,7 +128,7 @@ pub fn Layout(base: String, page: PageInfo, children: Children) -> impl IntoView
                 view! { {sep} {step} }
             })
             .collect_view();
-        view! { <nav class="crumbs" aria-label="Trilha de navegação">{steps}</nav> }
+        view! { <nav class="crumbs" aria-label="Trilha de navegação" data-pagefind-ignore="">{steps}</nav> }
     });
 
     let toc = (page.toc.len() >= 2).then(|| view! { <OnThisPage entries=page.toc/> });
@@ -138,19 +143,22 @@ pub fn Layout(base: String, page: PageInfo, children: Children) -> impl IntoView
         }
     });
     let article_class = if page.wide { "wide" } else { "prose" };
+    // A busca (Pagefind) indexa só o conteúdo (`data-pagefind-body`, como no
+    // site atual); a página de não encontrada fica fora do índice.
+    let indexed = (page.path != "404").then_some("");
     let home = nav::url(&base, "");
 
     view! {
         <div class="cfundo" aria-hidden="true" inner_html=BACKDROP_HTML.as_str()></div>
         <a href="#conteudo" class="skip">"Pular para o conteúdo"</a>
-        <div class="topbar">
+        <div class="topbar" data-pagefind-ignore="">
             <DrawerToggle/>
             <a class="brand" href=home.clone()>"Centelha " <span class="d6">"D6"</span></a>
         </div>
         <div class="shell">
             <Scrim/>
             <SidebarExpand/>
-            <aside class="sidebar" id="nav">
+            <aside class="sidebar" id="nav" data-pagefind-ignore="">
                 <DrawerClose/>
                 <SidebarCollapse/>
                 <a class="brand" href=home>
@@ -176,13 +184,14 @@ pub fn Layout(base: String, page: PageInfo, children: Children) -> impl IntoView
                     </a>
                 </nav>
             </aside>
-            <main class="content" id="conteudo">
+            <main class="content" id="conteudo" data-pagefind-body=indexed>
                 {crumbs}
                 <article class=article_class>{children()}</article>
             </main>
         </div>
         {toc}
         {refs}
+        <Bookmarks/>
     }
 }
 
@@ -417,5 +426,227 @@ pub fn NotFoundPage(base: String) -> impl IntoView {
                 <a class="btn" href=nav::url(&base, "caminhos")>"As Proezas"</a>
             </div>
         </div>
+    }
+}
+
+/// A página de Equipamentos, como `src/pages/equipamentos.astro` do site
+/// atual: o filtro (busca, classe e tag, ligado pela ilha
+/// `EquipmentFilter`) e as quatro tabelas. O contador sai do gerador com o
+/// número de armas sem filtro, que é o que o filtro escreve ao abrir.
+#[component]
+pub fn EquipmentPage(base: String, equipment: Equipment) -> impl IntoView {
+    let weapon_rows = |rows: Vec<WeaponRow>| {
+        rows.into_iter()
+            .map(|a| {
+                let tags = a.tags.join(" ");
+                let tag_list = a.tags.join(", ");
+                view! {
+                    <tr data-arma="" data-classe=a.class_id data-tags=tags data-txt=a.search>
+                        <th>{a.name}</th>
+                        <td>{a.class}</td>
+                        <td class="c">{a.damage}</td>
+                        <td class="c">{a.accuracy}</td>
+                        <td class="c">{a.defense_or_range}</td>
+                        <td class="c">{a.hands}</td>
+                        <td class="c">{a.speed}</td>
+                        <td>{a.modes}</td>
+                        <td>{a.skill}</td>
+                        <td class="muted">{tag_list}</td>
+                    </tr>
+                }
+            })
+            .collect_view()
+    };
+    let count = equipment.melee.len() + equipment.ranged.len();
+    let count_text = format!("{count} arma{}", if count == 1 { "" } else { "s" });
+    let classes = CLASS_ORDER
+        .iter()
+        .map(|c| {
+            view! {
+                <label class="chk">
+                    <input type="checkbox" data-ef="classe" value=*c/>
+                    {class_name(c).to_string()}
+                </label>
+            }
+        })
+        .collect_view();
+    let tags = equipment
+        .tags
+        .iter()
+        .map(|t| {
+            view! {
+                <label class="chk">
+                    <input type="checkbox" data-ef="tag" value=t.clone()/>
+                    {t.clone()}
+                </label>
+            }
+        })
+        .collect_view();
+    let armors = equipment
+        .armors
+        .into_iter()
+        .map(|a| {
+            view! {
+                <tr>
+                    <th>{a.name}</th>
+                    <td class="c">{a.class}</td>
+                    <td class="c">{a.impact}</td>
+                    <td class="c">{a.cut}</td>
+                    <td class="c">{a.pierce}</td>
+                    <td class="c">{a.penalty}</td>
+                    <td class="muted">{a.notes}</td>
+                </tr>
+            }
+        })
+        .collect_view();
+    let shields = equipment
+        .shields
+        .into_iter()
+        .map(|s| {
+            view! {
+                <tr>
+                    <th>{s.name}</th>
+                    <td class="c">{s.defense}</td>
+                    <td class="c">{s.vs_fast}</td>
+                    <td class="c">{s.penalty}</td>
+                    <td class="muted">{s.notes}</td>
+                </tr>
+            }
+        })
+        .collect_view();
+    let melee = weapon_rows(equipment.melee);
+    let ranged = weapon_rows(equipment.ranged);
+    view! {
+        <h1>"Equipamentos"</h1>
+        <p class="lead">
+            "A arma define o " <em>"estilo"</em> ", não a potência bruta. As regras completas estão em "
+            <a href=nav::url(&base, "regras/armas-e-armaduras")>"Armas & Armaduras"</a>
+            "; aqui está o catálogo para filtrar e comparar."
+        </p>
+        <div class="filtros panel">
+            <label>"Buscar " <input type="search" data-ef="q" placeholder="nome, tag…"/></label>
+            <fieldset><legend>"Classe"</legend>{classes}</fieldset>
+            <fieldset><legend>"Tag"</legend>{tags}</fieldset>
+        </div>
+        <section data-bloco="">
+            <h2>"Armas Corpo a Corpo"</h2>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>"Arma"</th><th>"Classe"</th><th class="c">"Dano"</th><th class="c">"Acerto"</th>
+                            <th class="c">"Def."</th><th class="c">"Mãos"</th><th class="c">"Velocidade"</th>
+                            <th>"Modos"</th><th>"Habilidade"</th><th>"Tags"</th>
+                        </tr>
+                    </thead>
+                    <tbody>{melee}</tbody>
+                </table>
+            </div>
+        </section>
+        <section data-bloco="">
+            <h2>"Armas à Distância"</h2>
+            <p class="muted">
+                "No lugar da Defesa entra a " <strong>"Efetiva"</strong>
+                ", a distância até a qual se acerta sem a distância atrapalhar (alvo Médio, a mesma para qualquer personagem): arma de projétil não guarda, então não acrescenta nada ao Bloqueio."
+            </p>
+            <p class="muted">
+                "Além dela a mira custa −3 por meia Efetiva, sem teto. A distância " <em>"máxima"</em>
+                " é outra conta: nos arcos vem da Força, nas bestas é fixa, e no " <strong>"Arremesso"</strong>
+                " vem do seu " <strong>"FAA"</strong>
+                " e do peso (a tabela de Arremessar, em Corpo e Movimento, e o bloco Peso, Arremesso e Corrida da ficha fazem essa conta)."
+            </p>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>"Arma"</th><th>"Classe"</th><th class="c">"Dano"</th><th class="c">"Acerto"</th>
+                            <th class="c">"Efetiva"</th><th class="c">"Mãos"</th><th class="c">"Velocidade"</th>
+                            <th>"Modos"</th><th>"Habilidade"</th><th>"Tags"</th>
+                        </tr>
+                    </thead>
+                    <tbody>{ranged}</tbody>
+                </table>
+            </div>
+        </section>
+        <p class="muted ef-count">{count_text}</p>
+        <p class="muted">
+            "A coluna " <strong>"Modos"</strong> " lista os modos de ataque da arma; " <strong>"★"</strong>
+            " = modo principal (sem custo), os sem marca são secundários (−2 ao acerto e −1d6 no dano). "
+            <em>"(N0)–(N2)"</em>
+            " = Nível de Perfuração da arma (só o modo Perfurante passa pelo gate da armadura)."
+        </p>
+        <h2>"Armaduras"</h2>
+        <p class="muted">
+            "Peitoral, Camisa de malha, Peitoral reforçado, Placa articulada e Malha completa: valores provisórios, sujeitos a balanceamento final."
+        </p>
+        <p class="muted">
+            "Três Absorções: " <strong>"Impacto"</strong> ", " <strong>"Corte"</strong> " e " <strong>"Perfuração"</strong>
+            " (o dano Perfurante usa o de Perfuração). O " <strong>"Nível"</strong>
+            " entre parênteses é a Resistência à Perfuração: a Perfuração da arma precisa ser ≥ ele, senão resvala, e ele "
+            <em>"não soma"</em> " ao empilhar (vale o maior)."
+        </p>
+        <p class="muted">
+            "A " <strong>"Penalidade"</strong>
+            " incide em qualquer ação física (Ataque, Esquiva, Bloqueio, Deslocamento, Salto; no Deslocamento, na Corrida e nos Saltos, só a metade dela, arredondada para baixo: −1 m a cada 2 pontos nas medidas horizontais, e no "
+            <a href=nav::url(&base, "regras/combate#salto-velocidade-3")>"Salto Vertical"</a>
+            " −10 cm a cada 2 pontos, até o mínimo de 0) e " <strong>"dobra"</strong>
+            " para Furtividade e atividades delicadas (na Furtividade, esse dobro é a Circunstância da armadura na Dificuldade, e é uma cobrança só; na natação, a Circunstância da armadura substitui a Penalidade). Empilhar vale a maior Absorção de cada categoria; as penalidades somam."
+        </p>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>"Armadura"</th><th class="c">"Classe"</th><th class="c">"Impacto"</th><th class="c">"Corte"</th>
+                        <th class="c">"Perfuração (Nível)"</th><th class="c">"Penalidade"</th><th>"Notas"</th>
+                    </tr>
+                </thead>
+                <tbody>{armors}</tbody>
+            </table>
+        </div>
+        <h2>"Escudos"</h2>
+        <p class="muted">
+            "Escudo é " <strong>"bônus de Defesa"</strong> " (ajuda a não ser acertado), não absorção: some ao seu "
+            <strong>"Bloqueio"</strong> ", como a Defesa de uma arma."
+        </p>
+        <p class="muted">
+            "Contra " <strong>"projéteis rápidos"</strong>
+            " (flecha, virote, bala de funda, Shuriken, Mini-faca, Kunai, Adaga de Arremesso) ele é a " <em>"única"</em>
+            " forma de bloquear: só quem tem um escudo " <strong>"hábil"</strong>
+            " (cobre ≥30% do corpo, do Hoplon para cima num usuário Médio) e está " <strong>"apto"</strong>
+            " a manejá-lo bloqueia; sem isso, resta a Esquiva."
+        </p>
+        <p class="muted">
+            "A " <strong>"Penalidade"</strong> " incide nas outras ações físicas (esquiva etc.), nunca no bloqueio do próprio escudo."
+        </p>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>"Escudo"</th><th class="c">"Defesa"</th><th class="c">"vs Projétil rápido"</th>
+                        <th class="c">"Penalidade"</th><th>"Estilo"</th>
+                    </tr>
+                </thead>
+                <tbody>{shields}</tbody>
+            </table>
+        </div>
+        <EquipmentFilter/>
+    }
+}
+
+/// A página de teste das ilhas sem página portada: dois rótulos de forma, um
+/// texto longo (para o voltar ao topo aparecer) e as duas ilhas.
+#[component]
+pub fn IslandsTestPage() -> impl IntoView {
+    let filler = (1..=60)
+        .map(|i| view! { <p>{format!("Parágrafo {i} de enchimento, para a página rolar mais de duas telas.")}</p> })
+        .collect_view();
+    view! {
+        <h1>"Teste das ilhas"</h1>
+        <p>
+            "Uma " <span data-formas="area">"Área 3"</span> " e um " <span data-formas="volume">"Volume 2"</span> "."
+        </p>
+        {filler}
+        <Shapes/>
+        <BackToTop/>
     }
 }

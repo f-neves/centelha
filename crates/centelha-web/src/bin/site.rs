@@ -12,8 +12,14 @@ use centelha_web::site::{DEFAULT_BASE, Site};
 fn main() -> ExitCode {
     let mut content = PathBuf::from("content");
     let mut out = PathBuf::from("dist");
+    // `--test-page`: grava também a página de teste das ilhas (fora do build).
+    let mut test_page = false;
     let mut args = std::env::args().skip(1);
     while let Some(arg) = args.next() {
+        if arg == "--test-page" {
+            test_page = true;
+            continue;
+        }
         let value = args.next();
         match (arg.as_str(), value) {
             ("--content", Some(v)) => content = PathBuf::from(v),
@@ -35,6 +41,18 @@ fn main() -> ExitCode {
     };
     match site.write(&out) {
         Ok(pages) => {
+            if test_page {
+                let page = site.test_page();
+                let path = out.join(&page.path);
+                if let Some(parent) = path.parent() {
+                    let _ = std::fs::create_dir_all(parent);
+                }
+                if let Err(e) = std::fs::write(&path, &page.html) {
+                    eprintln!("erro: {}: {e}", path.display());
+                    return ExitCode::FAILURE;
+                }
+                println!("página de teste em {}", path.display());
+            }
             println!(
                 "{} páginas gravadas em {} (caminho base {})",
                 pages.len(),
