@@ -21,6 +21,7 @@
 //   tests/parity/character.json   as contas pequenas do personagem, função a função (character.mjs)
 //   tests/parity/strikes.json     o lance e os dados (strikes.mjs)
 //   tests/parity/techniques.json  o modificador, a Técnica oferecida e o fecho dos pré-requisitos (techniques.mjs)
+//   tests/parity/bestiary-card.json  as contas que o card do bestiário faz na hora (bestiary.mjs)
 //
 // O JSON não guarda -0 (o JSON.stringify escreve 0). Para a referência não
 // esconder um -0, todo -0 das saídas é gravado como o texto "-0", e o teste do
@@ -36,6 +37,7 @@ import { buildSheetInputs, sheetOutputs } from './sheets.mjs';
 import { buildCharacterCases } from './character.mjs';
 import { buildStrikes, ROLLED_SEED, ROLLS_SEED } from './strikes.mjs';
 import { buildTechniqueCases, loadTreeClosure } from './techniques.mjs';
+import { buildBestiaryCases, loadCardAppearance } from './bestiary.mjs';
 
 const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 const OUT = path.join(REPO, 'tests', 'parity');
@@ -121,6 +123,7 @@ const quase = await loadTs('src/lib/quase-acerto.ts');
 const equip = await loadTs('src/lib/equip.ts');
 const migra = await loadTs('src/lib/ficha-migra.ts');
 const data = await loadTs('src/lib/data.ts');
+const vestida = await loadTs('src/lib/defesa-vestida.ts');
 const combat = await loadBundle('combate', "export * from './acaso'; export { rolarExpr } from './rolagem'; "
   + "export { resolverGolpe, fonteFixa, fonteRolada, defesaEfetiva } from './lance';");
 
@@ -270,6 +273,17 @@ for (const c of techniqueCases) {
   techniqueCounts[c.fn] = (techniqueCounts[c.fn] || 0) + 1;
 }
 
+// ----- as contas da hora do card do bestiário -----
+const bestiaryCases = buildBestiaryCases({
+  motor, vestida, regras: readData('regras.json'), monsters: readData('monsters.json'),
+  apMod: loadCardAppearance(path.join(SRC, 'src', 'components', 'BestaCard.astro')),
+});
+const bestiaryCounts = {};
+for (const c of bestiaryCases) {
+  scanNumbers(c.out, `${c.fn}(${JSON.stringify(c.args)})`);
+  bestiaryCounts[c.fn] = (bestiaryCounts[c.fn] || 0) + 1;
+}
+
 if (negativeZeros.length) console.log(`${negativeZeros.length} -0 nas saídas, gravados como "-0"`);
 if (badNumbers.length) {
   for (const b of badNumbers) console.error(`erro: número não finito em ${b}`);
@@ -349,6 +363,16 @@ write('techniques.json', {
   cases: techniqueCases,
 }, 'cases');
 console.log(`${techniqueCases.length} casos das Técnicas`);
+write('bestiary-card.json', {
+  source,
+  note: 'Cada caso: fn, args e out. linhaPVNaZona e massaDaConta (src/lib/motor.ts), poolComPenalidade '
+    + '(src/lib/defesa-vestida.ts) e apMod (a curva da Aparência de src/components/BestaCard.astro, recortada do arquivo). '
+    + 'null num argumento é o undefined. Montado por tools/parity/bestiary.mjs.',
+  count: bestiaryCases.length,
+  counts: bestiaryCounts,
+  cases: bestiaryCases,
+}, 'cases');
+console.log(`${bestiaryCases.length} casos das contas do card`);
 console.log(`${strikes.fixed.length} lances (fixos e rolados), ${strikes.rolls.length} rolagens`);
 console.log(`${characterCases.length} casos das contas pequenas em ${Object.keys(characterCounts).length} funções`);
 console.log(`${sheets.length} fichas: ${Object.entries(groups).map(([g, n]) => `${g} ${n}`).join(', ')}`);

@@ -338,13 +338,13 @@ fn swarm_state(rules: &Rules, c: &Creature, swarm: &Swarm) -> SwarmState {
 // ----- ataques -----
 
 /// O ataque com a arma do livro, já com a Força que ela aproveita.
-struct WeaponAttack {
-    dice: f64,
-    bonus: f64,
-    strength: f64,
-    strength_multiplier: f64,
-    accuracy: f64,
-    speed: Option<f64>,
+pub(crate) struct WeaponAttack {
+    pub(crate) dice: f64,
+    pub(crate) bonus: f64,
+    pub(crate) strength: f64,
+    pub(crate) strength_multiplier: f64,
+    pub(crate) accuracy: f64,
+    pub(crate) speed: Option<f64>,
 }
 
 /// A arma de outro Tamanho: +N d6 acima do Médio, bônus por categoria abaixo.
@@ -361,7 +361,7 @@ fn scale_by_size(rules: &Rules, size: Option<Size>) -> (f64, f64) {
     }
 }
 
-fn weapon_attack(
+pub(crate) fn weapon_attack(
     t: &Tables,
     id: &str,
     strength: f64,
@@ -448,7 +448,7 @@ fn natural_projectile_attribute(c: &Creature) -> f64 {
 }
 
 /// O Atributo da jogada pela Habilidade.
-fn roll_attribute(c: &Creature, skill: &str, natural: bool) -> f64 {
+pub(crate) fn roll_attribute(c: &Creature, skill: &str, natural: bool) -> f64 {
     let a = &c.attributes;
     match skill {
         "disparo" => f64::from(a.stamina),
@@ -546,7 +546,7 @@ fn attack_derived(t: &Tables, c: &Creature, a: &Attack) -> AttackDerived {
 
 /// O texto do dado da arma, como o TypeScript o escreve (`2d6`, `1d6+2`,
 /// `1d6-2`), para o dano médio ler do mesmo jeito.
-fn weapon_dice_text(dice: f64, bonus: f64) -> String {
+pub(crate) fn weapon_dice_text(dice: f64, bonus: f64) -> String {
     let n = js_number(dice);
     if bonus == 0.0 {
         format!("{n}d6")
