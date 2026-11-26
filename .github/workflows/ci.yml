@@ -1,0 +1,72 @@
+# Integração contínua: formatação, clippy, testes (com a paridade), build
+# para WebAssembly e a varredura anti-rastro. Não busca nenhum outro
+# repositório: a paridade confere contra as referências gravadas em tests/parity/.
+#
+# Versões das actions conferidas nas páginas de release em 25/11/2026:
+# actions/checkout v7.0.1, Swatinem/rust-cache v2.9.3.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  # Em PR, um push novo cancela a verificação anterior. No main, não: cada
+  # commit que entra fica com a sua verificação.
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  verificar:
+    name: Verificar
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Baixar o repositório
+        uses: actions/checkout@v7.0.1
+        with:
+          # Histórico inteiro: a varredura lê as mensagens de todos os commits.
+          fetch-depth: 0
+
+      - name: Instalar o Rust (versão do rust-toolchain.toml)
+        run: |
+          rustup toolchain install
+          rustc --version
+          cargo --version
+
+      - name: Cache de compilação
+        uses: Swatinem/rust-cache@v2.9.3
+
+      - name: Formatação
+        run: cargo fmt --all --check
+
+      - name: Varredura anti-rastro
+        run: cargo xtask scan
+
+      - name: Clippy
+        run: cargo clippy --workspace --all-targets -- -D warnings
+
+      - name: Testes
+        run: cargo test --workspace
+
+      # A paridade já roda dentro de "Testes"; este passo a repete com nome
+      # próprio. Falha se não houver nenhum `tests/parity_*.rs`.
+      - name: Paridade
+        shell: bash
+        run: |
+          if ! ls crates/*/tests/parity_*.rs >/dev/null 2>&1; then
+            echo "::error::nenhum teste de paridade (crates/*/tests/parity_*.rs)"
+            exit 1
+          fi
+          cargo test --workspace --test 'parity_*'
+
+      - name: Build para WebAssembly
+        run: cargo build -p centelha-engine -p centelha-data --target wasm32-unknown-unknown

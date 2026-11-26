@@ -41,7 +41,13 @@ pub struct FastProjectile {
 
 /// Lê `escudos.json` a partir do texto.
 pub fn parse_shields(json: &str) -> Result<Vec<Shield>, DataError> {
-    crate::json::parse(json)
+    let shields: Vec<Shield> = crate::json::parse(json)?;
+    for (i, x) in shields.iter().enumerate() {
+        if !crate::bestiary::is_id(&x.id) {
+            return Err(DataError::invalid(format!("[{i}].id"), "id inválido"));
+        }
+    }
+    Ok(shields)
 }
 
 /// Lê `<content_dir>/data/escudos.json` (só no nativo).

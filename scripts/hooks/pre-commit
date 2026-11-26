@@ -1,35 +1,71 @@
 #!/bin/sh
 # Reprova commit com termo proibido em nome ou conteúdo de arquivo, ou com
 # metadado de IA em imagem (R9, R11). Olha o que está no índice, não o disco.
+#
+# Rápido em commit grande: em vez de um processo por arquivo, faz duas
+# passadas do `git grep --cached` sobre o índice (conteúdo e imagem) e depois
+# fica só com os arquivos preparados neste commit.
 . "$(dirname "$0")/termos.sh"
 
-falhou=0
-lista=$(mktemp)
-git diff --cached --name-only --diff-filter=ACMR > "$lista"
+tmp=$(mktemp -d)
+trap 'rm -rf "$tmp"' EXIT
 
-while IFS= read -r arquivo; do
-	[ -z "$arquivo" ] && continue
-	nome=$(printf '%s' "$arquivo" | achados_texto_e_palavra)
-	if [ -n "$nome" ]; then
-		echo "pre-commit: nome de arquivo com termo proibido: $arquivo" >&2
-		falhou=1
+# -z: nomes crus, sem as aspas e escapes que o git põe em nome com acento.
+git diff --cached --name-only -z --diff-filter=ACMR | tr '\0' '\n' > "$tmp/lista"
+[ -s "$tmp/lista" ] || exit 0
+
+falhou=0
+
+# Extensões de imagem, sem diferença de caixa: nelas vale o metadado.
+EXTENSOES="webp png jpg jpeg gif ico avif"
+
+# Filtra a saída do `git grep -z` (arquivo<NUL>resto) para os arquivos do
+# commit, já no formato arquivo<TAB>resto.
+so_preparados() {
+	tr '\0' '\t' | awk -F '\t' 'NR == FNR { p[$0] = 1; next } ($1 in p)' "$tmp/lista" -
+}
+
+# Roda o `git grep` gravando a saída em $tmp/bruto. Código 0 é "achou" e 1 é
+# "nada achado"; acima disso é erro do git, e o commit não passa sem a
+# verificação.
+procurar() {
+	git grep "$@" > "$tmp/bruto"
+	cod=$?
+	if [ "$cod" -gt 1 ]; then
+		echo "pre-commit: git grep falhou (código $cod); verificação não feita" >&2
+		exit 2
 	fi
-	case "$arquivo" in
-	*.webp | *.png | *.jpg | *.jpeg | *.gif | *.ico | *.avif)
-		if git show ":$arquivo" | grep -a -q -i -E "$TERMOS_BINARIO"; then
-			echo "pre-commit: imagem com metadado proibido: $arquivo (rode a limpeza do sync-content)" >&2
-			falhou=1
-		fi
-		;;
-	*)
-		achado=$(git show ":$arquivo" | achados_texto_e_palavra | tr '\n' ' ')
-		if [ -n "$achado" ]; then
-			echo "pre-commit: termo proibido em $arquivo: $achado" >&2
-			falhou=1
-		fi
-		;;
-	esac
-done < "$lista"
-rm -f "$lista"
+}
+
+# 1. Nomes de arquivo.
+if grep -i -E -e "$TERMOS_TRECHO" -e "$TERMOS_PALAVRA" "$tmp/lista" > "$tmp/nomes"; then
+	sed 's/^/pre-commit: nome de arquivo com termo proibido: /' "$tmp/nomes" >&2
+	falhou=1
+fi
+
+# 2. Conteúdo de todo arquivo que não é imagem (texto e binário).
+set -- .
+for e in $EXTENSOES; do set -- "$@" ":(exclude,icase,glob)**/*.$e"; done
+procurar --cached -z --text -i -o -E -e "$TERMOS_TRECHO" -e "$TERMOS_PALAVRA" -- "$@"
+so_preparados < "$tmp/bruto" > "$tmp/conteudo"
+if [ -s "$tmp/conteudo" ]; then
+	# Cada termo aparece uma vez por arquivo, mesmo que se repita no texto.
+	awk -F '\t' '{ t = tolower($2); gsub(/^[^a-z]+|[^a-z]+$/, "", t)
+		if (!(($1, t) in visto)) { visto[$1, t] = 1; a[$1] = a[$1] " " t } }
+		END { for (f in a) print "pre-commit: termo proibido em " f ":" a[f] }' \
+		"$tmp/conteudo" >&2
+	falhou=1
+fi
+
+# 3. Imagens: marcadores de metadado em qualquer parte do arquivo.
+set --
+for e in $EXTENSOES; do set -- "$@" ":(icase,glob)**/*.$e"; done
+procurar --cached -z --text -i -l -E -e "$TERMOS_BINARIO" -- "$@"
+tr '\0' '\n' < "$tmp/bruto" | so_preparados > "$tmp/imagens"
+if [ -s "$tmp/imagens" ]; then
+	sed 's/^/pre-commit: imagem com metadado proibido: /; s/$/ (rode a limpeza do sync-content)/' \
+		"$tmp/imagens" >&2
+	falhou=1
+fi
 
 exit $falhou

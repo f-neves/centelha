@@ -43,7 +43,13 @@ pub struct ArmorSoak {
 
 /// Lê `armaduras.json` a partir do texto.
 pub fn parse_armors(json: &str) -> Result<Vec<Armor>, DataError> {
-    crate::json::parse(json)
+    let armors: Vec<Armor> = crate::json::parse(json)?;
+    for (i, x) in armors.iter().enumerate() {
+        if !crate::bestiary::is_id(&x.id) {
+            return Err(DataError::invalid(format!("[{i}].id"), "id inválido"));
+        }
+    }
+    Ok(armors)
 }
 
 /// Lê `<content_dir>/data/armaduras.json` (só no nativo).

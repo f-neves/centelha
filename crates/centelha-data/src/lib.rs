@@ -7,6 +7,7 @@
 //! A leitura a partir de texto (`parse_*`) funciona em WebAssembly. A leitura a
 //! partir de pasta (`load_*`) existe só no nativo.
 
+pub mod ancestry;
 pub mod armor;
 pub mod bestiary;
 pub mod chapters;
@@ -16,6 +17,9 @@ pub mod rules;
 pub mod shields;
 pub mod weapons;
 
+#[cfg(not(target_arch = "wasm32"))]
+pub use ancestry::load_ancestries;
+pub use ancestry::{Ancestry, parse_ancestries};
 #[cfg(not(target_arch = "wasm32"))]
 pub use armor::load_armors;
 pub use armor::{Armor, parse_armors};

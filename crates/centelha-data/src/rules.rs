@@ -1,7 +1,8 @@
 //! As regras em número: `content/data/regras.json`.
 //!
-//! Primeira versão: só as chaves que os derivados da criatura leem. O resto do
-//! arquivo (as notas e as outras regras) é ignorado por enquanto.
+//! Só as chaves que os derivados da criatura e os números da ficha do jogador
+//! leem. O resto do arquivo (as notas e as outras regras) é ignorado por
+//! enquanto.
 
 use std::collections::BTreeMap;
 
@@ -21,6 +22,9 @@ pub struct Rules {
     pub derived: DerivedRules,
     #[serde(rename = "combate")]
     pub combat: CombatRules,
+    /// `quaseAcerto`: as tabelas do Quase-Acerto.
+    #[serde(rename = "quaseAcerto", default)]
+    pub near_miss: Option<NearMissRules>,
 }
 
 /// `criatura`: as tabelas da criatura.
@@ -156,6 +160,99 @@ pub struct DerivedRules {
     pub mana: ManaRules,
     #[serde(rename = "danoForca")]
     pub strength_damage: StrengthDamage,
+    /// `deslocamento`: as escadas do Deslocamento e dos saltos.
+    #[serde(rename = "deslocamento")]
+    pub movement: MovementRules,
+}
+
+/// `derivados.deslocamento`: cada medida é uma soma de termos (`base` mais
+/// traço × peso), arredondada.
+#[derive(Debug, Clone, PartialEq, Deserialize)]
+pub struct MovementRules {
+    pub normal: Ladder,
+    #[serde(rename = "arranque")]
+    pub dash: Ladder,
+    #[serde(rename = "corrida")]
+    pub run: Ladder,
+    #[serde(rename = "natacao")]
+    pub swim: Ladder,
+    #[serde(rename = "saltoVertical")]
+    pub vertical_jump: Ladder,
+    #[serde(rename = "saltoHorizontalParado")]
+    pub standing_jump: Ladder,
+    /// O que o salto correndo soma à Corrida.
+    #[serde(rename = "saltoHorizontalCorrendo")]
+    pub running_jump: Ladder,
+}
+
+/// Os termos de uma escada, na ordem do JSON (a soma é feita nessa ordem,
+/// como no TypeScript). A chave `base` é constante; as outras são traços.
+#[derive(Debug, Clone, PartialEq, Default)]
+pub struct Ladder(pub Vec<(String, f64)>);
+
+impl<'de> Deserialize<'de> for Ladder {
+    fn deserialize<D: serde::Deserializer<'de>>(d: D) -> Result<Self, D::Error> {
+        struct V;
+        impl<'de> serde::de::Visitor<'de> for V {
+            type Value = Ladder;
+            fn expecting(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+                f.write_str("um objeto de números")
+            }
+            fn visit_map<A: serde::de::MapAccess<'de>>(self, mut m: A) -> Result<Ladder, A::Error> {
+                let mut terms = Vec::new();
+                while let Some((k, v)) = m.next_entry::<String, f64>()? {
+                    terms.push((k, v));
+                }
+                Ok(Ladder(terms))
+            }
+        }
+        d.deserialize_map(V)
+    }
+}
+
+/// `quaseAcerto`: a classe da arma pelo dano médio e o que cada classe de arma
+/// e de armadura põe na conta.
+#[derive(Debug, Clone, PartialEq, Deserialize)]
+pub struct NearMissRules {
+    /// Por classe de Quase-Acerto da arma (`leve`, `media`, `pesada`).
+    #[serde(rename = "porClasseArma", default)]
+    pub by_weapon_class: BTreeMap<String, NearMissWeapon>,
+    /// Por classe de armadura (`nenhuma`, `leve`, `media`, `pesada`).
+    #[serde(rename = "porClasseArmadura", default)]
+    pub by_armor_class: BTreeMap<String, NearMissArmor>,
+    #[serde(rename = "classePorDanoMedio", default)]
+    pub class_by_average_damage: Option<NearMissThresholds>,
+    #[serde(rename = "ignoraSoak", default)]
+    pub ignores_soak: Option<bool>,
+}
+
+/// O que uma classe de arma põe no Quase-Acerto.
+#[derive(Debug, Clone, Copy, PartialEq, Deserialize)]
+pub struct NearMissWeapon {
+    #[serde(default)]
+    pub bonus: Option<f64>,
+    #[serde(rename = "dano", default)]
+    pub damage: Option<f64>,
+}
+
+/// O que uma classe de armadura põe no Quase-Acerto.
+#[derive(Debug, Clone, Copy, PartialEq, Deserialize)]
+pub struct NearMissArmor {
+    #[serde(default)]
+    pub bonus: Option<f64>,
+    #[serde(rename = "reducao", default)]
+    pub reduction: Option<f64>,
+}
+
+/// Os limites do dano médio de cada classe de arma.
+#[derive(Debug, Clone, Copy, PartialEq, Deserialize)]
+pub struct NearMissThresholds {
+    /// Até este dano médio, leve (2).
+    #[serde(rename = "leveAte", default)]
+    pub light_up_to: Option<f64>,
+    /// Até este dano médio, média (5,5); acima, pesada.
+    #[serde(rename = "mediaAte", default)]
+    pub medium_up_to: Option<f64>,
 }
 
 /// `derivados.pv`.
@@ -272,6 +369,24 @@ pub struct CombatRules {
     pub scale_by_size: ScaleBySize,
     #[serde(rename = "distancia", default)]
     pub ranged: Option<RangedRules>,
+    #[serde(rename = "movimento", default)]
+    pub movement: Option<CombatMovement>,
+}
+
+/// `combate.movimento`.
+#[derive(Debug, Clone, Copy, PartialEq, Deserialize)]
+pub struct CombatMovement {
+    /// `investida`: a Investida.
+    #[serde(rename = "investida", default)]
+    pub charge: Option<Charge>,
+}
+
+/// `combate.movimento.investida`.
+#[derive(Debug, Clone, Copy, PartialEq, Deserialize)]
+pub struct Charge {
+    /// Quantas vezes a Força entra a mais no dano (1).
+    #[serde(rename = "forcaExtra", default)]
+    pub extra_strength: Option<f64>,
 }
 
 /// `combate.escalaPorTamanho`: a arma de outro Tamanho.
@@ -324,6 +439,19 @@ pub fn parse_rules(json: &str) -> Result<Rules, DataError> {
                 .is_some_and(|row| row.up_to_kg.is_none()),
         "derivados.pv.massa.conta",
         "a última linha não tem limite (ateKg nulo)",
+    )?;
+    // A zona de escolha da linha de PV olha a linha seguinte da tabela; a
+    // última não tem seguinte.
+    check(
+        rules
+            .derived
+            .pv
+            .mass
+            .table
+            .last()
+            .is_some_and(|row| row.zone_kg.is_none()),
+        "derivados.pv.massa.conta",
+        "a última linha não pode ter zonaKg (a zona olha a linha seguinte)",
     )?;
     Ok(rules)
 }
