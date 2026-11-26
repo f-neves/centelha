@@ -101,6 +101,7 @@ Framework e versões: ADR 0003 (Leptos com ilhas; site estático gerado por nós
 - Feature `hydrate` (só `wasm32-unknown-unknown`): a biblioteca do navegador, que exporta a função `hydrate` chamada pelo script de carga das ilhas. Nada de Markdown, de leitura de `content/` nem de roteador no cliente.
 - Dados de uma ilha: pequenos vão nas propriedades da ilha (com `serde`, gravadas no HTML pelo gerador); grandes (ficha, catálogos) vão num `<script type="application/json">` da própria página, que a ilha lê. Ilha não busca conteúdo do livro pela rede.
 - O caminho base vem de `SITE_BASE_PATH` no build (padrão `/centelha/`).
+- Fontes (R13): Cinzel e EB Garamond servidas pelo próprio site, em `crates/centelha-web/fonts/` com o `OFL.txt` de cada família; só `woff2`, subconjunto latino, só os pesos usados, `font-display: swap` e `unicode-range`; pré-carga só da fonte do texto corrido. Nada de serviço externo de fontes.
 
 **Consome:** `centelha-data` (leitura de `content/`, no gerador), `centelha-engine` (toda conta que uma página mostra), `leptos`, `leptos_meta`, `wasm-bindgen`, `web-sys`, `js-sys`, `serde`, e só na feature `ssr` o `pulldown-cmark` (Markdown) e o que a chave dos diagramas pedir (SHA-1). Versões no ADR 0003. Depois, `centelha-grid` e `centelha-supabase`.
 
@@ -108,7 +109,7 @@ Framework e versões: ADR 0003 (Leptos com ilhas; site estático gerado por nós
 
 ## centelha-grid
 
-**Faz (fase 3):** o tabuleiro da mesa, desenhado em canvas, como ilha Leptos (`#[island]`: no modo ilhas só a ilha roda no navegador) usada pelo `centelha-web` (e, pelo WebView, no app). O elemento é pego por `NodeRef::<Canvas>` e o desenho roda só no cliente.
+**Faz (fase 3):** o tabuleiro da mesa, desenhado em canvas, como ilha Leptos (`#[island]`: no modo ilhas só a ilha roda no navegador) usada pelo `centelha-web` (e, pelo WebView, no app). O elemento é pego por `NodeRef::<Canvas>` e o desenho roda só no cliente. Texto no canvas: o canvas não troca a fonte sozinho quando ela chega; antes de desenhar texto, esperar `document.fonts.load(...)` da fonte usada e redesenhar quando ela chegar. Rótulos pequenos do tabuleiro podem usar a fonte do sistema se a legibilidade pedir (decisão de desenho na fase 3).
 
 **Consome:** `centelha-engine` (posições, alcance, tempo em Ticks), `centelha-data`, `leptos`, `web-sys`. Nunca o `centelha-supabase` direto: a mesa passa os dados ao Grid.
 
