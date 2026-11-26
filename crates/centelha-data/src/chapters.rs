@@ -90,7 +90,8 @@ pub fn parse_chapter(slug: &str, text: &str) -> Result<Chapter, DataError> {
 }
 
 /// Lê todos os capítulos de `<content_dir>/chapters/`, em ordem de `ordem`
-/// (só no nativo).
+/// (só no nativo). A fonte não proíbe `ordem` repetida: o empate se desfaz
+/// pelo `slug`, para a ordem não depender da listagem da pasta.
 #[cfg(not(target_arch = "wasm32"))]
 pub fn load_chapters(content_dir: &std::path::Path) -> Result<Vec<Chapter>, DataError> {
     let dir = content_dir.join("chapters");
@@ -119,7 +120,7 @@ pub fn load_chapters(content_dir: &std::path::Path) -> Result<Vec<Chapter>, Data
             parse_chapter(slug, &text).map_err(|e| e.in_file(format!("chapters/{name}")))?;
         chapters.push(chapter);
     }
-    chapters.sort_by_key(|c| c.order);
+    chapters.sort_by(|a, b| a.order.cmp(&b.order).then_with(|| a.slug.cmp(&b.slug)));
     Ok(chapters)
 }
 
@@ -277,5 +278,25 @@ mod tests {
             .collect();
         assert_eq!(with_name, ["acoes-e-sistema"]);
         assert!(chapters.iter().all(|c| !c.body.starts_with("---")));
+    }
+
+    #[cfg(not(target_arch = "wasm32"))]
+    #[test]
+    fn repeated_order_breaks_ties_by_slug() {
+        let content =
+            std::env::temp_dir().join(format!("centelha-chapters-{}", std::process::id()));
+        let dir = content.join("chapters");
+        std::fs::create_dir_all(&dir).unwrap();
+        let chapter = |order: i64| {
+            format!("---\nordem: {order}\nnumeral: \"I\"\ntitulo: \"T\"\nresumo: \"R\"\n---\n")
+        };
+        // Gravados fora de ordem: `b` e `a` empatam em 2; `c` vem antes.
+        for (slug, order) in [("b", 2), ("c", 1), ("a", 2)] {
+            std::fs::write(dir.join(format!("{slug}.md")), chapter(order)).unwrap();
+        }
+        let loaded = load_chapters(&content);
+        std::fs::remove_dir_all(&content).unwrap();
+        let slugs: Vec<_> = loaded.unwrap().into_iter().map(|c| c.slug).collect();
+        assert_eq!(slugs, ["c", "a", "b"]);
     }
 }
