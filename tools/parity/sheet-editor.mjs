@@ -89,15 +89,19 @@ function fakeDom() {
   return { anything, elements, listeners };
 }
 
+// A semente do sorteio e o relógio parado da ficha (ver `loadSheetEditor`).
+const UID_SEED = 20261126;
+const FIXED_NOW = Date.UTC(2026, 10, 26);
+
 export async function loadSheetEditor({ build, SRC }) {
   const file = path.join(SRC, 'src', 'lib', 'ficha-engine.ts');
   // No renderForca, antes da tabela de arremesso: as contas da seção de força,
-// pelas próprias funções locais da fonte (`dist`, `vel`, `velNatacao`, `velFrac`,
-// a escada `tw`). A segunda linha do deslocamento (a Vel. de Corrida com a
-// penalidade de armadura e das mãos) sai com a penalidade inteira e a corrida
-// sem ela, pelas mesmas chamadas da fonte.
-const FORCE_AT = 'const rows = tw.map((w) => {';
-const FORCE = `globalThis.__forca = (() => {
+  // pelas próprias funções locais da fonte (`dist`, `vel`, `velNatacao`, `velFrac`,
+  // a escada `tw`). A segunda linha do deslocamento (a Vel. de Corrida com a
+  // penalidade de armadura e das mãos) sai com a penalidade inteira e a corrida
+  // sem ela, pelas mesmas chamadas da fonte.
+  const FORCE_AT = 'const rows = tw.map((w) => {';
+  const FORCE = `globalThis.__forca = (() => {
       const pen = (empilharArmaduras(pecasArmadura()).penalidade || 0) + (calcConj(conjAtivo()).penSum || 0);
       const dzC = deslocamento({ forca, destreza: A('destreza'), atletismo: atl, centelha: S.centelha }, dzFrac);
       const dzN = deslocamento({ vigor: A('vigor'), atletismo: atl, natacao: S.skills2['natacao'] || 0 }, dzFrac);
@@ -110,8 +114,8 @@ const FORCE = `globalThis.__forca = (() => {
         vel: amostra.map(vel), velNatacao: amostra.map(velNatacao) };
     })();
     ${FORCE_AT}`;
-const text = patch(patch(patch(patch(fs.readFileSync(file, 'utf8'), HOOK_AT, HOOK_AT + HOOK), TOTAL_AT, TOTAL),
-  MOVE_AT, MOVE), FORCE_AT, FORCE);
+  const text = patch(patch(patch(patch(fs.readFileSync(file, 'utf8'), HOOK_AT, HOOK_AT + HOOK), TOTAL_AT, TOTAL),
+    MOVE_AT, MOVE), FORCE_AT, FORCE);
   const outfile = path.join(os.tmpdir(), `parity-ficha-engine-${process.pid}.mjs`);
   await build({
     entryPoints: [file], outfile, bundle: true, format: 'esm', platform: 'node', logLevel: 'error',
@@ -131,6 +135,18 @@ const text = patch(patch(patch(patch(fs.readFileSync(file, 'utf8'), HOOK_AT, HOO
     saved[k] = Object.getOwnPropertyDescriptor(globalThis, k);
     Object.defineProperty(globalThis, k, { value: dom.anything(k), configurable: true, writable: true });
   }
+  // O `novoUid` da fonte sorteia com `Math.random` e o relógio: com os dois
+  // fixos (o Mulberry32 de semente fixa e um `Date.now` parado), os `uid` das
+  // peças saem iguais a cada regeneração e a referência se repete byte a byte.
+  const random = Math.random, now = Date.now;
+  let seed = UID_SEED;
+  Math.random = () => {
+    seed = (seed + 0x6d2b79f5) | 0;
+    let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+  Date.now = () => FIXED_NOW;
   let mod;
   try {
     mod = await import(pathToFileURL(outfile).href);
@@ -141,6 +157,8 @@ const text = patch(patch(patch(patch(fs.readFileSync(file, 'utf8'), HOOK_AT, HOO
   await new Promise((r) => setTimeout(r, 0));
   if (!globalThis.__ficha) throw new Error('o gancho da ficha não rodou');
   return { hook: globalThis.__ficha, dom, restore: () => {
+    Math.random = random;
+    Date.now = now;
     for (const [k, d] of Object.entries(saved)) {
       if (d) Object.defineProperty(globalThis, k, d); else delete globalThis[k];
     }

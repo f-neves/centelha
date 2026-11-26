@@ -73,11 +73,15 @@ pub fn log10(x: f64) -> f64 {
 ///   exponencial pela série de Taylor), e só o resultado final é arredondado.
 ///   Quando esse resultado cai a menos de `2^-80` (relativo) de um meio-ponto
 ///   entre dois `f64`, a precisão dobrada não decide o lado. Com expoente
-///   `p/q` de denominador pequeno (até 16), a comparação exata em inteiros
-///   (`a^p` contra `m^q`, com `m` o meio-ponto) decide, com o par no empate:
-///   é o empate com base potência perfeita (`60219687609 ** 1.5`, exatamente
-///   um meio-ponto) e o quase empate (`(1 - 2^-53) ** 1.5`, a `2^-106` do
-///   meio-ponto). Sem essa forma, fica a precisão dobrada;
+///   `p/q` de denominador potência de 2 até 16 (e `p` até 64), a comparação
+///   exata em inteiros (`a^p` contra `m^q`, com `m` o meio-ponto) decide, com
+///   o par no empate: é o empate com base potência perfeita
+///   (`60219687609 ** 1.5`, exatamente um meio-ponto) e o quase empate
+///   (`(1 - 2^-53) ** 1.5`, a `2^-106` do meio-ponto). Senão, com a base a
+///   menos de `2^-20` de 1 e `|b|` até 1024, decide a comparação de `b ln a`
+///   com `ln m` em ponto fixo de 124 bits, quando a diferença passa do erro
+///   da conta (`64 (|b| + 2)` vezes `2^-124`; é o quase empate de `(1 - k 2^-53) ** b` com `b` decimal, como
+///   `0.9999999999999994 ** 1.1`). Fora disso, fica a precisão dobrada;
 /// - o resto pela `libm`: base zero, subnormal, negativa ou infinita, expoente
 ///   zero ou infinito, e o resultado fora da faixa acima (abaixo de cerca de
 ///   `1e-304` ou acima de `e^709`), onde o arredondamento é o da `libm` (que
@@ -97,9 +101,10 @@ pub fn pow(a: f64, b: f64) -> f64 {
     let r = dd::exp(t);
     if near_midpoint(r.0, r.1) {
         // perto do meio-ponto, a precisão dobrada não decide o lado: com o
-        // expoente racial de denominador pequeno, a comparação exata decide;
-        // sem ele, fica a precisão dobrada
-        if let Some(x) = exact_side(a, b, r.0, r.1) {
+        // expoente racional de denominador potência de 2, a comparação exata
+        // decide; com a base perto de 1, os logaritmos em ponto fixo de 124
+        // bits decidem; sem nenhum dos dois, fica a precisão dobrada
+        if let Some(x) = exact_side(a, b, r.0, r.1).or_else(|| near_one_side(a, b, r.0, r.1)) {
             return x;
         }
     }
@@ -107,7 +112,8 @@ pub fn pow(a: f64, b: f64) -> f64 {
 }
 
 /// O lado do arredondamento perto do meio-ponto, pela conta exata: com
-/// `b = p/q` (`q` até 16, `p` até 64, `b` positivo), o valor exato `a^(p/q)`
+/// `b = p/q` (`q` potência de 2 até 16, `p` até 64, `b` positivo: assim o
+/// `f64` `b` é exatamente `p/q`), o valor exato `a^(p/q)`
 /// está acima, abaixo ou em cima do meio-ponto `m` entre os dois `f64`
 /// vizinhos conforme `a^p` está acima, abaixo ou igual a `m^q`, em inteiros
 /// sem limite de tamanho. No empate, fica o de mantissa par. `None` quando
@@ -116,7 +122,7 @@ fn exact_side(a: f64, b: f64, hi: f64, lo: f64) -> Option<f64> {
     if b.is_nan() || b <= 0.0 {
         return None;
     }
-    let (p, q) = (1..=16u32).find_map(|q| {
+    let (p, q) = [1u32, 2, 4, 8, 16].into_iter().find_map(|q| {
         let p = b * f64::from(q);
         (p.fract() == 0.0 && (1.0..=64.0).contains(&p) && p / f64::from(q) == b)
             .then_some((p as u32, q))
@@ -147,6 +153,91 @@ fn exact_side(a: f64, b: f64, hi: f64, lo: f64) -> Option<f64> {
             }
         }
     })
+}
+
+/// O lado do arredondamento perto do meio-ponto com a base perto de 1
+/// (`|a - 1| < 2^-20`, `|b|` até 1024): compara `b ln a` com `ln m`, com `m`
+/// o meio-ponto entre os dois `f64` vizinhos, em ponto fixo de 124 bits
+/// (o `ln(1 + u)` pela série). Quando a diferença fica dentro do erro da
+/// conta (`64 (|b| + 2)` vezes `2^-124`), não dá para decidir, e volta `None`.
+fn near_one_side(a: f64, b: f64, hi: f64, lo: f64) -> Option<f64> {
+    if !((a - 1.0).abs() < 1.0 / 1048576.0 && b.abs() <= 1024.0 && b != 0.0) {
+        return None;
+    }
+    let next = if (lo > 0.0) == (hi > 0.0) {
+        f64::from_bits(hi.to_bits() + 1)
+    } else {
+        f64::from_bits(hi.to_bits() - 1)
+    };
+    let (low, high) = if hi < next { (hi, next) } else { (next, hi) };
+    if !(low > 0.5 && high < 2.0) {
+        return None;
+    }
+    let one = fixed::ONE;
+    let mid = (fixed::from_f64(low) + fixed::from_f64(high)) / 2;
+    let la = fixed::ln1p(fixed::from_f64(a) - one);
+    let lm = fixed::ln1p(mid - one);
+    let (mb, eb) = mantissa(b.abs());
+    let bl = fixed::mul_shift(la, i128::from(mb), (-eb) as u32);
+    let bl = if b < 0.0 { -bl } else { bl };
+    let diff = bl - lm;
+    // o erro da conta: uns poucos 2^-124 em cada logaritmo, vezes |b|
+    let tol = (b.abs() as i128 + 2) * 64;
+    if diff.abs() <= tol {
+        return None;
+    }
+    Some(if diff > 0 { high } else { low })
+}
+
+/// Ponto fixo com 124 bits depois da vírgula em `i128`, só o que o
+/// [`near_one_side`] usa.
+mod fixed {
+    pub const FRAC: u32 = 124;
+    pub const ONE: i128 = 1 << FRAC;
+
+    /// Um `f64` entre 0,5 e 2 com a mantissa cabendo em 124 bits de fração
+    /// (múltiplo de `2^-124`), exato.
+    pub fn from_f64(x: f64) -> i128 {
+        let (m, e) = super::mantissa(x);
+        let shift = e + i64::from(FRAC);
+        i128::from(m) << shift
+    }
+
+    /// `(x × y) >> s`, com o produto em 256 bits (truncado na direção do zero).
+    pub fn mul_shift(x: i128, y: i128, s: u32) -> i128 {
+        let neg = (x < 0) != (y < 0);
+        let (a, b) = (x.unsigned_abs(), y.unsigned_abs());
+        let (a1, a0) = (a >> 64, a & u128::from(u64::MAX));
+        let (b1, b0) = (b >> 64, b & u128::from(u64::MAX));
+        let low = a0 * b0;
+        let mid1 = a1 * b0;
+        let mid2 = a0 * b1;
+        let (mid, carry_mid) = mid1.overflowing_add(mid2);
+        let (lo, carry_lo) = low.overflowing_add(mid << 64);
+        let hi = a1 * b1 + (mid >> 64) + (u128::from(carry_mid) << 64) + u128::from(carry_lo);
+        let r = if s == 0 {
+            lo
+        } else if s < 128 {
+            (lo >> s) | (hi << (128 - s))
+        } else {
+            hi >> (s - 128)
+        };
+        let r = r as i128;
+        if neg { -r } else { r }
+    }
+
+    /// `ln(1 + u)` pela série, para `|u|` abaixo de `2^-20`.
+    pub fn ln1p(u: i128) -> i128 {
+        let mut sum = 0i128;
+        let mut term = u;
+        let mut n = 1i128;
+        while term != 0 {
+            sum += if n % 2 == 1 { term / n } else { -(term / n) };
+            term = mul_shift(term, u, FRAC);
+            n += 1;
+        }
+        sum
+    }
 }
 
 /// A mantissa inteira e o expoente de um `f64` normal positivo
@@ -547,6 +638,10 @@ mod tests {
     fn pow_near_tie() {
         let x = 1.0 - f64::EPSILON / 2.0;
         assert_eq!(pow(x, 1.5), x);
+        // 1,1 não é 11/10 em f64: a conta exata não vale, e a base perto de 1
+        // decide pelos logaritmos em ponto fixo
+        assert_eq!(pow(0.9999999999999994, 1.1), 0.9999999999999993);
+        assert_eq!(pow(0.9999999999999994, 0.9), 0.9999999999999994);
         assert_eq!(
             1.0 - pow(91.9425 / 122.59 / 0.75, 1.5),
             1.1102230246251565e-16
