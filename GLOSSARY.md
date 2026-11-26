@@ -223,3 +223,24 @@ O passo de Batalha é `battle` em todo lugar: na saída da ficha (`Movement.batt
 | Defesa efetiva | `effective_defense` | índice do golpe | `blow_index` |
 | dano bruto | `gross` | modificador manual | `manual_mod` |
 | dano absorvido | `absorbed` | margem do raspão / dano do raspão | `graze_margin` / `graze_damage` |
+
+## Catálogos da fase 2 (acréscimo de 26/11, tarefa 008 do Backend)
+
+Proeza, Caminho e Técnica: a fonte usa "Proeza" nos dois sentidos (às vezes o Caminho, como "Proeza Quebra-Muralhas"; às vezes a compra, como na ficha). No código: cada entrada de `caminhos.json` é um Caminho (`path`); cada Técnica comprada é uma `technique`, e a lista das compradas na ficha é `feats` (por isso `feat_cost`, que é o custo pelo nível da Técnica, e `feat_scales`, de `escalasProeza`, que dá a escala por trilha que cada Técnica usa); `technique_modifier` é o `modProeza`.
+
+"Trilha" tem três sentidos no código, sempre com o tipo dizendo qual: a trilha de XP (`XpTrack`), a trilha de melhora da Técnica (`FeatScaleTrack`) e a trilha do Caminho (`Track`: `Body`, `Voice`, `Mind`, já na tabela de termos centrais).
+
+| Português | Inglês | Português | Inglês |
+|---|---|---|---|
+| tipo da Técnica: passiva, ativa, reflexiva | `TechniqueKind`: `Passive`, `Active`, `Reflexive` | categoria da Arte: elemental, universal | `ArtCategory`: `Elemental`, `Universal` |
+| trilha de melhora (da Técnica) | `effect` (o campo), `FeatScaleTrack` | atributo de conjuração | `casting_attribute` |
+| escalas da Proeza | `feat_scales` | nível da Arte | `ArtLevel` |
+| modificador da Técnica | `technique_modifier`, `TechniqueModifier` | exemplos | `examples` |
+| rótulo / unidade / valores | `label` / `unit` / `values` | sabor (do Efeito numa Arte) | `flavor` |
+| fecho dos pré-requisitos | `prerequisite_closure` | parâmetro: padrão, substitui, fixo | `ParameterKind`: `Standard`, `Replaces`, `Fixed` |
+| XP da cadeia | `chain_xp` | escala / régua / pontos / por nível / custa Mana | `scale` / `ruler` / `points` / `per_level` / `mana_cost` |
+| | | escalonável | `scalable` |
+| Habilidade âncora | `anchor_skill` | ação livre | `free_action` |
+| dano bruto (da Arte) | `raw_damage` | dado por nível | `dice_per_level` |
+
+No `grid` do Efeito: forma `shape`, âncora `anchor`, gatilho `trigger`, alvo `target`, persiste `persists`, matéria `matter`, condição `condition`, condição aparente `apparent_condition`, pega item `takes_item`, arena inteira `whole_arena`, dissipa `dispels`, fere `harms`, cura `heals`, teste `test`.
