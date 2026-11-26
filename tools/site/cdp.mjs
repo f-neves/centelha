@@ -40,7 +40,8 @@ export function listPages(dist) {
     for (const name of readdirSorted(join(dist, rel))) {
       const child = `${rel}${name}/`;
       if (rel === '' && (name === 'pkg' || name === 'assets')) continue;
-      if (statSync(join(dist, child)).isDirectory()) walk(child);
+      // Sem a barra do fim: no Linux, `stat` de um arquivo com `/` no fim falha.
+      if (statSync(join(dist, rel, name)).isDirectory()) walk(child);
     }
   };
   walk('');
