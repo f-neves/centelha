@@ -51,6 +51,7 @@ xtask              (sozinho; não é dependência de ninguém)
   - `arts::{Art, ArtCategory, ArtLevel, ArtCost, ArtGrid}`, de `artes.json`, com `parse_arts`/`load_arts`;
   - `effects::{Effect, EffectArt, EffectParameter, ParameterKind, EffectGrid}`, de `efeitos.json`, com `parse_effects`/`load_effects`;
   - em `Rules`: `rules::{FeatScales, FeatScaleTrack}` e `Rules::feat_scales` (`escalasProeza.trilhas`);
+  - em `Rules`: `Rules::spark_scale` (`escalaCentelha`) e `Rules::willpower_scale` (`escalaVontade`), `Vec<rules::ScaleStep>` na ordem do arquivo; `ScaleStep { level, label, text, provisional }` (`provisional` é falso quando a chave falta);
   - cada `enum` desses tem `id()`, que devolve o texto do JSON.
 - `serde_json` com `float_roundtrip` (a leitura de `f64` tem de ser exata para a paridade).
 
@@ -95,6 +96,10 @@ xtask              (sozinho; não é dependência de ninguém)
   - `technique_modifier(&Rules, effect, level) -> Option<TechniqueModifier { value, title }>` (`modProeza` de `data.ts`; o título é o do `data.ts`, com a unidade; a árvore monta o texto curto dela com o `value` e o rótulo da escala). Dá `None`, como a fonte, na trilha `estado`, na trilha que não existe, no nível fora dos `values` (1 a 6; nível não inteiro também) e no valor vazio ou só com o traço.
   - `prerequisite_closure<'a>(&'a [Technique], id: &str) -> Vec<&'a str>`: os pré-requisitos diretos e indiretos da Técnica, sem ela mesma, na ordem do `closure` da árvore (o da fonte é a Técnica seguida desta lista); pré-requisito que não está na lista dada fica de fora.
   - `chain_xp(&Rules, &[Technique], id) -> f64`: o XP da Técnica mais o da cadeia, pelo `feat_cost` do nível (0 para id de fora).
+- `bestiary_card`: o card do bestiário (port de `vistaPublicaCriatura` de `motor.ts`, do passo do `inimigos.json` e do `build` de `scripts/gen-monsters.mjs`). Entrada e saída em `serde_json::Value`, como extensão da ADR 0004 (o card copia boa parte da fonte; as mesmas regras de `preserve_order` e `shift_remove` valem).
+  - `CardTables::new(creature::Tables, weapons: Value, rules: Value, skills: &Value, &[Technique], &[Art]) -> Result<CardTables, CardError>` e `CardTables::creature_tables()`; `bestiary_card(&CardTables, source: &Value) -> Result<Value, CardError>` devolve a entrada do `monsters.json`; `CardError` (`Creature`, `MissingReference`, `NoMovement`, `Tables`).
+  - `form_entry(main: &Value, form: &Value) -> Value`: o `comForma` sobre o JSON cru (o `creature::with_form` é a mesma conta sobre os tipos; os dois têm de concordar).
+  - Contas que o card faz na hora: `hp_line_in_zone(&Rules, kg, stamina, Option<HpLine>) -> Option<HpLineInZone { zone_kg, line, hp_above, hp_below }>` (`linhaPVNaZona`), `card_mass(&Rules, body: &Value) -> Option<f64>` (`massaDaConta`), `pool_with_penalty(&str, penalty) -> String` (`poolComPenalidade`), `card_appearance_mod(f64) -> Option<f64>` (a curva do próprio card, que **não** é a regra; a regra é `character::appearance_mod`; ver o aviso às regras sobre a Aparência).
 - `js::max`, `js::min`, `js::number_to_string`: `Math.max`, `Math.min` e `String(número)` do JavaScript.
 - Daqui em diante, por fase: derivados da ficha e das criaturas (fase 1), combate e tempo em Ticks, Artes, lógica do Grid (fase 3). Cada módulo entra no contrato quando a API proposta é aprovada neste arquivo.
 

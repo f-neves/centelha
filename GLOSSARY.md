@@ -244,3 +244,14 @@ Proeza, Caminho e Técnica: a fonte usa "Proeza" nos dois sentidos (às vezes o 
 | dano bruto (da Arte) | `raw_damage` | dado por nível | `dice_per_level` |
 
 No `grid` do Efeito: forma `shape`, âncora `anchor`, gatilho `trigger`, alvo `target`, persiste `persists`, matéria `matter`, condição `condition`, condição aparente `apparent_condition`, pega item `takes_item`, arena inteira `whole_arena`, dissipa `dispels`, fere `harms`, cura `heals`, teste `test`.
+
+## Card do bestiário e escalas (acréscimo de 26/11, tarefas 009 e 009a do Backend)
+
+| Português | Inglês | Português | Inglês |
+|---|---|---|---|
+| card do bestiário | `bestiary_card` | massa da conta (do card) | `card_mass` |
+| tabelas do card | `CardTables` | pool com a penalidade | `pool_with_penalty` |
+| entrada da forma | `form_entry` | modificador da Aparência do card | `card_appearance_mod` |
+| linha de PV na zona (de transição) | `hp_line_in_zone`, `HpLineInZone` | escala de Força de Vontade | `willpower_scale` |
+| zona / PV da linha de cima / de baixo | `zone_kg` / `hp_above` / `hp_below` | degrau (de uma escala) | `ScaleStep` |
+| provisório | `provisional` | | |
