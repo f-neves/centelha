@@ -51,6 +51,7 @@ xtask              (sozinho; não é dependência de ninguém)
   - `arts::{Art, ArtCategory, ArtLevel, ArtCost, ArtGrid}`, de `artes.json`, com `parse_arts`/`load_arts`;
   - `effects::{Effect, EffectArt, EffectParameter, ParameterKind, EffectGrid}`, de `efeitos.json`, com `parse_effects`/`load_effects`;
   - em `Rules`: `rules::{FeatScales, FeatScaleTrack}` e `Rules::feat_scales` (`escalasProeza.trilhas`);
+  - combate e força: `rules::{CombatRules, PgrRules, WindupRule, PgrReform, PgrRow, FlurryRules, DualWieldRules}` (`combate.pgr`, `rajada`, `dupla`) e `StrengthRules::throw: ThrowRules`;
   - para a ficha interativa: `Ancestry::cost: Option<f64>` (o `custo` da Raça) e `Rules::arcane: Option<rules::ArcaneRules>`, com `ArcaneRules { art_level_cap: Option<ArtLevelCap> }` e `ArtLevelCap { by_spark: Vec<f64> }` (`arcano.tetoNivelArte.porCentelha`);
   - em `Rules`: `Rules::spark_scale` (`escalaCentelha`) e `Rules::willpower_scale` (`escalaVontade`), `Vec<rules::ScaleStep>` na ordem do arquivo; `ScaleStep { level, label, text, provisional }` (`provisional` é falso quando a chave falta);
   - cada `enum` desses tem `id()`, que devolve o texto do JSON.
@@ -70,7 +71,7 @@ xtask              (sozinho; não é dependência de ninguém)
 
 - `js::to_uint32(f64) -> u32`: o `>>> 0` do JavaScript (conversão da semente).
 - `rng::Mulberry32`: o gerador aleatório. `Mulberry32::new(seed: u32)`, `next_u32(&mut self) -> u32`, `next_f64(&mut self) -> f64` (no intervalo [0, 1), igual ao TypeScript bit a bit), `draws(&self) -> u64` (quantos números já entregou, para os testes de paridade acharem a primeira divergência). Nenhum outro gerador aleatório no motor.
-- `js::round` (`Math.round`, inclusive o `-0`), `js::log10` e `js::pow` (pela `libm`, ADR 0002).
+- `js::round` (`Math.round`, inclusive o `-0`), `js::log10` (pela `libm`, ADR 0002) e `js::pow` (com arredondamento correto, ver abaixo).
 - `creature`: os derivados da criatura (port de `criatura()` e `comForma()`).
   - Tudo em `creature::`. `Tables::new(rules, weapons, armors, shields)` e `Tables::rules()`: regras e catálogos já lidos; busca como o TypeScript (arma pela primeira peça com o id; armadura e escudo só com bloco de números, id repetido fica com o último).
   - `derive(&Tables, &Creature) -> CreatureDerived` e `with_form(&Creature, &Form) -> Creature` (devolve `id` e `name` da forma, como o `comForma()`).
@@ -85,14 +86,16 @@ xtask              (sozinho; não é dependência de ninguém)
   - Entrada de tipo errado (texto onde vai número): o port segue o `Number()` do JavaScript e não lança erro, onde o TypeScript às vezes lança. Ficha gravada pela tela não tem isso.
 - `sheet`, acréscimos da fase 1: Quase-Acerto (`SheetTables::{weapon_near_miss, armor_near_miss, near_miss_between}`, `encounter_near_miss`, `missed_by`, `grazes`, `attack_outcome`; tipos `WeaponNearMiss`, `ArmorNearMiss`, `NearMissAttacker`, `NearMissTarget`, `Graze`, `NearMissOutcome`, `AttackOutcome`); textos (`signed_number`, `damage_text`, `weapon_stats`, `shield_stats`, `armor_stats`, iguais byte a byte ao TypeScript, com o sinal de menos U+2212); troca de ids de arma (`migrate_weapon_refs`, `WEAPON_RENAMES`); ficha já lida (`sheet_numbers_read`, `sheet_summary_read`, `Catalog::worn_armor_read`), para quem chama a cada tecla.
 - Ficha interativa, em `sheet` (implementada em `sheet/editor.rs`, módulo privado; os itens são reexportados em `sheet`): port das contas de `src/lib/ficha-engine.ts`, que na fonte moram dentro de `montarFicha`. A ficha entra e sai em `Value` na forma de leitura (ADR 0004).
-  - `EditorTables::new(SheetTables, atributos, habilidades, secundárias, virtudes, antecedentes: &Value, Vec<Technique>, Vec<Art>, Vec<Effect>)` e `EditorTables::sheet_tables()`.
+  - `EditorTables::new(SheetTables, EditorCatalogs<'_>)`, com `EditorCatalogs { attributes, skills, secondary, virtues, backgrounds: &Value, techniques: Vec<Technique>, arts: Vec<Art>, effects: Vec<Effect> }` (os JSON crus nos cinco primeiros), e `EditorTables::sheet_tables()`.
   - `fresh_sheet(&EditorTables) -> Value` (`fresh()`), com `FRESH_BUDGET = 1500` (o padrão; quem chama pode trocar o orçamento) e `FREE_SECONDARY` (as três Secundárias livres).
   - `spent_xp(&EditorTables, &Value) -> SpentXp` (`recompute()`), com as parcelas na ordem da soma (`attributes`, `skills`, `specialties`, `virtues`, `willpower`, `appearance`, `spark`, `secondary`, `techniques`, `arts`, `effects`, `backgrounds`, `ancestry`) e o `total`.
   - Tetos e piso: `trait_cap(&EditorTables, &Value, kind, key: Option<&str>) -> f64` (`capFor`) e `attribute_floor(&EditorTables, &Value, key) -> f64` (`pisoAttr`).
   - `change_ancestry(&EditorTables, &mut Value, ancestry, mass_chosen: bool)`: a troca de Raça; `mass_chosen` é o estado da ficha ao abrir (o `massaEscolhida` do `normalize`), que a tela guarda.
+  - `mass_chosen(&Value) -> bool`: a conta do `normalize` (`ficha-engine.ts:305`) sobre a ficha na forma de leitura.
   - Especialidades: `clamp_specialties(&Value, skill_level) -> Vec<Specialty { name, level }>` (`clampSpecs`) e `specialty_cap(skill_level) -> f64` (metade do nível, para baixo).
   - `technique_status(&Value, &Technique) -> TechniqueStatus { owned, spark_ok, missing, ok }`: Centelha mínima e os pré-requisitos **diretos** que faltam (como a ficha da fonte; não o fecho).
   - `effects_in_reach(&EditorTables, &Value) -> Vec<&Effect>` (`efeitosAoAlcance`), por nível e depois por nome na ordem `pt`.
+  - Tempo e movimento da ficha: `sheet_anatomy(&Rules, &[Weapon], &Value) -> Anatomy` (`anatomiaDaFicha`), `extra_lines(&Rules, &Value, &Value) -> Vec<ExtraLine>` (`linhasComExtra`), `sheet_flurry_cap(&Rules, &[Weapon], &Value) -> f64`; `half_movement_penalty(f64) -> f64` e `penalized_movement(&Movement, f64) -> PenalizedMovement` (a metade da penalidade física em cada medida, uma conta só para os dois lugares da ficha); `throw_range(&Rules, reserve, weight_kg, max_kg) -> f64` (`alcanceArremesso`).
   - As migrações do `normalize()` ainda não estão aqui (esperam a função pura pedida à equipe das regras).
 - `character`: as contas do personagem fora da ficha.
   - XP: `xp_floor(&Rules, &str) -> Option<f64>`, `level_price(&Rules, &str, f64) -> Option<f64>`, `xp_cost(&Rules, &str, from: Option<f64>, to: f64) -> Option<f64>`; custos `feat_cost` (a chave do dado é `tecnica`, mas a conta é a da Proeza), `art_cost`, `effect_cost`, `specialty_cost(&Rules, f64, secondary: bool)`.
@@ -111,6 +114,9 @@ xtask              (sozinho; não é dependência de ninguém)
   - `CardTables::new(creature::Tables, weapons: Value, rules: Value, skills: &Value, &[Technique], &[Art]) -> Result<CardTables, CardError>` e `CardTables::creature_tables()`; `bestiary_card(&CardTables, source: &Value) -> Result<Value, CardError>` devolve a entrada do `monsters.json`; `CardError` (`Creature`, `MissingReference`, `NoMovement`, `Tables`).
   - `form_entry(main: &Value, form: &Value) -> Value`: o `comForma` sobre o JSON cru (o `creature::with_form` é a mesma conta sobre os tipos; os dois têm de concordar).
   - Contas que o card faz na hora: `hp_line_in_zone(&Rules, kg, stamina, Option<HpLine>) -> Option<HpLineInZone { zone_kg, line, hp_above, hp_below }>` (`linhaPVNaZona`), `card_mass(&Rules, body: &Value) -> Option<f64>` (`massaDaConta`), `pool_with_penalty(&str, penalty) -> String` (`poolComPenalidade`), `card_appearance_mod(f64) -> Option<f64>` (a curva do próprio card, que **não** é a regra; a regra é `character::appearance_mod`; a diferença entre as duas foi levada à equipe das regras, e o card reproduz a curva dele até a resposta).
+- `collate`: a ordem alfabética do `localeCompare(b, 'pt')`, uma só para o motor e o site. `compare` (base, depois acento, depois caixa), `compare_base` (`sensitivity: 'base'`), `compare_numeric_base` (`numeric: true`, `sensitivity: 'base'`), `fold`, `primary_key` e `covers(char) -> bool`. A cobertura (ASCII imprimível, espaço e letras que se decompõem numa letra ASCII com acento) está no cabeçalho do módulo; fora dela a ordem pode diferir do ICU, e um teste reprova nome de catálogo com letra fora da cobertura.
+- `timeline` (a parte do tempo que a ficha usa; o resto do tempo do combate fica para a fase 5): `TimeSystem`, `Physics`, `TimeClass`, `Maneuver`, `Anatomy`, `AnatomyInput`; `catalog_weapon`, `weapon_class`, `time_class`, `weapon_speed`, `windup_of`, `flurry_cap`, `dual_wield_extra_cycle`, `anatomy`.
+- `js::pow` com arredondamento correto (ADR 0002, nota de 26/11); `js::array_length` e `js::or_zero` públicos.
 - `js::max`, `js::min`, `js::number_to_string`: `Math.max`, `Math.min` e `String(número)` do JavaScript.
 - Daqui em diante, por fase: derivados da ficha e das criaturas (fase 1), combate e tempo em Ticks, Artes, lógica do Grid (fase 3). Cada módulo entra no contrato quando a API proposta é aprovada neste arquivo.
 
