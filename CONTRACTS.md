@@ -1,6 +1,6 @@
 # Contratos entre os crates
 
-Versão 1 (fase 0). Este arquivo diz o que cada crate expõe e o que consome. Mudança aqui só com ADR em `docs/adr/`. Quem implementa um crate não muda a API pública de outro: pede a mudança.
+Versão 2 (fase 0; site e app pelo ADR 0003). Este arquivo diz o que cada crate expõe e o que consome. Mudança aqui só com ADR em `docs/adr/`. Quem implementa um crate não muda a API pública de outro: pede a mudança.
 
 ## Dependências permitidas
 
@@ -44,6 +44,7 @@ xtask              (sozinho; não é dependência de ninguém)
 - Regras e catálogos (o que os derivados da criatura leem): `rules::{Rules, parse_rules}`, `weapons::{Weapon, parse_weapons}`, `armor::{Armor, parse_armors}`, `shields::{Shield, parse_shields}`, e no nativo `load_rules`, `load_weapons`, `load_armors`, `load_shields` (recebem `content_dir`). `Weapon`, `Armor` e `Shield` têm `stats: Option<...>` (o bloco de números pode ser `null` na fonte).
 - Listas do bestiário como `enum` em `bestiary::`, com os nomes do `GLOSSARY.md`: `Size` (com `Size::ALL` em ordem e `id()`), `CarapaceProfile`, `HpLine`, `AttackClass`, `Category`. A Velocidade do ataque é o campo `timing: Option<Timing>` (`windup`, `blow`, `recovery`), lido de `pgr`. `Attributes::get(key)` pela chave dos dados.
 - Tipos auxiliares públicos em `bestiary::`: `Attributes`, `Body`, `Attack`, `Timing`, `Form`, `MainForm`, `Swarm`, `SecondSize`, `Equipment`, `ArsenalItem`, `WornArmor` e as versões parciais das formas (`BodyPatch`, `AttributesPatch`, `EquipmentPatch`). As Habilidades continuam texto (chave do mapa de Habilidades); `RANGED_SKILLS` lista as de tiro aceitas no ataque natural.
+- Capítulos (entra com a tarefa 001 do Frontend, que o implementa por exceção, com esta API): módulo `chapters`, com `Chapter { slug, order, numeral, title, summary, body }` (`body` é o Markdown sem o cabeçalho; os campos opcionais do schema do site atual entram como `Option`), `parse_chapter(slug: &str, text: &str) -> Result<Chapter, DataError>` e, no nativo, `load_chapters(content_dir: &Path) -> Result<Vec<Chapter>, DataError>` em ordem de `order`. O `slug` é o nome do arquivo sem `.md`. Sem dependência nova de YAML: o cabeçalho dos capítulos é simples (chave, dois-pontos, texto ou número) e é lido à mão, com erro `Invalid` para o que não reconhecer.
 - `serde_json` com `float_roundtrip` (a leitura de `f64` tem de ser exata para a paridade).
 
 **Consome:** `content/` (nada mais).
@@ -76,14 +77,44 @@ xtask              (sozinho; não é dependência de ninguém)
 
 **Consome:** a URL e a chave anon por configuração (nunca no código). Chave de serviço nunca.
 
-## centelha-web, centelha-grid, centelha-app
+## centelha-web
 
-Só o nome até a decisão do framework (spike da fase 0). O contrato de cada um entra com o ADR da decisão.
+Framework e versões: ADR 0003 (Leptos com ilhas; site estático gerado por nós).
+
+**Faz:** o site. Páginas do livro geradas em HTML no build, com o texto inteiro; partes interativas como ilhas em WebAssembly.
+
+**Expõe:**
+
+- Feature `ssr` (só nativo): os componentes que desenham as páginas e o binário gerador, que grava `dist/` (uma pasta por página, `index.html` dentro). O Markdown vira HTML aqui, e só aqui.
+- Feature `hydrate` (só `wasm32-unknown-unknown`): a biblioteca do navegador, com uma função exportada que hidrata as ilhas da página. Nada de Markdown, de leitura de `content/` nem de roteador no cliente.
+- Cada ilha recebe os dados pelas propriedades (gravadas no HTML pelo gerador). Ilha não busca conteúdo do livro em tempo de execução.
+- O caminho base vem de `SITE_BASE_PATH` no build (padrão `/centelha/`).
+
+**Consome:** `centelha-data` (leitura de `content/`, no gerador), `centelha-engine` (toda conta que uma página mostra), `leptos`, `leptos_meta`, `wasm-bindgen`, `web-sys`, `js-sys` e uma biblioteca de Markdown (só na feature `ssr`). Depois, `centelha-grid` e `centelha-supabase`.
+
+**Não faz:** conta de regra (pede ao `centelha-engine`), mudança no texto do livro (o que está em `content/` sai como está), corte ou recodificação de imagem.
+
+## centelha-grid
+
+**Faz (fase 3):** o tabuleiro da mesa, desenhado em canvas, como componente Leptos usado pelo `centelha-web` (e, pelo WebView, no app). O elemento é pego por `NodeRef::<Canvas>` e o desenho roda só no cliente.
+
+**Consome:** `centelha-engine` (posições, alcance, tempo em Ticks), `centelha-data`, `leptos`, `web-sys`. Nunca o `centelha-supabase` direto: a mesa passa os dados ao Grid.
+
+**Expõe:** a definir quando o Grid começar. A bancada de desempenho (ganchos de medida do modo de teste) entra nesse contrato.
+
+## centelha-app
+
+**Faz (fase 4, entra depois da primeira página do Frontend):** a casca Tauri 2 do app de Windows e Android. Carrega o mesmo `dist/` que o `cargo xtask site` gera, com caminho base `/`.
+
+**Expõe:** só os comandos do Tauri que a web não tem (conteúdo offline, sincronização com o Supabase quando há rede, atualização). Cada comando entra aqui quando o App propuser.
+
+**Consome:** `tauri`, `tauri-build`, `centelha-supabase` (depois). Nunca duplica página nem componente do `centelha-web`.
 
 ## xtask
 
 - `cargo xtask sync-content`: copia o conteúdo da fonte (pasta em `RPG_SYSTEM_DIR`) para `content/`, só arquivos versionados lá, limpa o metadado das imagens e varre o resultado; com qualquer achado, não copia. Grava `content/ORIGEM.txt`.
 - `cargo xtask scan`: varre arquivos versionados (conteúdo e nome) e mensagens de commit. Sai com erro se achar termo proibido. `--no-commits` pula as mensagens.
+- `cargo xtask site` (entra com a tarefa 001 do Frontend): monta `dist/` chamando o gerador do `centelha-web`, o build do WebAssembly, o `wasm-bindgen` e o `wasm-opt` como programas, nas versões do ADR 0003. O `xtask` continua sem dependências externas.
 
 ## Testes de paridade
 
