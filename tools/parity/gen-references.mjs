@@ -20,6 +20,7 @@
 //   tests/parity/sheets.json      fichas de jogador e as saídas do motor (sheets.mjs)
 //   tests/parity/character.json   as contas pequenas do personagem, função a função (character.mjs)
 //   tests/parity/strikes.json     o lance e os dados (strikes.mjs)
+//   tests/parity/combat-functions.json  a régua, a agenda e a fila do tempo, função a função (timeline.mjs)
 //
 // O JSON não guarda -0 (o JSON.stringify escreve 0). Para a referência não
 // esconder um -0, todo -0 das saídas é gravado como o texto "-0", e o teste do
@@ -34,6 +35,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { buildSheetInputs, sheetOutputs } from './sheets.mjs';
 import { buildCharacterCases } from './character.mjs';
 import { buildStrikes, ROLLED_SEED, ROLLS_SEED } from './strikes.mjs';
+import { buildTimelineCases, SAMPLE_SEED } from './timeline.mjs';
 
 const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 const OUT = path.join(REPO, 'tests', 'parity');
@@ -104,6 +106,7 @@ const mesa = await loadTs('src/lib/mesa-ficha.ts');
 const quase = await loadTs('src/lib/quase-acerto.ts');
 const equip = await loadTs('src/lib/equip.ts');
 const migra = await loadTs('src/lib/ficha-migra.ts');
+const tempo = await loadTs('src/lib/combate-tempo.ts');
 const combat = await loadBundle('combate', "export * from './acaso'; export { rolarExpr } from './rolagem'; "
   + "export { resolverGolpe, fonteFixa, fonteRolada, defesaEfetiva } from './lance';");
 
@@ -242,6 +245,14 @@ strikes.fixed.forEach((c, i) => scanNumbers(c.saida, `lance fixo ${i}`));
 strikes.rolled.forEach((c, i) => scanNumbers(c.saida, `lance rolado ${i}`));
 strikes.rolls.forEach((c, i) => scanNumbers(c, `rolagem ${i}`));
 
+// ----- o tempo do combate, função a função -----
+const timeline = buildTimelineCases({ tempo, acaso, weapons: readData('armas.json') });
+const timelineCounts = {};
+for (const c of timeline.cases) {
+  scanNumbers(c.out, `${c.fn}(${JSON.stringify(c.args)})`);
+  timelineCounts[c.fn] = (timelineCounts[c.fn] || 0) + 1;
+}
+
 if (negativeZeros.length) console.log(`${negativeZeros.length} -0 nas saídas, gravados como "-0"`);
 if (badNumbers.length) {
   for (const b of badNumbers) console.error(`erro: número não finito em ${b}`);
@@ -311,6 +322,19 @@ write('strikes.json', {
   rolled: strikes.rolled,
   rolls: strikes.rolls,
 }, ['fixed', 'rolled', 'rolls']);
+write('combat-functions.json', {
+  source,
+  note: 'Cada caso: fn (a função de combate-tempo.ts), args e out. null num parâmetro opcional quer dizer não passado. '
+    + 'ordemDaFila grava o sinal; fila grava a ordem dos índices depois do sort estável com ordemDaFila. '
+    + `As entradas sorteadas saem de um Mulberry32 do gerador (semente ${SAMPLE_SEED}); as funções não sorteiam. `
+    + 'O lote é montado por tools/parity/timeline.mjs. -0 gravado como "-0".',
+  sampleSeed: SAMPLE_SEED,
+  count: timeline.cases.length,
+  dropped: timeline.dropped,
+  counts: timelineCounts,
+  cases: timeline.cases,
+}, 'cases');
+console.log(`${timeline.cases.length} casos do tempo em ${Object.keys(timelineCounts).length} funções (${timeline.dropped} com NaN ou infinito fora)`);
 console.log(`${strikes.fixed.length} lances (fixos e rolados), ${strikes.rolls.length} rolagens`);
 console.log(`${characterCases.length} casos das contas pequenas em ${Object.keys(characterCounts).length} funções`);
 console.log(`${sheets.length} fichas: ${Object.entries(groups).map(([g, n]) => `${g} ${n}`).join(', ')}`);

@@ -7,6 +7,7 @@
 //! `Nd6` (com `d` maiúsculo ou minúsculo; `d6` sem número vale 1) conta dados,
 //! e o fixo é a soma dos `+N` e `-N` que sobram.
 
+use crate::js;
 use crate::rng::Mulberry32;
 use crate::sheet::value::is_js_space;
 
@@ -132,16 +133,6 @@ pub fn d6(rng: &mut Mulberry32) -> f64 {
     1.0 + (rng.next_f64() * 6.0).floor()
 }
 
-/// O tamanho que o `Array.from({ length })` dá a um número (`NaN` e negativo
-/// dão 0, a fração cai).
-fn array_length(x: f64) -> usize {
-    if x.is_nan() || x <= 0.0 {
-        0
-    } else {
-        x.floor() as usize
-    }
-}
-
 /// A soma das faces mais o fixo, nessa ordem (`reduce` a partir de 0).
 pub(crate) fn sum_total(rolls: &[f64], flat: f64) -> f64 {
     rolls.iter().fold(0.0, |a, b| a + b) + flat
@@ -153,7 +144,7 @@ pub fn roll_expr(expr: &str, extra_dice: f64, extra_flat: f64, rng: &mut Mulberr
     let e = DiceExpr::parse(expr);
     let dice = adjusted_dice(e.dice, extra_dice);
     let flat = e.flat + extra_flat;
-    let rolls: Vec<f64> = (0..array_length(dice)).map(|_| d6(rng)).collect();
+    let rolls: Vec<f64> = (0..js::array_length(dice)).map(|_| d6(rng)).collect();
     let total = sum_total(&rolls, flat);
     Roll {
         dice,

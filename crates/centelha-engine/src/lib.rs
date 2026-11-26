@@ -10,3 +10,4 @@ pub mod js;
 pub mod rng;
 pub mod sheet;
 pub mod strike;
+pub mod timeline;
