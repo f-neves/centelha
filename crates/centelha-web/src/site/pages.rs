@@ -10,6 +10,7 @@ use centelha_data::{Chapter, GlossaryEntry};
 use leptos::prelude::*;
 
 use super::nav::{self, NAV, TOOLS};
+use crate::cards::RefCards;
 use crate::shell::{DrawerClose, DrawerToggle, Scrim, SidebarCollapse, SidebarExpand};
 use crate::theme::ThemeSwitcher;
 use crate::toc::{OnThisPage, TocEntry};
@@ -31,7 +32,15 @@ pub struct PageInfo {
     pub wide: bool,
     /// Os títulos para o "Nesta página".
     pub toc: Vec<TocEntry>,
+    /// A página marca os termos do glossário e leva o cartão das referências
+    /// (`crate::cards`).
+    pub refs: bool,
 }
+
+/// O conteúdo provisório do `<script>` dos dados do cartão: o gerador marca os
+/// termos no `<main>` da página pronta e troca este marcador pelo JSON dos
+/// termos que apareceram.
+pub const REF_DATA_SLOT: &str = "__ref_data__";
 
 /// A casca de toda página, como `src/layouts/Base.astro` do site atual: o
 /// pulo para o conteúdo, a barra de cima do celular, a barra lateral (que vira
@@ -116,6 +125,16 @@ pub fn Layout(base: String, page: PageInfo, children: Children) -> impl IntoView
     });
 
     let toc = (page.toc.len() >= 2).then(|| view! { <OnThisPage entries=page.toc/> });
+    let refs = page.refs.then(|| {
+        view! {
+            <script type="application/json" id="ref-data" inner_html=REF_DATA_SLOT></script>
+            <dialog class="ref-modal" aria-label="Detalhe">
+                <button type="button" class="ref-modal-x" aria-label="Fechar">"✕"</button>
+                <div class="ref-modal-body"></div>
+            </dialog>
+            <RefCards/>
+        }
+    });
     let article_class = if page.wide { "wide" } else { "prose" };
     let home = nav::url(&base, "");
 
@@ -160,6 +179,7 @@ pub fn Layout(base: String, page: PageInfo, children: Children) -> impl IntoView
             </main>
         </div>
         {toc}
+        {refs}
     }
 }
 
@@ -186,7 +206,7 @@ M 425.40 462.00 L 309.21 313.25 L 122.29 287.00 L 238.48 435.75 Z";
     const VIEWBOX: &str = "122.29 62 779.42 900";
     let values = format!("{VALE};{PICO};{VALE}");
     view! {
-        <svg class="centelha-spark animada" viewBox=VIEWBOX fill="currentColor" aria-hidden="true">
+        <svg class="centelha-spark animated" viewBox=VIEWBOX fill="currentColor" aria-hidden="true">
             <g transform="translate(512 512)">
                 <g>
                     <animateTransform
@@ -215,7 +235,7 @@ M 425.40 462.00 L 309.21 313.25 L 122.29 287.00 L 238.48 435.75 Z";
                 </g>
             </g>
         </svg>
-        <svg class="centelha-spark parada" viewBox=VIEWBOX fill="currentColor" aria-hidden="true">
+        <svg class="centelha-spark still" viewBox=VIEWBOX fill="currentColor" aria-hidden="true">
             <path d=PICO></path>
         </svg>
     }
