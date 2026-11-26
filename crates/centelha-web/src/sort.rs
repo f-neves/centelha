@@ -282,7 +282,8 @@ pub fn cell_value(raw: &str) -> Option<f64> {
 
 /// Célula vazia para a ordem (vai para o começo na ordem crescente).
 pub fn is_empty_cell(s: &str) -> bool {
-    matches!(s, "" | "—" | "–")
+    // Sem texto, ou só o travessão ou o meio-traço (por escape).
+    matches!(s, "" | "\u{2014}" | "\u{2013}")
 }
 
 #[cfg(test)]
@@ -316,7 +317,7 @@ mod tests {
 
     #[test]
     fn empty_cells() {
-        assert!(is_empty_cell("—"));
+        assert!(is_empty_cell("\u{2014}"));
         assert!(!is_empty_cell("0"));
     }
 }

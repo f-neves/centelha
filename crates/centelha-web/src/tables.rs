@@ -84,8 +84,10 @@ mod browser {
             let _ = th.append_child(&button);
             let table = table.clone();
             let on_click = Closure::<dyn FnMut()>::new(move || sort_by(&table, col));
-            let _ =
-                button.add_event_listener_with_callback("click", on_click.as_ref().unchecked_ref());
+            // O ouvinte fica no `<th>` inteiro (onde o CSS põe a mão e as
+            // setas), como no site atual; o clique e o teclado do botão
+            // sobem até ele.
+            let _ = th.add_event_listener_with_callback("click", on_click.as_ref().unchecked_ref());
             on_click.forget();
         }
     }
