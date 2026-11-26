@@ -184,7 +184,7 @@
     },
     {
       "campo": "habilidades.esquiva",
-      "motivo": "Felino de corpo robusto e pesado, de luta e não de fuga.  da Bestiarista-3, pela anatomia."
+      "motivo": "Felino de corpo robusto e pesado, de luta e não de fuga.  da revisão, pela anatomia."
     },
     {
       "campo": "habilidades.furtividade",
@@ -212,11 +212,11 @@
     },
     {
       "campo": "corpo.comprimentoSemCauda",
-      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 2,00 × 1,0334 = 2,067 . Antes: Do Arquiteto: o 1,75 m do S. fatalis (SDZG, \"do focinho à garupa\") na escala do ombro (1,20 contra 1,00), arredondado para baixo."
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 2,00 × 1,0334 = 2,067 . Antes: Da revisão: o 1,75 m do S. fatalis (SDZG, \"do focinho à garupa\") na escala do ombro (1,20 contra 1,00), arredondado para baixo."
     },
     {
       "campo": "corpo.largura",
-      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 0,60 × 1,0334 = 0,620 . Antes: Estimada pelo Arquiteto (`porte-area-forca.md` §1.2); a pesquisa não mediu largura."
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 0,60 × 1,0334 = 0,620 . Antes: Estimada pela revisão (`porte-area-forca.md` §1.2); a pesquisa não mediu largura."
     },
     {
       "campo": "aparencia",

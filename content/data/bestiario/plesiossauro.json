@@ -176,11 +176,11 @@
     },
     {
       "campo": "corpo.altura",
-      "motivo": "do Arquiteto: \"altura do corpo e corpo sem cauda pela proporção do Plesiosaurus de 3,2 m\" (`dimensoes.md` dá \"sem dado\")"
+      "motivo": "da revisão: \"altura do corpo e corpo sem cauda pela proporção do Plesiosaurus de 3,2 m\" (`dimensoes.md` dá \"sem dado\")"
     },
     {
       "campo": "corpo.comprimentoSemCauda",
-      "motivo": "do Arquiteto, pela mesma proporção"
+      "motivo": "da revisão, pela mesma proporção"
     },
     {
       "campo": "aparencia",

@@ -248,7 +248,7 @@
     },
     {
       "campo": "corpo.comprimentoSemCauda",
-      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 6,9 × 1,0233 = 7,061 . Antes: do Arquiteto: \"corpo sem cauda (cerca de 55% de 12,5 m)\"; a fonte só dá o comprimento total (`dimensoes.md`)"
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 6,9 × 1,0233 = 7,061 . Antes: da revisão: \"corpo sem cauda (cerca de 55% de 12,5 m)\"; a fonte só dá o comprimento total (`dimensoes.md`)"
     },
     {
       "campo": "aparencia",

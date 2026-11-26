@@ -7,6 +7,7 @@
 //! - `site`: monta o site estático em `dist/` (páginas, WebAssembly e cola).
 
 mod images;
+mod notes;
 mod scan;
 mod site;
 mod sync;

@@ -220,7 +220,7 @@
   "revisao": [
     {
       "campo": "corpo.altura",
-      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 0,55 × 1,0311 = 0,567 . Antes: da Bestiarista-5, pela forma fusiforme; nenhuma fonte mediu"
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 0,55 × 1,0311 = 0,567 . Antes: da revisão, pela forma fusiforme; nenhuma fonte mediu"
     },
     {
       "campo": "corpo.comprimento",
@@ -232,7 +232,7 @@
     },
     {
       "campo": "corpo.largura",
-      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 0,45 × 1,0311 = 0,464 . Antes: da Bestiarista-5; a pesquisa não achou largura"
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 0,45 × 1,0311 = 0,464 . Antes: da revisão; a pesquisa não achou largura"
     }
   ]
 }

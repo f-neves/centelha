@@ -239,7 +239,7 @@
   "revisao": [
     {
       "campo": "corpo.altura",
-      "motivo": "a cernelha não foi achada; 8 cm é estimativa do Arquiteto (`dimensoes.md`)"
+      "motivo": "a cernelha não foi achada; 8 cm é estimativa da revisão (`dimensoes.md`)"
     },
     {
       "campo": "comportamento.dieta",
@@ -247,7 +247,7 @@
     },
     {
       "campo": "corpo.largura",
-      "motivo": "0,06 m na ficha atual. Base da revisão anterior: 0,06 m, estimada pelo Arquiteto, sem fonte; a altura de 0,08 m também é estimativa"
+      "motivo": "0,06 m na ficha atual. Base da revisão anterior: 0,06 m, estimada pela revisão, sem fonte; a altura de 0,08 m também é estimativa"
     }
   ]
 }

@@ -4,6 +4,7 @@ commit: 055dccd94617f8593445793876e545b8e33dfc44
 data do commit: 2026-11-25T13:06:45-03:00
 arquivos: 703 (20.8 MB)
 imagens com metadado removido: 0
+nomes de papel trocados por "revisão" nas notas (ADR 0005): 100
 
 - src/content/chapters -> content/chapters: 28 arquivos, 509 KB
 - src/data -> content/data: 359 arquivos, 10.4 MB

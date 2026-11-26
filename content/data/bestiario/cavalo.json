@@ -235,7 +235,7 @@
     },
     {
       "campo": "corpo.largura",
-      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 0,60 × 1,0208 = 0,613 . Antes: Estimada pelo Arquiteto (`porte-area-forca.md` §1.2); a pesquisa não mediu largura."
+      "motivo": "Recalculado na Etapa 2 (20/10/2026): Escalada pelo cubo da massa nova: 0,60 × 1,0208 = 0,613 . Antes: Estimada pela revisão (`porte-area-forca.md` §1.2); a pesquisa não mediu largura."
     }
   ]
 }
