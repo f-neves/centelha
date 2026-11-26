@@ -327,6 +327,6 @@ No `grid` do Efeito: forma `shape`, âncora `anchor`, gatilho `trigger`, alvo `t
 | carga carregada / carga atual | `carried_load` / `current_load` | velocidade com a penalidade | `penalized_speed` |
 | corte e expoente da carga | `cut` / `exponent` (`LoadRules`) | peso escrito como texto | `weight_from_text` |
 | papel da peça nas mãos (nada, mão hábil, mão inábil) | `HandRole` (`None`, `Main`, `Off`) | marcar uso | `mark_hand_use` |
-| ataque com as duas mãos | `DualAttack` | peça do arsenal para uma referência | `piece_for` |
-| campo de edição da peça | `EditField` | sincronizar as mãos | `sync_slots` |
+| ataque duplo (uma arma em cada mão; ver `dual_wield`) | `DualAttack` | peça do arsenal para uma referência | `piece_for` |
+| campo de edição da peça | `EditField` | sincronizar as mãos (aqui `slot` é a mão da ficha, não a vaga do banco) | `sync_slots` |
 
