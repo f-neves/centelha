@@ -10,6 +10,7 @@
 use std::path::{Path, PathBuf};
 
 use centelha_web::site::Site;
+use centelha_web::site::nav::{NAV, TOOLS};
 use centelha_web::site::text::{events_to_text, html_to_text};
 
 fn content_dir() -> PathBuf {
@@ -47,12 +48,23 @@ fn first_gap(expected: &str, page: &str) -> String {
     format!("falta a partir de: {wanted:?}\n   a página tem: {found:?}")
 }
 
+/// Confere que cada trecho está no texto, na ordem dada.
+fn check_in_order(path: &Path, text: &str, parts: &[String], failures: &mut Vec<String>) {
+    let mut rest = text;
+    for part in parts {
+        match rest.find(part.as_str()) {
+            Some(pos) => rest = &rest[pos + part.len()..],
+            None => failures.push(format!("{}: falta, em ordem, {part:?}", path.display())),
+        }
+    }
+}
+
 fn check_site(base: &str) {
     let content = content_dir();
     let site = Site::load(&content, base).expect("o site se lê");
     let out = temp_out(base.trim_matches('/'));
     let pages = site.write(&out).expect("o site se grava");
-    assert_eq!(pages.len(), site.chapters().len() + 1);
+    assert_eq!(pages.len(), site.chapters().len() + 2);
     assert_eq!(site.chapters().len(), 28);
 
     let mut failures = Vec::new();
@@ -78,20 +90,31 @@ fn check_site(base: &str) {
 
     let home_path = out.join("index.html");
     let home = html_to_text(&std::fs::read_to_string(&home_path).expect("a página inicial existe"));
-    let mut rest = home.as_str();
-    for chapter in site.chapters() {
-        let card = format!(
-            "Capítulo {} {} {}",
-            chapter.numeral, chapter.title, chapter.summary
-        );
-        match rest.find(&card) {
-            Some(pos) => rest = &rest[pos + card.len()..],
-            None => failures.push(format!(
-                "{}: falta, em ordem, o cartão {card:?}",
-                home_path.display()
-            )),
+    let counts = site.counts();
+    let mut home_parts = vec![
+        format!("{} Proezas", counts.feats),
+        format!("{} Técnicas", counts.techniques),
+        format!("{} Artes", counts.arts),
+    ];
+    home_parts.extend(
+        NAV.iter()
+            .filter(|n| !n.numeral.is_empty())
+            .map(|n| format!("Capítulo {} {}", n.numeral, n.title)),
+    );
+    home_parts.extend(TOOLS.iter().map(|t| t.title.to_string()));
+    check_in_order(&home_path, &home, &home_parts, &mut failures);
+
+    let glossary_path = out.join("glossario").join("index.html");
+    let glossary =
+        html_to_text(&std::fs::read_to_string(&glossary_path).expect("o glossário existe"));
+    let mut glossary_parts = Vec::new();
+    for entry in site.glossary() {
+        glossary_parts.push(format!("{} {}", entry.term, entry.definition));
+        if !entry.aliases.is_empty() {
+            glossary_parts.push(format!("· também: {}", entry.aliases.join(", ")));
         }
     }
+    check_in_order(&glossary_path, &glossary, &glossary_parts, &mut failures);
 
     let _ = std::fs::remove_dir_all(&out);
     assert!(
@@ -175,4 +198,19 @@ fn fonts_are_copied_as_is_and_one_is_preloaded() {
         "<link rel=\"preload\" href=\"/centelha/assets/fonts/eb-garamond-latin-400-normal.woff2\" as=\"font\" type=\"font/woff2\" crossorigin>"
     ));
     let _ = std::fs::remove_dir_all(&out);
+}
+
+/// Cada capítulo de `content/chapters` está na barra lateral (como capítulo
+/// ou como página de um capítulo), e o numeral bate.
+#[test]
+fn every_chapter_is_in_the_sidebar() {
+    let site = Site::load(&content_dir(), "/").unwrap();
+    for chapter in site.chapters() {
+        let path = format!("regras/{}", chapter.slug);
+        let item = NAV
+            .iter()
+            .find(|n| n.slug == path || n.sub.iter().any(|s| s.slug == path));
+        let item = item.unwrap_or_else(|| panic!("{}: fora da barra lateral", chapter.slug));
+        assert_eq!(item.numeral, chapter.numeral, "{}", chapter.slug);
+    }
 }

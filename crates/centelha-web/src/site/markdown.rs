@@ -18,11 +18,15 @@
 
 use std::collections::HashMap;
 
-use pulldown_cmark::{CodeBlockKind, CowStr, Event, Options, Parser, Tag, TagEnd, TextMergeStream};
+use pulldown_cmark::{
+    CodeBlockKind, CowStr, Event, HeadingLevel, Options, Parser, Tag, TagEnd, TextMergeStream,
+};
 use sha1::{Digest, Sha1};
 
 use super::slug::Slugger;
+use super::text::events_to_text;
 use super::typography;
+use crate::toc::TocEntry;
 
 /// O caminho base do site atual, que o HTML escrito nos capítulos traz
 /// gravado nos links (lá o caminho base não chega no HTML cru).
@@ -103,6 +107,41 @@ impl Markdown<'_> {
         let events = wrap_tables(events);
         let events = typography_pass(events);
         heading_ids(events)
+    }
+
+    /// Os títulos de nível 2 e 3 do corpo, com a âncora e o texto, na ordem
+    /// da página (o "Nesta página").
+    pub fn headings(&self, body: &str) -> Vec<TocEntry> {
+        let events = self.events(body);
+        let mut out = Vec::new();
+        let mut i = 0;
+        while i < events.len() {
+            if let Event::Start(Tag::Heading {
+                level,
+                id: Some(id),
+                ..
+            }) = &events[i]
+            {
+                let level = match level {
+                    HeadingLevel::H2 => 2,
+                    HeadingLevel::H3 => 3,
+                    _ => 0,
+                };
+                let start = i + 1;
+                while i < events.len() && !matches!(events[i], Event::End(TagEnd::Heading(_))) {
+                    i += 1;
+                }
+                if level > 0 {
+                    out.push(TocEntry {
+                        id: id.to_string(),
+                        level,
+                        text: events_to_text(&events[start..i]).trim().to_string(),
+                    });
+                }
+            }
+            i += 1;
+        }
+        out
     }
 
     /// O HTML do corpo de um capítulo.

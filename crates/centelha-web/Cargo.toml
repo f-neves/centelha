@@ -33,7 +33,7 @@ pulldown-cmark = { workspace = true, optional = true }
 sha1 = { workspace = true, optional = true }
 hydration_context = { workspace = true, optional = true }
 wasm-bindgen = { workspace = true, optional = true }
-web-sys = { workspace = true, optional = true, features = ["Document", "DomStringMap", "Element", "HtmlElement", "Performance", "Storage", "Window"] }
+web-sys = { workspace = true, optional = true, features = ["Document", "DomRect", "DomStringMap", "DomTokenList", "Element", "Event", "EventTarget", "HtmlDetailsElement", "HtmlElement", "KeyboardEvent", "Node", "NodeList", "Performance", "Storage", "Window"] }
 
 [lints]
 workspace = true

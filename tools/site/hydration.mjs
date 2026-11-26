@@ -11,7 +11,9 @@
 //      (`<main>`, onde está o corpo do capítulo): um bloco duplicado e
 //      escondido por CSS não aparece no texto visível, mas aparece aqui;
 //   4. clica num botão do seletor de tema e exige o tema trocado (no
-//      `<html data-theme>`, no `localStorage` e no botão marcado);
+//      `<html data-theme>`, no `localStorage` e no botão marcado); recolhe e
+//      expande a barra lateral; no celular (375 px), abre a gaveta e fecha
+//      com Esc; e, onde há "Nesta página", abre o sumário e escolhe um título;
 //   5. exige nenhuma exceção da página e nenhum erro ou aviso no console (em
 //      release um descasamento de hidratação vira pânico sem mensagem, por isso
 //      as exceções contam; o WebAssembly de depuração escreve o aviso).
@@ -29,6 +31,10 @@ const pages = listPages(dist);
 const THEMES = ['classico', 'escuro', 'legivel'];
 // O texto inteiro do conteúdo, visível ou não.
 const CONTENT = "document.querySelector('main').textContent";
+// As duas leituras do texto usam a mesma tela (a de desktop, com a barra
+// lateral à vista); a gaveta do celular é conferida à parte.
+const DESKTOP = { width: 1280, height: 900, deviceScaleFactor: 1, mobile: false };
+const PHONE = { width: 375, height: 812, deviceScaleFactor: 1, mobile: true };
 
 const server = await serve(dist, base);
 const browser = await launch();
@@ -45,6 +51,7 @@ for (const rel of pages) {
   await plain.send('Page.enable');
   await plain.send('Runtime.enable');
   await plain.send('Emulation.setScriptExecutionDisabled', { value: true });
+  await plain.send('Emulation.setDeviceMetricsOverride', DESKTOP);
   await plain.goto(url);
   const before = await plain.eval('document.body.innerText');
   const contentBefore = await plain.eval(CONTENT);
@@ -68,6 +75,7 @@ for (const rel of pages) {
   await page.send('Page.enable');
   await page.send('Runtime.enable');
   await page.send('Log.enable');
+  await page.send('Emulation.setDeviceMetricsOverride', DESKTOP);
   await page.goto(url);
   const started = Date.now();
   try {
@@ -93,7 +101,7 @@ for (const rel of pages) {
   const rect = await page.eval(`(() => {
     const b = document.querySelector('.theme-switcher button[data-theme-key="${target}"]');
     if (!b) return null;
-    b.scrollIntoView({ block: 'center' });
+    b.scrollIntoView({ block: 'center', behavior: 'instant' });
     const r = b.getBoundingClientRect();
     return { x: r.x + r.width / 2, y: r.y + r.height / 2 };
   })()`);
@@ -119,6 +127,12 @@ for (const rel of pages) {
     }
   }
 
+  // 4b. A barra lateral (desktop) e a gaveta (celular).
+  problems.push(...(await checkShell(page)));
+
+  // 4c. O "Nesta página".
+  problems.push(...(await checkToc(page)));
+
   // 5. Console limpo.
   problems.push(...messages);
   await page.close();
@@ -135,6 +149,73 @@ await browser.close();
 await server.close();
 console.log(failures ? `${failures} de ${pages.length} páginas falharam` : `todas as ${pages.length} páginas passaram`);
 process.exit(failures ? 1 : 0);
+
+/** Clica no meio do elemento, como um dedo (sem `element.click()`). */
+async function click(page, selector) {
+  const rect = await page.eval(`(() => {
+    const el = document.querySelector(${JSON.stringify(selector)});
+    if (!el) return null;
+    el.scrollIntoView({ block: 'center', behavior: 'instant' });
+    const r = el.getBoundingClientRect();
+    return r.width && r.height ? { x: r.x + r.width / 2, y: r.y + r.height / 2 } : null;
+  })()`);
+  if (!rect) return false;
+  for (const type of ['mousePressed', 'mouseReleased']) {
+    await page.send('Input.dispatchMouseEvent', { type, x: rect.x, y: rect.y, button: 'left', clickCount: 1 });
+  }
+  return true;
+}
+
+async function checkShell(page) {
+  const problems = [];
+  const state = () => page.eval(`({
+    collapsed: document.documentElement.classList.contains('sidebar-collapsed'),
+    stored: localStorage.getItem('sidebar'),
+    open: document.body.classList.contains('drawer-open'),
+    expanded: document.querySelector('.drawer-toggle')?.getAttribute('aria-expanded'),
+  })`);
+  if (!(await click(page, '.sidebar-collapse'))) problems.push('sem o botão de recolher a barra lateral');
+  let s = await state();
+  if (!s.collapsed || s.stored !== 'collapsed') problems.push(`recolher não recolheu: ${JSON.stringify(s)}`);
+  if (!(await click(page, '.sidebar-expand'))) problems.push('sem o botão de expandir a barra lateral');
+  s = await state();
+  if (s.collapsed || s.stored !== 'open') problems.push(`expandir não expandiu: ${JSON.stringify(s)}`);
+
+  await page.send('Emulation.setDeviceMetricsOverride', PHONE);
+  // A barra lateral desliza para fora da tela em 0,22 s ao virar gaveta;
+  // antes disso ela ainda cobre o botão do menu.
+  await new Promise((ok) => setTimeout(ok, 400));
+  if (!(await click(page, '.drawer-toggle'))) problems.push('sem o botão do menu no celular');
+  s = await state();
+  if (!s.open || s.expanded !== 'true') problems.push(`o menu não abriu a gaveta: ${JSON.stringify(s)}`);
+  for (const type of ['keyDown', 'keyUp']) {
+    await page.send('Input.dispatchKeyEvent', { type, key: 'Escape', code: 'Escape', windowsVirtualKeyCode: 27 });
+  }
+  s = await state();
+  if (s.open || s.expanded !== 'false') problems.push(`Esc não fechou a gaveta: ${JSON.stringify(s)}`);
+  await page.send('Emulation.setDeviceMetricsOverride', DESKTOP);
+  await new Promise((ok) => setTimeout(ok, 100));
+  return problems;
+}
+
+async function checkToc(page) {
+  const problems = [];
+  const has = await page.eval("!!document.getElementById('otp')");
+  if (!has) return problems;
+  await page.eval("window.scrollTo({ top: 0, behavior: 'instant' })");
+  await new Promise((ok) => setTimeout(ok, 100));
+  if (!(await click(page, '#otp-fab'))) return ['sem o botão do "Nesta página"'];
+  if (!(await page.eval("document.getElementById('otp').open"))) problems.push('o "Nesta página" não abriu');
+  const id = await page.eval("document.querySelector('#otp-panel a')?.dataset.id ?? null");
+  if (!(await click(page, '#otp-panel a'))) {
+    problems.push('sem título no "Nesta página"');
+  } else {
+    await new Promise((ok) => setTimeout(ok, 150));
+    const after = await page.eval("({ open: document.getElementById('otp').open, hash: decodeURIComponent(location.hash) })");
+    if (after.open || after.hash !== `#${id}`) problems.push(`escolher um título não levou a ele: ${JSON.stringify(after)}`);
+  }
+  return problems;
+}
 
 function firstDiff(a, b) {
   let i = 0;
