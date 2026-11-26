@@ -9,7 +9,8 @@
 //! 5. `wasm-opt -Oz` encolhe o WebAssembly (com a lista de recursos explícita:
 //!    `--all-features` gera um arquivo que o navegador recusa).
 //! 6. O índice da busca: o Pagefind lê o `dist/` pronto e grava
-//!    `dist/pagefind/`. O texto das páginas não depende dele.
+//!    `dist/pagefind/`, sem as interfaces prontas dele (a busca do site tem
+//!    interface própria). O texto das páginas não depende dele.
 //!
 //! Opções: `--dev` compila o WebAssembly sem otimizar e pula o `wasm-opt` (o
 //! WebAssembly de depuração escreve os avisos de hidratação no console);
@@ -163,6 +164,36 @@ fn check_pagefind(required: bool) -> Result<Option<String>, String> {
     }
 }
 
+/// Prefixos das interfaces prontas que o Pagefind grava e que o site não usa
+/// (a busca tem interface própria e fala com o `pagefind.js` direto).
+const PAGEFIND_UI: &[&str] = &[
+    "pagefind-ui",
+    "pagefind-modular-ui",
+    "pagefind-component-ui",
+    "pagefind-highlight",
+];
+
+/// Apaga do índice as interfaces prontas do Pagefind. Fica o que a busca
+/// carrega: `pagefind.js`, `pagefind-worker.js`, os `wasm.*.pagefind`,
+/// `pagefind-entry.json`, `index/` e `fragment/`.
+fn drop_ready_made_ui(dir: &Path) -> Result<(), String> {
+    let entries = std::fs::read_dir(dir).map_err(|e| format!("{}: {e}", dir.display()))?;
+    for entry in entries {
+        let entry = entry.map_err(|e| format!("{}: {e}", dir.display()))?;
+        let name = entry.file_name();
+        let name = name.to_string_lossy();
+        let ui = PAGEFIND_UI.iter().any(|p| {
+            name.strip_prefix(p)
+                .is_some_and(|rest| rest.starts_with('.'))
+        });
+        if ui && entry.path().is_file() {
+            std::fs::remove_file(entry.path())
+                .map_err(|e| format!("{}: não apaguei ({e})", entry.path().display()))?;
+        }
+    }
+    Ok(())
+}
+
 /// Raiz deste repositório (onde está o `Cargo.toml` do workspace).
 fn repo_root() -> PathBuf {
     Path::new(env!("CARGO_MANIFEST_DIR"))
@@ -265,6 +296,7 @@ pub fn run(args: &[String]) -> Result<(), String> {
                 .arg("--quiet"),
             "pagefind",
         )?;
+        drop_ready_made_ui(&options.out.join("pagefind"))?;
         println!(
             "índice da busca em {}",
             options.out.join("pagefind").display()
