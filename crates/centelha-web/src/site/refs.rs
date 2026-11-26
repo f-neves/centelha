@@ -16,9 +16,14 @@
 //!   estiver dentro de `.ref`, `.no-gloss`, `.arv-node` ou `.badge`, e o texto
 //!   de até dois caracteres (sem os espaços das pontas).
 //!
-//! Uma diferença de propósito: o texto dos diagramas (dentro de `<svg>`) não é
-//! marcado. No site atual o link entra dentro do `<tspan>` do desenho, onde o
-//! navegador não o desenha, e o rótulo some.
+//! Duas diferenças de propósito:
+//! - o texto dos diagramas (dentro de `<svg>`) não é marcado. No site atual o
+//!   link entra dentro do `<tspan>` do desenho, onde o navegador não o
+//!   desenha, e o rótulo some;
+//! - o cabeçalho das tabelas (`<thead>`) não é marcado. Ali o cabeçalho ordena
+//!   a tabela (`crate::tables`, num botão), e um link dentro dele seria um
+//!   controle dentro de outro: o clique ordenava e abria o diálogo do termo
+//!   ao mesmo tempo, e o teclado ficava preso no diálogo.
 //!
 //! Primeira etapa: só os termos do glossário. Atributos, Habilidades,
 //! Virtudes, Caminhos, Técnicas e Artes entram com os módulos da fase 2.
@@ -202,7 +207,7 @@ impl<'a> Refs<'a> {
         let parent_skips = stack
             .last()
             .is_some_and(|p| SKIP.contains(&p.name.as_str()));
-        let inside_skip = stack.iter().any(|e| e.skip_inside);
+        let inside_skip = stack.iter().any(|e| e.skip_inside || e.name == "thead");
         let text = decode_entities(raw);
         if parent_skips || inside_skip || text.trim().chars().count() <= 2 {
             out.html.push_str(raw);
@@ -437,6 +442,15 @@ mod tests {
         // Dentro de <strong> dentro de <a>, o pai direto é <strong>: marca.
         let m = marked("<p><a href=\"#\"><strong>Pool</strong></a></p>");
         assert_eq!(m.marks.len(), 1);
+    }
+
+    #[test]
+    fn table_headers_are_left_alone() {
+        let m = marked(
+            "<table><thead><tr><th>Defesa</th></tr></thead><tbody><tr><td>Defesa</td></tr></tbody></table>",
+        );
+        assert_eq!(m.marks.len(), 1);
+        assert!(m.html.contains("<th>Defesa</th>"));
     }
 
     #[test]

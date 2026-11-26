@@ -9,9 +9,11 @@
 use centelha_data::{Chapter, GlossaryEntry};
 use leptos::prelude::*;
 
+use super::backdrop::BACKDROP_HTML;
 use super::nav::{self, NAV, TOOLS};
 use crate::cards::RefCards;
 use crate::shell::{DrawerClose, DrawerToggle, Scrim, SidebarCollapse, SidebarExpand};
+use crate::tables::TableSorter;
 use crate::theme::ThemeSwitcher;
 use crate::toc::{OnThisPage, TocEntry};
 
@@ -139,6 +141,7 @@ pub fn Layout(base: String, page: PageInfo, children: Children) -> impl IntoView
     let home = nav::url(&base, "");
 
     view! {
+        <div class="cfundo" aria-hidden="true" inner_html=BACKDROP_HTML.as_str()></div>
         <a href="#conteudo" class="skip">"Pular para o conteúdo"</a>
         <div class="topbar">
             <DrawerToggle/>
@@ -370,6 +373,7 @@ pub fn ChapterPage(
         <h1>{title}</h1>
         <p class="tag-orn tag-orn-left"><Spark/></p>
         <div class="chapter-body" inner_html=body_html></div>
+        <TableSorter/>
         <nav class="cap-nav" aria-label="Navegação entre capítulos">{prev}{next}</nav>
     }
 }
@@ -398,5 +402,20 @@ pub fn GlossaryPage(entries: Vec<GlossaryEntry>) -> impl IntoView {
         <h1>"Glossário"</h1>
         <p class="lead">"Os termos que aparecem por todo o livro."</p>
         <dl class="gloss-list no-gloss">{items}</dl>
+    }
+}
+
+/// A página de "não encontrada", como `src/pages/404.astro` do site atual.
+#[component]
+pub fn NotFoundPage(base: String) -> impl IntoView {
+    view! {
+        <div class="not-found">
+            <p class="cinzel not-found-code">"404"</p>
+            <p class="lead">"Este caminho não leva a lugar nenhum… ainda."</p>
+            <div class="btn-row not-found-actions">
+                <a class="btn primary" href=nav::url(&base, "")>"Voltar ao início"</a>
+                <a class="btn" href=nav::url(&base, "caminhos")>"As Proezas"</a>
+            </div>
+        </div>
     }
 }

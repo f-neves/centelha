@@ -8,6 +8,8 @@
 
 pub mod cards;
 pub mod shell;
+pub mod sort;
+pub mod tables;
 pub mod theme;
 pub mod toc;
 

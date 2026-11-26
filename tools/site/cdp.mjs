@@ -32,7 +32,7 @@ export function detectBase(dist) {
   return m ? m[1] : '/';
 }
 
-/** As páginas de `dist/`, como caminhos relativos ao caminho base. */
+/** As páginas de `dist/`, como caminhos relativos ao caminho base (mais a `404.html`). */
 export function listPages(dist) {
   // Toda pasta com `index.html` (menos `pkg/` e `assets/`), em ordem.
   const pages = [];
@@ -46,6 +46,8 @@ export function listPages(dist) {
     }
   };
   walk('');
+  // A página de "não encontrada" mora num arquivo solto na raiz.
+  if (existsSync(join(dist, '404.html'))) pages.push('404.html');
   return pages;
 }
 

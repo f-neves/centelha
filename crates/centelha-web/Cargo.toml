@@ -34,7 +34,7 @@ sha1 = { workspace = true, optional = true }
 hydration_context = { workspace = true, optional = true }
 wasm-bindgen = { workspace = true, optional = true }
 js-sys = { workspace = true, optional = true }
-web-sys = { workspace = true, optional = true, features = ["Document", "DomRect", "DomStringMap", "DomTokenList", "CssStyleDeclaration", "Element", "Event", "EventTarget", "FocusEvent", "HtmlDetailsElement", "HtmlDialogElement", "HtmlElement", "MouseEvent", "KeyboardEvent", "Location", "Node", "NodeList", "Performance", "ScrollBehavior", "ScrollIntoViewOptions", "Storage", "Window"] }
+web-sys = { workspace = true, optional = true, features = ["CssStyleDeclaration", "Document", "DomRect", "DomStringMap", "DomTokenList", "Element", "Event", "EventTarget", "FocusEvent", "HtmlCollection", "HtmlDetailsElement", "HtmlDialogElement", "HtmlElement", "HtmlTableElement", "HtmlTableRowElement", "HtmlTableSectionElement", "KeyboardEvent", "Location", "MouseEvent", "Node", "NodeList", "Performance", "ScrollBehavior", "ScrollIntoViewOptions", "Storage", "Window"] }
 
 [lints]
 workspace = true

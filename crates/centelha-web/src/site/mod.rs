@@ -4,6 +4,7 @@
 //! O WebAssembly (as ilhas) e o script de carga entram em `dist/pkg/`, gravados
 //! pelo `cargo xtask site` depois do gerador.
 
+mod backdrop;
 pub mod collate;
 pub mod links;
 pub mod markdown;
@@ -28,7 +29,9 @@ use leptos::prelude::*;
 use leptos::reactive::owner::Owner;
 
 use markdown::{Diagrams, DiagramsError, Markdown};
-use pages::{ChapterPage, GlossaryPage, HomeCounts, HomePage, Layout, Neighbor, PageInfo};
+use pages::{
+    ChapterPage, GlossaryPage, HomeCounts, HomePage, Layout, Neighbor, NotFoundPage, PageInfo,
+};
 
 /// O caminho base de quem não diz outro (a prévia no GitHub Pages).
 pub const DEFAULT_BASE: &str = "/centelha/";
@@ -64,14 +67,9 @@ const FONTS: &[(&str, &[u8])] = &[
 /// As outras carregam quando a página pede.
 const PRELOADED_FONT: &str = "eb-garamond-latin-400-normal.woff2";
 
-/// Aplica antes da primeira pintura o tema gravado (o padrão é o escuro, que
-/// já vem no `<html>` para valer sem JavaScript) e a barra lateral recolhida,
-/// como o script do `<head>` do site atual (as mesmas chaves do
-/// `localStorage`).
-const HEAD_SCRIPT: &str = "(function(){try{var d=document.documentElement;\
-d.dataset.theme=localStorage.getItem('tema')||'escuro';\
-if(localStorage.getItem('sidebar')==='collapsed')d.classList.add('sidebar-collapsed');\
-}catch(e){}})();";
+/// O script do `<head>`, antes da primeira pintura: tema, barra lateral
+/// recolhida e preferências de diagramação (veja o comentário em `head.js`).
+const HEAD_SCRIPT: &str = include_str!("head.js");
 
 /// O caminho base com `/` no começo e no fim (`centelha` vira `/centelha/`;
 /// vazio vira `/`).
@@ -238,6 +236,23 @@ impl Site {
                 Some("Os termos-chave do sistema, com sinônimos e definições."),
                 move || view! { <GlossaryPage entries/> }.into_any(),
             ),
+        });
+        // A página de "não encontrada", na raiz de `dist/` (o GitHub Pages a
+        // serve para qualquer endereço sem página). Todos os endereços dela
+        // são absolutos, com o caminho base, para valer de qualquer pasta.
+        let base = self.base.clone();
+        let not_found = PageInfo {
+            path: "404".to_string(),
+            title: "Página não encontrada".to_string(),
+            wide: false,
+            toc: Vec::new(),
+            refs: false,
+        };
+        pages.push(Page {
+            path: "404.html".to_string(),
+            html: self.document(not_found, None, move || {
+                view! { <NotFoundPage base/> }.into_any()
+            }),
         });
         pages
     }

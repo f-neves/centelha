@@ -20,6 +20,10 @@
 //      release um descasamento de hidratação vira pânico sem mensagem, por isso
 //      as exceções contam; o WebAssembly de depuração escreve o aviso).
 //
+// Com `CENTELHA_CONFIG` (um JSON), grava essa preferência de diagramação no
+// `localStorage` antes de cada página com JavaScript, como faria quem ajustou
+// o site atual: o texto tem de continuar igual e sem exceção.
+//
 // Sai com código 1 se qualquer página falhar. Só Node 22+ e um navegador
 // (`BROWSER` aponta outro executável; `BROWSER_ARGS` acrescenta argumentos,
 // como `--no-sandbox` no Linux do CI).
@@ -29,10 +33,40 @@ import { detectBase, launch, listPages, serve } from './cdp.mjs';
 
 const dist = resolve(process.argv[2] ?? 'dist');
 const base = detectBase(dist);
-const pages = listPages(dist);
+// `PAGES` (caminhos separados por vírgula) limita a prova a essas páginas.
+const pages = process.env.PAGES ? process.env.PAGES.split(',') : listPages(dist);
 const THEMES = ['classico', 'escuro', 'legivel'];
 // O texto inteiro do conteúdo, visível ou não.
 const CONTENT = "document.querySelector('main').textContent";
+// A regra de ordenação do site atual (src/pages/regras/[slug].astro), como
+// oráculo: a ordem esperada sai desta cópia, e não do código em Rust.
+const ORACLE = `(table, col, dir) => {
+  const FRAC = { '½': 0.5, '¼': 0.25, '¾': 0.75, '⅓': 1 / 3, '⅔': 2 / 3 };
+  const CUR = { pc: 1, pp: 10, po: 100, pl: 1000 };
+  const numOf = (raw) => {
+    const s = raw.replace(/[−–]/g, '-').trim();
+    const cm = s.match(/(-?)\\s*([½¼¾⅓⅔]|\\d{1,3}(?:\\.\\d{3})+(?:,\\d+)?|\\d+(?:[.,]\\d+)?)\\s*(pc|pp|po|pl)\\b/i);
+    if (cm) {
+      const base = FRAC[cm[2]] ?? parseFloat((/^\\d{1,3}(?:\\.\\d{3})+/.test(cm[2]) ? cm[2].replace(/\\./g, '') : cm[2]).replace(',', '.'));
+      return (cm[1] === '-' ? -1 : 1) * base * CUR[cm[3].toLowerCase()];
+    }
+    if (FRAC[s] != null) return FRAC[s];
+    const m = s.match(/-?\\d+(?:[.,]\\d+)?/);
+    return m ? parseFloat(m[0].replace(',', '.')) : null;
+  };
+  const rows = Array.from(table.tBodies[0].rows);
+  const val = (r) => (r.cells[col]?.textContent || '').trim();
+  const vazio = (s) => s === '' || s === '\u2014' || s === '\u2013';
+  const numerico = rows.every((r) => { const v = val(r); return vazio(v) || numOf(v) !== null; });
+  rows.sort((a, b) => {
+    const A = val(a), B = val(b);
+    let c;
+    if (numerico) c = (vazio(A) ? -Infinity : numOf(A)) - (vazio(B) ? -Infinity : numOf(B));
+    else c = A.localeCompare(B, 'pt', { numeric: true, sensitivity: 'base' });
+    return dir === 'asc' ? c : -c;
+  });
+  return rows.map((r) => r.textContent);
+}`;
 // As duas leituras do texto usam a mesma tela (a de desktop, com a barra
 // lateral à vista); a gaveta do celular é conferida à parte.
 // O corpo do capítulo usa `content-visibility: auto` (o navegador só faz o
@@ -97,6 +131,11 @@ for (const rel of pages) {
   await page.send('Page.enable');
   await page.send('Runtime.enable');
   await page.send('Log.enable');
+  if (process.env.CENTELHA_CONFIG) {
+    await page.send('Page.addScriptToEvaluateOnNewDocument', {
+      source: `localStorage.setItem('centelha:config', ${JSON.stringify(process.env.CENTELHA_CONFIG)});`,
+    });
+  }
   await page.send('Emulation.setDeviceMetricsOverride', DESKTOP);
   await page.goto(url);
   const started = Date.now();
@@ -161,6 +200,9 @@ for (const rel of pages) {
   // 4d. O "Nesta página".
   problems.push(...(await checkToc(page)));
 
+  // 4e. As tabelas que ordenam.
+  problems.push(...(await checkTables(page)));
+
   // 5. Console limpo.
   problems.push(...messages);
   await page.close();
@@ -184,14 +226,34 @@ console.log(failures ? `${failures} de ${pages.length} páginas falharam` : `tod
 process.exit(failures ? 1 : 0);
 
 /** Clica no meio do elemento, como um dedo (sem `element.click()`). */
+/**
+ * O centro de um elemento depois que ele parou de mexer (com a página em
+ * duas colunas, ou logo depois de trocar a tela, o layout assenta aos
+ * poucos e um clique medido cedo cairia noutro ponto). Rola até ele antes.
+ */
+async function stableCenter(page, selector) {
+  let last = null;
+  for (let i = 0; i < 20; i++) {
+    const r = await page.eval(`(() => {
+      const el = document.querySelector(${JSON.stringify(selector)});
+      if (!el) return null;
+      if (${i} === 0) el.scrollIntoView({ block: 'center', behavior: 'instant' });
+      // O primeiro pedaço: um link que quebra de linha tem o meio da caixa
+      // entre as duas linhas, fora dele.
+      const r = el.getClientRects()[0] ?? el.getBoundingClientRect();
+      return r.width && r.height ? { x: r.x + r.width / 2, y: r.y + r.height / 2 } : null;
+    })()`);
+    if (!r) return null;
+    if (last && Math.abs(last.x - r.x) < 0.5 && Math.abs(last.y - r.y) < 0.5) return r;
+    last = r;
+    await new Promise((ok) => setTimeout(ok, 100));
+  }
+  return last;
+}
+
+/** Clica no meio do elemento, como um dedo (sem `element.click()`). */
 async function click(page, selector) {
-  const rect = await page.eval(`(() => {
-    const el = document.querySelector(${JSON.stringify(selector)});
-    if (!el) return null;
-    el.scrollIntoView({ block: 'center', behavior: 'instant' });
-    const r = el.getBoundingClientRect();
-    return r.width && r.height ? { x: r.x + r.width / 2, y: r.y + r.height / 2 } : null;
-  })()`);
+  const rect = await stableCenter(page, selector);
   if (!rect) return false;
   for (const type of ['mousePressed', 'mouseReleased']) {
     await page.send('Input.dispatchMouseEvent', { type, x: rect.x, y: rect.y, button: 'left', clickCount: 1 });
@@ -216,8 +278,17 @@ async function checkShell(page) {
 
   await page.send('Emulation.setDeviceMetricsOverride', PHONE);
   // A barra lateral desliza para fora da tela em 0,22 s ao virar gaveta;
-  // antes disso ela ainda cobre o botão do menu.
-  await new Promise((ok) => setTimeout(ok, 400));
+  // antes disso ela ainda cobre o botão do menu. Num navegador sem janela e
+  // sem placa de vídeo, com o fundo animado, a transição pode demorar mais:
+  // espera o botão ficar à mostra (até 5 s).
+  try {
+    await page.waitFor(`(() => {
+      const b = document.querySelector('.drawer-toggle');
+      if (!b) return true;
+      const r = b.getBoundingClientRect();
+      return document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2)?.closest('.drawer-toggle') === b;
+    })()`, 5000);
+  } catch { /* segue, e a conferência abaixo diz o que houve */ }
   if (!(await click(page, '.drawer-toggle'))) problems.push('sem o botão do menu no celular');
   s = await state();
   if (!s.open || s.expanded !== 'true') problems.push(`o menu não abriu a gaveta: ${JSON.stringify(s)}`);
@@ -228,6 +299,81 @@ async function checkShell(page) {
   if (s.open || s.expanded !== 'false') problems.push(`Esc não fechou a gaveta: ${JSON.stringify(s)}`);
   await page.send('Emulation.setDeviceMetricsOverride', DESKTOP);
   await new Promise((ok) => setTimeout(ok, 100));
+  return problems;
+}
+
+
+async function checkTables(page) {
+  const problems = [];
+  // O passo anterior escolhe um título no "Nesta página", e a página rola de
+  // novo até a âncora por um segundo e meio (a ilha do sumário segura a
+  // âncora no lugar); um clique nesse meio-tempo cairia noutro ponto.
+  await new Promise((r) => setTimeout(r, 1700));
+  const count = await page.eval("[...document.querySelectorAll('main table')].filter((t) => t.querySelector('th.ord')).length");
+  for (let t = 0; t < Math.min(2, count); t++) {
+    const sel = `[...document.querySelectorAll('main table')].filter((t) => t.querySelector('th.ord'))[${t}]`;
+    const label = `tabela ${t + 1}`;
+    // A ordem que a regra do site atual daria a partir da ordem de agora
+    // (a ordenação é estável, então o ponto de partida conta).
+    // `NEGATIVE_SORT_ORACLE=1` troca a direção do oráculo: o teste negativo
+    // da própria prova (ela tem de falhar).
+    const flip = (dir) => (process.env.NEGATIVE_SORT_ORACLE ? (dir === 'asc' ? 'desc' : 'asc') : dir);
+    const expected = (col, dir) => page.eval(`(${ORACLE})(${sel}, ${col}, '${flip(dir)}')`);
+    const actual = () => page.eval(`Array.from(${sel}.tBodies[0].rows).map((r) => r.textContent)`);
+    const sortState = () => page.eval(`[...${sel}.tHead.rows[0].cells].map((c) => c.getAttribute('aria-sort'))`);
+    const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+    const press = async (key, code, keyCode, text) => {
+      for (const type of ['keyDown', 'keyUp']) {
+        await page.send('Input.dispatchKeyEvent', { type, key, code, windowsVirtualKeyCode: keyCode, ...(type === 'keyDown' ? { text } : {}) });
+      }
+      await new Promise((r) => setTimeout(r, 50));
+    };
+
+    // Clique no primeiro cabeçalho que ordena: crescente.
+    const first = await page.eval(`(() => {
+      const ths = [...${sel}.tHead.rows[0].cells];
+      const k = ths.findIndex((c) => c.classList.contains('ord'));
+      const b = k >= 0 ? ths[k].querySelector('.ord-btn') : null;
+      if (!b) return null;
+      b.scrollIntoView({ block: 'center', behavior: 'instant' });
+      return k;
+    })()`);
+    if (first === null) {
+      problems.push(`${label}: cabeçalho que ordena sem o botão`);
+      continue;
+    }
+    await new Promise((r) => setTimeout(r, 100));
+    const rect = await page.eval(`(() => { const r = ${sel}.tHead.rows[0].cells[${first}].getBoundingClientRect(); return { x: r.x + r.width / 2, y: r.y + r.height / 2 }; })()`);
+    let want = await expected(first, 'asc');
+    for (const type of ['mousePressed', 'mouseReleased']) {
+      await page.send('Input.dispatchMouseEvent', { type, x: rect.x, y: rect.y, button: 'left', clickCount: 1 });
+    }
+    if (!same(await actual(), want)) problems.push(`${label}: o clique não ordenou como o site atual`);
+    if ((await sortState())[first] !== 'ascending') problems.push(`${label}: aria-sort não ficou ascending depois do clique`);
+
+    // Teclado: no segundo cabeçalho que ordena, se houver, Enter dá crescente
+    // e espaço inverte; se só um ordena, Enter inverte e espaço volta.
+    const second = await page.eval(`(() => { const ths = [...${sel}.tHead.rows[0].cells]; return ths.findIndex((c, i) => i > ${first} && c.classList.contains('ord')); })()`);
+    const col = second > 0 ? second : first;
+    await page.eval(`${sel}.tHead.rows[0].cells[${col}].querySelector('.ord-btn').focus({ preventScroll: true })`);
+    const afterEnterDir = col === first ? 'desc' : 'asc';
+    want = await expected(col, afterEnterDir);
+    await press('Enter', 'Enter', 13, '\r');
+    if (!same(await actual(), want)) problems.push(`${label}: Enter na coluna ${col + 1} não ordenou como o site atual`);
+    let state = await sortState();
+    const enterAria = afterEnterDir === 'asc' ? 'ascending' : 'descending';
+    if (state[col] !== enterAria || (col !== first && state[first] !== 'none')) {
+      problems.push(`${label}: aria-sort depois do Enter: ${JSON.stringify(state)}`);
+    }
+    const afterSpaceDir = afterEnterDir === 'asc' ? 'desc' : 'asc';
+    want = await expected(col, afterSpaceDir);
+    await press(' ', 'Space', 32, ' ');
+    if (!same(await actual(), want)) problems.push(`${label}: espaço na coluna ${col + 1} não ordenou como o site atual`);
+    state = await sortState();
+    if (state[col] !== (afterSpaceDir === 'asc' ? 'ascending' : 'descending')) {
+      problems.push(`${label}: aria-sort depois do espaço: ${JSON.stringify(state)}`);
+    }
+  }
   return problems;
 }
 
@@ -242,36 +388,35 @@ async function checkCards(page, rel) {
   pagesWithTerms++;
   await page.eval("window.scrollTo({ top: 0, behavior: 'instant' })");
   const pop = () => page.eval("document.querySelector('.ref-pop b')?.textContent ?? null");
+  // Espera o cartão mostrar `want` (o nome, ou null para fechado), até 2 s.
+  const popIs = async (want) => {
+    for (let i = 0; i < 20; i++) {
+      if ((await pop()) === want) return true;
+      await new Promise((ok) => setTimeout(ok, 100));
+    }
+    return false;
+  };
   const name = await page.eval(`(() => {
     const a = document.querySelector('main .ref');
     const data = JSON.parse(document.getElementById('ref-data').textContent);
     return data.find((d) => d.id === a.dataset.ref)?.name ?? null;
   })()`);
   // Mouse: passar por cima abre; sair fecha.
-  const rect = await page.eval(`(() => {
-    const a = document.querySelector('main .ref');
-    a.scrollIntoView({ block: 'center', behavior: 'instant' });
-    const r = a.getBoundingClientRect();
-    return { x: r.x + r.width / 2, y: r.y + r.height / 2 };
-  })()`);
+  const rect = await stableCenter(page, 'main .ref');
   // A rolagem fecha o cartão (como no site atual): espera o evento de
   // rolagem do scrollIntoView passar antes de mover o mouse.
   await new Promise((ok) => setTimeout(ok, 200));
   await page.send('Input.dispatchMouseEvent', { type: 'mouseMoved', x: rect.x, y: rect.y });
-  await new Promise((ok) => setTimeout(ok, 100));
-  if ((await pop()) !== name) problems.push(`o cartão não abriu pelo mouse (esperava ${name}, veio ${await pop()})`);
+  if (!(await popIs(name))) problems.push(`o cartão não abriu pelo mouse (esperava ${name}, veio ${await pop()})`);
   await page.send('Input.dispatchMouseEvent', { type: 'mouseMoved', x: 2, y: 2 });
-  await new Promise((ok) => setTimeout(ok, 400));
-  if ((await pop()) !== null) problems.push('o cartão não fechou ao tirar o mouse');
+  if (!(await popIs(null))) problems.push('o cartão não fechou ao tirar o mouse');
   // Teclado: o foco abre; Esc fecha.
   await page.eval("document.querySelector('main .ref').focus({ preventScroll: true })");
-  await new Promise((ok) => setTimeout(ok, 100));
-  if ((await pop()) !== name) problems.push('o cartão não abriu pelo foco');
+  if (!(await popIs(name))) problems.push('o cartão não abriu pelo foco');
   for (const type of ['keyDown', 'keyUp']) {
     await page.send('Input.dispatchKeyEvent', { type, key: 'Escape', code: 'Escape', windowsVirtualKeyCode: 27 });
   }
-  await new Promise((ok) => setTimeout(ok, 100));
-  if ((await pop()) !== null) problems.push('Esc não fechou o cartão');
+  if (!(await popIs(null))) problems.push('Esc não fechou o cartão');
   // Clique: abre o diálogo do termo; Esc fecha.
   if (!(await click(page, 'main .ref'))) {
     problems.push('sem termo para clicar');
@@ -285,6 +430,18 @@ async function checkCards(page, rel) {
   }
   await new Promise((ok) => setTimeout(ok, 150));
   if (await page.eval("document.querySelector('.ref-modal').open")) problems.push('Esc não fechou o diálogo');
+  // Fechar o diálogo devolve o foco ao termo, e o foco abre o cartão de novo
+  // (como no site atual); mais um Esc fecha, para o passo seguinte achar a
+  // tela limpa. Antes, espera o foco voltar.
+  for (let i = 0; i < 20; i++) {
+    if (await page.eval("document.activeElement?.classList.contains('ref') ?? false")) break;
+    await new Promise((ok) => setTimeout(ok, 100));
+  }
+  await new Promise((ok) => setTimeout(ok, 100));
+  for (const type of ['keyDown', 'keyUp']) {
+    await page.send('Input.dispatchKeyEvent', { type, key: 'Escape', code: 'Escape', windowsVirtualKeyCode: 27 });
+  }
+  if (!(await popIs(null))) problems.push('Esc não fechou o cartão depois do diálogo');
   return problems;
 }
 
@@ -293,9 +450,25 @@ async function checkToc(page) {
   const has = await page.eval("!!document.getElementById('otp')");
   if (!has) return problems;
   await page.eval("window.scrollTo({ top: 0, behavior: 'instant' })");
-  await new Promise((ok) => setTimeout(ok, 100));
+  // Ao descer a página o botão some (otp-hidden, sem receber clique); no alto
+  // ele volta quando a ilha trata a rolagem, o que pode demorar numa máquina
+  // lenta. Espera ele voltar antes de clicar.
+  try {
+    await page.waitFor("!document.getElementById('otp-fab').classList.contains('otp-hidden')", 5000);
+  } catch { /* segue; a conferência abaixo diz o que houve */ }
+  // O ponteiro sai de cima do texto (o passo anterior o deixou sobre um termo).
+  await page.send('Input.dispatchMouseEvent', { type: 'mouseMoved', x: 2, y: 2 });
+  await new Promise((ok) => setTimeout(ok, 300));
+  const fabState = await page.eval(`(() => {
+    const f = document.getElementById('otp-fab');
+    const r = f.getBoundingClientRect();
+    const top = document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2);
+    return { cls: f.className, top: top ? top.outerHTML.slice(0, 80) : null, pop: !!document.querySelector('.ref-pop'), dialog: document.querySelector('.ref-modal')?.open ?? null };
+  })()`);
   if (!(await click(page, '#otp-fab'))) return ['sem o botão do "Nesta página"'];
-  if (!(await page.eval("document.getElementById('otp').open"))) problems.push('o "Nesta página" não abriu');
+  if (!(await page.eval("document.getElementById('otp').open"))) {
+    problems.push(`o "Nesta página" não abriu (antes do clique: ${JSON.stringify(fabState)})`);
+  }
   const id = await page.eval("document.querySelector('#otp-panel a')?.dataset.id ?? null");
   if (!(await click(page, '#otp-panel a'))) {
     problems.push('sem título no "Nesta página"');

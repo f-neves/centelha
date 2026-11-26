@@ -64,7 +64,8 @@ fn check_site(base: &str) {
     let site = Site::load(&content, base).expect("o site se lê");
     let out = temp_out(base.trim_matches('/'));
     let pages = site.write(&out).expect("o site se grava");
-    assert_eq!(pages.len(), site.chapters().len() + 2);
+    // A inicial, os capítulos, o glossário e a de não encontrada.
+    assert_eq!(pages.len(), site.chapters().len() + 3);
     assert_eq!(site.chapters().len(), 28);
 
     let mut failures = Vec::new();
@@ -115,6 +116,25 @@ fn check_site(base: &str) {
         }
     }
     check_in_order(&glossary_path, &glossary, &glossary_parts, &mut failures);
+
+    let not_found_path = out.join("404.html");
+    let not_found_html = std::fs::read_to_string(&not_found_path).expect("a 404 existe");
+    let not_found = html_to_text(&not_found_html);
+    let not_found_parts = [
+        "404".to_string(),
+        "Este caminho não leva a lugar nenhum… ainda.".to_string(),
+        "Voltar ao início".to_string(),
+        "As Proezas".to_string(),
+    ];
+    check_in_order(&not_found_path, &not_found, &not_found_parts, &mut failures);
+    // Os endereços da 404 são absolutos, com o caminho base: ela é servida
+    // de qualquer pasta.
+    if !not_found_html.contains(&format!("href=\"{}assets/site.css\"", site.base())) {
+        failures.push(format!(
+            "{}: a folha de estilo sem o caminho base",
+            not_found_path.display()
+        ));
+    }
 
     let _ = std::fs::remove_dir_all(&out);
     assert!(
