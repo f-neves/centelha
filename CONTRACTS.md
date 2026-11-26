@@ -34,7 +34,7 @@ xtask              (sozinho; não é dependência de ninguém)
 **Expõe (o que já existe no `main`):**
 
 - Módulos: `bestiary`, `rules`, `weapons`, `armor`, `shields`, `ancestry`, `techniques`, `paths`, `arts`, `effects` (e `chapters` e `glossary`, abaixo). Os outros arquivos de dados (atributos, Habilidades, Virtudes, condições) entram como módulo quando a API proposta for aprovada neste arquivo.
-- Na raiz do crate: `Creature`, `Rules`, `Weapon`, `Armor`, `Shield`, `Ancestry`, `DataError`, os `parse_*` e os `load_*`. O resto mora no módulo de cada um (por exemplo `bestiary::Size`).
+- Na raiz do crate: `Creature`, `Rules`, `Weapon`, `Armor`, `Shield`, `Ancestry`, `Technique`, `Art`, `Effect`, `DataError`, os `parse_*` e os `load_*` (de todos os módulos). `paths::Path` fica fora da raiz. O resto mora no módulo de cada um (por exemplo `bestiary::Size`).
 - `Creature`: uma criatura do bestiário, com `id: String` e os campos usados pelo motor.
 - Leitura a partir de texto: `fn parse_creature(json: &str) -> Result<Creature, DataError>` e equivalentes. Funciona em WebAssembly (sem arquivo).
 - Leitura a partir de pasta, só no nativo (`cfg(not(target_arch = "wasm32"))`): `fn load_bestiary(content_dir: &Path) -> Result<Vec<Creature>, DataError>`.
@@ -92,8 +92,8 @@ xtask              (sozinho; não é dependência de ninguém)
   - Tipos: `StrikeAttacker`, `StrikeTarget`, `StrikeInput`, `StrikeOutcome`, `BlowDamage { gross, absorbed, net }`.
   - Funções: `effective_defense(&StrikeTarget) -> Option<f64>` (`defesaEfetiva`), `resolve_strike(&StrikeInput, &mut impl DiceSource) -> StrikeOutcome` (`resolverGolpe`; o dano só é rolado no acerto), `blow_damage(Option<AttackOutcome>, rolled, graze_damage, soak, slips) -> BlowDamage` e `blow_slips(&Rules, gate_on, weapon_pierce: Option<f64>, pierce_level: Option<f64>) -> bool`. O dano do golpe (piso do raspão e portão da Perfuração) mora só em `blow_damage`: no acerto, o rolado (nunca abaixo de 0) menos a Absorção, com piso no dano do raspão; no raspão, o dano fixo, sem Absorção; no erro, nada; quando o golpe resvala, nada, nem o piso (a conta do Grid que desce a Vida).
 - `technique`: as contas das Técnicas que a árvore, o catálogo e a ficha usam.
-  - `technique_modifier(&Rules, effect, level) -> Option<TechniqueModifier { value, title }>` (`modProeza` de `data.ts`; o título é o do `data.ts`, com a unidade; a árvore monta o texto curto dela com o `value` e o rótulo da escala).
-  - `prerequisite_closure<'a>(&'a [Technique], id: &str) -> Vec<&'a str>`: os pré-requisitos da Técnica, sem ela mesma, na ordem do `closure` da árvore (o da fonte é a Técnica seguida desta lista).
+  - `technique_modifier(&Rules, effect, level) -> Option<TechniqueModifier { value, title }>` (`modProeza` de `data.ts`; o título é o do `data.ts`, com a unidade; a árvore monta o texto curto dela com o `value` e o rótulo da escala). Dá `None`, como a fonte, na trilha `estado`, na trilha que não existe, no nível fora dos `values` (1 a 6; nível não inteiro também) e no valor vazio ou só com o traço.
+  - `prerequisite_closure<'a>(&'a [Technique], id: &str) -> Vec<&'a str>`: os pré-requisitos diretos e indiretos da Técnica, sem ela mesma, na ordem do `closure` da árvore (o da fonte é a Técnica seguida desta lista); pré-requisito que não está na lista dada fica de fora.
   - `chain_xp(&Rules, &[Technique], id) -> f64`: o XP da Técnica mais o da cadeia, pelo `feat_cost` do nível (0 para id de fora).
 - `js::max`, `js::min`, `js::number_to_string`: `Math.max`, `Math.min` e `String(número)` do JavaScript.
 - Daqui em diante, por fase: derivados da ficha e das criaturas (fase 1), combate e tempo em Ticks, Artes, lógica do Grid (fase 3). Cada módulo entra no contrato quando a API proposta é aprovada neste arquivo.
