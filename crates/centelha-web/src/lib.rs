@@ -10,6 +10,8 @@ pub mod back_to_top;
 pub mod bookmarks;
 pub mod cards;
 pub mod equipment_filter;
+pub mod search;
+pub mod search_match;
 pub mod shapes;
 pub mod shell;
 pub mod sort;

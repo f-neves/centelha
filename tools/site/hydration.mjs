@@ -211,6 +211,9 @@ for (const rel of pages) {
   problems.push(...(await checkBackToTop(page)));
   problems.push(...(await checkBookmarks(page)));
 
+  // 4i. A busca (por último: escolher um resultado sai da página).
+  problems.push(...(await checkSearch(page, rel)));
+
   // 5. Console limpo.
   problems.push(...messages);
   await page.close();
@@ -608,6 +611,79 @@ async function checkBookmarks(page) {
   await new Promise((ok) => setTimeout(ok, 200));
   const after = await page.eval("({ panel: !!document.getElementById('consulta'), stored: sessionStorage.getItem('centelha:consulta') })");
   if (after.panel || after.stored !== '[]') problems.push(`o ✕ não tirou o termo do painel: ${JSON.stringify(after)}`);
+  return problems;
+}
+
+async function checkSearch(page, rel) {
+  const problems = [];
+  // Num capítulo só: precisa do índice do Pagefind no dist/.
+  if (rel !== 'regras/combate/' || !(await page.eval("!!document.querySelector('.busca-modal')"))) return problems;
+  const fetched = "performance.getEntriesByType('resource').some((e) => e.name.includes('/pagefind/'))";
+  if (await page.eval(fetched)) problems.push('a busca baixou o Pagefind sem o leitor abrir a caixa');
+  const key = async (k, code, vk, text) => {
+    for (const type of ['keyDown', 'keyUp']) {
+      await page.send('Input.dispatchKeyEvent', { type, key: k, code, windowsVirtualKeyCode: vk, ...(type === 'keyDown' && text ? { text } : {}) });
+    }
+  };
+  const until = async (expr, ms = 5000) => {
+    for (let i = 0; i < ms / 100; i++) {
+      if (await page.eval(expr)) return true;
+      await new Promise((ok) => setTimeout(ok, 100));
+    }
+    return false;
+  };
+  await page.eval("(() => { document.activeElement?.blur(); window.scrollTo({ top: 0, behavior: 'instant' }); return true; })()");
+  // A tecla / abre a caixa com o foco no campo.
+  await key('/', 'Slash', 191, '/');
+  if (!(await until("document.querySelector('.busca-modal').open && document.activeElement === document.querySelector('.busca-entrada')", 2000))) {
+    problems.push('a tecla / não abriu a busca com o foco no campo');
+    return problems;
+  }
+  if (!(await until(fetched))) problems.push('abrir a busca não baixou o Pagefind');
+  await page.send('Input.insertText', { text: 'iniciativa' });
+  if (!(await until("document.querySelectorAll('.busca-res').length > 0", 15000))) {
+    problems.push(`a busca por "iniciativa" não trouxe resultado: ${await page.eval("document.querySelector('.busca-msg').textContent")}`);
+    return problems;
+  }
+  const message = await page.eval("document.querySelector('.busca-msg').textContent");
+  if (!/^\d+ resultados? para “iniciativa”$/.test(message)) problems.push(`a mensagem da busca: ${message}`);
+  // A seta para baixo vai do campo ao primeiro resultado; a de cima volta.
+  await key('ArrowDown', 'ArrowDown', 40);
+  if (!(await page.eval("document.activeElement === document.querySelector('.busca-lista a')"))) problems.push('a seta para baixo não levou ao primeiro resultado');
+  await key('ArrowUp', 'ArrowUp', 38);
+  if (!(await page.eval("document.activeElement === document.querySelector('.busca-entrada')"))) problems.push('a seta para cima não voltou ao campo');
+  // Esc: com texto no campo de busca, o primeiro Esc limpa o campo (o
+  // navegador faz isso no <input type="search">, como no site atual) e o
+  // segundo fecha. Aberta pelo botão, o foco volta ao botão.
+  await key('Escape', 'Escape', 27);
+  if (await page.eval("document.querySelector('.busca-modal').open")) {
+    if (!(await until("document.querySelector('.busca-entrada').value === '' && document.querySelectorAll('.busca-res').length === 0", 1000))) {
+      problems.push('o primeiro Esc não limpou o campo e os resultados');
+    }
+    await key('Escape', 'Escape', 27);
+  }
+  if (!(await until("!document.querySelector('.busca-modal').open", 1000))) problems.push('Esc não fechou a busca');
+  if (!(await click(page, '.sidebar .busca-abrir'))) problems.push('sem o botão Buscar da barra lateral');
+  if (!(await until("document.querySelector('.busca-modal').open", 1000))) problems.push('o botão Buscar não abriu a caixa');
+  await key('Escape', 'Escape', 27);
+  await until("!document.querySelector('.busca-modal').open", 1000);
+  if (!(await page.eval("document.activeElement === document.querySelector('.sidebar .busca-abrir')"))) problems.push('ao fechar, o foco não voltou ao botão Buscar');
+  // Escolher uma seção de um resultado leva à âncora dela.
+  await page.eval("document.activeElement?.blur()");
+  await key('/', 'Slash', 191, '/');
+  await until("document.querySelector('.busca-modal').open", 1000);
+  await page.send('Input.insertText', { text: 'iniciativa' });
+  await until("document.querySelectorAll('.busca-subs a').length > 0", 15000);
+  const target = await page.eval("(() => { const a = [...document.querySelectorAll('.busca-subs a')].find((x) => x.getAttribute('href').includes('#')); if (!a) return null; a.focus(); return a.getAttribute('href'); })()");
+  if (!target) {
+    problems.push('nenhum resultado com seção (âncora) para "iniciativa"');
+    return problems;
+  }
+  await key('Enter', 'Enter', 13, '\r');
+  const hash = decodeURIComponent(target.split('#')[1]);
+  if (!(await until(`decodeURIComponent(location.hash.slice(1)) === ${JSON.stringify(hash)} && !!document.getElementById(${JSON.stringify(hash)})`, 10000))) {
+    problems.push(`escolher ${target} não levou à âncora: ${await page.eval('location.href')}`);
+  }
   return problems;
 }
 

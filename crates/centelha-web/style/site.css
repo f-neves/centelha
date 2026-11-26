@@ -615,3 +615,59 @@ main table th.ord:hover, main table th.ord:focus-within { color: var(--accent-st
   box-shadow: 0 2px 10px var(--shadow); opacity: .92; }
 .topo-btn:hover { border-color: var(--accent); color: var(--accent-texto); opacity: 1; }
 @media print { .topo-btn { display: none !important; } }
+
+/* ---------- Busca ----------
+   De src/styles/global.css do site atual (a caixa de diálogo e os
+   resultados de src/components/Busca.astro). Contraste pleno: texto em
+   --ink, trecho em --ink-soft, link de seção em --accent-strong, destaque
+   dourado; nenhum texto usa opacity. */
+.busca-modal {
+  --b-fundo: var(--panel); --b-texto: var(--ink); --b-trecho: var(--ink-soft); --b-link: var(--accent-strong);
+  --b-borda: var(--panel-border); --b-campo-bg: var(--panel-2); --b-foco: var(--accent-texto);
+  --b-chip-on-bg: var(--accent); --b-chip-on-fg: var(--on-accent);
+  --b-mark-bg: var(--gold); --b-mark-fg: #11151f;
+  width: min(40rem, 92vw); max-height: min(90vh, 52rem); overflow-y: auto;
+  border: 1px solid var(--accent); border-radius: var(--r-lg); padding: 1rem 1.1rem 1.2rem;
+  background: var(--b-fundo); color: var(--b-texto); box-shadow: 0 10px 40px var(--shadow);
+}
+.busca-modal::backdrop { background: rgba(0,0,0,.45); }
+[data-theme='legivel'] .busca-modal { --b-mark-fg: #ffffff; }
+.busca-modal .busca-head strong { color: var(--b-link); }
+.busca-abrir .busca-kbd { float: right; color: var(--ink-soft); }
+.busca-modal .busca-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: .6rem; }
+.busca-modal .busca-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.busca-modal .busca-opcoes { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem .75rem; margin-bottom: .65rem; }
+.busca-modal .busca-modos { display: flex; gap: .4rem; border: 0; padding: 0; margin: 0; min-width: 0; }
+.busca-modal .busca-chip { position: relative; display: inline-flex; cursor: pointer; }
+.busca-modal .busca-chip input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+.busca-modal .busca-chip span { display: inline-flex; align-items: center; min-height: 2.5rem; padding: .35rem .85rem;
+  border: 2px solid var(--b-borda); border-radius: var(--r-md); font-size: var(--fs-rotulo); color: var(--b-texto); background: var(--b-fundo); }
+.busca-modal .busca-chip input:checked + span { background: var(--b-chip-on-bg); color: var(--b-chip-on-fg); border-color: var(--b-chip-on-bg); font-weight: 700; }
+.busca-modal .busca-chip input:focus-visible + span { outline: 3px solid var(--b-foco); outline-offset: 2px; }
+.busca-modal .busca-aa b { margin-right: .35rem; font-family: inherit; }
+@media (pointer: coarse) { .busca-modal .busca-chip span { min-height: 2.75rem; } }
+.busca-modal .busca-entrada { display: block; width: 100%; font: inherit; font-size: max(16px, var(--fs-aux)); font-weight: 700;
+  padding: .6rem .8rem; border: 2px solid var(--b-borda); border-radius: var(--r-md); background: var(--b-campo-bg); color: var(--b-texto); }
+.busca-modal .busca-entrada::placeholder { color: var(--b-trecho); opacity: 1; font-weight: 400; }
+.busca-modal .busca-entrada:focus-visible { outline: 3px solid var(--b-foco); outline-offset: 1px; }
+.busca-modal .busca-msg { margin: .65rem 0 .2rem; min-height: 1.4em; font-size: var(--fs-rotulo); font-weight: 700; color: var(--b-texto); }
+.busca-modal .busca-lista { list-style: none; margin: 0; padding: 0; }
+.busca-modal .busca-res { padding: .8rem .1rem .9rem; border-top: 1px solid var(--b-borda); }
+.busca-modal .busca-res-titulo { margin: 0; font-size: calc(var(--fs-aux) * 1.1); font-weight: 700; line-height: 1.25; }
+.busca-modal .busca-res-titulo a { color: var(--b-texto); text-decoration: none; }
+.busca-modal .busca-res a:hover { text-decoration: underline; }
+.busca-modal .busca-res a:focus-visible { outline: 3px solid var(--b-foco); outline-offset: 2px; }
+.busca-modal .busca-res-trecho { margin: .3rem 0 0; font-size: var(--fs-rotulo); line-height: 1.45; color: var(--b-trecho); }
+.busca-modal .busca-subs { list-style: none; margin: .55rem 0 0; padding: 0 0 0 .8rem; border-left: 3px solid var(--b-borda); }
+.busca-modal .busca-subs li + li { margin-top: .45rem; }
+.busca-modal .busca-subs a { font-size: var(--fs-rotulo); font-weight: 700; color: var(--b-link); }
+.busca-modal .busca-subs p { margin: .1rem 0 0; font-size: var(--fs-rotulo); line-height: 1.45; color: var(--b-trecho); }
+.busca-modal mark { background: var(--b-mark-bg); color: var(--b-mark-fg); padding: 0 .12em; border-radius: 2px; }
+.busca-modal .busca-mais { display: block; width: 100%; margin-top: .8rem; min-height: 2.75rem; font-weight: 700; color: var(--b-link); background: var(--b-fundo); border: 2px solid var(--b-borda); }
+.busca-modal .busca-fechar { color: var(--b-texto); background: var(--b-fundo); border: 2px solid var(--b-borda); }
+.busca-modal .busca-hint { margin: .9rem 0 0; font-size: var(--fs-rotulo); line-height: 1.45; color: var(--b-trecho); }
+/* O 🔍 da barra do topo: só no celular, à direita, ao alcance do polegar. */
+.topbar-busca { display: none; }
+@media (max-width: 900px) {
+  .topbar-busca { display: inline-flex; margin-left: auto; min-width: 44px; justify-content: center; font-size: 1.15rem; }
+}

@@ -16,6 +16,7 @@ use crate::back_to_top::BackToTop;
 use crate::bookmarks::Bookmarks;
 use crate::cards::RefCards;
 use crate::equipment_filter::EquipmentFilter;
+use crate::search::Search;
 use crate::shapes::Shapes;
 use crate::shell::{DrawerClose, DrawerToggle, Scrim, SidebarCollapse, SidebarExpand};
 use crate::tables::TableSorter;
@@ -44,6 +45,57 @@ pub struct PageInfo {
     pub refs: bool,
 }
 
+/// A busca da barra lateral: o botão e a caixa de diálogo (texto de
+/// `src/components/Busca.astro` do site atual), com a ilha que os liga
+/// (`crate::search`). O `data-pf` diz onde está o `pagefind.js`, baixado só
+/// ao abrir a caixa.
+fn search_box(base: &str) -> impl IntoView + use<> {
+    let pagefind = format!("{base}pagefind/pagefind.js");
+    view! {
+        <button class="btn busca-abrir" aria-label="Buscar (tecle /)" style="width:100%;text-align:left">
+            "🔍 Buscar… " <kbd class="busca-kbd">"/"</kbd>
+        </button>
+        <dialog class="busca-modal" aria-label="Busca" data-pf=pagefind>
+            <div class="busca-head">
+                <strong class="cinzel">"Busca"</strong>
+                <button class="btn busca-fechar" aria-label="Fechar">"✕"</button>
+            </div>
+            <div class="busca-opcoes">
+                <fieldset class="busca-modos">
+                    <legend class="busca-sr">"Modo de busca"</legend>
+                    <label class="busca-chip">
+                        <input type="radio" name="busca-modo" value="palavras" checked=true/>
+                        <span>"Palavras"</span>
+                    </label>
+                    <label class="busca-chip">
+                        <input type="radio" name="busca-modo" value="frase"/>
+                        <span>"Frase exata"</span>
+                    </label>
+                </fieldset>
+                <label class="busca-chip busca-aa" title="Diferenciar maiúsculas de minúsculas">
+                    <input type="checkbox" class="busca-aa-caixa"/>
+                    <span><b>"Aa"</b> " diferenciar maiúsculas"</span>
+                </label>
+            </div>
+            <input class="busca-entrada" type="search" placeholder="Buscar no livro" aria-label="Termo da busca"
+                autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="search" autofocus=true/>
+            <p class="busca-msg" role="status" aria-live="polite"></p>
+            <ol class="busca-lista"></ol>
+            <button class="btn busca-mais" type="button" hidden=true></button>
+            <p class="muted busca-hint">
+                <b>"Palavras"</b> " acha as páginas que têm todas as palavras digitadas, em qualquer ordem. "
+                <b>"Frase exata"</b> " só acha as palavras em sequência, como foram digitadas. "
+                <b>"Aa"</b> " diferencia maiúscula de minúscula: " <em>"Kael"</em> " não acha " <em>"kael"</em>
+                ". Só descarta os resultados em que a palavra achada tem outra caixa; as variações que a busca já acha ("
+                <em>"luta"</em> ", " <em>"lutando"</em> ", " <em>"lutador"</em>
+                ") continuam valendo. Os acentos continuam sendo ignorados. Conceitos também funcionam: tente "
+                <em>"willpower"</em> ", " <em>"iniciativa"</em> ", " <em>"absorção"</em> "."
+            </p>
+        </dialog>
+        <Search/>
+    }
+}
+
 /// O conteúdo provisório do `<script>` dos dados do cartão: o gerador marca os
 /// termos no `<main>` da página pronta e troca este marcador pelo JSON dos
 /// termos que apareceram.
@@ -54,12 +106,13 @@ pub const REF_DATA_SLOT: &str = "__ref_data__";
 /// gaveta no celular), a trilha de navegação, a coluna do texto e o "Nesta
 /// página".
 ///
-/// Diferenças de propósito: a busca ainda não existe (entra com a busca); o
+/// Diferenças de propósito: o
 /// seletor de tema fica na barra lateral (no site atual ele mora numa página
 /// de configurações); os itens que dependem de login (Minha Conta, Admin,
 /// Preferências e o "Sair") ficam para a fase da conta.
 #[component]
 pub fn Layout(base: String, page: PageInfo, children: Children) -> impl IntoView {
+    let page_base = base.clone();
     let path = page.path.clone();
     let current = nav::chapter_of(&path);
     let is_active = |slug: &str| slug == path;
@@ -154,6 +207,7 @@ pub fn Layout(base: String, page: PageInfo, children: Children) -> impl IntoView
         <div class="topbar" data-pagefind-ignore="">
             <DrawerToggle/>
             <a class="brand" href=home.clone()>"Centelha " <span class="d6">"D6"</span></a>
+            <button class="btn busca-abrir topbar-busca" aria-label="Buscar no livro">"🔍"</button>
         </div>
         <div class="shell">
             <Scrim/>
@@ -165,6 +219,7 @@ pub fn Layout(base: String, page: PageInfo, children: Children) -> impl IntoView
                     "Centelha " <span class="d6">"D6"</span>
                     <small>"do mortal ao semideus"</small>
                 </a>
+                <div style="margin-top:1rem">{search_box(&page_base)}</div>
                 <div class="sidebar-theme">
                     <ThemeSwitcher/>
                 </div>
@@ -263,10 +318,8 @@ pub struct HomeCounts {
 }
 
 /// A página inicial, como `src/pages/index.astro` do site atual: a abertura,
-/// os contadores, os capítulos (da barra lateral) e as ferramentas.
-///
-/// A frase final do site atual ("Tecle / para buscar qualquer regra") fica de
-/// fora até a busca existir.
+/// os contadores, os capítulos (da barra lateral), as ferramentas e a frase
+/// final da busca.
 #[component]
 pub fn HomePage(base: String, counts: HomeCounts) -> impl IntoView {
     let u = |path: &str| nav::url(&base, path);
@@ -334,6 +387,9 @@ pub fn HomePage(base: String, counts: HomeCounts) -> impl IntoView {
         <div class="grid-cards">{chapters}</div>
         <h2>"Ferramentas"</h2>
         <div class="grid-cards">{tools}</div>
+        <p class="muted" style="margin-top:2rem;text-align:center">
+            "Edição viva e jogável de ponta a ponta. Tecle " <kbd>"/"</kbd> " para buscar qualquer regra."
+        </p>
     }
 }
 
@@ -388,9 +444,8 @@ pub fn ChapterPage(
 }
 
 /// A página do glossário, como `src/pages/glossario.astro` do site atual: os
-/// termos já em ordem, cada um com a sua âncora. A abertura ainda não leva as
-/// duas frases do site atual sobre o balão no corpo do texto e sobre a busca:
-/// elas voltam com os balões e com a busca.
+/// termos já em ordem, cada um com a sua âncora, e a abertura com o balão e a
+/// busca.
 #[component]
 pub fn GlossaryPage(entries: Vec<GlossaryEntry>) -> impl IntoView {
     let items = entries
@@ -409,7 +464,10 @@ pub fn GlossaryPage(entries: Vec<GlossaryEntry>) -> impl IntoView {
         .collect_view();
     view! {
         <h1>"Glossário"</h1>
-        <p class="lead">"Os termos que aparecem por todo o livro."</p>
+        <p class="lead">
+            "Os termos que aparecem por todo o livro. No corpo do texto, eles viram um balão ao passar o mouse. Os sinônimos ajudam a busca: procure por "
+            <em>"willpower"</em> " e chegue a Força de Vontade."
+        </p>
         <dl class="gloss-list no-gloss">{items}</dl>
     }
 }
