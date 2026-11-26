@@ -83,6 +83,7 @@ jobs:
     timeout-minutes: 30
     env:
       SITE_BASE_PATH: /centelha/
+      SITE_SEARCH: "1"
     steps:
       - name: Baixar o repositório
         uses: actions/checkout@v7.0.1
@@ -111,6 +112,7 @@ jobs:
           sh tools/ci/ferramentas.sh ~/.centelha-ferramentas
           echo "WASM_BINDGEN=$HOME/.centelha-ferramentas/bin/wasm-bindgen" >> "$GITHUB_ENV"
           echo "WASM_OPT=$HOME/.centelha-ferramentas/bin/wasm-opt" >> "$GITHUB_ENV"
+          echo "PAGEFIND=$HOME/.centelha-ferramentas/bin/pagefind" >> "$GITHUB_ENV"
 
       - name: Node
         uses: actions/setup-node@v7.1.0
@@ -136,6 +138,11 @@ jobs:
 
       - name: Prova de hidratação (release)
         run: node tools/site/hydration.mjs dist
+
+      # O índice do Pagefind acha "Iniciativa" no combate com a âncora certa, e
+      # a página aberta sem buscar não baixa nada do Pagefind.
+      - name: Prova da busca
+        run: node tools/ci/busca.mjs dist
 
       - name: Montar o site (WebAssembly de depuração)
         run: cargo xtask site --dev

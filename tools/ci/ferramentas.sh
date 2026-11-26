@@ -1,20 +1,23 @@
 #!/bin/sh
 # Instala as ferramentas de fora do Cargo que o `cargo xtask site` usa
-# (ADR 0003): wasm-bindgen-cli e o wasm-opt do binaryen, nas versões fixas,
+# (ADR 0003): wasm-bindgen-cli, o wasm-opt do binaryen e o Pagefind, nas versões fixas,
 # baixadas das páginas de release oficiais, com o SHA-256 conferido.
 #
 # Uso: tools/ci/ferramentas.sh <pasta>
-# Grava <pasta>/bin/wasm-bindgen e <pasta>/bin/wasm-opt. Se a pasta já tiver
-# as duas (cache do CI), não baixa nada. Só Linux x86_64 (o executor do CI).
+# Grava <pasta>/bin/wasm-bindgen, wasm-opt e pagefind. Se a pasta já tiver
+# as três (cache do CI), não baixa nada. Só Linux x86_64 (o executor do CI).
 #
 # Versões e somas conferidas nas páginas de release em 26/11/2026. Subir uma
-# versão é trocar as quatro linhas abaixo junto com o ADR 0003 e o xtask.
+# versão é trocar as linhas abaixo junto com o ADR 0003 e o xtask.
 set -eu
 
 WASM_BINDGEN_VERSAO=0.2.130
 WASM_BINDGEN_SHA256=9687f3bb551b9f66f37ed32a40d7913a00f7962db653054e56857bc306c3227f
 BINARYEN_VERSAO=version_133
 BINARYEN_SHA256=2dc9c7813f5375db93d96ead4b78222fcc3e2677bbb832297af4797782a37489
+# Pagefind (índice da busca), conferido em 26/11/2026.
+PAGEFIND_VERSAO=1.6.0
+PAGEFIND_SHA256=004d40c9a644c995dadc42b8031196c6f17e7a6dacf9a6c15c63286dd6ead5f2
 
 destino=${1:?uso: ferramentas.sh <pasta>}
 mkdir -p "$destino/bin"
@@ -59,8 +62,16 @@ if ! versao_certa "$destino/bin/wasm-opt" "$BN_TEXTO"; then
 	cp "$tmp/$nome/bin/wasm-opt" "$destino/bin/wasm-opt"
 fi
 
+PF_TEXTO="pagefind $PAGEFIND_VERSAO"
+if ! versao_certa "$destino/bin/pagefind" "$PF_TEXTO"; then
+	nome=pagefind-v$PAGEFIND_VERSAO-x86_64-unknown-linux-musl
+	baixar pagefind "https://github.com/Pagefind/pagefind/releases/download/v$PAGEFIND_VERSAO/$nome.tar.gz" 		"$PAGEFIND_SHA256" "$tmp/pf.tar.gz"
+	tar -xzf "$tmp/pf.tar.gz" -C "$tmp" pagefind
+	cp "$tmp/pagefind" "$destino/bin/pagefind"
+fi
+
 # Confere de novo depois de baixar: versão errada aqui para o passo.
-for par in "wasm-bindgen|$WB_TEXTO" "wasm-opt|$BN_TEXTO"; do
+for par in "wasm-bindgen|$WB_TEXTO" "wasm-opt|$BN_TEXTO" "pagefind|$PF_TEXTO"; do
 	bin=${par%%|*}; texto=${par#*|}
 	if ! versao_certa "$destino/bin/$bin" "$texto"; then
 		echo "ferramentas.sh: $bin diz \"$("$destino/bin/$bin" --version 2>&1)\", esperado \"$texto\"" >&2
@@ -69,3 +80,4 @@ for par in "wasm-bindgen|$WB_TEXTO" "wasm-opt|$BN_TEXTO"; do
 done
 "$destino/bin/wasm-bindgen" --version
 "$destino/bin/wasm-opt" --version
+"$destino/bin/pagefind" --version
