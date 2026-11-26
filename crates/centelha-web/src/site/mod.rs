@@ -22,7 +22,7 @@ use leptos::hydration::HydrationScripts;
 use leptos::prelude::*;
 use leptos::reactive::owner::Owner;
 
-use markdown::{Diagrams, Markdown};
+use markdown::{Diagrams, DiagramsError, Markdown};
 use pages::{ChapterPage, HomePage, Layout, Neighbor};
 
 /// O caminho base de quem não diz outro (a prévia no GitHub Pages).
@@ -56,9 +56,12 @@ pub enum SiteError {
     /// Um capítulo não se leu.
     Data(DataError),
     /// `diagramas.json` não se leu.
-    Diagrams(String),
+    Diagrams(DiagramsError),
     /// Um arquivo não se leu ou não se gravou.
-    Io { path: PathBuf, reason: String },
+    Io {
+        path: PathBuf,
+        source: std::io::Error,
+    },
 }
 
 impl fmt::Display for SiteError {
@@ -66,12 +69,20 @@ impl fmt::Display for SiteError {
         match self {
             SiteError::Data(e) => write!(f, "{e}"),
             SiteError::Diagrams(e) => write!(f, "{e}"),
-            SiteError::Io { path, reason } => write!(f, "{}: {reason}", path.display()),
+            SiteError::Io { path, source } => write!(f, "{}: {source}", path.display()),
         }
     }
 }
 
-impl std::error::Error for SiteError {}
+impl std::error::Error for SiteError {
+    fn source(&self) -> Option<&(dyn std::error::Error + 'static)> {
+        match self {
+            SiteError::Data(e) => Some(e),
+            SiteError::Diagrams(e) => Some(e),
+            SiteError::Io { source, .. } => Some(source),
+        }
+    }
+}
 
 impl From<DataError> for SiteError {
     fn from(e: DataError) -> Self {
@@ -82,7 +93,7 @@ impl From<DataError> for SiteError {
 fn io_error(path: &Path) -> impl FnOnce(std::io::Error) -> SiteError + '_ {
     move |e| SiteError::Io {
         path: path.to_path_buf(),
-        reason: e.to_string(),
+        source: e,
     }
 }
 
