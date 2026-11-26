@@ -16,6 +16,7 @@
 //!
 //! Quem confere é o teste de paridade contra `tests/parity/sheets.json`.
 
+mod arsenal;
 mod editor;
 mod equip;
 mod format;
@@ -35,6 +36,13 @@ use std::collections::HashMap;
 use centelha_data::{Ancestry, Rules};
 use serde_json::Value;
 
+pub use arsenal::{
+    EditTarget, PieceGroup, activate_set, add_set, add_to_arsenal, clean_arsenal,
+    custom_piece_note, differs_from_origin, edit_piece_field, edit_target, is_custom_piece,
+    is_custom_ref, is_two_handed_item, item_fields, parse_field_input, piece_name, piece_role,
+    remove_from_arsenal, remove_set, rename_arsenal_piece, reorder, reset_piece, same_field,
+    set_hand_piece, show_field, write_piece_field,
+};
 pub use editor::{
     EditorCatalogs, EditorTables, FREE_SECONDARY, FRESH_BUDGET, PenalizedMovement, Specialty,
     SpentXp, TechniqueStatus, attribute_floor, change_ancestry, clamp_specialties,

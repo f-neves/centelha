@@ -30,6 +30,12 @@ use centelha_engine::sheet::{
     set_specialty_level, set_trait, specialty_count, step_trait, toggle_effect, toggle_technique,
     trait_floor, trait_value,
 };
+use centelha_engine::sheet::{
+    activate_set, add_set, add_to_arsenal, clean_arsenal, custom_piece_note, differs_from_origin,
+    edit_piece_field, edit_target, is_custom_piece, is_custom_ref, is_two_handed_item, item_fields,
+    piece_name, piece_role, remove_from_arsenal, remove_set, rename_arsenal_piece, reorder,
+    reset_piece, same_field, set_hand_piece, show_field,
+};
 use common::{compare, num, repo};
 use serde_json::{Map, Value, json};
 
@@ -382,6 +388,7 @@ fn run(ctx: &Ctx, inputs: &Value, name: &str, a: &[Value], want: &Value) -> Valu
             ))
         }
         other => run_traits(ctx, inputs, other, a, want)
+            .or_else(|| run_arsenal(ctx, inputs, other, a, want))
             .unwrap_or_else(|| panic!("função sem par no Rust: {other}")),
     }
 }
@@ -831,8 +838,20 @@ fn run_traits(ctx: &Ctx, inputs: &Value, name: &str, a: &[Value], want: &Value) 
 }
 
 /// Os casos da fatia 6 (os que passam por `run_traits`).
-fn run_traits_names() -> [&'static str; 22] {
-    [
+fn run_traits_names() -> &'static [&'static str] {
+    &[
+        "arsenalAdd",
+        "arsenalRm",
+        "arsenalUso",
+        "arsenalNome",
+        "conjuntoMao",
+        "conjuntoUso",
+        "conjuntoRm",
+        "conjuntoAdd",
+        "ajusteCampo",
+        "ajusteReset",
+        "limparArsenal",
+        "reordenar",
         "aplicarValor",
         "clicarBolinha",
         "teclaSeta",
@@ -856,4 +875,214 @@ fn run_traits_names() -> [&'static str; 22] {
         "apEfetiva",
         "specCount",
     ]
+}
+
+// ------------------------------------------------- arsenal, conjuntos, ajuste
+
+/// Os casos da fatia 7. `None` quando o nome não é daqui.
+fn run_arsenal(ctx: &Ctx, inputs: &Value, name: &str, a: &[Value], want: &Value) -> Option<Value> {
+    let t = &ctx.t;
+    let sheet = |i: usize| inputs[a[i].as_str().unwrap()]["ficha"].clone();
+    let text = |i: usize| a[i].as_str().unwrap();
+    let index = |i: usize| a[i].as_u64().unwrap() as usize;
+    // a peça do arsenal pelo uid
+    let piece = |s: &Value, uid: &str| {
+        s["arsenal"]
+            .as_array()
+            .and_then(|l| l.iter().find(|p| p["uid"] == uid))
+            .cloned()
+            .unwrap()
+    };
+    let cat = t.sheet_tables().catalog();
+    let lists = |s: &Value| {
+        let mut m = Map::new();
+        m.insert(
+            "arsenal".into(),
+            s.get("arsenal").cloned().unwrap_or(Value::Null),
+        );
+        m.insert(
+            "conjuntos".into(),
+            s.get("conjuntos").cloned().unwrap_or(Value::Null),
+        );
+        m
+    };
+    let out = match name {
+        "ehLivre" => json!(is_custom_piece(Some(&piece(&sheet(0), text(1))))),
+        "nomePeca" => match piece_name(t, &piece(&sheet(0), text(1))) {
+            Some(n) => json!(n),
+            None => Value::Null,
+        },
+        "papelDaPeca" => json!(match piece_role(&sheet(0), text(1)) {
+            centelha_engine::sheet::HandRole::None => "nada",
+            centelha_engine::sheet::HandRole::Main => "habil",
+            centelha_engine::sheet::HandRole::Off => "inabil",
+        }),
+        "it2H" => {
+            let p = piece(&sheet(0), text(1));
+            json!(is_two_handed_item(&centelha_engine::sheet::hand_item(
+                t.sheet_tables(),
+                Some(&p)
+            )))
+        }
+        "camposItem" => {
+            let p = piece(&sheet(0), text(1));
+            let kind = centelha_engine::sheet::hand_item(t.sheet_tables(), Some(&p)).kind;
+            json!(item_fields(kind).iter().map(|f| f.key).collect::<Vec<_>>())
+        }
+        "difereDaOrigem" => {
+            let p = piece(&sheet(0), text(1));
+            let kind = centelha_engine::sheet::hand_item(t.sheet_tables(), Some(&p)).kind;
+            json!(differs_from_origin(cat, &p, &item_fields(kind)))
+        }
+        "alvoMod" => match edit_target(t, &sheet(0), text(1)) {
+            Some(target) => {
+                json!({"campos": target.fields.iter().map(|f| f.key).collect::<Vec<_>>()})
+            }
+            None => Value::Null,
+        },
+        "limparArsenal" => with_changes(
+            sheet(0),
+            |s| clean_arsenal(t, s),
+            |s| {
+                let mut m = Map::new();
+                m.insert(
+                    "arsenal".into(),
+                    s.get("arsenal").cloned().unwrap_or(Value::Null),
+                );
+                m
+            },
+        ),
+        "refLivre" => json!(is_custom_ref(Some(&a[0]))),
+        "improvisado" => json!(format!(
+            "<span class=\"eq-improv-nota muted\">{}</span>",
+            custom_piece_note(a[0].as_bool().unwrap())
+        )),
+        "mostraCampo" => {
+            let f = all_fields().into_iter().find(|f| f.key == text(0)).unwrap();
+            // o valor que a fonte devolve, `?? null` (o `undefined` do JSON some)
+            show_field(&f, Some(&a[1]))
+        }
+        "igualCampo" => json!(same_field(Some(&a[0]), Some(&a[1]))),
+        "reordenar" => {
+            let uids: Vec<String> = a[1]
+                .as_array()
+                .unwrap()
+                .iter()
+                .map(|u| u.as_str().unwrap().to_owned())
+                .collect();
+            Value::Array(reorder(a[0].as_array().unwrap(), &uids))
+        }
+        "arsenalAdd" => with_changes(
+            sheet(0),
+            |s| add_to_arsenal(s, text(1), text(2)),
+            |s| lists(s),
+        ),
+        "arsenalRm" => with_changes(
+            sheet(0),
+            |s| remove_from_arsenal(t, s, text(1)),
+            |s| lists(s),
+        ),
+        "arsenalUso" => with_changes(
+            sheet(0),
+            |s| {
+                let role = match text(2) {
+                    "habil" => centelha_engine::sheet::HandRole::Main,
+                    "inabil" => centelha_engine::sheet::HandRole::Off,
+                    _ => centelha_engine::sheet::HandRole::None,
+                };
+                cat.mark_hand_use(s, text(1), role);
+            },
+            |s| lists(s),
+        ),
+        "arsenalNome" => with_changes(
+            sheet(0),
+            |s| rename_arsenal_piece(t, s, text(1), text(2)),
+            |s| lists(s),
+        ),
+        "conjuntoMao" => {
+            let uid = want["uids"][0].as_str().unwrap_or("").to_owned();
+            let mut used = false;
+            let mut o = with_changes(
+                sheet(0),
+                |s| {
+                    set_hand_piece(t, s, index(1), text(2), text(3), &uid);
+                    used = !uid.is_empty()
+                        && s["arsenal"]
+                            .as_array()
+                            .is_some_and(|l| l.iter().any(|p| p["uid"] == uid.as_str()));
+                },
+                |s| lists(s),
+            );
+            o["uids"] = if used { json!([uid]) } else { json!([]) };
+            o
+        }
+        "conjuntoUso" => with_changes(sheet(0), |s| activate_set(s, index(1)), |s| lists(s)),
+        "conjuntoRm" => with_changes(sheet(0), |s| remove_set(s, index(1)), |s| lists(s)),
+        "conjuntoAdd" => with_changes(sheet(0), add_set, |s| lists(s)),
+        "ajusteCampo" => {
+            let key = text(1);
+            let (piece_key, _) = key.rsplit_once(':').unwrap();
+            let (group, uid) = piece_key.split_once(':').unwrap();
+            let mut o = with_changes(
+                sheet(0),
+                |s| edit_piece_field(t, s, key, text(2)),
+                |_| Map::new(),
+            );
+            // o item da peça editada (a fonte o devolve de dentro da ficha de depois)
+            let mut after = sheet(0);
+            edit_piece_field(t, &mut after, key, text(2));
+            let list = if group == "ars" {
+                &after["arsenal"]
+            } else {
+                &after["equip"]["armaduras"]
+            };
+            let item = list
+                .as_array()
+                .and_then(|l| l.iter().find(|p| p["uid"] == uid))
+                .and_then(|p| p.get("item"))
+                .cloned()
+                .unwrap_or(Value::Null);
+            let mudou = o["mudou"].take();
+            o["item"] = item;
+            o["mudou"] = mudou;
+            o
+        }
+        "ajusteReset" => {
+            let key = text(1);
+            let (group, uid) = key.split_once(':').unwrap();
+            let mut o = with_changes(sheet(0), |s| reset_piece(t, s, key), |_| Map::new());
+            let mut after = sheet(0);
+            reset_piece(t, &mut after, key);
+            let list = if group == "ars" {
+                &after["arsenal"]
+            } else {
+                &after["equip"]["armaduras"]
+            };
+            let piece = list
+                .as_array()
+                .and_then(|l| l.iter().find(|p| p["uid"] == uid))
+                .cloned()
+                .unwrap_or(Value::Null);
+            let mudou = o["mudou"].take();
+            o["peca"] = piece;
+            o["mudou"] = mudou;
+            o
+        }
+        _ => return None,
+    };
+    Some(out)
+}
+
+/// Todos os campos editáveis (a arma, os da D-259, o escudo e a armadura).
+fn all_fields() -> Vec<centelha_engine::sheet::EditField> {
+    use centelha_engine::sheet::{
+        ARMOR_EDIT_FIELDS, SHIELD_EDIT_FIELDS, WEAPON_EDIT_FIELDS, WEAPON_MORE_FIELDS,
+    };
+    WEAPON_EDIT_FIELDS
+        .iter()
+        .chain(WEAPON_MORE_FIELDS.iter())
+        .chain(SHIELD_EDIT_FIELDS.iter())
+        .chain(ARMOR_EDIT_FIELDS.iter())
+        .copied()
+        .collect()
 }

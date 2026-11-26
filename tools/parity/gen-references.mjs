@@ -286,7 +286,7 @@ const sheetEditor = buildSheetEditorCases({
   forca: await loadTs('src/lib/forca-empurrao.ts'), weapons: Object.values(equip.ARMA), regras: readData('regras.json'),
   equip,
 });
-editor.restore();
+await editor.restore();
 const sheetEditorCounts = {};
 for (const c of sheetEditor.cases) {
   scanNumbers(c.out, `${c.fn}(${JSON.stringify(c.args)})`);
