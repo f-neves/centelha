@@ -388,6 +388,14 @@ async function checkCards(page, rel) {
   pagesWithTerms++;
   await page.eval("window.scrollTo({ top: 0, behavior: 'instant' })");
   const pop = () => page.eval("document.querySelector('.ref-pop b')?.textContent ?? null");
+  // Espera o cartão mostrar `want` (o nome, ou null para fechado), até 2 s.
+  const popIs = async (want) => {
+    for (let i = 0; i < 20; i++) {
+      if ((await pop()) === want) return true;
+      await new Promise((ok) => setTimeout(ok, 100));
+    }
+    return false;
+  };
   const name = await page.eval(`(() => {
     const a = document.querySelector('main .ref');
     const data = JSON.parse(document.getElementById('ref-data').textContent);
@@ -399,20 +407,16 @@ async function checkCards(page, rel) {
   // rolagem do scrollIntoView passar antes de mover o mouse.
   await new Promise((ok) => setTimeout(ok, 200));
   await page.send('Input.dispatchMouseEvent', { type: 'mouseMoved', x: rect.x, y: rect.y });
-  await new Promise((ok) => setTimeout(ok, 100));
-  if ((await pop()) !== name) problems.push(`o cartão não abriu pelo mouse (esperava ${name}, veio ${await pop()})`);
+  if (!(await popIs(name))) problems.push(`o cartão não abriu pelo mouse (esperava ${name}, veio ${await pop()})`);
   await page.send('Input.dispatchMouseEvent', { type: 'mouseMoved', x: 2, y: 2 });
-  await new Promise((ok) => setTimeout(ok, 400));
-  if ((await pop()) !== null) problems.push('o cartão não fechou ao tirar o mouse');
+  if (!(await popIs(null))) problems.push('o cartão não fechou ao tirar o mouse');
   // Teclado: o foco abre; Esc fecha.
   await page.eval("document.querySelector('main .ref').focus({ preventScroll: true })");
-  await new Promise((ok) => setTimeout(ok, 100));
-  if ((await pop()) !== name) problems.push('o cartão não abriu pelo foco');
+  if (!(await popIs(name))) problems.push('o cartão não abriu pelo foco');
   for (const type of ['keyDown', 'keyUp']) {
     await page.send('Input.dispatchKeyEvent', { type, key: 'Escape', code: 'Escape', windowsVirtualKeyCode: 27 });
   }
-  await new Promise((ok) => setTimeout(ok, 100));
-  if ((await pop()) !== null) problems.push('Esc não fechou o cartão');
+  if (!(await popIs(null))) problems.push('Esc não fechou o cartão');
   // Clique: abre o diálogo do termo; Esc fecha.
   if (!(await click(page, 'main .ref'))) {
     problems.push('sem termo para clicar');
@@ -428,12 +432,16 @@ async function checkCards(page, rel) {
   if (await page.eval("document.querySelector('.ref-modal').open")) problems.push('Esc não fechou o diálogo');
   // Fechar o diálogo devolve o foco ao termo, e o foco abre o cartão de novo
   // (como no site atual); mais um Esc fecha, para o passo seguinte achar a
-  // tela limpa.
+  // tela limpa. Antes, espera o foco voltar.
+  for (let i = 0; i < 20; i++) {
+    if (await page.eval("document.activeElement?.classList.contains('ref') ?? false")) break;
+    await new Promise((ok) => setTimeout(ok, 100));
+  }
+  await new Promise((ok) => setTimeout(ok, 100));
   for (const type of ['keyDown', 'keyUp']) {
     await page.send('Input.dispatchKeyEvent', { type, key: 'Escape', code: 'Escape', windowsVirtualKeyCode: 27 });
   }
-  await new Promise((ok) => setTimeout(ok, 100));
-  if ((await pop()) !== null) problems.push('Esc não fechou o cartão depois do diálogo');
+  if (!(await popIs(null))) problems.push('Esc não fechou o cartão depois do diálogo');
   return problems;
 }
 
