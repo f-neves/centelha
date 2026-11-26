@@ -10,11 +10,13 @@ pub mod links;
 pub mod markdown;
 pub mod nav;
 pub mod pages;
+pub mod refs;
 mod slug;
 mod slug_table;
 pub mod text;
 mod typography;
 
+use std::collections::HashMap;
 use std::fmt;
 use std::path::{Path, PathBuf};
 use std::sync::Arc;
@@ -139,7 +141,10 @@ pub struct Site {
     base: String,
     chapters: Vec<Chapter>,
     glossary: Vec<GlossaryEntry>,
+    /// O glossário na ordem do arquivo (a ordem de desempate da marcação).
+    glossary_source: Vec<GlossaryEntry>,
     counts: HomeCounts,
+    scales: HashMap<String, leptos::serde_json::Value>,
     diagrams: Diagrams,
     content_dir: PathBuf,
 }
@@ -149,7 +154,8 @@ impl Site {
     /// inicial. `base` passa por [`normalize_base`].
     pub fn load(content_dir: &Path, base: &str) -> Result<Site, SiteError> {
         let chapters = load_chapters(content_dir)?;
-        let mut glossary = load_glossary(content_dir)?;
+        let glossary_source = load_glossary(content_dir)?;
+        let mut glossary = glossary_source.clone();
         glossary.sort_by(|a, b| collate::compare(&a.term, &b.term));
         let diagrams_path = content_dir.join("data").join("diagramas.json");
         let json = std::fs::read_to_string(&diagrams_path).map_err(io_error(&diagrams_path))?;
@@ -158,7 +164,9 @@ impl Site {
             base: normalize_base(base),
             chapters,
             glossary,
+            glossary_source,
             counts: home_counts(content_dir)?,
+            scales: glossary_scales(content_dir)?,
             diagrams,
             content_dir: content_dir.to_path_buf(),
         })
@@ -202,6 +210,7 @@ impl Site {
             title: "Início".to_string(),
             wide: true,
             toc: Vec::new(),
+            refs: false,
         };
         pages.push(Page {
             path: "index.html".to_string(),
@@ -218,6 +227,7 @@ impl Site {
             title: "Glossário".to_string(),
             wide: false,
             toc: Vec::new(),
+            refs: false,
         };
         pages.push(Page {
             path: "glossario/index.html".to_string(),
@@ -236,6 +246,7 @@ impl Site {
             title: "Página não encontrada".to_string(),
             wide: false,
             toc: Vec::new(),
+            refs: false,
         };
         pages.push(Page {
             path: "404.html".to_string(),
@@ -263,6 +274,7 @@ impl Site {
             title: chapter.title.clone(),
             wide: false,
             toc: markdown.headings(&chapter.body),
+            refs: true,
         };
         Page {
             path: format!("regras/{}/index.html", chapter.slug),
@@ -287,8 +299,9 @@ impl Site {
         } else {
             format!("{} · Centelha", page.title)
         };
+        let has_refs = page.refs;
         let owner = Owner::new_root(Some(Arc::new(SsrSharedContext::new_islands())));
-        let (scripts, body) = owner.with(move || {
+        let (scripts, mut body) = owner.with(move || {
             let options = LeptosOptions::builder()
                 .output_name(PKG_NAME)
                 .site_pkg_dir("pkg")
@@ -297,6 +310,9 @@ impl Site {
             let body = view! { <Layout base page>{content()}</Layout> }.to_html();
             (scripts, body)
         });
+        if has_refs {
+            body = self.mark_refs(&body);
+        }
         let description =
             description.unwrap_or("Centelha: sistema de RPG de mesa em d6, do mortal ao semideus.");
         let b = &self.base;
@@ -352,6 +368,71 @@ impl Site {
         Ok(pages)
     }
 
+    /// A marcação das referências do glossário.
+    pub fn refs(&self) -> refs::Refs<'_> {
+        refs::Refs::new(&self.base, &self.glossary_source)
+    }
+
+    /// Marca os termos do glossário no `<main>` da página pronta (como o site
+    /// atual, que varre o `<main>` inteiro: a trilha e o numeral do capítulo
+    /// entram, e a ordem do "uma vez por bloco" fica a mesma) e grava os dados
+    /// do cartão no `<script>` que a casca deixou vazio.
+    fn mark_refs(&self, body: &str) -> String {
+        let (Some(start), Some(end)) = (body.find("<main"), body.find("</main>")) else {
+            return body.to_string();
+        };
+        let marked = self.refs().mark(&body[start..end]);
+        let json = self.refs_json(&marked).unwrap_or_else(|| "[]".to_string());
+        let mut out = String::with_capacity(body.len() + marked.html.len());
+        out.push_str(&body[..start]);
+        out.push_str(&marked.html);
+        out.push_str(&body[end..].replacen(pages::REF_DATA_SLOT, &json, 1));
+        out
+    }
+
+    /// Os dados do cartão para os termos da página: os marcados e os que um
+    /// link da página aponta (`#id` de um termo), num JSON para o
+    /// `<script type="application/json">` que a ilha lê. `None` sem termo.
+    fn refs_json(&self, marked: &refs::Marked) -> Option<String> {
+        let mut ids = marked.ids();
+        for href in marked
+            .html
+            .split("href=\"")
+            .skip(1)
+            .filter_map(|r| r.split('"').next())
+        {
+            if let Some((_, fragment)) = href.split_once('#')
+                && self.glossary.iter().any(|g| g.id == fragment)
+            {
+                ids.insert(fragment.to_string());
+            }
+        }
+        if ids.is_empty() {
+            return None;
+        }
+        let items: Vec<leptos::serde_json::Value> = self
+            .glossary
+            .iter()
+            .filter(|g| ids.contains(&g.id))
+            .map(|g| {
+                let mut item = leptos::serde_json::json!({
+                    "id": g.id,
+                    "kind": "termo",
+                    "name": g.term,
+                    "url": nav::url(&self.base, &format!("glossario#{}", g.id)),
+                    "summary": g.definition,
+                });
+                if let Some(scale) = self.scales.get(&g.id) {
+                    item["levels"] = scale.clone();
+                }
+                item
+            })
+            .collect();
+        let json = leptos::serde_json::to_string(&items).ok()?;
+        // Dentro de <script>, `</` fecharia a etiqueta.
+        Some(json.replace("</", "<\\/"))
+    }
+
     /// Os links internos das páginas que não têm destino no site gerado (as
     /// páginas ainda não portadas), com quantas vezes cada um aparece.
     pub fn missing_links(&self, pages: &[Page]) -> Result<Vec<links::MissingLink>, SiteError> {
@@ -383,6 +464,34 @@ impl Site {
         }
         Ok(())
     }
+}
+
+/// As escalas que o cartão do glossário mostra em dois termos (Centelha e
+/// Força de Vontade), como no índice de referências do site atual
+/// (`src/pages/ref-index.json.ts`): `escalaCentelha` e `escalaVontade` de
+/// `regras.json`.
+///
+/// Provisório, como a contagem da página inicial: o `centelha-data` ainda não
+/// expõe essas escalas.
+fn glossary_scales(
+    content_dir: &Path,
+) -> Result<HashMap<String, leptos::serde_json::Value>, SiteError> {
+    let path = content_dir.join("data").join("regras.json");
+    let text = std::fs::read_to_string(&path).map_err(io_error(&path))?;
+    let rules: leptos::serde_json::Value = leptos::serde_json::from_str(&text).map_err(|e| {
+        SiteError::Data(DataError::Json {
+            file: Some("data/regras.json".to_string()),
+            path: String::new(),
+            reason: e.to_string(),
+        })
+    })?;
+    let mut scales = HashMap::new();
+    for (id, key) in [("centelha", "escalaCentelha"), ("vontade", "escalaVontade")] {
+        if let Some(scale) = rules.get(key) {
+            scales.insert(id.to_string(), scale.clone());
+        }
+    }
+    Ok(scales)
 }
 
 /// Os números da página inicial, contados como o site atual conta: as

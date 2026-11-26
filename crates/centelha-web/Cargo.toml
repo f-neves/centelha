@@ -24,7 +24,7 @@ required-features = ["ssr"]
 [features]
 # Sem features padrão; `ssr` e `hydrate` nunca juntas.
 ssr = ["leptos/ssr", "dep:centelha-data", "dep:pulldown-cmark", "dep:sha1", "dep:hydration_context"]
-hydrate = ["leptos/hydrate", "dep:wasm-bindgen", "dep:web-sys"]
+hydrate = ["leptos/hydrate", "dep:wasm-bindgen", "dep:web-sys", "dep:js-sys"]
 
 [dependencies]
 leptos = { workspace = true, features = ["islands"] }
@@ -33,7 +33,8 @@ pulldown-cmark = { workspace = true, optional = true }
 sha1 = { workspace = true, optional = true }
 hydration_context = { workspace = true, optional = true }
 wasm-bindgen = { workspace = true, optional = true }
-web-sys = { workspace = true, optional = true, features = ["Document", "DomRect", "DomStringMap", "DomTokenList", "Element", "Event", "EventTarget", "HtmlDetailsElement", "HtmlCollection", "HtmlElement", "HtmlTableElement", "HtmlTableRowElement", "HtmlTableSectionElement", "KeyboardEvent", "Location", "Node", "NodeList", "Performance", "ScrollBehavior", "ScrollIntoViewOptions", "Storage", "Window"] }
+js-sys = { workspace = true, optional = true }
+web-sys = { workspace = true, optional = true, features = ["CssStyleDeclaration", "Document", "DomRect", "DomStringMap", "DomTokenList", "Element", "Event", "EventTarget", "FocusEvent", "HtmlCollection", "HtmlDetailsElement", "HtmlDialogElement", "HtmlElement", "HtmlTableElement", "HtmlTableRowElement", "HtmlTableSectionElement", "KeyboardEvent", "Location", "MouseEvent", "Node", "NodeList", "Performance", "ScrollBehavior", "ScrollIntoViewOptions", "Storage", "Window"] }
 
 [lints]
 workspace = true

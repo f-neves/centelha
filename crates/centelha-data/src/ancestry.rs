@@ -17,6 +17,9 @@ pub struct Ancestry {
     pub id: String,
     #[serde(rename = "nome")]
     pub name: String,
+    /// `custo`: o XP que a Raça custa na ficha.
+    #[serde(rename = "custo", default)]
+    pub cost: Option<f64>,
     /// O Tamanho da Raça (o PV do jogador sai da linha dele).
     #[serde(rename = "porte", default)]
     pub size: Option<Size>,

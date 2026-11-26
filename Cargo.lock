@@ -176,6 +176,7 @@ version = "0.1.0"
 dependencies = [
  "centelha-data",
  "hydration_context",
+ "js-sys",
  "leptos",
  "pulldown-cmark",
  "sha1",

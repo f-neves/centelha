@@ -3,12 +3,13 @@
 // depuração (CDP). Só Node (22 ou mais novo: usa o WebSocket embutido), sem
 // pacote do npm.
 
-import { spawn } from 'node:child_process';
+import { spawn, spawnSync } from 'node:child_process';
 import { createServer } from 'node:http';
 import { existsSync, mkdtempSync, readdirSync, readFileSync, rmSync, statSync } from 'node:fs';
 import { readFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { extname, join, normalize, sep } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 const TYPES = {
   '.html': 'text/html; charset=utf-8',
@@ -118,6 +119,102 @@ export function browserArgs() {
   return (process.env.BROWSER_ARGS ?? '').split(/\s+/).filter(Boolean);
 }
 
+// Os navegadores abertos por este processo, para fechar em qualquer saída.
+const open = new Set();
+
+/** O processo existe. */
+function alive(pid) {
+  try {
+    process.kill(pid, 0);
+    return true;
+  } catch (e) {
+    return e.code === 'EPERM';
+  }
+}
+
+/**
+ * Mata o navegador (e os processos filhos dele) e apaga o perfil, sem esperar.
+ * São dois números de processo: o que o `spawn` abriu e o do navegador de
+ * fato, que o próprio navegador informa pelo CDP. No Windows o Chrome sem
+ * janela abre o navegador num processo novo e o primeiro sai logo; matar só o
+ * primeiro deixava o navegador vivo (foi assim que sobraram os navegadores
+ * esquecidos).
+ */
+function killNow(entry) {
+  open.delete(entry);
+  // O vigia só serve se este processo morrer à força: num fim que passa por
+  // aqui, ele sai antes, para não agir sobre um número de processo reusado.
+  if (entry.watchdog && entry.watchdog.exitCode === null) {
+    try { entry.watchdog.kill(); } catch { /* já saiu */ }
+  }
+  for (const pid of livePids(entry)) {
+    if (process.platform === 'win32') {
+      spawnSync('taskkill', ['/PID', String(pid), '/T', '/F'], { stdio: 'ignore' });
+    } else {
+      try { process.kill(pid, 'SIGKILL'); } catch { /* já saiu */ }
+    }
+  }
+  // Espera (síncrono: pode estar num `process.on('exit')`) o navegador soltar
+  // os arquivos do perfil antes de apagar.
+  const deadline = Date.now() + 3000;
+  const pause = new Int32Array(new SharedArrayBuffer(4));
+  while (livePids(entry).length && Date.now() < deadline) {
+    Atomics.wait(pause, 0, 0, 50);
+  }
+  try { rmSync(entry.profile, { recursive: true, force: true, maxRetries: 10, retryDelay: 200 }); } catch { /* arquivo preso */ }
+  // Se algum arquivo ainda estava preso (os filhos do navegador soltam com
+  // atraso), um vigia novo, sem navegador para matar, apaga o perfil depois
+  // que este processo sair.
+  if (existsSync(entry.profile)) watchdog('-', entry.profile);
+}
+
+/**
+ * Os processos do navegador ainda vivos. O do `spawn` só conta enquanto o
+ * Node não o viu sair: depois disso o número pode já ser de outro processo.
+ */
+function livePids(entry) {
+  const pids = [];
+  if (entry.browserPid && alive(entry.browserPid)) pids.push(entry.browserPid);
+  const { proc } = entry;
+  if (proc.pid && proc.exitCode === null && proc.signalCode === null && alive(proc.pid)) pids.push(proc.pid);
+  return pids;
+}
+
+let handlersInstalled = false;
+/**
+ * Fecha os navegadores ao sair, com Ctrl+C (`SIGINT`), `SIGTERM` ou exceção
+ * não tratada. Um `kill` forçado do Node não passa por aqui: para isso há o
+ * vigia de cada navegador (`watchdog`).
+ */
+function installHandlers() {
+  if (handlersInstalled) return;
+  handlersInstalled = true;
+  const closeAll = () => { for (const entry of [...open]) killNow(entry); };
+  process.on('exit', closeAll);
+  for (const signal of ['SIGINT', 'SIGTERM']) {
+    process.on(signal, () => { closeAll(); process.exit(130); });
+  }
+  for (const event of ['uncaughtException', 'unhandledRejection']) {
+    process.on(event, (err) => { console.error(err); closeAll(); process.exit(1); });
+  }
+}
+
+/**
+ * Um processo Node à parte (`watchdog.cjs`) que vigia este: se ele morrer à
+ * força, sem passar por `killNow` (que encerra o vigia antes), o vigia mata o
+ * navegador e apaga o perfil. Devolve o processo do vigia.
+ */
+function watchdog(browserPid, profile) {
+  const script = fileURLToPath(new URL('./watchdog.cjs', import.meta.url));
+  const child = spawn(process.execPath, [script, String(process.pid), String(browserPid), profile], {
+    detached: true,
+    stdio: 'ignore',
+    windowsHide: true,
+  });
+  child.unref();
+  return child;
+}
+
 /**
  * Abre o navegador sem janela num perfil temporário e devolve o cliente CDP do
  * navegador. `close()` fecha só este processo (nunca outro navegador aberto).
@@ -139,6 +236,9 @@ export async function launch(executable = findBrowser(), extraArgs = []) {
     ...browserArgs(),
     'about:blank',
   ], { stdio: ['ignore', 'ignore', 'pipe'] });
+  const entry = { proc, profile, browserPid: null };
+  open.add(entry);
+  installHandlers();
   // O navegador grava a porta em `DevToolsActivePort` no perfil (no Windows a
   // linha "DevTools listening" não chega pelo stderr redirecionado).
   let exitCode = null;
@@ -153,16 +253,26 @@ export async function launch(executable = findBrowser(), extraArgs = []) {
       if (port && path) wsUrl = `ws://127.0.0.1:${port}${path}`;
     }
     if (!wsUrl) {
-      if (Date.now() > deadline) throw new Error(`o navegador não abriu a porta de depuração (saída ${exitCode})`);
+      if (Date.now() > deadline) {
+        killNow(entry);
+        throw new Error(`o navegador não abriu a porta de depuração (saída ${exitCode})`);
+      }
       await new Promise((ok) => setTimeout(ok, 100));
     }
   }
   const browser = await connect(wsUrl);
+  // O número do processo do navegador de fato (veja `killNow`).
+  try {
+    const info = await browser.send('SystemInfo.getProcessInfo');
+    entry.browserPid = info.processInfo.find((p) => p.type === 'browser')?.id ?? null;
+  } catch { /* sem a informação, fica o do spawn */ }
+  entry.watchdog = watchdog(entry.browserPid ?? proc.pid, profile);
   browser.close = async () => {
     try { await browser.send('Browser.close'); } catch { /* já fechou */ }
-    await new Promise((ok) => { if (proc.exitCode !== null) ok(); else proc.on('exit', ok); setTimeout(ok, 5000); });
-    if (proc.exitCode === null) proc.kill();
-    try { rmSync(profile, { recursive: true, force: true }); } catch { /* arquivo preso */ }
+    const pid = entry.browserPid ?? proc.pid;
+    const deadline = Date.now() + 5000;
+    while (alive(pid) && Date.now() < deadline) await new Promise((ok) => setTimeout(ok, 100));
+    killNow(entry);
   };
   browser.executable = executable;
   return browser;
