@@ -8,7 +8,8 @@
 #
 # Versões das actions conferidas nas páginas de release em 25/11/2026:
 # actions/checkout v7.0.1, actions/configure-pages v6.0.0,
-# actions/upload-pages-artifact v5.0.0, actions/deploy-pages v5.0.1.
+# actions/upload-pages-artifact v5.0.0, actions/deploy-pages v5.0.1,
+# Swatinem/rust-cache v2.9.3; em 26/11/2026: actions/cache v6.1.0.
 name: Prévia (GitHub Pages)
 
 on:
@@ -30,6 +31,7 @@ jobs:
   montar:
     name: Montar
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     permissions:
       contents: read
     steps:
@@ -39,14 +41,31 @@ jobs:
       - name: Configurar o Pages
         uses: actions/configure-pages@v6.0.0
 
-      # Página provisória. Quando existir o build do site
-      # (cargo xtask, centelha-web), este passo passa a chamá-lo com o mesmo
-      # SITE_BASE_PATH.
-      - name: Montar a página
-        shell: bash
+      - name: Instalar o Rust (versão do rust-toolchain.toml)
+        run: rustup toolchain install
+
+      # O mesmo cache do job "Site" do CI: o build de release já vem pronto.
+      - name: Cache de compilação
+        uses: Swatinem/rust-cache@v2.9.3
+        with:
+          shared-key: site
+
+      - name: Cache das ferramentas do WebAssembly
+        uses: actions/cache@v6.1.0
+        with:
+          path: ~/.centelha-ferramentas
+          key: ferramentas-${{ runner.os }}-${{ hashFiles('tools/ci/ferramentas.sh') }}
+
+      - name: Ferramentas do WebAssembly (wasm-bindgen, wasm-opt)
         run: |
-          mkdir -p dist
-          sed "s#{{SITE_BASE_PATH}}#${SITE_BASE_PATH}#g" tools/ci/preview/index.html > dist/index.html
+          sh tools/ci/ferramentas.sh ~/.centelha-ferramentas
+          echo "WASM_BINDGEN=$HOME/.centelha-ferramentas/bin/wasm-bindgen" >> "$GITHUB_ENV"
+          echo "WASM_OPT=$HOME/.centelha-ferramentas/bin/wasm-opt" >> "$GITHUB_ENV"
+
+      # O site inteiro em dist/, com o SITE_BASE_PATH do topo.
+      - name: Montar o site
+        run: |
+          cargo xtask site
           touch dist/.nojekyll
 
       - name: Enviar o artefato
@@ -58,6 +77,7 @@ jobs:
     name: Publicar
     needs: montar
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     permissions:
       pages: write
       id-token: write

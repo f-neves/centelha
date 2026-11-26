@@ -41,6 +41,21 @@ fn main() -> ExitCode {
                 out.display(),
                 site.base()
             );
+            // Aviso, sem falhar: links para páginas que ainda não existem.
+            match site.missing_links(&pages) {
+                Ok(missing) if !missing.is_empty() => {
+                    let total: usize = missing.iter().map(|m| m.count).sum();
+                    println!(
+                        "aviso: {total} links internos sem página de destino, para {} destinos:",
+                        missing.len()
+                    );
+                    for m in &missing {
+                        println!("  {:>4}  {}", m.count, m.target);
+                    }
+                }
+                Ok(_) => {}
+                Err(e) => eprintln!("aviso: não conferi os links ({e})"),
+            }
             ExitCode::SUCCESS
         }
         Err(e) => {

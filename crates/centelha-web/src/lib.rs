@@ -6,7 +6,9 @@
 //! hidratam no navegador (feature `hydrate`, biblioteca `cdylib`). As duas
 //! features nunca se combinam (ADR 0003).
 
+pub mod shell;
 pub mod theme;
+pub mod toc;
 
 #[cfg(feature = "ssr")]
 pub mod site;
