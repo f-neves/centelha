@@ -1,0 +1,23 @@
+{
+  "status": 200,
+  "headers": {
+    "content-range": "0-0/*"
+  },
+  "body": [
+    {
+      "id": "00000000-0000-4000-8000-000000000020",
+      "nome": "Personagem Exemplo",
+      "conceito": "batedora",
+      "dono_id": "00000000-0000-4000-8000-000000000001",
+      "status": "enviado",
+      "imagem_path": null,
+      "ficha": {
+        "raca": "humano",
+        "attrs": {
+          "forca": 2
+        }
+      },
+      "revisao_nota": ""
+    }
+  ]
+}
