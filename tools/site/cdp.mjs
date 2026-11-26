@@ -104,8 +104,17 @@ export function findBrowser() {
 }
 
 /**
+ * Argumentos extras do navegador, separados por espaço, lidos de
+ * `BROWSER_ARGS` (no Linux do CI, por exemplo, `--no-sandbox`).
+ */
+export function browserArgs() {
+  return (process.env.BROWSER_ARGS ?? '').split(/\s+/).filter(Boolean);
+}
+
+/**
  * Abre o navegador sem janela num perfil temporário e devolve o cliente CDP do
  * navegador. `close()` fecha só este processo (nunca outro navegador aberto).
+ * Os argumentos de `BROWSER_ARGS` entram sempre, depois de `extraArgs`.
  */
 export async function launch(executable = findBrowser(), extraArgs = []) {
   const profile = mkdtempSync(join(tmpdir(), 'centelha-cdp-'));
@@ -120,6 +129,7 @@ export async function launch(executable = findBrowser(), extraArgs = []) {
     '--disable-sync',
     '--mute-audio',
     ...extraArgs,
+    ...browserArgs(),
     'about:blank',
   ], { stdio: ['ignore', 'ignore', 'pipe'] });
   // O navegador grava a porta em `DevToolsActivePort` no perfil (no Windows a

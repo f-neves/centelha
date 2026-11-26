@@ -178,7 +178,6 @@ dependencies = [
  "hydration_context",
  "leptos",
  "pulldown-cmark",
- "serde",
  "sha1",
  "wasm-bindgen",
  "web-sys",

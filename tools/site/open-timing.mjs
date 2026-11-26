@@ -6,7 +6,7 @@
 // Edge (ou o navegador de `BROWSER`) sem janela, CPU 4x mais lenta
 // (`Emulation.setCPUThrottlingRate`), cache desligado, servidor local. Para
 // cada rodada, numa aba nova: primeira pintura com conteúdo (FCP), `load` e a
-// marca `ilha-hidratada` que a ilha grava ao hidratar. Mostra cada rodada e a
+// marca `island-hydrated` que a ilha grava ao hidratar. Mostra cada rodada e a
 // mediana. Não há atraso de rede: mede o custo de CPU da página.
 
 import { resolve } from 'node:path';
@@ -42,13 +42,13 @@ await page.send('Page.bringToFront');
 for (let i = 0; i < rounds + 1; i++) {
   await page.goto('about:blank');
   await page.goto(url, 60000);
-  await page.waitFor("performance.getEntriesByName('ilha-hidratada').length > 0", 60000);
+  await page.waitFor("performance.getEntriesByName('island-hydrated').length > 0", 60000);
   // Folga para a entrada da primeira pintura ser registrada.
   await new Promise((ok) => setTimeout(ok, 500));
   const m = await page.eval(`(() => {
     const nav = performance.getEntriesByType('navigation')[0];
     const fcp = performance.getEntriesByName('first-contentful-paint')[0];
-    const isl = performance.getEntriesByName('ilha-hidratada')[0];
+    const isl = performance.getEntriesByName('island-hydrated')[0];
     return { fcp: fcp ? fcp.startTime : null, load: nav.loadEventEnd, island: isl.startTime };
   })()`);
   // A primeira rodada aquece o navegador e não conta.

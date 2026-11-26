@@ -28,6 +28,22 @@ use super::typography;
 /// gravado nos links (lá o caminho base não chega no HTML cru).
 pub const SOURCE_BASE: &str = "/centelha-rpg/";
 
+/// `diagramas.json` não é um objeto de chave para SVG.
+#[derive(Debug)]
+pub struct DiagramsError(leptos::serde_json::Error);
+
+impl std::fmt::Display for DiagramsError {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "diagramas.json: {}", self.0)
+    }
+}
+
+impl std::error::Error for DiagramsError {
+    fn source(&self) -> Option<&(dyn std::error::Error + 'static)> {
+        Some(&self.0)
+    }
+}
+
 /// Os diagramas já desenhados, pela chave.
 #[derive(Debug, Default, Clone)]
 pub struct Diagrams {
@@ -36,9 +52,9 @@ pub struct Diagrams {
 
 impl Diagrams {
     /// Lê o texto de `diagramas.json` (um objeto de chave para SVG).
-    pub fn parse(json: &str) -> Result<Diagrams, String> {
+    pub fn parse(json: &str) -> Result<Diagrams, DiagramsError> {
         let by_key: HashMap<String, String> =
-            leptos::serde_json::from_str(json).map_err(|e| format!("diagramas.json: {e}"))?;
+            leptos::serde_json::from_str(json).map_err(DiagramsError)?;
         Ok(Diagrams { by_key })
     }
 
@@ -319,6 +335,13 @@ mod tests {
         let key = diagram_key("graph TD\nA-->B");
         let diagrams = Diagrams::parse(&format!("{{\"{key}\": \"<svg>d</svg>\"}}")).unwrap();
         (diagrams, base.to_string())
+    }
+
+    #[test]
+    fn broken_diagrams_json_is_a_typed_error() {
+        let err = Diagrams::parse("[\"não é objeto\"]").unwrap_err();
+        assert!(err.to_string().starts_with("diagramas.json: "));
+        assert!(std::error::Error::source(&err).is_some());
     }
 
     fn html(base: &str, body: &str) -> String {

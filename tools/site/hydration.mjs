@@ -6,8 +6,10 @@
 //   1. lê o texto visível com o JavaScript desligado (a página como sai do
 //      gerador, sem WebAssembly);
 //   2. abre de novo com o JavaScript ligado, espera as ilhas hidratarem
-//      (`<html data-ilhas="hidratadas">`) e lê o texto visível outra vez;
-//   3. exige os dois textos iguais;
+//      (`<html data-islands="hydrated">`) e lê o texto visível outra vez;
+//   3. exige os dois textos iguais, e também o `textContent` do conteúdo
+//      (`<main>`, onde está o corpo do capítulo): um bloco duplicado e
+//      escondido por CSS não aparece no texto visível, mas aparece aqui;
 //   4. clica num botão do seletor de tema e exige o tema trocado (no
 //      `<html data-theme>`, no `localStorage` e no botão marcado);
 //   5. exige nenhuma exceção da página e nenhum erro ou aviso no console (em
@@ -15,7 +17,8 @@
 //      as exceções contam; o WebAssembly de depuração escreve o aviso).
 //
 // Sai com código 1 se qualquer página falhar. Só Node 22+ e um navegador
-// (`BROWSER` aponta outro executável).
+// (`BROWSER` aponta outro executável; `BROWSER_ARGS` acrescenta argumentos,
+// como `--no-sandbox` no Linux do CI).
 
 import { resolve } from 'node:path';
 import { detectBase, launch, listPages, serve } from './cdp.mjs';
@@ -24,6 +27,8 @@ const dist = resolve(process.argv[2] ?? 'dist');
 const base = detectBase(dist);
 const pages = listPages(dist);
 const THEMES = ['classico', 'escuro', 'legivel'];
+// O texto inteiro do conteúdo, visível ou não.
+const CONTENT = "document.querySelector('main').textContent";
 
 const server = await serve(dist, base);
 const browser = await launch();
@@ -42,6 +47,7 @@ for (const rel of pages) {
   await plain.send('Emulation.setScriptExecutionDisabled', { value: true });
   await plain.goto(url);
   const before = await plain.eval('document.body.innerText');
+  const contentBefore = await plain.eval(CONTENT);
   await plain.close();
 
   // 2. Com JavaScript e as ilhas.
@@ -65,16 +71,20 @@ for (const rel of pages) {
   await page.goto(url);
   const started = Date.now();
   try {
-    await page.waitFor("document.documentElement.dataset.ilhas === 'hidratadas'", 30000);
+    await page.waitFor("document.documentElement.dataset.islands === 'hydrated'", 30000);
   } catch (e) {
     problems.push(`as ilhas não hidrataram: ${e.message}`);
   }
   const hydrateMs = Date.now() - started;
   await new Promise((ok) => setTimeout(ok, 150));
   const after = await page.eval('document.body.innerText');
+  const contentAfter = await page.eval(CONTENT);
 
   // 3. Mesmo texto.
   if (before !== after) problems.push(`o texto mudou na hidratação:\n${firstDiff(before, after)}`);
+  if (contentBefore !== contentAfter) {
+    problems.push(`o textContent do conteúdo mudou na hidratação:\n${firstDiff(contentBefore, contentAfter)}`);
+  }
   if (before.trim().length < 50) problems.push('texto quase vazio antes da hidratação');
 
   // 4. O seletor de tema.
@@ -103,6 +113,10 @@ for (const rel of pages) {
     }
     const afterClick = await page.eval('document.body.innerText');
     if (afterClick !== before) problems.push(`o texto mudou ao trocar o tema:\n${firstDiff(before, afterClick)}`);
+    const contentAfterClick = await page.eval(CONTENT);
+    if (contentAfterClick !== contentBefore) {
+      problems.push(`o textContent do conteúdo mudou ao trocar o tema:\n${firstDiff(contentBefore, contentAfterClick)}`);
+    }
   }
 
   // 5. Console limpo.
