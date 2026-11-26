@@ -10,6 +10,7 @@
 pub mod ancestry;
 pub mod armor;
 pub mod bestiary;
+pub mod chapters;
 mod error;
 mod json;
 pub mod rules;
@@ -25,6 +26,9 @@ pub use armor::{Armor, parse_armors};
 #[cfg(not(target_arch = "wasm32"))]
 pub use bestiary::load_bestiary;
 pub use bestiary::{Creature, parse_creature};
+#[cfg(not(target_arch = "wasm32"))]
+pub use chapters::load_chapters;
+pub use chapters::{Chapter, parse_chapter};
 pub use error::DataError;
 #[cfg(not(target_arch = "wasm32"))]
 pub use rules::load_rules;
