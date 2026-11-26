@@ -540,31 +540,12 @@ impl Site {
     }
 }
 
-/// Os nomes das Habilidades por id (a coluna Habilidade de Equipamentos).
-///
-/// Provisório, como as escalas e os contadores: o `centelha-data` ainda não
-/// tem o módulo das Habilidades. Lê só `id` e `nome` de `habilidades.json`.
-/// Sai do provisório com o leitor de `habilidades.json` do `centelha-data`
-/// (tarefa 014a do Backend).
+/// Os nomes das Habilidades por id (a coluna Habilidade de Equipamentos),
+/// pelo leitor do `centelha-data`.
 fn skill_names(content_dir: &Path) -> Result<Vec<(String, String)>, SiteError> {
-    let path = content_dir.join("data").join("habilidades.json");
-    let text = std::fs::read_to_string(&path).map_err(io_error(&path))?;
-    let list: Vec<leptos::serde_json::Value> =
-        leptos::serde_json::from_str(&text).map_err(|e| {
-            SiteError::Data(DataError::Json {
-                file: Some("data/habilidades.json".to_string()),
-                path: String::new(),
-                reason: e.to_string(),
-            })
-        })?;
-    Ok(list
-        .iter()
-        .filter_map(|h| {
-            Some((
-                h.get("id")?.as_str()?.to_string(),
-                h.get("nome")?.as_str()?.to_string(),
-            ))
-        })
+    Ok(centelha_data::load_skills(content_dir)?
+        .into_iter()
+        .map(|h| (h.id, h.name))
         .collect())
 }
 
