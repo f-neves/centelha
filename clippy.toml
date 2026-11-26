@@ -1,0 +1,5 @@
+# O serde_json do workspace usa preserve_order (ADR 0004): Map::remove vira
+# swap_remove e muda a ordem das chaves. Use shift_remove.
+disallowed-methods = [
+    { path = "serde_json::Map::remove", reason = "muda a ordem das chaves; use shift_remove" },
+]

@@ -25,6 +25,124 @@ pub struct Rules {
     /// `quaseAcerto`: as tabelas do Quase-Acerto.
     #[serde(rename = "quaseAcerto", default)]
     pub near_miss: Option<NearMissRules>,
+    /// `xp`: o preço de cada trilha.
+    pub xp: XpRules,
+    /// `aparencia`: a curva do modificador.
+    #[serde(rename = "aparencia")]
+    pub appearance: AppearanceRules,
+    /// `morte`: o limite da morte abaixo do zero.
+    #[serde(rename = "morte", default)]
+    pub death: Option<DeathRules>,
+    /// `dano`: a Centelha na Absorção e o portão da Perfuração.
+    #[serde(rename = "dano", default)]
+    pub damage: Option<DamageRules>,
+    /// `forca`: a tabela do que a Força ergue.
+    #[serde(rename = "forca")]
+    pub strength: StrengthRules,
+}
+
+/// Como uma trilha de XP soma os preços dos níveis (`tipo`).
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Deserialize)]
+pub enum XpKind {
+    /// `acum`: soma os preços do piso + 1 até o nível.
+    #[serde(rename = "acum")]
+    Accumulated,
+    /// `flat`: cobra só o preço do nível pedido.
+    #[serde(rename = "flat")]
+    Flat,
+    /// `gratis`: não custa XP.
+    #[serde(rename = "gratis")]
+    Free,
+}
+
+/// Uma trilha de `xp`: o preço de um nível é `base + mult × nível`.
+#[derive(Debug, Clone, Copy, PartialEq, Deserialize)]
+pub struct XpTrack {
+    #[serde(rename = "tipo")]
+    pub kind: XpKind,
+    pub base: f64,
+    pub mult: f64,
+    /// `piso`: o nível que já vem pago.
+    #[serde(rename = "piso", default)]
+    pub floor: f64,
+}
+
+/// `xp`: as trilhas pelo nome (`atributo`, `arte`, `tecnica`...). A chave
+/// `modelo`, que é texto, fica de fora.
+#[derive(Debug, Clone, PartialEq, Default)]
+pub struct XpRules(pub BTreeMap<String, XpTrack>);
+
+impl XpRules {
+    pub fn track(&self, key: &str) -> Option<&XpTrack> {
+        self.0.get(key)
+    }
+}
+
+impl<'de> Deserialize<'de> for XpRules {
+    fn deserialize<D: serde::Deserializer<'de>>(d: D) -> Result<Self, D::Error> {
+        use serde::de::Error;
+        let raw = BTreeMap::<String, serde_json::Value>::deserialize(d)?;
+        let mut tracks = BTreeMap::new();
+        for (k, v) in raw {
+            if k == "modelo" {
+                continue;
+            }
+            let t = serde_json::from_value::<XpTrack>(v)
+                .map_err(|e| D::Error::custom(format!("xp.{k}: {e}")))?;
+            tracks.insert(k, t);
+        }
+        Ok(XpRules(tracks))
+    }
+}
+
+/// `aparencia`: o modificador por nível, pela chave em texto (`"-1"`, `"6"`).
+#[derive(Debug, Clone, PartialEq, Deserialize)]
+pub struct AppearanceRules {
+    #[serde(rename = "curva")]
+    pub curve: BTreeMap<String, f64>,
+}
+
+/// `morte`: o divisor do PV máximo e o lado do arredondamento.
+#[derive(Debug, Clone, PartialEq, Deserialize)]
+pub struct DeathRules {
+    #[serde(rename = "limiteDivisor", default)]
+    pub limit_divisor: Option<f64>,
+    #[serde(rename = "limiteArredonda", default)]
+    pub limit_rounding: Option<DeathRounding>,
+}
+
+/// `morte.limiteArredonda`: `alto` arredonda para cima; o resto, para baixo.
+#[derive(Debug, Clone, PartialEq, Deserialize)]
+pub struct DeathRounding {
+    #[serde(rename = "semCentelha", default)]
+    pub without_spark: Option<String>,
+    #[serde(rename = "comCentelha", default)]
+    pub with_spark: Option<String>,
+}
+
+/// `dano`: o que a Centelha soma em cada Absorção e os modos que passam pelo
+/// portão da Perfuração.
+#[derive(Debug, Clone, PartialEq, Deserialize)]
+pub struct DamageRules {
+    #[serde(rename = "centelhaNoSoak", default)]
+    pub spark_in_soak: Option<f64>,
+    #[serde(rename = "gatePerfuracao", default)]
+    pub pierce_gate: Option<PierceGate>,
+}
+
+/// `dano.gatePerfuracao`.
+#[derive(Debug, Clone, PartialEq, Deserialize)]
+pub struct PierceGate {
+    #[serde(rename = "modos", default)]
+    pub modes: Option<Vec<String>>,
+}
+
+/// `forca`: só a tabela de erguer, por enquanto (`levantamento`, do FAH 3 ao
+/// 40, em kg).
+#[derive(Debug, Clone, PartialEq, Deserialize)]
+pub struct StrengthRules {
+    #[serde(rename = "levantamento")]
+    pub lifting: BTreeMap<String, f64>,
 }
 
 /// `criatura`: as tabelas da criatura.
@@ -136,11 +254,21 @@ pub struct SoakFractions {
     pub pierce: f64,
 }
 
-/// `porteAcerto`: só a ordem dos Tamanhos, por enquanto.
+/// `porteAcerto`: a ordem dos Tamanhos e o modificador por categoria.
 #[derive(Debug, Clone, PartialEq, Deserialize)]
 pub struct SizeAccuracy {
     #[serde(rename = "ordem")]
     pub order: Vec<Size>,
+    #[serde(rename = "reforma")]
+    pub reform: SizeAccuracyReform,
+}
+
+/// `porteAcerto.reforma`.
+#[derive(Debug, Clone, Copy, PartialEq, Deserialize)]
+pub struct SizeAccuracyReform {
+    /// `porCategoria`: o modificador por categoria de diferença (3).
+    #[serde(rename = "porCategoria")]
+    pub per_category: f64,
 }
 
 /// `derivados`: as contas dos números da ficha.
@@ -169,7 +297,9 @@ pub struct DerivedRules {
 /// traço × peso), arredondada.
 #[derive(Debug, Clone, PartialEq, Deserialize)]
 pub struct MovementRules {
-    pub normal: Ladder,
+    /// `normal`: o passo de Batalha.
+    #[serde(rename = "normal")]
+    pub battle: Ladder,
     #[serde(rename = "arranque")]
     pub dash: Ladder,
     #[serde(rename = "corrida")]
@@ -413,6 +543,15 @@ pub struct RangedMaximum {
     pub bow_strength_cap: Option<f64>,
 }
 
+/// As trilhas de XP que o motor lê pelo nome.
+pub const XP_NAMED: [&str; 5] = [
+    "tecnica",
+    "arte",
+    "efeito",
+    "especialidadePrimaria",
+    "especialidadeSecundaria",
+];
+
 /// Lê `regras.json` a partir do texto.
 pub fn parse_rules(json: &str) -> Result<Rules, DataError> {
     let rules: Rules = crate::json::parse(json)?;
@@ -453,6 +592,15 @@ pub fn parse_rules(json: &str) -> Result<Rules, DataError> {
         "derivados.pv.massa.conta",
         "a última linha não pode ter zonaKg (a zona olha a linha seguinte)",
     )?;
+    // As trilhas que o motor chama pelo nome (os custos de Proeza, Arte,
+    // Efeito e Especialidade).
+    for k in XP_NAMED {
+        check(
+            rules.xp.track(k).is_some(),
+            &format!("xp.{k}"),
+            "a trilha falta",
+        )?;
+    }
     Ok(rules)
 }
 

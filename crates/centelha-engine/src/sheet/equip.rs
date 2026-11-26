@@ -448,7 +448,7 @@ pub fn piece_kind(p: Option<&Value>) -> Option<PieceKind> {
 }
 
 /// `semFolego`: o Fôlego não entra no item que a ficha guarda.
-fn without_breath(item: &mut Value) {
+pub(super) fn without_breath(item: &mut Value) {
     if let Some(Value::Object(a)) = item.get_mut("arma") {
         a.shift_remove("folego");
     }
@@ -782,8 +782,12 @@ impl Catalog {
     /// `armadurasDe`: as peças de armadura vestidas, cada uma pelo item dela
     /// (achatado). Aceita os formatos antigos.
     pub fn worn_armor(&self, sheet: &Value) -> Vec<Value> {
-        let s = super::format::for_reading(self, sheet);
-        let equip = get(Some(&s), "equip");
+        self.worn_armor_read(&super::format::for_reading(self, sheet))
+    }
+
+    /// `armadurasDe` da ficha já lida (`for_reading`), sem ler de novo.
+    pub fn worn_armor_read(&self, s: &Value) -> Vec<Value> {
+        let equip = get(Some(s), "equip");
         let list = super::value::or(get(equip, "armaduras"), None);
         let mods = get(equip, "armMod");
         let Some(Value::Array(list)) = list else {

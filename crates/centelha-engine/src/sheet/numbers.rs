@@ -9,11 +9,12 @@ use serde_json::{Map, Value, json};
 use super::SheetTables;
 use super::equip::{CUSTOM_SHIELD, ItemKind, piece_kind};
 use super::format::for_reading;
+use super::text::signed_number;
 use super::value::{
     coalesce, get, includes, is_str, nullish, num_or, num_or0, or, property_key, spread,
     spread_into, strict_eq, to_js_string, to_number, truthy,
 };
-use crate::creature::{Soak, lifted_weight};
+use crate::creature::{Soak, lifted_weight, spark_in_roll};
 use crate::js;
 
 /// O que está numa mão.
@@ -119,7 +120,7 @@ pub struct HandSet {
     pub strength_missing: f64,
     pub dual: Option<DualWield>,
     /// O que as mãos somam ao Bloqueio.
-    pub block: f64,
+    pub hands_defense: f64,
     /// A Penalidade das mãos (o escudo).
     pub penalty: f64,
     pub armor_penalty: f64,
@@ -286,10 +287,6 @@ fn or0(x: f64) -> f64 {
     if x.is_nan() || x == 0.0 { 0.0 } else { x }
 }
 
-fn spark_in_roll(spark: f64, skill: f64) -> f64 {
-    2.0 * js::min(js::max(0.0, spark), js::max(0.0, skill))
-}
-
 /// `defesa`: (Destreza + Habilidade) × mult + 2 × mín(Centelha, Habilidade).
 fn defense(t: &SheetTables, dexterity: f64, skill: f64, spark: f64) -> f64 {
     (dexterity + skill) * t.rules.derived.defense.mult + 0.0 + spark_in_roll(spark, skill)
@@ -324,7 +321,7 @@ pub fn stack_armor(pieces: &[Value]) -> ArmorStack {
 pub struct Movement {
     pub dash: f64,
     pub run: f64,
-    pub normal: f64,
+    pub battle: f64,
     pub swim: f64,
     pub vertical_jump: f64,
     pub standing_jump: f64,
@@ -353,7 +350,7 @@ pub fn movement(
     Movement {
         dash: calc(&m.dash),
         run,
-        normal: calc(&m.normal),
+        battle: calc(&m.battle),
         swim: calc(&m.swim),
         vertical_jump: calc(&m.vertical_jump),
         standing_jump: calc(&m.standing_jump),
@@ -492,8 +489,12 @@ pub fn hand_item(t: &SheetTables, slot: Option<&Value>) -> HandItem {
 /// `conjuntoAtivoPersonagem`: o conjunto marcado como ativo, o primeiro, ou o
 /// das fichas antigas (`equip.arma`, `equip.escudo`).
 pub fn active_hand_set(t: &SheetTables, sheet: &Value) -> Value {
-    let s = for_reading(&t.catalog, sheet);
-    let sets = get(Some(&s), "conjuntos");
+    active_hand_set_read(&for_reading(&t.catalog, sheet))
+}
+
+/// `conjuntoAtivo` da ficha já lida.
+fn active_hand_set_read(s: &Value) -> Value {
+    let sets = get(Some(s), "conjuntos");
     if let Some(Value::Array(list)) = sets {
         if let Some(c) = list.iter().find(|c| truthy(get(Some(c), "ativo"))) {
             return c.clone();
@@ -502,7 +503,7 @@ pub fn active_hand_set(t: &SheetTables, sheet: &Value) -> Value {
             return c.clone();
         }
     }
-    let equip = get(Some(&s), "equip");
+    let equip = get(Some(s), "equip");
     let weapon = coalesce(get(equip, "arma"), None);
     let weapon = if nullish(weapon) {
         "desarmado".to_owned()
@@ -520,6 +521,12 @@ pub fn active_hand_set(t: &SheetTables, sheet: &Value) -> Value {
 
 /// `conjuntoPersonagem(S, cj)`: o ataque, o dano e o Bloqueio das mãos.
 pub fn hand_set(t: &SheetTables, s: &Value, cj: &Value) -> HandSet {
+    let armor_penalty = stack_armor(&t.catalog.worn_armor(s)).penalty;
+    hand_set_with(t, s, cj, armor_penalty)
+}
+
+/// `conjuntoPersonagem` com a Penalidade das armaduras já somada.
+fn hand_set_with(t: &SheetTables, s: &Value, cj: &Value, armor_penalty: f64) -> HandSet {
     let at = coalesce(get(Some(s), "attrs"), None)
         .cloned()
         .unwrap_or_else(|| json!({}));
@@ -539,7 +546,6 @@ pub fn hand_set(t: &SheetTables, s: &Value, cj: &Value) -> HandSet {
     };
     let c = num_or0(get(Some(s), "centelha"));
     let strength = num_or0(get(at, "forca"));
-    let armor_penalty = stack_armor(&t.catalog.worn_armor(s)).penalty;
     let main = hand_item(t, get(Some(cj), "habil"));
     let off = if two_handed(&main) {
         HandItem::nothing("·")
@@ -643,7 +649,7 @@ pub fn hand_set(t: &SheetTables, s: &Value, cj: &Value) -> HandSet {
         .collect();
     let hands_def = in_hands.iter().fold(0.0, |s, it| s + it.defense);
     let body_def = free_hands * num_or(get(t.catalog.unarmed(), "defesaArma"), 1.0);
-    let block = if in_hands.is_empty() {
+    let hands_defense = if in_hands.is_empty() {
         body_def
     } else if free_hands != 0.0 {
         js::max(hands_def, body_def)
@@ -685,7 +691,7 @@ pub fn hand_set(t: &SheetTables, s: &Value, cj: &Value) -> HandSet {
         versions,
         strength_missing,
         dual,
-        block,
+        hands_defense,
         armor_penalty,
         charge_strength: charge,
     }
@@ -715,8 +721,14 @@ pub fn player_mass(t: &SheetTables, s: &Value) -> f64 {
 
 /// `numerosPersonagem`: os números da ficha. Aceita as duas formas da ficha.
 pub fn sheet_numbers(t: &SheetTables, sheet: &Value) -> SheetNumbers {
-    let s = for_reading(&t.catalog, sheet);
-    let sv = Some(&s);
+    sheet_numbers_read(t, &for_reading(&t.catalog, sheet))
+}
+
+/// `numerosPersonagem` da ficha já lida (a saída de `for_reading`), sem ler
+/// de novo: para quem recalcula a cada mudança da ficha aberta. Dá o mesmo
+/// que `sheet_numbers` da ficha crua.
+pub fn sheet_numbers_read(t: &SheetTables, s: &Value) -> SheetNumbers {
+    let sv = Some(s);
     let at = coalesce(coalesce(get(sv, "attrs"), get(sv, "atributos")), None)
         .cloned()
         .unwrap_or_else(|| json!({}));
@@ -732,12 +744,17 @@ pub fn sheet_numbers(t: &SheetTables, sheet: &Value) -> SheetNumbers {
     let (a, h) = (Some(&at), Some(&hab));
     let ce = num_or0(get(sv, "centelha"));
     let will = num_or(coalesce(get(sv, "willpower"), get(sv, "vontade")), 0.0);
-    let arm = stack_armor(&t.catalog.worn_armor(&s));
+    let arm = stack_armor(&t.catalog.worn_armor_read(s));
     let mut with_traits = spread(sv);
     with_traits.insert("attrs".into(), at.clone());
     with_traits.insert("skills".into(), hab.clone());
     with_traits.insert("skills2".into(), sec.clone());
-    let act = hand_set(t, &Value::Object(with_traits), &active_hand_set(t, &s));
+    let act = hand_set_with(
+        t,
+        &Value::Object(with_traits),
+        &active_hand_set_read(s),
+        arm.penalty,
+    );
 
     // personagem(): o PV pelo Tamanho da Raça e o peso erguido pela massa
     let ancestry = t.ancestry(get(sv, "raca"));
@@ -758,7 +775,7 @@ pub fn sheet_numbers(t: &SheetTables, sheet: &Value) -> SheetNumbers {
     let hp = hp_base + stamina * hp_mult + vitality;
     let lifted = lifted_weight(
         &t.rules,
-        player_mass(t, &s),
+        player_mass(t, s),
         num_or(get(a, "forca"), 0.0),
         num_or(get(Some(&sec), "halterofilismo"), 0.0),
         0.0,
@@ -767,17 +784,17 @@ pub fn sheet_numbers(t: &SheetTables, sheet: &Value) -> SheetNumbers {
     let d = &t.rules.derived;
     let dex = num_or0(get(a, "destreza"));
     let dodge = defense(t, dex, num_or0(get(h, "esquiva")), ce) - arm.penalty - act.penalty;
-    let block = defense(t, dex, num_or0(get(h, "bloqueio")), ce) - arm.penalty + act.block;
-    let sociability = num_or0(get(h, "sociabilidade"));
+    let block = defense(t, dex, num_or0(get(h, "bloqueio")), ce) - arm.penalty + act.hands_defense;
+    let socializing = num_or0(get(h, "sociabilidade"));
     let composure = num_or0(get(a, "compostura"));
     let social = d.social_defense.traits.iter().fold(0.0, |acc, k| {
         acc + match k.as_str() {
             "compostura" => composure,
-            "sociabilidade" => sociability,
+            "sociabilidade" => socializing,
             _ => 0.0,
         }
     }) * d.social_defense.mult
-        + spark_in_roll(ce, sociability)
+        + spark_in_roll(ce, socializing)
         + 0.0;
     let integrity = num_or0(get(h, "integridade"));
     let wits = num_or0(get(a, "raciocinio"));
@@ -1024,73 +1041,30 @@ fn parse_int(s: &str) -> Option<f64> {
     digits.parse::<f64>().ok().map(|x| sign * x)
 }
 
-impl SheetTables {
-    /// `qaDaPeca`: o Quase-Acerto da arma (pelo catálogo, ou pela expressão
-    /// do dano) e o das armaduras.
-    pub fn near_miss(&self, weapon: Option<&Value>, damage: &str, armors: &[Value]) -> NearMiss {
-        let q = self.rules.near_miss.as_ref();
-        let limits = q.and_then(|q| q.class_by_average_damage);
-        let light = limits.and_then(|l| l.light_up_to).unwrap_or(2.0);
-        let medium = limits.and_then(|l| l.medium_up_to).unwrap_or(5.5);
-        let from_catalog = self.catalog.weapon_lookup(weapon).and_then(|w| {
-            let dice = to_number(get(Some(w), "dado"));
-            let b = to_number(get(Some(w), "danoBonus"));
-            let b = if b.is_nan() { 0.0 } else { b };
-            (dice.is_finite() && dice > 0.0).then_some(dice * 3.5 + b)
-        });
-        let avg = from_catalog.or_else(|| average_damage_of_expr(damage));
-        let class = avg.map(|m| {
-            if m <= light {
-                "leve"
-            } else if m <= medium {
-                "media"
-            } else {
-                "pesada"
-            }
-        });
-        let w = class.and_then(|c| q.and_then(|q| q.by_weapon_class.get(c)));
-        let z = |x: Option<f64>| x.filter(|v| !v.is_nan()).unwrap_or(0.0);
-        let mut nm = NearMiss {
-            weapon_bonus: z(w.and_then(|w| w.bonus)),
-            weapon_damage: z(w.and_then(|w| w.damage)),
-            weapon_class: class.map(str::to_owned),
-            armor_bonus: 0.0,
-            armor_reduction: 0.0,
-            armor_classes: Vec::new(),
-        };
-        for p in armors {
-            let c = or(get(Some(p), "classe"), None);
-            let c = if truthy(c) {
-                property_key(c)
-            } else {
-                "nenhuma".to_owned()
-            };
-            let Some(t) = q.and_then(|q| q.by_armor_class.get(&c)) else {
-                continue;
-            };
-            nm.armor_bonus += z(t.bonus);
-            nm.armor_reduction = js::max(nm.armor_reduction, z(t.reduction));
-            nm.armor_classes.push(c);
-        }
-        nm
-    }
-}
-
-fn signed(n: f64) -> String {
-    format!(
-        "{}{}",
-        if n >= 0.0 { "+" } else { "\u{2212}" },
-        js::number_to_string(n.abs())
-    )
-}
-
 /// `combatePersonagem`: o resumo de combate que a mesa e o Grid leem.
 ///
 /// Como no TypeScript, o passo, os Atributos e as Habilidades saem da ficha
 /// recebida (`attrs`, `skills`, `skills2`), e não da ficha lida: numa ficha na
 /// forma gravada eles saem vazios.
 pub fn combat_summary(t: &SheetTables, sheet: &Value) -> CombatSummary {
-    let n = sheet_numbers(t, sheet);
+    let read = for_reading(&t.catalog, sheet);
+    combat_summary_with(
+        t,
+        sheet,
+        sheet_numbers_read(t, &read),
+        &t.catalog.worn_armor_read(&read),
+    )
+}
+
+/// `combatePersonagem` com os números e as armaduras vestidas já contados
+/// (`sheet` é a ficha que o TypeScript recebe, de onde saem o passo, os
+/// Atributos e as Habilidades).
+fn combat_summary_with(
+    t: &SheetTables,
+    sheet: &Value,
+    n: SheetNumbers,
+    armors: &[Value],
+) -> CombatSummary {
     let a = &n.hands;
     let w = Some(&a.attack_weapon);
     let attack = format!(
@@ -1098,7 +1072,7 @@ pub fn combat_summary(t: &SheetTables, sheet: &Value) -> CombatSummary {
         js::number_to_string(a.dice),
         if or0(a.roll_bonus) != 0.0 { "+2" } else { "" },
         if or0(a.flat) != 0.0 {
-            format!(" {}", signed(a.flat))
+            format!(" {}", signed_number(a.flat))
         } else {
             String::new()
         }
@@ -1129,7 +1103,7 @@ pub fn combat_summary(t: &SheetTables, sheet: &Value) -> CombatSummary {
         "{}d6{}{}",
         to_js_string(get(w, "dado")),
         if or0(ap) != 0.0 {
-            format!(" {}", signed(ap))
+            format!(" {}", signed_number(ap))
         } else {
             String::new()
         },
@@ -1171,7 +1145,7 @@ pub fn combat_summary(t: &SheetTables, sheet: &Value) -> CombatSummary {
     );
     let pen = ((a.armor_penalty + a.penalty) / 2.0).floor();
     let step = Step {
-        battle: js::max(0.0, dz.normal - pen),
+        battle: js::max(0.0, dz.battle - pen),
         dash: js::max(0.0, dz.dash - pen),
         run: js::max(0.0, dz.run - pen),
     };
@@ -1198,7 +1172,7 @@ pub fn combat_summary(t: &SheetTables, sheet: &Value) -> CombatSummary {
     } else {
         damage.clone()
     };
-    let near_miss = t.near_miss(qa_weapon.as_ref(), &qa_expr, &t.catalog.worn_armor(sheet));
+    let near_miss = t.near_miss(qa_weapon.as_ref(), &qa_expr, armors);
     let ticks = to_number(get(w, "ticks"));
     let mut skills = spread(secv);
     spread_into(&mut skills, habv);
@@ -1235,17 +1209,22 @@ fn pool(attribute: f64, skill: f64) -> (f64, f64) {
 
 /// `resumoFicha`: tudo o que o mestre vê de um personagem.
 pub fn sheet_summary(t: &SheetTables, sheet: &Value) -> SheetSummary {
-    let s = for_reading(&t.catalog, sheet);
-    let sv = Some(&s);
+    sheet_summary_read(t, &for_reading(&t.catalog, sheet))
+}
+
+/// `resumoFicha` da ficha já lida, sem ler de novo (como `sheet_numbers_read`).
+pub fn sheet_summary_read(t: &SheetTables, s: &Value) -> SheetSummary {
+    let sv = Some(s);
     let attrs = get(sv, "attrs");
     let skills = get(sv, "skills");
     let attr = |k: &str| num_or0(get(attrs, k));
     let skill = |k: &str| num_or0(get(skills, k));
     let c = num_or0(get(sv, "centelha"));
     let will = num_or0(get(sv, "willpower"));
-    let nums = sheet_numbers(t, &s);
-    let arm = stack_armor(&t.catalog.worn_armor(&s));
-    let combat = combat_summary(t, &s);
+    let nums = sheet_numbers_read(t, s);
+    let armors = t.catalog.worn_armor_read(s);
+    let arm = stack_armor(&armors);
+    let combat = combat_summary_with(t, s, nums.clone(), &armors);
     let passive = |id: &'static str, name: &'static str, a: f64, h: f64| {
         let (dice, bonus) = pool(a, h);
         Passive {
