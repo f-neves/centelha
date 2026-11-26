@@ -54,6 +54,32 @@ fn parse(args: &[String], root: &Path) -> Result<Options, String> {
     Ok(options)
 }
 
+/// Recusa uma pasta de saída que o build apagaria por engano: a raiz do
+/// repositório, um ancestral dela ou uma pasta com `Cargo.toml`. Roda antes
+/// de qualquer remoção.
+fn check_out(out: &Path, root: &Path) -> Result<(), String> {
+    if !out.exists() {
+        return Ok(());
+    }
+    let refuse = |why: &str| {
+        Err(format!(
+            "--out {}: não uso esta pasta ({why})",
+            out.display()
+        ))
+    };
+    if out.join("Cargo.toml").exists() {
+        return refuse("tem Cargo.toml");
+    }
+    let canonical = |p: &Path| {
+        p.canonicalize()
+            .map_err(|e| format!("{}: não resolvi o caminho ({e})", p.display()))
+    };
+    if canonical(root)?.starts_with(canonical(out)?) {
+        return refuse("é a raiz do repositório ou uma pasta acima dela");
+    }
+    Ok(())
+}
+
 fn tool(env: &str, name: &str) -> String {
     std::env::var(env).unwrap_or_else(|_| name.to_string())
 }
@@ -119,6 +145,7 @@ fn repo_root() -> PathBuf {
 pub fn run(args: &[String]) -> Result<(), String> {
     let root = repo_root();
     let options = parse(args, &root)?;
+    check_out(&options.out, &root)?;
     let (bindgen, opt) = check_tools(options.dev)?;
     let cargo = std::env::var("CARGO").unwrap_or_else(|_| "cargo".to_string());
 
@@ -212,4 +239,25 @@ pub fn run(args: &[String]) -> Result<(), String> {
         size(&pkg.join(format!("{PKG_NAME}.js"))),
     );
     Ok(())
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn refuses_the_repo_and_its_ancestors() {
+        let root = repo_root();
+        assert!(check_out(&root, &root).is_err());
+        assert!(check_out(&root.join("."), &root).is_err());
+        assert!(check_out(root.parent().unwrap(), &root).is_err());
+        assert!(check_out(&root.join("xtask"), &root).is_err());
+    }
+
+    #[test]
+    fn accepts_a_new_or_plain_folder() {
+        let root = repo_root();
+        assert!(check_out(&root.join("dist-que-nao-existe"), &root).is_ok());
+        assert!(check_out(&root.join("docs"), &root).is_ok());
+    }
 }
