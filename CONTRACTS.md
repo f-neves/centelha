@@ -60,7 +60,7 @@ xtask              (sozinho; não é dependência de ninguém)
 **Expõe (primeira versão):**
 
 - `js::to_uint32(f64) -> u32`: o `>>> 0` do JavaScript (conversão da semente).
-- `rng::Mulberry32`: o gerador aleatório. `Mulberry32::new(seed: u32)`, `next_u32(&mut self) -> u32`, `next_f64(&mut self) -> f64` (no intervalo [0, 1), igual ao TypeScript bit a bit). Nenhum outro gerador aleatório no motor.
+- `rng::Mulberry32`: o gerador aleatório. `Mulberry32::new(seed: u32)`, `next_u32(&mut self) -> u32`, `next_f64(&mut self) -> f64` (no intervalo [0, 1), igual ao TypeScript bit a bit), `draws(&self) -> u64` (quantos números já entregou, para os testes de paridade acharem a primeira divergência). Nenhum outro gerador aleatório no motor.
 - `js::round` (`Math.round`, inclusive o `-0`), `js::log10` e `js::pow` (pela `libm`, ADR 0002).
 - `creature`: os derivados da criatura (port de `criatura()` e `comForma()`).
   - Tudo em `creature::`. `Tables::new(rules, weapons, armors, shields)` e `Tables::rules()`: regras e catálogos já lidos; busca como o TypeScript (arma pela primeira peça com o id; armadura e escudo só com bloco de números, id repetido fica com o último).
@@ -77,8 +77,13 @@ xtask              (sozinho; não é dependência de ninguém)
 - `sheet`, acréscimos da fase 1: Quase-Acerto (`SheetTables::{weapon_near_miss, armor_near_miss, near_miss_between}`, `encounter_near_miss`, `missed_by`, `grazes`, `attack_outcome`; tipos `WeaponNearMiss`, `ArmorNearMiss`, `NearMissAttacker`, `NearMissTarget`, `Graze`, `NearMissOutcome`, `AttackOutcome`); textos (`signed_number`, `damage_text`, `weapon_stats`, `shield_stats`, `armor_stats`, iguais byte a byte ao TypeScript, com o sinal de menos U+2212); troca de ids de arma (`migrate_weapon_refs`, `WEAPON_RENAMES`); ficha já lida (`sheet_numbers_read`, `sheet_summary_read`, `Catalog::worn_armor_read`), para quem chama a cada tecla.
 - `character`: as contas do personagem fora da ficha.
   - XP: `xp_floor(&Rules, &str) -> Option<f64>`, `level_price(&Rules, &str, f64) -> Option<f64>`, `xp_cost(&Rules, &str, from: Option<f64>, to: f64) -> Option<f64>`; custos `feat_cost` (a chave do dado é `tecnica`, mas a conta é a da Proeza), `art_cost`, `effect_cost`, `specialty_cost(&Rules, f64, secondary: bool)`.
-  - `appearance_mod`, `DamageMode` (`Cut`, `Piercing`, `Impact`, com `id()` e `from_id()`; a variante `Piercing` vira `Pierce` na próxima tarefa do Backend, ver GLOSSARY.md), `natural_soak`, `mode_soak`, `pierce_gate_opens`, `death_limit`, `past_death_limit`, `size_from_label`, `size_modifier`, `art_lifting`, `maneuver_roll`.
+  - `appearance_mod`, `DamageMode` (`Cut`, `Pierce`, `Impact`, com `id()` e `from_id()`), `natural_soak`, `mode_soak`, `pierce_gate_opens`, `death_limit`, `past_death_limit`, `size_from_label`, `size_modifier`, `art_lifting`, `maneuver_roll`.
   - O total de XP gasto (o `recompute()` da tela) e as migrações da ficha salva ainda não estão aqui.
+- `dice`: os dados (port de `rolagem.ts`). `DiceExpr { dice, flat }` com `DiceExpr::parse(&str)` (as leituras `baseDadosDeExpr` e `flatDeExpr`, com as mesmas expressões regulares), `Roll { dice, flat, rolls, total }`, `adjusted_dice(base, extra) -> f64` (`dadosAjustados`), `d6(&mut Mulberry32) -> f64` e `roll_expr(&str, extra_dice, extra_flat, &mut Mulberry32) -> Roll` (`rolarExpr`; os dados saem um por vez, na ordem).
+- `strike`: o lance (port de `lance.ts`).
+  - Fontes de dados: o trait `DiceSource` (`roll(&mut self, &str, extra_dice, extra_flat) -> (f64, Vec<f64>)`), `RolledDice<'a>(&'a mut Mulberry32)` (a `fonteRolada`) e `FixedDice::new(attack, damage)` (a `fonteFixa`, dados que já caíram).
+  - Tipos: `StrikeAttacker`, `StrikeTarget`, `StrikeInput`, `StrikeOutcome`, `BlowDamage { gross, absorbed, net }`.
+  - Funções: `effective_defense(&StrikeTarget) -> Option<f64>` (`defesaEfetiva`), `resolve_strike(&StrikeInput, &mut impl DiceSource) -> StrikeOutcome` (`resolverGolpe`; o dano só é rolado no acerto), `blow_damage(Option<AttackOutcome>, rolled, graze_damage, soak, slips) -> BlowDamage` e `blow_slips(&Rules, gate_on, weapon_pierce: Option<f64>, pierce_level: Option<f64>) -> bool`. O dano do golpe (piso do raspão e portão da Perfuração) mora só em `blow_damage`: no acerto, o rolado (nunca abaixo de 0) menos a Absorção, com piso no dano do raspão; no raspão, o dano fixo, sem Absorção; no erro, nada; quando o golpe resvala, nada, nem o piso (a conta do Grid que desce a Vida).
 - `js::max`, `js::min`, `js::number_to_string`: `Math.max`, `Math.min` e `String(número)` do JavaScript.
 - Daqui em diante, por fase: derivados da ficha e das criaturas (fase 1), combate e tempo em Ticks, Artes, lógica do Grid (fase 3). Cada módulo entra no contrato quando a API proposta é aprovada neste arquivo.
 
@@ -93,6 +98,8 @@ xtask              (sozinho; não é dependência de ninguém)
 **Expõe:** a definir pelo Backend em ADR (fase 3), incluindo como fazer o tempo real no WebAssembly.
 
 **Consome:** a URL e a chave anon por configuração (nunca no código). Chave de serviço nunca.
+
+**Admin (R22):** admin é só quem a função `eh_admin` do banco aprova. Nenhum e-mail, id de usuário ou lista de admins no código, em constante, teste, comentário ou configuração do repositório. A conferência devolve sim ou não, e qualquer falha (rede, erro do banco, sessão vencida ou ausente) é não. Sem cache que mantenha alguém admin depois de a sessão cair: a resposta vale para a sessão em que foi pedida e some com ela. Toda ação de admin que grava é barrada no próprio banco (RLS ou função que confere `eh_admin`); o cliente não é proteção.
 
 ## centelha-web
 
@@ -110,6 +117,8 @@ Framework e versões: ADR 0003 (Leptos com ilhas; site estático gerado por nós
 - Fontes (R13): Cinzel e EB Garamond servidas pelo próprio site, em `crates/centelha-web/fonts/` com o `OFL.txt` de cada família; só `woff2`, subconjunto latino, só os pesos usados, `font-display: swap` e `unicode-range`; pré-carga só da fonte do texto corrido. Nada de serviço externo de fontes.
 
 **Consome:** `centelha-data` (leitura de `content/`, no gerador), `centelha-engine` (toda conta que uma página mostra), `leptos`, `leptos_meta`, `wasm-bindgen`, `web-sys`, `js-sys`, `serde`, e só na feature `ssr` o `pulldown-cmark` (Markdown) e o que a chave dos diagramas pedir (SHA-1). Versões no ADR 0003. Depois, `centelha-grid` e `centelha-supabase`.
+
+**Admin na tela (R22):** esconder um controle de admin é conveniência, não proteção. A tela pergunta ao `centelha-supabase` (que pergunta à `eh_admin`) e mostra o controle só com um sim; enquanto não há resposta, ou com falha, mostra como não admin. Nada de e-mail fixo nem lista de admins no site. Ação de admin que grava só existe se o banco a barra por conta própria; uma ação do site atual protegida só no navegador vira aviso ao Coordenador-RS antes do port.
 
 **Não faz:** conta de regra (pede ao `centelha-engine`), mudança no texto do livro (o que está em `content/` sai como está), corte ou recodificação de imagem.
 
