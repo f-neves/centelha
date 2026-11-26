@@ -53,18 +53,31 @@ pub fn log10(x: f64) -> f64 {
     libm::log10(x)
 }
 
-/// `a ** b` do JavaScript (`Math.pow`), arredondado para o `f64` mais perto.
+/// `a ** b` do JavaScript (`Math.pow`), com o arredondamento correto (o `f64`
+/// mais perto do valor exato, e o par no empate).
 ///
-/// O `pow` da `libm` (o do fdlibm) erra o último bit em alguns casos, e o
-/// `Math.pow` do V8 que gera as referências não erra (por exemplo, `20 ** 0.4`).
-/// Com base positiva e finita e expoente finito, a conta vai em precisão dupla
-/// dobrada (uns 106 bits: o logaritmo por um passo de Newton sobre o `log` da
-/// `libm`, a exponencial pela série de Taylor), e só o resultado final é
-/// arredondado. Os casos de borda (base zero, negativa ou infinita, expoente
-/// zero ou infinito, resultado fora da faixa normal) seguem pela `libm`.
+/// O `Math.pow` do V8 coincide com o arredondamento correto em cerca de 99,96%
+/// dos casos; no resto, difere por 1 ulp (por exemplo, `10 ** 23`). O `pow` da
+/// `libm` (o do fdlibm) difere do V8 em cerca de 10% dos casos (por exemplo,
+/// `20 ** 0.4`). O arredondamento correto é determinístico, igual no nativo e
+/// no WebAssembly, e erra menos contra o V8. Portar o `pow` do V8 (o plano B)
+/// fica para quando uma referência de paridade acusar uma das diferenças.
+///
+/// A conta:
+/// - expoente inteiro com base de mantissa pequena: a potência exata em
+///   inteiro de 128 bits, arredondada uma vez (é onde há empate, como em
+///   `5 ** 23`);
+/// - base positiva normal e expoente finito: precisão dupla dobrada (uns 106
+///   bits: o logaritmo por um passo de Newton sobre o `log` da `libm`, a
+///   exponencial pela série de Taylor), e só o resultado final é arredondado;
+/// - o resto (base zero, subnormal, negativa ou infinita, expoente zero ou
+///   infinito, resultado fora da faixa normal) pela `libm`.
 pub fn pow(a: f64, b: f64) -> f64 {
-    if !(a > 0.0 && a.is_finite() && b.is_finite()) || b == 0.0 || a == 1.0 {
+    if !(a >= f64::MIN_POSITIVE && a.is_finite() && b.is_finite()) || b == 0.0 || a == 1.0 {
         return libm::pow(a, b);
+    }
+    if let Some(x) = exact_integer_power(a, b) {
+        return x;
     }
     let t = dd::mul_f(dd::ln(a), b);
     if !(t.0 > -700.0 && t.0 < 709.0) {
@@ -72,6 +85,36 @@ pub fn pow(a: f64, b: f64) -> f64 {
     }
     let r = dd::exp(t);
     r.0 + r.1
+}
+
+/// `a ** b` exato, quando `b` é inteiro positivo e a potência da mantissa de
+/// `a` cabe em 128 bits: `a = m × 2^e` com `m` ímpar, `a^b = m^b × 2^(e b)`.
+/// O `u128 as f64` arredonda corretamente (par no empate), e a escala por
+/// potência de 2 é exata na faixa normal. `None` fora disso.
+fn exact_integer_power(a: f64, b: f64) -> Option<f64> {
+    if !((1.0..=128.0).contains(&b) && b.fract() == 0.0) {
+        return None;
+    }
+    let n = b as u32;
+    let bits = a.to_bits();
+    let mant = (bits & ((1u64 << 52) - 1)) | (1u64 << 52);
+    let exp = ((bits >> 52) & 0x7ff) as i32 - 1075;
+    let tz = mant.trailing_zeros();
+    let m = u128::from(mant >> tz);
+    let e = exp + tz as i32;
+    let width = 128 - m.leading_zeros();
+    if width * n > 128 {
+        return None;
+    }
+    let p = m.checked_pow(n)?;
+    let scale = e.checked_mul(n as i32)?;
+    let f = p as f64;
+    // a escala só é exata se o resultado ficar na faixa normal
+    let top = libm::ilogb(f) + scale;
+    if !(-1021..=1023).contains(&top) {
+        return None;
+    }
+    Some(libm::scalbn(f, scale))
 }
 
 /// A aritmética de precisão dupla dobrada (um número como a soma de dois
@@ -241,8 +284,8 @@ mod tests {
         assert_eq!(min(2.0, 3.0), 2.0);
     }
 
-    /// O `Math.pow` do Node, bit a bit (o `pow` da `libm` erra o último bit
-    /// no primeiro).
+    /// O `Math.pow` do Node, bit a bit, onde ele arredonda corretamente (o
+    /// `pow` da `libm` erra o último bit no primeiro).
     #[test]
     fn pow_like_javascript() {
         for (a, b, want) in [
@@ -253,6 +296,20 @@ mod tests {
             (1.5, 2.5, 2.7556759606310752),
             (7.0, 0.7, 3.9045287771227217),
             (2.0, 10.0, 1024.0),
+            // base subnormal: pela `libm`
+            (5e-324, 0.5, 2.2227587494850775e-162),
+            (1e-310, 0.5, 9.999999999999986e-156),
+            (0.5, 1074.0, 5e-324),
+            (2.0, -1074.0, 5e-324),
+            (1e-310, 2.0, 0.0),
+            // potência inteira com empate exato: o par
+            (5.0, 23.0, 11920928955078124.0),
+            (7.0, 19.0, 11398895185373144.0),
+            (3.0, 35.0, 50031545098999704.0),
+            (5.0, 22.0, 2384185791015625.0),
+            (2.5, 10.0, 9536.7431640625),
+            (1.5, 40.0, 11057332.320940012),
+            (9.0, 0.5, 3.0),
             (3.0, -2.0, 0.1111111111111111),
             (0.0, 0.5, 0.0),
             (-8.0, 2.0, 64.0),
@@ -260,6 +317,9 @@ mod tests {
             assert_eq!(pow(a, b).to_bits(), f64::to_bits(want), "{a} ** {b}");
         }
         assert!(pow(-8.0, 0.5).is_nan());
+        // onde o V8 erra o arredondamento, o Rust fica com o correto
+        // (`Math.pow(10, 23)` dá 1.0000000000000001e+23 no Node)
+        assert_eq!(pow(10.0, 23.0), 1e23);
     }
 
     #[test]
