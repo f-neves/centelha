@@ -140,3 +140,39 @@ fn no_link_to_the_source_site_is_left() {
         );
     }
 }
+
+/// As fontes saem em `assets/fonts/` byte a byte, cada `url()` da folha de
+/// estilo tem o seu arquivo, e só a fonte do texto corrido é pré-carregada,
+/// com o caminho base.
+#[test]
+fn fonts_are_copied_as_is_and_one_is_preloaded() {
+    let site = Site::load(&content_dir(), "/centelha/").unwrap();
+    let out = temp_out("fontes");
+    site.write(&out).unwrap();
+    let fonts_src = Path::new(env!("CARGO_MANIFEST_DIR")).join("fonts");
+
+    let css = std::fs::read_to_string(out.join("assets/site.css")).unwrap();
+    let urls: Vec<&str> = css
+        .split("url(fonts/")
+        .skip(1)
+        .map(|rest| &rest[..rest.find(')').unwrap()])
+        .collect();
+    assert_eq!(urls.len(), 4, "quatro arquivos de fonte na folha de estilo");
+    for name in &urls {
+        let copied = std::fs::read(out.join("assets/fonts").join(name)).unwrap();
+        let family = if name.starts_with("cinzel") {
+            "cinzel"
+        } else {
+            "eb-garamond"
+        };
+        let original = std::fs::read(fonts_src.join(family).join(name)).unwrap();
+        assert!(copied == original, "{name}: o arquivo mudou na cópia");
+    }
+
+    let home = std::fs::read_to_string(out.join("index.html")).unwrap();
+    assert_eq!(home.matches("as=\"font\"").count(), 1);
+    assert!(home.contains(
+        "<link rel=\"preload\" href=\"/centelha/assets/fonts/eb-garamond-latin-400-normal.woff2\" as=\"font\" type=\"font/woff2\" crossorigin>"
+    ));
+    let _ = std::fs::remove_dir_all(&out);
+}

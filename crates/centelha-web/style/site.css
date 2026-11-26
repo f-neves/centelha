@@ -1,6 +1,49 @@
 /* Centelha · folha de estilo do site (primeira versão: livro e temas).
    As paletas e a escala seguem as do site atual; o resto cresce com as páginas. */
 
+/* ---------- Fontes ----------
+   Servidas pelo próprio site (crates/centelha-web/fonts/, licença OFL ao lado
+   de cada família), só o subconjunto latino, de @fontsource 5.3.0.
+   - Cinzel: a variável, que custa menos que os três pesos estáticos usados
+     (600, 700 e 900). O intervalo declarado começa em 600 para o texto sem
+     peso (400) sair em 600, como no site atual, que só tem os pesos de 600
+     para cima.
+   - EB Garamond: os três estáticos usados (400, 400 itálico e 600), que somam
+     menos que a variável com itálico. O negrito (700) sai no 600, como no
+     site atual. */
+@font-face {
+  font-family: 'Cinzel';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 600 900;
+  src: url(fonts/cinzel-latin-wght-normal.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url(fonts/eb-garamond-latin-400-normal.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: italic;
+  font-display: swap;
+  font-weight: 400;
+  src: url(fonts/eb-garamond-latin-400-italic.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 600;
+  src: url(fonts/eb-garamond-latin-600-normal.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 /* ---------- Temas ---------- */
 :root, [data-theme='classico'] {
   --bg: #f3e9d2;

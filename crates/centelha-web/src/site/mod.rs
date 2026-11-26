@@ -34,6 +34,31 @@ pub const PKG_NAME: &str = "centelha_web";
 /// A folha de estilo do site, gravada em `dist/assets/site.css`.
 const STYLESHEET: &str = include_str!("../../style/site.css");
 
+/// As fontes, gravadas em `dist/assets/fonts/` byte a byte (a folha de estilo
+/// aponta para elas com caminho relativo, que já leva o caminho base).
+const FONTS: &[(&str, &[u8])] = &[
+    (
+        "cinzel-latin-wght-normal.woff2",
+        include_bytes!("../../fonts/cinzel/cinzel-latin-wght-normal.woff2"),
+    ),
+    (
+        "eb-garamond-latin-400-normal.woff2",
+        include_bytes!("../../fonts/eb-garamond/eb-garamond-latin-400-normal.woff2"),
+    ),
+    (
+        "eb-garamond-latin-400-italic.woff2",
+        include_bytes!("../../fonts/eb-garamond/eb-garamond-latin-400-italic.woff2"),
+    ),
+    (
+        "eb-garamond-latin-600-normal.woff2",
+        include_bytes!("../../fonts/eb-garamond/eb-garamond-latin-600-normal.woff2"),
+    ),
+];
+
+/// A fonte pré-carregada: a do texto corrido, que aparece na primeira tela.
+/// As outras carregam quando a página pede.
+const PRELOADED_FONT: &str = "eb-garamond-latin-400-normal.woff2";
+
 /// Aplica o tema gravado antes da primeira pintura (o padrão é o escuro,
 /// que já vem no `<html>` para valer sem JavaScript).
 const THEME_SCRIPT: &str = "(function(){try{var t=localStorage.getItem('tema')||'escuro';\
@@ -226,6 +251,7 @@ impl Site {
 <link rel=\"apple-touch-icon\" href=\"{b}icon-192-v2.png\">\n\
 <meta name=\"theme-color\" content=\"#0B3B47\">\n\
 <script>{THEME_SCRIPT}</script>\n\
+<link rel=\"preload\" href=\"{b}assets/fonts/{PRELOADED_FONT}\" as=\"font\" type=\"font/woff2\" crossorigin>\n\
 <link rel=\"stylesheet\" href=\"{b}assets/site.css\">\n\
 {scripts}\n\
 </head>\n\
@@ -236,7 +262,7 @@ impl Site {
         )
     }
 
-    /// Grava as páginas, a folha de estilo e os ícones em `out_dir`. Devolve
+    /// Grava as páginas, a folha de estilo, as fontes e os ícones em `out_dir`. Devolve
     /// as páginas gravadas.
     pub fn write(&self, out_dir: &Path) -> Result<Vec<Page>, SiteError> {
         let pages = self.pages();
@@ -251,6 +277,12 @@ impl Site {
         std::fs::create_dir_all(&assets).map_err(io_error(&assets))?;
         let css = assets.join("site.css");
         std::fs::write(&css, STYLESHEET).map_err(io_error(&css))?;
+        let fonts = assets.join("fonts");
+        std::fs::create_dir_all(&fonts).map_err(io_error(&fonts))?;
+        for (name, bytes) in FONTS {
+            let path = fonts.join(name);
+            std::fs::write(&path, bytes).map_err(io_error(&path))?;
+        }
         self.copy_public_files(out_dir)?;
         Ok(pages)
     }
