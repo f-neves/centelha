@@ -16,6 +16,7 @@
 //!
 //! Quem confere é o teste de paridade contra `tests/parity/sheets.json`.
 
+mod editor;
 mod equip;
 mod format;
 mod migrate;
@@ -29,6 +30,11 @@ use std::collections::HashMap;
 use centelha_data::{Ancestry, Rules};
 use serde_json::Value;
 
+pub use editor::{
+    EditorTables, FREE_SECONDARY, FRESH_BUDGET, Specialty, SpentXp, TechniqueStatus,
+    attribute_floor, change_ancestry, clamp_specialties, effects_in_reach, fresh_sheet,
+    specialty_cap, spent_xp, technique_status, trait_cap,
+};
 pub use equip::{Catalog, ItemKind, PieceKind, flatten_item, piece_kind};
 pub use format::{for_reading, for_saving, is_saved_form};
 pub use migrate::{WEAPON_RENAMES, migrate_weapon_refs};

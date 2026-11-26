@@ -21,6 +21,7 @@
 //   tests/parity/character.json   as contas pequenas do personagem, função a função (character.mjs)
 //   tests/parity/strikes.json     o lance e os dados (strikes.mjs)
 //   tests/parity/techniques.json  o modificador, a Técnica oferecida e o fecho dos pré-requisitos (techniques.mjs)
+//   tests/parity/sheet-editor.json  a ficha nova, o XP gasto, os tetos e os pré-requisitos da ficha interativa (sheet-editor.mjs)
 //
 // O JSON não guarda -0 (o JSON.stringify escreve 0). Para a referência não
 // esconder um -0, todo -0 das saídas é gravado como o texto "-0", e o teste do
@@ -36,6 +37,7 @@ import { buildSheetInputs, sheetOutputs } from './sheets.mjs';
 import { buildCharacterCases } from './character.mjs';
 import { buildStrikes, ROLLED_SEED, ROLLS_SEED } from './strikes.mjs';
 import { buildTechniqueCases, loadTreeClosure } from './techniques.mjs';
+import { buildSheetEditorCases, loadSheetEditor } from './sheet-editor.mjs';
 
 const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 const OUT = path.join(REPO, 'tests', 'parity');
@@ -270,6 +272,19 @@ for (const c of techniqueCases) {
   techniqueCounts[c.fn] = (techniqueCounts[c.fn] || 0) + 1;
 }
 
+// ----- a ficha interativa -----
+const editor = await loadSheetEditor({ build, SRC });
+const sheetEditor = buildSheetEditorCases({
+  editor, sheets, races: readData('racas.json'), attributes: readData('atributos.json'),
+  techniques: readData('tecnicas.json'), arts: readData('artes.json'), effects: readData('efeitos.json'),
+});
+editor.restore();
+const sheetEditorCounts = {};
+for (const c of sheetEditor.cases) {
+  scanNumbers(c.out, `${c.fn}(${JSON.stringify(c.args)})`);
+  sheetEditorCounts[c.fn] = (sheetEditorCounts[c.fn] || 0) + 1;
+}
+
 if (negativeZeros.length) console.log(`${negativeZeros.length} -0 nas saídas, gravados como "-0"`);
 if (badNumbers.length) {
   for (const b of badNumbers) console.error(`erro: número não finito em ${b}`);
@@ -349,6 +364,18 @@ write('techniques.json', {
   cases: techniqueCases,
 }, 'cases');
 console.log(`${techniqueCases.length} casos das Técnicas`);
+write('sheet-editor.json', {
+  source,
+  note: 'As contas de src/lib/ficha-engine.ts, rodadas pelas funções internas do montarFicha num DOM falso '
+    + '(tools/parity/sheet-editor.mjs). inputs: as fichas depois do normalize da fonte, por id, com o massaEscolhida; '
+    + 'cada caso cita o id. fresh, xpGasto (as parcelas do recompute), capFor, pisoAttr, trocaDeRaca (o ouvinte de '
+    + '#raca-sel), clampSpecs, tecnicas (as pílulas que o renderCaminhos marca) e efeitosAoAlcance.',
+  count: sheetEditor.cases.length,
+  counts: sheetEditorCounts,
+  inputs: sheetEditor.inputs,
+  cases: sheetEditor.cases,
+}, 'cases');
+console.log(`${sheetEditor.cases.length} casos da ficha interativa`);
 console.log(`${strikes.fixed.length} lances (fixos e rolados), ${strikes.rolls.length} rolagens`);
 console.log(`${characterCases.length} casos das contas pequenas em ${Object.keys(characterCounts).length} funções`);
 console.log(`${sheets.length} fichas: ${Object.entries(groups).map(([g, n]) => `${g} ${n}`).join(', ')}`);
