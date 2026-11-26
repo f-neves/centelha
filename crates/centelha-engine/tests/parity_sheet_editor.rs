@@ -5,14 +5,16 @@
 //!
 //! As fichas de entrada estão em `inputs`, por id (a ficha depois do
 //! `normalize` da fonte e o `massaEscolhida` que ele deixou). O teste para no
-//! primeiro caso diferente.
+//! primeiro caso diferente. `SHEET_EDITOR_REFERENCE` aponta para uma cópia da
+//! referência, no teste negativo.
 
 mod common;
 
-use centelha_data::Technique;
+use centelha_data::{Technique, Weapon};
 use centelha_engine::sheet::{
-    Catalog, EditorTables, SheetTables, attribute_floor, change_ancestry, clamp_specialties,
-    effects_in_reach, fresh_sheet, spent_xp, technique_status, trait_cap,
+    Catalog, EditorCatalogs, EditorTables, Movement, SheetTables, attribute_floor, change_ancestry,
+    clamp_specialties, effects_in_reach, extra_lines, fresh_sheet, mass_chosen, penalized_movement,
+    sheet_anatomy, sheet_flurry_cap, spent_xp, technique_status, throw_range, trait_cap,
 };
 use common::{compare, num, repo};
 use serde_json::{Map, Value, json};
@@ -34,14 +36,16 @@ fn tables() -> (EditorTables, Vec<Technique>) {
     let techniques = centelha_data::load_techniques(&content).unwrap();
     let t = EditorTables::new(
         sheet,
-        &raw("atributos.json"),
-        &raw("habilidades.json"),
-        &raw("habilidades-secundarias.json"),
-        &raw("virtudes.json"),
-        &raw("antecedentes.json"),
-        techniques.clone(),
-        centelha_data::load_arts(&content).unwrap(),
-        centelha_data::load_effects(&content).unwrap(),
+        EditorCatalogs {
+            attributes: &raw("atributos.json"),
+            skills: &raw("habilidades.json"),
+            secondary: &raw("habilidades-secundarias.json"),
+            virtues: &raw("virtudes.json"),
+            backgrounds: &raw("antecedentes.json"),
+            techniques: techniques.clone(),
+            arts: centelha_data::load_arts(&content).unwrap(),
+            effects: centelha_data::load_effects(&content).unwrap(),
+        },
     );
     (t, techniques)
 }
@@ -103,16 +107,21 @@ fn technique_pills(sheet: &Value, techniques: &[Technique]) -> Value {
     Value::Object(out)
 }
 
-fn run(
-    t: &EditorTables,
-    techniques: &[Technique],
-    inputs: &Value,
-    name: &str,
-    a: &[Value],
-) -> Value {
+/// O que as contas leem além do caso: as tabelas e os catálogos.
+struct Ctx {
+    t: EditorTables,
+    techniques: Vec<Technique>,
+    weapons: Vec<Weapon>,
+    extras: Value,
+}
+
+fn run(ctx: &Ctx, inputs: &Value, name: &str, a: &[Value]) -> Value {
+    let (t, techniques, weapons, extras) =
+        (&ctx.t, &ctx.techniques[..], &ctx.weapons[..], &ctx.extras);
     let input = |i: usize| &inputs[a[i].as_str().unwrap()];
     match name {
         "fresh" => fresh_sheet(t),
+        "massaEscolhida" => json!(mass_chosen(&input(0)["ficha"])),
         "xpGasto" => {
             let x = spent_xp(t, &input(0)["ficha"]);
             json!({
@@ -148,13 +157,75 @@ fn run(
                 .map(|e| json!({"s": e.name, "v": num(e.level)}))
                 .collect(),
         ),
-        "tecnicas" => technique_pills(&input(0)["ficha"], techniques),
+        "tecnicas" => {
+            // a ficha de uma Proeza grava só as pílulas daquela Proeza
+            let id = a[0].as_str().unwrap();
+            let only: Vec<Technique> = match id.strip_prefix("proeza-") {
+                Some(p) => techniques.iter().filter(|t| t.path == p).cloned().collect(),
+                None => techniques.to_vec(),
+            };
+            let names = technique_pills(&input(0)["ficha"], techniques);
+            let wanted: std::collections::HashSet<&str> =
+                only.iter().map(|t| t.id.as_str()).collect();
+            Value::Object(
+                names
+                    .as_object()
+                    .unwrap()
+                    .iter()
+                    .filter(|(k, _)| wanted.contains(k.as_str()))
+                    .map(|(k, v)| (k.clone(), v.clone()))
+                    .collect(),
+            )
+        }
         "efeitosAoAlcance" => Value::Array(
             effects_in_reach(t, &input(0)["ficha"])
                 .into_iter()
                 .map(|e| json!(e.id))
                 .collect(),
         ),
+        "deslocamento" => {
+            let d = &a[1];
+            let m = Movement {
+                battle: f(&d["normal"]),
+                dash: f(&d["arranque"]),
+                run: f(&d["corrida"]),
+                swim: f(&d["natacao"]),
+                vertical_jump: f(&d["saltoVertical"]),
+                standing_jump: f(&d["saltoHorizontalParado"]),
+                running_jump: f(&d["saltoHorizontalCorrendo"]),
+            };
+            let p = penalized_movement(&m, f(&a[0]));
+            json!({
+                "batalha": num(p.battle), "arranque": num(p.dash), "corrida": num(p.run), "natacao": num(p.swim),
+                "saltoVertical": num(p.vertical_jump), "saltoHorizontalParado": num(p.standing_jump),
+                "saltoHorizontalCorrendo": num(p.running_jump),
+            })
+        }
+        "anatomiaDaFicha" => {
+            let x = sheet_anatomy(t.sheet_tables().rules(), weapons, &a[0]);
+            let mut m = Map::new();
+            m.insert("preparo".into(), num(x.windup));
+            m.insert("golpes".into(), num(x.blows));
+            m.insert("recuperacao".into(), num(x.recovery));
+            m.insert("ciclo".into(), num(x.cycle));
+            m.insert("offs".into(), Value::Array(x.offsets.iter().map(|v| num(*v)).collect()));
+            m.insert("penDados".into(), Value::Array(x.dice_penalties.iter().map(|v| num(*v)).collect()));
+            if let Some(w) = x.warning {
+                m.insert("aviso".into(), json!(w));
+            }
+            Value::Object(m)
+        }
+        "linhasComExtra" => Value::Array(
+            extra_lines(t.sheet_tables().rules(), extras, &a[0])
+                .into_iter()
+                .map(|e| {
+                    json!({"id": e.id, "nome": e.name, "preparo": num(e.windup), "golpes": num(e.blows),
+                           "recuperacao": num(e.recovery), "ciclo": num(e.cycle)})
+                })
+                .collect(),
+        ),
+        "tetoDaRajada" => num(sheet_flurry_cap(t.sheet_tables().rules(), weapons, &a[0])),
+        "alcanceArremesso" => num(throw_range(t.sheet_tables().rules(), f(&a[0]), f(&a[1]), f(&a[2]))),
         other => panic!("função sem par no Rust: {other}"),
     }
 }
@@ -162,19 +233,27 @@ fn run(
 #[test]
 fn sheet_editor_matches_typescript() {
     let (t, techniques) = tables();
-    let r = common::read_reference("sheet-editor.json");
+    let content = repo().join("content");
+    let ctx = Ctx {
+        t,
+        techniques,
+        weapons: centelha_data::load_weapons(&content).unwrap(),
+        extras: serde_json::from_str(
+            &std::fs::read_to_string(content.join("data/armas-extras.json")).unwrap(),
+        )
+        .unwrap(),
+    };
+    // `SHEET_EDITOR_REFERENCE` troca a referência por uma cópia (o teste negativo)
+    let r: Value = match std::env::var("SHEET_EDITOR_REFERENCE") {
+        Ok(p) => serde_json::from_str(&std::fs::read_to_string(p).unwrap()).unwrap(),
+        Err(_) => common::read_reference("sheet-editor.json"),
+    };
     let cases = r["cases"].as_array().unwrap();
     assert_eq!(cases.len() as u64, r["count"].as_u64().unwrap());
     let mut fields = 0;
     for (i, c) in cases.iter().enumerate() {
         let name = c["fn"].as_str().unwrap();
-        let got = run(
-            &t,
-            &techniques,
-            &r["inputs"],
-            name,
-            c["args"].as_array().unwrap(),
-        );
+        let got = run(&ctx, &r["inputs"], name, c["args"].as_array().unwrap());
         let mut diffs = Vec::new();
         fields += compare(
             &format!("{i}:{name}{}", c["args"]),

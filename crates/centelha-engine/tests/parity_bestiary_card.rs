@@ -157,6 +157,52 @@ fn card_time_functions_match_typescript() {
     );
 }
 
+/// As chaves de cada objeto, na ordem, pelo caminho.
+fn key_order(v: &Value, path: &str, out: &mut Vec<String>) {
+    match v {
+        Value::Object(m) => {
+            out.push(format!(
+                "{path}: {}",
+                m.keys().cloned().collect::<Vec<_>>().join(",")
+            ));
+            for (k, x) in m {
+                key_order(x, &format!("{path}.{k}"), out);
+            }
+        }
+        Value::Array(a) => {
+            for (i, x) in a.iter().enumerate() {
+                key_order(x, &format!("{path}[{i}]"), out);
+            }
+        }
+        _ => {}
+    }
+}
+
+/// O card sai com as chaves na ordem do `monsters.json`, objeto a objeto.
+#[test]
+fn cards_keep_the_key_order() {
+    let t = tables();
+    let monsters = raw(&repo().join("content"), "monsters.json");
+    let by_id: HashMap<&str, &Value> = monsters
+        .as_array()
+        .unwrap()
+        .iter()
+        .map(|m| (m["id"].as_str().unwrap(), m))
+        .collect();
+    let mut objects = 0;
+    for (id, src) in sources() {
+        let (mut got, mut want) = (Vec::new(), Vec::new());
+        key_order(&bestiary_card(&t, &src).unwrap(), &id, &mut got);
+        key_order(by_id[id.as_str()], &id, &mut want);
+        assert_eq!(got.len(), want.len(), "{id}");
+        for (g, w) in got.iter().zip(&want) {
+            assert_eq!(g, w);
+        }
+        objects += got.len();
+    }
+    assert!(objects > 10_000, "{objects}");
+}
+
 #[test]
 fn the_comparison_catches_differences() {
     common::check_comparator();
