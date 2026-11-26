@@ -121,7 +121,6 @@ const quase = await loadTs('src/lib/quase-acerto.ts');
 const equip = await loadTs('src/lib/equip.ts');
 const migra = await loadTs('src/lib/ficha-migra.ts');
 const data = await loadTs('src/lib/data.ts');
-const modulos = await loadTs('src/lib/modulos.ts');
 const combat = await loadBundle('combate', "export * from './acaso'; export { rolarExpr } from './rolagem'; "
   + "export { resolverGolpe, fonteFixa, fonteRolada, defesaEfetiva } from './lance';");
 
@@ -262,7 +261,7 @@ strikes.rolls.forEach((c, i) => scanNumbers(c, `rolagem ${i}`));
 
 // ----- as Técnicas -----
 const techniqueCases = buildTechniqueCases({
-  data, modulos, motor, regras: readData('regras.json'), techniques: readData('tecnicas.json'),
+  data, motor, regras: readData('regras.json'), techniques: readData('tecnicas.json'),
   closureFor: await loadTreeClosure({ transform, file: path.join(SRC, 'src', 'components', 'ArvoreTecnicas.astro') }),
 });
 const techniqueCounts = {};
@@ -342,7 +341,7 @@ write('strikes.json', {
 }, ['fixed', 'rolled', 'rolls']);
 write('techniques.json', {
   source,
-  note: 'Cada caso: fn, args e out. modProeza (src/lib/data.ts), tecnicaDisponivel (src/lib/modulos.ts) e closure '
+  note: 'Cada caso: fn, args e out. modProeza (src/lib/data.ts) e closure '
     + '(o fecho dos pré-requisitos de src/components/ArvoreTecnicas.astro, recortado do arquivo; out = cadeia e XP). '
     + 'Montado por tools/parity/techniques.mjs.',
   count: techniqueCases.length,

@@ -43,8 +43,7 @@ fn reads_the_four_catalogs() {
     for a in &arts {
         assert_eq!(a.levels.len(), 6, "{}", a.id);
     }
-    // os módulos fora do jogo: as nove Técnicas do Fôlego
-    let out: Vec<_> = techniques.iter().filter(|t| t.module.is_some()).collect();
-    assert_eq!(out.len(), 9);
-    assert!(out.iter().all(|t| t.module.as_deref() == Some("folego")));
+    // toda Proeza tem Técnica
+    let used: HashSet<&str> = techniques.iter().map(|t| t.path.as_str()).collect();
+    assert_eq!(used.len(), paths.len());
 }

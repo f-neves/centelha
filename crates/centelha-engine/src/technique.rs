@@ -1,6 +1,5 @@
 //! As contas das Técnicas que o catálogo e a árvore usam: o modificador pela
-//! trilha de melhora (`modProeza`, `src/lib/data.ts`), a Técnica que o site
-//! oferece (`tecnicaDisponivel`, `src/lib/modulos.ts`) e o fecho dos
+//! trilha de melhora (`modProeza`, `src/lib/data.ts`) e o fecho dos
 //! pré-requisitos (`closure`, `src/components/ArvoreTecnicas.astro`).
 
 use std::collections::{HashMap, HashSet};
@@ -46,44 +45,47 @@ pub fn technique_modifier(rules: &Rules, effect: &str, level: f64) -> Option<Tec
     })
 }
 
-/// `tecnicaDisponivel`: o site oferece a Técnica? As do módulo Fôlego saíram
-/// do jogo.
-pub fn technique_available(t: &Technique) -> bool {
-    t.module.as_deref() != Some("folego")
+fn by_id(techniques: &[Technique]) -> HashMap<&str, &Technique> {
+    techniques.iter().map(|t| (t.id.as_str(), t)).collect()
 }
 
-/// O fecho dos pré-requisitos de uma Técnica (`closure`): ela mesma e tudo o
-/// que ela pede, direta ou indiretamente, entre as Técnicas dadas (a árvore
-/// passa só as disponíveis). Pré-requisito fora da lista não entra.
+/// Os pré-requisitos de uma Técnica, diretos e indiretos, entre as Técnicas
+/// dadas (a árvore passa todas). Pré-requisito fora da lista não entra.
 ///
-/// A ordem é a da busca da fonte (pilha: o último pré-requisito empilhado
-/// sai primeiro), a ordem em que a árvore lista a cadeia.
-pub fn prerequisite_closure<'a>(techniques: &'a [Technique], id: &'a str) -> Vec<&'a str> {
-    let by_id: HashMap<&str, &Technique> = techniques.iter().map(|t| (t.id.as_str(), t)).collect();
-    let mut seen = HashSet::new();
+/// O fecho da fonte (`closure`) é a própria Técnica seguida desta lista, que
+/// sai na ordem da busca da fonte (pilha: o último pré-requisito empilhado sai
+/// primeiro), a ordem em que a árvore lista a cadeia.
+pub fn prerequisite_closure<'a>(techniques: &'a [Technique], id: &str) -> Vec<&'a str> {
+    let by_id = by_id(techniques);
+    let mut seen: HashSet<&str> = HashSet::from([id]);
     let mut order = Vec::new();
-    let mut stack = vec![id];
+    let mut stack: Vec<&'a str> = Vec::new();
+    let push = |stack: &mut Vec<&'a str>, of: &str| {
+        if let Some(t) = by_id.get(of) {
+            for p in &t.prereq {
+                if let Some(q) = by_id.get(p.as_str()) {
+                    stack.push(q.id.as_str());
+                }
+            }
+        }
+    };
+    push(&mut stack, id);
     while let Some(x) = stack.pop() {
         if !seen.insert(x) {
             continue;
         }
         order.push(x);
-        if let Some(t) = by_id.get(x) {
-            for p in &t.prereq {
-                if by_id.contains_key(p.as_str()) {
-                    stack.push(p);
-                }
-            }
-        }
+        push(&mut stack, x);
     }
     order
 }
 
-/// O XP da cadeia: o custo de cada Técnica do fecho pelo nível (uma Técnica
-/// fora da lista custa o nível 0).
-pub fn chain_xp(rules: &Rules, techniques: &[Technique], chain: &[&str]) -> f64 {
-    let by_id: HashMap<&str, &Technique> = techniques.iter().map(|t| (t.id.as_str(), t)).collect();
-    chain.iter().fold(0.0, |s, id| {
-        s + feat_cost(rules, by_id.get(id).map_or(0.0, |t| t.level))
-    })
+/// O XP da cadeia de uma Técnica: o custo dela e o de cada pré-requisito do
+/// fecho, pelo nível (uma Técnica fora da lista custa o nível 0).
+pub fn chain_xp(rules: &Rules, techniques: &[Technique], id: &str) -> f64 {
+    let by_id = by_id(techniques);
+    let cost = |x: &str| feat_cost(rules, by_id.get(x).map_or(0.0, |t| t.level));
+    std::iter::once(id)
+        .chain(prerequisite_closure(techniques, id))
+        .fold(0.0, |s, x| s + cost(x))
 }

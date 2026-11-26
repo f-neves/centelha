@@ -46,7 +46,7 @@ pub use glossary::load_glossary;
 pub use glossary::{GlossaryEntry, parse_glossary};
 #[cfg(not(target_arch = "wasm32"))]
 pub use paths::load_paths;
-pub use paths::{Path, parse_paths};
+pub use paths::parse_paths;
 #[cfg(not(target_arch = "wasm32"))]
 pub use rules::load_rules;
 pub use rules::{Rules, parse_rules};

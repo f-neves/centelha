@@ -72,9 +72,6 @@ pub struct Technique {
     /// `efeito`: a trilha de melhora (`estado`, `bonus`, `dano`...).
     #[serde(rename = "efeito")]
     pub effect: String,
-    /// `modulo`: o módulo do sistema; `folego` saiu do jogo.
-    #[serde(rename = "modulo", default)]
-    pub module: Option<String>,
 }
 
 /// Lê `tecnicas.json` a partir do texto. Id vazio ou repetido dá `Invalid`.
@@ -105,7 +102,7 @@ mod tests {
         assert_eq!(t.kind, TechniqueKind::Active);
         assert_eq!(t.cost.energy, Some(2.0));
         assert_eq!(t.cost.willpower, None);
-        assert_eq!((t.level, t.module.as_deref()), (1.0, None));
+        assert_eq!(t.level, 1.0);
     }
 
     #[test]
