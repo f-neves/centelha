@@ -42,6 +42,27 @@ pub struct Rules {
     /// `escalasProeza`: quanto cada Técnica melhora pelo nível.
     #[serde(rename = "escalasProeza", default)]
     pub feat_scales: Option<FeatScales>,
+    /// `escalaCentelha`: o que cada nível de Centelha quer dizer, de 0 a 12.
+    #[serde(rename = "escalaCentelha", default)]
+    pub spark_scale: Vec<ScaleStep>,
+    /// `escalaVontade`: os degraus da Força de Vontade.
+    #[serde(rename = "escalaVontade", default)]
+    pub willpower_scale: Vec<ScaleStep>,
+}
+
+/// Um degrau de uma escala de traço (`escalaCentelha`, `escalaVontade`), na
+/// ordem do arquivo.
+#[derive(Debug, Clone, PartialEq, Deserialize)]
+pub struct ScaleStep {
+    #[serde(rename = "nivel")]
+    pub level: f64,
+    #[serde(rename = "rotulo")]
+    pub label: String,
+    #[serde(rename = "texto")]
+    pub text: String,
+    /// `provisorio`: o degrau ainda sem nome definitivo.
+    #[serde(rename = "provisorio", default)]
+    pub provisional: bool,
 }
 
 /// `escalasProeza`: as trilhas de melhora das Técnicas.
