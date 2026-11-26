@@ -137,6 +137,9 @@ jobs:
       - name: Prova de hidratação (release)
         run: node tools/site/hydration.mjs dist
 
+      - name: Prova das ilhas sem página portada (página de teste fora do dist)
+        run: node tools/site/islands-test.mjs dist
+
       - name: Montar o site (WebAssembly de depuração)
         run: cargo xtask site --dev
 

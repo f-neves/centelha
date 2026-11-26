@@ -49,10 +49,6 @@ pub struct PageInfo {
 /// termos que apareceram.
 pub const REF_DATA_SLOT: &str = "__ref_data__";
 
-/// O conteúdo provisório do `<script>` do índice dos termos (o glossário
-/// inteiro, para o painel dos fixados), trocado pelo gerador.
-pub const REF_INDEX_SLOT: &str = "__ref_index__";
-
 /// A casca de toda página, como `src/layouts/Base.astro` do site atual: o
 /// pulo para o conteúdo, a barra de cima do celular, a barra lateral (que vira
 /// gaveta no celular), a trilha de navegação, a coluna do texto e o "Nesta
@@ -195,7 +191,6 @@ pub fn Layout(base: String, page: PageInfo, children: Children) -> impl IntoView
         </div>
         {toc}
         {refs}
-        <script type="application/json" id="ref-index" inner_html=REF_INDEX_SLOT></script>
         <Bookmarks/>
     }
 }

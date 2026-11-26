@@ -130,13 +130,19 @@ impl<'a> Refs<'a> {
     }
 
     /// Marca o HTML de um capítulo.
-    pub fn mark(&self, html: &str) -> Marked {
+    /// `sortable_tables` diz se a página tem a ilha que ordena as tabelas (os
+    /// capítulos); sem ela (Equipamentos), os cabeçalhos são marcados.
+    pub fn mark(&self, html: &str, sortable_tables: bool) -> Marked {
         let mut out = Marked {
             html: String::with_capacity(html.len() + html.len() / 8),
             marks: Vec::new(),
         };
         let mut stack: Vec<Element> = Vec::new();
-        let sortable = sortable_headers(html);
+        let sortable = if sortable_tables {
+            sortable_headers(html)
+        } else {
+            HashSet::new()
+        };
         let mut used: HashMap<usize, HashSet<usize>> = HashMap::new();
         let mut next_uid = 1usize;
         let mut rest = html;
@@ -438,7 +444,7 @@ mod tests {
 
     fn marked(html: &str) -> Marked {
         let g = glossary();
-        Refs::new("/b/", &g).mark(html)
+        Refs::new("/b/", &g).mark(html, true)
     }
 
     #[test]

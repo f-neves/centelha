@@ -8,10 +8,11 @@
 //! partir de quatro, "comparar" lado a lado a partir de dois (onde a página
 //! tem o diálogo do termo), "limpar", o ✕ de cada um e o realce dos termos
 //! fixados no texto. A ilha não tem propriedades: os dados dos termos vêm do
-//! `<script type="application/json" id="ref-index">` da página (o glossário
-//! inteiro, nome e resumo). Um item fixado no site atual que ainda não existe
-//! aqui (uma Técnica, uma Arte) fica fora do painel até a fase 2, sem sair da
-//! lista gravada.
+//! `ref-index.json` (o mesmo endereço e o mesmo formato do site atual), baixado
+//! só quando há fixados, ao abrir a página ou ao fixar o primeiro. O endereço
+//! está no `<meta name="centelha-ref-index">` da página. Um item fixado no
+//! site atual que ainda não existe aqui (uma Técnica, uma Arte) fica fora do
+//! painel até entrar no índice, sem sair da lista gravada.
 
 use leptos::prelude::*;
 
@@ -26,6 +27,7 @@ pub fn Bookmarks() -> impl IntoView {
 
 #[cfg(feature = "hydrate")]
 mod browser {
+    use std::cell::{Cell, RefCell};
     use std::rc::Rc;
 
     use wasm_bindgen::JsCast;
@@ -49,29 +51,71 @@ mod browser {
             .unwrap_or_default()
     }
 
-    fn index(document: &Document) -> Vec<Item> {
-        let Some(data) = document.get_element_by_id("ref-index") else {
-            return Vec::new();
-        };
-        let Ok(value) = js_sys::JSON::parse(&data.text_content().unwrap_or_default()) else {
-            return Vec::new();
-        };
+    fn parse_index(value: wasm_bindgen::JsValue) -> Vec<Item> {
         let Ok(list) = value.dyn_into::<js_sys::Array>() else {
             return Vec::new();
         };
         list.iter()
             .map(|v| {
-                let kind = field(&v, "kind");
+                let kind = field(&v, "tipo");
                 let id = field(&v, "id");
                 Item {
                     key: format!("{kind}:{id}"),
                     kind,
-                    name: field(&v, "name"),
-                    summary: field(&v, "summary"),
+                    name: field(&v, "nome"),
+                    summary: field(&v, "resumo"),
                     url: field(&v, "url"),
                 }
             })
             .collect()
+    }
+
+    /// O índice baixado (uma vez por página) e se o download já começou.
+    struct Index {
+        items: RefCell<Option<Rc<Vec<Item>>>>,
+        started: Cell<bool>,
+    }
+
+    /// Desenha o painel; sem o índice, baixa antes (só se há fixados).
+    fn show(document: &Document, index: &Rc<Index>) {
+        if let Some(items) = index.items.borrow().as_ref() {
+            render(document, items);
+            return;
+        }
+        if pins().is_empty() || index.started.replace(true) {
+            return;
+        }
+        let Some(url) = document
+            .query_selector("meta[name='centelha-ref-index']")
+            .ok()
+            .flatten()
+            .and_then(|m| m.get_attribute("content"))
+        else {
+            return;
+        };
+        let Some(window) = web_sys::window() else {
+            return;
+        };
+        let (doc, idx) = (document.clone(), index.clone());
+        let on_json = Closure::<dyn FnMut(wasm_bindgen::JsValue)>::new(
+            move |value: wasm_bindgen::JsValue| {
+                let items = Rc::new(parse_index(value));
+                *idx.items.borrow_mut() = Some(items.clone());
+                render(&doc, &items);
+            },
+        );
+        let on_response = Closure::<dyn FnMut(wasm_bindgen::JsValue)>::new(
+            move |response: wasm_bindgen::JsValue| {
+                if let Ok(json) = response
+                    .dyn_into::<web_sys::Response>()
+                    .and_then(|r| r.json())
+                {
+                    let _ = json.then(&on_json);
+                }
+            },
+        );
+        let _ = window.fetch_with_str(&url).then(&on_response);
+        on_response.forget();
     }
 
     fn pins() -> Vec<String> {
@@ -120,11 +164,13 @@ mod browser {
         let Some(document) = web_sys::window().and_then(|w| w.document()) else {
             return;
         };
-        let items = Rc::new(index(&document));
-        render(&document, &items);
+        let index = Rc::new(Index {
+            items: RefCell::new(None),
+            started: Cell::new(false),
+        });
+        show(&document, &index);
         let doc = document.clone();
-        let it = items.clone();
-        let changed = Closure::<dyn FnMut()>::new(move || render(&doc, &it));
+        let changed = Closure::<dyn FnMut()>::new(move || show(&doc, &index));
         if let Some(w) = web_sys::window() {
             let _ = w
                 .add_event_listener_with_callback(super::CHANGED, changed.as_ref().unchecked_ref());

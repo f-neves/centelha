@@ -251,7 +251,7 @@ impl Site {
             title: "Equipamentos".to_string(),
             wide: true,
             toc: Vec::new(),
-            refs: false,
+            refs: true,
         };
         pages.push(Page {
             path: "equipamentos/index.html".to_string(),
@@ -337,7 +337,6 @@ impl Site {
         if has_refs {
             body = self.mark_refs(&body);
         }
-        body = body.replacen(pages::REF_INDEX_SLOT, &self.ref_index_json(), 1);
         let description =
             description.unwrap_or("Centelha: sistema de RPG de mesa em d6, do mortal ao semideus.");
         let b = &self.base;
@@ -359,6 +358,7 @@ impl Site {
 <script>{HEAD_SCRIPT}</script>\n\
 <link rel=\"preload\" href=\"{b}assets/fonts/{PRELOADED_FONT}\" as=\"font\" type=\"font/woff2\" crossorigin>\n\
 <link rel=\"stylesheet\" href=\"{b}assets/site.css\">\n\
+<meta name=\"centelha-ref-index\" content=\"{b}ref-index.json\">\n\
 {scripts}\n\
 </head>\n\
 <body>\n{body}\n</body>\n\
@@ -389,6 +389,8 @@ impl Site {
             let path = fonts.join(name);
             std::fs::write(&path, bytes).map_err(io_error(&path))?;
         }
+        let index = out_dir.join("ref-index.json");
+        std::fs::write(&index, self.ref_index_json()).map_err(io_error(&index))?;
         self.copy_public_files(out_dir)?;
         Ok(pages)
     }
@@ -406,7 +408,8 @@ impl Site {
         let (Some(start), Some(end)) = (body.find("<main"), body.find("</main>")) else {
             return body.to_string();
         };
-        let marked = self.refs().mark(&body[start..end]);
+        let sortable = body.contains("data-component=\"TableSorter_");
+        let marked = self.refs().mark(&body[start..end], sortable);
         let json = self.refs_json(&marked).unwrap_or_else(|| "[]".to_string());
         let mut out = String::with_capacity(body.len() + marked.html.len());
         out.push_str(&body[..start]);
@@ -415,25 +418,33 @@ impl Site {
         out
     }
 
-    /// O índice dos termos para o painel dos fixados (`crate::bookmarks`): o
-    /// glossário inteiro, com nome, resumo e endereço.
-    fn ref_index_json(&self) -> String {
+    /// O `ref-index.json`, no mesmo endereço e no mesmo formato do site atual
+    /// (`src/pages/ref-index.json.ts`): por enquanto só o glossário. O painel
+    /// dos fixados (`crate::bookmarks`) o baixa sob demanda.
+    pub fn ref_index_json(&self) -> String {
         let items: Vec<leptos::serde_json::Value> = self
             .glossary
             .iter()
             .map(|g| {
+                let mut terms = vec![g.term.clone()];
+                terms.extend(g.aliases.iter().cloned());
+                let mut detail = leptos::serde_json::json!({ "descricao": g.definition });
+                if let Some(scale) = self.scales.get(&g.id) {
+                    detail["niveis"] = scale.clone();
+                }
                 leptos::serde_json::json!({
                     "id": g.id,
-                    "kind": "termo",
-                    "name": g.term,
-                    "summary": g.definition,
+                    "tipo": "termo",
+                    "nome": g.term,
                     "url": nav::url(&self.base, &format!("glossario#{}", g.id)),
+                    "resumo": g.definition,
+                    "termos": terms,
+                    "autolink": true,
+                    "detalhe": detail,
                 })
             })
             .collect();
-        leptos::serde_json::to_string(&items)
-            .unwrap_or_else(|_| "[]".to_string())
-            .replace("</", "<\\/")
+        leptos::serde_json::to_string(&items).unwrap_or_else(|_| "[]".to_string())
     }
 
     /// Uma página de teste das ilhas que ainda não têm página portada (o
@@ -529,17 +540,12 @@ impl Site {
     }
 }
 
-/// As escalas que o cartão do glossário mostra em dois termos (Centelha e
-/// Força de Vontade), como no índice de referências do site atual
-/// (`src/pages/ref-index.json.ts`): `escalaCentelha` e `escalaVontade` de
-/// `regras.json`.
-///
-/// Provisório, como a contagem da página inicial: o `centelha-data` ainda não
-/// expõe essas escalas.
 /// Os nomes das Habilidades por id (a coluna Habilidade de Equipamentos).
 ///
 /// Provisório, como as escalas e os contadores: o `centelha-data` ainda não
 /// tem o módulo das Habilidades. Lê só `id` e `nome` de `habilidades.json`.
+/// Sai do provisório com o leitor de `habilidades.json` do `centelha-data`
+/// (tarefa 014a do Backend).
 fn skill_names(content_dir: &Path) -> Result<Vec<(String, String)>, SiteError> {
     let path = content_dir.join("data").join("habilidades.json");
     let text = std::fs::read_to_string(&path).map_err(io_error(&path))?;
@@ -562,6 +568,13 @@ fn skill_names(content_dir: &Path) -> Result<Vec<(String, String)>, SiteError> {
         .collect())
 }
 
+/// As escalas que o cartão do glossário mostra em dois termos (Centelha e
+/// Força de Vontade), como no índice de referências do site atual
+/// (`src/pages/ref-index.json.ts`): `escalaCentelha` e `escalaVontade` de
+/// `regras.json`.
+///
+/// Provisório, como a contagem da página inicial: o `centelha-data` ainda não
+/// expõe essas escalas.
 fn glossary_scales(
     content_dir: &Path,
 ) -> Result<HashMap<String, leptos::serde_json::Value>, SiteError> {

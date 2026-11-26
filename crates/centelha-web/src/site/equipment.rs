@@ -214,6 +214,14 @@ fn weapon_row(w: &Value, skills: &dyn Fn(&str) -> String, ranged: bool) -> Weapo
 }
 
 /// Lê o catálogo e monta as quatro tabelas, na ordem do site atual.
+///
+/// Provisório (ADR 0006): o texto de `armas.json`, `armaduras.json` e
+/// `escudos.json` é lido direto para o `Catalog::from_json` do motor, porque
+/// os tipos do `centelha-data` não têm o que a página mostra (a Efetiva, os
+/// modos de ataque, a Defesa da arma, as notas e o `soCriatura`). Sai do
+/// provisório quando o `centelha-data` tiver esses campos, ou quando o motor
+/// montar o `Catalog` a partir dos tipos do `centelha-data`; a lista e a ordem
+/// já vêm dos leitores dele.
 pub fn load(content_dir: &Path, skill_names: &[(String, String)]) -> Result<Equipment, SiteError> {
     let read = |name: &str| -> Result<String, SiteError> {
         let path = content_dir.join("data").join(name);
@@ -344,4 +352,104 @@ pub fn load(content_dir: &Path, skill_names: &[(String, String)]) -> Result<Equi
         shields,
         tags: tags.into_iter().collect(),
     })
+}
+
+#[cfg(test)]
+mod tests {
+    use std::path::Path;
+
+    use super::*;
+
+    fn equipment() -> Equipment {
+        let dir = Path::new(env!("CARGO_MANIFEST_DIR")).join("../../content");
+        let skills = super::super::skill_names(&dir).expect("habilidades.json");
+        load(&dir, &skills).expect("catálogo")
+    }
+
+    /// As quatro tabelas com o número de linhas e algumas células do site
+    /// atual (o build da bancada), para a paridade não ficar só fora do
+    /// repositório.
+    #[test]
+    fn four_tables_match_the_current_site() {
+        let e = equipment();
+        assert_eq!(
+            (
+                e.melee.len(),
+                e.ranged.len(),
+                e.armors.len(),
+                e.shields.len()
+            ),
+            (26, 21, 14, 7)
+        );
+
+        let first = &e.melee[0];
+        assert_eq!(
+            [
+                &first.name,
+                &first.class,
+                &first.damage,
+                &first.accuracy,
+                &first.defense_or_range
+            ],
+            ["Adaga", "Leve", "1d6\u{2212}2", "+2", "+1"]
+        );
+        assert_eq!(
+            [&first.hands, &first.speed, &first.skill],
+            ["1", "5", "Armas"]
+        );
+        assert_eq!(first.modes, "Cortante \u{b7} \u{2605}Perfurante (N0)");
+        assert_eq!(first.tags, ["ágil", "arremessável"]);
+        assert_eq!(e.melee.last().map(|w| w.name.as_str()), Some("Tridente"));
+
+        let bow = &e.ranged[0];
+        assert_eq!(
+            [
+                &bow.name,
+                &bow.class,
+                &bow.damage,
+                &bow.defense_or_range,
+                &bow.speed,
+                &bow.skill
+            ],
+            [
+                "Besta Grande",
+                "Distância",
+                "1d6+8",
+                "80 m",
+                "15",
+                "Atirador"
+            ]
+        );
+        let net = e.ranged.last().expect("à distância");
+        assert_eq!(
+            [&net.name, &net.damage, &net.modes],
+            ["Rede", "não causa dano", "\u{2014}"]
+        );
+
+        let plate = e.armors.last().expect("armaduras");
+        assert_eq!(
+            [
+                &plate.name,
+                &plate.class,
+                &plate.impact,
+                &plate.cut,
+                &plate.pierce,
+                &plate.penalty
+            ],
+            ["Malha completa", "Pesada", "2", "8", "1 (N2)", "\u{2212}3"]
+        );
+        assert_eq!(e.armors[0].name, "Nenhuma");
+
+        let pavise = e.shields.last().expect("escudos");
+        assert_eq!(
+            [
+                &pavise.name,
+                &pavise.defense,
+                &pavise.vs_fast,
+                &pavise.penalty
+            ],
+            ["Pavês (pavise)", "+3", "bloqueia +3", "\u{2212}4"]
+        );
+        assert_eq!(e.shields[0].vs_fast, "\u{2014}");
+    }
 }

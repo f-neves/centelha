@@ -582,6 +582,9 @@ async function checkBookmarks(page) {
   // O termo pode já estar com o foco (o passo do cartão o deixou assim), e
   // focar de novo não dispara o evento: tira o foco antes.
   await page.eval("(() => { document.activeElement?.blur(); document.querySelector('main .ref').focus({ preventScroll: true }); return true; })()");
+  // Sem fixados, o índice dos fixados não é baixado.
+  const fetched = "performance.getEntriesByType('resource').some((e) => e.name.endsWith('/ref-index.json'))";
+  if (await page.eval(fetched)) problems.push('o ref-index.json foi baixado sem nenhum termo fixado');
   let name = null;
   for (let i = 0; i < 20 && !name; i++) {
     name = await page.eval("document.querySelector('.ref-pop b')?.textContent ?? null");
@@ -590,7 +593,11 @@ async function checkBookmarks(page) {
   for (const type of ['keyDown', 'keyUp']) {
     await page.send('Input.dispatchKeyEvent', { type, key: 'f', code: 'KeyF', windowsVirtualKeyCode: 70, ...(type === 'keyDown' ? { text: 'f' } : {}) });
   }
-  await new Promise((ok) => setTimeout(ok, 200));
+  // O painel baixa o índice (`ref-index.json`) no primeiro fixado: espera.
+  for (let i = 0; i < 30 && !(await page.eval("!!document.querySelector('#consulta .cs-card')")); i++) {
+    await new Promise((ok) => setTimeout(ok, 100));
+  }
+  if (!(await page.eval(fetched))) problems.push('o ref-index.json não foi baixado ao fixar o primeiro termo');
   const panel = await page.eval(`({
     names: [...document.querySelectorAll('#consulta .cs-card b')].map((b) => b.textContent),
     pinned: !!document.querySelector('main .ref.ref-pinned'),
