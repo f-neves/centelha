@@ -412,7 +412,9 @@ write('sheet-editor.json', {
     + 'cada caso cita o id. fresh, xpGasto (as parcelas do recompute), capFor, pisoAttr, trocaDeRaca (o ouvinte de '
     + '#raca-sel), clampSpecs, tecnicas (as pílulas que o renderCaminhos marca), efeitosAoAlcance e deslocamento (o '
     + 'renderDerived: a penalidade física, o deslocamento e as medidas com a penalidade); anatomiaDaFicha e linhasComExtra '
-    + '(src/lib/ficha-pgr.ts), tetoDaRajada da classe do item, e alcanceArremesso (src/lib/forca-empurrao.ts).',
+    + '(src/lib/ficha-pgr.ts), tetoDaRajada da classe do item, e alcanceArremesso (src/lib/forca-empurrao.ts); '
+    + 'forca (o renderForca: FAA, alturas, faixas, tabela de arremesso, velocidade com carga, a corrida com a '
+    + 'penalidade), carga, cargaEscrita, numPeso e r1n.',
   count: sheetEditor.cases.length,
   counts: sheetEditorCounts,
   inputs: sheetEditor.inputs,

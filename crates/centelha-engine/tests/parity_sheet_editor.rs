@@ -12,9 +12,11 @@ mod common;
 
 use centelha_data::{Technique, Weapon};
 use centelha_engine::sheet::{
-    Catalog, EditorCatalogs, EditorTables, Movement, SheetTables, attribute_floor, change_ancestry,
-    clamp_specialties, effects_in_reach, extra_lines, fresh_sheet, mass_chosen, penalized_movement,
-    sheet_anatomy, sheet_flurry_cap, spent_xp, technique_status, throw_range, trait_cap,
+    Catalog, EditorCatalogs, EditorTables, Movement, SheetTables, attribute_floor, carried_load,
+    change_ancestry, clamp_specialties, current_load, effects_in_reach, extra_lines, fresh_sheet,
+    load_bands, load_speed_fraction, mass_chosen, overhead_lift, penalized_movement,
+    penalized_speed, sheet_anatomy, sheet_flurry_cap, short_number, spent_xp, technique_status,
+    throw_cap, throw_range, throw_reserve, throw_table_weights, trait_cap, weight_from_text,
 };
 use common::{compare, num, repo};
 use serde_json::{Map, Value, json};
@@ -226,6 +228,46 @@ fn run(ctx: &Ctx, inputs: &Value, name: &str, a: &[Value]) -> Value {
         ),
         "tetoDaRajada" => num(sheet_flurry_cap(t.sheet_tables().rules(), weapons, &a[0])),
         "alcanceArremesso" => num(throw_range(t.sheet_tables().rules(), f(&a[0]), f(&a[1]), f(&a[2]))),
+        "forca" => {
+            // a entrada da conta é o que a ficha leu (Força, Atletismo,
+            // Arremesso, o peso máximo, a penalidade e as velocidades sem ela);
+            // o resto sai do Rust e é comparado com o que a fonte calculou
+            let o = &a[1];
+            let r = t.sheet_tables().rules();
+            let max = f(&o["maxKg"]);
+            let tw = throw_table_weights(r, max);
+            let reserve = throw_reserve(f(&o["forca"]), f(&o["atl"]), f(&o["arr"]));
+            let v_base = penalized_speed(f(&o["corridaBruta"]), f(&o["pen"]));
+            let v_swim = penalized_speed(f(&o["natacaoBruta"]), 0.0);
+            let sample: Vec<f64> = o["amostra"].as_array().unwrap().iter().map(f).collect();
+            let nums = |v: Vec<f64>| Value::Array(v.into_iter().map(num).collect());
+            json!({
+                "forca": o["forca"], "atl": o["atl"], "arr": o["arr"], "faa": num(reserve), "maxKg": o["maxKg"],
+                "acimaKg": num(overhead_lift(r, max)), "tetoKg": num(throw_cap(r, max)), "pen": o["pen"],
+                "penMov": num(centelha_engine::sheet::half_movement_penalty(f(&o["pen"]))),
+                "corridaBruta": o["corridaBruta"], "vBase": num(v_base),
+                "natacaoBruta": o["natacaoBruta"], "vBaseNatacao": num(v_swim),
+                "bandas": Value::Array(load_bands(r, max).into_iter()
+                    .map(|b| json!({"de": num(b.from), "ate": num(b.to), "nome": b.name})).collect()),
+                "dist": nums(tw.iter().map(|w| throw_range(r, reserve, *w, max)).collect()),
+                "tw": nums(tw),
+                "amostra": o["amostra"],
+                "velFrac": nums(sample.iter().map(|w| load_speed_fraction(r, *w, max, false)).collect()),
+                "velFracAgua": nums(sample.iter().map(|w| load_speed_fraction(r, *w, max, true)).collect()),
+                "vel": nums(sample.iter().map(|w| v_base * load_speed_fraction(r, *w, max, false)).collect()),
+                "velNatacao": nums(sample.iter().map(|w| v_swim * load_speed_fraction(r, *w, max, true)).collect()),
+            })
+        }
+        "carga" => {
+            let catalog = t.sheet_tables().catalog();
+            json!({"calculada": num(carried_load(catalog, &a[1])), "atual": num(current_load(catalog, &a[1]))})
+        }
+        "cargaEscrita" => {
+            let sheet = json!({"cargaAtual": a[0], "bolsas": [], "arsenal": [], "equip": {"armaduras": []}});
+            num(current_load(t.sheet_tables().catalog(), &sheet))
+        }
+        "numPeso" => num(weight_from_text(Some(&a[0]))),
+        "r1n" => json!(short_number(f(&a[0]))),
         other => panic!("função sem par no Rust: {other}"),
     }
 }
