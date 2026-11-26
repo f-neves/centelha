@@ -442,7 +442,12 @@ async function checkToc(page) {
   const has = await page.eval("!!document.getElementById('otp')");
   if (!has) return problems;
   await page.eval("window.scrollTo({ top: 0, behavior: 'instant' })");
-  await new Promise((ok) => setTimeout(ok, 100));
+  // Ao descer a página o botão some (otp-hidden, sem receber clique); no alto
+  // ele volta quando a ilha trata a rolagem, o que pode demorar numa máquina
+  // lenta. Espera ele voltar antes de clicar.
+  try {
+    await page.waitFor("!document.getElementById('otp-fab').classList.contains('otp-hidden')", 5000);
+  } catch { /* segue; a conferência abaixo diz o que houve */ }
   if (!(await click(page, '#otp-fab'))) return ['sem o botão do "Nesta página"'];
   if (!(await page.eval("document.getElementById('otp').open"))) problems.push('o "Nesta página" não abriu');
   const id = await page.eval("document.querySelector('#otp-panel a')?.dataset.id ?? null");
