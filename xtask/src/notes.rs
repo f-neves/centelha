@@ -122,6 +122,17 @@ pub fn neutralize(rel: &str, text: &str) -> Result<(String, usize), String> {
                 .map(|t| t.len() - t.trim_start_matches(|c: char| c.is_ascii_digit()).len())
                 .unwrap_or(0);
             let end = if digits > 0 { end + 1 + digits } else { end };
+            // Depois do nome (e do `-N`), só fim de palavra: outro hífen, letra
+            // ou dígito colado (`-RS`, `-5a`, `-5-6`) não é caso previsto.
+            if line[end..]
+                .chars()
+                .next()
+                .is_some_and(|c| c == '-' || c.is_alphanumeric())
+            {
+                return Err(format!(
+                    "{place}: nome de papel seguido de sufixo não previsto; a troca não é feita às cegas (ADR 0005)"
+                ));
+            }
             let before = line[..start]
                 .strip_suffix(' ')
                 .ok_or_else(|| format!("{place}: nome de papel sem palavra antes"))?;
@@ -203,6 +214,27 @@ mod tests {
         let text = format!("  \"motivo\": \"o {}\"\n", a());
         assert!(neutralize("data/regras.json", &text).is_err());
         assert!(neutralize("chapters/x.md", &format!("o {}\n", b())).is_err());
+    }
+
+    #[test]
+    fn stops_on_unexpected_suffix() {
+        for tail in ["-RS", "-5a", "-5-6", "-mor"] {
+            let text = format!(
+                "  \"motivo\": \"do {}{tail} x\"
+",
+                a()
+            );
+            assert!(
+                neutralize("data/bestiario/x.json", &text).is_err(),
+                "{tail}"
+            );
+        }
+        let text = format!(
+            "  \"motivo\": \"da {}-5, x\"
+",
+            b()
+        );
+        assert_eq!(neutralize("data/bestiario/x.json", &text).unwrap().1, 1);
     }
 
     #[test]

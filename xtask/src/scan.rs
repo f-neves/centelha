@@ -33,12 +33,13 @@ const WORDS: &[&str] = &[
     concat!("arqui", "teto"),
     concat!("arqui", "teta"),
     concat!("arqui", "tetos"),
+    concat!("arqui", "tetas"),
     concat!("bestia", "rista"),
     concat!("bestia", "ristas"),
 ];
 
 /// Quantos termos de `WORDS`, a partir do fim, são nomes de papel (ADR 0005).
-const ROLE_WORDS: usize = 5;
+const ROLE_WORDS: usize = 6;
 
 /// Commits de antes do ADR 0005 cuja mensagem cita um nome de papel (o nome
 /// de um ramo num merge). O histórico não se reescreve; só esses três ficam
@@ -252,5 +253,15 @@ mod tests {
             1
         );
         assert!(scan_text("m", "Arquitetura e Engenharia").is_empty());
+    }
+
+    #[test]
+    fn historic_commits_skip_only_role_words() {
+        let role = concat!("merge do ramo arqui", "teto/x");
+        assert_eq!(text_terms_with(role.as_bytes(), true).len(), 1);
+        assert!(text_terms_with(role.as_bytes(), false).is_empty());
+        let trace = concat!("feito com cha", "tgpt");
+        assert_eq!(text_terms_with(trace.as_bytes(), false).len(), 1);
+        assert_eq!(WORDS.len() - ROLE_WORDS, 2);
     }
 }
