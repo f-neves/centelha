@@ -175,6 +175,7 @@ name = "centelha-web"
 version = "0.1.0"
 dependencies = [
  "centelha-data",
+ "centelha-engine",
  "hydration_context",
  "js-sys",
  "leptos",

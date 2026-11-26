@@ -233,7 +233,6 @@ await server.close();
 console.log(failures ? `${failures} de ${pages.length} páginas falharam` : `todas as ${pages.length} páginas passaram`);
 process.exit(failures ? 1 : 0);
 
-/** Clica no meio do elemento, como um dedo (sem `element.click()`). */
 /**
  * O centro de um elemento depois que ele parou de mexer (com a página em
  * duas colunas, ou logo depois de trocar a tela, o layout assenta aos
@@ -351,7 +350,15 @@ async function checkTables(page) {
       continue;
     }
     await new Promise((r) => setTimeout(r, 100));
-    const rect = await page.eval(`(() => { const r = ${sel}.tHead.rows[0].cells[${first}].getBoundingClientRect(); return { x: r.x + r.width / 2, y: r.y + r.height / 2 }; })()`);
+    // No canto direito do cabeçalho, onde fica a seta (o `::after` do `<th>`),
+    // fora do botão: prova que o ouvinte está no `<th>` inteiro.
+    const rect = await page.eval(`(() => {
+      const th = ${sel}.tHead.rows[0].cells[${first}];
+      const r = th.getBoundingClientRect();
+      const x = r.right - 4, y = r.y + r.height / 2;
+      return { x, y, onTh: document.elementFromPoint(x, y) === th };
+    })()`);
+    if (!rect.onTh) problems.push(`${label}: o canto direito do cabeçalho não é o próprio <th>`);
     let want = await expected(first, 'asc');
     for (const type of ['mousePressed', 'mouseReleased']) {
       await page.send('Input.dispatchMouseEvent', { type, x: rect.x, y: rect.y, button: 'left', clickCount: 1 });
@@ -569,6 +576,9 @@ async function checkBookmarks(page) {
   const problems = [];
   if (!(await page.eval("!!document.querySelector('main .ref')"))) return problems;
   await page.eval("window.scrollTo({ top: 0, behavior: 'instant' })");
+  // A rolagem fecha o cartão, e o evento dela chega um quadro depois: espera
+  // passar antes de abrir.
+  await new Promise((ok) => setTimeout(ok, 300));
   // O termo pode já estar com o foco (o passo do cartão o deixou assim), e
   // focar de novo não dispara o evento: tira o foco antes.
   await page.eval("(() => { document.activeElement?.blur(); document.querySelector('main .ref').focus({ preventScroll: true }); return true; })()");
