@@ -23,6 +23,7 @@
 //   tests/parity/techniques.json  o modificador, a Técnica oferecida e o fecho dos pré-requisitos (techniques.mjs)
 //   tests/parity/sheet-editor.json  a ficha nova, o XP gasto, os tetos e os pré-requisitos da ficha interativa (sheet-editor.mjs)
 //   tests/parity/bestiary-card.json  as contas que o card do bestiário faz na hora (bestiary.mjs)
+//   tests/parity/collate.json     a colação do localeCompare com 'pt' (collate.mjs)
 //
 // O JSON não guarda -0 (o JSON.stringify escreve 0). Para a referência não
 // esconder um -0, todo -0 das saídas é gravado como o texto "-0", e o teste do
@@ -40,6 +41,7 @@ import { buildStrikes, ROLLED_SEED, ROLLS_SEED } from './strikes.mjs';
 import { buildTechniqueCases, loadTreeClosure } from './techniques.mjs';
 import { buildSheetEditorCases, loadSheetEditor } from './sheet-editor.mjs';
 import { buildBestiaryCases, loadCardAppearance } from './bestiary.mjs';
+import { buildCollateCases, COLLATE_SEED } from './collate.mjs';
 
 const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 const OUT = path.join(REPO, 'tests', 'parity');
@@ -280,6 +282,8 @@ const editor = await loadSheetEditor({ build, SRC });
 const sheetEditor = buildSheetEditorCases({
   editor, sheets, races: readData('racas.json'), attributes: readData('atributos.json'),
   techniques: readData('tecnicas.json'), arts: readData('artes.json'), effects: readData('efeitos.json'),
+  pgr: await loadTs('src/lib/ficha-pgr.ts'), tempo: await loadTs('src/lib/combate-tempo.ts'),
+  forca: await loadTs('src/lib/forca-empurrao.ts'), weapons: Object.values(equip.ARMA), regras: readData('regras.json'),
 });
 editor.restore();
 const sheetEditorCounts = {};
@@ -298,6 +302,17 @@ for (const c of bestiaryCases) {
   scanNumbers(c.out, `${c.fn}(${JSON.stringify(c.args)})`);
   bestiaryCounts[c.fn] = (bestiaryCounts[c.fn] || 0) + 1;
 }
+
+// ----- a colação -----
+const collate = buildCollateCases({
+  acaso,
+  lists: [
+    readData('efeitos.json').map((x) => x.nome), readData('tecnicas.json').map((x) => x.nome),
+    readData('artes.json').map((x) => x.nome), readData('caminhos.json').map((x) => x.nome),
+    readData('habilidades-secundarias.json').map((x) => x.nome), readData('monsters.json').map((x) => x.nome),
+    readData('glossario.json').map((x) => x.termo),
+  ],
+});
 
 if (negativeZeros.length) console.log(`${negativeZeros.length} -0 nas saídas, gravados como "-0"`);
 if (badNumbers.length) {
@@ -378,12 +393,26 @@ write('techniques.json', {
   cases: techniqueCases,
 }, 'cases');
 console.log(`${techniqueCases.length} casos das Técnicas`);
+write('collate.json', {
+  source,
+  note: "Cada par: [a, b, pt, base, numerico], o sinal de a.localeCompare(b, 'pt'), com { sensitivity: 'base' } e com "
+    + "{ numeric: true, sensitivity: 'base' }, no Node que gerou. Bordas, vizinhos dos nomes do livro ordenados e pares "
+    + `sorteados (semente ${COLLATE_SEED}). Montado por tools/parity/collate.mjs.`,
+  node: process.version,
+  icu: process.versions.icu,
+  names: collate.names,
+  count: collate.pairs.length,
+  pairs: collate.pairs,
+}, 'pairs');
+console.log(`${collate.pairs.length} pares da colação (${collate.names} nomes)`);
 write('sheet-editor.json', {
   source,
   note: 'As contas de src/lib/ficha-engine.ts, rodadas pelas funções internas do montarFicha num DOM falso '
     + '(tools/parity/sheet-editor.mjs). inputs: as fichas depois do normalize da fonte, por id, com o massaEscolhida; '
     + 'cada caso cita o id. fresh, xpGasto (as parcelas do recompute), capFor, pisoAttr, trocaDeRaca (o ouvinte de '
-    + '#raca-sel), clampSpecs, tecnicas (as pílulas que o renderCaminhos marca) e efeitosAoAlcance.',
+    + '#raca-sel), clampSpecs, tecnicas (as pílulas que o renderCaminhos marca), efeitosAoAlcance e deslocamento (o '
+    + 'renderDerived: a penalidade física, o deslocamento e as medidas com a penalidade); anatomiaDaFicha e linhasComExtra '
+    + '(src/lib/ficha-pgr.ts), tetoDaRajada da classe do item, e alcanceArremesso (src/lib/forca-empurrao.ts).',
   count: sheetEditor.cases.length,
   counts: sheetEditorCounts,
   inputs: sheetEditor.inputs,

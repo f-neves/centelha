@@ -14,6 +14,7 @@ use centelha_data::{Art, Effect, Technique};
 use serde_json::{Map, Value, json};
 
 use super::SheetTables;
+use super::numbers::Movement;
 use super::value::{self as jv, num, truthy};
 use crate::character::{art_cost, effect_cost, feat_cost, specialty_cost, xp_cost, xp_floor};
 use crate::js;
@@ -49,34 +50,35 @@ fn ids(v: &Value, keep: impl Fn(&Value) -> bool) -> Vec<String> {
         .unwrap_or_default()
 }
 
+/// Os catálogos crus dos traços, para [`EditorTables::new`]: o
+/// `atributos.json`, o `habilidades.json`, o `habilidades-secundarias.json`, o
+/// `virtudes.json` e o `antecedentes.json`, e as Técnicas, as Artes e os Efeitos
+/// já lidos. O id de cada Secundária é o da ficha (o `slug` do nome, na
+/// fonte; hoje os dois coincidem).
+pub struct EditorCatalogs<'a> {
+    pub attributes: &'a Value,
+    pub skills: &'a Value,
+    pub secondary: &'a Value,
+    pub virtues: &'a Value,
+    pub backgrounds: &'a Value,
+    pub techniques: Vec<Technique>,
+    pub arts: Vec<Art>,
+    pub effects: Vec<Effect>,
+}
+
 impl EditorTables {
-    /// `attributes`, `skills`, `secondary`, `virtues` e `backgrounds` são o
-    /// `atributos.json`, o `habilidades.json`, o `habilidades-secundarias.json`,
-    /// o `virtudes.json` e o `antecedentes.json` crus. O id de cada Secundária
-    /// é o da ficha (o `slug` do nome, na fonte; hoje os dois coincidem).
-    #[allow(clippy::too_many_arguments)]
-    pub fn new(
-        sheet: SheetTables,
-        attributes: &Value,
-        skills: &Value,
-        secondary: &Value,
-        virtues: &Value,
-        backgrounds: &Value,
-        techniques: Vec<Technique>,
-        arts: Vec<Art>,
-        effects: Vec<Effect>,
-    ) -> Self {
+    pub fn new(sheet: SheetTables, c: EditorCatalogs<'_>) -> Self {
         EditorTables {
             sheet,
-            attributes: ids(attributes, |_| true),
-            skills: ids(skills, |h| !truthy(h.get("secundaria"))),
-            secondary: ids(secondary, |_| true),
-            virtues: ids(virtues, |_| true),
-            single_backgrounds: ids(backgrounds, |a| jv::is_str(a.get("formato"), "unico")),
-            named_backgrounds: ids(backgrounds, |a| jv::is_str(a.get("formato"), "nomeado")),
-            techniques,
-            arts,
-            effects,
+            attributes: ids(c.attributes, |_| true),
+            skills: ids(c.skills, |h| !truthy(h.get("secundaria"))),
+            secondary: ids(c.secondary, |_| true),
+            virtues: ids(c.virtues, |_| true),
+            single_backgrounds: ids(c.backgrounds, |a| jv::is_str(a.get("formato"), "unico")),
+            named_backgrounds: ids(c.backgrounds, |a| jv::is_str(a.get("formato"), "nomeado")),
+            techniques: c.techniques,
+            arts: c.arts,
+            effects: c.effects,
         }
     }
 
@@ -204,31 +206,6 @@ pub struct SpentXp {
 /// `x || 0` com um número: `NaN` e `-0` viram `0`.
 fn or0(x: f64) -> f64 {
     if x.is_nan() || x == 0.0 { 0.0 } else { x }
-}
-
-/// A letra sem acento (o `normalize('NFD')` sem as marcas), nas letras
-/// latinas dos nomes do catálogo.
-fn unaccent(s: &str) -> String {
-    s.chars()
-        .filter(|c| !('\u{300}'..='\u{36f}').contains(c))
-        .map(|c| match c {
-            'à' | 'á' | 'â' | 'ã' | 'ä' => 'a',
-            'À' | 'Á' | 'Â' | 'Ã' | 'Ä' => 'A',
-            'ç' => 'c',
-            'Ç' => 'C',
-            'è' | 'é' | 'ê' | 'ë' => 'e',
-            'È' | 'É' | 'Ê' | 'Ë' => 'E',
-            'ì' | 'í' | 'î' | 'ï' => 'i',
-            'Ì' | 'Í' | 'Î' | 'Ï' => 'I',
-            'ñ' => 'n',
-            'Ñ' => 'N',
-            'ò' | 'ó' | 'ô' | 'õ' | 'ö' => 'o',
-            'Ò' | 'Ó' | 'Ô' | 'Õ' | 'Ö' => 'O',
-            'ù' | 'ú' | 'û' | 'ü' => 'u',
-            'Ù' | 'Ú' | 'Û' | 'Ü' => 'U',
-            c => c,
-        })
-        .collect()
 }
 
 /// `specCostSum`: a soma das especialidades nomeadas (`v` de cada uma).
@@ -373,6 +350,19 @@ pub fn trait_cap(t: &EditorTables, sheet: &Value, kind: &str, key: Option<&str>)
         _ => 6.0,
     };
     base + racial
+}
+
+/// A massa foi escrita pelo jogador? (`massaEscolhida`, a conta do
+/// `normalize` ao abrir a ficha: `corpo.massa` é número, ou a identidade tem
+/// peso.) É o `mass_chosen` de [`change_ancestry`].
+///
+/// A ficha tem de estar na forma de leitura (a do [`super::for_reading`]): o
+/// `normalize` roda o `fichaParaLeitura` antes desta conta, e a leitura passa
+/// o `id.peso` numérico para `corpo.massa` (`ficha-formato.ts:94-97`). Numa
+/// ficha gravada, a mesma massa pode estar só no `id.peso`.
+pub fn mass_chosen(sheet: &Value) -> bool {
+    jv::get(sheet.get("corpo"), "massa").is_some_and(Value::is_number)
+        || truthy(jv::get(sheet.get("id"), "peso"))
 }
 
 /// A troca de Raça (o `change` do seletor): a Raça nova; a massa sai quando o
@@ -522,7 +512,7 @@ pub fn technique_status(sheet: &Value, technique: &Technique) -> TechniqueStatus
 }
 
 /// `efeitosAoAlcance`: os Efeitos que cabem numa Arte em que a ficha tem o
-/// nível do Efeito, por nível e nome.
+/// nível do Efeito, por nível e nome (a colação `pt`, [`crate::collate`]).
 pub fn effects_in_reach<'a>(t: &'a EditorTables, sheet: &Value) -> Vec<&'a Effect> {
     let mut list: Vec<&Effect> = t
         .effects
@@ -537,18 +527,47 @@ pub fn effects_in_reach<'a>(t: &'a EditorTables, sheet: &Value) -> Vec<&'a Effec
         a.level
             .partial_cmp(&b.level)
             .unwrap_or(Ordering::Equal)
-            .then_with(|| collate_pt(&a.name, &b.name))
+            .then_with(|| crate::collate::compare(&a.name, &b.name))
     });
     list
 }
 
-/// A ordem dos nomes do `localeCompare(..., 'pt')` nos nomes do catálogo: a
-/// letra sem acento e sem caixa primeiro; no empate, o acento e depois a
-/// caixa (a minúscula antes).
-fn collate_pt(a: &str, b: &str) -> Ordering {
-    let key = |s: &str| unaccent(s).to_lowercase();
-    key(a)
-        .cmp(&key(b))
-        .then_with(|| a.to_lowercase().cmp(&b.to_lowercase()))
-        .then_with(|| b.cmp(a))
+// ------------------------------------------------------------ o deslocamento
+
+/// A metade da penalidade física (armadura e escudo) que o deslocamento
+/// paga, arredondada para baixo.
+pub fn half_movement_penalty(physical_penalty: f64) -> f64 {
+    (physical_penalty / 2.0).floor()
+}
+
+/// O deslocamento da ficha com a penalidade: cada medida perde a metade da
+/// penalidade física (o salto vertical, em centímetros, perde dez vezes isso),
+/// sem ficar abaixo de zero; a natação não perde nada.
+#[derive(Debug, Clone, Copy, PartialEq)]
+pub struct PenalizedMovement {
+    pub half_penalty: f64,
+    pub battle: f64,
+    pub dash: f64,
+    pub run: f64,
+    pub swim: f64,
+    pub vertical_jump: f64,
+    pub standing_jump: f64,
+    pub running_jump: f64,
+}
+
+/// As medidas do `renderDerived` (e a Vel. de Corrida da seção de força): a
+/// conta é uma só, sobre o [`Movement`] e a penalidade física.
+pub fn penalized_movement(m: &Movement, physical_penalty: f64) -> PenalizedMovement {
+    let half = half_movement_penalty(physical_penalty);
+    let mp = |v: f64| js::max(0.0, v - half);
+    PenalizedMovement {
+        half_penalty: half,
+        battle: mp(m.battle),
+        dash: mp(m.dash),
+        run: mp(m.run),
+        swim: m.swim,
+        vertical_jump: js::max(0.0, m.vertical_jump - half * 10.0),
+        standing_jump: mp(m.standing_jump),
+        running_jump: mp(m.running_jump),
+    }
 }
