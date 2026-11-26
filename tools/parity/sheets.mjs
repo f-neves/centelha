@@ -189,6 +189,11 @@ export function buildSheetInputs({ kael, formato, acaso, weapons, shields, armor
     const g = formato.fichaParaGravar(clone(base));
     g.equipamento.conjuntos[0].maoHabil = { ref: 'a:espada-longa', item: clone(item) };
     add('formato', 'item-com-folego-gravada', g);
+    // o arsenal gravado com o item com Fôlego: a peça que fica no equip
+    // perde o Fôlego junto com a lida
+    const h = formato.fichaParaGravar(clone(base));
+    h.equipamento.arsenal = [{ ref: 'a:espada-longa', item: clone(item) }, { ref: 'a:adaga', item: { origem: 'adaga', arma: { folego: 1 } } }];
+    add('formato', 'arsenal-item-com-folego-gravada', h);
   }
 
   // ----- raca -----

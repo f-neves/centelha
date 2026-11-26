@@ -22,7 +22,7 @@ mod migrate;
 mod near_miss;
 mod numbers;
 mod text;
-mod value;
+pub(crate) mod value;
 
 use std::collections::HashMap;
 
