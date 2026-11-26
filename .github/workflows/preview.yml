@@ -16,10 +16,8 @@ on:
     branches: [main]
   workflow_dispatch:
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+# Permissões por job: montar só lê o repositório; publicar escreve no Pages.
+permissions: {}
 
 concurrency:
   group: pages
@@ -32,6 +30,8 @@ jobs:
   montar:
     name: Montar
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Baixar o repositório
         uses: actions/checkout@v7.0.1
@@ -58,6 +58,9 @@ jobs:
     name: Publicar
     needs: montar
     runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deploy.outputs.page_url }}
