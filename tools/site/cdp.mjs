@@ -307,9 +307,13 @@ export async function connect(wsUrl) {
   return {
     send,
     listen: (fn) => { listeners.add(fn); return () => listeners.delete(fn); },
-    /** Abre uma aba e devolve uma sessão dela. */
-    async newPage() {
-      const { targetId } = await send('Target.createTarget', { url: 'about:blank' });
+    /**
+     * Abre uma aba e devolve uma sessão dela. `opts.browserContextId` põe a
+     * aba num contexto à parte (outro armazenamento); `opts.newWindow`, numa
+     * janela própria.
+     */
+    async newPage(opts = {}) {
+      const { targetId } = await send('Target.createTarget', { url: 'about:blank', ...opts });
       const { sessionId } = await send('Target.attachToTarget', { targetId, flatten: true });
       const page = {
         targetId,
