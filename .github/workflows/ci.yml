@@ -3,7 +3,8 @@
 # repositório: a paridade confere contra as referências gravadas em tests/parity/.
 #
 # Versões das actions conferidas nas páginas de release em 25/11/2026:
-# actions/checkout v7.0.1, Swatinem/rust-cache v2.9.3.
+# actions/checkout v7.0.1, Swatinem/rust-cache v2.9.3; em 26/11/2026:
+# actions/cache v6.1.0, actions/setup-node v7.1.0.
 name: CI
 
 on:
@@ -70,3 +71,74 @@ jobs:
 
       - name: Build para WebAssembly
         run: cargo build -p centelha-engine -p centelha-data --target wasm32-unknown-unknown
+
+  # O site (centelha-web): clippy e testes de cada lado (gerador nativo com
+  # `ssr`, ilhas no navegador com `hydrate`), a montagem do `dist/` e a prova
+  # de hidratação num Chrome sem janela, em release e em depuração (ADR 0003).
+  # Job próprio, em paralelo ao "Verificar", com o cache do Cargo à parte:
+  # os conjuntos de features do site não disputam a pasta `target` do outro.
+  site:
+    name: Site
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      SITE_BASE_PATH: /centelha/
+    steps:
+      - name: Baixar o repositório
+        uses: actions/checkout@v7.0.1
+
+      - name: Instalar o Rust (versão do rust-toolchain.toml)
+        run: |
+          rustup toolchain install
+          rustc --version
+          cargo --version
+
+      - name: Cache de compilação
+        uses: Swatinem/rust-cache@v2.9.3
+        with:
+          shared-key: site
+
+      # Binários prontos das releases oficiais, com SHA-256 conferido no
+      # script; o cache é pela versão (a chave muda quando o script muda).
+      - name: Cache das ferramentas do WebAssembly
+        uses: actions/cache@v6.1.0
+        with:
+          path: ~/.centelha-ferramentas
+          key: ferramentas-${{ runner.os }}-${{ hashFiles('tools/ci/ferramentas.sh') }}
+
+      - name: Ferramentas do WebAssembly (wasm-bindgen, wasm-opt)
+        run: |
+          sh tools/ci/ferramentas.sh ~/.centelha-ferramentas
+          echo "WASM_BINDGEN=$HOME/.centelha-ferramentas/bin/wasm-bindgen" >> "$GITHUB_ENV"
+          echo "WASM_OPT=$HOME/.centelha-ferramentas/bin/wasm-opt" >> "$GITHUB_ENV"
+
+      - name: Node
+        uses: actions/setup-node@v7.1.0
+        with:
+          node-version: 24
+
+      - name: Versões do Node e do Chrome
+        run: |
+          node --version
+          google-chrome --version
+
+      - name: Clippy do gerador (ssr)
+        run: cargo clippy -p centelha-web --all-targets --features ssr -- -D warnings
+
+      - name: Clippy das ilhas (hydrate, WebAssembly)
+        run: cargo clippy -p centelha-web --lib --target wasm32-unknown-unknown --features hydrate -- -D warnings
+
+      - name: Testes do site (inclui a prova 1)
+        run: cargo test -p centelha-web --features ssr
+
+      - name: Montar o site (release)
+        run: cargo xtask site
+
+      - name: Prova de hidratação (release)
+        run: node tools/site/hydration.mjs dist
+
+      - name: Montar o site (WebAssembly de depuração)
+        run: cargo xtask site --dev
+
+      - name: Prova de hidratação (depuração)
+        run: node tools/site/hydration.mjs dist
