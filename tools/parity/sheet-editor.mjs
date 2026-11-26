@@ -38,6 +38,8 @@ const HOOK = `
     capFor: (k, key) => capFor(k, key), pisoAttr: (k) => pisoAttr(k),
     clampSpecs: (a, s) => clampSpecs(a, s), renderCaminhos: () => renderCaminhos(),
     efeitosAoAlcance: () => efeitosAoAlcance(), renderDerived: () => renderDerived(),
+    renderForca: () => renderForca(), cargaCalculada: () => cargaCalculada(), cargaAtual: () => cargaAtual(),
+    numPeso: (x) => numPeso(x), r1n: (x) => r1n(x),
   };`;
 const TOTAL_AT = 'const total = xa + xs + xsp + xv + xw + xap + xc + x2 + xt + xar + xef + xan + xr;';
 const TOTAL = `${TOTAL_AT}\n    globalThis.__xp = { xa, xs, xsp, xv, xw, xap, xc, x2, xt, xar, xef, xan, xr, total };`;
@@ -89,7 +91,27 @@ function fakeDom() {
 
 export async function loadSheetEditor({ build, SRC }) {
   const file = path.join(SRC, 'src', 'lib', 'ficha-engine.ts');
-  const text = patch(patch(patch(fs.readFileSync(file, 'utf8'), HOOK_AT, HOOK_AT + HOOK), TOTAL_AT, TOTAL), MOVE_AT, MOVE);
+  // No renderForca, antes da tabela de arremesso: as contas da seção de força,
+// pelas próprias funções locais da fonte (`dist`, `vel`, `velNatacao`, `velFrac`,
+// a escada `tw`). A segunda linha do deslocamento (a Vel. de Corrida com a
+// penalidade de armadura e das mãos) sai com a penalidade inteira e a corrida
+// sem ela, pelas mesmas chamadas da fonte.
+const FORCE_AT = 'const rows = tw.map((w) => {';
+const FORCE = `globalThis.__forca = (() => {
+      const pen = (empilharArmaduras(pecasArmadura()).penalidade || 0) + (calcConj(conjAtivo()).penSum || 0);
+      const dzC = deslocamento({ forca, destreza: A('destreza'), atletismo: atl, centelha: S.centelha }, dzFrac);
+      const dzN = deslocamento({ vigor: A('vigor'), atletismo: atl, natacao: S.skills2['natacao'] || 0 }, dzFrac);
+      const limites = [cMin, cLeve, cMedia, cPesada, maxKg];
+      const amostra = [...limites.flatMap((w) => [w * (1 - 1e-9), w, w * (1 + 1e-9)]),
+        ...Array.from({ length: 15 }, (_, i) => maxKg * (i + 1) / 20), maxKg * 0.3333, maxKg * 0.7, maxKg * 0.749];
+      return { forca, atl, arr, faa, maxKg, acimaKg, tetoKg, pen, penMov, corridaBruta: dzC.corrida, vBase,
+        natacaoBruta: dzN.natacao, vBaseNatacao, bandas: bandas.map((b) => ({ de: b.de, ate: b.ate, nome: b.nome })),
+        tw, dist: tw.map(dist), amostra, velFrac: amostra.map(velFrac), velFracAgua: amostra.map(velFracAgua),
+        vel: amostra.map(vel), velNatacao: amostra.map(velNatacao) };
+    })();
+    ${FORCE_AT}`;
+const text = patch(patch(patch(patch(fs.readFileSync(file, 'utf8'), HOOK_AT, HOOK_AT + HOOK), TOTAL_AT, TOTAL),
+  MOVE_AT, MOVE), FORCE_AT, FORCE);
   const outfile = path.join(os.tmpdir(), `parity-ficha-engine-${process.pid}.mjs`);
   await build({
     entryPoints: [file], outfile, bundle: true, format: 'esm', platform: 'node', logLevel: 'error',
@@ -266,6 +288,41 @@ export function buildSheetEditorCases({ editor, sheets, races, attributes, techn
     const m = globalThis.__mov;
     if (m) add('deslocamento', [m.penFisica, m.dz], m.out);
   }
+  // a seção de força e a carga (o renderForca de cada ficha inteira)
+  // (a força em uma ficha a cada duas; a carga nas que levam peso, até 60, e em
+  // cinco sem peso, com as partes da ficha que ela lê no próprio caso)
+  let comPeso = 0, semPeso = 0;
+  inputs.forEach((x, i) => {
+    x.prepare();
+    globalThis.__forca = null;
+    hook.renderForca();
+    const fz = globalThis.__forca;
+    if (fz && i % 2 === 0) {
+      // a entrada da conta (o que a ficha leu) vai nos argumentos
+      const entrada = Object.fromEntries(['forca', 'atl', 'arr', 'maxKg', 'pen', 'corridaBruta', 'natacaoBruta', 'amostra']
+        .map((k) => [k, fz[k]]));
+      add('forca', [x.id, entrada], fz);
+    }
+    const calculada = hook.cargaCalculada();
+    if ((calculada > 0 && comPeso < 60) || (calculada === 0 && semPeso < 5)) {
+      if (calculada > 0) comPeso++; else semPeso++;
+      const st = hook.getS();
+      const partes = Object.fromEntries(['bolsas', 'arsenal', 'equip', 'cargaAtual']
+        .filter((k) => st[k] !== undefined).map((k) => [k, structuredClone(st[k])]));
+      add('carga', [x.id, partes], { calculada, atual: hook.cargaAtual() });
+    }
+  });
+  // a carga escrita à mão por cima da calculada
+  for (const w of ['', '  ', '12', '1,5 kg', '≈3', '3.2', 'x', '7,25,1']) {
+    hook.fresh();
+    hook.getS().cargaAtual = w;
+    add('cargaEscrita', [w], hook.cargaAtual());
+  }
+  for (const s of [null, '', '1,5', '2 kg', '≈3', '3.2', '1,2,3', '.5', '5.', 'abc', '12,5 e 3', 7, 0.25, true])
+    add('numPeso', [s], hook.numPeso(s));
+  for (const n of [0, 0.04, 0.05, 0.15, 1.25, 1.45, 9.95, 99.94, 99.95, 100, 100.5, 122.4, 1234.5, -1.25])
+    add('r1n', [n], hook.r1n(n));
+
   // a linha Preparo, Golpe e Recuperação de cada arma (o item como a ficha o
   // guarda: o do catálogo achatado, e variantes)
   const items = [];

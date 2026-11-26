@@ -72,10 +72,12 @@ pub fn log10(x: f64) -> f64 {
 ///   106 bits: o logaritmo por um passo de Newton sobre o `log` da `libm`, a
 ///   exponencial pela série de Taylor), e só o resultado final é arredondado.
 ///   Quando esse resultado cai a menos de `2^-80` (relativo) de um meio-ponto
-///   entre dois `f64`, a precisão dobrada não decide o lado, e a conta vai pela
-///   `libm`: é o empate com expoente fracionário de base potência perfeita
-///   (`60219687609 ** 1.5`, que é exatamente um meio-ponto), que a `libm`
-///   resolve;
+///   entre dois `f64`, a precisão dobrada não decide o lado. Com expoente
+///   `p/q` de denominador pequeno (até 16), a comparação exata em inteiros
+///   (`a^p` contra `m^q`, com `m` o meio-ponto) decide, com o par no empate:
+///   é o empate com base potência perfeita (`60219687609 ** 1.5`, exatamente
+///   um meio-ponto) e o quase empate (`(1 - 2^-53) ** 1.5`, a `2^-106` do
+///   meio-ponto). Sem essa forma, fica a precisão dobrada;
 /// - o resto pela `libm`: base zero, subnormal, negativa ou infinita, expoente
 ///   zero ou infinito, e o resultado fora da faixa acima (abaixo de cerca de
 ///   `1e-304` ou acima de `e^709`), onde o arredondamento é o da `libm` (que
@@ -94,9 +96,157 @@ pub fn pow(a: f64, b: f64) -> f64 {
     }
     let r = dd::exp(t);
     if near_midpoint(r.0, r.1) {
-        return libm::pow(a, b);
+        // perto do meio-ponto, a precisão dobrada não decide o lado: com o
+        // expoente racial de denominador pequeno, a comparação exata decide;
+        // sem ele, fica a precisão dobrada
+        if let Some(x) = exact_side(a, b, r.0, r.1) {
+            return x;
+        }
     }
     r.0 + r.1
+}
+
+/// O lado do arredondamento perto do meio-ponto, pela conta exata: com
+/// `b = p/q` (`q` até 16, `p` até 64, `b` positivo), o valor exato `a^(p/q)`
+/// está acima, abaixo ou em cima do meio-ponto `m` entre os dois `f64`
+/// vizinhos conforme `a^p` está acima, abaixo ou igual a `m^q`, em inteiros
+/// sem limite de tamanho. No empate, fica o de mantissa par. `None` quando
+/// `b` não tem essa forma.
+fn exact_side(a: f64, b: f64, hi: f64, lo: f64) -> Option<f64> {
+    if b.is_nan() || b <= 0.0 {
+        return None;
+    }
+    let (p, q) = (1..=16u32).find_map(|q| {
+        let p = b * f64::from(q);
+        (p.fract() == 0.0 && (1.0..=64.0).contains(&p) && p / f64::from(q) == b)
+            .then_some((p as u32, q))
+    })?;
+    let next = if (lo > 0.0) == (hi > 0.0) {
+        f64::from_bits(hi.to_bits() + 1)
+    } else {
+        f64::from_bits(hi.to_bits() - 1)
+    };
+    let (low, high) = if hi < next { (hi, next) } else { (next, hi) };
+    let (lm, le) = mantissa(low);
+    let (hm, he) = mantissa(high);
+    let g = le.min(he);
+    // m = (low + high) / 2, exato: (lm 2^(le-g) + hm 2^(he-g)) 2^(g-1)
+    let sum = (u128::from(lm) << (le - g)) + (u128::from(hm) << (he - g));
+    let mid = big::Big::from_u128(sum, g - 1);
+    let (am, ae) = mantissa(a);
+    let lhs = big::Big::from_u128(u128::from(am), ae).pow(p);
+    let rhs = mid.pow(q);
+    Some(match big::cmp(&lhs, &rhs) {
+        std::cmp::Ordering::Greater => high,
+        std::cmp::Ordering::Less => low,
+        std::cmp::Ordering::Equal => {
+            if low.to_bits() % 2 == 0 {
+                low
+            } else {
+                high
+            }
+        }
+    })
+}
+
+/// A mantissa inteira e o expoente de um `f64` normal positivo
+/// (`x = m × 2^e`).
+fn mantissa(x: f64) -> (u64, i64) {
+    let bits = x.to_bits();
+    let m = (bits & ((1u64 << 52) - 1)) | (1u64 << 52);
+    let e = ((bits >> 52) & 0x7ff) as i64 - 1075;
+    (m, e)
+}
+
+/// Inteiros sem limite de tamanho vezes uma potência de 2, só o que o
+/// [`exact_side`] usa.
+mod big {
+    use std::cmp::Ordering;
+
+    /// `limbs × 2^exp`, com os pedaços de 32 bits do menos significativo.
+    pub struct Big {
+        limbs: Vec<u32>,
+        exp: i64,
+    }
+
+    impl Big {
+        pub fn from_u128(mut v: u128, exp: i64) -> Big {
+            let mut limbs = Vec::new();
+            while v > 0 {
+                limbs.push(v as u32);
+                v >>= 32;
+            }
+            Big { limbs, exp }
+        }
+
+        fn mul(&self, o: &Big) -> Big {
+            let mut r = vec![0u32; self.limbs.len() + o.limbs.len()];
+            for (i, &x) in self.limbs.iter().enumerate() {
+                let mut carry = 0u64;
+                for (j, &y) in o.limbs.iter().enumerate() {
+                    let t = u64::from(x) * u64::from(y) + u64::from(r[i + j]) + carry;
+                    r[i + j] = t as u32;
+                    carry = t >> 32;
+                }
+                let mut k = i + o.limbs.len();
+                while carry > 0 {
+                    let t = u64::from(r[k]) + carry;
+                    r[k] = t as u32;
+                    carry = t >> 32;
+                    k += 1;
+                }
+            }
+            while r.last() == Some(&0) {
+                r.pop();
+            }
+            Big {
+                limbs: r,
+                exp: self.exp + o.exp,
+            }
+        }
+
+        pub fn pow(&self, n: u32) -> Big {
+            let mut r = Big {
+                limbs: vec![1],
+                exp: 0,
+            };
+            for _ in 0..n {
+                r = r.mul(self);
+            }
+            r
+        }
+
+        /// O mesmo valor com o expoente `e` (menor ou igual ao de agora).
+        fn at(&self, e: i64) -> Vec<u32> {
+            let shift = (self.exp - e) as usize;
+            let (words, bits) = (shift / 32, shift % 32);
+            let mut out = vec![0u32; words];
+            let mut carry = 0u32;
+            for &x in &self.limbs {
+                if bits == 0 {
+                    out.push(x);
+                } else {
+                    out.push((x << bits) | carry);
+                    carry = x >> (32 - bits);
+                }
+            }
+            if carry > 0 {
+                out.push(carry);
+            }
+            while out.last() == Some(&0) {
+                out.pop();
+            }
+            out
+        }
+    }
+
+    pub fn cmp(a: &Big, b: &Big) -> Ordering {
+        let e = a.exp.min(b.exp);
+        let (x, y) = (a.at(e), b.at(e));
+        x.len()
+            .cmp(&y.len())
+            .then_with(|| x.iter().rev().cmp(y.iter().rev()))
+    }
 }
 
 /// O resultado em precisão dupla dobrada (`hi + lo`, com `hi` já o `f64` mais
@@ -389,6 +539,18 @@ mod tests {
             }
         }
         assert!(n > 1500, "{n}");
+    }
+
+    /// O quase empate: `(1 - 2^-53) ** 1.5` fica a `2^-106` acima do meio-ponto,
+    /// e o arredondamento correto (e o Node) sobe.
+    #[test]
+    fn pow_near_tie() {
+        let x = 1.0 - f64::EPSILON / 2.0;
+        assert_eq!(pow(x, 1.5), x);
+        assert_eq!(
+            1.0 - pow(91.9425 / 122.59 / 0.75, 1.5),
+            1.1102230246251565e-16
+        );
     }
 
     #[test]

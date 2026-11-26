@@ -53,7 +53,11 @@ pub use numbers::{
     stack_armor,
 };
 pub use pgr::{ExtraLine, extra_lines, sheet_anatomy, sheet_flurry_cap};
-pub use strength::throw_range;
+pub use strength::{
+    LoadBand, carried_load, current_load, load_bands, load_speed_fraction, overhead_lift,
+    penalized_speed, short_number, throw_cap, throw_range, throw_reserve, throw_table_weights,
+    weight_from_text,
+};
 pub use text::{armor_stats, damage_text, shield_stats, signed_number, weapon_stats};
 
 /// Erro ao montar as tabelas da ficha.
