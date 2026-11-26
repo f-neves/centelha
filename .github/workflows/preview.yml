@@ -1,0 +1,70 @@
+# Prévia publicada no GitHub Pages do repositório.
+#
+# O caminho base vem da variável do repositório SITE_BASE_PATH (Settings,
+# Secrets and variables, Actions, Variables). Sem a variável, vale
+# "/centelha/" (https://f-neves.github.io/centelha/). Quando o domínio
+# próprio entrar, basta trocar a variável para "/" e configurar o domínio no
+# Pages, sem mexer em código.
+#
+# Versões das actions conferidas nas páginas de release em 25/11/2026:
+# actions/checkout v7.0.1, actions/configure-pages v6.0.0,
+# actions/upload-pages-artifact v5.0.0, actions/deploy-pages v5.0.1.
+name: Prévia (GitHub Pages)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Permissões por job: montar só lê o repositório; publicar escreve no Pages.
+permissions: {}
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+env:
+  SITE_BASE_PATH: ${{ vars.SITE_BASE_PATH || '/centelha/' }}
+
+jobs:
+  montar:
+    name: Montar
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Baixar o repositório
+        uses: actions/checkout@v7.0.1
+
+      - name: Configurar o Pages
+        uses: actions/configure-pages@v6.0.0
+
+      # Página provisória. Quando existir o build do site
+      # (cargo xtask, centelha-web), este passo passa a chamá-lo com o mesmo
+      # SITE_BASE_PATH.
+      - name: Montar a página
+        shell: bash
+        run: |
+          mkdir -p dist
+          sed "s#{{SITE_BASE_PATH}}#${SITE_BASE_PATH}#g" tools/ci/preview/index.html > dist/index.html
+          touch dist/.nojekyll
+
+      - name: Enviar o artefato
+        uses: actions/upload-pages-artifact@v5.0.0
+        with:
+          path: dist
+
+  publicar:
+    name: Publicar
+    needs: montar
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - name: Publicar no Pages
+        id: deploy
+        uses: actions/deploy-pages@v5.0.1
