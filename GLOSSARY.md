@@ -317,3 +317,16 @@ No `grid` do Efeito: forma `shape`, âncora `anchor`, gatilho `trigger`, alvo `t
 | nota de revisão | `review_note` | vaga / código da vaga | `slot` / `slot_code` |
 | posição da imagem | `image_position` | à mão / aplicada em (migração) | `by_hand` / `applied_at` |
 | resumo (da ficha na mesa: Vida, Energia) | `summary` (o mesmo termo do resumo do capítulo, em outro contexto) | | |
+
+## Força, carga e mãos (acréscimo de 26/11, tarefas 013 e 014 do Backend)
+
+| Português | Inglês | Português | Inglês |
+|---|---|---|---|
+| levantar acima da cabeça | `overhead_lift` | teto do arremesso | `throw_cap` |
+| faixa de carga (Mínima, Leve, Média, Pesada, Máxima) | `LoadBand` | fração da velocidade com carga | `load_speed_fraction` |
+| carga carregada / carga atual | `carried_load` / `current_load` | velocidade com a penalidade | `penalized_speed` |
+| corte e expoente da carga | `cut` / `exponent` (`LoadRules`) | peso escrito como texto | `weight_from_text` |
+| papel da peça nas mãos (nada, mão hábil, mão inábil) | `HandRole` (`None`, `Main`, `Off`) | marcar uso | `mark_hand_use` |
+| ataque com as duas mãos | `DualAttack` | peça do arsenal para uma referência | `piece_for` |
+| campo de edição da peça | `EditField` | sincronizar as mãos | `sync_slots` |
+
