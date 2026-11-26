@@ -448,8 +448,19 @@ async function checkToc(page) {
   try {
     await page.waitFor("!document.getElementById('otp-fab').classList.contains('otp-hidden')", 5000);
   } catch { /* segue; a conferência abaixo diz o que houve */ }
+  // O ponteiro sai de cima do texto (o passo anterior o deixou sobre um termo).
+  await page.send('Input.dispatchMouseEvent', { type: 'mouseMoved', x: 2, y: 2 });
+  await new Promise((ok) => setTimeout(ok, 300));
+  const fabState = await page.eval(`(() => {
+    const f = document.getElementById('otp-fab');
+    const r = f.getBoundingClientRect();
+    const top = document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2);
+    return { cls: f.className, top: top ? top.outerHTML.slice(0, 80) : null, pop: !!document.querySelector('.ref-pop'), dialog: document.querySelector('.ref-modal')?.open ?? null };
+  })()`);
   if (!(await click(page, '#otp-fab'))) return ['sem o botão do "Nesta página"'];
-  if (!(await page.eval("document.getElementById('otp').open"))) problems.push('o "Nesta página" não abriu');
+  if (!(await page.eval("document.getElementById('otp').open"))) {
+    problems.push(`o "Nesta página" não abriu (antes do clique: ${JSON.stringify(fabState)})`);
+  }
   const id = await page.eval("document.querySelector('#otp-panel a')?.dataset.id ?? null");
   if (!(await click(page, '#otp-panel a'))) {
     problems.push('sem título no "Nesta página"');
