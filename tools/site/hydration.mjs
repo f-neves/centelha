@@ -685,6 +685,18 @@ async function checkShapes(page) {
   return problems;
 }
 
+/** Recarrega e espera a página nova hidratar (e não a velha, ainda na tela). */
+async function reloadAndWait(page) {
+  await page.eval('(() => { window.__old = true; location.reload(); return true; })()');
+  const ready = "!window.__old && document.readyState === 'complete' && document.documentElement.dataset.islands === 'hydrated'";
+  for (let i = 0; i < 300; i++) {
+    // No meio da troca de documento, a avaliação pode falhar: tenta de novo.
+    if (await page.eval(ready).catch(() => false)) return;
+    await new Promise((ok) => setTimeout(ok, 100));
+  }
+  throw new Error('a página recarregada não hidratou em 30 s');
+}
+
 /** Espera a página ficar 400 ms sem evento de rolagem (até 3 s). */
 async function settleScroll(page) {
   await page.eval("(() => { if (!window.__scrolls) { window.__scrolls = { n: 0 }; addEventListener('scroll', () => { window.__scrolls.n++; window.__scrolls.at = performance.now(); }, true); } return true; })()");
@@ -718,6 +730,8 @@ async function checkBackToTop(page) {
 async function checkBookmarks(page, rel) {
   const problems = [];
   if (!(await page.eval("!!document.querySelector('main .ref')"))) return problems;
+  const id = await page.eval("document.querySelector('main .ref').dataset.ref");
+  const here = await page.eval('location.pathname');
   await page.eval("window.scrollTo({ top: 0, behavior: 'instant' })");
   // A rolagem fecha o cartão, e o evento dela chega um quadro depois: espera
   // passar antes de abrir.
@@ -754,7 +768,10 @@ async function checkBookmarks(page, rel) {
   // Num capítulo só (é lento): o download que falha tenta de novo no próximo
   // fixado, e a página aberta já com um fixado na sessão mostra o painel.
   if (rel !== 'regras/combate/') return problems;
-  const id = await page.eval("document.querySelector('main .ref').dataset.ref");
+  if ((await page.eval('location.pathname')) !== here) {
+    problems.push(`o teste dos fixados saiu da página: ${await page.eval('location.href')}`);
+    return problems;
+  }
   const pin = (list) => page.eval(`(() => { sessionStorage.setItem('centelha:consulta', '${JSON.stringify(list)}'); dispatchEvent(new Event('rs:consulta')); return true; })()`);
   const cards = () => page.eval("document.querySelectorAll('#consulta .cs-card').length");
   const waitCards = async (n) => {
@@ -763,8 +780,7 @@ async function checkBookmarks(page, rel) {
   };
   await page.send('Network.enable');
   await page.send('Network.setBlockedURLs', { urls: ['*ref-index.json'] });
-  await page.eval("location.reload()");
-  await page.waitFor("document.documentElement.dataset.islands === 'hydrated'", 30000);
+  await reloadAndWait(page);
   await pin([`termo:${id}`]);
   await new Promise((ok) => setTimeout(ok, 500));
   if ((await cards()) !== 0) problems.push('o painel apareceu sem o índice');
@@ -772,8 +788,7 @@ async function checkBookmarks(page, rel) {
   await pin([`termo:${id}`]);
   if ((await waitCards(1)) !== 1) problems.push('depois de uma falha, o painel não baixou o índice de novo');
   // Abrir a página já com o fixado na sessão.
-  await page.eval("location.reload()");
-  await page.waitFor("document.documentElement.dataset.islands === 'hydrated'", 30000);
+  await reloadAndWait(page);
   if ((await waitCards(1)) !== 1) problems.push('a página aberta com um fixado na sessão não mostrou o painel');
   await pin([]);
   if ((await waitCards(0)) !== 0) problems.push('o painel não sumiu ao esvaziar a lista');
