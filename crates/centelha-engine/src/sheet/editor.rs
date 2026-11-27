@@ -107,6 +107,16 @@ impl EditorTables {
         &self.sheet
     }
 
+    /// As Artes, na ordem do arquivo.
+    pub fn arts(&self) -> &[Art] {
+        &self.arts
+    }
+
+    /// Os Efeitos, na ordem do arquivo.
+    pub fn effects(&self) -> &[Effect] {
+        &self.effects
+    }
+
     /// Os ids dos Atributos e os nomes (`a.nome || a.id`), na ordem do arquivo.
     pub(super) fn attributes(&self) -> impl Iterator<Item = (&str, &str)> {
         self.attributes

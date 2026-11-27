@@ -30,6 +30,18 @@ import os from 'node:os';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 
+// O gancho das Artes e dos Efeitos: as funções da fonte como estão (nenhum
+// trecho copiado, então nada para guardar). Elas devolvem HTML; o gerador lê dele
+// os dados que o Rust devolve em estrutura.
+const HOOK_ARTES = String.raw`
+  Object.assign(globalThis.__ficha, {
+    idRef: (x) => idRef(x), nomeArte: (id) => nomeArte(id), artesDe: (e) => artesDe(e), rotPar: (n) => rotPar(n),
+    parCurto: (e) => parCurto(e), gruposEfeito: () => gruposEfeito(), corpoEfeitos: () => corpoEfeitos(),
+    arteFx: (a, l) => arteFx(a, l), artePrint: (a, l) => artePrint(a, l), conteudoArtePop: (a) => conteudoArtePop(a),
+    conteudoEfeitoPop: (e) => conteudoEfeitoPop(e), cardEfeito: (e, arteId) => cardEfeito(e, arteId),
+    setEF: (o) => Object.assign(EF, o), arteD: () => ARTE_D, efeitoD: () => EFEITO_D,
+  });`;
+
 const HOOK_AT = 'export function montarFicha(opts: FichaOpts) {';
 const HOOK = `
   globalThis.__ficha = {
@@ -175,7 +187,7 @@ export async function loadSheetEditor({ build, SRC }) {
         vel: amostra.map(vel), velNatacao: amostra.map(velNatacao) };
     })();
     ${FORCE_AT}`;
-  const text = patch(patch(patch(patch(patch(fs.readFileSync(file, 'utf8'), HOOK_AT, HOOK_AT + HOOK + HOOK2), TOTAL_AT, TOTAL),
+  const text = patch(patch(patch(patch(patch(fs.readFileSync(file, 'utf8'), HOOK_AT, HOOK_AT + HOOK + HOOK2 + HOOK_ARTES), TOTAL_AT, TOTAL),
     MOVE_AT, MOVE), FORCE_AT, FORCE), UID_AT, UID);
   // o original de cada trecho copiado no gancho tem de estar na fonte, uma vez só
   const fonte = fs.readFileSync(file, 'utf8');
@@ -889,6 +901,90 @@ export function buildSheetEditorCases({ editor, sheets, races, attributes, techn
           add('especialidade', ['meio-humano', scope, chave, nivel, lista, op], { lista: (scope === 'p' ? S2.spec : S2.spec2)[chave] ?? null, aberto, mudou: m });
         }
       }
+    }
+  }
+
+
+  // ----- Artes e Efeitos, em dados -----
+  // As funções da fonte escrevem HTML; daqui saem os dados que o Rust devolve em
+  // estrutura (os níveis, o cartão, o cartão de hover, os grupos).
+  const ARTES = hook.arteD(), EFEITOS = hook.efeitoD();
+  const tira = (s) => String(s).replace(/<[^>]+>/g, '');
+  const formasDe = (s) => [...String(s).matchAll(/data-formas="([^"]+)"/g)].map((m) => m[1]);
+  const parsePars = (h) => ({ texto: tira(h), formas: formasDe(h) });
+  const linhasDe = (h) => [...String(h).matchAll(/<div class="fxline( hi)?">([^ ]+) · <b>([\s\S]*?)<\/b>: ([\s\S]*?)<\/div>/g)]
+    .map((m) => ({ nivel: Number(m[2]), nome: m[3], efeito: m[4], alcancado: !!m[1] }));
+  const titulo = (h) => { const m = /<span class="ficha-pop-tit">([\s\S]*?)<small>([\s\S]*?)<\/small><\/span>/.exec(h); return { titulo: m[1], rotulo: m[2] }; };
+  const cartao = (h) => ({
+    comprado: /class="ef-card on"/.test(h),
+    nome: /<span class="ef-c-nm"[^>]*>([\s\S]*?)<\/span>/.exec(h)[1],
+    nivel: Number(/<span class="ef-i-nv"[^>]*>([^<]*)<\/span>/.exec(h)[1]),
+    xp: Number(/<span class="ef-c-xp">([^ ]*) XP<\/span>/.exec(h)[1]),
+    tambem: (/<div class="ef-c-ar">também em ([\s\S]*?)<\/div>/.exec(h)?.[1] ?? '').split(' · ').filter(Boolean),
+    texto: /<div class="ef-c-tx">([\s\S]*?)<\/div>/.exec(h)[1],
+    parametros: parsePars(/<div class="ef-c-par muted">([\s\S]*?)<\/div>/.exec(h)[1]),
+  });
+  const cartaoHover = (h) => ({
+    ...titulo(h),
+    texto: /<div class="ef-pop-tx">([\s\S]*?)<\/div>/.exec(h)[1],
+    sabores: [...h.matchAll(/<div class="ef-pop-sab"><b>([\s\S]*?):<\/b> ([\s\S]*?)<\/div>/g)].map((m) => ({ arte: m[1], texto: m[2] })),
+    parametros: [...h.matchAll(/<div class="ef-pop-p"><b>([\s\S]*?):<\/b> ([\s\S]*?)<\/div>/g)].map((m) => {
+      const q = /^([\s\S]*?)(?:<small>([\s\S]*?)<\/small>)?$/.exec(m[2]);
+      return { nome: tira(m[1]), forma: formasDe(m[1])[0] ?? null, valor: q[1], nota: q[2] ?? null };
+    }),
+    notas: /<div class="ef-pop-nota muted">([\s\S]*?)<\/div>/.exec(h)?.[1] ?? null,
+  });
+  const corpo = (h) => {
+    const vazio = /<div class="ef-vazio muted">([\s\S]*?)<\/div>/.exec(h);
+    if (vazio) return { vazio: vazio[1] };
+    return { grupos: [...h.matchAll(/data-eftog="([^"]+)"[\s\S]*?<span class="ef-g-nm">([\s\S]*?)<\/span>\s*<span class="ef-g-conta">([\s\S]*?)<\/span>/g)]
+      .map((m) => ({ arte: m[1], nome: m[2], conta: m[3] })) };
+  };
+
+  for (const x of [{ id: 'fogo' }, { id: { id: 'agua' } }, { id: null }, { id: 3 }, { id: 'a b' }]) add('idRef', [x.id], hook.idRef(x.id) ?? null);
+  for (const a of ARTES) add('nomeArte', [a.id], hook.nomeArte(a.id));
+  add('nomeArte', ['nao-existe'], hook.nomeArte('nao-existe'));
+  const nomesPar = [...new Set(EFEITOS.flatMap((e) => e.parametros.map((p) => p.nome)).concat(['Volume', 'volume (m³)', 'Área', 'area', 'Alcance', '']))];
+  for (const n of nomesPar) add('rotPar', [n], parsePars(hook.rotPar(n)));
+  for (const e of EFEITOS) add('parCurto', [e.id], parsePars(hook.parCurto(e)));
+
+  // os estados com as Artes todas no mesmo nível, e metade dos Efeitos comprados
+  for (let n = 0; n <= 6; n++) {
+    const prepare = () => {
+      hook.fresh();
+      const st = hook.getS();
+      ARTES.forEach((a) => { st.arte[a.id] = n; });
+      EFEITOS.forEach((e, i) => { if (i % 2 === 0) st.efeito[e.id] = true; });
+    };
+    prepare();
+    inputs.push({ id: `artes-${n}`, s: pick(hook.getS()), chosen: hook.massaEscolhida(), prepare });
+  }
+  for (const x of inputs) {
+    hook.setS(structuredClone(x.s));
+    for (const so of [false, true]) {
+      hook.setEF({ soComprados: so });
+      add('gruposEfeito', [x.id, so], hook.gruposEfeito().map((g) => ({ arte: g.arte.id, itens: g.itens.map((e) => e.id) })));
+      add('corpoEfeitos', [x.id, so], corpo(hook.corpoEfeitos()));
+    }
+    hook.setEF({ soComprados: false });
+  }
+  const comNiveis = inputs.filter((x) => x.id.startsWith('compras-') || x.id.startsWith('artes-') || x.id === 'meio-humano');
+  for (const x of comNiveis) {
+    hook.setS(structuredClone(x.s));
+    for (const a of ARTES) {
+      const lvl = hook.getS().arte[a.id] || 0;
+      add('arteFx', [x.id, a.id], linhasDe(hook.arteFx(a, lvl)));
+      add('artePrint', [x.id, a.id], linhasDe(hook.artePrint(a, lvl)));
+      add('conteudoArtePop', [x.id, a.id], { ...titulo(hook.conteudoArtePop(a)), linhas: linhasDe(hook.conteudoArtePop(a)) });
+    }
+  }
+  const comEfeitos = inputs.filter((x) => ['compras-0', 'compras-3', 'artes-2', 'artes-6'].includes(x.id));
+  for (const x of comEfeitos) {
+    hook.setS(structuredClone(x.s));
+    for (const e of EFEITOS) {
+      add('artesDe', [x.id, e.id], hook.artesDe(e).map((a) => hook.idRef(a.id)));
+      add('conteudoEfeitoPop', [x.id, e.id], cartaoHover(hook.conteudoEfeitoPop(e)));
+      for (const a of e.artes) add('cardEfeito', [x.id, e.id, hook.idRef(a.id)], cartao(hook.cardEfeito(e, hook.idRef(a.id))));
     }
   }
 
