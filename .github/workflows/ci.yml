@@ -173,6 +173,11 @@ jobs:
           path: .tamanho/main.json
           key: tamanho-main-${{ github.sha }}
 
+      # Todo href e src interno do dist/ cai num arquivo e num id que existem.
+      # Link para página ainda não portada só entra na lista do resumo.
+      - name: Links internos
+        run: node tools/ci/links.mjs dist
+
       - name: Prova de hidratação (release)
         run: node tools/site/hydration.mjs dist
 

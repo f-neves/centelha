@@ -4,8 +4,11 @@
 //! O WebAssembly (as ilhas) e o script de carga entram em `dist/pkg/`, gravados
 //! pelo `cargo xtask site` depois do gerador.
 
+pub mod arts;
+pub mod arts_pages;
 mod backdrop;
 pub mod equipment;
+pub mod heading_ids;
 pub mod links;
 pub mod markdown;
 pub mod nav;
@@ -151,6 +154,7 @@ pub struct Site {
     counts: HomeCounts,
     scales: HashMap<String, leptos::serde_json::Value>,
     equipment: equipment::Equipment,
+    arts: arts::Arts,
     diagrams: Diagrams,
     content_dir: PathBuf,
 }
@@ -174,6 +178,7 @@ impl Site {
             counts: home_counts(content_dir)?,
             scales: glossary_scales(content_dir)?,
             equipment: equipment::load(content_dir, &skill_names(content_dir)?)?,
+            arts: arts::load(content_dir, &centelha_data::load_rules(content_dir)?)?,
             diagrams,
             content_dir: content_dir.to_path_buf(),
         })
@@ -221,8 +226,8 @@ impl Site {
         };
         pages.push(Page {
             path: "index.html".to_string(),
-            html: self.document(home, None, move || {
-                view! { <HomePage base counts/> }.into_any()
+            html: self.document_with_headings(home, None, move || {
+                view! { <HomePage base=base.clone() counts/> }.into_any()
             }),
         });
         for (i, chapter) in self.chapters.iter().enumerate() {
@@ -255,10 +260,46 @@ impl Site {
         };
         pages.push(Page {
             path: "equipamentos/index.html".to_string(),
-            html: self.document(
+            html: self.document_with_headings(
                 equipment_page,
                 Some("Catálogo filtrável de armas, armaduras e escudos, com dano, Absorção e os trade-offs."),
-                move || view! { <EquipmentPage base equipment/> }.into_any(),
+                move || view! { <EquipmentPage base=base.clone() equipment=equipment.clone()/> }.into_any(),
+            ),
+        });
+        // As Artes: `artes/` leva às regras; o catálogo e os Efeitos.
+        pages.push(Page {
+            path: "artes/index.html".to_string(),
+            html: arts_pages::redirect_html(&self.base),
+        });
+        let (base, arts) = (self.base.clone(), self.arts.clone());
+        let title = format!("As {} Artes", arts.art_count);
+        pages.push(Page {
+            path: "artes/catalogo/index.html".to_string(),
+            html: self.document_with_headings(
+                PageInfo {
+                    path: "artes/catalogo".to_string(),
+                    title,
+                    wide: true,
+                    toc: Vec::new(),
+                    refs: true,
+                },
+                Some("O catálogo das Artes da feitiçaria: os seis níveis de cada uma, com exemplos do que aquele patamar alcança."),
+                move || view! { <arts_pages::ArtsCatalogPage base=base.clone() arts=arts.clone()/> }.into_any(),
+            ),
+        });
+        let (base, arts) = (self.base.clone(), self.arts.clone());
+        pages.push(Page {
+            path: "artes/efeitos/index.html".to_string(),
+            html: self.document_with_headings(
+                PageInfo {
+                    path: "artes/efeitos".to_string(),
+                    title: "Efeitos Especiais".to_string(),
+                    wide: true,
+                    toc: Vec::new(),
+                    refs: true,
+                },
+                Some("Os Efeitos Especiais das Artes: o que cada um faz, o que custa e quais parâmetros o jogador escolhe na hora de conjurar."),
+                move || view! { <arts_pages::ArtsEffectsPage base=base.clone() arts=arts.clone()/> }.into_any(),
             ),
         });
         // A página de "não encontrada", na raiz de `dist/` (o GitHub Pages a
@@ -310,6 +351,29 @@ impl Site {
 
     /// O documento inteiro de uma página. O corpo é desenhado num contexto de
     /// ilhas: só o que é `#[island]` leva marcas de hidratação.
+    /// Como [`Site::document`], para as páginas que não vêm do Markdown: dá
+    /// `id` aos títulos que não têm e monta o "Nesta página" com eles, como o
+    /// `NestaPagina.astro` do site atual faz no navegador
+    /// (`heading_ids`). O conteúdo é desenhado duas vezes: a primeira só
+    /// para achar os títulos.
+    fn document_with_headings(
+        &self,
+        mut page: PageInfo,
+        description: Option<&str>,
+        content: impl Fn() -> AnyView + Send + Clone + 'static,
+    ) -> String {
+        let draft = content.clone();
+        let owner = Owner::new_root(Some(Arc::new(SsrSharedContext::new_islands())));
+        let html = owner.with(move || draft().to_html());
+        page.toc = heading_ids::add_ids(&html).1;
+        let doc = self.document(page, description, content);
+        let (Some(start), Some(end)) = (doc.find("<main"), doc.find("</main>")) else {
+            return doc;
+        };
+        let main = heading_ids::add_ids(&doc[start..end]).0;
+        format!("{}{}{}", &doc[..start], main, &doc[end..])
+    }
+
     fn document(
         &self,
         page: PageInfo,
@@ -540,31 +604,12 @@ impl Site {
     }
 }
 
-/// Os nomes das Habilidades por id (a coluna Habilidade de Equipamentos).
-///
-/// Provisório, como as escalas e os contadores: o `centelha-data` ainda não
-/// tem o módulo das Habilidades. Lê só `id` e `nome` de `habilidades.json`.
-/// Sai do provisório com o leitor de `habilidades.json` do `centelha-data`
-/// (tarefa 014a do Backend).
+/// Os nomes das Habilidades por id (a coluna Habilidade de Equipamentos),
+/// pelo leitor do `centelha-data`.
 fn skill_names(content_dir: &Path) -> Result<Vec<(String, String)>, SiteError> {
-    let path = content_dir.join("data").join("habilidades.json");
-    let text = std::fs::read_to_string(&path).map_err(io_error(&path))?;
-    let list: Vec<leptos::serde_json::Value> =
-        leptos::serde_json::from_str(&text).map_err(|e| {
-            SiteError::Data(DataError::Json {
-                file: Some("data/habilidades.json".to_string()),
-                path: String::new(),
-                reason: e.to_string(),
-            })
-        })?;
-    Ok(list
-        .iter()
-        .filter_map(|h| {
-            Some((
-                h.get("id")?.as_str()?.to_string(),
-                h.get("nome")?.as_str()?.to_string(),
-            ))
-        })
+    Ok(centelha_data::load_skills(content_dir)?
+        .into_iter()
+        .map(|h| (h.id, h.name))
         .collect())
 }
 
