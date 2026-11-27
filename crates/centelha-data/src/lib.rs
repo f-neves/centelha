@@ -15,6 +15,7 @@ pub mod attributes;
 pub mod bestiary;
 mod catalog_item;
 pub mod chapters;
+mod damage_mode;
 pub mod effects;
 mod error;
 pub mod glossary;
@@ -50,6 +51,7 @@ pub use catalog_item::Price;
 #[cfg(not(target_arch = "wasm32"))]
 pub use chapters::load_chapters;
 pub use chapters::{Chapter, parse_chapter};
+pub use damage_mode::DamageMode;
 #[cfg(not(target_arch = "wasm32"))]
 pub use effects::load_effects;
 pub use effects::{Effect, parse_effects};
@@ -78,4 +80,4 @@ pub use virtues::load_virtues;
 pub use virtues::{Virtue, parse_virtues};
 #[cfg(not(target_arch = "wasm32"))]
 pub use weapons::load_weapons;
-pub use weapons::{AttackMode, DamageType, RangeBand, Weapon, WeaponStats, parse_weapons};
+pub use weapons::{AttackMode, RangeBand, Weapon, WeaponStats, parse_weapons};

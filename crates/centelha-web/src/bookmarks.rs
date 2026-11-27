@@ -96,6 +96,12 @@ mod browser {
         let Some(window) = web_sys::window() else {
             return;
         };
+        // Se o download falhar (rede, resposta ruim), a próxima mudança nos
+        // fixados tenta de novo.
+        let idx = index.clone();
+        let on_fail = Rc::new(Closure::<dyn FnMut(wasm_bindgen::JsValue)>::new(
+            move |_: wasm_bindgen::JsValue| idx.started.set(false),
+        ));
         let (doc, idx) = (document.clone(), index.clone());
         let on_json = Closure::<dyn FnMut(wasm_bindgen::JsValue)>::new(
             move |value: wasm_bindgen::JsValue| {
@@ -104,18 +110,23 @@ mod browser {
                 render(&doc, &items);
             },
         );
+        let (fail, idx) = (on_fail.clone(), index.clone());
         let on_response = Closure::<dyn FnMut(wasm_bindgen::JsValue)>::new(
-            move |response: wasm_bindgen::JsValue| {
-                if let Ok(json) = response
-                    .dyn_into::<web_sys::Response>()
-                    .and_then(|r| r.json())
-                {
-                    let _ = json.then(&on_json);
+            move |response: wasm_bindgen::JsValue| match response
+                .dyn_into::<web_sys::Response>()
+                .ok()
+                .filter(web_sys::Response::ok)
+                .and_then(|r| r.json().ok())
+            {
+                Some(json) => {
+                    let _ = json.then2(&on_json, &fail);
                 }
+                None => idx.started.set(false),
             },
         );
-        let _ = window.fetch_with_str(&url).then(&on_response);
+        let _ = window.fetch_with_str(&url).then2(&on_response, &on_fail);
         on_response.forget();
+        std::mem::forget(on_fail);
     }
 
     fn pins() -> Vec<String> {

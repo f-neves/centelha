@@ -181,7 +181,9 @@ Framework e versões: ADR 0003 (Leptos com ilhas; site estático gerado por nós
 
 **Admin na tela (R22):** esconder um controle de admin é conveniência, não proteção. A tela pergunta ao `centelha-supabase` (que pergunta à `eh_admin`) e mostra o controle só com um sim; enquanto não há resposta, ou com falha, mostra como não admin. Nada de e-mail fixo nem lista de admins no site. Ação de admin que grava só existe se o banco a barra por conta própria; uma ação do site atual protegida só no navegador vira aviso ao Coordenador-RS antes do port.
 
-**Não faz:** conta de regra (pede ao `centelha-engine`), mudança no texto do livro (o que está em `content/` sai como está), corte ou recodificação de imagem.
+**Não faz:** conta de regra (pede ao `centelha-engine`), mudança no texto do livro (o que está em `content/` sai como está), corte ou recodificação de imagem (o enquadramento das imagens enviadas, R32 abaixo, é só de exibição: o arquivo não muda).
+
+**Imagens (R10, R31 e R32):** o critério é a origem da imagem. (1) **Imagens do próprio site**, as que vêm de `content/` pela cópia (livro, bestiário, ícones, ilustrações): R10 sem exceção, nada cortado, ampliado num quadro ou mostrado com `object-fit: cover`; o bestiário fica em quadro 3:2 com `object-fit: contain`. (2) **Imagens enviadas por jogador ou Mestre** (armazenamento do Supabase: o retrato do personagem, com `object-fit: cover` e o enquadramento salvo em `imagem_pos`; a foto das peças do arsenal e das armaduras, pelo `enqDe` e `ZOOM_MAX` de `src/lib/ficha-engine.ts`, em `contain` com zoom até 4; os retratos do Códice do Mestre; as imagens de mesa; qualquer outra que venha por envio): R32 (26/11/2026, amplia a R31), seguem o comportamento do site atual com paridade, podem cortar e enquadrar, e o enquadramento salvo é respeitado. A conta do enquadramento, quando houver, fica no motor.
 
 ## centelha-grid
 

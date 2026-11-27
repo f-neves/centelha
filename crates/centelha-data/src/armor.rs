@@ -75,6 +75,11 @@ impl<'de> Deserialize<'de> for Armor {
 
 impl Armor {
     /// A peça inteira como está no JSON (as chaves na ordem do arquivo).
+    ///
+    /// O `Catalog::from_data` do motor monta o catálogo da ficha por este
+    /// envelope, e não pelos campos tipados: quem lê a peça para mostrar usa
+    /// os campos tipados, e mudar um campo tipado não muda o catálogo do
+    /// motor.
     pub fn envelope(&self) -> &Value {
         &self.envelope
     }
