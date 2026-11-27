@@ -43,15 +43,25 @@ fn plain(s: &str) -> Vec<char> {
     s.chars().map(strip_accent).collect()
 }
 
-// As letras e a caixa só no latim (ASCII, Latim-1 e Latim estendido A), sem
-// as tabelas Unicode da biblioteca padrão, que pesam no WebAssembly. Basta
-// para o texto do livro (português e nomes próprios).
+// As letras e a caixa só no latim (ASCII, Latim-1 e Latim estendido A) e nos
+// sinais de número que o livro usa (ordinais, expoentes, índices, frações),
+// sem as tabelas Unicode da biblioteca padrão, que pesam no WebAssembly. O
+// teste `word_chars_match_unicode_on_the_book` confere, caractere a
+// caractere, que o texto de `content/` dá o mesmo que `[\p{L}\p{N}]`.
 
-/// Letra ou algarismo (`[\p{L}\p{N}]`, no latim).
+/// Letra ou algarismo (`[\p{L}\p{N}]`, nos caracteres do livro).
 fn is_word_char(c: char) -> bool {
     c.is_ascii_alphanumeric()
         || (('\u{c0}'..='\u{ff}').contains(&c) && c != '\u{d7}' && c != '\u{f7}')
         || ('\u{100}'..='\u{17f}').contains(&c)
+        // ª µ º, os expoentes ² ³ ¹ e as frações ¼ ½ ¾.
+        || matches!(c, '\u{aa}' | '\u{b5}' | '\u{ba}' | '\u{b2}' | '\u{b3}' | '\u{b9}')
+        || ('\u{bc}'..='\u{be}').contains(&c)
+        // Sobrescritos e subscritos (⁰ a ⁹, ₀ a ₉) e as frações e os
+        // numerais de U+2150 a U+218B (⅓, ⅙, Ⅻ).
+        || ('\u{2070}'..='\u{2079}').contains(&c)
+        || ('\u{2080}'..='\u{2089}').contains(&c)
+        || ('\u{2150}'..='\u{218b}').contains(&c)
 }
 
 fn lower(c: char) -> char {
@@ -422,5 +432,183 @@ mod tests {
         assert_eq!(lower('Ã'), 'ã');
         assert!(is_upper('É') && !is_upper('é') && !is_upper('7'));
         assert_eq!(tokens("Força, de-Vontade!"), ["Força", "de", "Vontade"]);
+    }
+
+    /// O resto dos casos de `scripts/test-busca.mjs` do site atual.
+    #[test]
+    fn remaining_cases_of_the_current_site() {
+        let fr = |p: &[&str], l: &[f64], d: &str, m: Mode| {
+            let lowered: Vec<String> = p.iter().map(|s| s.to_lowercase()).collect();
+            filter_case(&lowered, Some(l), &tokens(&d.to_lowercase()), m, None)
+        };
+
+        let t = |s: &str| tokens(s);
+        assert_eq!(t("  armadura  "), ["armadura"]);
+        assert_eq!(t("arma armadura"), ["arma", "armadura"]);
+        assert!(t("\"").is_empty());
+        assert!(t("\"\" \"\"").is_empty());
+        assert!(t("!!! ???").is_empty());
+        assert!(t("").is_empty());
+        assert!(t("   ").is_empty());
+        assert_eq!(
+            t("\"defesa contra projéteis\""),
+            ["defesa", "contra", "projéteis"]
+        );
+        assert_eq!(t("pedra-papel"), ["pedra", "papel"]);
+        assert_eq!(
+            pagefind_term(&t("arma armadura"), Mode::Words),
+            "arma armadura"
+        );
+        assert_eq!(
+            pagefind_term(&t("arma armadura"), Mode::Phrase),
+            "\"arma armadura\""
+        );
+        assert_eq!(
+            pagefind_term(&t("\"arma armadura\""), Mode::Phrase),
+            "\"arma armadura\""
+        );
+        let k = ["O", "Kael", "luta", "contra", "o", "Uldun."];
+        assert!(v(&k, &[1.0], "Kael").ok);
+        assert!(!v(&k, &[1.0], "kael").ok);
+        assert!(fr(&k, &[1.0], "kael", Mode::Words).ok);
+        assert!(!v(&k, &[1.0], "KAEL").ok);
+        assert!(v(&k, &[5.0], "Uldun").ok && !v(&k, &[5.0], "uldun").ok);
+        assert_eq!(v(&k, &[1.0], "Kael").accepted, [1]);
+        assert!(v(&k, &[1.0], "kael").accepted.is_empty());
+        assert!(fr(&["A", "Absorção"], &[1.0], "absorcao", Mode::Words).ok);
+        let lut = ["A", "luta", "luta.", "lutar", "lutador;", "lutando.", "fim"];
+        let rl = v(&lut, &[1.0, 2.0, 3.0, 4.0, 5.0], "lutando");
+        assert!(rl.ok);
+        assert_eq!(rl.accepted, [1, 2, 3, 4, 5]);
+        assert!(v(&["A", "Luta", "Luta", "fim"], &[1.0, 2.0], "Lutando").ok);
+        assert!(
+            v(
+                &["ele", "ataca", "com", "ataque", "e", "atacar"],
+                &[1.0, 3.0, 5.0],
+                "atacar"
+            )
+            .ok
+        );
+        assert!(
+            v(
+                &["um", "animal", "e", "dois", "animais"],
+                &[1.0, 4.0],
+                "animais"
+            )
+            .ok
+        );
+        assert!(v(&["a", "Magia", "e", "Magnitude"], &[1.0, 3.0], "Magia").ok);
+        assert!(v(&["A", "armadura", "pesada"], &[1.0], "armaduras").ok);
+        assert!(!v(&["A", "Armadura", "pesada"], &[1.0], "armaduras").ok);
+        let nv = v(&["xyz", "abc"], &[0.0], "kael");
+        assert!(nv.ok && nv.neutral == 1 && nv.accepted.is_empty() && !nv.broken_premise);
+        assert!(fr(&["veja", "“Kael”", "agora"], &[1.0], "kael", Mode::Words).ok);
+        assert!(
+            v(&["veja", "“Kael”", "agora"], &[1.0], "Kael").ok
+                && v(&["veja", "(Kael)"], &[1.0], "Kael").ok
+        );
+        assert_eq!(
+            v(&["veja", "“Kael”", "agora"], &[1.0], "Kael").accepted,
+            [1]
+        );
+        assert!(!v(&["veja", "Kael,", "agora"], &[1.0], "kael").ok);
+        let tl = v(&["x", "kaxyz"], &[1.0], "Kael");
+        assert!(tl.ok && tl.neutral == 1);
+        assert!(v(&k, &[1.0, 99.0], "kael").broken_premise);
+        // locations ausente
+        let r = filter_case(&w(&k), None, &tokens("kael"), Mode::Words, None);
+        assert!(r.ok && r.broken_premise && r.neutral == 1);
+        let wc = |c: f64| filter_case(&w(&k), Some(&[1.0]), &tokens("kael"), Mode::Words, Some(c));
+        assert!(wc(7.0).ok && wc(7.0).neutral == 1 && wc(7.0).broken_premise);
+        assert!(wc(5.0).ok && wc(5.0).neutral == 1 && wc(5.0).broken_premise);
+        assert!(wc(0.0).ok && wc(0.0).neutral == 1);
+        assert!(!wc(6.0).ok);
+        let f = ["na", "Defesa", "contra", "projéteis."];
+        let a = filter_case(
+            &w(&f),
+            Some(&[1.0, 2.0, 3.0]),
+            &tokens("defesa contra projéteis"),
+            Mode::Phrase,
+            Some(999.0),
+        );
+        assert!(a.ok && a.neutral == 3);
+        let b = filter_case(
+            &w(&f),
+            Some(&[1.0, 2.0, 3.0]),
+            &tokens("defesa contra projéteis"),
+            Mode::Phrase,
+            Some(3.0),
+        );
+        assert!(b.ok && b.neutral == 3);
+        assert!(v(&k, &[1.0], "").ok && v(&k, &[1.0], "\"").ok);
+        assert!(!v(&k, &[1.0], "kael").broken_premise && !v(&k, &[1.0], "Kael").broken_premise);
+        let f2 = [
+            "+3",
+            "na",
+            "Defesa",
+            "contra",
+            "projéteis.",
+            "A",
+            "Interação",
+        ];
+        assert!(vp(&f2, &[2.0, 3.0, 4.0], "Defesa contra projéteis").ok);
+        assert!(!vp(&f2, &[2.0, 3.0, 4.0], "defesa contra projéteis").ok);
+        assert!(
+            fr(
+                &f2,
+                &[2.0, 3.0, 4.0],
+                "defesa contra projéteis",
+                Mode::Phrase
+            )
+            .ok
+        );
+        assert_eq!(
+            vp(&f2, &[2.0, 3.0, 4.0], "Defesa contra projéteis").accepted,
+            [2, 3, 4]
+        );
+        assert!(
+            !vp(
+                &["x", "Defesa", "a", "Defesa", "contra", "projéteis"],
+                &[1.0, 3.0, 4.0, 5.0],
+                "defesa contra projéteis"
+            )
+            .ok
+        );
+        assert!(vp(&f2, &[2.0, 4.0], "Defesa contra projéteis").ok);
+        let pal = w(&["A", "luta <b>", "do", "Kael", "&", "fim"]);
+        assert_eq!(
+            excerpt(&pal, &[3], 3, 10, 10),
+            "A luta &lt;b&gt; do <mark>Kael</mark> &amp; fim"
+        );
+        assert_eq!(excerpt(&w(&["só", "isto"]), &[], 0, 5, 5), "só isto");
+    }
+
+    #[test]
+    fn ordinals_and_number_signs_are_word_chars() {
+        assert_eq!(tokens("1º lugar"), ["1º", "lugar"]);
+        assert_eq!(
+            tokens("2ª vez, 3² e ½ e x₁"),
+            ["2ª", "vez", "3²", "e", "½", "e", "x₁"]
+        );
+    }
+
+    /// Cada caractere dos capítulos de `content/` é letra ou algarismo aqui
+    /// se e só se for para o Unicode (o `[\p{L}\p{N}]` do site atual).
+    #[test]
+    fn word_chars_match_unicode_on_the_book() {
+        let dir = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../../content/chapters");
+        let mut seen = std::collections::BTreeSet::new();
+        for entry in std::fs::read_dir(&dir).expect("capítulos") {
+            let path = entry.expect("arquivo").path();
+            if path.extension().is_some_and(|e| e == "md") {
+                seen.extend(std::fs::read_to_string(&path).expect("texto").chars());
+            }
+        }
+        assert!(seen.len() > 100);
+        let wrong: Vec<char> = seen
+            .into_iter()
+            .filter(|&c| is_word_char(c) != c.is_alphanumeric())
+            .collect();
+        assert!(wrong.is_empty(), "diferem do Unicode: {wrong:?}");
     }
 }
