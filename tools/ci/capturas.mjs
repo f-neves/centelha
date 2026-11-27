@@ -26,7 +26,7 @@
 // tempo, cada aba no seu contexto. O resumo vai para `$GITHUB_STEP_SUMMARY`.
 import { appendFileSync, existsSync, mkdirSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
-import { join, resolve } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
 import { detectBase, launch, listPages, serve } from '../site/cdp.mjs';
 
 const args = process.argv.slice(2);
@@ -67,7 +67,10 @@ const marcas = {
   comuns: Object.fromEntries(COMUNS.map((c) => [c, existsSync(join(dist, c)) ? hash(join(dist, c)) : null])),
   paginas: Object.fromEntries(pages.map((r) => [r, hash(arquivoHtml(r))])),
 };
-if (marcasPath) writeFileSync(marcasPath, `${JSON.stringify(marcas, null, 2)}\n`);
+if (marcasPath) {
+  mkdirSync(dirname(resolve(marcasPath)), { recursive: true });
+  writeFileSync(marcasPath, `${JSON.stringify(marcas, null, 2)}\n`);
+}
 const ref = refPath && existsSync(refPath) ? JSON.parse(readFileSync(refPath, 'utf8')) : null;
 const comunsMudaram = ref ? COMUNS.filter((c) => ref.comuns?.[c] !== marcas.comuns[c]) : [];
 const mudou = (r) => !ref || comunsMudaram.length > 0 || ref.paginas?.[r] !== marcas.paginas[r];
