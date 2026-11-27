@@ -696,3 +696,30 @@ main table th.ord:hover, main table th.ord:focus-within { color: var(--accent-st
 .ef-aba:hover { color: var(--accent-texto); }
 .ef-aba[aria-selected='true'] { color: var(--accent-strong); border-bottom-color: var(--accent); }
 .ef-aba .muted { font-style: normal; font-size: var(--fs-micro); }
+
+/* ---------- Artes: regras ----------
+   De src/pages/artes/regras.astro do site atual. */
+.graus-tab { font-size: var(--fs-rotulo); }
+.graus-tab td, .graus-tab th { white-space: nowrap; }
+.p-escopo { display: block; font-size: var(--fs-micro); color: var(--ink-soft); font-style: italic; }
+.callout.revisao { border-color: var(--gold); background: color-mix(in srgb, var(--gold) 10%, transparent); }
+.callout.revisao ul { margin: .4rem 0 0; padding-left: 1.1rem; }
+.callout.revisao li { margin-bottom: .2rem; }
+.ab-tab { font-size: var(--fs-rotulo); table-layout: fixed; }
+.ab-tab th:first-child, .ab-tab td:first-child { width: 6.5rem; }
+.ab-cel { line-height: 1.35; }
+.focos { margin: .4rem 0 .6rem; padding-left: 1.1rem; }
+.focos li { margin-bottom: .25rem; line-height: 1.5; }
+.fraq { margin: .4rem 0 .6rem; padding-left: 1.1rem; }
+.fraq li { margin-bottom: .25rem; line-height: 1.5; }
+.mani-regra { margin: .4rem 0 .8rem; padding-left: 1.3rem; }
+.mani-regra li { margin-bottom: .3rem; line-height: 1.5; }
+.formula.mat { font-family: ui-monospace, 'Cascadia Mono', Consolas, 'DejaVu Sans Mono', monospace;
+  font-weight: 500; letter-spacing: 0; font-size: var(--fs-rotulo); }
+.hex-row td { color: var(--ink-soft); font-size: var(--fs-micro); border-top: 0; padding-top: 0; }
+.artes-nav-topo { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(19rem, 100%), 1fr)); margin: 1rem 0 1.2rem; }
+.cap-card { display: block; padding: .7rem .9rem; border: 1px solid var(--panel-border); border-radius: var(--r-md);
+  background: var(--panel); text-decoration: none; color: inherit; transition: border-color .12s, transform .12s; }
+.cap-card:hover { border-color: var(--accent); transform: translateY(-1px); }
+.cc-tit { display: block; font-family: 'Cinzel', Georgia, serif; color: var(--accent-texto); font-size: var(--fs-aux); }
+.cc-sub { display: block; font-size: var(--fs-rotulo); color: var(--ink-soft); line-height: 1.4; margin-top: .15rem; }
