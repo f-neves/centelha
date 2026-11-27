@@ -554,7 +554,12 @@ async function checkCards(page, rel) {
     if (await page.eval("document.activeElement?.classList.contains('ref') ?? false")) break;
     await new Promise((ok) => setTimeout(ok, 100));
   }
-  await new Promise((ok) => setTimeout(ok, 100));
+  // Com as outras abas trabalhando, o cartão pode reabrir depois do Esc:
+  // espera ele reabrir (até 1 s) antes de fechar.
+  for (let i = 0; i < 10; i++) {
+    if (await page.eval("!!document.querySelector('.ref-pop')")) break;
+    await new Promise((ok) => setTimeout(ok, 100));
+  }
   for (const type of ['keyDown', 'keyUp']) {
     await page.send('Input.dispatchKeyEvent', { type, key: 'Escape', code: 'Escape', windowsVirtualKeyCode: 27 });
   }
