@@ -329,7 +329,7 @@ async function checkPage(contextId, rel, ctx) {
   // 4h. As Artes: o filtro e o marcador do catálogo; as abas, a âncora e a
   // troca de largura dos Efeitos.
   problems.push(...(await checkArtFilter(page)));
-  problems.push(...(await checkEffectTabs(page, url, contentBefore)));
+  problems.push(...(await checkEffectTabs(page, url, contentBefore, newPage, opened)));
 
   // 5. Console limpo: as mensagens entram em `runPage`.
   return `${before.length} caracteres, ilhas em ${hydrateMs} ms, tema ${current} -> ${target}`;
@@ -667,16 +667,32 @@ async function checkShapes(page) {
     probe.focus({ preventScroll: true });
     return true;
   })()`);
+  // Uma rolagem atrasada (do passo do mouse) fecharia o cartão logo depois
+  // de abrir: espera a página ficar 400 ms sem rolar antes do Tab.
+  await settleScroll(page);
   for (const type of ['keyDown', 'keyUp']) {
     await page.send('Input.dispatchKeyEvent', { type, key: 'Tab', code: 'Tab', windowsVirtualKeyCode: 9 });
   }
   await page.eval("document.getElementById('tab-probe').remove()");
-  if (!(await until('Volume'))) problems.push('o Tab não abriu o cartão das formas no rótulo de Volume');
+  if (!(await until('Volume'))) {
+    const state = await page.eval("({ active: (document.activeElement?.className || document.activeElement?.tagName) + ': ' + (document.activeElement?.textContent ?? '').slice(0, 30), pop: !!document.querySelector('.formas-pop'), title: document.querySelector('.formas-pop .formas-tit')?.textContent ?? null, scrolls: window.__scrolls })");
+    problems.push(`o Tab não abriu o cartão das formas no rótulo de Volume: ${JSON.stringify(state)}`);
+  }
   for (const type of ['keyDown', 'keyUp']) {
     await page.send('Input.dispatchKeyEvent', { type, key: 'Escape', code: 'Escape', windowsVirtualKeyCode: 27 });
   }
   if (!(await until(null))) problems.push('Esc não fechou o cartão das formas');
   return problems;
+}
+
+/** Espera a página ficar 400 ms sem evento de rolagem (até 3 s). */
+async function settleScroll(page) {
+  await page.eval("(() => { if (!window.__scrolls) { window.__scrolls = { n: 0 }; addEventListener('scroll', () => { window.__scrolls.n++; window.__scrolls.at = performance.now(); }, true); } return true; })()");
+  for (let i = 0; i < 30; i++) {
+    const quiet = await page.eval("performance.now() - (window.__scrolls.at ?? 0) > 400");
+    if (quiet) return;
+    await new Promise((ok) => setTimeout(ok, 100));
+  }
 }
 
 async function checkBackToTop(page) {
@@ -687,7 +703,9 @@ async function checkBackToTop(page) {
   await new Promise((ok) => setTimeout(ok, 200));
   if (!(await hidden())) problems.push('o voltar ao topo aparece no alto da página');
   await page.eval("window.scrollTo({ top: innerHeight * 2.5, behavior: 'instant' })");
-  await new Promise((ok) => setTimeout(ok, 300));
+  // O evento de rolagem chega no quadro seguinte, que demora com as outras
+  // abas trabalhando: espera até 3 s.
+  for (let i = 0; i < 30 && (await hidden()); i++) await new Promise((ok) => setTimeout(ok, 100));
   if (await hidden()) problems.push('o voltar ao topo não apareceu depois de duas telas');
   await page.eval("history.replaceState(null, '', location.pathname + '#algum-lugar')");
   if (!(await click(page, '#topo-btn'))) problems.push('sem o botão de voltar ao topo');
@@ -777,7 +795,7 @@ async function checkTabsMounted(page) {
   return problems;
 }
 
-async function checkEffectTabs(page, url, contentBefore) {
+async function checkEffectTabs(page, url, contentBefore, newPage, opened) {
   const problems = [];
   if (!(await page.eval("!!document.querySelector('.ef-aba')"))) return problems;
   const group = () => page.eval("[...document.querySelectorAll('.ef-grupo')].filter((g) => !g.hidden).map((g) => g.dataset.cat).join(' ')");
@@ -806,7 +824,9 @@ async function checkEffectTabs(page, url, contentBefore) {
   }
   if (st.group !== 'universal' || !st.open || !st.inView) problems.push(`a âncora ${target} não abriu o Efeito: ${JSON.stringify(st)}`);
   // Troca de largura: no celular os blocos abrem fechados, sem descasamento.
-  const phone = await browser.newPage();
+  // A aba do celular sai do contexto da página (armazenamento isolado, foco
+  // emulado) e fecha junto se a prova parar.
+  const phone = await newPage();
   const errors = [];
   phone.on('Runtime.consoleAPICalled', (p) => { if (['error', 'warning'].includes(p.type)) errors.push(p.args.map((a) => a.value ?? a.description ?? '').join(' ')); });
   phone.on('Runtime.exceptionThrown', (p) => errors.push(p.exceptionDetails?.exception?.description ?? p.exceptionDetails?.text));
@@ -828,6 +848,7 @@ async function checkEffectTabs(page, url, contentBefore) {
     problems.push(`no celular, as ilhas não hidrataram: ${e.message}`);
   }
   await phone.close();
+  opened.splice(opened.indexOf(phone), 1);
   return problems;
 }
 
