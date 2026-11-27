@@ -130,7 +130,7 @@ for (const rel of paginas) {
   };
   linhas.push(linha);
   const ms = (x) => (x == null ? '-' : `${Math.round(x)} ms`);
-  console.log(`  ${rel}: FCP ${ms(linha.fcp)} · load ${ms(linha.load)} · ilha ${ms(linha.ilha)} · ${maquina}${erro ? ` · ERRO: ${erro}` : ''}`);
+  console.log(`  ${rel || '/'}: FCP ${ms(linha.fcp)} · load ${ms(linha.load)} · ilha ${ms(linha.ilha)} · ${maquina}${erro ? ` · ERRO: ${erro}` : ''}`);
 }
 await page.close();
 await browser.close();
@@ -138,6 +138,8 @@ if (server) await server.close();
 
 const ref = refPath && existsSync(refPath) ? JSON.parse(readFileSync(refPath, 'utf8')) : null;
 const n = (x) => (x == null ? '-' : String(Math.round(x)));
+// A página inicial é o caminho vazio: na tabela, `/`.
+const nome = (rel) => rel || '/';
 const dif = (a, b) => (a == null || b == null ? '-' : `${a - b >= 0 ? '+' : ''}${Math.round(a - b)}`);
 const tabela = [];
 tabela.push(`Abertura com CPU 4x mais lenta, cache desligado, mediana de ${rodadas} (depois de uma de aquecimento), em ms.`);
@@ -152,9 +154,9 @@ for (const l of linhas) {
   const maq = l.erro ? `${l.maquina}; erro: ${l.erro.replace(/\|/g, '/')}` : l.maquina;
   if (ref) {
     const r = ref.linhas.find((x) => x.pagina === l.pagina);
-    tabela.push(`| \`${l.pagina}\` | ${n(l.fcp)} | ${n(l.load)} | ${n(l.ilha)} | ${dif(l.fcp, r?.fcp)} | ${dif(l.load, r?.load)} | ${dif(l.ilha, r?.ilha)} | ${maq} |`);
+    tabela.push(`| \`${nome(l.pagina)}\` | ${n(l.fcp)} | ${n(l.load)} | ${n(l.ilha)} | ${dif(l.fcp, r?.fcp)} | ${dif(l.load, r?.load)} | ${dif(l.ilha, r?.ilha)} | ${maq} |`);
   } else {
-    tabela.push(`| \`${l.pagina}\` | ${n(l.fcp)} | ${n(l.load)} | ${n(l.ilha)} | ${maq} |`);
+    tabela.push(`| \`${nome(l.pagina)}\` | ${n(l.fcp)} | ${n(l.load)} | ${n(l.ilha)} | ${maq} |`);
   }
 }
 const quietas = linhas.filter((l) => l.maquina === 'quieta').length;
