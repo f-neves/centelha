@@ -45,6 +45,12 @@ for (const size of SIZES) {
     await page.goto(url(rel));
     await page.eval('document.fonts.ready.then(() => true)');
     await new Promise((ok) => setTimeout(ok, 600));
+    // ACTION: um trecho de JavaScript (pode devolver promessa) rodado antes da
+    // captura, para fotografar um estado (a busca aberta, por exemplo).
+    if (process.env.ACTION) {
+      await page.waitFor("document.documentElement.dataset.islands === 'hydrated'", 30000);
+      await page.eval(process.env.ACTION);
+    }
     const shot = await page.send('Page.captureScreenshot', { format: 'png' });
     const file = join(out, `${label}-${theme}-${size.width}.png`);
     writeFileSync(file, Buffer.from(shot.data, 'base64'));

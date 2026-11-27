@@ -13,6 +13,8 @@ pub mod cards;
 pub mod effect_tabs;
 pub mod equipment_filter;
 pub mod markers;
+pub mod search;
+pub mod search_match;
 pub mod shapes;
 pub mod shell;
 pub mod sort;
