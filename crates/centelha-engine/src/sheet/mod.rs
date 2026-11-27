@@ -16,16 +16,19 @@
 //!
 //! Quem confere é o teste de paridade contra `tests/parity/sheets.json`.
 
+mod arsenal;
 mod editor;
 mod equip;
 mod format;
 mod hands;
 mod migrate;
 mod near_miss;
+mod normalize;
 mod numbers;
 mod pgr;
 mod strength;
 mod text;
+mod traits;
 pub(crate) mod value;
 
 use std::collections::HashMap;
@@ -33,6 +36,13 @@ use std::collections::HashMap;
 use centelha_data::{Ancestry, Rules};
 use serde_json::Value;
 
+pub use arsenal::{
+    EditTarget, PieceGroup, activate_set, add_set, add_to_arsenal, clean_arsenal,
+    custom_piece_note, differs_from_origin, edit_piece_field, edit_target, is_custom_piece,
+    is_custom_ref, is_two_handed_item, item_fields, parse_field_input, piece_name, piece_role,
+    remove_from_arsenal, remove_set, rename_arsenal_piece, reorder, reset_piece, same_field,
+    set_hand_piece, show_field, write_piece_field,
+};
 pub use editor::{
     EditorCatalogs, EditorTables, FREE_SECONDARY, FRESH_BUDGET, PenalizedMovement, Specialty,
     SpentXp, TechniqueStatus, attribute_floor, change_ancestry, clamp_specialties,
@@ -54,6 +64,7 @@ pub use near_miss::{
     ArmorNearMiss, AttackOutcome, Graze, NearMissAttacker, NearMissOutcome, NearMissTarget,
     WeaponNearMiss, attack_outcome, encounter_near_miss, grazes, missed_by,
 };
+pub use normalize::{FloorRaise, Normalized, normalize_sheet};
 pub use numbers::{
     ArmorStack, ArtLevel, CombatSummary, DamageVersion, DbSummary, DualWield, HandItem, HandKind,
     HandSet, Initiative, Movement, NearMiss, Passive, SheetNumbers, SheetSummary, Step,
@@ -68,6 +79,15 @@ pub use strength::{
     weight_from_text,
 };
 pub use text::{armor_stats, damage_text, shield_stats, signed_number, weapon_stats};
+pub use traits::{
+    SpecialtyScope, TraitKind, add_defense_specialty, add_named_background, add_specialty,
+    click_dot, close_specialties, effective_appearance, free_secondary_name, is_free_secondary,
+    named_instance, open_specialties, racial_appearance_mod, racial_cap_bonus, racial_floor_bonus,
+    remove_defense_specialty, remove_named_background, remove_specialty, rename_named_background,
+    rename_specialty, set_body_mass, set_budget, set_free_secondary_name, set_identity_field,
+    set_specialty_level, set_trait, specialty_count, specialty_skill_level, step_trait,
+    toggle_effect, toggle_technique, trait_floor, trait_value,
+};
 
 /// Erro ao montar as tabelas da ficha.
 #[derive(Debug, Clone, PartialEq)]

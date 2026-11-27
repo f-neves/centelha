@@ -8,7 +8,8 @@ publish.workspace = true
 
 [dependencies]
 serde = { version = "1.0.229", features = ["derive"] }
-serde_json = { version = "1.0.154", features = ["float_roundtrip"] }
+# preserve_order: o envelope da peça guarda as chaves na ordem do arquivo (ADR 0004)
+serde_json = { version = "1.0.154", features = ["float_roundtrip", "preserve_order"] }
 serde_path_to_error = "0.1.20"
 
 [lints]
