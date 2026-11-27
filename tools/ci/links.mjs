@@ -7,8 +7,13 @@
 // - quebrado (o job falha): arquivo que não existe (imagem, folha de estilo,
 //   script, ícone, ou qualquer `src`), âncora que não existe numa página que
 //   existe, link fora do caminho base do site;
-// - página ainda não portada (só lista): `<a href>` para uma página que o
-//   `dist/` não tem, com quantos links apontam para ela;
+// - página ainda não portada (só lista): `<a href>`, `<form action>`,
+//   `<meta http-equiv="refresh">` e `<link>` que aponta para página
+//   (`canonical`, `alternate`, `next`, `prev`, `prefetch`, `prerender`, ou
+//   um `rel` fora das listas, escrito na lista) para uma página que o `dist/`
+//   não tem, com quantos links apontam para ela. `<link>` de recurso
+//   (`stylesheet`, `icon`, `preload`, `modulepreload`, `manifest` e outros)
+//   que falta é quebrado;
 // - externo (só conta, sem visitar): outro endereço, `mailto:`, `tel:`.
 // O caminho base vem do próprio `dist/` (o `href` da marca no topo). A lista e
 // as contas vão para `$GITHUB_STEP_SUMMARY` quando existe, e para a saída.
@@ -70,8 +75,17 @@ function arquivoDe(sub) {
 const ehPagina = (sub) => sub === '' || sub.endsWith('/') || extname(sub) === '' || extname(sub) === '.html';
 
 // Os atributos que levam a um endereço, por elemento.
-const ATRIBUTOS = /<(a|area|link|img|script|source|iframe|video|audio|track|use|image|form)\b([^>]*)>/gi;
+const ATRIBUTOS = /<(a|area|link|img|script|source|iframe|video|audio|track|use|image|form|meta)\b([^>]*)>/gi;
 const ATRIBUTO = /\s(href|src|srcset|xlink:href|poster|action)\s*=\s*("([^"]*)"|'([^']*)')/gi;
+const valorDe = (attrs, nome) => {
+  const m = attrs.match(new RegExp(String.raw`\s${nome}\s*=\s*("([^"]*)"|'([^']*)'|([^\s>]+))`, 'i'));
+  return m ? desfazer(m[2] ?? m[3] ?? m[4] ?? '') : null;
+};
+// `<link rel>`: o que é recurso da página (falta = quebrado) e o que aponta
+// para outra página (falta = página ainda não portada, como um `<a href>`).
+const REL_RECURSO = new Set(['stylesheet', 'icon', 'apple-touch-icon', 'apple-touch-icon-precomposed', 'mask-icon',
+  'preload', 'modulepreload', 'manifest', 'shortcut']);
+const REL_PAGINA = new Set(['canonical', 'alternate', 'next', 'prev', 'prefetch', 'prerender']);
 
 const paginas = arquivosHtml(dist);
 const quebrados = [];
@@ -80,69 +94,99 @@ const externos = new Map();
 let internos = 0;
 let ancoras = 0;
 
+/**
+ * Os endereços de uma tag: `{ v, como, pagina, nota }`. `pagina` diz se a
+ * falta do alvo é "página ainda não portada" (link para página) ou quebrado
+ * (recurso); `nota` vai junto na lista (o `rel` fora das duas listas).
+ */
+function enderecos(elemento, attrs) {
+  if (elemento === 'meta') {
+    // `<meta http-equiv="refresh" content="0; url=...">`: a página que só
+    // redireciona segue a regra do `<a href>`.
+    if ((valorDe(attrs, 'http-equiv') ?? '').toLowerCase() !== 'refresh') return [];
+    const m = (valorDe(attrs, 'content') ?? '').match(/url\s*=\s*['"]?([^'"]+)/i);
+    return m ? [{ v: m[1].trim(), como: `<meta http-equiv="refresh" url="${m[1].trim()}">`, pagina: true, nota: "" }] : [];
+  }
+  let pagina = elemento === 'a' || elemento === 'area' || elemento === 'form';
+  let nota = '';
+  if (elemento === 'link') {
+    const rels = (valorDe(attrs, 'rel') ?? '').toLowerCase().split(/\s+/).filter(Boolean);
+    if (rels.some((r) => REL_RECURSO.has(r))) pagina = false;
+    else if (rels.some((r) => REL_PAGINA.has(r))) pagina = true;
+    else {
+      pagina = true;
+      nota = ` (link rel="${rels.join(' ')}")`;
+    }
+  }
+  const out = [];
+  for (const at of attrs.matchAll(ATRIBUTO)) {
+    const nomeAt = at[1].toLowerCase();
+    const valor = desfazer(at[3] ?? at[4] ?? '').trim();
+    const valores = nomeAt === 'srcset' ? valor.split(',').map((v) => v.trim().split(/\s+/)[0]).filter(Boolean) : [valor];
+    const ehLink = pagina && ['href', 'xlink:href', 'action'].includes(nomeAt);
+    for (const v of valores) out.push({ v, como: `<${elemento} ${nomeAt}="${v}">`, pagina: ehLink, nota: ehLink ? nota : '' });
+  }
+  return out;
+}
+
 for (const arquivo of paginas) {
   const rel = relative(dist, arquivo).split(sep).join('/');
   const urlPagina = `${ORIGEM}${base}${rel.endsWith('index.html') ? rel.slice(0, -'index.html'.length) : rel}`;
   const html = marcacao(readFileSync(arquivo, 'utf8'));
   for (const tag of html.matchAll(ATRIBUTOS)) {
-    const elemento = tag[1].toLowerCase();
-    for (const at of tag[2].matchAll(ATRIBUTO)) {
-      const nomeAt = at[1].toLowerCase();
-      const valor = desfazer(at[3] ?? at[4] ?? '').trim();
-      const valores = nomeAt === 'srcset' ? valor.split(',').map((v) => v.trim().split(/\s+/)[0]).filter(Boolean) : [valor];
-      for (const v of valores) {
-        if (!v || v.startsWith('data:') || v.startsWith('javascript:')) continue;
-        let u;
+    for (const { v, como, pagina, nota } of enderecos(tag[1].toLowerCase(), tag[2])) {
+      if (!v || v.startsWith('data:') || v.startsWith('javascript:')) continue;
+      let u;
+      try {
+        u = new URL(v, urlPagina);
+      } catch {
+        quebrados.push(`${rel}: endereço inválido em ${como}`);
+        continue;
+      }
+      if (u.origin !== ORIGEM) {
+        const chave = u.protocol === 'http:' || u.protocol === 'https:' ? u.host : u.protocol;
+        externos.set(chave, (externos.get(chave) ?? 0) + 1);
+        continue;
+      }
+      internos++;
+      let caminho;
+      try {
+        caminho = decodeURIComponent(u.pathname);
+      } catch {
+        caminho = u.pathname;
+      }
+      if (!caminho.startsWith(base)) {
+        quebrados.push(`${rel}: fora do caminho base ${base}: ${como}`);
+        continue;
+      }
+      const sub = caminho.slice(base.length);
+      const alvo = arquivoDe(sub);
+      if (!alvo) {
+        if (pagina && ehPagina(sub)) {
+          const k = `${base}${sub}${nota}`;
+          const e = naoPortadas.get(k) ?? { links: 0, de: new Set() };
+          e.links++;
+          e.de.add(rel);
+          naoPortadas.set(k, e);
+        } else {
+          quebrados.push(`${rel}: arquivo que não existe: ${como}`);
+        }
+        continue;
+      }
+      const frag = u.hash.slice(1);
+      if (frag && alvo.endsWith('.html')) {
+        ancoras++;
+        let id;
         try {
-          u = new URL(v, urlPagina);
+          id = decodeURIComponent(frag);
         } catch {
-          quebrados.push(`${rel}: endereço inválido em <${elemento} ${nomeAt}="${v}">`);
-          continue;
+          id = frag;
         }
-        if (u.origin !== ORIGEM) {
-          const chave = u.protocol === 'http:' || u.protocol === 'https:' ? u.host : u.protocol;
-          externos.set(chave, (externos.get(chave) ?? 0) + 1);
-          continue;
-        }
-        internos++;
-        let caminho;
-        try {
-          caminho = decodeURIComponent(u.pathname);
-        } catch {
-          caminho = u.pathname;
-        }
-        if (!caminho.startsWith(base)) {
-          quebrados.push(`${rel}: fora do caminho base ${base}: <${elemento} ${nomeAt}="${v}">`);
-          continue;
-        }
-        const sub = caminho.slice(base.length);
-        const alvo = arquivoDe(sub);
-        const link = (elemento === 'a' || elemento === 'area') && (nomeAt === 'href' || nomeAt === 'xlink:href');
-        if (!alvo) {
-          if (link && ehPagina(sub)) {
-            const k = `${base}${sub}`;
-            const e = naoPortadas.get(k) ?? { links: 0, de: new Set() };
-            e.links++;
-            e.de.add(rel);
-            naoPortadas.set(k, e);
-          } else {
-            quebrados.push(`${rel}: arquivo que não existe: <${elemento} ${nomeAt}="${v}">`);
-          }
-          continue;
-        }
-        const frag = u.hash.slice(1);
-        if (frag && alvo.endsWith('.html')) {
-          ancoras++;
-          let id;
-          try {
-            id = decodeURIComponent(frag);
-          } catch {
-            id = frag;
-          }
-          if (!ids(alvo).has(id)) {
-            const onde = relative(dist, alvo).split(sep).join('/');
-            quebrados.push(`${rel}: âncora #${id} não existe em ${onde}: <${elemento} ${nomeAt}="${v}">`);
-          }
+        // `#top` sem elemento com esse id: o navegador sobe para o alto da
+        // página (regra do HTML), então não é quebrado.
+        if (!ids(alvo).has(id) && id.toLowerCase() !== 'top') {
+          const onde = relative(dist, alvo).split(sep).join('/');
+          quebrados.push(`${rel}: âncora #${id} não existe em ${onde}: ${como}`);
         }
       }
     }
