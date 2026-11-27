@@ -183,6 +183,8 @@ Framework e versões: ADR 0003 (Leptos com ilhas; site estático gerado por nós
 
 **Não faz:** conta de regra (pede ao `centelha-engine`), mudança no texto do livro (o que está em `content/` sai como está), corte ou recodificação de imagem.
 
+**Imagens (R10 e R31):** nenhuma imagem do livro, do bestiário ou do resto do site é cortada, ampliada dentro de um quadro ou mostrada com `object-fit: cover`; o bestiário fica em quadro 3:2 com `object-fit: contain`. A única exceção (R31, 26/11/2026) é a foto que o jogador envia para a própria ficha: ele a enquadra com zoom até 4, igual ao site atual (`enqDe` em `src/lib/ficha-engine.ts`), com a conta do enquadramento no motor e paridade. A exceção não vale para nenhuma outra imagem.
+
 ## centelha-grid
 
 **Faz (fase 3):** o tabuleiro da mesa, desenhado em canvas, como ilha Leptos (`#[island]`: no modo ilhas só a ilha roda no navegador) usada pelo `centelha-web` (e, pelo WebView, no app). O elemento é pego por `NodeRef::<Canvas>` e o desenho roda só no cliente. Texto no canvas: o canvas não troca a fonte sozinho quando ela chega; antes de desenhar texto, esperar `document.fonts.load(...)` da fonte usada e redesenhar quando ela chegar. Rótulos pequenos do tabuleiro podem usar a fonte do sistema se a legibilidade pedir (decisão de desenho na fase 3).
