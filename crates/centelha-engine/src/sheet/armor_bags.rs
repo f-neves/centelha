@@ -3,7 +3,7 @@
 //!
 //! Cada função muda a ficha como o ouvinte da fonte muda `S`, na mesma ordem.
 //! A tela, o diálogo de escolha e o de confirmação ficam com quem chama: aqui
-//! entra o que vem depois deles. O enquadramento da foto não é daqui.
+//! entra o que vem depois deles. O enquadramento da foto está em `photo`.
 
 use serde_json::{Map, Value, json};
 

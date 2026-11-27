@@ -146,6 +146,9 @@ const GUARDAS3 = [
 // que ela escreve (de onde saem os números do card e da Absorção) e cópias
 // conferidas dos trechos que vêm depois de um diálogo (a escolha do item e a
 // confirmação do descarte). O original de cada um está em GUARDAS4.
+// O gancho do enquadramento da foto (R31): as duas funções da fonte como estão.
+const HOOK_FOTO = String.raw`
+  Object.assign(globalThis.__ficha, { enqDe: (p) => enqDe(p), enquadraFoto: (img) => enquadraFoto(img) });`;
 const HOOK4 = String.raw`
   Object.assign(globalThis.__ficha, {
     pecasArmadura: () => pecasArmadura(), pecaArm: (uid) => pecaArm(uid), pesoPeca: (p) => pesoPeca(p), pesoBolsa: (b) => pesoBolsa(b),
@@ -221,7 +224,7 @@ export async function loadSheetEditor({ build, SRC }) {
         vel: amostra.map(vel), velNatacao: amostra.map(velNatacao) };
     })();
     ${FORCE_AT}`;
-  const text = patch(patch(patch(patch(patch(fs.readFileSync(file, 'utf8'), HOOK_AT, HOOK_AT + HOOK + HOOK2 + HOOK3 + HOOK4), TOTAL_AT, TOTAL),
+  const text = patch(patch(patch(patch(patch(fs.readFileSync(file, 'utf8'), HOOK_AT, HOOK_AT + HOOK + HOOK2 + HOOK3 + HOOK4 + HOOK_FOTO), TOTAL_AT, TOTAL),
     MOVE_AT, MOVE), FORCE_AT, FORCE), UID_AT, UID);
   // o original de cada trecho copiado no gancho tem de estar na fonte, uma vez só
   const fonte = fs.readFileSync(file, 'utf8');
@@ -1193,6 +1196,67 @@ export function buildSheetEditorCases({ editor, sheets, races, attributes, techn
         add('bolsaRm', [id, i, j], { ...resumoBolsas(), mudou: m2 });
       }
     }
+  }
+
+
+  // ----- o enquadramento da foto do jogador (R31) -----
+  // `enqDe` e o `enquadraFoto` como estão na fonte; a barra de zoom e o
+  // "reenquadrar" são os ouvintes de verdade, com um alvo falso.
+  const enqs = [undefined, {}, { z: 1 }, { z: 2 }, { z: 4 }, { z: 5 }, { z: 1e9 }, { z: 0.5 }, { z: 0 }, { z: -2 }, { z: '2.5' },
+    { z: '2,5' }, { z: '3' }, { z: ' 3 ' }, { z: '' }, { z: 'abc' }, { z: null }, { z: true }, { z: false }, { z: [3] }, { z: [1, 2] },
+    { z: {} }, 'texto', 5, null, [], [2]];
+  for (const enq of enqs) add('enqDe', [enq === undefined ? {} : { enq }], hook.enqDe(enq === undefined ? {} : { enq }));
+  add('enqDe', [null], hook.enqDe(undefined));
+  const desloc = [-2, -1, -0.5, 0, 0.5, 1, 2, '0.3', '-0.3', 'x', null, true, 1e9];
+  for (const px of desloc) for (const py of desloc) {
+    const p = { enq: { z: 2, px, py } };
+    add('enqDe', [p], hook.enqDe(p));
+  }
+
+  const fotoSlider = { ars: achaOuvinte('#eq-arsenal', 'input', 'data-enq-z'), arm: achaOuvinte('#eq-armaduras', 'input', 'data-enq-z') };
+  const fotoReset = { ars: achaOuvinte('#eq-arsenal', 'click', 'data-enq-reset'), arm: achaOuvinte('#eq-armaduras', 'click', 'data-enq-reset') };
+  const pecaDaFoto = (grupo) => (grupo === 'arm' ? hook.getS().equip.armaduras[0] : hook.getS().arsenal[0]);
+  const resumoFoto = (grupo) => { const p = pecaDaFoto(grupo); return { chaves: Object.keys(JSON.parse(JSON.stringify(p))), enq: p.enq ?? null }; };
+  const enqsAntes = [undefined, { z: 2, px: 0.4, py: -0.2 }, { z: 4, px: 1, py: 1 }, { z: 1.5 }, { z: 1, px: 0.5, py: 0.5 }];
+  for (const grupo of ['ars', 'arm']) {
+    for (const antes of enqsAntes) {
+      const prepara = () => { abrir('equip-misto'); const p = pecaDaFoto(grupo); if (antes === undefined) p.enq = undefined; else p.enq = structuredClone(antes); return `${grupo}:${p.uid}`; };
+      for (const texto of ['100', '105', '150', '250', '400', '500', '1000', '50', '0', '', '-100', ' 300 ', '3e2', '0x1F4']) {
+        const chave = prepara();
+        const m = mudou(() => fotoSlider[grupo]({ target: { closest: (sel) => (sel === 'input[data-enq-z]' ? { dataset: { enqZ: chave }, value: texto } : null) } }));
+        add('fotoZoom', ['equip-misto', grupo, antes ?? null, texto], { ...resumoFoto(grupo), mudou: m });
+      }
+      const chave = prepara();
+      const m = mudou(() => fotoReset[grupo]({ target: { closest: (sel) => (sel === '[data-enq-reset]' ? { dataset: { enqReset: chave } } : null) } }));
+      add('fotoReset', ['equip-misto', grupo, antes ?? null], { ...resumoFoto(grupo), mudou: m });
+    }
+    // uma chave que não é de nenhuma peça não muda nada
+    abrir('equip-misto');
+    const m = mudou(() => fotoSlider[grupo]({ target: { closest: (sel) => (sel === 'input[data-enq-z]' ? { dataset: { enqZ: `${grupo}:nao-existe` }, value: '300' } : null) } }));
+    add('fotoZoom', ['equip-misto', grupo, 'sem-peca', '300'], { ...resumoFoto(grupo), mudou: m });
+  }
+
+  // onde a foto fica no quadro: o `enquadraFoto` com uma imagem e um quadro de mentira
+  const fotoNoQuadro = (enq, nw, nh, cw, ch) => {
+    abrir('equip-misto');
+    const p = hook.getS().arsenal[0];
+    if (enq === undefined) delete p.enq; else p.enq = structuredClone(enq);
+    const estilos = {};
+    let desloca = null;
+    const img = {
+      dataset: { eqFoto: `ars:${p.uid}` }, naturalWidth: nw, naturalHeight: nh,
+      style: { setProperty: (k, v) => { estilos[k] = v; } },
+      parentElement: { getBoundingClientRect: () => ({ width: cw, height: ch }), classList: { toggle: (c, on) => { desloca = on; } } },
+    };
+    const lim = hook.enquadraFoto(img);
+    const px = (s) => (s === undefined ? null : Number(String(s).replace('px', '')));
+    return { z: Number(estilos['--z']), tx: px(estilos['--tx']), ty: px(estilos['--ty']), desloca, lim: lim ? { maxX: lim.maxX, maxY: lim.maxY } : null };
+  };
+  const naturais = [[800, 600], [600, 800], [100, 100], [1920, 1080], [0, 600], [800, 0], [50, 400]];
+  const quadros = [[200, 150], [150, 150], [100, 200], [0, 100], [300, 100]];
+  const enqsFoto = [undefined, { z: 1 }, { z: 2, px: 0.5, py: -0.5 }, { z: 4, px: -1, py: 1 }, { z: 1.5, px: 0.3, py: 0.7 }, { z: 3 }, { z: 1, px: -1, py: -1 }];
+  for (const enq of enqsFoto) for (const [nw, nh] of naturais) for (const [cw, ch] of quadros) {
+    add('fotoNoQuadro', [enq ?? null, nw, nh, cw, ch], fotoNoQuadro(enq, nw, nh, cw, ch));
   }
 
   // as especialidades: o modal, uma operação por caso, sobre a lista dada

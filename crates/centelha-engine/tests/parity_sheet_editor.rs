@@ -41,6 +41,7 @@ use centelha_engine::sheet::{
     piece_name, piece_role, remove_from_arsenal, remove_set, rename_arsenal_piece, reorder,
     reset_piece, same_field, set_hand_piece, show_field,
 };
+use centelha_engine::sheet::{photo_frame, photo_placement, reset_photo_frame, set_photo_zoom};
 use common::{compare, num, repo};
 use serde_json::{Map, Value, json};
 
@@ -498,10 +499,15 @@ fn order_diffs(got: &Value, want: &Value, path: &str, diffs: &mut Vec<String>) {
 /// As chaves de topo que mudaram, na ordem da ficha de depois (o `mudou` do
 /// gerador: o texto JSON de cada uma, antes e depois).
 fn changed_keys(before: &Value, after: &Value) -> Vec<Value> {
-    // o `JSON.stringify` da fonte escreve -0 como 0
     fn js_zero(v: &mut Value) {
         match v {
-            Value::Number(n) if n.as_f64() == Some(0.0) => *v = json!(0),
+            // o `JSON.stringify` escreve 4 e 4.0 como 4, e -0 como 0
+            Value::Number(n)
+                if n.as_f64()
+                    .is_some_and(|x| x.fract() == 0.0 && x.abs() < 9e15) =>
+            {
+                *v = json!(n.as_f64().unwrap() as i64);
+            }
             Value::Array(a) => a.iter_mut().for_each(js_zero),
             Value::Object(m) => m.values_mut().for_each(js_zero),
             _ => {}
@@ -861,6 +867,8 @@ fn run_traits(ctx: &Ctx, inputs: &Value, name: &str, a: &[Value], want: &Value) 
 /// Os casos da fatia 6 (os que passam por `run_traits`).
 fn run_traits_names() -> &'static [&'static str] {
     &[
+        "fotoZoom",
+        "fotoReset",
         "armaduraAdd",
         "armaduraNome",
         "armaduraVestir",
@@ -1227,6 +1235,82 @@ fn run_gear(ctx: &Ctx, inputs: &Value, name: &str, a: &[Value]) -> Option<Value>
             |s| bags(s),
         ),
         "bolsaAdd" => with_changes(sheet(0), |s| add_bag_row(s, index(1)), |s| bags(s)),
+        // o enquadramento da foto
+        "enqDe" => {
+            let f = photo_frame(a[0].as_object().map(|_| &a[0]));
+            json!({"z": num(f.zoom), "px": num(f.offset_x), "py": num(f.offset_y)})
+        }
+        "fotoZoom" | "fotoReset" => {
+            let mut s = sheet(0);
+            let group = text(1);
+            let (list, kind) = if group == "arm" {
+                (s["equip"]["armaduras"].as_array_mut().unwrap(), "arm")
+            } else {
+                (s["arsenal"].as_array_mut().unwrap(), "ars")
+            };
+            let piece = &mut list[0];
+            match &a[2] {
+                Value::Null => {
+                    piece.as_object_mut().unwrap().shift_remove("enq");
+                }
+                Value::String(_) => {}
+                enq => {
+                    // a peça de armadura da fonte tem o lugar do `enq` antes de `vestida`
+                    let o = piece.as_object_mut().unwrap();
+                    let at = if group == "arm" {
+                        o.keys().position(|k| k == "vestida").unwrap_or(o.len())
+                    } else {
+                        o.len()
+                    };
+                    o.shift_insert(at, "enq".into(), enq.clone());
+                }
+            }
+            let uid = match &a[2] {
+                Value::String(_) => "nao-existe".to_owned(),
+                _ => piece["uid"].as_str().unwrap().to_owned(),
+            };
+            let key = format!("{kind}:{uid}");
+            let before = s.clone();
+            if name == "fotoZoom" {
+                set_photo_zoom(&mut s, &key, text(3));
+            } else {
+                reset_photo_frame(&mut s, &key);
+            }
+            let list = if group == "arm" {
+                s["equip"]["armaduras"].as_array().unwrap()
+            } else {
+                s["arsenal"].as_array().unwrap()
+            };
+            let piece = list[0].as_object().unwrap();
+            json!({
+                "chaves": piece.keys().collect::<Vec<_>>(),
+                "enq": piece.get("enq").cloned().unwrap_or(Value::Null),
+                "mudou": changed_keys(&before, &s),
+            })
+        }
+        "fotoNoQuadro" => {
+            let piece = match &a[0] {
+                Value::Null => json!({}),
+                enq => json!({"enq": enq}),
+            };
+            let frame = photo_frame(Some(&piece));
+            let f = |i: usize| a[i].as_f64().unwrap();
+            let shown = |x: f64| -> Value {
+                // o `${x}px` da fonte escreve o número como texto, e o -0 vira 0
+                num(centelha_engine::js::number_to_string(x)
+                    .parse::<f64>()
+                    .unwrap())
+            };
+            match photo_placement(&frame, (f(1), f(2)), (f(3), f(4))) {
+                Some(p) => json!({
+                    "z": num(frame.zoom), "tx": shown(p.shift_x), "ty": shown(p.shift_y),
+                    "desloca": p.can_shift, "lim": {"maxX": num(p.max_x), "maxY": num(p.max_y)},
+                }),
+                None => {
+                    json!({"z": num(frame.zoom), "tx": null, "ty": null, "desloca": null, "lim": null})
+                }
+            }
+        }
         "bolsaRm" => with_changes(
             sheet(0),
             |s| remove_bag_row(s, index(1), index(2)),

@@ -27,6 +27,7 @@ mod near_miss;
 mod normalize;
 mod numbers;
 mod pgr;
+mod photo;
 mod strength;
 mod text;
 mod traits;
@@ -79,6 +80,10 @@ pub use numbers::{
     stack_armor,
 };
 pub use pgr::{ExtraLine, extra_lines, sheet_anatomy, sheet_flurry_cap};
+pub use photo::{
+    PhotoFrame, PhotoPlacement, ZOOM_MAX, photo_frame, photo_placement, photo_zoom,
+    reset_photo_frame, set_photo_zoom,
+};
 pub use strength::{
     LoadBand, bag_weight, carried_load, current_load, load_bands, load_speed_fraction,
     overhead_lift, penalized_speed, piece_weight, short_number, throw_cap, throw_range,
