@@ -6,10 +6,13 @@
 //! hidratam no navegador (feature `hydrate`, biblioteca `cdylib`). As duas
 //! features nunca se combinam (ADR 0003).
 
+pub mod art_filter;
 pub mod back_to_top;
 pub mod bookmarks;
 pub mod cards;
+pub mod effect_tabs;
 pub mod equipment_filter;
+pub mod markers;
 pub mod shapes;
 pub mod shell;
 pub mod sort;
