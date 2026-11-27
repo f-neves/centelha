@@ -10,24 +10,14 @@ use serde_json::Value;
 use crate::DataError;
 use crate::bestiary::{AttackClass, Timing};
 use crate::catalog_item::{Price, read_item};
+use crate::damage_mode::DamageMode;
 
-/// O tipo de dano de um modo de ataque (`tipo` e `tipoDano`).
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Deserialize)]
-pub enum DamageType {
-    #[serde(rename = "corte")]
-    Cut,
-    #[serde(rename = "perfurante")]
-    Pierce,
-    #[serde(rename = "impacto")]
-    Impact,
-}
-
-/// Um modo de ataque da arma (`modos[]`): o tipo de dano, o Nível de
-/// Perfuração e se é um dos principais.
+/// Uma entrada da lista de modos de ataque da arma (`modos[]`): o modo, o
+/// Nível de Perfuração e se é um dos principais.
 #[derive(Debug, Clone, Copy, PartialEq, Deserialize)]
 pub struct AttackMode {
     #[serde(rename = "tipo")]
-    pub kind: DamageType,
+    pub kind: DamageMode,
     /// `perf`: o Nível de Perfuração do modo, quando é perfurante.
     #[serde(rename = "perf", default)]
     pub pierce_level: Option<f64>,
@@ -115,6 +105,11 @@ impl<'de> Deserialize<'de> for Weapon {
 
 impl Weapon {
     /// A peça inteira como está no JSON (as chaves na ordem do arquivo).
+    ///
+    /// O `Catalog::from_data` do motor monta o catálogo da ficha por este
+    /// envelope, e não pelos campos tipados: quem lê a peça para mostrar usa
+    /// os campos tipados, e mudar um campo tipado não muda o catálogo do
+    /// motor.
     pub fn envelope(&self) -> &Value {
         &self.envelope
     }
@@ -158,7 +153,7 @@ pub struct WeaponStats {
     pub strength_min: Option<f64>,
     /// `tipoDano`: o tipo do modo principal.
     #[serde(rename = "tipoDano", default)]
-    pub damage_type: Option<DamageType>,
+    pub damage_type: Option<DamageMode>,
     /// `pen`: o Nível de Perfuração da arma.
     #[serde(rename = "pen", default)]
     pub pierce_level: Option<f64>,
@@ -167,7 +162,7 @@ pub struct WeaponStats {
     pub modes: Vec<AttackMode>,
     /// `fichaModo`: o modo que a ficha mostra, quando não é o primeiro.
     #[serde(rename = "fichaModo", default)]
-    pub sheet_mode: Option<DamageType>,
+    pub sheet_mode: Option<DamageMode>,
     /// `alcance`: a faixa de uma arma de longe.
     #[serde(rename = "alcance", default)]
     pub range_band: Option<RangeBand>,

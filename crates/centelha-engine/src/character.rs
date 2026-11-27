@@ -115,30 +115,9 @@ pub fn appearance_mod(rules: &Rules, level: f64, mask: Option<f64>) -> f64 {
     if base < 0.0 { -reduced } else { reduced }
 }
 
-/// Um modo de ataque (`Modo`).
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub enum DamageMode {
-    Cut,
-    Pierce,
-    Impact,
-}
-
-impl DamageMode {
-    pub const ALL: [DamageMode; 3] = [DamageMode::Cut, DamageMode::Pierce, DamageMode::Impact];
-
-    /// A chave gravada (`corte`, `perfurante`, `impacto`).
-    pub fn id(self) -> &'static str {
-        match self {
-            DamageMode::Cut => "corte",
-            DamageMode::Pierce => "perfurante",
-            DamageMode::Impact => "impacto",
-        }
-    }
-
-    pub fn from_id(id: &str) -> Option<DamageMode> {
-        DamageMode::ALL.into_iter().find(|m| m.id() == id)
-    }
-}
+/// O modo de ataque (`Modo`): o tipo mora no `centelha-data`, e o caminho antigo
+/// segue valendo.
+pub use centelha_data::DamageMode;
 
 /// `soakNatural`: a Absorção do corpo. Só o Impacto leva o Vigor; `category`
 /// é o modo (`corte`, `perfurante`, `impacto`) ou a categoria de Absorção
