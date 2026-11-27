@@ -181,9 +181,9 @@ Framework e versões: ADR 0003 (Leptos com ilhas; site estático gerado por nós
 
 **Admin na tela (R22):** esconder um controle de admin é conveniência, não proteção. A tela pergunta ao `centelha-supabase` (que pergunta à `eh_admin`) e mostra o controle só com um sim; enquanto não há resposta, ou com falha, mostra como não admin. Nada de e-mail fixo nem lista de admins no site. Ação de admin que grava só existe se o banco a barra por conta própria; uma ação do site atual protegida só no navegador vira aviso ao Coordenador-RS antes do port.
 
-**Não faz:** conta de regra (pede ao `centelha-engine`), mudança no texto do livro (o que está em `content/` sai como está), corte ou recodificação de imagem.
+**Não faz:** conta de regra (pede ao `centelha-engine`), mudança no texto do livro (o que está em `content/` sai como está), corte ou recodificação de imagem (o enquadramento da R31, abaixo, é só de exibição: o arquivo não muda).
 
-**Imagens (R10 e R31):** nenhuma imagem do livro, do bestiário ou do resto do site é cortada, ampliada dentro de um quadro ou mostrada com `object-fit: cover`; o bestiário fica em quadro 3:2 com `object-fit: contain`. A única exceção (R31, 26/11/2026) é a foto que o jogador envia para a própria ficha: ele a enquadra com zoom até 4, igual ao site atual (`enqDe` em `src/lib/ficha-engine.ts`), com a conta do enquadramento no motor e paridade. A exceção não vale para nenhuma outra imagem.
+**Imagens (R10 e R31):** nenhuma imagem do livro, do bestiário ou do resto do site é cortada, ampliada dentro de um quadro ou mostrada com `object-fit: cover`; o bestiário fica em quadro 3:2 com `object-fit: contain`. A única exceção (R31, 26/11/2026) é a foto que o jogador envia para a própria ficha: ele a enquadra igual ao site atual, com deslocamento e zoom até 4. Hoje isso cobre a foto das peças do arsenal e das armaduras (`enqDe` e `ZOOM_MAX` em `src/lib/ficha-engine.ts`), que continua em `object-fit: contain`, com o zoom e o deslocamento por transformação; a conta do enquadramento fica no motor, com paridade. O retrato do personagem (`.retrato-frame`, que no site atual usa `object-fit: cover`) está em pergunta ao autor e não entra na exceção até a resposta. Nenhuma outra imagem entra.
 
 ## centelha-grid
 
