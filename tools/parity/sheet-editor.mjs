@@ -142,6 +142,26 @@ const GUARDAS3 = [
 `,
 ];
 
+// O gancho das armaduras e das bolsas: as funções da fonte como estão, o HTML
+// que ela escreve (de onde saem os números do card e da Absorção) e cópias
+// conferidas dos trechos que vêm depois de um diálogo (a escolha do item e a
+// confirmação do descarte). O original de cada um está em GUARDAS4.
+// O gancho do enquadramento da foto (R31): as duas funções da fonte como estão.
+const HOOK_FOTO = String.raw`
+  Object.assign(globalThis.__ficha, { enqDe: (p) => enqDe(p), enquadraFoto: (img) => enquadraFoto(img) });`;
+const HOOK4 = String.raw`
+  Object.assign(globalThis.__ficha, {
+    pecasArmadura: () => pecasArmadura(), pecaArm: (uid) => pecaArm(uid), pesoPeca: (p) => pesoPeca(p), pesoBolsa: (b) => pesoBolsa(b),
+    pecaPorChave: (c) => pecaPorChave(c), renderArmaduras: () => renderArmaduras(), renderAbsorcao: () => renderAbsorcao(),
+    armAdd: (escolha, uid) => { (S.equip.armaduras ||= []).push({ uid, base: escolha, vestida: true }); },
+    armRm: (uid) => { const p = pecaArm(uid); if (!p) return; S.equip.armaduras = S.equip.armaduras.filter((x) => x.uid !== p.uid); },
+  });`;
+const GUARDAS4 = [
+  String.raw`(S.equip.armaduras ||= []).push({ uid, base: escolha, vestida: true });`,
+  String.raw`const p = pecaArm(rm.dataset.armRm!); if (!p) return;`,
+  String.raw`S.equip.armaduras = S.equip.armaduras.filter((x: any) => x.uid !== p.uid);`,
+];
+
 function patch(text, at, by) {
   if (text.split(at).length !== 2) throw new Error(`ficha-engine.ts: o trecho do remendo não está lá uma vez só: ${at}`);
   return text.replace(at, by);
@@ -204,11 +224,11 @@ export async function loadSheetEditor({ build, SRC }) {
         vel: amostra.map(vel), velNatacao: amostra.map(velNatacao) };
     })();
     ${FORCE_AT}`;
-  const text = patch(patch(patch(patch(patch(fs.readFileSync(file, 'utf8'), HOOK_AT, HOOK_AT + HOOK + HOOK2 + HOOK3), TOTAL_AT, TOTAL),
+  const text = patch(patch(patch(patch(patch(fs.readFileSync(file, 'utf8'), HOOK_AT, HOOK_AT + HOOK + HOOK2 + HOOK3 + HOOK4 + HOOK_FOTO), TOTAL_AT, TOTAL),
     MOVE_AT, MOVE), FORCE_AT, FORCE), UID_AT, UID);
   // o original de cada trecho copiado no gancho tem de estar na fonte, uma vez só
   const fonte = fs.readFileSync(file, 'utf8');
-  for (const g of [...GUARDAS, ...GUARDAS3]) patch(fonte, g, g);
+  for (const g of [...GUARDAS, ...GUARDAS3, ...GUARDAS4]) patch(fonte, g, g);
   const outfile = path.join(os.tmpdir(), `parity-ficha-engine-${process.pid}.mjs`);
   await build({
     entryPoints: [file], outfile, bundle: true, format: 'esm', platform: 'node', logLevel: 'error',
@@ -1058,6 +1078,185 @@ export function buildSheetEditorCases({ editor, sheets, races, attributes, techn
       const peca = todasPecas(hook.getS()).find(([g, q]) => g === chave && q.uid === uid)?.[1];
       add('ajusteReset', [id, `${chave}:${uid}`], { peca: peca ?? null, mudou: m });
     }
+  }
+
+
+  // ----- armaduras e bolsas -----
+  // Os ouvintes de verdade (o nome, o "vestir", e tudo das bolsas), com um alvo
+  // falso; o que vem depois de um diálogo vai pelas cópias do gancho. Os números
+  // do card e do painel de Absorção saem do HTML que a própria fonte escreve.
+  const armB = equip.ARMADURAS.find((x) => x.id !== 'nenhuma' && x.id !== armA).id;
+  mkEq('equip-bolsas', (s) => {
+    s.equip.armaduras.push({ uid: 'a3', base: armB, nome: 'Minha malha', vestida: false }, { uid: 'a4', base: armA, vestida: true });
+    s.bolsas = [
+      { nome: 'Mochila', itens: [{ item: 'corda', peso: '2,5', preco: '' }, { item: 'x', peso: '3 kg', preco: '1' }, { item: 'y', peso: 'muito', preco: '' },
+        { item: 'z', peso: '≈1.2', preco: '' }, { item: '', peso: '', preco: '' }, { item: 'w', peso: 0.4, preco: '' }], pesoTotal: '' },
+      { nome: 'Baú', itens: [{ item: 'a', peso: '10', preco: '' }, { item: 'b', peso: '4', preco: '' }], pesoTotal: '12,5' },
+      { nome: 'Extra', itens: [{ item: 'só uma', peso: '1', preco: '' }], pesoTotal: ' leve ' },
+      // 0,1 + 0,2 + 0,3 dá 0,6000000000000001 de um lado e 0,6 do outro: a ordem da soma das linhas conta
+      { nome: 'Fina', itens: [{ item: 'a', peso: '0,1', preco: '' }, { item: 'b', peso: '0,2', preco: '' }, { item: 'c', peso: '0,3', preco: '' }], pesoTotal: '' },
+    ];
+  });
+  const estadosArm = ['equip-vazio', 'equip-misto', 'equip-bolsas'];
+  const onArmInput = achaOuvinte('#eq-armaduras', 'input', 'data-arm-nome');
+  const onArmClick = achaOuvinte('#eq-armaduras', 'click', 'data-arm-vestir');
+  const onBolsaInput = achaOuvinte('#eq-bolsas', 'input', 'data-bolsa-nome');
+  const onBolsaClick = achaOuvinte('#eq-bolsas', 'click', 'data-bolsa-add');
+  // uma bolsa com uma linha só (o remover repetido, pelo próprio ouvinte): tirar a última linha põe uma em branco
+  abrir('equip-bolsas');
+  for (let k = 0; k < 5; k++) onBolsaClick({ target: { closest: (sel) => (sel === '[data-bolsa-rm]' ? { dataset: { bolsaRm: '2:0' } } : null) } });
+  estados['equip-bolsa-uma-linha'] = structuredClone(hook.getS());
+  const resumoArm = () => ({ armaduras: hook.getS().equip?.armaduras ?? null });
+  const resumoBolsas = () => ({ bolsas: hook.getS().bolsas ?? null });
+  const numeroDe = (t) => { const n = Number(String(t).replace('−', '-')); return Number.isFinite(n) ? n : String(t); };
+
+  // as contas da fonte, de cada peça e de cada bolsa
+  for (const id of estadosArm) {
+    abrir(id);
+    const S = hook.getS();
+    add('pecasArmadura', [id], hook.pecasArmadura());
+    for (const [grupo, p] of todasPecas(S)) {
+      add('pesoPeca', [id, `${grupo}:${p.uid}`], hook.pesoPeca(p));
+      add('pecaPorChave', [id, `${grupo}:${p.uid}`], hook.pecaPorChave(`${grupo}:${p.uid}`));
+    }
+    for (const chave of ['ars:nao-existe', 'arm:nao-existe', 'zzz:p1', 'arm', 'ars:']) add('pecaPorChave', [id, chave], hook.pecaPorChave(chave));
+    for (const uid of [...(S.equip?.armaduras ?? []).map((p) => p.uid), 'nao-existe']) add('pecaArm', [id, uid], hook.pecaArm(uid));
+    (S.bolsas ?? []).forEach((b, i) => add('pesoBolsa', [id, i], hook.pesoBolsa(b)));
+    add('pesoBolsa', [id, 'vazia'], hook.pesoBolsa({}));
+    // os números do card de cada peça de armadura, no HTML do renderArmaduras
+    hook.renderArmaduras();
+    const html = String(dom.elements['eq-armaduras']?.innerHTML ?? '');
+    for (const m of html.matchAll(/<div class="eq-peca arm([^"]*)" data-arm-peca="([^"]+)"[\s\S]*?<div class="eq-nums" data-arm-nums="[^"]+">([\s\S]*?)<\/div>/g)) {
+      const nums = m[3];
+      const pega = (rot) => (nums.match(new RegExp(`<b>${rot}</b>([^<]*)`)) ?? [])[1];
+      add('numerosDaArmadura', [id, m[2]], {
+        impacto: numeroDe(pega('Imp')), corte: numeroDe(pega('Cor')), perfuracao: numeroDe(pega('Perf')),
+        nivel: numeroDe((nums.match(/<i>N([^<]*)<\/i>/) ?? [])[1]), penalidade: pega('Pen'),
+        ajustado: / ajustado/.test(m[1]),
+      });
+    }
+    // o painel de Absorção combinada, no HTML do renderAbsorcao
+    hook.renderAbsorcao();
+    const abs = String(dom.elements['eq-absorcao']?.innerHTML ?? '');
+    const valor = (rot) => (abs.match(new RegExp(`<span class="abs-l">${rot}(?:<i>[^<]*</i>)?</span><span class="abs-v">([^<]*)</span>`)) ?? [])[1];
+    add('painelAbsorcao', [id], {
+      impacto: numeroDe(valor('Impacto')), corte: numeroDe(valor('Corte')), perfuracao: numeroDe(valor('Perfuração')),
+      nivel: abs.includes('Nível N') ? numeroDe((abs.match(/Nível N(\d+)/) ?? [])[1]) : 0,
+      penalidade: valor('Penalidade'), nota: (abs.match(/<p class="abs-nota muted">([^<]*)<\/p>/) ?? [])[1] ?? null,
+    });
+  }
+
+  // os ouvintes das armaduras
+  for (const id of estadosArm) {
+    const uids = (estados[id].equip?.armaduras ?? []).map((p) => p.uid);
+    for (const escolha of ['c', armA]) {
+      abrir(id);
+      const m = mudou(() => hook.armAdd(escolha, 'novo'));
+      add('armaduraAdd', [id, escolha, 'novo'], { ...resumoArm(), mudou: m });
+    }
+    for (const uid of [...uids.slice(0, 3), 'nao-existe']) {
+      for (const nome of ['Outro nome', '  ', '']) {
+        abrir(id);
+        const m = mudou(() => onArmInput({ target: { closest: (sel) => (sel === 'input[data-arm-nome]' ? { dataset: { armNome: uid }, value: nome, closest: () => null } : null) } }));
+        add('armaduraNome', [id, uid, nome], { ...resumoArm(), mudou: m });
+      }
+      abrir(id);
+      const m2 = mudou(() => onArmClick({ target: { closest: (sel) => (sel === '[data-arm-vestir]' ? { dataset: { armVestir: uid } } : null) } }));
+      add('armaduraVestir', [id, uid], { ...resumoArm(), mudou: m2 });
+      abrir(id);
+      const m3 = mudou(() => hook.armRm(uid));
+      add('armaduraRm', [id, uid], { ...resumoArm(), mudou: m3 });
+    }
+  }
+
+  // os ouvintes das bolsas
+  const alvoBolsa = (attr, valor, texto) => ({ target: { getAttribute: (n) => (n === attr ? valor : null), value: texto } });
+  for (const id of ['equip-bolsas', 'equip-vazio', 'equip-bolsa-uma-linha']) {
+    const nBolsas = (estados[id].bolsas ?? []).length;
+    for (let i = 0; i < Math.min(nBolsas, 3); i++) {
+      abrir(id);
+      const mn = mudou(() => onBolsaInput(alvoBolsa('data-bolsa-nome', String(i), 'Novo nome')));
+      add('bolsaNome', [id, i, 'Novo nome'], { ...resumoBolsas(), mudou: mn });
+      for (const total of ['', '15', '2,5 kg']) {
+        abrir(id);
+        const m = mudou(() => onBolsaInput(alvoBolsa('data-bolsa-peso', String(i), total)));
+        add('bolsaTotal', [id, i, total], { ...resumoBolsas(), mudou: m });
+      }
+      for (const [j, campo, texto] of [[0, 'item', 'novo item'], [0, 'peso', '7,5'], [1, 'preco', '9'], [9, 'peso', 'x']]) {
+        abrir(id);
+        const m = mudou(() => onBolsaInput(alvoBolsa('data-bolsa', `${i}:${j}:${campo}`, texto)));
+        add('bolsaCelula', [id, i, j, campo, texto], { ...resumoBolsas(), mudou: m });
+      }
+      abrir(id);
+      const m = mudou(() => onBolsaClick({ target: { closest: (sel) => (sel === '[data-bolsa-add]' ? { dataset: { bolsaAdd: String(i) } } : null) } }));
+      add('bolsaAdd', [id, i], { ...resumoBolsas(), mudou: m });
+      for (const j of [0, 1, 9]) {
+        abrir(id);
+        const m2 = mudou(() => onBolsaClick({ target: { closest: (sel) => (sel === '[data-bolsa-rm]' ? { dataset: { bolsaRm: `${i}:${j}` } } : null) } }));
+        add('bolsaRm', [id, i, j], { ...resumoBolsas(), mudou: m2 });
+      }
+    }
+  }
+
+
+  // ----- o enquadramento da foto do jogador (R31) -----
+  // `enqDe` e o `enquadraFoto` como estão na fonte; a barra de zoom e o
+  // "reenquadrar" são os ouvintes de verdade, com um alvo falso.
+  const enqs = [undefined, {}, { z: 1 }, { z: 2 }, { z: 4 }, { z: 5 }, { z: 1e9 }, { z: 0.5 }, { z: 0 }, { z: -2 }, { z: '2.5' },
+    { z: '2,5' }, { z: '3' }, { z: ' 3 ' }, { z: '' }, { z: 'abc' }, { z: null }, { z: true }, { z: false }, { z: [3] }, { z: [1, 2] },
+    { z: {} }, 'texto', 5, null, [], [2]];
+  for (const enq of enqs) add('enqDe', [enq === undefined ? {} : { enq }], hook.enqDe(enq === undefined ? {} : { enq }));
+  add('enqDe', [null], hook.enqDe(undefined));
+  const desloc = [-2, -1, -0.5, 0, 0.5, 1, 2, '0.3', '-0.3', 'x', null, true, 1e9];
+  for (const px of desloc) for (const py of desloc) {
+    const p = { enq: { z: 2, px, py } };
+    add('enqDe', [p], hook.enqDe(p));
+  }
+
+  const fotoSlider = { ars: achaOuvinte('#eq-arsenal', 'input', 'data-enq-z'), arm: achaOuvinte('#eq-armaduras', 'input', 'data-enq-z') };
+  const fotoReset = { ars: achaOuvinte('#eq-arsenal', 'click', 'data-enq-reset'), arm: achaOuvinte('#eq-armaduras', 'click', 'data-enq-reset') };
+  const pecaDaFoto = (grupo) => (grupo === 'arm' ? hook.getS().equip.armaduras[0] : hook.getS().arsenal[0]);
+  const resumoFoto = (grupo) => { const p = pecaDaFoto(grupo); return { chaves: Object.keys(JSON.parse(JSON.stringify(p))), enq: p.enq ?? null }; };
+  const enqsAntes = [undefined, { z: 2, px: 0.4, py: -0.2 }, { z: 4, px: 1, py: 1 }, { z: 1.5 }, { z: 1, px: 0.5, py: 0.5 }];
+  for (const grupo of ['ars', 'arm']) {
+    for (const antes of enqsAntes) {
+      const prepara = () => { abrir('equip-misto'); const p = pecaDaFoto(grupo); if (antes === undefined) p.enq = undefined; else p.enq = structuredClone(antes); return `${grupo}:${p.uid}`; };
+      for (const texto of ['100', '105', '150', '250', '400', '500', '1000', '50', '0', '', '-100', ' 300 ', '3e2', '0x1F4']) {
+        const chave = prepara();
+        const m = mudou(() => fotoSlider[grupo]({ target: { closest: (sel) => (sel === 'input[data-enq-z]' ? { dataset: { enqZ: chave }, value: texto } : null) } }));
+        add('fotoZoom', ['equip-misto', grupo, antes ?? null, texto], { ...resumoFoto(grupo), mudou: m });
+      }
+      const chave = prepara();
+      const m = mudou(() => fotoReset[grupo]({ target: { closest: (sel) => (sel === '[data-enq-reset]' ? { dataset: { enqReset: chave } } : null) } }));
+      add('fotoReset', ['equip-misto', grupo, antes ?? null], { ...resumoFoto(grupo), mudou: m });
+    }
+    // uma chave que não é de nenhuma peça não muda nada
+    abrir('equip-misto');
+    const m = mudou(() => fotoSlider[grupo]({ target: { closest: (sel) => (sel === 'input[data-enq-z]' ? { dataset: { enqZ: `${grupo}:nao-existe` }, value: '300' } : null) } }));
+    add('fotoZoom', ['equip-misto', grupo, 'sem-peca', '300'], { ...resumoFoto(grupo), mudou: m });
+  }
+
+  // onde a foto fica no quadro: o `enquadraFoto` com uma imagem e um quadro de mentira
+  const fotoNoQuadro = (enq, nw, nh, cw, ch) => {
+    abrir('equip-misto');
+    const p = hook.getS().arsenal[0];
+    if (enq === undefined) delete p.enq; else p.enq = structuredClone(enq);
+    const estilos = {};
+    let desloca = null;
+    const img = {
+      dataset: { eqFoto: `ars:${p.uid}` }, naturalWidth: nw, naturalHeight: nh,
+      style: { setProperty: (k, v) => { estilos[k] = v; } },
+      parentElement: { getBoundingClientRect: () => ({ width: cw, height: ch }), classList: { toggle: (c, on) => { desloca = on; } } },
+    };
+    const lim = hook.enquadraFoto(img);
+    const px = (s) => (s === undefined ? null : Number(String(s).replace('px', '')));
+    return { z: Number(estilos['--z']), tx: px(estilos['--tx']), ty: px(estilos['--ty']), desloca, lim: lim ? { maxX: lim.maxX, maxY: lim.maxY } : null };
+  };
+  const naturais = [[800, 600], [600, 800], [100, 100], [1920, 1080], [0, 600], [800, 0], [50, 400]];
+  const quadros = [[200, 150], [150, 150], [100, 200], [0, 100], [300, 100]];
+  const enqsFoto = [undefined, { z: 1 }, { z: 2, px: 0.5, py: -0.5 }, { z: 4, px: -1, py: 1 }, { z: 1.5, px: 0.3, py: 0.7 }, { z: 3 }, { z: 1, px: -1, py: -1 }];
+  for (const enq of enqsFoto) for (const [nw, nh] of naturais) for (const [cw, ch] of quadros) {
+    add('fotoNoQuadro', [enq ?? null, nw, nh, cw, ch], fotoNoQuadro(enq, nw, nh, cw, ch));
   }
 
   // as especialidades: o modal, uma operação por caso, sobre a lista dada
