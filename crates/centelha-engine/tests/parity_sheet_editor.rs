@@ -31,6 +31,11 @@ use centelha_engine::sheet::{
     trait_floor, trait_value,
 };
 use centelha_engine::sheet::{
+    absorption_panel, add_armor, add_bag_row, armor_piece, armor_piece_numbers, bag_weight,
+    piece_by_key, piece_weight, remove_armor, remove_bag_row, rename_armor, rename_bag,
+    set_bag_cell, set_bag_total, toggle_armor_worn, worn_armor_pieces,
+};
+use centelha_engine::sheet::{
     activate_set, add_set, add_to_arsenal, clean_arsenal, custom_piece_note, differs_from_origin,
     edit_piece_field, edit_target, is_custom_piece, is_custom_ref, is_two_handed_item, item_fields,
     piece_name, piece_role, remove_from_arsenal, remove_set, rename_arsenal_piece, reorder,
@@ -389,6 +394,7 @@ fn run(ctx: &Ctx, inputs: &Value, name: &str, a: &[Value], want: &Value) -> Valu
         }
         other => run_traits(ctx, inputs, other, a, want)
             .or_else(|| run_arsenal(ctx, inputs, other, a, want))
+            .or_else(|| run_gear(ctx, inputs, other, a))
             .unwrap_or_else(|| panic!("função sem par no Rust: {other}")),
     }
 }
@@ -840,6 +846,15 @@ fn run_traits(ctx: &Ctx, inputs: &Value, name: &str, a: &[Value], want: &Value) 
 /// Os casos da fatia 6 (os que passam por `run_traits`).
 fn run_traits_names() -> &'static [&'static str] {
     &[
+        "armaduraAdd",
+        "armaduraNome",
+        "armaduraVestir",
+        "armaduraRm",
+        "bolsaNome",
+        "bolsaTotal",
+        "bolsaCelula",
+        "bolsaAdd",
+        "bolsaRm",
         "arsenalAdd",
         "arsenalRm",
         "arsenalUso",
@@ -1085,4 +1100,98 @@ fn all_fields() -> Vec<centelha_engine::sheet::EditField> {
         .chain(ARMOR_EDIT_FIELDS.iter())
         .copied()
         .collect()
+}
+
+// ------------------------------------------------------ armaduras e bolsas
+
+/// Os casos da fatia 8. `None` quando o nome não é daqui.
+fn run_gear(ctx: &Ctx, inputs: &Value, name: &str, a: &[Value]) -> Option<Value> {
+    let t = &ctx.t;
+    let sheet = |i: usize| inputs[a[i].as_str().unwrap()]["ficha"].clone();
+    let text = |i: usize| a[i].as_str().unwrap();
+    let index = |i: usize| a[i].as_u64().unwrap() as usize;
+    let cat = t.sheet_tables().catalog();
+    let armors = |s: &Value| {
+        let mut m = Map::new();
+        m.insert(
+            "armaduras".into(),
+            s.get("equip")
+                .and_then(|e| e.get("armaduras"))
+                .cloned()
+                .unwrap_or(Value::Null),
+        );
+        m
+    };
+    let bags = |s: &Value| {
+        let mut m = Map::new();
+        m.insert(
+            "bolsas".into(),
+            s.get("bolsas").cloned().unwrap_or(Value::Null),
+        );
+        m
+    };
+    let out = match name {
+        "pecasArmadura" => Value::Array(worn_armor_pieces(t, &sheet(0))),
+        "pesoPeca" => {
+            let s = sheet(0);
+            let p = piece_by_key(&s, text(1)).unwrap();
+            num(piece_weight(cat, p))
+        }
+        "pesoBolsa" => {
+            let s = sheet(0);
+            match &a[1] {
+                Value::Number(_) => num(bag_weight(&s["bolsas"][index(1)])),
+                _ => num(bag_weight(&json!({}))),
+            }
+        }
+        "pecaArm" => armor_piece(&sheet(0), text(1))
+            .cloned()
+            .unwrap_or(Value::Null),
+        "pecaPorChave" => piece_by_key(&sheet(0), text(1))
+            .cloned()
+            .unwrap_or(Value::Null),
+        "numerosDaArmadura" => {
+            let n = armor_piece_numbers(t, &sheet(0), text(1)).unwrap();
+            json!({
+                "impacto": num(n.impact), "corte": num(n.cut), "perfuracao": num(n.pierce),
+                "nivel": num(n.pierce_level), "penalidade": n.penalty, "ajustado": n.adjusted,
+            })
+        }
+        "painelAbsorcao" => {
+            let p = absorption_panel(t, &sheet(0));
+            json!({
+                "impacto": num(p.impact), "corte": num(p.cut), "perfuracao": num(p.pierce),
+                "nivel": num(p.pierce_level), "penalidade": p.penalty, "nota": p.note,
+            })
+        }
+        "armaduraAdd" => with_changes(sheet(0), |s| add_armor(s, text(1), text(2)), |s| armors(s)),
+        "armaduraNome" => with_changes(
+            sheet(0),
+            |s| rename_armor(s, text(1), text(2)),
+            |s| armors(s),
+        ),
+        "armaduraVestir" => {
+            with_changes(sheet(0), |s| toggle_armor_worn(s, text(1)), |s| armors(s))
+        }
+        "armaduraRm" => with_changes(sheet(0), |s| remove_armor(s, text(1)), |s| armors(s)),
+        "bolsaNome" => with_changes(sheet(0), |s| rename_bag(s, index(1), text(2)), |s| bags(s)),
+        "bolsaTotal" => with_changes(
+            sheet(0),
+            |s| set_bag_total(s, index(1), text(2)),
+            |s| bags(s),
+        ),
+        "bolsaCelula" => with_changes(
+            sheet(0),
+            |s| set_bag_cell(s, index(1), index(2), text(3), text(4)),
+            |s| bags(s),
+        ),
+        "bolsaAdd" => with_changes(sheet(0), |s| add_bag_row(s, index(1)), |s| bags(s)),
+        "bolsaRm" => with_changes(
+            sheet(0),
+            |s| remove_bag_row(s, index(1), index(2)),
+            |s| bags(s),
+        ),
+        _ => return None,
+    };
+    Some(out)
 }

@@ -138,6 +138,23 @@ const GUARDAS3 = [
   String.raw`S.arsenal = S.arsenal.filter((x: any) => x.uid !== uid);`,
 ];
 
+// O gancho das armaduras e das bolsas: as funções da fonte como estão, o HTML
+// que ela escreve (de onde saem os números do card e da Absorção) e cópias
+// conferidas dos trechos que vêm depois de um diálogo (a escolha do item e a
+// confirmação do descarte). O original de cada um está em GUARDAS4.
+const HOOK4 = String.raw`
+  Object.assign(globalThis.__ficha, {
+    pecasArmadura: () => pecasArmadura(), pecaArm: (uid) => pecaArm(uid), pesoPeca: (p) => pesoPeca(p), pesoBolsa: (b) => pesoBolsa(b),
+    pecaPorChave: (c) => pecaPorChave(c), renderArmaduras: () => renderArmaduras(), renderAbsorcao: () => renderAbsorcao(),
+    armAdd: (escolha, uid) => { (S.equip.armaduras ||= []).push({ uid, base: escolha, vestida: true }); },
+    armRm: (uid) => { const p = pecaArm(uid); if (!p) return; S.equip.armaduras = S.equip.armaduras.filter((x) => x.uid !== p.uid); },
+  });`;
+const GUARDAS4 = [
+  String.raw`(S.equip.armaduras ||= []).push({ uid, base: escolha, vestida: true });`,
+  String.raw`const p = pecaArm(rm.dataset.armRm!); if (!p) return;`,
+  String.raw`S.equip.armaduras = S.equip.armaduras.filter((x: any) => x.uid !== p.uid);`,
+];
+
 function patch(text, at, by) {
   if (text.split(at).length !== 2) throw new Error(`ficha-engine.ts: o trecho do remendo não está lá uma vez só: ${at}`);
   return text.replace(at, by);
@@ -200,11 +217,11 @@ export async function loadSheetEditor({ build, SRC }) {
         vel: amostra.map(vel), velNatacao: amostra.map(velNatacao) };
     })();
     ${FORCE_AT}`;
-  const text = patch(patch(patch(patch(patch(fs.readFileSync(file, 'utf8'), HOOK_AT, HOOK_AT + HOOK + HOOK2 + HOOK3), TOTAL_AT, TOTAL),
+  const text = patch(patch(patch(patch(patch(fs.readFileSync(file, 'utf8'), HOOK_AT, HOOK_AT + HOOK + HOOK2 + HOOK3 + HOOK4), TOTAL_AT, TOTAL),
     MOVE_AT, MOVE), FORCE_AT, FORCE), UID_AT, UID);
   // o original de cada trecho copiado no gancho tem de estar na fonte, uma vez só
   const fonte = fs.readFileSync(file, 'utf8');
-  for (const g of [...GUARDAS, ...GUARDAS3]) patch(fonte, g, g);
+  for (const g of [...GUARDAS, ...GUARDAS3, ...GUARDAS4]) patch(fonte, g, g);
   const outfile = path.join(os.tmpdir(), `parity-ficha-engine-${process.pid}.mjs`);
   await build({
     entryPoints: [file], outfile, bundle: true, format: 'esm', platform: 'node', logLevel: 'error',
@@ -1047,6 +1064,124 @@ export function buildSheetEditorCases({ editor, sheets, races, attributes, techn
       const m = mudou(() => onAjusteClick({ target: { closest: (sel) => (sel === '[data-eqm-reset]' ? { dataset: { eqmReset: `${chave}:${uid}` } } : null) } }));
       const peca = todasPecas(hook.getS()).find(([g, q]) => g === chave && q.uid === uid)?.[1];
       add('ajusteReset', [id, `${chave}:${uid}`], { peca: peca ?? null, mudou: m });
+    }
+  }
+
+
+  // ----- armaduras e bolsas -----
+  // Os ouvintes de verdade (o nome, o "vestir", e tudo das bolsas), com um alvo
+  // falso; o que vem depois de um diálogo vai pelas cópias do gancho. Os números
+  // do card e do painel de Absorção saem do HTML que a própria fonte escreve.
+  const armB = equip.ARMADURAS.find((x) => x.id !== 'nenhuma' && x.id !== armA).id;
+  mkEq('equip-bolsas', (s) => {
+    s.equip.armaduras.push({ uid: 'a3', base: armB, nome: 'Minha malha', vestida: false }, { uid: 'a4', base: armA, vestida: true });
+    s.bolsas = [
+      { nome: 'Mochila', itens: [{ item: 'corda', peso: '2,5', preco: '' }, { item: 'x', peso: '3 kg', preco: '1' }, { item: 'y', peso: 'muito', preco: '' },
+        { item: 'z', peso: '≈1.2', preco: '' }, { item: '', peso: '', preco: '' }, { item: 'w', peso: 0.4, preco: '' }], pesoTotal: '' },
+      { nome: 'Baú', itens: [{ item: 'a', peso: '10', preco: '' }, { item: 'b', peso: '4', preco: '' }], pesoTotal: '12,5' },
+      { nome: 'Extra', itens: [{ item: 'só uma', peso: '1', preco: '' }], pesoTotal: ' leve ' },
+      // 0,1 + 0,2 + 0,3 dá 0,6000000000000001 de um lado e 0,6 do outro: a ordem da soma das linhas conta
+      { nome: 'Fina', itens: [{ item: 'a', peso: '0,1', preco: '' }, { item: 'b', peso: '0,2', preco: '' }, { item: 'c', peso: '0,3', preco: '' }], pesoTotal: '' },
+    ];
+  });
+  const estadosArm = ['equip-vazio', 'equip-misto', 'equip-bolsas'];
+  const onArmInput = achaOuvinte('#eq-armaduras', 'input', 'data-arm-nome');
+  const onArmClick = achaOuvinte('#eq-armaduras', 'click', 'data-arm-vestir');
+  const onBolsaInput = achaOuvinte('#eq-bolsas', 'input', 'data-bolsa-nome');
+  const onBolsaClick = achaOuvinte('#eq-bolsas', 'click', 'data-bolsa-add');
+  // uma bolsa com uma linha só (o remover repetido, pelo próprio ouvinte): tirar a última linha põe uma em branco
+  abrir('equip-bolsas');
+  for (let k = 0; k < 5; k++) onBolsaClick({ target: { closest: (sel) => (sel === '[data-bolsa-rm]' ? { dataset: { bolsaRm: '2:0' } } : null) } });
+  estados['equip-bolsa-uma-linha'] = structuredClone(hook.getS());
+  const resumoArm = () => ({ armaduras: hook.getS().equip?.armaduras ?? null });
+  const resumoBolsas = () => ({ bolsas: hook.getS().bolsas ?? null });
+  const numeroDe = (t) => { const n = Number(String(t).replace('−', '-')); return Number.isFinite(n) ? n : String(t); };
+
+  // as contas da fonte, de cada peça e de cada bolsa
+  for (const id of estadosArm) {
+    abrir(id);
+    const S = hook.getS();
+    add('pecasArmadura', [id], hook.pecasArmadura());
+    for (const [grupo, p] of todasPecas(S)) {
+      add('pesoPeca', [id, `${grupo}:${p.uid}`], hook.pesoPeca(p));
+      add('pecaPorChave', [id, `${grupo}:${p.uid}`], hook.pecaPorChave(`${grupo}:${p.uid}`));
+    }
+    for (const chave of ['ars:nao-existe', 'arm:nao-existe', 'zzz:p1', 'arm', 'ars:']) add('pecaPorChave', [id, chave], hook.pecaPorChave(chave));
+    for (const uid of [...(S.equip?.armaduras ?? []).map((p) => p.uid), 'nao-existe']) add('pecaArm', [id, uid], hook.pecaArm(uid));
+    (S.bolsas ?? []).forEach((b, i) => add('pesoBolsa', [id, i], hook.pesoBolsa(b)));
+    add('pesoBolsa', [id, 'vazia'], hook.pesoBolsa({}));
+    // os números do card de cada peça de armadura, no HTML do renderArmaduras
+    hook.renderArmaduras();
+    const html = String(dom.elements['eq-armaduras']?.innerHTML ?? '');
+    for (const m of html.matchAll(/<div class="eq-peca arm([^"]*)" data-arm-peca="([^"]+)"[\s\S]*?<div class="eq-nums" data-arm-nums="[^"]+">([\s\S]*?)<\/div>/g)) {
+      const nums = m[3];
+      const pega = (rot) => (nums.match(new RegExp(`<b>${rot}</b>([^<]*)`)) ?? [])[1];
+      add('numerosDaArmadura', [id, m[2]], {
+        impacto: numeroDe(pega('Imp')), corte: numeroDe(pega('Cor')), perfuracao: numeroDe(pega('Perf')),
+        nivel: numeroDe((nums.match(/<i>N([^<]*)<\/i>/) ?? [])[1]), penalidade: pega('Pen'),
+        ajustado: / ajustado/.test(m[1]),
+      });
+    }
+    // o painel de Absorção combinada, no HTML do renderAbsorcao
+    hook.renderAbsorcao();
+    const abs = String(dom.elements['eq-absorcao']?.innerHTML ?? '');
+    const valor = (rot) => (abs.match(new RegExp(`<span class="abs-l">${rot}(?:<i>[^<]*</i>)?</span><span class="abs-v">([^<]*)</span>`)) ?? [])[1];
+    add('painelAbsorcao', [id], {
+      impacto: numeroDe(valor('Impacto')), corte: numeroDe(valor('Corte')), perfuracao: numeroDe(valor('Perfuração')),
+      nivel: abs.includes('Nível N') ? numeroDe((abs.match(/Nível N(\d+)/) ?? [])[1]) : 0,
+      penalidade: valor('Penalidade'), nota: (abs.match(/<p class="abs-nota muted">([^<]*)<\/p>/) ?? [])[1] ?? null,
+    });
+  }
+
+  // os ouvintes das armaduras
+  for (const id of estadosArm) {
+    const uids = (estados[id].equip?.armaduras ?? []).map((p) => p.uid);
+    for (const escolha of ['c', armA]) {
+      abrir(id);
+      const m = mudou(() => hook.armAdd(escolha, 'novo'));
+      add('armaduraAdd', [id, escolha, 'novo'], { ...resumoArm(), mudou: m });
+    }
+    for (const uid of [...uids.slice(0, 3), 'nao-existe']) {
+      for (const nome of ['Outro nome', '  ', '']) {
+        abrir(id);
+        const m = mudou(() => onArmInput({ target: { closest: (sel) => (sel === 'input[data-arm-nome]' ? { dataset: { armNome: uid }, value: nome, closest: () => null } : null) } }));
+        add('armaduraNome', [id, uid, nome], { ...resumoArm(), mudou: m });
+      }
+      abrir(id);
+      const m2 = mudou(() => onArmClick({ target: { closest: (sel) => (sel === '[data-arm-vestir]' ? { dataset: { armVestir: uid } } : null) } }));
+      add('armaduraVestir', [id, uid], { ...resumoArm(), mudou: m2 });
+      abrir(id);
+      const m3 = mudou(() => hook.armRm(uid));
+      add('armaduraRm', [id, uid], { ...resumoArm(), mudou: m3 });
+    }
+  }
+
+  // os ouvintes das bolsas
+  const alvoBolsa = (attr, valor, texto) => ({ target: { getAttribute: (n) => (n === attr ? valor : null), value: texto } });
+  for (const id of ['equip-bolsas', 'equip-vazio', 'equip-bolsa-uma-linha']) {
+    const nBolsas = (estados[id].bolsas ?? []).length;
+    for (let i = 0; i < Math.min(nBolsas, 3); i++) {
+      abrir(id);
+      const mn = mudou(() => onBolsaInput(alvoBolsa('data-bolsa-nome', String(i), 'Novo nome')));
+      add('bolsaNome', [id, i, 'Novo nome'], { ...resumoBolsas(), mudou: mn });
+      for (const total of ['', '15', '2,5 kg']) {
+        abrir(id);
+        const m = mudou(() => onBolsaInput(alvoBolsa('data-bolsa-peso', String(i), total)));
+        add('bolsaTotal', [id, i, total], { ...resumoBolsas(), mudou: m });
+      }
+      for (const [j, campo, texto] of [[0, 'item', 'novo item'], [0, 'peso', '7,5'], [1, 'preco', '9'], [9, 'peso', 'x']]) {
+        abrir(id);
+        const m = mudou(() => onBolsaInput(alvoBolsa('data-bolsa', `${i}:${j}:${campo}`, texto)));
+        add('bolsaCelula', [id, i, j, campo, texto], { ...resumoBolsas(), mudou: m });
+      }
+      abrir(id);
+      const m = mudou(() => onBolsaClick({ target: { closest: (sel) => (sel === '[data-bolsa-add]' ? { dataset: { bolsaAdd: String(i) } } : null) } }));
+      add('bolsaAdd', [id, i], { ...resumoBolsas(), mudou: m });
+      for (const j of [0, 1, 9]) {
+        abrir(id);
+        const m2 = mudou(() => onBolsaClick({ target: { closest: (sel) => (sel === '[data-bolsa-rm]' ? { dataset: { bolsaRm: `${i}:${j}` } } : null) } }));
+        add('bolsaRm', [id, i, j], { ...resumoBolsas(), mudou: m2 });
+      }
     }
   }
 

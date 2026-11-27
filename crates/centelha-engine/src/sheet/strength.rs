@@ -211,12 +211,16 @@ fn written(v: Option<&Value>) -> String {
     s.trim_matches(is_js_space).to_owned()
 }
 
-fn piece_weight(catalog: &Catalog, p: &Value) -> f64 {
+/// `pesoPeca`: o peso de uma peça (arma, escudo ou armadura): o do item que a
+/// ficha guarda.
+pub fn piece_weight(catalog: &Catalog, p: &Value) -> f64 {
     let item = catalog.piece_item(Some(p));
     js::or_zero(jv::to_number(item.as_ref().and_then(|i| i.get("peso"))))
 }
 
-fn bag_weight(b: &Value) -> f64 {
+/// `pesoBolsa`: a soma das linhas de uma bolsa, ou o total que o jogador
+/// escreveu no lugar dela.
+pub fn bag_weight(b: &Value) -> f64 {
     let w = written(b.get("pesoTotal"));
     if !w.is_empty() {
         return weight_from_text(Some(&Value::String(w)));

@@ -16,6 +16,7 @@
 //!
 //! Quem confere é o teste de paridade contra `tests/parity/sheets.json`.
 
+mod armor_bags;
 mod arsenal;
 mod editor;
 mod equip;
@@ -36,6 +37,11 @@ use std::collections::HashMap;
 use centelha_data::{Ancestry, Rules};
 use serde_json::Value;
 
+pub use armor_bags::{
+    AbsorptionPanel, ArmorPieceNumbers, absorption_panel, add_armor, add_bag_row, armor_piece,
+    armor_piece_numbers, penalty_text, piece_by_key, remove_armor, remove_bag_row, rename_armor,
+    rename_bag, set_bag_cell, set_bag_total, toggle_armor_worn, worn_armor_pieces,
+};
 pub use arsenal::{
     EditTarget, PieceGroup, activate_set, add_set, add_to_arsenal, clean_arsenal,
     custom_piece_note, differs_from_origin, edit_piece_field, edit_target, is_custom_piece,
@@ -74,9 +80,9 @@ pub use numbers::{
 };
 pub use pgr::{ExtraLine, extra_lines, sheet_anatomy, sheet_flurry_cap};
 pub use strength::{
-    LoadBand, carried_load, current_load, load_bands, load_speed_fraction, overhead_lift,
-    penalized_speed, short_number, throw_cap, throw_range, throw_reserve, throw_table_weights,
-    weight_from_text,
+    LoadBand, bag_weight, carried_load, current_load, load_bands, load_speed_fraction,
+    overhead_lift, penalized_speed, piece_weight, short_number, throw_cap, throw_range,
+    throw_reserve, throw_table_weights, weight_from_text,
 };
 pub use text::{armor_stats, damage_text, shield_stats, signed_number, weapon_stats};
 pub use traits::{
