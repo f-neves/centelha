@@ -42,6 +42,7 @@ import { buildTechniqueCases, loadTreeClosure } from './techniques.mjs';
 import { buildSheetEditorCases, loadSheetEditor } from './sheet-editor.mjs';
 import { buildBestiaryCases, loadCardAppearance } from './bestiary.mjs';
 import { buildCollateCases, COLLATE_SEED } from './collate.mjs';
+import { buildArtsCases, ARTS_SEED } from './arts.mjs';
 
 const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 const OUT = path.join(REPO, 'tests', 'parity');
@@ -304,6 +305,17 @@ for (const c of bestiaryCases) {
   bestiaryCounts[c.fn] = (bestiaryCounts[c.fn] || 0) + 1;
 }
 
+// ----- a formatação dos Efeitos e o custo da conjuração -----
+const artsCases = buildArtsCases({
+  fmt: await loadTs('src/lib/artes-fmt.ts'), grid: await loadTs('src/lib/artes-grid.ts'),
+  arts: readData('artes.json'), effects: readData('efeitos.json'), regras: readData('regras.json'),
+});
+const artsCounts = {};
+for (const c of artsCases) {
+  scanNumbers(c.out, `${c.fn}(${JSON.stringify(c.args)})`);
+  artsCounts[c.fn] = (artsCounts[c.fn] || 0) + 1;
+}
+
 // ----- a colação -----
 const collate = buildCollateCases({
   acaso,
@@ -406,6 +418,17 @@ write('collate.json', {
   pairs: collate.pairs,
 }, 'pairs');
 console.log(`${collate.pairs.length} pares da colação (${collate.names} nomes)`);
+write('arts.json', {
+  source,
+  note: 'Cada caso: fn, args e out. idDe, formaDe, rank, ordemPar, valorPar e PAR_FORMA (src/lib/artes-fmt.ts); '
+    + 'custoDe (src/lib/artes-grid.ts, sem a Velocidade); manaPaga: o custoDe com a Centelha somada do desconto da '
+    + 'fonte do elemento (regras.json, arcano.fonteElemental), porque a fonte só tem o texto no TypeScript. '
+    + `Listas sorteadas com a semente ${ARTS_SEED}. Montado por tools/parity/arts.mjs. -0 gravado como "-0".`,
+  count: artsCases.length,
+  counts: artsCounts,
+  cases: artsCases,
+}, 'cases');
+console.log(`${artsCases.length} casos das Artes (formatação e custo)`);
 write('sheet-editor.json', {
   source,
   note: 'As contas de src/lib/ficha-engine.ts, rodadas pelas funções internas do montarFicha num DOM falso '

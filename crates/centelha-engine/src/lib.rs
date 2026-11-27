@@ -3,7 +3,9 @@
 //! Mesma entrada, mesma saída que o motor TypeScript do site atual (paridade).
 //! As referências de paridade moram em `tests/parity/` na raiz do repositório.
 
+pub mod arts_fmt;
 pub mod bestiary_card;
+pub mod casting;
 pub mod character;
 pub mod collate;
 pub mod creature;

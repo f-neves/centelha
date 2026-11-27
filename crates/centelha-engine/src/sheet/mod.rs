@@ -17,6 +17,7 @@
 //! Quem confere é o teste de paridade contra `tests/parity/sheets.json`.
 
 mod arsenal;
+mod arts;
 mod editor;
 mod equip;
 mod format;
@@ -42,6 +43,12 @@ pub use arsenal::{
     is_custom_ref, is_two_handed_item, item_fields, parse_field_input, piece_name, piece_role,
     remove_from_arsenal, remove_set, rename_arsenal_piece, reorder, reset_piece, same_field,
     set_hand_piece, show_field, write_piece_field,
+};
+pub use arts::{
+    ArtLine, ArtPopup, EffectCard, EffectGroup, EffectPopup, EffectsBody, Flavor, GroupSummary,
+    PopupParameter, ShortParameter, art_level, art_lines, art_name, art_popup, art_print_lines,
+    arts_reached, effect_card, effect_groups, effect_popup, effects_body, short_parameters,
+    short_parameters_text,
 };
 pub use editor::{
     EditorCatalogs, EditorTables, FREE_SECONDARY, FRESH_BUDGET, PenalizedMovement, Specialty,

@@ -11,6 +11,7 @@
 mod common;
 
 use centelha_data::{Technique, Weapon};
+use centelha_engine::arts_fmt::{form_of, id_of};
 use centelha_engine::sheet::{
     ARMOR_EDIT_FIELDS, Catalog, DualWield, EditField, EditorCatalogs, EditorTables, HandRole,
     ItemKind, Movement, SHIELD_EDIT_FIELDS, SheetTables, WEAPON_EDIT_FIELDS, WEAPON_MORE_FIELDS,
@@ -20,6 +21,11 @@ use centelha_engine::sheet::{
     penalized_movement, penalized_speed, piece_for, pool_text, sheet_anatomy, sheet_flurry_cap,
     short_number, spent_xp, technique_status, throw_cap, throw_range, throw_reserve,
     throw_table_weights, trait_cap, weight_from_text, write_edit_field,
+};
+use centelha_engine::sheet::{
+    ArtLine, EffectsBody, art_lines, art_name, art_popup, art_print_lines, arts_reached,
+    effect_card, effect_groups, effect_popup, effects_body, short_parameters,
+    short_parameters_text,
 };
 use centelha_engine::sheet::{
     SpecialtyScope, TraitKind, add_defense_specialty, add_named_background, add_specialty,
@@ -389,6 +395,7 @@ fn run(ctx: &Ctx, inputs: &Value, name: &str, a: &[Value], want: &Value) -> Valu
         }
         other => run_traits(ctx, inputs, other, a, want)
             .or_else(|| run_arsenal(ctx, inputs, other, a, want))
+            .or_else(|| run_arts(ctx, inputs, other, a))
             .unwrap_or_else(|| panic!("função sem par no Rust: {other}")),
     }
 }
@@ -1126,4 +1133,116 @@ fn all_fields() -> Vec<centelha_engine::sheet::EditField> {
         .chain(ARMOR_EDIT_FIELDS.iter())
         .copied()
         .collect()
+}
+
+// ------------------------------------------------------ Artes e Efeitos
+
+fn lines_json(lines: &[ArtLine]) -> Value {
+    Value::Array(
+        lines
+            .iter()
+            .map(|l| {
+                json!({
+                    "nivel": num(l.level), "nome": l.name, "efeito": l.effect,
+                    "alcancado": l.reached,
+                })
+            })
+            .collect(),
+    )
+}
+
+/// O texto sem a marcação e os cartões de forma que os rótulos abrem.
+fn parameters_json(text: String, forms: Vec<&str>) -> Value {
+    json!({"texto": text, "formas": forms})
+}
+
+/// Os casos da fatia 9. `None` quando o nome não é daqui.
+fn run_arts(ctx: &Ctx, inputs: &Value, name: &str, a: &[Value]) -> Option<Value> {
+    let t = &ctx.t;
+    let sheet = |i: usize| &inputs[a[i].as_str().unwrap()]["ficha"];
+    let text = |i: usize| a[i].as_str().unwrap();
+    let effect = |i: usize| t.effects().iter().find(|e| e.id == text(i)).unwrap();
+    let art = |i: usize| t.arts().iter().find(|x| x.id == text(i)).unwrap();
+    let out = match name {
+        "idRef" => id_of(&a[0]),
+        "nomeArte" => json!(art_name(t, text(0))),
+        "rotPar" => parameters_json(
+            text(0).to_owned(),
+            form_of(text(0)).map(|f| f.id()).into_iter().collect(),
+        ),
+        "parCurto" => {
+            let e = effect(0);
+            parameters_json(
+                short_parameters_text(e),
+                short_parameters(e)
+                    .iter()
+                    .filter_map(|p| p.form.map(|f| f.id()))
+                    .collect(),
+            )
+        }
+        "gruposEfeito" => Value::Array(
+            effect_groups(t, sheet(0), a[1].as_bool().unwrap())
+                .iter()
+                .map(|g| {
+                    json!({
+                        "arte": g.art.id,
+                        "itens": g.effects.iter().map(|e| json!(e.id)).collect::<Vec<_>>(),
+                    })
+                })
+                .collect(),
+        ),
+        "corpoEfeitos" => match effects_body(t, sheet(0), a[1].as_bool().unwrap()) {
+            EffectsBody::Empty(message) => json!({"vazio": message}),
+            EffectsBody::Groups(groups) => json!({
+                "grupos": groups.iter().map(|g| json!({
+                    "arte": g.art_id, "nome": g.art_name, "conta": g.counter(),
+                })).collect::<Vec<_>>(),
+            }),
+        },
+        "arteFx" => {
+            let level = centelha_engine::sheet::art_level(sheet(0), text(1));
+            lines_json(&art_lines(art(1), level))
+        }
+        "artePrint" => {
+            let level = centelha_engine::sheet::art_level(sheet(0), text(1));
+            lines_json(&art_print_lines(art(1), level))
+        }
+        "conteudoArtePop" => {
+            let p = art_popup(sheet(0), art(1));
+            json!({"titulo": p.title, "rotulo": p.level_label, "linhas": lines_json(&p.lines)})
+        }
+        "artesDe" => Value::Array(
+            arts_reached(sheet(0), effect(1))
+                .iter()
+                .map(|x| json!(x.id))
+                .collect(),
+        ),
+        "cardEfeito" => {
+            let c = effect_card(t, sheet(0), effect(1), text(2));
+            json!({
+                "comprado": c.bought, "nome": c.name, "nivel": num(c.level), "xp": num(c.xp),
+                "tambem": c.also_in, "texto": c.text,
+                "parametros": parameters_json(
+                    c.parameters.iter().map(|p| p.text()).collect::<Vec<_>>().join(" · "),
+                    c.parameters.iter().filter_map(|p| p.form.map(|f| f.id())).collect(),
+                ),
+            })
+        }
+        "conteudoEfeitoPop" => {
+            let p = effect_popup(t, sheet(0), effect(1));
+            json!({
+                "titulo": p.title, "rotulo": p.header, "texto": p.text,
+                "sabores": p.flavors.iter().map(|f| json!({"arte": f.art, "texto": f.text})).collect::<Vec<_>>(),
+                "parametros": p.parameters.iter().map(|q| json!({
+                    "nome": q.name, "forma": q.form.map(|f| f.id()),
+                    // o `${valorPar(...)}` da fonte escreve "undefined" sem valor
+                    "valor": q.value.clone().unwrap_or_else(|| "undefined".into()),
+                    "nota": q.note,
+                })).collect::<Vec<_>>(),
+                "notas": p.notes,
+            })
+        }
+        _ => return None,
+    };
+    Some(out)
 }
