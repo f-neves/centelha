@@ -4,6 +4,7 @@
 //
 //   node tools/site/open-all.mjs <dist> [--url <base>] [--rodadas 7]
 //        [--md <tabela.md>] [--json <medida.json>] [--ref <outra.json>]
+//        [--base <caminho>] [--sem-ilha]
 //
 // - As páginas são as do `dist/` (as mesmas da prova de hidratação), menos as
 //   que só redirecionam (`<meta http-equiv="refresh">`). Com `--url`, mede o
@@ -15,6 +16,10 @@
 //   quieta do começo ao fim. Sem `COMPILANDO`, a coluna diz "não conferido".
 // - `--ref`: a medida de outro site (o JSON que `--json` grava), para a
 //   diferença por página.
+// - `--base`: o caminho base, quando o `dist/` não é deste gerador (o caminho
+//   sai do `href` da marca no topo). `--sem-ilha`: para um site sem a marca
+//   `island-hydrated` (o site atual, por exemplo); cada rodada espera só o
+//   `load`, e a coluna da ilha fica vazia.
 //
 // Ferramenta da máquina: o runner do CI é barulhento demais para medir tempo.
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
@@ -33,6 +38,8 @@ const mdPath = opcao('--md');
 const jsonPath = opcao('--json');
 const refPath = opcao('--ref');
 const urlBase = opcao('--url');
+const baseDada = opcao('--base');
+const semIlha = args.includes('--sem-ilha');
 
 const redireciona = (rel) => {
   const arq = rel.endsWith('.html') ? join(dist, rel) : join(dist, rel, 'index.html');
@@ -63,7 +70,7 @@ if (urlBase) {
   origin = u.origin;
   base = u.pathname.endsWith('/') ? u.pathname : `${u.pathname}/`;
 } else {
-  base = detectBase(dist);
+  base = baseDada ?? detectBase(dist);
   server = await serve(dist, base);
   origin = server.origin;
 }
@@ -102,14 +109,14 @@ for (const rel of paginas) {
     for (let i = 0; i < rodadas + 1; i++) {
       await page.goto('about:blank');
       await page.goto(url, 60000);
-      await page.waitFor("performance.getEntriesByName('island-hydrated').length > 0", 60000);
+      if (!semIlha) await page.waitFor("performance.getEntriesByName('island-hydrated').length > 0", 60000);
       // Folga para a entrada da primeira pintura ser registrada.
       await dormir(500);
       const m = await page.eval(`(() => {
         const nav = performance.getEntriesByType('navigation')[0];
         const fcp = performance.getEntriesByName('first-contentful-paint')[0];
         const isl = performance.getEntriesByName('island-hydrated')[0];
-        return { fcp: fcp ? fcp.startTime : null, load: nav.loadEventEnd, island: isl.startTime };
+        return { fcp: fcp ? fcp.startTime : null, load: nav.loadEventEnd, island: isl ? isl.startTime : null };
       })()`);
       // A primeira rodada aquece o navegador e não conta.
       if (i > 0) medidas.push(m);
