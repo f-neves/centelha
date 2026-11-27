@@ -4,7 +4,8 @@
 #
 # Versões das actions conferidas nas páginas de release em 25/11/2026:
 # actions/checkout v7.0.1, Swatinem/rust-cache v2.9.3; em 26/11/2026:
-# actions/cache v6.1.0, actions/setup-node v7.1.0.
+# actions/cache v6.1.0, actions/setup-node v7.1.0; actions/upload-artifact
+# v7.0.2 conferida em 26/11/2026.
 #
 # Cache do Cargo: só o push no main grava (save-if). Os PRs restauram o cache
 # do main e não gravam o próprio, para o total ficar abaixo dos 10 GB do
@@ -180,6 +181,42 @@ jobs:
 
       - name: Prova de hidratação (release)
         run: node tools/site/hydration.mjs dist
+
+      # Capturas de página inteira (375 e 1280 px, três temas) num artefato de
+      # 7 dias, e a rolagem horizontal a 375 px conferida em todas as páginas
+      # (falha o passo). O artefato tem teto: entram as páginas que mudaram
+      # contra o último main, inteiras, das menores para as maiores.
+      - name: Marcas das páginas do último main
+        if: github.ref != 'refs/heads/main'
+        uses: actions/cache/restore@v6.1.0
+        with:
+          path: .capturas/main.json
+          key: capturas-main-${{ github.sha }}
+          restore-keys: capturas-main-
+
+      - name: Capturas e rolagem horizontal
+        run: node tools/ci/capturas.mjs dist capturas --ref .capturas/main.json --marcas .capturas/atual.json
+
+      - name: Enviar as capturas
+        if: success() || failure()
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: capturas
+          path: capturas/
+          retention-days: 7
+          if-no-files-found: ignore
+          compression-level: 0
+
+      - name: Preparar as marcas do main
+        if: github.ref == 'refs/heads/main'
+        run: cp .capturas/atual.json .capturas/main.json
+
+      - name: Guardar as marcas do main
+        if: github.ref == 'refs/heads/main'
+        uses: actions/cache/save@v6.1.0
+        with:
+          path: .capturas/main.json
+          key: capturas-main-${{ github.sha }}
 
       - name: Prova das ilhas sem página portada (página de teste fora do dist)
         run: node tools/site/islands-test.mjs dist
