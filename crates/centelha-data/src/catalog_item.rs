@@ -5,7 +5,7 @@
 //! páginas e as contas leem) e como o envelope inteiro, com as chaves na ordem
 //! do arquivo. O motor monta o catálogo da ficha pelo envelope (a ordem das
 //! chaves faz parte da paridade, ADR 0004), então o que o tipo não conhece não
-//! se perde.
+//! se perde, e mudar um campo tipado não muda o catálogo do motor.
 
 use serde::Deserialize;
 use serde::de::{self, DeserializeOwned, Deserializer};

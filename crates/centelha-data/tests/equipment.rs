@@ -5,7 +5,7 @@
 use std::path::PathBuf;
 
 use centelha_data::{
-    AttackMode, DamageType, RangeBand, Weapon, load_armors, load_shields, load_weapons,
+    AttackMode, DamageMode, RangeBand, Weapon, load_armors, load_shields, load_weapons,
     parse_armors, parse_shields, parse_weapons,
 };
 
@@ -43,12 +43,12 @@ fn reads_the_weapon_fields_of_a_ranged_weapon() {
     );
     assert_eq!(
         (s.damage_type, s.pierce_level),
-        (Some(DamageType::Pierce), Some(1.0))
+        (Some(DamageMode::Pierce), Some(1.0))
     );
     assert_eq!(
         s.modes,
         [AttackMode {
-            kind: DamageType::Pierce,
+            kind: DamageMode::Pierce,
             pierce_level: Some(1.0),
             primary: true
         }]
@@ -76,11 +76,11 @@ fn reads_the_special_weapon_flags() {
     assert!(weapon(&list, "rede").stats.as_ref().unwrap().no_damage);
     // a de três modos, e o que a ficha mostra
     let halberd = weapon(&list, "alabarda").stats.as_ref().unwrap();
-    assert_eq!(halberd.sheet_mode, Some(DamageType::Cut));
-    let kinds: Vec<DamageType> = halberd.modes.iter().map(|m| m.kind).collect();
+    assert_eq!(halberd.sheet_mode, Some(DamageMode::Cut));
+    let kinds: Vec<DamageMode> = halberd.modes.iter().map(|m| m.kind).collect();
     assert_eq!(
         kinds,
-        [DamageType::Cut, DamageType::Pierce, DamageType::Impact]
+        [DamageMode::Cut, DamageMode::Pierce, DamageMode::Impact]
     );
     assert_eq!(halberd.modes[1].pierce_level, Some(1.0));
     assert!(halberd.modes.iter().all(|m| m.primary));
