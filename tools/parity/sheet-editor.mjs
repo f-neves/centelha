@@ -113,6 +113,35 @@ const GUARDAS = [
   String.raw`S.id[inp.dataset.id!] = inp.value; if (inp.dataset.id === 'peso') { const massa = Number(inp.value.replace(',', '.').match(/\d+(?:\.\d+)?/)?.[0]); if (massa > 0) { S.corpo ??= {}; S.corpo.massa = massa; massaEscolhida = true; renderForca(); } else if (!inp.value.trim()) { if (S.corpo) delete S.corpo.massa; massaEscolhida = false; renderForca(); } }`,
 ];
 
+// O gancho do arsenal: as funções da fonte como estão, e cópias conferidas dos
+// trechos que vêm depois de um diálogo (a escolha do item e a confirmação do
+// descarte), que o DOM falso não responde. O original de cada um está em
+// GUARDAS3.
+const HOOK3 = String.raw`
+  Object.assign(globalThis.__ficha, {
+    refLivre: (r) => refLivre(r), ehLivre: (p) => ehLivre(p), it2H: (it) => it2H(it), itemDe: (p) => itemDe(p),
+    papelDaPeca: (uid) => papelDaPeca(uid), nomePeca: (p) => nomePeca(p), improvisado: (p, ro) => improvisado(p, ro),
+    limparArsenal: () => limparArsenal(), reordenar: (l, u) => reordenar(l, u), difereDaOrigem: (p, c) => difereDaOrigem(p, c),
+    igualCampo: (a, b) => igualCampo(a, b), mostraCampo: (c, v) => mostraCampo(c, v), camposItem: (it) => camposItem(it),
+    alvoMod: (chave) => { const a = alvoMod(chave); return a ? { campos: a.campos.map((c) => c.k) } : null; },
+    arsAdd: (escolha, uid) => { (S.arsenal ||= []).push(escolha === REF_ARMA_LIVRE
+      ? { uid, ref: escolha, nome: '', dado: 1, danoBonus: 0, acerto: -2 }
+      : escolha === REF_ESCUDO_LIVRE ? { uid, ref: escolha, nome: '' } : { uid, ref: escolha }); },
+    arsRm: (uid) => { const p = pecaArsenal(uid); if (!p) return; marcarUso(uid, 'nada'); S.arsenal = S.arsenal.filter((x) => x.uid !== uid); sincronizarSlots(); },
+  });`;
+const GUARDAS3 = [
+  String.raw`(S.arsenal ||= []).push(escolha === REF_ARMA_LIVRE`,
+  String.raw`? { uid, ref: escolha, nome: '', dado: 1, danoBonus: 0, acerto: -2 }`,
+  String.raw`: escolha === REF_ESCUDO_LIVRE ? { uid, ref: escolha, nome: '' } : { uid, ref: escolha });`,
+  String.raw`const uid = rm.dataset.arsRm!, p = pecaArsenal(uid); if (!p) return;`,
+  String.raw`marcarUso(uid, 'nada');`,
+  String.raw`S.arsenal = S.arsenal.filter((x: any) => x.uid !== uid);`,
+  // e a linha logo depois, que sozinha se repete em outros lugares da fonte
+  String.raw`S.arsenal = S.arsenal.filter((x: any) => x.uid !== uid);
+    sincronizarSlots(); redesenhaArmas();
+`,
+];
+
 function patch(text, at, by) {
   if (text.split(at).length !== 2) throw new Error(`ficha-engine.ts: o trecho do remendo não está lá uma vez só: ${at}`);
   return text.replace(at, by);
@@ -175,11 +204,11 @@ export async function loadSheetEditor({ build, SRC }) {
         vel: amostra.map(vel), velNatacao: amostra.map(velNatacao) };
     })();
     ${FORCE_AT}`;
-  const text = patch(patch(patch(patch(patch(fs.readFileSync(file, 'utf8'), HOOK_AT, HOOK_AT + HOOK + HOOK2), TOTAL_AT, TOTAL),
+  const text = patch(patch(patch(patch(patch(fs.readFileSync(file, 'utf8'), HOOK_AT, HOOK_AT + HOOK + HOOK2 + HOOK3), TOTAL_AT, TOTAL),
     MOVE_AT, MOVE), FORCE_AT, FORCE), UID_AT, UID);
   // o original de cada trecho copiado no gancho tem de estar na fonte, uma vez só
   const fonte = fs.readFileSync(file, 'utf8');
-  for (const g of GUARDAS) patch(fonte, g, g);
+  for (const g of [...GUARDAS, ...GUARDAS3]) patch(fonte, g, g);
   const outfile = path.join(os.tmpdir(), `parity-ficha-engine-${process.pid}.mjs`);
   await build({
     entryPoints: [file], outfile, bundle: true, format: 'esm', platform: 'node', logLevel: 'error',
@@ -220,7 +249,9 @@ export async function loadSheetEditor({ build, SRC }) {
   mod.montarFicha({ carregar: () => null, salvar: () => {} });
   await new Promise((r) => setTimeout(r, 0));
   if (!globalThis.__ficha) throw new Error('o gancho da ficha não rodou');
-  return { hook: globalThis.__ficha, dom, restore: () => {
+  return { hook: globalThis.__ficha, dom, restore: async () => {
+    // as micro-tarefas que a fonte agenda (o enquadramento das fotos) rodam antes de tirar o DOM falso
+    await new Promise((r) => setTimeout(r, 0));
     Math.random = random;
     Date.now = now;
     for (const [k, d] of Object.entries(saved)) {
@@ -852,6 +883,180 @@ export function buildSheetEditorCases({ editor, sheets, races, attributes, techn
       abrir(id);
       const m = mudou(() => onLivre({ target: { closest: (sel) => (sel === '[data-livre]' ? { dataset: { livre: k }, value: v } : null) } }));
       add('livreNome', [id, k, v], { livreNome: hook.getS().livreNome ?? null, mudou: m });
+    }
+  }
+
+
+  // ----- arsenal, conjuntos e ajuste de peça -----
+  // Os ouvintes da fonte, chamados com um alvo falso; o que vem depois de um
+  // diálogo (escolher o item, confirmar o descarte) vai pelas cópias do gancho.
+  const w1h = equip.ARMAS.find((w) => w.maos === 1 && !w.soCriatura && w.classe !== 'distancia').id;
+  const w2h = equip.ARMAS.find((w) => w.maos === 2 && !w.soCriatura && w.classe !== 'distancia').id;
+  const bow = equip.ARMAS.find((w) => w.classe === 'distancia' && !w.soCriatura).id;
+  const escudoA = equip.ESCUDOS.find((x) => x.id !== 'nenhum').id;
+  const armA = equip.ARMADURAS.find((x) => x.id !== 'nenhuma').id;
+  // uma arma que o livro dá com acerto 0: o ajuste `-0,3` a leva a -0, que o `igualCampo` da fonte vê como 0
+  const armaAcerto0 = equip.ARMAS.find((w) => w.acerto === 0 && !w.soCriatura).id;
+  const eqBase = {
+    arsenal: [{ uid: 'p1', ref: `a:${w1h}` }, { uid: 'p2', ref: `e:${escudoA}` }, { uid: 'p3', ref: 'c', nome: 'Minha', dado: 1, danoBonus: 0, acerto: -2 },
+      { uid: 'p4', ref: 'ce', nome: 'Escudo meu' }, { uid: 'p5', ref: `a:${w2h}` }, { uid: 'p6', ref: `a:${bow}`, img: 'x.png' }],
+    conjuntos: [{ habil: { uid: 'p1', ref: `a:${w1h}` }, inabil: { uid: 'p2', ref: `e:${escudoA}` }, ativo: true },
+      { habil: { uid: 'p5', ref: `a:${w2h}` }, inabil: { ref: 'nada' }, ativo: false }],
+    equip: { armaduras: [{ uid: 'a1', base: armA, vestida: true }, { uid: 'a2', base: 'c', item: { origem: null, nome: 'Minha armadura', tipo: 'armadura', armadura: { soak: { impacto: 2, corte: 2, perfuracao: 1 }, resistPerf: 1, penalidade: 1 } } }] },
+  };
+  const mkEq = (id, f) => {
+    hook.fresh();
+    const s = { ...hook.getS(), ...structuredClone(eqBase) };
+    f?.(s);
+    const n = hook.normalizar(s).ficha;
+    estados[id] = structuredClone(n);
+  };
+  mkEq('equip-vazio', (s) => { s.arsenal = []; s.conjuntos = [{ habil: { ref: 'a:desarmado' }, inabil: { ref: 'nada' }, ativo: true }]; s.equip = { armaduras: [] }; });
+  mkEq('equip-misto', null);
+  mkEq('equip-segundo-em-uso', (s) => { s.conjuntos[0].ativo = false; s.conjuntos[1].ativo = true; });
+  // peças que ninguém usa: o `limparArsenal` tira as sem nada do jogador e deixa as com nome
+  mkEq('equip-sobras', (s) => { s.arsenal.push({ uid: 'p12', ref: `a:${armaAcerto0}` }, { uid: 'p7', ref: `a:${w1h}` }, { uid: 'p8', ref: 'c', nome: '' }, { uid: 'p9', ref: 'ce', nome: 'Tem nome' }, { uid: 'p10', ref: `e:${escudoA}`, mod: { penalidade: 1 } }); });
+  // o `mod` do modelo antigo, sem nada de diferente do livro: só ele segura a peça (um `{}` é verdadeiro)
+  estados['equip-sobras'].arsenal.push({ uid: 'p11', ref: `a:${w1h}`, mod: {} });
+  // o ajuste real de um campo, para ter uma peça que difere do livro
+  const onArs = (tipo, pista) => achaOuvinte('#eq-arsenal', tipo, pista);
+  const onAjusteInput = onArs('input', 'aoEditar');
+  const onAjusteChange = onArs('change', 'select[data-eqm]');
+  const onAjusteClick = onArs('click', 'data-eqm-reset');
+  const onArsUso = onArs('change', 'data-uso');
+  const onArsNome = onArs('input', 'data-ars-nome');
+  const onConjChange = achaOuvinte('#eq-conjuntos', 'change', 'data-conj-sel');
+  const onConjClick = achaOuvinte('#eq-conjuntos', 'click', 'data-conj-rm');
+  const onConjAdd = achaOuvinte('#add-conjunto', 'click');
+  const ajustar = (chave, k, valor, ehSelect = false) => {
+    const inp = { dataset: { eqm: `${chave}:${k}` }, value: valor, closest: () => null };
+    const target = { closest: (sel) => (sel === 'input[data-eqm], select[data-eqm]' ? inp : ehSelect && (sel === 'select' || sel === 'select[data-eqm]') ? inp : null) };
+    (ehSelect ? onAjusteChange : onAjusteInput)({ target });
+  };
+  abrir('equip-misto');
+  ajustar('ars:p1', 'dado', '3');
+  ajustar('ars:p1', 'tags', 'a, b');
+  ajustar('ars:p3', 'ticks', '7');
+  ajustar('arm:a1', 'penalidade', '2');
+  estados['equip-ajustado'] = structuredClone(hook.getS());
+  // o `-0,3` em `acerto` dá -0 (Math.round(-0,3)): a peça fica igual ao livro, e o limparArsenal a descarta
+  abrir('equip-sobras');
+  ajustar('ars:p12', 'acerto', '-0,3');
+  estados['equip-zero'] = structuredClone(hook.getS());
+
+  const estadosEq = ['equip-vazio', 'equip-misto', 'equip-segundo-em-uso', 'equip-ajustado', 'equip-sobras', 'equip-zero'];
+  const todasPecas = (S) => [...(S.arsenal ?? []).map((p) => ['ars', p]), ...(S.equip?.armaduras ?? []).map((p) => ['arm', p])];
+  // o que o arsenal e os conjuntos deixam (as armaduras só entram no ajuste)
+  const resumoEq = () => { const S = hook.getS(); return { arsenal: S.arsenal ?? null, conjuntos: S.conjuntos ?? null }; };
+  const operaEm = ['equip-vazio', 'equip-misto', 'equip-segundo-em-uso'];
+  const umaLista = (x) => (Array.isArray(x) ? x : []);
+
+  // as contas de cada peça
+  for (const id of estadosEq) {
+    abrir(id);
+    const S = hook.getS();
+    for (const [grupo, p] of todasPecas(S)) {
+      if (grupo === 'ars') {
+        const it = hook.itemDe(p);
+        add('ehLivre', [id, p.uid], hook.ehLivre(p));
+        add('nomePeca', [id, p.uid], hook.nomePeca(p) ?? null);
+        add('papelDaPeca', [id, p.uid], hook.papelDaPeca(p.uid));
+        add('it2H', [id, p.uid], !!hook.it2H(it));
+        add('camposItem', [id, p.uid], hook.camposItem(it).map((c) => c.k));
+        add('difereDaOrigem', [id, p.uid], hook.difereDaOrigem(p, hook.camposItem(it)));
+      }
+      add('alvoMod', [id, `${grupo}:${p.uid}`], hook.alvoMod(`${grupo}:${p.uid}`));
+    }
+    for (const chave of ['ars:nao-existe', 'arm:nao-existe', 'xyz:p1', 'ars', 'ars:']) add('alvoMod', [id, chave], hook.alvoMod(chave));
+    const m = mudou(() => hook.limparArsenal());
+    add('limparArsenal', [id], { arsenal: hook.getS().arsenal ?? null, mudou: m });
+  }
+
+  // refLivre, igualCampo, mostraCampo, reordenar e o texto da peça personalizada
+  for (const r of ['c', 'ce', 'a:x', 'e:y', '', null, 'C']) add('refLivre', [r], hook.refLivre(r));
+  add('improvisado', [false], hook.improvisado({}, false));
+  add('improvisado', [true], hook.improvisado({}, true));
+  const campos = [...equip.CAMPOS_ARMA, ...equip.CAMPOS_ARMA_MAIS, ...equip.CAMPOS_ESCUDO, ...equip.CAMPOS_ARMADURA];
+  const amostras = [null, 0, 3, -2, 2.5, 'x', '', ['a', 'b'], [], ['a', null, 3], { a: 1 }];
+  for (const c of campos) for (const v of amostras) add('mostraCampo', [c.k, v], hook.mostraCampo(c, v) ?? null);
+  for (const [a, b] of [[null, null], [null, 0], [1, 1], [1, '1'], [[1, 2], [1, 2]], [[1, 2], [2, 1]], [{ a: 1, b: 2 }, { b: 2, a: 1 }], [{ a: 1 }, { a: 1 }], ['x', 'x']]) {
+    add('igualCampo', [a, b], hook.igualCampo(a, b));
+  }
+  hook.setS(structuredClone(estados['equip-misto']));
+  const listaUid = [{ uid: 'a' }, { uid: 'b' }, { uid: 'c' }, { uid: 'd' }];
+  for (const uids of [['a', 'b', 'c', 'd'], ['d', 'c', 'b', 'a'], ['c', 'a'], [], ['b', 'b', 'z'], ['z']]) {
+    add('reordenar', [listaUid, uids], hook.reordenar(structuredClone(listaUid), uids));
+  }
+
+  // o arsenal: adicionar, descartar, usar, renomear
+  for (const id of operaEm) {
+    for (const escolha of ['c', 'ce', `a:${w1h}`]) {
+      abrir(id);
+      const m = mudou(() => hook.arsAdd(escolha, 'novo'));
+      add('arsenalAdd', [id, escolha, 'novo'], { ...resumoEq(), mudou: m });
+    }
+    for (const uid of ['p1', 'p3', 'p5', 'nao-existe']) {
+      abrir(id);
+      const m = mudou(() => hook.arsRm(uid));
+      add('arsenalRm', [id, uid], { ...resumoEq(), mudou: m });
+      for (const papel of ['nada', 'habil', 'inabil']) {
+        abrir(id);
+        const m2 = mudou(() => onArsUso({ target: { closest: (sel) => (sel === 'input[data-uso]' ? { dataset: { uso: `${uid}:${papel}` } } : null) } }));
+        add('arsenalUso', [id, uid, papel], { ...resumoEq(), mudou: m2 });
+      }
+      abrir(id);
+      const m3 = mudou(() => onArsNome({ target: { closest: (sel) => (sel === 'input[data-ars-nome]' ? { dataset: { arsNome: uid }, value: 'Outro nome', closest: () => null } : null) } }));
+      add('arsenalNome', [id, uid, 'Outro nome'], { ...resumoEq(), mudou: m3 });
+    }
+  }
+
+  // os conjuntos: o seletor de cada mão, o "em uso", remover e adicionar
+  const valoresMao = ['nada', `a:${w1h}`, `a:${w2h}`, `e:${escudoA}`, 'c'];
+  for (const id of operaEm) {
+    for (const i of [0, 1]) {
+      if (i >= estados[id].conjuntos.length) continue;
+      for (const mao of ['habil', 'inabil']) {
+        for (const valor of valoresMao) {
+          abrir(id);
+          const m = mudou(() => onConjChange({ target: { closest: (sel) => (sel === 'select[data-conj-sel]' ? { dataset: { conjSel: `${i}:${mao}` }, value: valor } : null) } }));
+          add('conjuntoMao', [id, i, mao, valor], { ...resumoEq(), uids: [...globalThis.__uids], mudou: m });
+        }
+      }
+      abrir(id);
+      const m = mudou(() => onConjChange({ target: { closest: (sel) => (sel === 'input[data-conj-uso]' ? { dataset: { conjUso: String(i) } } : null) } }));
+      add('conjuntoUso', [id, i], { ...resumoEq(), mudou: m });
+      // o último conjunto não se remove (a fonte falharia)
+      if (estados[id].conjuntos.length <= 1) continue;
+      abrir(id);
+      const m2 = mudou(() => onConjClick({ target: { closest: (sel) => (sel === '[data-conj-rm]' ? { dataset: { conjRm: String(i) } } : null) } }));
+      add('conjuntoRm', [id, i], { ...resumoEq(), mudou: m2 });
+    }
+    abrir(id);
+    const m = mudou(() => onConjAdd({}));
+    add('conjuntoAdd', [id], { ...resumoEq(), mudou: m });
+  }
+
+  // o ajuste: o texto de cada campo vira valor no item, e o botão de restaurar
+  const textos = (c) => (c.tipo === 'lista' ? ['', 'a, b ,, c'] : c.tipo === 'opcao' ? ['', c.opcoes[0].v, 'zzz']
+    : ['', '3', '-3', '2,5', '99', 'abc', '0x1F', '1,3', '0,74', '-0,3']);
+  for (const id of ['equip-misto', 'equip-ajustado']) {
+    for (const [chave, uid] of [['ars', 'p1'], ['ars', 'p3'], ['ars', 'p4'], ['arm', 'a1']]) {
+      abrir(id);
+      const alvoCampos = hook.alvoMod(`${chave}:${uid}`)?.campos ?? [];
+      const catalogo = [...equip.CAMPOS_ARMA, ...equip.CAMPOS_ARMA_MAIS, ...equip.CAMPOS_ESCUDO, ...equip.CAMPOS_ARMADURA];
+      for (const k of (id === 'equip-misto' ? alvoCampos : [])) {
+        const c = (chave === 'arm' ? equip.CAMPOS_ARMADURA : catalogo).find((x) => x.k === k);
+        for (const texto of textos(c)) {
+          abrir(id);
+          const m = mudou(() => ajustar(`${chave}:${uid}`, k, texto, c.tipo === 'opcao'));
+          const peca = todasPecas(hook.getS()).find(([g, q]) => g === chave && q.uid === uid)?.[1];
+          add('ajusteCampo', [id, `${chave}:${uid}:${k}`, texto], { item: peca?.item ?? null, mudou: m });
+        }
+      }
+      abrir(id);
+      const m = mudou(() => onAjusteClick({ target: { closest: (sel) => (sel === '[data-eqm-reset]' ? { dataset: { eqmReset: `${chave}:${uid}` } } : null) } }));
+      const peca = todasPecas(hook.getS()).find(([g, q]) => g === chave && q.uid === uid)?.[1];
+      add('ajusteReset', [id, `${chave}:${uid}`], { peca: peca ?? null, mudou: m });
     }
   }
 
