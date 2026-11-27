@@ -78,6 +78,17 @@ const ORACLE = `(table, col, dir) => {
 // layout do que está na tela), e o `innerText` deixa de fora o que não teve
 // layout. Antes de cada leitura, esta folha desliga o layout preguiçoso, e a
 // comparação fica a mesma.
+// O que a ilha das abas dos Efeitos esconde ou abre depois de montar: desfeito
+// para comparar o texto com o de antes das ilhas, e refeito depois.
+const UNDO_ISLAND_VIEW = `(() => {
+  const saved = [];
+  document.querySelectorAll('.ef-grupo, .ef-grupo-tit, .ef-grupo-sub').forEach((e) => { saved.push([e, 'hidden', e.hidden]); e.hidden = false; });
+  document.querySelectorAll('details.ef-bloco').forEach((d) => { saved.push([d, 'open', d.open]); d.open = false; });
+  window.__islandView = saved;
+  return saved.length;
+})()`;
+const REDO_ISLAND_VIEW = `(() => { for (const [e, k, v] of window.__islandView ?? []) e[k] = v; return true; })()`;
+
 const ALL_VISIBLE = `(() => {
   if (!document.getElementById('test-all-visible')) {
     const s = document.createElement('style');
@@ -244,6 +255,10 @@ async function checkPage(contextId, rel, ctx) {
   }
   const hydrateMs = Date.now() - started;
   await new Promise((ok) => setTimeout(ok, 150));
+  // As abas dos Efeitos mudam o que se vê depois de montar (de propósito, como
+  // no site atual): confere esse estado e o desfaz só para comparar o texto.
+  problems.push(...(await checkTabsMounted(page)));
+  await page.eval(UNDO_ISLAND_VIEW);
   await page.eval(ALL_VISIBLE);
   const after = await page.eval('document.body.innerText');
   const contentAfter = await page.eval(CONTENT);
@@ -287,6 +302,8 @@ async function checkPage(contextId, rel, ctx) {
     }
   }
 
+  await page.eval(REDO_ISLAND_VIEW);
+
   // 4b. A barra lateral (desktop) e a gaveta (celular).
   problems.push(...(await checkShell(page)));
 
@@ -307,7 +324,12 @@ async function checkPage(contextId, rel, ctx) {
   // 4g. O cartão das formas, o voltar ao topo e o painel dos fixados.
   problems.push(...(await checkShapes(page)));
   problems.push(...(await checkBackToTop(page)));
-  problems.push(...(await checkBookmarks(page)));
+  problems.push(...(await checkBookmarks(page, rel)));
+
+  // 4h. As Artes: o filtro e o marcador do catálogo; as abas, a âncora e a
+  // troca de largura dos Efeitos.
+  problems.push(...(await checkArtFilter(page)));
+  problems.push(...(await checkEffectTabs(page, url, contentBefore, newPage, opened)));
 
   // 4i. A busca (por último: escolher um resultado sai da página).
   problems.push(...(await checkSearch(page, rel)));
@@ -535,7 +557,12 @@ async function checkCards(page, rel) {
     if (await page.eval("document.activeElement?.classList.contains('ref') ?? false")) break;
     await new Promise((ok) => setTimeout(ok, 100));
   }
-  await new Promise((ok) => setTimeout(ok, 100));
+  // Com as outras abas trabalhando, o cartão pode reabrir depois do Esc:
+  // espera ele reabrir (até 1 s) antes de fechar.
+  for (let i = 0; i < 10; i++) {
+    if (await page.eval("!!document.querySelector('.ref-pop')")) break;
+    await new Promise((ok) => setTimeout(ok, 100));
+  }
   for (const type of ['keyDown', 'keyUp']) {
     await page.send('Input.dispatchKeyEvent', { type, key: 'Escape', code: 'Escape', windowsVirtualKeyCode: 27 });
   }
@@ -638,17 +665,54 @@ async function checkShapes(page) {
   if (!(await until('Área'))) problems.push('o cartão das formas não abriu pelo mouse');
   await page.send('Input.dispatchMouseEvent', { type: 'mouseMoved', x: 2, y: 2 });
   if (!(await until(null))) problems.push('o cartão das formas não fechou ao tirar o mouse');
-  // Teclado: Tab até o rótulo de Volume abre; Esc fecha.
-  await page.eval("document.querySelector('[data-formas=\"area\"]').focus({ preventScroll: true })");
+  // Teclado: um botão de prova logo antes do primeiro rótulo de Volume; o Tab
+  // a partir dele chega ao rótulo e abre o cartão; Esc fecha.
+  await page.eval(`(() => {
+    const label = [...document.querySelectorAll('[data-formas="volume"]')].find((e) => e.offsetParent) ?? document.querySelector('[data-formas="volume"]');
+    const probe = document.createElement('button');
+    probe.id = 'tab-probe';
+    label.before(probe);
+    probe.focus({ preventScroll: true });
+    return true;
+  })()`);
+  // Uma rolagem atrasada (do passo do mouse) fecharia o cartão logo depois
+  // de abrir: espera a página ficar 400 ms sem rolar antes do Tab.
+  await settleScroll(page);
   for (const type of ['keyDown', 'keyUp']) {
     await page.send('Input.dispatchKeyEvent', { type, key: 'Tab', code: 'Tab', windowsVirtualKeyCode: 9 });
   }
-  if (!(await until('Volume'))) problems.push('o Tab não abriu o cartão das formas no rótulo seguinte');
+  await page.eval("document.getElementById('tab-probe').remove()");
+  if (!(await until('Volume'))) {
+    const state = await page.eval("({ active: (document.activeElement?.className || document.activeElement?.tagName) + ': ' + (document.activeElement?.textContent ?? '').slice(0, 30), pop: !!document.querySelector('.formas-pop'), title: document.querySelector('.formas-pop .formas-tit')?.textContent ?? null, scrolls: window.__scrolls })");
+    problems.push(`o Tab não abriu o cartão das formas no rótulo de Volume: ${JSON.stringify(state)}`);
+  }
   for (const type of ['keyDown', 'keyUp']) {
     await page.send('Input.dispatchKeyEvent', { type, key: 'Escape', code: 'Escape', windowsVirtualKeyCode: 27 });
   }
   if (!(await until(null))) problems.push('Esc não fechou o cartão das formas');
   return problems;
+}
+
+/** Recarrega e espera a página nova hidratar (e não a velha, ainda na tela). */
+async function reloadAndWait(page) {
+  await page.eval('(() => { window.__old = true; location.reload(); return true; })()');
+  const ready = "!window.__old && document.readyState === 'complete' && document.documentElement.dataset.islands === 'hydrated'";
+  for (let i = 0; i < 300; i++) {
+    // No meio da troca de documento, a avaliação pode falhar: tenta de novo.
+    if (await page.eval(ready).catch(() => false)) return;
+    await new Promise((ok) => setTimeout(ok, 100));
+  }
+  throw new Error('a página recarregada não hidratou em 30 s');
+}
+
+/** Espera a página ficar 400 ms sem evento de rolagem (até 3 s). */
+async function settleScroll(page) {
+  await page.eval("(() => { if (!window.__scrolls) { window.__scrolls = { n: 0 }; addEventListener('scroll', () => { window.__scrolls.n++; window.__scrolls.at = performance.now(); }, true); } return true; })()");
+  for (let i = 0; i < 30; i++) {
+    const quiet = await page.eval("performance.now() - (window.__scrolls.at ?? 0) > 400");
+    if (quiet) return;
+    await new Promise((ok) => setTimeout(ok, 100));
+  }
 }
 
 async function checkBackToTop(page) {
@@ -659,7 +723,9 @@ async function checkBackToTop(page) {
   await new Promise((ok) => setTimeout(ok, 200));
   if (!(await hidden())) problems.push('o voltar ao topo aparece no alto da página');
   await page.eval("window.scrollTo({ top: innerHeight * 2.5, behavior: 'instant' })");
-  await new Promise((ok) => setTimeout(ok, 300));
+  // O evento de rolagem chega no quadro seguinte, que demora com as outras
+  // abas trabalhando: espera até 3 s.
+  for (let i = 0; i < 30 && (await hidden()); i++) await new Promise((ok) => setTimeout(ok, 100));
   if (await hidden()) problems.push('o voltar ao topo não apareceu depois de duas telas');
   await page.eval("history.replaceState(null, '', location.pathname + '#algum-lugar')");
   if (!(await click(page, '#topo-btn'))) problems.push('sem o botão de voltar ao topo');
@@ -669,9 +735,11 @@ async function checkBackToTop(page) {
   return problems;
 }
 
-async function checkBookmarks(page) {
+async function checkBookmarks(page, rel) {
   const problems = [];
   if (!(await page.eval("!!document.querySelector('main .ref')"))) return problems;
+  const id = await page.eval("document.querySelector('main .ref').dataset.ref");
+  const here = await page.eval('location.pathname');
   await page.eval("window.scrollTo({ top: 0, behavior: 'instant' })");
   // A rolagem fecha o cartão, e o evento dela chega um quadro depois: espera
   // passar antes de abrir.
@@ -705,6 +773,143 @@ async function checkBookmarks(page) {
   await new Promise((ok) => setTimeout(ok, 200));
   const after = await page.eval("({ panel: !!document.getElementById('consulta'), stored: sessionStorage.getItem('centelha:consulta') })");
   if (after.panel || after.stored !== '[]') problems.push(`o ✕ não tirou o termo do painel: ${JSON.stringify(after)}`);
+  // Num capítulo só (é lento): o download que falha tenta de novo no próximo
+  // fixado, e a página aberta já com um fixado na sessão mostra o painel.
+  if (rel !== 'regras/combate/') return problems;
+  if ((await page.eval('location.pathname')) !== here) {
+    problems.push(`o teste dos fixados saiu da página: ${await page.eval('location.href')}`);
+    return problems;
+  }
+  const pin = (list) => page.eval(`(() => { sessionStorage.setItem('centelha:consulta', '${JSON.stringify(list)}'); dispatchEvent(new Event('rs:consulta')); return true; })()`);
+  const cards = () => page.eval("document.querySelectorAll('#consulta .cs-card').length");
+  const waitCards = async (n) => {
+    for (let i = 0; i < 30 && (await cards()) !== n; i++) await new Promise((ok) => setTimeout(ok, 100));
+    return cards();
+  };
+  await page.send('Network.enable');
+  await page.send('Network.setBlockedURLs', { urls: ['*ref-index.json'] });
+  await reloadAndWait(page);
+  await pin([`termo:${id}`]);
+  await new Promise((ok) => setTimeout(ok, 500));
+  if ((await cards()) !== 0) problems.push('o painel apareceu sem o índice');
+  await page.send('Network.setBlockedURLs', { urls: [] });
+  await pin([`termo:${id}`]);
+  if ((await waitCards(1)) !== 1) problems.push('depois de uma falha, o painel não baixou o índice de novo');
+  // Abrir a página já com o fixado na sessão.
+  await reloadAndWait(page);
+  if ((await waitCards(1)) !== 1) problems.push('a página aberta com um fixado na sessão não mostrou o painel');
+  await pin([]);
+  if ((await waitCards(0)) !== 0) problems.push('o painel não sumiu ao esvaziar a lista');
+  return problems;
+}
+
+async function checkTabsMounted(page) {
+  const problems = [];
+  if (!(await page.eval("!!document.querySelector('.ef-aba')"))) return problems;
+  const s = await page.eval(`({
+    titles: [...document.querySelectorAll('.ef-grupo-tit, .ef-grupo-sub')].every((e) => e.hidden),
+    groups: [...document.querySelectorAll('.ef-grupo')].map((g) => g.dataset.cat + ':' + (g.hidden ? 'oculto' : 'visivel')).join(' '),
+    open: [...document.querySelectorAll('details.ef-bloco')].every((d) => d.open),
+    selected: document.querySelector('.ef-aba[aria-selected="true"]')?.dataset.aba ?? null,
+  })`);
+  if (!s.titles || s.groups !== 'elemental:visivel universal:oculto' || !s.open || s.selected !== 'elemental') {
+    problems.push(`abas dos Efeitos, ao montar na tela larga: ${JSON.stringify(s)}`);
+  }
+  return problems;
+}
+
+async function checkEffectTabs(page, url, contentBefore, newPage, opened) {
+  const problems = [];
+  if (!(await page.eval("!!document.querySelector('.ef-aba')"))) return problems;
+  const group = () => page.eval("[...document.querySelectorAll('.ef-grupo')].filter((g) => !g.hidden).map((g) => g.dataset.cat).join(' ')");
+  await page.eval("window.scrollTo({ top: 0, behavior: 'instant' })");
+  if (!(await click(page, '.ef-aba[data-aba="universal"]'))) problems.push('sem a aba das universais');
+  if ((await group()) !== 'universal') problems.push(`a aba das universais não trocou o grupo: ${await group()}`);
+  await click(page, '.ef-aba[data-aba="elemental"]');
+  if ((await group()) !== 'elemental') problems.push(`a aba das elementais não voltou: ${await group()}`);
+  // A âncora de um Efeito do outro grupo troca de aba, abre o bloco e rola até ele.
+  const target = await page.eval("document.querySelector('.ef-grupo[data-cat=\"universal\"] .efeito')?.id ?? null");
+  if (!target) {
+    problems.push('sem cartão de Efeito nas universais');
+    return problems;
+  }
+  await page.eval(`(() => { document.querySelector('details.ef-bloco:has(#${target})').open = false; location.hash = '${target}'; return true; })()`);
+  let st = null;
+  for (let i = 0; i < 20; i++) {
+    st = await page.eval(`(() => {
+      const t = document.getElementById('${target}');
+      const r = t.getBoundingClientRect();
+      return { group: [...document.querySelectorAll('.ef-grupo')].filter((g) => !g.hidden).map((g) => g.dataset.cat).join(' '),
+        open: t.closest('details').open, top: Math.round(r.top), inView: r.top >= -2 && r.top < innerHeight };
+    })()`);
+    if (st.group === 'universal' && st.open && st.inView) break;
+    await new Promise((ok) => setTimeout(ok, 100));
+  }
+  if (st.group !== 'universal' || !st.open || !st.inView) problems.push(`a âncora ${target} não abriu o Efeito: ${JSON.stringify(st)}`);
+  // Troca de largura: no celular os blocos abrem fechados, sem descasamento.
+  // A aba do celular sai do contexto da página (armazenamento isolado, foco
+  // emulado) e fecha junto se a prova parar.
+  const phone = await newPage();
+  const errors = [];
+  phone.on('Runtime.consoleAPICalled', (p) => { if (['error', 'warning'].includes(p.type)) errors.push(p.args.map((a) => a.value ?? a.description ?? '').join(' ')); });
+  phone.on('Runtime.exceptionThrown', (p) => errors.push(p.exceptionDetails?.exception?.description ?? p.exceptionDetails?.text));
+  await phone.send('Page.enable');
+  await phone.send('Runtime.enable');
+  await phone.send('Emulation.setDeviceMetricsOverride', PHONE);
+  await phone.goto(url);
+  try {
+    await phone.waitFor("document.documentElement.dataset.islands === 'hydrated'", 30000);
+    await new Promise((ok) => setTimeout(ok, 150));
+    const m = await phone.eval(`({
+      closed: [...document.querySelectorAll('details.ef-bloco')].every((d) => !d.open),
+      content: document.querySelector('main').textContent,
+    })`);
+    if (!m.closed) problems.push('no celular, os blocos dos Efeitos não abriram fechados');
+    if (m.content !== contentBefore) problems.push(`no celular, o textContent mudou na hidratação:\n${firstDiff(contentBefore, m.content)}`);
+    if (errors.length) problems.push(`no celular, o console falou: ${errors.join(' | ')}`);
+  } catch (e) {
+    problems.push(`no celular, as ilhas não hidrataram: ${e.message}`);
+  }
+  await phone.close();
+  opened.splice(opened.indexOf(phone), 1);
+  return problems;
+}
+
+async function checkArtFilter(page) {
+  const problems = [];
+  if (!(await page.eval("!!document.querySelector('[data-fa]')"))) return problems;
+  const state = () => page.eval(`({
+    shown: [...document.querySelectorAll('.arte[data-cat]')].filter((c) => c.style.display !== 'none').map((c) => c.id),
+    sections: [...document.querySelectorAll('.arte-sec')].filter((s) => s.style.display !== 'none').length,
+    on: document.querySelectorAll('.f-chip.on').length,
+  })`);
+  const total = await page.eval("document.querySelectorAll('.arte[data-cat]').length");
+  await page.eval("window.scrollTo({ top: 0, behavior: 'instant' })");
+  await page.eval("document.querySelector('[data-fa=\"q\"]').focus({ preventScroll: true })");
+  await page.send('Input.insertText', { text: 'cura' });
+  await new Promise((ok) => setTimeout(ok, 100));
+  let s = await state();
+  const expected = await page.eval("[...document.querySelectorAll('.arte[data-cat]')].filter((c) => c.dataset.txt.includes('cura')).map((c) => c.id)");
+  if (JSON.stringify(s.shown) !== JSON.stringify(expected) || !expected.length) problems.push(`filtro das Artes pela busca: ${JSON.stringify(s)} (esperava ${expected})`);
+  if (!(await click(page, '#limpar-filtros'))) problems.push('sem o Limpar');
+  s = await state();
+  if (s.shown.length !== total) problems.push(`o Limpar não voltou tudo: ${s.shown.length} de ${total}`);
+  // O título do grupo marca o grupo inteiro: só as universais, e a seção das elementais some.
+  if (!(await click(page, '.f-tit[data-grupo="Universais"]'))) problems.push('sem o título das Universais');
+  s = await state();
+  const universal = await page.eval("[...document.querySelectorAll('.arte[data-cat=\"universal\"]')].map((c) => c.id)");
+  if (JSON.stringify(s.shown) !== JSON.stringify(universal) || s.sections !== 1 || s.on !== universal.length) {
+    problems.push(`o título das Universais não filtrou o grupo: ${JSON.stringify(s)}`);
+  }
+  await click(page, '#limpar-filtros');
+  // O marcador: ☆ vira ★ e a lista gravada ganha a Arte; outro clique desfaz.
+  const id = await page.eval("document.querySelector('.bm').dataset.bm");
+  await click(page, '.bm');
+  let m = await page.eval("({ text: document.querySelector('.bm').textContent, pressed: document.querySelector('.bm').getAttribute('aria-pressed'), stored: localStorage.getItem('centelha:marcadores') })");
+  if (m.text !== '★' || m.pressed !== 'true' || m.stored !== JSON.stringify([id])) problems.push(`o marcador não marcou: ${JSON.stringify(m)}`);
+  await click(page, '.bm');
+  m = await page.eval("({ text: document.querySelector('.bm').textContent, stored: localStorage.getItem('centelha:marcadores') })");
+  if (m.text !== '☆' || m.stored !== '[]') problems.push(`o marcador não desmarcou: ${JSON.stringify(m)}`);
   return problems;
 }
 

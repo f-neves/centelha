@@ -37,7 +37,7 @@ wasm-bindgen = { workspace = true, optional = true }
 js-sys = { workspace = true, optional = true }
 # A mesma versão que o Leptos já traz (Cargo.lock): as promessas do Pagefind na busca.
 wasm-bindgen-futures = { version = "=0.4.80", optional = true }
-web-sys = { workspace = true, optional = true, features = ["CssStyleDeclaration", "Document", "DomRect", "DomStringMap", "DomTokenList", "Element", "Event", "EventTarget", "FocusEvent", "HtmlCollection", "HtmlDetailsElement", "HtmlDialogElement", "History", "HtmlElement", "HtmlInputElement", "HtmlTableElement", "HtmlTableRowElement", "HtmlTableSectionElement", "KeyboardEvent", "Location", "console", "MouseEvent", "Node", "NodeList", "Performance", "Response", "ScrollBehavior", "ScrollIntoViewOptions", "ScrollToOptions", "Storage", "Window"] }
+web-sys = { workspace = true, optional = true, features = ["CssStyleDeclaration", "Document", "DomRect", "DomStringMap", "DomTokenList", "Element", "Event", "EventTarget", "FocusEvent", "HtmlCollection", "CustomEvent", "CustomEventInit", "HtmlDetailsElement", "HtmlDialogElement", "History", "HtmlElement", "HtmlInputElement", "HtmlTableElement", "HtmlTableRowElement", "HtmlTableSectionElement", "KeyboardEvent", "Location", "MediaQueryList", "MouseEvent", "Node", "NodeList", "Performance", "Response", "ScrollBehavior", "ScrollIntoViewOptions", "ScrollToOptions", "Storage", "Window", "console"] }
 
 [lints]
 workspace = true

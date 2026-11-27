@@ -154,6 +154,14 @@ impl<'a> Refs<'a> {
                 rest = &rest[len..];
                 continue;
             }
+            // `<!>` (a marca vazia que o Leptos põe entre trechos) e `<!doctype>`
+            // passam inteiros.
+            if rest.starts_with("<!") {
+                let len = rest.find('>').map(|i| i + 1).unwrap_or(rest.len());
+                out.html.push_str(&rest[..len]);
+                rest = &rest[len..];
+                continue;
+            }
             if rest.starts_with('<')
                 && rest[1..].starts_with(|c: char| c == '/' || c.is_ascii_alphabetic())
             {
@@ -497,6 +505,13 @@ mod tests {
     fn only_the_direct_parent_counts_like_the_current_site() {
         // Dentro de <strong> dentro de <a>, o pai direto é <strong>: marca.
         let m = marked("<p><a href=\"#\"><strong>Pool</strong></a></p>");
+        assert_eq!(m.marks.len(), 1);
+    }
+
+    #[test]
+    fn empty_markers_pass_through() {
+        let m = marked("<p><strong>X</strong>: <!>uma Defesa</p>");
+        assert!(m.html.contains(": <!>uma "));
         assert_eq!(m.marks.len(), 1);
     }
 
