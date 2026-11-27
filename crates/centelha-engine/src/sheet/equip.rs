@@ -9,6 +9,7 @@
 
 use std::collections::HashMap;
 
+use centelha_data::{Armor, Shield, Weapon};
 use serde_json::{Map, Value, json};
 
 use super::value::{
@@ -55,7 +56,7 @@ pub const CUSTOM_SHIELD: &str = "ce";
 
 /// O catálogo de equipamento como a ficha o lê: o envelope de cada peça e a
 /// versão achatada (o bloco de números junto da raiz).
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq)]
 pub struct Catalog {
     /// `ARMA`: as armas achatadas por id (todas, inclusive as só de criatura),
     /// na ordem do JavaScript (`Object.values`).
@@ -142,6 +143,23 @@ impl Catalog {
                 map(&a, Value::clone),
             ],
         })
+    }
+
+    /// Monta o catálogo a partir dos tipos do `centelha-data`, sem ler o JSON
+    /// de novo: cada peça entra pelo envelope que o tipo guarda (a peça
+    /// inteira, na ordem das chaves do arquivo). Dá o mesmo catálogo que o
+    /// [`Catalog::from_json`] dá com os mesmos arquivos.
+    pub fn from_data(
+        weapons: &[Weapon],
+        armors: &[Armor],
+        shields: &[Shield],
+    ) -> Result<Self, super::SheetError> {
+        let list = |items: Vec<&Value>| Value::Array(items.into_iter().cloned().collect());
+        Catalog::new(
+            &list(weapons.iter().map(Weapon::envelope).collect()),
+            &list(armors.iter().map(Armor::envelope).collect()),
+            &list(shields.iter().map(Shield::envelope).collect()),
+        )
     }
 
     /// Monta o catálogo a partir do texto dos três arquivos.

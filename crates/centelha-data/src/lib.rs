@@ -13,6 +13,7 @@ pub mod armor;
 pub mod arts;
 pub mod attributes;
 pub mod bestiary;
+mod catalog_item;
 pub mod chapters;
 pub mod effects;
 mod error;
@@ -35,7 +36,7 @@ pub use arcane::{
 };
 #[cfg(not(target_arch = "wasm32"))]
 pub use armor::load_armors;
-pub use armor::{Armor, parse_armors};
+pub use armor::{Armor, ArmorSoak, ArmorStats, parse_armors};
 #[cfg(not(target_arch = "wasm32"))]
 pub use arts::load_arts;
 pub use arts::{Art, parse_arts};
@@ -45,6 +46,7 @@ pub use attributes::{Attribute, parse_attributes};
 #[cfg(not(target_arch = "wasm32"))]
 pub use bestiary::load_bestiary;
 pub use bestiary::{Creature, parse_creature};
+pub use catalog_item::Price;
 #[cfg(not(target_arch = "wasm32"))]
 pub use chapters::load_chapters;
 pub use chapters::{Chapter, parse_chapter};
@@ -64,7 +66,7 @@ pub use rules::load_rules;
 pub use rules::{Rules, parse_rules};
 #[cfg(not(target_arch = "wasm32"))]
 pub use shields::load_shields;
-pub use shields::{Shield, parse_shields};
+pub use shields::{FastProjectile, Shield, ShieldStats, parse_shields};
 pub use skills::{SecondarySkill, Skill, parse_secondary_skills, parse_skills};
 #[cfg(not(target_arch = "wasm32"))]
 pub use skills::{load_secondary_skills, load_skills};
@@ -76,4 +78,4 @@ pub use virtues::load_virtues;
 pub use virtues::{Virtue, parse_virtues};
 #[cfg(not(target_arch = "wasm32"))]
 pub use weapons::load_weapons;
-pub use weapons::{Weapon, parse_weapons};
+pub use weapons::{AttackMode, DamageType, RangeBand, Weapon, WeaponStats, parse_weapons};
