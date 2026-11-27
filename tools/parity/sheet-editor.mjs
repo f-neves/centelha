@@ -97,6 +97,9 @@ const GUARDAS = [
   String.raw`arr[+inp.dataset.spname!].s = inp.value; save();`,
   String.raw`arr.splice(+b.dataset.sprm!, 1); paint(arr.length - 1); recompute();`,
   String.raw`if (arr.length < cap) { arr.push({ s: '', v: 0 }); paint(arr.length - 1); }`,
+  // o espFechar: a lista de que se parte e o teste de que é lista, antes do filtro
+  String.raw`const arr = scope === 'p' ? S.spec[key] : S.spec2[key];`,
+  String.raw`if (Array.isArray(arr)) { const p = arr.filter(`,
   String.raw`const p = arr.filter((e: any) => e.v > 0); if (scope === 'p') S.spec[key] = p; else S.spec2[key] = p;`,
   // a mesma regra do espQuad, vista de dois lados: o quadradinho acima do teto sai com a classe `dis`, e o
   // clique nele não faz nada
