@@ -81,7 +81,9 @@ impl TraitKind {
 /// Onde mora a especialidade: nas Habilidades (`p`) ou nas Secundárias (`s`).
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum SpecialtyScope {
+    /// As Habilidades (`skills` e `spec` da ficha; `p` na fonte).
     Primary,
+    /// As Habilidades Secundárias (`skills2` e `spec2`; `s` na fonte).
     Secondary,
 }
 

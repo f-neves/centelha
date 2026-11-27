@@ -98,6 +98,13 @@ const GUARDAS = [
   String.raw`arr.splice(+b.dataset.sprm!, 1); paint(arr.length - 1); recompute();`,
   String.raw`if (arr.length < cap) { arr.push({ s: '', v: 0 }); paint(arr.length - 1); }`,
   String.raw`const p = arr.filter((e: any) => e.v > 0); if (scope === 'p') S.spec[key] = p; else S.spec2[key] = p;`,
+  // a mesma regra do espQuad, vista de dois lados: o quadradinho acima do teto sai com a classe `dis`, e o
+  // clique nele não faz nada
+  "${d > cap ? ' dis' : ''}",
+  String.raw`if (s.classList.contains('dis')) return;`,
+  // o defEspMais: o texto da situação sem as bordas, e sem situação ou sem bônus nada entra
+  String.raw`const s = r.s.trim();`,
+  String.raw`if (!s || !v) return;`,
   String.raw`const v = Math.max(0, Math.min(6, parseInt(r.v, 10) || 0));`,
   String.raw`(S.defSpec[key] ||= []).push({ s, v }); recompute();`,
   String.raw`S.id[inp.dataset.id!] = inp.value; if (inp.dataset.id === 'peso') { const massa = Number(inp.value.replace(',', '.').match(/\d+(?:\.\d+)?/)?.[0]); if (massa > 0) { S.corpo ??= {}; S.corpo.massa = massa; massaEscolhida = true; renderForca(); } else if (!inp.value.trim()) { if (S.corpo) delete S.corpo.massa; massaEscolhida = false; renderForca(); } }`,
