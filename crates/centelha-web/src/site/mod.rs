@@ -6,6 +6,7 @@
 
 pub mod arts;
 pub mod arts_pages;
+pub mod arts_rules;
 mod backdrop;
 pub mod equipment;
 pub mod heading_ids;
@@ -155,6 +156,8 @@ pub struct Site {
     scales: HashMap<String, leptos::serde_json::Value>,
     equipment: equipment::Equipment,
     arts: arts::Arts,
+    /// O ramo `arcano` das regras, para `artes/regras` (sem ele, a página não sai).
+    arts_rules: Option<arts_rules::RulesData>,
     diagrams: Diagrams,
     content_dir: PathBuf,
 }
@@ -170,6 +173,12 @@ impl Site {
         let diagrams_path = content_dir.join("data").join("diagramas.json");
         let json = std::fs::read_to_string(&diagrams_path).map_err(io_error(&diagrams_path))?;
         let diagrams = Diagrams::parse(&json).map_err(SiteError::Diagrams)?;
+        let rules = centelha_data::load_rules(content_dir)?;
+        let arts = arts::load(content_dir, &rules)?;
+        let arts_rules = rules
+            .arcane
+            .clone()
+            .map(|arcane| arts_rules::RulesData::new(arcane, &arts));
         Ok(Site {
             base: normalize_base(base),
             chapters,
@@ -178,7 +187,8 @@ impl Site {
             counts: home_counts(content_dir)?,
             scales: glossary_scales(content_dir)?,
             equipment: equipment::load(content_dir, &skill_names(content_dir)?)?,
-            arts: arts::load(content_dir, &centelha_data::load_rules(content_dir)?)?,
+            arts,
+            arts_rules,
             diagrams,
             content_dir: content_dir.to_path_buf(),
         })
@@ -271,6 +281,23 @@ impl Site {
             path: "artes/index.html".to_string(),
             html: arts_pages::redirect_html(&self.base),
         });
+        if let Some(data) = self.arts_rules.clone() {
+            let base = self.base.clone();
+            pages.push(Page {
+                path: "artes/regras/index.html".to_string(),
+                html: self.document_with_headings(
+                    PageInfo {
+                        path: "artes/regras".to_string(),
+                        title: "Regras das Artes".to_string(),
+                        wide: true,
+                        toc: Vec::new(),
+                        refs: true,
+                    },
+                    Some("Como se conjura no Centelha: parâmetros, custo em Mana, a fonte do elemento, esticar, Rituais e o que o alvo opõe."),
+                    move || view! { <arts_rules::ArtsRulesPage base=base.clone() data=data.clone()/> }.into_any(),
+                ),
+            });
+        }
         let (base, arts) = (self.base.clone(), self.arts.clone());
         let title = format!("As {} Artes", arts.art_count);
         pages.push(Page {
