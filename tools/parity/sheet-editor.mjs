@@ -136,6 +136,10 @@ const GUARDAS3 = [
   String.raw`const uid = rm.dataset.arsRm!, p = pecaArsenal(uid); if (!p) return;`,
   String.raw`marcarUso(uid, 'nada');`,
   String.raw`S.arsenal = S.arsenal.filter((x: any) => x.uid !== uid);`,
+  // e a linha logo depois, que sozinha se repete em outros lugares da fonte
+  String.raw`S.arsenal = S.arsenal.filter((x: any) => x.uid !== uid);
+    sincronizarSlots(); redesenhaArmas();
+`,
 ];
 
 // O gancho das armaduras e das bolsas: as funções da fonte como estão, o HTML
@@ -908,6 +912,8 @@ export function buildSheetEditorCases({ editor, sheets, races, attributes, techn
   const bow = equip.ARMAS.find((w) => w.classe === 'distancia' && !w.soCriatura).id;
   const escudoA = equip.ESCUDOS.find((x) => x.id !== 'nenhum').id;
   const armA = equip.ARMADURAS.find((x) => x.id !== 'nenhuma').id;
+  // uma arma que o livro dá com acerto 0: o ajuste `-0,3` a leva a -0, que o `igualCampo` da fonte vê como 0
+  const armaAcerto0 = equip.ARMAS.find((w) => w.acerto === 0 && !w.soCriatura).id;
   const eqBase = {
     arsenal: [{ uid: 'p1', ref: `a:${w1h}` }, { uid: 'p2', ref: `e:${escudoA}` }, { uid: 'p3', ref: 'c', nome: 'Minha', dado: 1, danoBonus: 0, acerto: -2 },
       { uid: 'p4', ref: 'ce', nome: 'Escudo meu' }, { uid: 'p5', ref: `a:${w2h}` }, { uid: 'p6', ref: `a:${bow}`, img: 'x.png' }],
@@ -926,7 +932,7 @@ export function buildSheetEditorCases({ editor, sheets, races, attributes, techn
   mkEq('equip-misto', null);
   mkEq('equip-segundo-em-uso', (s) => { s.conjuntos[0].ativo = false; s.conjuntos[1].ativo = true; });
   // peças que ninguém usa: o `limparArsenal` tira as sem nada do jogador e deixa as com nome
-  mkEq('equip-sobras', (s) => { s.arsenal.push({ uid: 'p7', ref: `a:${w1h}` }, { uid: 'p8', ref: 'c', nome: '' }, { uid: 'p9', ref: 'ce', nome: 'Tem nome' }, { uid: 'p10', ref: `e:${escudoA}`, mod: { penalidade: 1 } }); });
+  mkEq('equip-sobras', (s) => { s.arsenal.push({ uid: 'p12', ref: `a:${armaAcerto0}` }, { uid: 'p7', ref: `a:${w1h}` }, { uid: 'p8', ref: 'c', nome: '' }, { uid: 'p9', ref: 'ce', nome: 'Tem nome' }, { uid: 'p10', ref: `e:${escudoA}`, mod: { penalidade: 1 } }); });
   // o `mod` do modelo antigo, sem nada de diferente do livro: só ele segura a peça (um `{}` é verdadeiro)
   estados['equip-sobras'].arsenal.push({ uid: 'p11', ref: `a:${w1h}`, mod: {} });
   // o ajuste real de um campo, para ter uma peça que difere do livro
@@ -950,8 +956,12 @@ export function buildSheetEditorCases({ editor, sheets, races, attributes, techn
   ajustar('ars:p3', 'ticks', '7');
   ajustar('arm:a1', 'penalidade', '2');
   estados['equip-ajustado'] = structuredClone(hook.getS());
+  // o `-0,3` em `acerto` dá -0 (Math.round(-0,3)): a peça fica igual ao livro, e o limparArsenal a descarta
+  abrir('equip-sobras');
+  ajustar('ars:p12', 'acerto', '-0,3');
+  estados['equip-zero'] = structuredClone(hook.getS());
 
-  const estadosEq = ['equip-vazio', 'equip-misto', 'equip-segundo-em-uso', 'equip-ajustado', 'equip-sobras'];
+  const estadosEq = ['equip-vazio', 'equip-misto', 'equip-segundo-em-uso', 'equip-ajustado', 'equip-sobras', 'equip-zero'];
   const todasPecas = (S) => [...(S.arsenal ?? []).map((p) => ['ars', p]), ...(S.equip?.armaduras ?? []).map((p) => ['arm', p])];
   // o que o arsenal e os conjuntos deixam (as armaduras só entram no ajuste)
   const resumoEq = () => { const S = hook.getS(); return { arsenal: S.arsenal ?? null, conjuntos: S.conjuntos ?? null }; };
@@ -1045,7 +1055,7 @@ export function buildSheetEditorCases({ editor, sheets, races, attributes, techn
 
   // o ajuste: o texto de cada campo vira valor no item, e o botão de restaurar
   const textos = (c) => (c.tipo === 'lista' ? ['', 'a, b ,, c'] : c.tipo === 'opcao' ? ['', c.opcoes[0].v, 'zzz']
-    : ['', '3', '-3', '2,5', '99', 'abc', '0x1F']);
+    : ['', '3', '-3', '2,5', '99', 'abc', '0x1F', '1,3', '0,74', '-0,3']);
   for (const id of ['equip-misto', 'equip-ajustado']) {
     for (const [chave, uid] of [['ars', 'p1'], ['ars', 'p3'], ['ars', 'p4'], ['arm', 'a1']]) {
       abrir(id);

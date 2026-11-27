@@ -498,7 +498,22 @@ fn order_diffs(got: &Value, want: &Value, path: &str, diffs: &mut Vec<String>) {
 /// As chaves de topo que mudaram, na ordem da ficha de depois (o `mudou` do
 /// gerador: o texto JSON de cada uma, antes e depois).
 fn changed_keys(before: &Value, after: &Value) -> Vec<Value> {
-    let text = |v: Option<&Value>| v.map(|v| serde_json::to_string(v).unwrap());
+    // o `JSON.stringify` da fonte escreve -0 como 0
+    fn js_zero(v: &mut Value) {
+        match v {
+            Value::Number(n) if n.as_f64() == Some(0.0) => *v = json!(0),
+            Value::Array(a) => a.iter_mut().for_each(js_zero),
+            Value::Object(m) => m.values_mut().for_each(js_zero),
+            _ => {}
+        }
+    }
+    let text = |v: Option<&Value>| {
+        v.map(|v| {
+            let mut v = v.clone();
+            js_zero(&mut v);
+            serde_json::to_string(&v).unwrap()
+        })
+    };
     after
         .as_object()
         .unwrap()
@@ -894,10 +909,36 @@ fn run_traits_names() -> &'static [&'static str] {
 
 // ------------------------------------------------- arsenal, conjuntos, ajuste
 
+/// O gerador grava todo -0 como o texto `"-0"`, também nas fichas de entrada.
+/// No ajuste (`mod`) e no item guardado de cada peça só há números e textos de
+/// nome, então ali o texto `"-0"` volta a ser -0.
+fn negative_zero_mods(mut sheet: Value) -> Value {
+    fn walk(v: &mut Value) {
+        match v {
+            Value::String(s) if s == "-0" => *v = num(-0.0),
+            Value::Array(a) => a.iter_mut().for_each(walk),
+            Value::Object(m) => m.values_mut().for_each(walk),
+            _ => {}
+        }
+    }
+    let fix = |list: Option<&mut Value>| {
+        for piece in list.and_then(Value::as_array_mut).into_iter().flatten() {
+            for key in ["mod", "item"] {
+                if let Some(v) = piece.get_mut(key) {
+                    walk(v);
+                }
+            }
+        }
+    };
+    fix(sheet.get_mut("arsenal"));
+    fix(sheet.get_mut("equip").and_then(|e| e.get_mut("armaduras")));
+    sheet
+}
+
 /// Os casos da fatia 7. `None` quando o nome não é daqui.
 fn run_arsenal(ctx: &Ctx, inputs: &Value, name: &str, a: &[Value], want: &Value) -> Option<Value> {
     let t = &ctx.t;
-    let sheet = |i: usize| inputs[a[i].as_str().unwrap()]["ficha"].clone();
+    let sheet = |i: usize| negative_zero_mods(inputs[a[i].as_str().unwrap()]["ficha"].clone());
     let text = |i: usize| a[i].as_str().unwrap();
     let index = |i: usize| a[i].as_u64().unwrap() as usize;
     // a peça do arsenal pelo uid

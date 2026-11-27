@@ -104,11 +104,27 @@ pub fn item_fields(kind: HandKind) -> Vec<EditField> {
 }
 
 /// `igualCampo`: dois valores de campo são iguais pelo texto JSON (a ordem
-/// das chaves conta; o que falta vale `null`).
+/// das chaves conta; o que falta vale `null`; `-0` e `0` valem o mesmo).
 pub fn same_field(a: Option<&Value>, b: Option<&Value>) -> bool {
-    let text =
-        |v: Option<&Value>| serde_json::to_string(v.unwrap_or(&Value::Null)).unwrap_or_default();
+    let text = |v: Option<&Value>| {
+        let mut v = v.cloned().unwrap_or(Value::Null);
+        positive_zero(&mut v);
+        serde_json::to_string(&v).unwrap_or_default()
+    };
     text(a) == text(b)
+}
+
+/// O `-0` vira `0` em toda a árvore: o `JSON.stringify` da fonte escreve os dois
+/// como `0`, e o `serde_json` escreveria `-0.0`.
+fn positive_zero(v: &mut Value) {
+    match v {
+        Value::Number(n) if n.as_f64().is_some_and(|x| x == 0.0 && x.is_sign_negative()) => {
+            *v = json!(0);
+        }
+        Value::Array(a) => a.iter_mut().for_each(positive_zero),
+        Value::Object(m) => m.values_mut().for_each(positive_zero),
+        _ => {}
+    }
 }
 
 /// `mostraCampo`: o valor do campo como a tela o escreve (a lista, separada
